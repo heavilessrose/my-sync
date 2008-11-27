@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+	<!--
+		UI code for the Note Editor. A horizontal linear layout is nested
+		inside the vertical one to allow the title label and text field to be
+		alongside each other, horizontally.
+	-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+		<!--
+			layout_weight is used in LinearLayouts to assign "importance" to
+			Views within the layout. All Views have a default layout_weight of
+			zero, meaning they take up only as much room on the screen as they
+			need to be displayed. Assigning a value higher than zero will split
+			up the rest of the available space in the parent View, according to
+			the value of each View's layout_weight and its ratio to the overall
+			layout_weight specified in the current layout for this and other View
+			elements.
+		-->
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/title" />
+		<EditText android:id="@+id/title" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_weight="1" />
+	</LinearLayout>
+
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@string/body" />
+	<EditText android:id="@+id/body" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_weight="1"
+		android:scrollbars="vertical" />
+
+	<Button android:id="@+id/confirm" android:text="@string/confirm"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+</LinearLayout>
