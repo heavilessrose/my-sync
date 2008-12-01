@@ -17,7 +17,7 @@ public class Notepadv3 extends ListActivity {
 	private static final int INSERT_ID = Menu.FIRST;
 	private static final int DELETE_ID = Menu.FIRST + 1;
 
-	private NotesDbAdapter mDbHelper;
+	private NotesDbAdapter _dbAdapter;
 
 	// private Cursor mNotesCursor;
 
@@ -26,15 +26,16 @@ public class Notepadv3 extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.notes_list);
-		mDbHelper = new NotesDbAdapter(this);
-		mDbHelper.open();
+		_dbAdapter = new NotesDbAdapter(this);
+		_dbAdapter.open();
 		fillData();
 	}
 
+	private Cursor notesCursor = null;
 	private void fillData() {
 		// Get all of the rows from the database and create the item list
 		// mNotesCursor = mDbHelper.fetchAllNotes();
-		Cursor notesCursor = mDbHelper.fetchAllNotes();
+		notesCursor = _dbAdapter.fetchAllNotes();
 		startManagingCursor(/* mNotesCursor */notesCursor);
 
 		// Create an array to specify the fields we want to display in the list
@@ -66,7 +67,7 @@ public class Notepadv3 extends ListActivity {
 			createNote();
 			return true;
 		case DELETE_ID:
-			mDbHelper.deleteNote(getListView().getSelectedItemId());
+			_dbAdapter.deleteNote(getListView().getSelectedItemId());
 			fillData();
 			return true;
 		}
@@ -118,4 +119,15 @@ public class Notepadv3 extends ListActivity {
 		super.onActivityResult(requestCode, resultCode, intent);
 		fillData();
 	}
+//
+//	public void onPause() {
+//		super.onPause();
+//		_dbAdapter.close();
+//	}
+	
+//	@Override
+//	protected void onSaveInstanceState(Bundle outState) {
+//		super.onSaveInstanceState(outState);
+//		outState.putLong(NotesDbAdapter.KEY_ROWID, _rowId);
+//	}
 }
