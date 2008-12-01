@@ -119,7 +119,6 @@ public class NotesDbAdapter {
 	 * @return true if deleted, false otherwise
 	 */
 	public boolean deleteNote(long rowId) {
-
 		return mDb.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
 	}
 
