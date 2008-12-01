@@ -10,8 +10,8 @@
 
 		<TextView android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
-			android:text="@string/title" />
-		<EditText android:id="@+id/title" 
+			android:text="@string/title_cn" />
+		<EditText android:id="@+id/titleView" 
 		  android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
 			android:layout_weight="1"/>
@@ -20,7 +20,7 @@
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="@string/body" />
-	<EditText android:id="@+id/body" android:layout_width="fill_parent"
+	<EditText android:id="@+id/bodyView" android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
 		android:scrollbars="vertical" />

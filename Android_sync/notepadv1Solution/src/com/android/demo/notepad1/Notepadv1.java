@@ -3,6 +3,7 @@ package com.android.demo.notepad1;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SimpleCursorAdapter;
@@ -13,11 +14,13 @@ public class Notepadv1 extends ListActivity {
 	private int mNoteNumber = 1;
 	private NotesDbAdapter mDbHelper;
 
-	/** Called when the activity is first created. */
+	private static final String TAG = "Notepadv1";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.notepad_list);
+		// Activity实现Context抽象类
 		mDbHelper = new NotesDbAdapter(this);
 		mDbHelper.open();
 		fillData();
@@ -25,6 +28,7 @@ public class Notepadv1 extends ListActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.w(TAG, "onCreateOptionsMenu");
 		boolean result = super.onCreateOptionsMenu(menu);
 		menu.add(0, INSERT_ID, 0, R.string.menu_insert);
 		return result;
@@ -32,6 +36,7 @@ public class Notepadv1 extends ListActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.w(TAG, "onOptionsItemSelected");
 		switch (item.getItemId()) {
 		case INSERT_ID:
 			createNote();
@@ -41,12 +46,15 @@ public class Notepadv1 extends ListActivity {
 	}
 
 	private void createNote() {
+		Log.w(TAG, "createNote");
 		String noteName = "Note " + mNoteNumber++;
-		mDbHelper.createNote(noteName, "");
+		mDbHelper.addNote(noteName, "");
 		fillData();
 	}
 
+	/** 填充list */
 	private void fillData() {
+		Log.w(TAG, "fillData");
 		// Get all of the notes from the database and create the item list
 		Cursor c = mDbHelper.fetchAllNotes();
 		startManagingCursor(c);
