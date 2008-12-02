@@ -6,6 +6,7 @@ import android.app.Application;
 import android.preference.PreferenceManager;
 
 /**
+ * 作为一个中心仓库提供信息, 而这些信息是需要被多个activity共享的
  * This is an example of a {@link android.app.Application} class. Ordinarily you
  * would use a class like this as a central repository for information that
  * might be shared between multiple activities.
