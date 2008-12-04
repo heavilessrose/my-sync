@@ -23,6 +23,7 @@ public class ApiDemos extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		// Return the intent that started this activity.
 		Intent intent = getIntent();
 		String path = intent.getStringExtra("com.example.android.apis.Path");
 
@@ -30,10 +31,14 @@ public class ApiDemos extends ListActivity {
 			path = "";
 		}
 
+		// 为ListActivity中的ListView绑定数据
 		setListAdapter(new SimpleAdapter(this, getData(path),
 				android.R.layout.simple_list_item_1, new String[] { "title" },
 				new int[] { android.R.id.text1 }));
-		getListView().setTextFilterEnabled(true);
+		// 得到在此ListActivity中的ListView
+		ListView listView = getListView();
+		// 设置过滤器
+		listView.setTextFilterEnabled(true);
 	}
 
 	protected List getData(String prefix) {
