@@ -11,6 +11,7 @@ import android.widget.TextView;
 //@SuppressWarnings("unused")
 public class AndroidLifeCycle extends Activity {
 	private static final String TAG = "AndroidLifeCycle";
+	private int indent = 0; // 空格缩进
 
 	// ***************************************************
 	// 生命周期
@@ -18,7 +19,9 @@ public class AndroidLifeCycle extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		begin("onCreate()");
 		super.onCreate(savedInstanceState);
+		end("onCreate()");
 		setContentView(R.layout.main);
 		// TextView tv = new TextView(this);
 		// tv.setText("Hello, Android");
@@ -29,46 +32,52 @@ public class AndroidLifeCycle extends Activity {
 	// the user (the user has navigated back to it).
 	@Override
 	protected void onRestart() {
-		Log.e(TAG, "onRestart");
+		begin("onRestart()");
 		super.onRestart();
+		end("onRestart()");
 	}
 
 	// Called after onCreate(Bundle) or onStop() when the current activity is
 	// now being displayed to the user.
 	@Override
 	protected void onStart() {
-		Log.e(TAG, "onStart");
+		begin("onStart()");
 		super.onStart();
+		end("onStart()");
 	}
 
 	// Called after onRestoreInstanceState(Bundle), onRestart(), or onPause(),
 	// for your activity to start interacting with the user.
 	@Override
 	protected void onResume() {
+		begin("onResume()");
 		super.onResume();
-		Log.e(TAG, "onResume");
+		end("onResume()");
 	}
 
 	// Called as part of the activity lifecycle when an activity is going into
 	// the background, but has not (yet) been killed.
 	@Override
 	protected void onPause() {
+		begin("onPause()");
 		super.onPause();
-		Log.e(TAG, "onPause");
+		end("onPause()");
 	}
 
 	// Called when you are no longer visible to the user.
 	@Override
 	protected void onStop() {
+		begin("onStop()");
 		super.onStop();
-		Log.e(TAG, "onStop");
+		end("onStop()");
 	}
 
 	// Perform any final cleanup before an activity is destroyed.
 	@Override
 	public void onDestroy() {
+		begin("onDestroy()");
 		super.onDestroy();
-		Log.e(TAG, "onDestroy");
+		end("onDestroy()");
 	}
 
 	// ***************************************************
@@ -85,30 +94,34 @@ public class AndroidLifeCycle extends Activity {
 	// from it.
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+		begin("onActivityResult()");
+		end("onActivityResult()");
 	}
 
 	// Called when activity start-up is complete (after onStart() and
 	// onRestoreInstanceState(Bundle) have been called).
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
+		begin("onPostCreate()");
 		super.onPostCreate(savedInstanceState);
-		Log.e(TAG, "onPostCreate");
+		end("onPostCreate()");
 	}
 
 	// Called when activity resume is complete (after onResume() has been
 	// called).
 	@Override
 	protected void onPostResume() {
+		begin("onPostResume()");
 		super.onPostResume();
-		Log.e(TAG, "onPostResume");
+		end("onPostResume()");
 	}
 
 	// This method is called after onStart() when the activity is being
 	// re-initialized from a previously saved state, given here in state.
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		Log.e(TAG, "onRestoreInstanceState");
+		begin("onRestoreInstanceState()");
+		end("onRestoreInstanceState()");
 	}
 
 	// Called to retrieve per-instance state from an activity before being
@@ -117,7 +130,8 @@ public class AndroidLifeCycle extends Activity {
 	// be passed to both).
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		Log.e(TAG, "onSaveInstanceState");
+		begin("onSaveInstanceState()");
+		end("onSaveInstanceState()");
 	}
 
 	// ***************************************************
@@ -128,12 +142,14 @@ public class AndroidLifeCycle extends Activity {
 	// calling startActivity(Intent).
 	@Override
 	protected void onNewIntent(Intent intent) {
-		Log.e(TAG, "onNewIntent");
+		begin("onNewIntent()");
+		end("onNewIntent()");
 	}
 
 	@Override
 	protected void onTitleChanged(CharSequence title, int color) {
-		Log.e(TAG, "onTitleChanged");
+		begin("onTitleChanged()");
+		end("onTitleChanged()");
 	}
 
 	// Called by setTheme(int) and getTheme() to apply a theme resource to the
@@ -141,22 +157,25 @@ public class AndroidLifeCycle extends Activity {
 	@Override
 	protected void onApplyThemeResource(Resources.Theme theme, int resid,
 			boolean first) {
-		Log.e(TAG, "onApplyThemeResource");
+		begin("onApplyThemeResource()");
+		end("onApplyThemeResource()");
 	}
 
 	@Override
 	protected void onChildTitleChanged(Activity childActivity,
 			CharSequence title) {
-		Log.e(TAG, "onChildTitleChanged");
+		begin("onChildTitleChanged()");
+		end("onChildTitleChanged()");
 	}
 
 	// Callback for creating dialogs that are managed (saved and restored) for
 	// you by the activity.
 	@Override
 	protected Dialog onCreateDialog(int id) {
-		Log.e(TAG, "onCreateDialog");
+		begin("onCreateDialog()");
 		Dialog dialog = new Dialog(this);
 
+		end("onCreateDialog()");
 		return dialog;
 	}
 
@@ -164,6 +183,40 @@ public class AndroidLifeCycle extends Activity {
 	// shown.
 	@Override
 	protected void onPrepareDialog(int id, Dialog dialog) {
-		Log.e(TAG, "onPrepareDialog");
+		begin("onPrepareDialog()");
+		end("onPrepareDialog()");
+	}
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		begin("onWindowFocusChanged()");
+		end("onWindowFocusChanged()");
+	}
+
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		begin("onRetainNonConfigurationInstance()");
+		end("onRetainNonConfigurationInstance()");
+		return indent;
+	}
+
+	// =======================
+	private void begin(String signature) {
+		// super-hacky code to indent nested method calls
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < indent; i++) {
+			sb.append("  ");
+		}
+		Log.i(TAG, sb.toString() + "BEGIN: " + signature);
+		indent++;
+	}
+
+	private void end(String signature) {
+		indent--;
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < indent; i++) {
+			sb.append("  ");
+		}
+		Log.i(TAG, sb.toString() + "END: " + signature);
 	}
 }
