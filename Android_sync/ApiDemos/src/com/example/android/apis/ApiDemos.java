@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ApiDemos extends ListActivity {
+	private static final String TAG = "ApiDemos";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -57,19 +59,29 @@ public class ApiDemos extends ListActivity {
 
 		if (prefix.equals("")) {
 			prefixPath = null;
+			// debug
+			Log.d(TAG, "prefixPath: Null");
 		} else {
 			prefixPath = prefix.split("/");
+
+			// debug
+			for (int i = 0; i < prefixPath.length; i++) {
+				Log.d(TAG, "prefixPath: " + prefixPath[i]);
+			}
 		}
 
 		int len = list.size();
 
 		Map<String, Boolean> entries = new HashMap<String, Boolean>();
 
+		// 绑定所有显示项及其Intent(指定进入的activity)
 		for (int i = 0; i < len; i++) {
 			ResolveInfo info = list.get(i);
 			CharSequence labelSeq = info.loadLabel(pm);
 			String label = labelSeq != null ? labelSeq.toString()
 					: info.activityInfo.name;
+			// debug
+			Log.d(TAG, "label: " + label);
 
 			if (prefix.length() == 0 || label.startsWith(prefix)) {
 
@@ -77,6 +89,8 @@ public class ApiDemos extends ListActivity {
 
 				String nextLabel = prefixPath == null ? labelPath[0]
 						: labelPath[prefixPath.length];
+				// debug
+				Log.d(TAG, "nextLabel: " + nextLabel);
 
 				if ((prefixPath != null ? prefixPath.length : 0) == labelPath.length - 1) {
 					addItem(myData, nextLabel, activityIntent(
@@ -106,12 +120,14 @@ public class ApiDemos extends ListActivity {
 		}
 	};
 
-	protected Intent activityIntent(String pkg, String componentName) {
+	/** Implicit Intents-- 由系统决定用那个component来处理该Intent */
+	protected Intent activityIntent(String packageName, String componentName) {
 		Intent result = new Intent();
-		result.setClassName(pkg, componentName);
+		result.setClassName(packageName, componentName);
 		return result;
 	}
 
+	/** Explicit Intents-- 明确指定component来处理该Intent */
 	protected Intent browseIntent(String path) {
 		Intent result = new Intent();
 		result.setClass(this, ApiDemos.class);
@@ -119,6 +135,7 @@ public class ApiDemos extends ListActivity {
 		return result;
 	}
 
+	/** 在ListView上添加显示item */
 	protected void addItem(List<Map> data, String name, Intent intent) {
 		Map<String, Object> temp = new HashMap<String, Object>();
 		temp.put("title", name);
