@@ -10,20 +10,22 @@ import android.widget.Toast;
 
 public class SMSReceiver extends BroadcastReceiver {
 	/** TAG used for Debug-Logging */
-	protected static final String LOG_TAG = "SMSReceiver";
+	protected static final String TAG = "SMSReceiver";
 
 	/**
 	 * The Action fired by the Android-System when a SMS was received. We are
 	 * using the Default Package-Visibility
 	 */
-	private static final String ACTION = "android.provider.Telephony.SMS_RECEIVED";
+	private static final String SMS_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+	
+	private static final String CALL_ACTION = "";
 
 	// @Override
 	public void onReceive(Context context, Intent intent) {
 
-		Log.i(LOG_TAG, "[inside onReceive] ");
+		Log.i(TAG, "[inside onReceive] ");
 
-		if (intent.getAction().equals(ACTION)) {
+		if (intent.getAction().equals(SMS_ACTION)) {
 
 			StringBuilder sb = new StringBuilder();
 			Bundle bundle = intent.getExtras();
@@ -35,7 +37,7 @@ public class SMSReceiver extends BroadcastReceiver {
 					messages[i] = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
 				}
 
-				Log.i(LOG_TAG, "[SMSApp Bundle] " + bundle.toString());
+				Log.i(TAG, "[SMSApp Bundle] " + bundle.toString());
 
 				// Feed the StringBuilder with all Messages found.
 				for (SmsMessage currentMessage : messages) {
@@ -48,7 +50,7 @@ public class SMSReceiver extends BroadcastReceiver {
 				}
 			}
 			// Logger Debug-Output
-			Log.i(LOG_TAG, "[SMSApp] onReceiveIntent: " + sb);
+			Log.i(TAG, "[SMSApp] onReceiveIntent: " + sb);
 
 			// Show the Notification containing the Message.
 			Toast.makeText(context, sb.toString(), Toast.LENGTH_LONG).show();
@@ -63,6 +65,8 @@ public class SMSReceiver extends BroadcastReceiver {
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 
+		} else {
+			Log.i(TAG, "action: " + intent.getAction());
 		}
 	}
 }
