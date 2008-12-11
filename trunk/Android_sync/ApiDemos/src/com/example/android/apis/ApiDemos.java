@@ -60,14 +60,14 @@ public class ApiDemos extends ListActivity {
 		if (prefix.equals("")) {
 			prefixPath = null;
 			// debug
-			Log.d(TAG, "prefixPath: Null");
+			// Log.d(TAG, "prefixPath: Null");
 		} else {
 			prefixPath = prefix.split("/");
 
 			// debug
-			for (int i = 0; i < prefixPath.length; i++) {
-				Log.d(TAG, "prefixPath: " + prefixPath[i]);
-			}
+			// for (int i = 0; i < prefixPath.length; i++) {
+			// Log.d(TAG, "prefixPath: " + prefixPath[i]);
+			// }
 		}
 
 		int len = list.size();
@@ -87,15 +87,19 @@ public class ApiDemos extends ListActivity {
 
 				String[] labelPath = label.split("/");
 
-				String nextLabel = prefixPath == null ? labelPath[0]
-						: labelPath[prefixPath.length];
+				// 如果是最外的activity则显示其名字, 如果不是最外的activity则显示其目录名
+				String nextLabel = ((prefixPath == null) ? labelPath[0]
+						: labelPath[prefixPath.length]);
 				// debug
-				Log.d(TAG, "nextLabel: " + nextLabel);
+				// Log.d(TAG, "nextLabel: " + nextLabel);
 
 				if ((prefixPath != null ? prefixPath.length : 0) == labelPath.length - 1) {
 					addItem(myData, nextLabel, activityIntent(
 							info.activityInfo.applicationInfo.packageName,
 							info.activityInfo.name));
+					Log.e(TAG, "packageName: "
+							+ info.activityInfo.applicationInfo.packageName);
+					Log.e(TAG, "componentName: " + info.activityInfo.name);
 				} else {
 					if (entries.get(nextLabel) == null) {
 						addItem(myData, nextLabel, browseIntent(prefix
@@ -120,14 +124,14 @@ public class ApiDemos extends ListActivity {
 		}
 	};
 
-	/** Implicit Intents-- 由系统决定用那个component来处理该Intent */
+	/** 已到达目录最末端, */
 	protected Intent activityIntent(String packageName, String componentName) {
 		Intent result = new Intent();
 		result.setClassName(packageName, componentName);
 		return result;
 	}
 
-	/** Explicit Intents-- 明确指定component来处理该Intent */
+	/** 没有到目录最末端(末端是activity), 继续在此listActivity中显示 */
 	protected Intent browseIntent(String path) {
 		Intent result = new Intent();
 		result.setClass(this, ApiDemos.class);
@@ -143,6 +147,7 @@ public class ApiDemos extends ListActivity {
 		data.add(temp);
 	}
 
+	/** 如果是目录则进入下一层目录,如果已经在目录最末端则执行该activity */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Map map = (Map) l.getItemAtPosition(position);
