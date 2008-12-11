@@ -31,5 +31,11 @@
 				<category android:name="luke.android.categoryBeCalled" />
 			</intent-filter>
 		</activity>
+		<activity android:name=".activity.SubActivity" android:label="@string/subactivity">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
 	</application>
 </manifest> 

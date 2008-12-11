@@ -2,6 +2,7 @@ package luke.android;
 
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -12,29 +13,32 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.Contacts.Phones;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends ListActivity {
 	private static final String TAG = "practice";
 	private static final String CATEGORY = "luke.android.categoryShow";
 	private static final String ACTION = Intent.ACTION_MAIN;
 
-	// private String[] mStrings = { "Abbaye de Belloc",
-	// "Abbaye du Mont des Cats", "Abertam", "bondance", "ckawi", "corn",
-	// "delost", "ffidelice au Chablis", "fuega'l Pitu", "irag",
-	// "iredale", };
+	private String[] mStrings = { "Abbaye de Belloc",
+			"Abbaye du Mont des Cats", "Abertam", "bondance", "ckawi", "corn",
+			"delost", "ffidelice au Chablis", "fuega'l Pitu", "irag",
+			"iredale", };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// 不使用默认的screen layout
-		setContentView(R.layout.main);
 
+		setContentView(R.layout.main);
 		// Return the intent that started this activity.
 		Intent intent = getIntent();
 		String path = intent.getStringExtra("luke.android.Path");
@@ -43,12 +47,25 @@ public class MainActivity extends ListActivity {
 			path = "";
 		}
 
-		// 为ListActivity中的ListView绑定数据, 和row layout
-		setListAdapter(new SimpleAdapter(this, getData(path),
-				R.layout.main_item, new String[] { "title" },
-				new int[] { R.id.text1 }));
+		// 为ListActivity中的ListView绑定数据
+		// 1.
+		// setListAdapter(new SimpleAdapter(this, getData(path),
+		// android.R.layout.simple_list_item_1, new String[] { "title" },
+		// new int[] { android.R.id.text1 }));
+		// 2.
 		// setListAdapter(new ArrayAdapter<String>(this, R.layout.main_item,
 		// mStrings));
+		// 3.
+		// Get a cursor with all phones
+		Cursor c = getContentResolver().query(Phones.CONTENT_URI, null, null,
+				null, null);
+		startManagingCursor(c);
+		// Map Cursor columns to views defined in simple_list_item_2.xml
+		ListAdapter adapter = new SimpleCursorAdapter(this,
+				android.R.layout.simple_list_item_2, c, new String[] {
+						Phones.NAME, Phones.NUMBER }, new int[] {
+						android.R.id.text1, android.R.id.text2 });
+		setListAdapter(adapter);
 
 		// 得到在此ListActivity中的ListView
 		ListView listView = getListView();
@@ -57,47 +74,57 @@ public class MainActivity extends ListActivity {
 	}
 
 	protected List getData(String prefix) {
-		// 显示在列表中的activity
-		List<Map> mainShowActivity = new ArrayList<Map>();
+		List<Map> myData = new ArrayList<Map>();
 
-		// 返回所有可处理指定Intent的activity
 		Intent mainIntent = new Intent(ACTION, null);
 		mainIntent.addCategory(CATEGORY);
+
 		PackageManager pm = getPackageManager();
 		List<ResolveInfo> list = pm.queryIntentActivities(mainIntent, 0);
 
 		if (null == list)
-			return mainShowActivity;
+			return myData;
 
 		String[] prefixPath;
+
 		if (prefix.equals("")) {
 			prefixPath = null;
+			// debug
+			// Log.d(TAG, "prefixPath: Null");
 		} else {
 			prefixPath = prefix.split("/");
+
+			// debug
+			// for (int i = 0; i < prefixPath.length; i++) {
+			// Log.d(TAG, "prefixPath: " + prefixPath[i]);
+			// }
 		}
 
-		Log.i(TAG, "list.size: " + list.size());
-		int listLen = list.size();
+		int len = list.size();
+
 		Map<String, Boolean> entries = new HashMap<String, Boolean>();
-		for (int i = 0; i < listLen; i++) {
+
+		// 绑定所有显示项及其Intent(指定进入的activity)
+		for (int i = 0; i < len; i++) {
 			ResolveInfo info = list.get(i);
 			CharSequence labelSeq = info.loadLabel(pm);
 			String label = labelSeq != null ? labelSeq.toString()
 					: info.activityInfo.name;
-
-			Log.e(TAG, "label: " + label);
+			// debug
+			Log.d(TAG, "label: " + label);
 
 			if (prefix.length() == 0 || label.startsWith(prefix)) {
+
 				String[] labelPath = label.split("/");
 
-				// 如果是最外的activity则为其名字, 如果不是最外的activity则为其目录名
-				String nextLabel = prefixPath == null ? labelPath[0]
-						: labelPath[prefixPath.length];
-				
-				Log.e(TAG, "nextLabel: " + nextLabel);
+				// 如果是最外的activity则显示其名字, 如果不是最外的activity则显示其目录名
+				String nextLabel = ((prefixPath == null) ? labelPath[0]
+						: labelPath[prefixPath.length]);
+				// debug
+				// Log.d(TAG, "nextLabel: " + nextLabel);
 
 				if ((prefixPath != null ? prefixPath.length : 0) == labelPath.length - 1) {
-					addItem(mainShowActivity, nextLabel, activityIntent(
+					addItem(myData, nextLabel, activityIntent(
 							info.activityInfo.applicationInfo.packageName,
 							info.activityInfo.name));
 					Log.e(TAG, "packageName: "
@@ -105,16 +132,18 @@ public class MainActivity extends ListActivity {
 					Log.e(TAG, "componentName: " + info.activityInfo.name);
 				} else {
 					if (entries.get(nextLabel) == null) {
-						addItem(mainShowActivity, nextLabel,
-								browseIntent(prefix.equals("") ? nextLabel
-										: prefix + "/" + nextLabel));
+						addItem(myData, nextLabel, browseIntent(prefix
+								.equals("") ? nextLabel : prefix + "/"
+								+ nextLabel));
 						entries.put(nextLabel, true);
 					}
 				}
 			}
 		}
 
-		return mainShowActivity;
+		Collections.sort(myData, sDisplayNameComparator);
+
+		return myData;
 	}
 
 	private final static Comparator<Map> sDisplayNameComparator = new Comparator<Map>() {
