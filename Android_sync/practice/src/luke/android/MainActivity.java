@@ -8,20 +8,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
 import android.app.ListActivity;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
+import android.provider.Contacts.Settings;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends ListActivity {
@@ -60,17 +65,47 @@ public class MainActivity extends ListActivity {
 		Cursor c = getContentResolver().query(Phones.CONTENT_URI, null, null,
 				null, null);
 		startManagingCursor(c);
+		int pplId = c.getColumnIndex(People._ID);
+		if (c.moveToFirst()) {
+			long id = 0;
+			do {
+				id = c.getLong(pplId);
+				Log.d(TAG, "pplId: " + pplId);
+				Log.d(TAG, "icon_id: " + id);
+				Bitmap bitmap = People.loadContactPhoto(this, ContentUris
+						.withAppendedId(People.CONTENT_URI, id),
+						R.drawable.default_image, null);
+			} while (c.moveToNext());
+		}
 		// Map Cursor columns to views defined in simple_list_item_2.xml
 		ListAdapter adapter = new SimpleCursorAdapter(this,
-				android.R.layout.simple_list_item_2, c, new String[] {
-						Phones.NAME, Phones.NUMBER }, new int[] {
-						android.R.id.text1, android.R.id.text2 });
+				R.layout.image_list, c, new String[] { Phones._ID, Phones.NAME,
+						Phones.NUMBER }, new int[] { R.id.presence, R.id.name,
+						R.id.number });
 		setListAdapter(adapter);
 
 		// 得到在此ListActivity中的ListView
 		ListView listView = getListView();
 		// 设置过滤器
 		listView.setTextFilterEnabled(true);
+	}
+
+	private static class ContactInfoAdapter extends CursorAdapter {
+
+		public ContactInfoAdapter(Context context, Cursor c) {
+			super(context, c);
+		}
+
+		@Override
+		public void bindView(View view, Context context, Cursor cursor) {
+
+		}
+
+		@Override
+		public View newView(Context context, Cursor cursor, ViewGroup parent) {
+			return null;
+		}
+
 	}
 
 	protected List getData(String prefix) {
