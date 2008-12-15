@@ -12,7 +12,7 @@
 		android:background="#FF0000" android:text="@string/empty" />
 
 	<TextView android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:text="@string/search" />
+		android:layout_height="wrap_content" android:text="@string/search_title" />
 
 	<EditText android:id="@+id/userText" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />

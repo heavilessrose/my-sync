@@ -19,14 +19,15 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
-import android.provider.Contacts.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends ListActivity {
@@ -38,6 +39,11 @@ public class MainActivity extends ListActivity {
 			"Abbaye du Mont des Cats", "Abertam", "bondance", "ckawi", "corn",
 			"delost", "ffidelice au Chablis", "fuega'l Pitu", "irag",
 			"iredale", };
+
+	/** 每个contact人的信息 (icon,name,majorNumber) */
+	private ArrayList peopleInfos = new ArrayList();
+
+	private Map<String, Object> peopleRowInfo = new HashMap<String, Object>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,35 +60,36 @@ public class MainActivity extends ListActivity {
 
 		// 为ListActivity中的ListView绑定数据
 		// 1.
-		// setListAdapter(new SimpleAdapter(this, getData(path),
-		// android.R.layout.simple_list_item_1, new String[] { "title" },
-		// new int[] { android.R.id.text1 }));
+		setListAdapter(new SimpleAdapter(this, getData(path),
+				android.R.layout.simple_list_item_1, new String[] { "title" },
+				new int[] { android.R.id.text1 }));
 		// 2.
 		// setListAdapter(new ArrayAdapter<String>(this, R.layout.main_item,
 		// mStrings));
 		// 3.
 		// Get a cursor with all phones
-		Cursor c = getContentResolver().query(Phones.CONTENT_URI, null, null,
-				null, null);
-		startManagingCursor(c);
-		int pplId = c.getColumnIndex(People._ID);
-		if (c.moveToFirst()) {
-			long id = 0;
-			do {
-				id = c.getLong(pplId);
-				Log.d(TAG, "pplId: " + pplId);
-				Log.d(TAG, "icon_id: " + id);
-				Bitmap bitmap = People.loadContactPhoto(this, ContentUris
-						.withAppendedId(People.CONTENT_URI, id),
-						R.drawable.default_image, null);
-			} while (c.moveToNext());
-		}
+		// Cursor c = getContentResolver().query(Phones.CONTENT_URI, null, null,
+		// null, null);
+		// startManagingCursor(c);
+		// int pplId = c.getColumnIndex(People._ID);
+		// if (c.moveToFirst()) {
+		// long id = 0;
+		// do {
+		// id = c.getLong(pplId);
+		// Log.d(TAG, "pplId: " + pplId);
+		// Log.d(TAG, "icon_id: " + id);
+		// Bitmap bitmap = People.loadContactPhoto(this, ContentUris
+		// .withAppendedId(People.CONTENT_URI, id),
+		// R.drawable.default_image, null);
+		// Log.d(TAG, "id: " + id);
+		// } while (c.moveToNext());
+		// }
 		// Map Cursor columns to views defined in simple_list_item_2.xml
-		ListAdapter adapter = new SimpleCursorAdapter(this,
-				R.layout.image_list, c, new String[] { Phones._ID, Phones.NAME,
-						Phones.NUMBER }, new int[] { R.id.presence, R.id.name,
-						R.id.number });
-		setListAdapter(adapter);
+		// ListAdapter adapter = new SimpleCursorAdapter(this,
+		// R.layout.image_list, c, new String[] { Phones._ID, Phones.NAME,
+		// Phones.NUMBER }, new int[] { R.id.presence, R.id.name,
+		// R.id.number });
+		// setListAdapter(adapter);
 
 		// 得到在此ListActivity中的ListView
 		ListView listView = getListView();
@@ -98,7 +105,11 @@ public class MainActivity extends ListActivity {
 
 		@Override
 		public void bindView(View view, Context context, Cursor cursor) {
-
+			// LayoutInflater inflater = (LayoutInflater) context
+			// .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			// View v = inflater.inflate(R.layout.image_list, view, false);
+			// ImageView imageView = (ImageView) v.findViewById(R.id.icon);
+			// imageView.setImage(contactImage);
 		}
 
 		@Override
