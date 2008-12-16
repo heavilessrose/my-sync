@@ -22,8 +22,8 @@ import android.widget.TextView;
 public class PeopleListActivity extends ListActivity {
 
 	private static final String TAG = "PeopleListActivity";
-	private static Cursor c = null;
-	private static ArrayList<ContactItem> contacts = new ArrayList<ContactItem>();
+	private static Cursor _c = null;
+	private static ArrayList<ContactItem> _contacts = new ArrayList<ContactItem>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,28 +31,28 @@ public class PeopleListActivity extends ListActivity {
 		
 		setContentView(R.layout.main);
 		
-		c = getContentResolver().query(Phones.CONTENT_URI, null, null, null,
+		_c = getContentResolver().query(Phones.CONTENT_URI, null, null, null,
 				null);
-		startManagingCursor(c);
-		int pplId = c.getColumnIndex(People._ID);
-		if (c.moveToFirst()) {
+		startManagingCursor(_c);
+		int pplId = _c.getColumnIndex(People._ID);
+		if (_c.moveToFirst()) {
 			long id = 0;
 			do {
-				id = c.getLong(pplId);
+				id = _c.getLong(pplId);
 				Log.d(TAG, "pplId: " + pplId);
 				Log.d(TAG, "id: " + id);
 				Bitmap bitmap = People.loadContactPhoto(this, ContentUris
 						.withAppendedId(People.CONTENT_URI, id),
 						R.drawable.default_image, null);
-				ContactItem temp = new ContactItem(c.getPosition(), c
-						.getString(c.getColumnIndex(Phones.NAME)), c
-						.getString(c.getColumnIndex(Phones.NUMBER)), bitmap,
+				ContactItem temp = new ContactItem(_c.getPosition(), _c
+						.getString(_c.getColumnIndex(Phones.NAME)), _c
+						.getString(_c.getColumnIndex(Phones.NUMBER)), bitmap,
 						"ÔÚÏß");
-				contacts.add(temp);
-			} while (c.moveToNext());
+				_contacts.add(temp);
+			} while (_c.moveToNext());
 			// debug
 			Log.d(TAG, "contacts ------------------------ ");
-			for (ContactItem pp : contacts) {
+			for (ContactItem pp : _contacts) {
 				Log
 						.w(TAG, "" + pp.position + ", " + pp.name + ", "
 								+ pp.number);
@@ -63,28 +63,28 @@ public class PeopleListActivity extends ListActivity {
 	}
 
 	private static class PeopleAdapter extends BaseAdapter {
-		private LayoutInflater mInflater;
+		private LayoutInflater _inflater;
 
 		public PeopleAdapter(Context context) {
-			mInflater = LayoutInflater.from(context);
+			_inflater = LayoutInflater.from(context);
 		}
 
 		public int getCount() {
-			return c.getCount();
+			return _c.getCount();
 		}
 
 		public Object getItem(int position) {
-			return contacts.get(position);
+			return _contacts.get(position);
 		}
 
 		public long getItemId(int position) {
-			return contacts.get(position).position;
+			return _contacts.get(position).position;
 		}
 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder holder = null;
 			if (convertView == null) {
-				convertView = mInflater.inflate(R.layout.image_list_item, null);
+				convertView = _inflater.inflate(R.layout.image_list_item, null);
 
 				holder = new ViewHolder();
 				holder.name = (TextView) convertView.findViewById(R.id.name);
@@ -99,10 +99,10 @@ public class PeopleListActivity extends ListActivity {
 				holder = (ViewHolder) convertView.getTag();
 			}
 
-			holder.name.setText(contacts.get(position).name);
-			holder.number.setText(contacts.get(position).number);
-			holder.icon.setImageBitmap(contacts.get(position).icon);
-			holder.presence.setText(contacts.get(position).presence);
+			holder.name.setText(_contacts.get(position).name);
+			holder.number.setText(_contacts.get(position).number);
+			holder.icon.setImageBitmap(_contacts.get(position).icon);
+			holder.presence.setText(_contacts.get(position).presence);
 			return convertView;
 		}
 
