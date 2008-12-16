@@ -21,14 +21,13 @@ public final class R {
         public static final int name=0x7f050002;
         public static final int number=0x7f050003;
         public static final int presence=0x7f050005;
-        public static final int searchText=0x7f050006;
-        public static final int text1=0x7f050008;
-        public static final int text2=0x7f050009;
-        public static final int userText=0x7f050007;
+        public static final int text1=0x7f050007;
+        public static final int text2=0x7f050008;
+        public static final int userText=0x7f050006;
     }
     public static final class layout {
         public static final int callingactivity=0x7f030000;
-        public static final int image_list=0x7f030001;
+        public static final int image_list_item=0x7f030001;
         public static final int main=0x7f030002;
         public static final int main_item=0x7f030003;
         public static final int subactivity=0x7f030004;

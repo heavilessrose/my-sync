@@ -28,7 +28,9 @@ public class PeopleListActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
+		setContentView(R.layout.main);
+		
 		c = getContentResolver().query(Phones.CONTENT_URI, null, null, null,
 				null);
 		startManagingCursor(c);
@@ -82,7 +84,7 @@ public class PeopleListActivity extends ListActivity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder holder = null;
 			if (convertView == null) {
-				convertView = mInflater.inflate(R.layout.image_list, null);
+				convertView = mInflater.inflate(R.layout.image_list_item, null);
 
 				holder = new ViewHolder();
 				holder.name = (TextView) convertView.findViewById(R.id.name);
