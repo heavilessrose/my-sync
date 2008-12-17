@@ -45,5 +45,13 @@
 				<category android:name="luke.android.categoryShow" />
 			</intent-filter>
 		</activity>
+		<activity android:name=".adapter.extendsCursorAdapter.PeopleListActivity"
+			android:label="@string/cursor_PeopleListActivity">
+			<intent-filter>
+				<!-- 要被显示到列表中的项 -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
 	</application>
 </manifest> 
