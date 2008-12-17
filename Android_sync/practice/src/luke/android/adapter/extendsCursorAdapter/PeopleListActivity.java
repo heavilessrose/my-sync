@@ -26,15 +26,9 @@ public class PeopleListActivity extends ListActivity {
 		startManagingCursor(c);
 		// Map Cursor columns to views defined in simple_list_item_2.xml
 		PeopleAdapter adapter = new PeopleAdapter(this,
-				R.layout.cursor_image_list_item, c,
-				new String[] { Phones.NAME }, new int[] { R.id.contacts });
-		/*
-		 * ListAdapter adapter = new SimpleCursorAdapter(this,
-		 * 
-		 * android.R.layout.simple_list_item_2, c, new String[] { Phones.NAME,
-		 * Phones.NUMBER }, new int[] { android.R.id.text1, android.R.id.text2
-		 * }); setListAdapter(adapter);
-		 */
+				R.layout.cursor_image_list_item, c, new String[] { Phones.NAME,
+						Phones.NUMBER }, new int[] { R.id.name, R.id.number });
+
 		setListAdapter(adapter);
 	}
 
@@ -57,9 +51,7 @@ public class PeopleListActivity extends ListActivity {
 		 */
 		@Override
 		public void bindView(View view, Context context, Cursor cursor) {
-			// TODO Auto-generated method stub
-			ImageView imageView = (ImageView) view
-					.findViewById(R.id.contact_image);
+			ImageView imageView = (ImageView) view.findViewById(R.id.icon);
 
 			// int id = this._c.getColumnIndex(Phones._ID);
 			int id = this._c
