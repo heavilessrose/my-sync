@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ListView
+        android:id="@+id/list_users"
+
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+        android:paddingBottom="55dip"
+        android:paddingTop="55dip"
+        android:paddingLeft="30dip"
+        android:paddingRight="30dip"
+
+        android:dividerHeight="0dip"
+        android:divider="@null"
+
+        android:listSelector="@drawable/list_filterable_selector_glow"
+        android:cacheColorHint="#00000000"
+        android:textFilterEnabled="true" />
+        
+</FrameLayout>
