@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal" android:layout_width="fill_parent"
+	android:layout_height="75sp" android:background="#dedede"
+	android:gravity="center_vertical">
+
+	<TextView android:id="@+id/rowText1" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:paddingLeft="40sp"
+		/> <!--  style="@style/ListParent"  -->
+
+	<TextView android:id="@+id/rowText2" android:layout_width="fill_parent"
+		android:layout_height="wrap_content"  /> <!--  style="@style/ListParent"  -->
+
+</LinearLayout> 
