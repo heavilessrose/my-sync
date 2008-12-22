@@ -101,15 +101,6 @@
 				<category android:name="luke.android.categoryShow" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".tabs.byIntent.FriendsExpandList" android:label="FriendsExpandList">
-			<intent-filter>
-				<!-- 不显示到列表,由列表中的activity调用的activity -->
-				<action android:name="luke.android.activity.beCalled" />
-				<category android:name="luke.android.categoryBeCalled" />
-			</intent-filter>
-		</activity>
-		
-		
 		<activity android:name=".view.list.FriendList"
 			android:label="@string/Expandlist_FriendList">
 			<intent-filter>
