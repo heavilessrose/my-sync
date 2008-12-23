@@ -390,6 +390,7 @@ public class LoginActivity extends Activity implements View.OnKeyListener,
 		}
 
 		// a new view who hold the data pointed by cursor
+		// 给从cursor得到的一个条目返回一个view
 		public View newView(Context context, Cursor cursor, ViewGroup parent) {
 			final View view = mInflater.inflate(R.layout.list_item_user,
 					parent, false);
@@ -398,6 +399,7 @@ public class LoginActivity extends Activity implements View.OnKeyListener,
 			return view;
 		}
 
+		// 针对条目
 		public void bindView(View view, Context context, Cursor cursor) {
 			final UserDescription description = (UserDescription) view.getTag();
 			description.id = cursor.getString(mId);
@@ -423,7 +425,7 @@ public class LoginActivity extends Activity implements View.OnKeyListener,
 
 				mIcons.put(description.nsid, icon);
 			}
-			// 固有边界画图
+			// 固有边界画图(textView 可通过此方法画图片)
 			textView.setCompoundDrawablesWithIntrinsicBounds(icon, null, null,
 					null);
 		}
