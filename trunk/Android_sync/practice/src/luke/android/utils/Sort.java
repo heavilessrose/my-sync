@@ -38,15 +38,15 @@ public class Sort {
 		}
 	}
 
-	public static final void quickSort(int[] n, int low, int high) {
-		// 对R[low..high]快速排序
-		int pivotpos; // 划分后的基准记录的位置
-		if (low < high) {// 仅当区间长度大于1时才须排序
-			pivotpos = Partition(n, low, high); // 对R[low..high]做划分
-			quickSort(n, low, pivotpos - 1); // 对左区间递归排序
-			quickSort(n, pivotpos + 1, high); // 对右区间递归排序
-		}
-	}
+//	public static final void quickSort(int[] n, int low, int high) {
+//		// 对R[low..high]快速排序
+//		int pivotpos; // 划分后的基准记录的位置
+//		if (low < high) {// 仅当区间长度大于1时才须排序
+//			pivotpos = Partition(n, low, high); // 对R[low..high]做划分
+//			quickSort(n, low, pivotpos - 1); // 对左区间递归排序
+//			quickSort(n, pivotpos + 1, high); // 对右区间递归排序
+//		}
+//	}
 
 	// /////////////////////////////////选择排序//////////////////////
 	/**
