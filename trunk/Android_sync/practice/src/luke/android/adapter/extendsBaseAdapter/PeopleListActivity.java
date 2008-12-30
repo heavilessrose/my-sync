@@ -47,7 +47,7 @@ public class PeopleListActivity extends ListActivity {
 				ContactItem temp = new ContactItem(_c.getPosition(), _c
 						.getString(_c.getColumnIndex(Phones.NAME)), _c
 						.getString(_c.getColumnIndex(Phones.NUMBER)), bitmap,
-						"ÔÚÏß");
+						"online");
 				_contacts.add(temp);
 			} while (_c.moveToNext());
 			// debug
