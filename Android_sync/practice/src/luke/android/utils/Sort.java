@@ -38,6 +38,7 @@ public class Sort {
 		}
 	}
 
+	/** 快速排序, 是对起泡排序的一种改进 */
 //	public static final void quickSort(int[] n, int low, int high) {
 //		// 对R[low..high]快速排序
 //		int pivotpos; // 划分后的基准记录的位置
@@ -58,9 +59,31 @@ public class Sort {
 	public static final void straightSelectionSort(int[] n, int direct) {
 		int temp;
 		int k;// 指示比较过程中最小值的位置
-		for (int i = 0; i < n.length - 2; i++) {// 进行n-1趟排序, 每次把最小的放到已排序的下标后面
+		for (int i = 0; i < n.length - 1; i++) {// 进行n-1趟排序, 每次把最小的放到已排序的下标后面
 			k = i;
-			for (int j = i + 1; j < n.length; j++) {
+			for (int j = i + 1; j < n.length; j++) { // j从i+1开始向右增长
+				if (n[k] > n[j]) {
+					k = j;
+				}
+			}
+			temp = n[i];
+			n[i] = n[k];
+			n[k] = temp;
+			// test
+			for (int m = 0; m < n.length; m++) {
+				System.out.print(n[m] + ", ");
+			}
+			System.out.println();
+		}
+	}
+	
+	// 更快一点的实现(j的运动方向不同)
+	public static final void straightSelectionSort2(int[] n, int direct) {
+		int temp;
+		int k;// 指示比较过程中最小值的位置
+		for (int i = 0; i < n.length-1; i++) {// 进行n-1趟排序, 每次把最小的放到已排序的下标后面
+			k = i;
+			for (int j = n.length - 1; j > i; j--) { // j从n.length-1向左至i
 				if (n[k] > n[j]) {
 					k = j;
 				}
