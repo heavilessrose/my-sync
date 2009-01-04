@@ -7,7 +7,7 @@
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.RECEIVE_SMS" />
-	
+
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity android:name=".MainActivity" android:label="@string/app_name">
 			<intent-filter>
@@ -70,8 +70,7 @@
 				<category android:name="luke.android.categoryShow" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".phone.call.PhoneCall"
-			android:label="@string/phone_call">
+		<activity android:name=".phone.call.PhoneCall" android:label="@string/phone_call">
 			<intent-filter>
 				<!-- 要被显示到列表中的项 -->
 				<action android:name="android.intent.action.MAIN" />
@@ -91,7 +90,7 @@
 				<action android:name="android.provider.Telephony.SMS_RECEIVED" />
 			</intent-filter>
 		</receiver>
-		
+
 		<!-- ################### tab+expandableList ############# -->
 		<activity android:name=".tabs.byIntent.ExpandListTabs"
 			android:label="@string/tabs_expandListTabs">
@@ -101,13 +100,29 @@
 				<category android:name="luke.android.categoryShow" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".view.list.FriendList"
-			android:label="@string/Expandlist_FriendList">
+		<activity android:name=".view.list.FriendList" android:label="@string/Expandlist_FriendList">
 			<intent-filter>
 				<!-- 要被显示到列表中的项 -->
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="luke.android.categoryShow" />
 			</intent-filter>
 		</activity>
+
+		<!--
+			#################################service-mplayer#########################
+
+	-->
+		<activity android:name=".service.mplayer.MyService" android:label="@string/service_mplayer_myservice">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
+		<service android:name=".service.mplayer.Music">
+			<intent-filter>
+				<action android:name="luke.android.service.mplayer.START_AUDIO_SERVICE" />
+				<category android:name="android.intent.category.default" />
+			</intent-filter>
+		</service>
 	</application>
 </manifest> 
