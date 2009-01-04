@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/service_mplayer_appname" />
+	<EditText android:id="@+id/name" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="" />
+
+	<Button android:id="@+id/submit" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="submit" />
+	<Button android:id="@+id/stop" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="stop" />
+	<TextView android:id="@+id/result" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="" />
+</LinearLayout>
