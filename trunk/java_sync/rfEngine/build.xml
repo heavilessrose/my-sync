@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ant build file -->
+<project name="engines" default="all-non-obf" basedir=".">
+	<!-- Global -->
+	<property name="project_name" value="engines" />
+	<property name="package_name" value="engines" />
+	<!-- pLib test -->
+	<!-- <property name="MIDlet-Class" value="luke.games.engines.tests.GameMIDlet" />  -->
+	<!-- gLib test -->
+	<property name="MIDlet-Class" value="luke.games.engines.gLib.test.GameMIDlet" />
+	<property name="MIDlet-Name" value="GameMIDlet" />
+	<property name="MIDlet-Vendor" value="Luke" />
+	<property name="MIDlet-Version" value="0.01" />
+	<!-- path -->
+	<property name="src" location="src/main/java/luke/games/engines" />
+	<property name="res" location="src/main/resources" />
+	<!-- locate the jad and jar,preverified but not Obfuscated -->
+	<property name="bin" location="bin" />
+	<property name="classes" location="classes" />
+	<!-- locate the jad and jar,preverified and Obfuscated -->
+	<property name="obfed" location="obfed" />
+	<property name="deploy" location="deploy" />
+
+	<!-- Libs -->
+	<property name="wtk.home" value="E:/Java/WTK25" />
+	<property name="wtk.cldc.version" value="1.1" />
+	<property name="wtk.midp.version" value="2.0" />
+	<!-- need WTK2.0+ -->
+	<property name="wtk.mmapi.enabled" value="true" />
+	<!-- need WTK2.0+ -->
+	<property name="wtk.wma.enabled" value="false" />
+	<!-- need WTK2.3+ -->
+	<property name="wtk.wma.version" value="1.0" />
+	<!-- need WTK2.1+ -->
+	<property name="wtk.j2mews.enabled" value="true" />
+	<!-- need WTK2.2+ -->
+	<property name="wtk.bluetooth.enabled" value="true" />
+	<!-- need WTK2.2+ -->
+	<property name="wtk.java3d.enabled" value="true" />
+	<!-- need WTK2.2+ -->
+	<property name="wtk.optionalpda.enabled" value="true" />
+	<!-- need WTK2.3+ -->
+	<property name="wtk.locationservices.enabled" value="false" />
+	<!-- need WTK2.3+ -->
+	<property name="wtk.contenthandler.enabled" value="false" />
+	<!-- need WTK2.3+ -->
+	<property name="wtk.satsa.enabled" value="false" />
+	<!-- need WTK2.5+ -->
+	<property name="wtk.miapi.enabled" value="false" />
+	<!-- need WTK2.5+ -->
+	<property name="wtk.ams.enabled" value="false" />
+	<!-- need WTK2.5+ -->
+	<property name="wtk.papi.enabled" value="false" />
+	<!-- need WTK2.5+ -->
+	<property name="wtk.s2dvgapi.enabled" value="false" />
+	<!-- need WTK2.5+ -->
+	<property name="wtk.sipapi.enabled" value="false" />
+
+	<!-- Define the tasks. -->
+	<taskdef resource="antenna.properties" classpath="E:/googlehosting/myworkspaces/devTools/m2/repo/de/pleumann/antenna/0.9.15-beta/antenna-0.9.15-beta.jar" />
+
+	<!-- Remove Build Directories -->
+	<target name="clean">
+		<!-- Delete our the ${build} and ${dist} directory trees -->
+		<delete dir="${bin}" />
+		<delete dir="${classes}" />
+		<delete dir="${deploy}" />
+		<delete dir="${obfed}" />
+		<delete file="${package_name}.jad" />
+		<delete file="${package_name}.jar" />
+	</target>
+
+	<!-- Create Build Directories -->
+	<target name="init" depends="clean">
+		<!-- Create the build directory structure used by compile and dist -->
+		<tstamp />
+		<mkdir dir="${bin}" />
+		<mkdir dir="${classes}" />
+		<mkdir dir="${deploy}" />
+		<mkdir dir="${obfed}" />
+	</target>
+
+	<!-- create jad file -->
+	<target name="jad">
+		<wtkjad jadfile="${package_name}.jad" jarfile="${package_name}.jar" name="${MIDlet-Name}" vendor="${MIDlet-Vendor}" version="${MIDlet-Version}">
+			<midlet name="${MIDlet-Name}" class="${MIDlet-Class}" />
+		</wtkjad>
+	</target>
+
+	<!-- build -->
+	<target name="build">
+		<wtkbuild srcdir="${src}" destdir="${classes}" preverify="true" />
+		<copy todir="${classes}">
+			<fileset dir="${res}" />
+		</copy>
+	</target>
+
+	<!-- package -->
+	<target name="package">
+		<wtkpackage jarfile="${package_name}.jar" jadfile="${package_name}.jad">
+			<fileset dir="${classes}" />
+			<fileset dir="${res}" />
+		</wtkpackage>
+	</target>
+
+	<!-- Preverify -->
+	<target name="preverify">
+		<wtkpreverify jarfile="${package_name}.jar" jadfile="${package_name}.jad" />
+		<copy file="${package_name}.jad" todir="${bin}" />
+		<copy file="${package_name}.jar" todir="${bin}" />
+	</target>
+
+	<!-- Obfuscate -->
+	<target name="obf">
+		<copy file="${package_name}.jad" todir="${obfed}" />
+		<copy file="${package_name}.jar" todir="${obfed}" />
+		<wtkobfuscate jarfile="${obfed}/${package_name}.jar" jadfile="${obfed}/${package_name}.jad" />
+	</target>
+
+	<!-- Run -->
+	<target name="run">
+		<wtkrun jadfile="${package_name}.jad" device="DefaultColorPhone" wait="true" />
+	</target>
+
+	<!-- Combine Tasks -->
+	<target name="all-non-obf" depends="init,build,jad,package,preverify,run" />
+	<target name="all" depends="init,build,jad,package,preverify,obf,run" />
+</project>
