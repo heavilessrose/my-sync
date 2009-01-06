@@ -1,0 +1,8 @@
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: Midlet Suite Vendor
+MIDlet-Jar-URL: J2meWrapper.jar
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0
+MIDlet-1: j2meWrapper,,TestMidlet
+MIDlet-Permissions: javax.microedition.io.PushRegistry, javax.wireless.messaging.sms.receive, javax.wireless.messaging.sms.send, javax.microedition.pim.ContactList.read, javax.microedition.pim.EventList.read, javax.microedition.pim.ToDoList.read, javax.microedition.pim.ContactList.write, javax.microedition.pim.EventList.write, javax.microedition.pim.ToDoList.write, javax.microedition.io.Connector.file.read, javax.microedition.io.Connector.file.write, javax.microedition.io.Connector.sms, javax.microedition.io.Connector.http
+MIDlet-Name: J2meWrapper Midlet Suite
