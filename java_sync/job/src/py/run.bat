@@ -1,0 +1,1 @@
+java  -classpath  "./o.jar"  pinying.t
