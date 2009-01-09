@@ -147,7 +147,7 @@ public class AndroidFileBrowser extends ListActivity {
 		if(this.currentDirectory.getParent() != null)
 			this.directoryEntries.add(new IconifiedText(
 					getString(R.string.filebrowser_up_one_level), 
-					getResources().getDrawable(R.drawable.filebrowser_uponelevel)));
+					getResources().getDrawable(R.drawable.uponelevel)));
 		
 		Drawable currentIcon = null;
 		for (File currentFile : files){
@@ -205,10 +205,10 @@ public class AndroidFileBrowser extends ListActivity {
 		super.onListItemClick(l, v, position, id);
 		int selectionRowID = (int) id /*this.getSelectionRowID()*/;
 		String selectedFileString = this.directoryEntries.get(selectionRowID).getText();
-		if (selectedFileString.equals(getString(R.string.current_dir))) {
+		if (selectedFileString.equals(getString(R.string.filebrowser_current_dir))) {
 			// Refresh
 			this.browseTo(this.currentDirectory);
-		} else if(selectedFileString.equals(getString(R.string.up_one_level))){
+		} else if(selectedFileString.equals(getString(R.string.filebrowser_up_one_level))){
 			this.upOneLevel();
 		} else {
 			File clickedFile = null;
