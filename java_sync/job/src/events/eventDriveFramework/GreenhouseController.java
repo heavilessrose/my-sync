@@ -3,7 +3,6 @@ package events.eventDriveFramework;
 //: innerclasses/GreenhouseController.java
 // Configure and execute the greenhouse system.
 // {Args: 5000}
-
 public class GreenhouseController {
 	public static void main(String[] args) {
 		GreenhouseControls gc = new GreenhouseControls();

@@ -11,10 +11,10 @@ public class B extends A{
 		};
 	}
 	public static void main(String[] args){
-		// å³ä½¿æ˜¯Açš„å­ç±», ä½†æ˜¯å¦‚æœä¸åœ¨åŒä¸€ä¸ªåŒ…ä¸­çš„è¯ä¹Ÿä¸èƒ½è®¿é—®çˆ¶ç±»çš„protectedæˆå‘˜
+		// ¼´Ê¹ÊÇAµÄ×ÓÀà, µ«ÊÇÈç¹û²»ÔÚÍ¬Ò»¸ö°üÖĞµÄ»°Ò²²»ÄÜ·ÃÎÊ¸¸ÀàµÄprotected³ÉÔ±
 		System.out.println(new A().c);
-		// cçš„å€¼æ²¡æœ‰å˜?? 
-		// æ— æ³•èµ‹åˆå€¼?
+		// cµÄÖµÃ»ÓĞ±ä?? 
+		// ÎŞ·¨¸³³õÖµ?
 		System.out.println(new B().newA(2).c);
 	}
 }

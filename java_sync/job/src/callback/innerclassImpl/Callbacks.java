@@ -7,7 +7,7 @@ interface Incrementable {
 }
 
 // Very simple to just implement the interface:
-// é€šå¸¸çš„å›è°ƒæ–¹å¼
+// Í¨³£µÄ»Øµ÷·½Ê½
 class Callee1 implements Incrementable {
 	private int i = 0;
 
@@ -33,14 +33,14 @@ class MyIncrement {
 class Callee2 extends MyIncrement {
 	private int i = 0;
 
-	// ä¸æ¥å£è¦æ±‚çš„æ–¹æ³•ç›¸åŒ, ä½†æ„ä¹‰ä¸åŒ
+	// Óë½Ó¿ÚÒªÇóµÄ·½·¨ÏàÍ¬, µ«ÒâÒå²»Í¬
 	public void increment() {
 		super.increment();
 		i++;
 		print(i);
 	}
 
-	// ä½¿ç”¨å†…éƒ¨ç±»æ¥å®Œæˆæ¥å£çš„åŠŸèƒ½, å®ç°å›è°ƒ
+	// Ê¹ÓÃÄÚ²¿ÀàÀ´Íê³É½Ó¿ÚµÄ¹¦ÄÜ, ÊµÏÖ»Øµ÷
 	private class Closure implements Incrementable {
 		public void increment() {
 			// Specify outer-class method, otherwise
@@ -72,7 +72,7 @@ public class Callbacks {
 		Callee2 c2 = new Callee2();
 		MyIncrement.f(c2);
 		Caller caller1 = new Caller(c1);
-		// æ³¨æ„æ­¤æ—¶caller2çš„å›è°ƒæ–¹å¼
+		// ×¢Òâ´ËÊ±caller2µÄ»Øµ÷·½Ê½
 		Caller caller2 = new Caller(c2.getCallbackReference());
 		caller1.go();
 		caller1.go();

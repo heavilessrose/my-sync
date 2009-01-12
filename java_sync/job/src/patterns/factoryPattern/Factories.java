@@ -1,6 +1,6 @@
 package patterns.factoryPattern;
 
-/* 浣跨敤鍐呴儴绫荤殑宸ュ巶瀹炵幇 */
+/* 使用内部类的工厂实现 */
 import static util.Print.*;
 
 interface Service {
