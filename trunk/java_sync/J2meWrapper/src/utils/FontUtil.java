@@ -7,25 +7,25 @@ import javax.microedition.lcdui.Graphics;
 
 public class FontUtil {
 
-	// æ°´å¹³å¯¹é½æ ‡å¿—
+	// Ë®Æ½¶ÔÆë±êÖ¾
 	public final static int ALIGN_LEFT = 0;
 	public final static int ALIGN_CENTER = 1;
 	public final static int ALIGN_RIGHT = 2;
 
-	// çºµå‘å¯¹é½æ ‡å¿—
+	// ×İÏò¶ÔÆë±êÖ¾
 	public final static int ALIGN_TOP = 3;
 	public final static int ALIGN_MIDDLE = 4;
 	public final static int ALIGN_BOTTOM = 5;
 
 	/**
-	 * è®¡ç®—ä¸€ä¸ªStringçš„çºµå‘ä½ç½®(åæ ‡y)
+	 * ¼ÆËãÒ»¸öStringµÄ×İÏòÎ»ÖÃ(×ø±êy)
 	 *
 	 * @param font
-	 * @param string è¦å¯¹é½çš„å­—ç¬¦ä¸²
-	 * @param box_y    top leftç‚¹çš„yåæ ‡
+	 * @param string Òª¶ÔÆëµÄ×Ö·û´®
+	 * @param box_y    top leftµãµÄy×ø±ê
 	 * @param box_height The vertical height of the bounding box
-	 * @param align å¯¹é½æ ‡å¿—
-	 * @return Stringçš„çºµå‘yåæ ‡
+	 * @param align ¶ÔÆë±êÖ¾
+	 * @return StringµÄ×İÏòy×ø±ê
 	 */
 	public static int getVerticalPosition(Font font, String string, int box_y, int box_height, int align) {
 		if (align == ALIGN_MIDDLE)
@@ -37,14 +37,14 @@ public class FontUtil {
 	}
 
 	/**
-	 * è®¡ç®—ä¸€ä¸ªStringçš„æ°´å¹³ä½ç½®(åæ ‡x)
+	 * ¼ÆËãÒ»¸öStringµÄË®Æ½Î»ÖÃ(×ø±êx)
 	 *
 	 * @param font
-	 * @param string è¦å¯¹é½çš„å­—ç¬¦ä¸²
-	 * @param box_x   top leftç‚¹çš„xåæ ‡
+	 * @param string Òª¶ÔÆëµÄ×Ö·û´®
+	 * @param box_x   top leftµãµÄx×ø±ê
 	 * @param box_width 
-	 * @param align å¯¹é½æ ‡å¿—
-	 * @return è¦ç”»çš„Stringçš„x
+	 * @param align ¶ÔÆë±êÖ¾
+	 * @return Òª»­µÄStringµÄx
 	 */
 	public static int getHorizontalPosition(Font font, String string, int box_x, int box_width, int align) {
 		if (align == ALIGN_CENTER)
@@ -56,13 +56,13 @@ public class FontUtil {
 	}
 
 	/**
-	 * æŠŠå­—ç¬¦ä¸²æŒ‰ç»™å®šå®½åº¦åˆ†å‰²ä¸ºå­—ç¬¦ä¸²æ•°ç»„
+	 * °Ñ×Ö·û´®°´¸ø¶¨¿í¶È·Ö¸îÎª×Ö·û´®Êı×é
 	 *
 	 * @param font
 	 * @param inputStr
 	 * @param box_width
-	 * @param breakOnSpaces å¤„ç†ç©ºæ ¼(å¯ä¿è¯è‹±æ–‡å•è¯ä¸è¢«åˆ‡æ–­)
-	 * @return åˆ‡å‰²åçš„å­—ç¬¦ä¸²æ•°ç»„
+	 * @param breakOnSpaces ´¦Àí¿Õ¸ñ(¿É±£Ö¤Ó¢ÎÄµ¥´Ê²»±»ÇĞ¶Ï)
+	 * @return ÇĞ¸îºóµÄ×Ö·û´®Êı×é
 	 */
 	public static String[] splitByBox(Font font, String inputStr, int box_width, boolean breakOnSpaces) {
 		if (font.stringWidth(inputStr) <= box_width)
@@ -70,9 +70,9 @@ public class FontUtil {
 
 		Vector lines = new Vector();
 
-		int lastSpacePos = 0; // æœ€åä¸€ä¸ªç©ºæ ¼ä½ç½®
-		int lineLen = 0; // æ¯è¡Œå½“å‰é•¿åº¦
-		int offset = 0; // å¼€å§‹æˆªå–çš„ä½ç½®
+		int lastSpacePos = 0; // ×îºóÒ»¸ö¿Õ¸ñÎ»ÖÃ
+		int lineLen = 0; // Ã¿ĞĞµ±Ç°³¤¶È
+		int offset = 0; // ¿ªÊ¼½ØÈ¡µÄÎ»ÖÃ
 
 		char[] chars = inputStr.toCharArray();
 
@@ -110,9 +110,9 @@ public class FontUtil {
 	}
 
 	/** 
-	 * æŒ‰æ ‡å¿—åˆ†å‰²å­—ç¬¦ä¸²
+	 * °´±êÖ¾·Ö¸î×Ö·û´®
 	 * @param source 
-	 * @param delim åˆ†éš”ç¬¦
+	 * @param delim ·Ö¸ô·û
 	 * @return
 	 */
 	public static String[] splitStringByDelim(String source, String delim) {
@@ -155,12 +155,12 @@ public class FontUtil {
 	}
 
 	/**
-	 * è®¡ç®—ä½¿ç”¨æŒ‡å®šå­—ä½“åœ¨ä¸€ä¸ªæ ¼å­ä¸­çºµå‘å¯ä»¥æ˜¾ç¤ºå¤šå°‘è¡Œ
+	 * ¼ÆËãÊ¹ÓÃÖ¸¶¨×ÖÌåÔÚÒ»¸ö¸ñ×ÓÖĞ×İÏò¿ÉÒÔÏÔÊ¾¶àÉÙĞĞ
 	 *
 	 * @param font
 	 * @param box_height
 	 * @param space
-	 * @return è¡Œæ•°
+	 * @return ĞĞÊı
 	 */
 	public static int getVerticalCount(Font font, int box_height, int space) {
 		int baseCount = (box_height / (font.getHeight() + space));
@@ -179,7 +179,7 @@ public class FontUtil {
 		g.setClip(box_x, box_y, box_width, box_height);
 		drawBox(g, str, box_x, box_y, box_width, box_height);
 		g.setColor(0, 0, 0);
-		// æ¡†çš„è¡Œæ•°ä¸å¤Ÿæ˜¾ç¤º
+		// ¿òµÄĞĞÊı²»¹»ÏÔÊ¾
 		if (lines.length > getVerticalCount(font, box_height, space)) {
 			for (int i = 0; i < lines.length; i++)
 				g.drawString(lines[i], box_x + space, start_y + space + (font.getHeight() + space) * i, align);

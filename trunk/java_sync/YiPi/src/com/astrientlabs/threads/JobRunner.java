@@ -35,6 +35,7 @@ public class JobRunner extends Vector implements Runnable {
 		semaphore.release();
 	}
 
+	/** 在Jobrunner中得到下一个任务 */
 	public Runnable getNextJob() {
 		semaphore.acquire();
 		if (!isEmpty()) {
@@ -46,6 +47,7 @@ public class JobRunner extends Vector implements Runnable {
 		return null;
 	}
 
+	/** 初始化后由cron启动,用来管理worker */
 	public void run() {
 		if (!running) {
 			running = true;

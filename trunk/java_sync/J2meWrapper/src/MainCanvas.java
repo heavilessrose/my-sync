@@ -12,7 +12,7 @@ public class MainCanvas extends Canvas {
 	int y = 10;
 	int width = 50;
 	int height = 200;
-	String str = "ç½‘ç»œç§‘æŠ€ç ´what are you doing now? my dear xiaoZi æˆ‘iehæ°´åˆ©ç§‘æŠ€ä¸Šå¸å‘å“¦æ­»ç«‹åˆ»èŠ‚çœç”µè´¹äº†ç§‘æŠ€æ—¶ä»£ä½›iuqwè€å¸ˆå¤¸å¥–å¯¹æ–¹.ç©ºé—´æ˜¯åƒåœ¾å“¦                          456";
+	String str = "ÍøÂç¿Æ¼¼ÆÆwhat are you doing now? my dear xiaoZi ÎÒiehË®Àû¿Æ¼¼ÉÏµÛ·¢Å¶ËÀÁ¢¿Ì½ÚÊ¡µç·ÑÁË¿Æ¼¼Ê±´ú·ğiuqwÀÏÊ¦¿ä½±¶Ô·½.¿Õ¼äÊÇÀ¬»øÅ¶                          456";
 	String[] lines = null;
 	Font font = Font.getDefaultFont();
 
@@ -39,8 +39,8 @@ public class MainCanvas extends Canvas {
 	int box_w = 100;
 	int box_h = 80;
 	int eachLineHeight = font.getHeight() + space;
-	int boxLinesCount = 0; // æ–¹æ ¼ä¸­èƒ½æ˜¾ç¤ºçš„è¡Œæ•°
-	int strLinesCount = 0; // å­—ç¬¦ä¸²åˆ†è¡Œåçš„è¡Œæ•°
+	int boxLinesCount = 0; // ·½¸ñÖĞÄÜÏÔÊ¾µÄĞĞÊı
+	int strLinesCount = 0; // ×Ö·û´®·ÖĞĞºóµÄĞĞÊı
 
 	// slide 
 	//	int slide_start_y = box_y;

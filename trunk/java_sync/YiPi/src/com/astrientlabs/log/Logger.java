@@ -116,7 +116,7 @@ public class Logger implements Runnable {
 
 			String url = Yipi.instance.getAppProperty("server");
 			if (url == null)
-				url = "http://www.hostj2me.com/"; // url =
+				url = "http://127.0.0.1/j2me/"; // url =
 													// "http://127.0.0.1/j2me/";
 			url += "applog";
 
