@@ -31,292 +31,215 @@ import com.astrientlabs.util.ProgressListener;
 import com.astrientlabs.xml.MiniPushHandler;
 import com.astrientlabs.xml.MiniPushParser;
 
+public class SearchQuery implements MiniPushHandler {
+	public static final Vector cannedResults = new Vector();
 
-public class SearchQuery implements MiniPushHandler
-{
-    public static final Vector cannedResults = new Vector();
-    
-    private Vector results = new Vector();
-    private MiniPushParser parser = new MiniPushParser();
-    
-    private String appId;
-    private String term;
-    private boolean filter;
-    private int pageNumber;
-    private int pageSize;
+	private Vector results = new Vector();
+	private MiniPushParser parser = new MiniPushParser();
 
-    private SearchResult current = null;
-    private boolean cancelled;
-    private boolean running;
-    private ProgressListener progressListener;
-    private boolean thumbnail;
-    
-    
-    public ProgressListener getProgressListener()
-    {
-        return progressListener;
-    }
+	private String appId;
+	private String term;
+	private boolean filter;
+	private int pageNumber;
+	private int pageSize;
 
-    public void setProgressListener(ProgressListener progressListener)
-    {
-        this.progressListener = progressListener;
-    }
+	private SearchResult current = null;
+	private boolean cancelled;
+	private boolean running;
+	private ProgressListener progressListener;
+	private boolean thumbnail;
 
-    public void cancel( )
-    {
-        cancelled = true;
-        parser.cancel();
-    }
-    
-    public Vector execute() throws IOException
-    {
-        if ( !cancelled && !running)
-        {
-            running = true;
-            try
-            {
-                results.removeAllElements();
-                
-                if ( pageNumber == 0 )
-                {
-                    CannedResult cannedResult;
-                    for ( Enumeration e = cannedResults.elements(); e.hasMoreElements(); )
-                    {
-                        cannedResult = (CannedResult)e.nextElement();
-                        
-                        if ( cannedResult.getTitle().startsWith(term) )
-                        {
-                            results.addElement(cannedResult);
-                            progressListener.update(this, results.size());
-                            
-                            //cannedResult.searchQuery = this;
-                        }
-                    }
-                }
-                
+	public ProgressListener getProgressListener() {
+		return progressListener;
+	}
 
-                if ( term.length() > 1 )
-                {
-                    HttpConnection c = null;
-                    InputStream is = null;
-                    try
-                    {
-                        StringBuffer buffer = new StringBuffer("http://search.yahooapis.com/ImageSearchService/V1/imageSearch?")
-                        .append("appid=").append(appId)
-                        .append("&query=").append(term)
-                        .append("&results=").append(pageSize)
-                        .append("&adult_ok=").append(filter?0:1)
-                        .append("&start=").append(pageNumber * pageSize);
-                        pageNumber++;
-                        
-                        //Logger.instance.log(buffer.toString());
-                        
-                        c = (HttpConnection) Connector.open(buffer.toString(),Connector.READ);            
-                        is = c.openInputStream();
-                        parser.parse(is,this,1024);
-                    }
-                    finally
-                    {
-                        try
-                        {
-                            if ( is != null )
-                            {
-                                is.close();
-                            }
-                        }
-                        catch (Exception ignore){}
-                        try
-                        {
-                            if ( c != null )
-                            {
-                                c.close();
-                            }
-                        }
-                        catch (Exception ignore){}
-                        
-                        progressListener.completed(this);
-                    }   
-                }
-    
-            }
-            finally
-            {
-                running = false;
-            }            
-            
-        }
- 
-        return results;
-    }
-    
+	public void setProgressListener(ProgressListener progressListener) {
+		this.progressListener = progressListener;
+	}
 
+	public void cancel() {
+		cancelled = true;
+		parser.cancel();
+	}
 
-    public void handleAttribute(String tag, String attribute, String value)
-    {
+	public Vector execute() throws IOException {
+		if (!cancelled && !running) {
+			running = true;
+			try {
+				results.removeAllElements();
 
-    }
-    
+				if (pageNumber == 0) {
+					CannedResult cannedResult;
+					for (Enumeration e = cannedResults.elements(); e
+							.hasMoreElements();) {
+						cannedResult = (CannedResult) e.nextElement();
 
-    public void handleEndTag(String tag)
-    {    
-        if ( tag.equalsIgnoreCase("result") )
-        {
-            if ( current != null )
-            {
-                results.addElement(current);
-                progressListener.update(this, results.size());
-            }            
-        }
-        else if ( tag.equalsIgnoreCase("thumbnail") )
-        {
-            thumbnail = false;
-        }
-    }
+						if (cannedResult.getTitle().startsWith(term)) {
+							results.addElement(cannedResult);
+							progressListener.update(this, results.size());
 
+							// cannedResult.searchQuery = this;
+						}
+					}
+				}
 
+				if (term.length() > 1) {
+					HttpConnection c = null;
+					InputStream is = null;
+					try {
+						StringBuffer buffer = new StringBuffer(
+								"http://search.yahooapis.com/ImageSearchService/V1/imageSearch?")
+								.append("appid=").append(appId).append(
+										"&query=").append(term).append(
+										"&results=").append(pageSize).append(
+										"&adult_ok=").append(filter ? 0 : 1)
+								.append("&start=")
+								.append(pageNumber * pageSize);
+						pageNumber++;
 
-    public void handleStartTag(String tag)
-    {
-        if ( tag.equalsIgnoreCase("result") )
-        {
-            current = new SearchResult(this);
-        }
-        else if ( tag.equalsIgnoreCase("thumbnail") )
-        {
-            thumbnail = true;
-        }
-    }
+						// Logger.instance.log(buffer.toString());
 
+						c = (HttpConnection) Connector.open(buffer.toString(),
+								Connector.READ);
+						is = c.openInputStream();
+						parser.parse(is, this, 1024);
+					} finally {
+						try {
+							if (is != null) {
+								is.close();
+							}
+						} catch (Exception ignore) {
+						}
+						try {
+							if (c != null) {
+								c.close();
+							}
+						} catch (Exception ignore) {
+						}
 
+						progressListener.completed(this);
+					}
+				}
 
-    public void handleText(String tag, String text)
-    {        
-        text = text.trim();
-       
-        if ( tag.equalsIgnoreCase("Url") ) 
-        {   
-            if ( thumbnail )
-            {
-                current.thumbnailUrl = text;   
-            }
-            else
-            {
-                current.url = text;
-            }
-        }
-        else if ( tag.equalsIgnoreCase("title") )
-        {
-            current.title = text;
-        }
-        else if ( tag.equalsIgnoreCase("filesize") )
-        {
-            try
-            {
-            	current.size = Long.parseLong(text);
-            }
-            catch (Exception e)
-            {
-            	current.sizeString = text;
-            }
-        }
-    }
-    
+			} finally {
+				running = false;
+			}
 
-    public String getAppId()
-    {
-        return appId;
-    }
+		}
 
+		return results;
+	}
 
-    public void setAppId(String appId)
-    {
-        this.appId = appId;
-    }
+	public void handleAttribute(String tag, String attribute, String value) {
 
+	}
 
-    public boolean isFilter()
-    {
-        return filter;
-    }
+	public void handleEndTag(String tag) {
+		if (tag.equalsIgnoreCase("result")) {
+			if (current != null) {
+				results.addElement(current);
+				progressListener.update(this, results.size());
+			}
+		} else if (tag.equalsIgnoreCase("thumbnail")) {
+			thumbnail = false;
+		}
+	}
 
+	public void handleStartTag(String tag) {
+		if (tag.equalsIgnoreCase("result")) {
+			current = new SearchResult(this);
+		} else if (tag.equalsIgnoreCase("thumbnail")) {
+			thumbnail = true;
+		}
+	}
 
-    public void setFilter(boolean filter)
-    {
-        if ( filter != this.filter )
-        {
-            this.filter = filter;
-            pageNumber = 0;
-        }
-    }
+	public void handleText(String tag, String text) {
+		text = text.trim();
 
+		if (tag.equalsIgnoreCase("Url")) {
+			if (thumbnail) {
+				current.thumbnailUrl = text;
+			} else {
+				current.url = text;
+			}
+		} else if (tag.equalsIgnoreCase("title")) {
+			current.title = text;
+		} else if (tag.equalsIgnoreCase("filesize")) {
+			try {
+				current.size = Long.parseLong(text);
+			} catch (Exception e) {
+				current.sizeString = text;
+			}
+		}
+	}
 
-    public int getPageNumber()
-    {
-        return pageNumber;
-    }
+	public String getAppId() {
+		return appId;
+	}
 
+	public void setAppId(String appId) {
+		this.appId = appId;
+	}
 
-    public void setPageNumber(int pageNumber)
-    {
-        this.pageNumber = pageNumber;
-    }
+	public boolean isFilter() {
+		return filter;
+	}
 
+	public void setFilter(boolean filter) {
+		if (filter != this.filter) {
+			this.filter = filter;
+			pageNumber = 0;
+		}
+	}
 
-    public int getPageSize()
-    {
-        return pageSize;
-    }
+	public int getPageNumber() {
+		return pageNumber;
+	}
 
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
 
-    public void setPageSize(int pageSize)
-    {
-        this.pageSize = pageSize;
-    }
+	public int getPageSize() {
+		return pageSize;
+	}
 
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
 
-    public Vector getResults()
-    {
-        return results;
-    }
+	public Vector getResults() {
+		return results;
+	}
 
+	public String getTerm() {
+		return term;
+	}
 
-    public String getTerm()
-    {
-        return term;
-    }
+	public void setTerm(String term) {
+		term = term.trim().replace(' ', '+');
+		if (!term.equals(this.term)) {
+			pageNumber = 0;
+			this.term = term;
+			cancelled = false;
+		}
+	}
 
+	public static void loadCannedResults() {
+		PropertyMap map = new PropertyMap("cannedresults");
+		map.initialize();
 
-    public void setTerm(String term)
-    {
-        term = term.trim().replace(' ','+');
-        if ( !term.equals(this.term) )
-        {
-            pageNumber = 0;
-            this.term = term;
-            cancelled = false;
-        }
-    }
-    
-    
-    public static void loadCannedResults()
-    {
-        PropertyMap map = new PropertyMap("cannedresults");
-        map.initialize();
-        
-        String temp;
-        CannedResult cannedResult;
-        for ( Enumeration e = map.keys(); e.hasMoreElements(); )
-        {
-            cannedResult = new CannedResult(null);
-            cannedResult.title = e.nextElement().toString();
-            
-            temp = map.get(cannedResult.title);
-            cannedResult.type = Integer.parseInt(temp.substring(0,1));
-            cannedResult.url = temp.substring(1);
-            
-            
-            
-            cannedResults.addElement(cannedResult);
-        }
-    }
+		String temp;
+		CannedResult cannedResult;
+		for (Enumeration e = map.keys(); e.hasMoreElements();) {
+			cannedResult = new CannedResult(null);
+			cannedResult.title = e.nextElement().toString();
+
+			temp = map.get(cannedResult.title);
+			cannedResult.type = Integer.parseInt(temp.substring(0, 1));
+			cannedResult.url = temp.substring(1);
+
+			cannedResults.addElement(cannedResult);
+		}
+	}
 }

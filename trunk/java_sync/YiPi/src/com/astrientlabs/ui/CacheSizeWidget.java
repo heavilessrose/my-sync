@@ -12,21 +12,18 @@ import javax.microedition.lcdui.Graphics;
 
 import com.astrientlabs.cache.Cache;
 
+public class CacheSizeWidget extends LabelWidget {
+	String prefix;
 
-public class CacheSizeWidget extends LabelWidget
-{   
-    String prefix;
-    
-    public CacheSizeWidget(Window parent, String text)
-    {
-        super(parent,text);
-        
-        this.prefix = text;
-    }
-        
-    public void paint(Graphics g, int x, int y, int maxX, int maxY, boolean hasFocus)
-	{
-        text = prefix +  String.valueOf(Cache.instance.size());
-        super.paint(g,x,y,maxX,maxY,hasFocus);   
-    }
+	public CacheSizeWidget(Window parent, String text) {
+		super(parent, text);
+
+		this.prefix = text;
+	}
+
+	public void paint(Graphics g, int x, int y, int maxX, int maxY,
+			boolean hasFocus) {
+		text = prefix + String.valueOf(Cache.instance.size());
+		super.paint(g, x, y, maxX, maxY, hasFocus);
+	}
 }

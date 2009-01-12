@@ -20,28 +20,22 @@ package com.astrientlabs.util;
 
 import javax.microedition.lcdui.Image;
 
+public class Images {
+	public static Image FAKE_AD;
+	public static Image PICTURE;
+	public static Image TITLE;
+	public static Image CANNED_RESULT;
+	public static Image MORE_RESULTS;
 
-public class Images
-{
-    public static Image FAKE_AD;
-    public static Image PICTURE;
-    public static Image TITLE;
-    public static Image CANNED_RESULT;
-    public static Image MORE_RESULTS;
-    
-    public static void init()
-    {
-        try
-        {
-            MORE_RESULTS = Image.createImage("/more.png");
-            TITLE = Image.createImage("/title.png");
-            FAKE_AD = Image.createImage("/splash.png");
-            PICTURE = Image.createImage("/pic.png");
-            CANNED_RESULT = Image.createImage("/cresult.png");
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }        
-    }
+	public static void init() {
+		try {
+			MORE_RESULTS = Image.createImage("/more.png");
+			TITLE = Image.createImage("/title.png");
+			FAKE_AD = Image.createImage("/splash.png");
+			PICTURE = Image.createImage("/pic.png");
+			CANNED_RESULT = Image.createImage("/cresult.png");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

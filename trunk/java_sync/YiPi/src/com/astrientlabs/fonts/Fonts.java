@@ -20,10 +20,13 @@ package com.astrientlabs.fonts;
 
 import javax.microedition.lcdui.Font;
 
-public final class Fonts
-{
-    public static final Font TEXT = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
-    public static final Font HEADER_TEXT = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
-    public static final Font ROLLOVER_TEXT = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_UNDERLINED, Font.SIZE_SMALL);
-    public static final Font BUTTON_LABEL_TEXT = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM);
+public final class Fonts {
+	public static final Font TEXT = Font.getFont(Font.FACE_SYSTEM,
+			Font.STYLE_PLAIN, Font.SIZE_SMALL);
+	public static final Font HEADER_TEXT = Font.getFont(Font.FACE_SYSTEM,
+			Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
+	public static final Font ROLLOVER_TEXT = Font.getFont(Font.FACE_SYSTEM,
+			Font.STYLE_UNDERLINED, Font.SIZE_SMALL);
+	public static final Font BUTTON_LABEL_TEXT = Font.getFont(Font.FACE_SYSTEM,
+			Font.STYLE_BOLD, Font.SIZE_MEDIUM);
 }

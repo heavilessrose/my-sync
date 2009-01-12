@@ -36,6 +36,7 @@ import com.astrientlabs.util.Images;
 import com.astrientlabs.util.Metric;
 import com.astrientlabs.util.Stats;
 
+/** 系统初始化 */
 public class StartupJob implements Runnable, CommandListener {
 	private SplashCanvas splashScreen;
 

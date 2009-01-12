@@ -26,6 +26,7 @@ import java.io.IOException;
 
 import javax.microedition.lcdui.Image;
 
+/** 广告管理 */
 public class Ad {
 	private String name;
 	private String infoURL;

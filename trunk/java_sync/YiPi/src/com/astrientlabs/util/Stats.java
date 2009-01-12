@@ -18,9 +18,7 @@
  */
 package com.astrientlabs.util;
 
-
-public final class Stats
-{
-    public static int uploads;
-    public static int downloads;
+public final class Stats {
+	public static int uploads;
+	public static int downloads;
 }

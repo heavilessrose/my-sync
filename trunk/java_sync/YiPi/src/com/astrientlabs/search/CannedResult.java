@@ -23,36 +23,30 @@ import java.io.OutputStream;
 
 import com.astrientlabs.util.ProgressListener;
 
-public class CannedResult extends SearchResult
-{
-    public static final int TYPE_LINK = 0;
-    public static final int TYPE_POPUP = 1;
-    public static final int TYPE_SETTING = 2;
-    
-    protected int type;
+public class CannedResult extends SearchResult {
+	public static final int TYPE_LINK = 0;
+	public static final int TYPE_POPUP = 1;
+	public static final int TYPE_SETTING = 2;
 
-    
-    public CannedResult(SearchQuery searchQuery)
-    {
-        super(searchQuery);
-    }
-    
-    public int getType()
-    {
-        return type;
-    }
+	protected int type;
 
-    public void setType(int type)
-    {
-        this.type = type;
-    }
-    
-    public void writeTo(OutputStream os, ProgressListener listener) throws IOException
-    {
-    }
-    
-    public String toString()
-    {
-        return url;
-    }
+	public CannedResult(SearchQuery searchQuery) {
+		super(searchQuery);
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public void writeTo(OutputStream os, ProgressListener listener)
+			throws IOException {
+	}
+
+	public String toString() {
+		return url;
+	}
 }

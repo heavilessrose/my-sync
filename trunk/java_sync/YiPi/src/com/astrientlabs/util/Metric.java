@@ -20,26 +20,21 @@ package com.astrientlabs.util;
 
 import com.astrientlabs.log.Logger;
 
+public class Metric {
+	private long timestamp = System.currentTimeMillis();
+	private String name;
 
-public class Metric
-{
-    private long timestamp = System.currentTimeMillis();
-    private String name;
+	public Metric(String name) {
+		this.name = name;
+	}
 
-    public Metric(String name)
-    {
-        this.name = name;
-    }
+	public long elapsed() {
+		long elapsed = System.currentTimeMillis() - timestamp;
+		Logger.instance.log(name, "elapsed: " + elapsed);
+		return elapsed;
+	}
 
-    public long elapsed()
-    {
-        long elapsed = System.currentTimeMillis() - timestamp;
-        Logger.instance.log(name,"elapsed: " + elapsed);
-        return  elapsed;
-    }
-    
-    public void reset()
-    {
-        timestamp = System.currentTimeMillis();
-    }
+	public void reset() {
+		timestamp = System.currentTimeMillis();
+	}
 }
