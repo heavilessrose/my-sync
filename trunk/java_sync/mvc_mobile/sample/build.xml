@@ -71,7 +71,7 @@
 		            verbose="${verbose}"
 		            preverify="${preverify}">
 			<fileset dir="build/classes" />
-			<zipfileset dir="resources" prefix="icons"/>
+			<zipfileset dir="res" prefix="icons"/>
 		</wtkpackage>
 		<delete dir="build/classes" />
 		<!-- not needed any more -->
