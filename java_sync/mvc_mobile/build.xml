@@ -1,0 +1,144 @@
+<project name="mvc-mobile" default="package" basedir=".">
+	<property name="version" value="0.1" />
+
+	<property file="build.properties" />
+
+	<property name="language" value="en" />
+	<property name="preverify" value="true" />
+	<property name="verbose" value="false" />
+
+	<property name="wtk.cldc.version" value="1.0" />
+	<property name="wtk.midp.version" value="1.0" />
+
+	<property name="app.name" value="mvc-mobile-${version}" />
+	<property name="translated.sources.dir" value="build/translated" />
+	<property name="messages.bundle" value="resources/messages" />
+
+	<fileset dir="src" id="sources">
+		<include name="**/*.java" />
+	</fileset>
+	
+	<path id="build.classpath">
+		<fileset dir="${wtk.home}/lib/">
+			<include name="cldcapi10.jar"/>
+			<include name="midpapi10.jar"/>
+		</fileset>
+	</path>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init">
+		<fail unless="wtk.home">.
+			Please create build.properties file and set wtk.home property to 
+			the path to your Sun Java Wireless Toolkit instalation
+		</fail>
+		<mkdir dir="build/classes" />
+		<delete dir="${translated.sources.dir}" />
+	</target>
+
+
+	<!--	 - - - - - - - - - - - - - - - - - 
+          target: translate                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="translate" depends="init">
+		<translate bundle="${messages.bundle}"
+		           bundlelanguage="${language}"
+		           starttoken="$${"
+		           endtoken="}"
+		           todir="${translated.sources.dir}">
+			<fileset refid="sources" />
+		</translate>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: build                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="build" depends="init,translate">
+		<javac source="1.2" bootclasspathref="build.classpath"
+		       destdir="build/classes" 
+		       srcdir="${translated.sources.dir}" />
+	</target>
+
+
+	<!-- ================================= 
+          target: package                      
+         ================================= -->
+	<target name="package"
+	        depends="init,build"
+	        description="--> create binnary package">		
+		<zip file="build/${app.name}-${language}-bin.zip">
+			<fileset dir="build/classes" />
+		</zip>
+		<delete dir="build/classes" />
+		<!-- not needed any more -->
+	</target>
+
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+	<target name="clean" description="--> delete all generated files">
+		<delete dir="build" />
+		<delete dir="dist" />
+
+		<delete includeEmptyDirs="true">
+			<fileset dir="." includes="tmp*/**" />
+			<fileset dir="." includes="*.tmp/**" />
+		</delete>
+	</target>
+
+	<!-- ================================= 
+          target: src-snapshot              
+         ================================= -->
+	<target name="backup"
+	        depends="clean"
+	        description="--> make a source backup">
+		<tstamp>
+			<format property="NOW" pattern="yyyy.MM.dd-HH.mm" />
+		</tstamp>
+
+		<!-- source: -->
+		<zip destfile="../backups/${app.name}-${NOW}-src.zip">
+			<fileset dir=".">
+				<exclude name="classes" />
+			</fileset>
+		</zip>
+
+	</target>
+
+	<!-- ================================= 
+          target: dist              
+         ================================= -->
+	<target name="dist"
+	        depends="init,clean"
+	        description="--> create binary distribution">
+		<mkdir dir="dist" />
+		<!-- source: -->
+		<zip destfile="dist/${app.name}-src.zip">
+			<fileset dir=".">
+				<exclude name=".*" />
+				<exclude name=".settings/*" />
+				<exclude name="classes" />
+				<exclude name="build.properties" />
+			</fileset>
+		</zip>
+
+		<!-- build all binary version -->
+		<antcall target="package">
+			<param name="language" value="en"/>
+		</antcall>
+		<antcall target="package">
+			<param name="language" value="pl"/>
+		</antcall>
+
+		<!-- copy all binary version to dist -->
+		<move todir="dist">
+			<fileset dir="build">
+				<include name="${app.name}-*.zip" />
+			</fileset>
+		</move>
+	</target>
+
+</project>
+
+

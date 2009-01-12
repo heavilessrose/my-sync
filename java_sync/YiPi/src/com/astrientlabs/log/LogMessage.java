@@ -18,13 +18,11 @@
  */
 package com.astrientlabs.log;
 
-public class LogMessage
-{
-    public long timeStamp = System.currentTimeMillis();
-    public String message;
-    
-    public LogMessage(String message)
-    {
-        this.message = message;
-    }
+public class LogMessage {
+	public long timeStamp = System.currentTimeMillis();
+	public String message;
+
+	public LogMessage(String message) {
+		this.message = message;
+	}
 }

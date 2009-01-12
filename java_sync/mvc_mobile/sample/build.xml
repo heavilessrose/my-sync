@@ -1,0 +1,104 @@
+<project name="mvc-mobile-sample" default="run" basedir=".">
+	<property file="build.properties" />
+
+	<property name="preverify" value="true" />
+	<property name="obfuscate" value="false" />
+	<property name="verbose" value="false" />
+
+	<property name="wtk.cldc.version" value="1.0" />
+	<property name="wtk.midp.version" value="1.0" />
+	<property name="mvc.mobile.lib" value="../build/mvc-mobile-0.1-en-bin.zip"/>
+
+	<property name="emulator.device" value="DefaultColorPhone" />
+
+	<property name="app.name" value="mvc-mobile-sample" />
+	<property name="midlet" value="net.sf.mvc.mobile.sample.Main" />
+
+	<fileset dir="src" id="sources">
+		<include name="**/*.java" />
+	</fileset>
+
+	<taskdef resource="antenna.properties"
+	         classpath="../libs/antenna-bin-0.9.14.jar" />
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: jad                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="jad">
+		<wtkjad jadfile="build/${app.name}.jad"
+		        jarfile="build/${app.name}.jar"
+		        name="MVC Mobile Sample"
+				version="1.0"
+		        vendor="Krzysztof Rzymkowski">
+			<attribute name="MicroEdition-Configuration" value="CLDC-${wtk.cldc.version}"/>
+			<!-- some phones treat midlets without icons as corrupted -->
+			<midlet name="${app.name}" class="${midlet}" icon="/icon.png"/>
+		</wtkjad>
+	</target>	
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init">
+		<fail unless="wtk.home">.
+			Please create build.properties file and set wtk.home property to 
+			the path to your Sun Java Wireless Toolkit instalation
+		</fail>
+		<mkdir dir="build/classes" />
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: build                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="build" depends="init">
+		<unzip dest="build/classes" src="${mvc.mobile.lib}" overwrite="true"/>
+		<wtkbuild destdir="build/classes"
+		          srcdir="src" classpath="build/classes"
+		          source="1.2" />		
+	</target>
+
+
+	<!-- ================================= 
+          target: package                      
+         ================================= -->
+	<target name="package"
+	        depends="build,jad"
+	        description="--> create jad &amp; jar">
+		<wtkpackage jarfile="build/${app.name}.jar"
+		            jadfile="build/${app.name}.jad"
+		            obfuscate="${obfuscate}"
+		            verbose="${verbose}"
+		            preverify="${preverify}">
+			<fileset dir="build/classes" />
+			<zipfileset dir="resources" prefix="icons"/>
+		</wtkpackage>
+		<delete dir="build/classes" />
+		<!-- not needed any more -->
+	</target>
+		
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+	<target name="clean" description="--> delete all generated files">
+		<delete dir="build" />
+		<delete dir="dist" />
+
+		<delete includeEmptyDirs="true">
+			<fileset dir="." includes="tmp*/**" />
+			<fileset dir="." includes="*.tmp/**" />
+		</delete>
+	</target>
+
+	<!-- ================================= 
+          target: run              
+         ================================= -->
+	<target name="run" depends="package" description="--> run in emulator">
+		<wtkrun jadfile="build/${app.name}.jad"
+		        device="${emulator.device}" 
+		        wait="true" />
+	</target>
+
+</project>
+
+

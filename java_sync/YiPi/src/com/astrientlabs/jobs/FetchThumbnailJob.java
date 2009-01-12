@@ -22,40 +22,33 @@ import com.astrientlabs.ui.ListWidget;
 import com.astrientlabs.ui.SearchResultWidget;
 import com.astrientlabs.util.ProgressListener;
 
-public class FetchThumbnailJob implements Runnable, ProgressListener
-{
-    protected SearchResultWidget searchResultWidget;
+public class FetchThumbnailJob implements Runnable, ProgressListener {
+	protected SearchResultWidget searchResultWidget;
 
-    protected ListWidget listWidget;
+	protected ListWidget listWidget;
 
-    public FetchThumbnailJob(SearchResultWidget searchResultWidget, ListWidget listWidget)
-    {
-        this.listWidget = listWidget;
-        this.searchResultWidget = searchResultWidget;
-    }
+	public FetchThumbnailJob(SearchResultWidget searchResultWidget,
+			ListWidget listWidget) {
+		this.listWidget = listWidget;
+		this.searchResultWidget = searchResultWidget;
+	}
 
-    public void run()
-    {
-        if (listWidget.contains(searchResultWidget))
-        {
-            try
-            {
-                searchResultWidget.setImage(searchResultWidget.getSearchResult().getThumbnail(29,29));
-            }
-            catch (Throwable e)
-            {
-                //Logger.instance.log("slideshowWidget.run()", e);
-            }
-        }
+	public void run() {
+		if (listWidget.contains(searchResultWidget)) {
+			try {
+				searchResultWidget.setImage(searchResultWidget
+						.getSearchResult().getThumbnail(29, 29));
+			} catch (Throwable e) {
+				// Logger.instance.log("slideshowWidget.run()", e);
+			}
+		}
 
-    }
+	}
 
-    public void update(Object who, long position)
-    {
-    }
-    
-    public void completed(Object who)
-    {
-        
-    }
+	public void update(Object who, long position) {
+	}
+
+	public void completed(Object who) {
+
+	}
 }
