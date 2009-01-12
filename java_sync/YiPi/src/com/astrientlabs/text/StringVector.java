@@ -24,29 +24,23 @@ import java.util.Vector;
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
-
-public class StringVector extends Vector
-{
-	public StringVector(Font font, String text, int width)
-	{
-        LineEnumeration le = new LineEnumeration(font,text,width);
-        while (le.hasMoreElements())
-        {
-            addElement(le.nextElement().toString().trim());
-        }
+public class StringVector extends Vector {
+	public StringVector(Font font, String text, int width) {
+		LineEnumeration le = new LineEnumeration(font, text, width);
+		while (le.hasMoreElements()) {
+			addElement(le.nextElement().toString().trim());
+		}
 	}
 
-	
-	public int writeTo(Graphics g, int startx, int starty, int maxY, Font font)
-	{
-	    int fontHeight = font.getHeight()+1;
-	    
-		for (Enumeration e = elements();  e.hasMoreElements() && starty < maxY; ) 
-		{	
-			g.drawString(e.nextElement().toString(), startx, starty, Graphics.TOP | Graphics.LEFT);
+	public int writeTo(Graphics g, int startx, int starty, int maxY, Font font) {
+		int fontHeight = font.getHeight() + 1;
+
+		for (Enumeration e = elements(); e.hasMoreElements() && starty < maxY;) {
+			g.drawString(e.nextElement().toString(), startx, starty,
+					Graphics.TOP | Graphics.LEFT);
 			starty += fontHeight;
 		}
-		
-	    return starty;
+
+		return starty;
 	}
 }

@@ -18,40 +18,31 @@
  */
 package com.astrientlabs.threads;
 
+public class Worker implements Runnable {
+	private JobRunner jobRunner;
+	protected Thread thread;
+	private Runnable r;
 
-public class Worker implements Runnable
-{
-    private JobRunner jobRunner;
-    protected Thread thread;
-    private Runnable r;
-    
-    public Worker(JobRunner jobRunner, int priority)
-    {
-        this.jobRunner = jobRunner;
-        (thread = new Thread(this)).setPriority(priority);
-        
-        thread.start();
-    }
+	public Worker(JobRunner jobRunner, int priority) {
+		this.jobRunner = jobRunner;
+		(thread = new Thread(this)).setPriority(priority);
 
-    public void run()
-    {
-        while ( thread != null )
-        {
-            try
-            {
-                r = jobRunner.getNextJob();
-                if ( r != null )
-                    r.run();
-            }
-            catch (Throwable e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
-    
-    public void stop()
-    {
-        thread = null;
-    }
+		thread.start();
+	}
+
+	public void run() {
+		while (thread != null) {
+			try {
+				r = jobRunner.getNextJob();
+				if (r != null)
+					r.run();
+			} catch (Throwable e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void stop() {
+		thread = null;
+	}
 }

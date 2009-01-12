@@ -20,36 +20,29 @@ package com.astrientlabs.i18n;
 
 import com.astrientlabs.prefs.PropertyMap;
 
-public class TextMap
-{
-    public static final TextMap instance = new TextMap();
-    private PropertyMap strings;
-    
-    private TextMap()
-    {
-    }
-    
-    public void init(String locale)
-    {
-        
-        if ( locale == null )
-        {
-            strings = new PropertyMap("text");   
-        }
-        else
-        {
-            PropertyMap parent = new PropertyMap("text");
-            parent.initialize();
-            
-            strings = new PropertyMap(parent,"text_"+locale);
-        }
-        
-        strings.initialize();
-    }
-    
-    public String get(String key)
-    {
-        String value = strings.get(key);
-        return ( value == null ) ? "" : value;
-    }
+public class TextMap {
+	public static final TextMap instance = new TextMap();
+	private PropertyMap strings;
+
+	private TextMap() {
+	}
+
+	public void init(String locale) {
+
+		if (locale == null) {
+			strings = new PropertyMap("text");
+		} else {
+			PropertyMap parent = new PropertyMap("text");
+			parent.initialize();
+
+			strings = new PropertyMap(parent, "text_" + locale);
+		}
+
+		strings.initialize();
+	}
+
+	public String get(String key) {
+		String value = strings.get(key);
+		return (value == null) ? "" : value;
+	}
 }

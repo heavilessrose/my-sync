@@ -8,7 +8,6 @@
  */
 package com.astrientlabs.ui.util;
 
-public interface TextInputListener
-{
-    public void update(TextInputEngine textInput, int event);
+public interface TextInputListener {
+	public void update(TextInputEngine textInput, int event);
 }

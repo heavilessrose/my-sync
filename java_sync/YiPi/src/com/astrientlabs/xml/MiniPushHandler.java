@@ -18,10 +18,12 @@
  */
 package com.astrientlabs.xml;
 
-public interface MiniPushHandler
-{
-    public void handleStartTag(String tag);
-    public void handleEndTag(String tag);
-    public void handleAttribute(String tag, String attribute, String value); 
-    public void handleText(String tag, String text);
+public interface MiniPushHandler {
+	public void handleStartTag(String tag);
+
+	public void handleEndTag(String tag);
+
+	public void handleAttribute(String tag, String attribute, String value);
+
+	public void handleText(String tag, String text);
 }

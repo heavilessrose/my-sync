@@ -12,20 +12,18 @@ import javax.microedition.lcdui.Graphics;
 
 import com.astrientlabs.text.Strings;
 
+public class FreeMemoryWidget extends LabelWidget {
+	private String prefix;
 
-public class FreeMemoryWidget extends LabelWidget
-{   
-    private String prefix;
-    
-    public FreeMemoryWidget(Window parent, String text)
-    {
-        super(parent,text);
-        prefix = text;
-    }
-        
-    public void paint(Graphics g, int x, int y, int maxX, int maxY, boolean hasFocus)
-	{
-        text = prefix + Strings.getSizeString(Runtime.getRuntime().freeMemory());
-        super.paint(g,x,y,maxX,maxY,hasFocus);   
-    }
+	public FreeMemoryWidget(Window parent, String text) {
+		super(parent, text);
+		prefix = text;
+	}
+
+	public void paint(Graphics g, int x, int y, int maxX, int maxY,
+			boolean hasFocus) {
+		text = prefix
+				+ Strings.getSizeString(Runtime.getRuntime().freeMemory());
+		super.paint(g, x, y, maxX, maxY, hasFocus);
+	}
 }

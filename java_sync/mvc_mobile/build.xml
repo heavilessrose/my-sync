@@ -12,7 +12,7 @@
 
 	<property name="app.name" value="mvc-mobile-${version}" />
 	<property name="translated.sources.dir" value="build/translated" />
-	<property name="messages.bundle" value="resources/messages" />
+	<property name="messages.bundle" value="res/messages" />
 
 	<fileset dir="src" id="sources">
 		<include name="**/*.java" />
