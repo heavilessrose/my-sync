@@ -1,5 +1,5 @@
 package events.eventDriveFramework;
-/** åŸºäºæ—¶é—´çš„æ§åˆ¶æ—¶é—´ */
+/** »ùÓÚÊ±¼äµÄ¿ØÖÆÊ±¼ä */
 public abstract class Event {
 	private long eventTime;
 	protected final long delayTime;

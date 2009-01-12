@@ -3,7 +3,7 @@ package events.eventDriveFramework;
 import java.util.ArrayList;
 import java.util.List;
 
-/** äº‹ä»¶é©±åŠ¨çš„æ§åˆ¶æ¡†æ¶ */
+/** ÊÂ¼şÇı¶¯µÄ¿ØÖÆ¿ò¼Ü */
 public class Controller {
 	private List<Event> eventList = new ArrayList<Event>();
 

@@ -4,7 +4,7 @@ import xiushi.A;
 
 public class B /*extends A*/{
 	public static void main(String[] args){
-		// 鍦ㄤ竴涓寘涓嵆浣夸笉鏄疉鐨勫瓙绫讳篃鍙互璁块棶protected鎴愬憳
+		// 在一个包中即使不是A的子类也可以访问protected成员
 		System.out.println(new A().a);
 	}
 }
