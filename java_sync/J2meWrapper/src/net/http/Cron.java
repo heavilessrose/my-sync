@@ -1,11 +1,11 @@
-package com.astrientlabs.threads;
+package net.http;
 
 import java.util.Vector;
 
 /**
- * 后台类
+ * 后台管理 管理发送接收等http操作
  * 
- * 启动后就一直运行, 执行注册的任务
+ * @author WangYinghua
  * 
  */
 public class Cron implements Runnable {
@@ -28,7 +28,6 @@ public class Cron implements Runnable {
 		runnables.removeElement(a);
 	}
 
-	// 200+time to exec
 	public void run() {
 		while (thread != null) {
 			try {
@@ -45,4 +44,5 @@ public class Cron implements Runnable {
 			}
 		}
 	}
+
 }
