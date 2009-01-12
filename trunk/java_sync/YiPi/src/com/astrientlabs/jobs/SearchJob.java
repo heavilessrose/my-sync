@@ -24,30 +24,26 @@ import com.astrientlabs.log.Logger;
 import com.astrientlabs.search.SearchQuery;
 import com.astrientlabs.ui.Window;
 
-public class SearchJob implements Runnable
-{
-    protected Window window;
-    protected SearchQuery searchQuery;
-    
-    public SearchJob(Window window, SearchQuery searchQuery)
-    {
-        this.window = window;
-        this.searchQuery = searchQuery;
-    }
+public class SearchJob implements Runnable {
+	protected Window window;
+	protected SearchQuery searchQuery;
 
-    public void run()
-    {
-        try
-        {
-            //Logger.instance.log("imageService","Fetching results: " + searchQuery.getTerm());
-            searchQuery.execute();
-            //Logger.instance.log("imageService",searchQuery.getTerm() + ": results: " + searchQuery.getResults().size());
-        }
-        catch (IOException t)
-        {
-            Logger.instance.log("searchJob.run().2",t);
-            
-            window.setError(t);
-        }
-    }
+	public SearchJob(Window window, SearchQuery searchQuery) {
+		this.window = window;
+		this.searchQuery = searchQuery;
+	}
+
+	public void run() {
+		try {
+			// Logger.instance.log("imageService","Fetching results: " +
+			// searchQuery.getTerm());
+			searchQuery.execute();
+			// Logger.instance.log("imageService",searchQuery.getTerm() +
+			// ": results: " + searchQuery.getResults().size());
+		} catch (IOException t) {
+			Logger.instance.log("searchJob.run().2", t);
+
+			window.setError(t);
+		}
+	}
 }

@@ -1,0 +1,16 @@
+Yahoo image search client.
+
+UPDATE: 
+The value of "filesize" changed from a number to a string in the search response XML. This causes older clients to fail when converting the file size into a number. Please update to the latest version.
+The source code is now available. The source code will work as-is. I could not include the images because of copyrights and you will need to get your own Yahoo Image Search Application ID.
+This version is for the Nokia E61 and Nokia N70. It should work on any other high-end S60 device.
+
+Features:
+*Image thumbnails
+*Image full-screen previews
+*Save full size images directly to mobile 
+
+Howtos:
+To view the "about" page, type 'a' in the search box and wait for the about search result to appear. Click the about search result to display the about window.
+To toggle the adult filter, type 'f' in the search box. Wait 2 seconds and a search result that allows you to toggle the filter will appear. Select the search result to toggle the filter on or off.
+To view the logs, type 'l' in the search box and select the logs search result when it appears.

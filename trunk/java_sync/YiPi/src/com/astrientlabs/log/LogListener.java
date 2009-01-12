@@ -18,7 +18,6 @@
  */
 package com.astrientlabs.log;
 
-public interface LogListener
-{
-    public void log(String message);
+public interface LogListener {
+	public void log(String message);
 }
