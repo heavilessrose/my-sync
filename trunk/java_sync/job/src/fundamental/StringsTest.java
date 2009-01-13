@@ -1,3 +1,5 @@
+package fundamental;
+
 public class StringsTest {
 
 	public static void main(String[] args) {
@@ -6,8 +8,8 @@ public class StringsTest {
 		char[] chars = str.toCharArray();
 		System.out.println(new String(chars, 2, 5));
 		System.out.println(str.substring(2, 5));
-		/////////
+		// ///////
 		System.out.println(str.indexOf("are", 2));
-		
+
 	}
 }
