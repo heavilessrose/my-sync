@@ -1,0 +1,400 @@
+################################################################################################################
+Parsing Line: PRIMARY KEY(visitnum):
+Remaining Line: 
+Deepest Level: 4
+0:S:1<+>
+<1:P:1,1:O:0[+],1:L:7,1:S:1,1:L:3,1:O:0[+],1:L:1,1:S:111<+>,1:S:1>
+<-[2:S:0][2:S:0]<2:G:111(+)>>
+<-[-][-]<-(3:O:0[+],3:S:1,3:G:10(+))>>
+<-[-][-]<-(-[4:S:0](4:L:0,4:S:0|4:S:0,4:L:0,4:S:0|4:L:1))>>
+TokenType: SYMBOL | Token: <primary key definition> | Data:  | Valid: 1
+--TokenType: PARSER_OPTION | Token: {#set_icase#} | Data:  | Valid: 1
+--TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--TokenType: LITERAL | Token: PRIMARY | Data:  | Valid: 7
+--TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+--TokenType: LITERAL | Token: KEY | Data:  | Valid: 3
+--TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--TokenType: LITERAL | Token: ( | Data:  | Valid: 1
+--TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 111
+----TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 111
+------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+------TokenType: SYMBOL | Token: <unquoted string> | Data: visitnum | Valid: 1
+------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 3 | Valid: 10
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: LITERAL | Token: ) | Data:  | Valid: 1
+--TokenType: SYMBOL | Token: <terminator> | Data:  | Valid: 1
+/**************************************************************************************************************/
+################################################################################################################
+Parsing Line: PRIMARY KEY(reftable, reffield, fieldname):
+Remaining Line: 
+Deepest Level: 10
+0:S:1<+>
+<1:P:1,1:O:0[+],1:L:7,1:S:1,1:L:3,1:O:0[+],1:L:1,1:S:2121111<+>,1:S:1>
+<-[2:S:0][2:S:0]<2:G:2121111(+)>>
+<-[-][-]<-(3:O:0[+],3:S:1,3:G:212110(+))>>
+<-[-][-]<-(-[4:S:0](4:L:1,4:S:21210<+>|4:S:0,4:L:0,4:S:0|4:L:0))>>
+<-[-][-]<-(-[-](-<5:G:21210(+)>|-|-))>>
+<-[-][-]<-(-[-](-<-(6:O:10[+],6:S:1,6:G:2110(+))>|-|-))>>
+<-[-][-]<-(-[-](-<-(-[7:S:1](7:L:1,7:S:210<+>|7:S:0,7:L:0,7:S:0|7:L:0))>|-|-))>>
+<-[-][-]<-(-[-](-<-(-[-](-<8:G:210(+)>|-|-))>|-|-))>>
+<-[-][-]<-(-[-](-<-(-[-](-<-(9:O:10[+],9:S:1,9:G:10(+))>|-|-))>|-|-))>>
+<-[-][-]<-(-[-](-<-(-[-](-<-(-[10:S:1](10:L:0,10:S:0|10:S:0,10:L:0,10:S:0|10:L:1))>|-|-))>|-|-))>>
+TokenType: SYMBOL | Token: <primary key definition> | Data:  | Valid: 1
+--TokenType: PARSER_OPTION | Token: {#set_icase#} | Data:  | Valid: 1
+--TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--TokenType: LITERAL | Token: PRIMARY | Data:  | Valid: 7
+--TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+--TokenType: LITERAL | Token: KEY | Data:  | Valid: 3
+--TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--TokenType: LITERAL | Token: ( | Data:  | Valid: 1
+--TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 2121111
+----TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 2121111
+------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+------TokenType: SYMBOL | Token: <unquoted string> | Data: reftable | Valid: 1
+------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 1 | Valid: 212110
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 1
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 21210
+----------TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 21210
+------------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+--------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+------------TokenType: SYMBOL | Token: <unquoted string> | Data: reffield | Valid: 1
+------------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 1 | Valid: 2110
+--------------TokenType: LITERAL | Token: , | Data:  | Valid: 1
+--------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 210
+----------------TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 210
+------------------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+--------------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+------------------TokenType: SYMBOL | Token: <unquoted string> | Data: fieldname | Valid: 1
+------------------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 3 | Valid: 10
+--------------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------------*** Or Branch ***
+--------------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------------*** Or Branch ***
+--------------------TokenType: LITERAL | Token: ) | Data:  | Valid: 1
+--------------*** Or Branch ***
+--------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------*** Or Branch ***
+--------------TokenType: LITERAL | Token: ) | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: LITERAL | Token: ) | Data:  | Valid: 0
+--TokenType: SYMBOL | Token: <terminator> | Data:  | Valid: 1
+/**************************************************************************************************************/
+################################################################################################################
+Parsing Line: INDEX (visitnum):
+Remaining Line: 
+Deepest Level: 4
+0:S:1<+>
+<1:P:1,1:O:0[+],1:G:50(+),1:G:110(+),1:S:111<+>,1:S:1>
+<-[2:S:0](2:L:5|2:L:0)(2:S:1,2:S:0,2:G:0|2:O:10[+],2:L:1)<2:G:111(+)>>
+<-[-](-|-)(-|-[3:S:1])<-(3:O:0[+],3:S:1,3:G:10(+))>>
+<-[-](-|-)(-|-[-])<-(-[4:S:0](4:L:0,4:S:0|4:S:0,4:L:0,4:S:0|4:L:1))>>
+TokenType: SYMBOL | Token: <index key definition> | Data:  | Valid: 1
+--TokenType: PARSER_OPTION | Token: {#set_icase#} | Data:  | Valid: 1
+--TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--TokenType: GROUP | Token: ("INDEX" | "KEY") | Data: 1 | Valid: 50
+----TokenType: LITERAL | Token: INDEX | Data:  | Valid: 5
+----*** Or Branch ***
+----TokenType: LITERAL | Token: KEY | Data:  | Valid: 0
+--TokenType: GROUP | Token: (<whitespace><unquoted string>("(" | <whitespace>"(") | [<whitespace>]"(") | Data: 2 | Valid: 110
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: SYMBOL | Token: <unquoted string> | Data:  | Valid: 0
+----TokenType: GROUP | Token: ("(" | <whitespace>"(") | Data:  | Valid: 0
+----*** Or Branch ***
+----TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: LITERAL | Token: ( | Data:  | Valid: 1
+--TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 111
+----TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 111
+------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+------TokenType: SYMBOL | Token: <unquoted string> | Data: visitnum | Valid: 1
+------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 3 | Valid: 10
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: LITERAL | Token: ) | Data:  | Valid: 1
+--TokenType: SYMBOL | Token: <terminator> | Data:  | Valid: 1
+/**************************************************************************************************************/
+################################################################################################################
+Parsing Line: KEY keyindex (reftable, reffield, fieldname):
+Remaining Line: 
+Deepest Level: 10
+0:S:1<+>
+<1:P:1,1:O:0[+],1:G:30(+),1:G:220(+),1:S:2121111<+>,1:S:1>
+<-[2:S:0](2:L:0|2:L:3)(2:S:1,2:S:1,2:G:20(+)|2:O:10[+],2:L:0)<2:G:2121111(+)>>
+<-[-](-|-)(-(3:L:0|3:S:1,3:L:1)|-[3:S:1])<-(3:O:0[+],3:S:1,3:G:212110(+))>>
+<-[-](-|-)(-(-|-)|-[-])<-(-[4:S:0](4:L:1,4:S:21210<+>|4:S:0,4:L:0,4:S:0|4:L:0))>>
+<-[-](-|-)(-(-|-)|-[-])<-(-[-](-<5:G:21210(+)>|-|-))>>
+<-[-](-|-)(-(-|-)|-[-])<-(-[-](-<-(6:O:10[+],6:S:1,6:G:2110(+))>|-|-))>>
+<-[-](-|-)(-(-|-)|-[-])<-(-[-](-<-(-[7:S:1](7:L:1,7:S:210<+>|7:S:0,7:L:0,7:S:0|7:L:0))>|-|-))>>
+<-[-](-|-)(-(-|-)|-[-])<-(-[-](-<-(-[-](-<8:G:210(+)>|-|-))>|-|-))>>
+<-[-](-|-)(-(-|-)|-[-])<-(-[-](-<-(-[-](-<-(9:O:10[+],9:S:1,9:G:10(+))>|-|-))>|-|-))>>
+<-[-](-|-)(-(-|-)|-[-])<-(-[-](-<-(-[-](-<-(-[10:S:1](10:L:0,10:S:0|10:S:0,10:L:0,10:S:0|10:L:1))>|-|-))>|-|-))>>
+TokenType: SYMBOL | Token: <index key definition> | Data:  | Valid: 1
+--TokenType: PARSER_OPTION | Token: {#set_icase#} | Data:  | Valid: 1
+--TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--TokenType: GROUP | Token: ("INDEX" | "KEY") | Data: 2 | Valid: 30
+----TokenType: LITERAL | Token: INDEX | Data:  | Valid: 0
+----*** Or Branch ***
+----TokenType: LITERAL | Token: KEY | Data:  | Valid: 3
+--TokenType: GROUP | Token: (<whitespace><unquoted string>("(" | <whitespace>"(") | [<whitespace>]"(") | Data: 1 | Valid: 220
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: SYMBOL | Token: <unquoted string> | Data: keyindex | Valid: 1
+----TokenType: GROUP | Token: ("(" | <whitespace>"(") | Data: 2 | Valid: 20
+------TokenType: LITERAL | Token: ( | Data:  | Valid: 0
+------*** Or Branch ***
+------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+------TokenType: LITERAL | Token: ( | Data:  | Valid: 1
+----*** Or Branch ***
+----TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: LITERAL | Token: ( | Data:  | Valid: 0
+--TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 2121111
+----TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 2121111
+------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+------TokenType: SYMBOL | Token: <unquoted string> | Data: reftable | Valid: 1
+------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 1 | Valid: 212110
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 1
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 21210
+----------TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 21210
+------------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+--------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+------------TokenType: SYMBOL | Token: <unquoted string> | Data: reffield | Valid: 1
+------------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 1 | Valid: 2110
+--------------TokenType: LITERAL | Token: , | Data:  | Valid: 1
+--------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 210
+----------------TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 210
+------------------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+--------------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+------------------TokenType: SYMBOL | Token: <unquoted string> | Data: fieldname | Valid: 1
+------------------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 3 | Valid: 10
+--------------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------------*** Or Branch ***
+--------------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------------*** Or Branch ***
+--------------------TokenType: LITERAL | Token: ) | Data:  | Valid: 1
+--------------*** Or Branch ***
+--------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------*** Or Branch ***
+--------------TokenType: LITERAL | Token: ) | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: LITERAL | Token: ) | Data:  | Valid: 0
+--TokenType: SYMBOL | Token: <terminator> | Data:  | Valid: 1
+/**************************************************************************************************************/
+################################################################################################################
+Parsing Line: UNIQUE (visitnum, ordernum):
+Remaining Line: 
+Deepest Level: 7
+0:S:1<+>
+<1:P:1,1:O:0[+],1:L:6,1:O:0[+],1:G:110(+),1:S:21111<+>,1:S:1>
+<-[2:S:0][2:S:1,2:L:0](2:S:1,2:S:1,2:G:0(+)|2:O:10[+],2:L:1)<2:G:21111(+)>>
+<-[-][-](-(3:L:0|3:S:1,3:L:0)|-[3:S:1])<-(3:O:0[+],3:S:1,3:G:2110(+))>>
+<-[-][-](-(-|-)|-[-])<-(-[4:S:0](4:L:1,4:S:210<+>|4:S:0,4:L:0,4:S:0|4:L:0))>>
+<-[-][-](-(-|-)|-[-])<-(-[-](-<5:G:210(+)>|-|-))>>
+<-[-][-](-(-|-)|-[-])<-(-[-](-<-(6:O:10[+],6:S:1,6:G:10(+))>|-|-))>>
+<-[-][-](-(-|-)|-[-])<-(-[-](-<-(-[7:S:1](7:L:0,7:S:0|7:S:0,7:L:0,7:S:0|7:L:1))>|-|-))>>
+TokenType: SYMBOL | Token: <unique key definition> | Data:  | Valid: 1
+--TokenType: PARSER_OPTION | Token: {#set_icase#} | Data:  | Valid: 1
+--TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--TokenType: LITERAL | Token: UNIQUE | Data:  | Valid: 6
+--TokenType: OPTION | Token: [<whitespace>"INDEX"] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: LITERAL | Token: INDEX | Data:  | Valid: 0
+--TokenType: GROUP | Token: (<whitespace><unquoted string>("(" | <whitespace>"(") | [<whitespace>]"(") | Data: 2 | Valid: 110
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: SYMBOL | Token: <unquoted string> | Data: (visitnum, | Valid: 1
+----TokenType: GROUP | Token: ("(" | <whitespace>"(") | Data:  | Valid: 0
+------TokenType: LITERAL | Token: ( | Data:  | Valid: 0
+------*** Or Branch ***
+------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+------TokenType: LITERAL | Token: ( | Data:  | Valid: 0
+----*** Or Branch ***
+----TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: LITERAL | Token: ( | Data:  | Valid: 1
+--TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 21111
+----TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 21111
+------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+------TokenType: SYMBOL | Token: <unquoted string> | Data: visitnum | Valid: 1
+------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 1 | Valid: 2110
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 1
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 210
+----------TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 210
+------------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+--------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+------------TokenType: SYMBOL | Token: <unquoted string> | Data: ordernum | Valid: 1
+------------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 3 | Valid: 10
+--------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------*** Or Branch ***
+--------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------*** Or Branch ***
+--------------TokenType: LITERAL | Token: ) | Data:  | Valid: 1
+--------*** Or Branch ***
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: LITERAL | Token: ) | Data:  | Valid: 0
+--TokenType: SYMBOL | Token: <terminator> | Data:  | Valid: 1
+/**************************************************************************************************************/
+################################################################################################################
+Parsing Line: UNIQUE INDEX (ordernum):
+Remaining Line: 
+Deepest Level: 4
+0:S:1<+>
+<1:P:1,1:O:0[+],1:L:6,1:O:60[+],1:G:110(+),1:S:111<+>,1:S:1>
+<-[2:S:0][2:S:1,2:L:5](2:S:1,2:S:0,2:G:0|2:O:10[+],2:L:1)<2:G:111(+)>>
+<-[-][-](-|-[3:S:1])<-(3:O:0[+],3:S:1,3:G:10(+))>>
+<-[-][-](-|-[-])<-(-[4:S:0](4:L:0,4:S:0|4:S:0,4:L:0,4:S:0|4:L:1))>>
+TokenType: SYMBOL | Token: <unique key definition> | Data:  | Valid: 1
+--TokenType: PARSER_OPTION | Token: {#set_icase#} | Data:  | Valid: 1
+--TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--TokenType: LITERAL | Token: UNIQUE | Data:  | Valid: 6
+--TokenType: OPTION | Token: [<whitespace>"INDEX"] | Data:  | Valid: 60
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: LITERAL | Token: INDEX | Data:  | Valid: 5
+--TokenType: GROUP | Token: (<whitespace><unquoted string>("(" | <whitespace>"(") | [<whitespace>]"(") | Data: 2 | Valid: 110
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: SYMBOL | Token: <unquoted string> | Data:  | Valid: 0
+----TokenType: GROUP | Token: ("(" | <whitespace>"(") | Data:  | Valid: 0
+----*** Or Branch ***
+----TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: LITERAL | Token: ( | Data:  | Valid: 1
+--TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 111
+----TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 111
+------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+------TokenType: SYMBOL | Token: <unquoted string> | Data: ordernum | Valid: 1
+------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 3 | Valid: 10
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: LITERAL | Token: ) | Data:  | Valid: 1
+--TokenType: SYMBOL | Token: <terminator> | Data:  | Valid: 1
+/**************************************************************************************************************/
+################################################################################################################
+Parsing Line: UNIQUE INDEX fldindex(reftable, reffield, fieldname):
+Remaining Line: 
+Deepest Level: 10
+0:S:1<+>
+<1:P:1,1:O:0[+],1:L:6,1:O:60[+],1:G:120(+),1:S:2121111<+>,1:S:1>
+<-[2:S:0][2:S:1,2:L:5](2:S:1,2:S:1,2:G:10(+)|2:O:10[+],2:L:0)<2:G:2121111(+)>>
+<-[-][-](-(3:L:1|3:S:0,3:L:0)|-[3:S:1])<-(3:O:0[+],3:S:1,3:G:212110(+))>>
+<-[-][-](-(-|-)|-[-])<-(-[4:S:0](4:L:1,4:S:21210<+>|4:S:0,4:L:0,4:S:0|4:L:0))>>
+<-[-][-](-(-|-)|-[-])<-(-[-](-<5:G:21210(+)>|-|-))>>
+<-[-][-](-(-|-)|-[-])<-(-[-](-<-(6:O:10[+],6:S:1,6:G:2110(+))>|-|-))>>
+<-[-][-](-(-|-)|-[-])<-(-[-](-<-(-[7:S:1](7:L:1,7:S:210<+>|7:S:0,7:L:0,7:S:0|7:L:0))>|-|-))>>
+<-[-][-](-(-|-)|-[-])<-(-[-](-<-(-[-](-<8:G:210(+)>|-|-))>|-|-))>>
+<-[-][-](-(-|-)|-[-])<-(-[-](-<-(-[-](-<-(9:O:10[+],9:S:1,9:G:10(+))>|-|-))>|-|-))>>
+<-[-][-](-(-|-)|-[-])<-(-[-](-<-(-[-](-<-(-[10:S:1](10:L:0,10:S:0|10:S:0,10:L:0,10:S:0|10:L:1))>|-|-))>|-|-))>>
+TokenType: SYMBOL | Token: <unique key definition> | Data:  | Valid: 1
+--TokenType: PARSER_OPTION | Token: {#set_icase#} | Data:  | Valid: 1
+--TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--TokenType: LITERAL | Token: UNIQUE | Data:  | Valid: 6
+--TokenType: OPTION | Token: [<whitespace>"INDEX"] | Data:  | Valid: 60
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: LITERAL | Token: INDEX | Data:  | Valid: 5
+--TokenType: GROUP | Token: (<whitespace><unquoted string>("(" | <whitespace>"(") | [<whitespace>]"(") | Data: 1 | Valid: 120
+----TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: SYMBOL | Token: <unquoted string> | Data: fldindex | Valid: 1
+----TokenType: GROUP | Token: ("(" | <whitespace>"(") | Data: 1 | Valid: 10
+------TokenType: LITERAL | Token: ( | Data:  | Valid: 1
+------*** Or Branch ***
+------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+------TokenType: LITERAL | Token: ( | Data:  | Valid: 0
+----*** Or Branch ***
+----TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+----TokenType: LITERAL | Token: ( | Data:  | Valid: 0
+--TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 2121111
+----TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 2121111
+------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+------TokenType: SYMBOL | Token: <unquoted string> | Data: reftable | Valid: 1
+------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 1 | Valid: 212110
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 1
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 21210
+----------TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 21210
+------------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+--------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+------------TokenType: SYMBOL | Token: <unquoted string> | Data: reffield | Valid: 1
+------------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 1 | Valid: 2110
+--------------TokenType: LITERAL | Token: , | Data:  | Valid: 1
+--------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 210
+----------------TokenType: GROUP | Token: ([<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")")) | Data: 1 | Valid: 210
+------------------TokenType: OPTION | Token: [<whitespace>] | Data:  | Valid: 10
+--------------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 1
+------------------TokenType: SYMBOL | Token: <unquoted string> | Data: fieldname | Valid: 1
+------------------TokenType: GROUP | Token: (","<index column names> | <whitespace>","<index column names> | ")") | Data: 3 | Valid: 10
+--------------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------------*** Or Branch ***
+--------------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------------*** Or Branch ***
+--------------------TokenType: LITERAL | Token: ) | Data:  | Valid: 1
+--------------*** Or Branch ***
+--------------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------------*** Or Branch ***
+--------------TokenType: LITERAL | Token: ) | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: SYMBOL | Token: <whitespace> | Data:  | Valid: 0
+--------TokenType: LITERAL | Token: , | Data:  | Valid: 0
+--------TokenType: SYMBOL | Token: <index column names> | Data:  | Valid: 0
+--------*** Or Branch ***
+--------TokenType: LITERAL | Token: ) | Data:  | Valid: 0
+--TokenType: SYMBOL | Token: <terminator> | Data:  | Valid: 1
+/**************************************************************************************************************/
+/**************************************************************************************************************/

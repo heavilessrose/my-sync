@@ -1,0 +1,65 @@
+// Boundary condition tests for long number
+
+1111 + 9999
+5555 + 5555
+12345 + 98765
+1111 + -1111
+101010 + 20202
+121212 + 989898
+
+1111 - 0
+0 - 1111
+1 - 0
+0 - 1
+10000 - 55555
+55555 - 10000
+10000 - 1
+1 - 10000
+99999 - 12345
+12345 - 99999
+
+1 * 0
+0 * 1
+11111 * 0
+0 * 11111
+12345 * 1
+1 * 12345
+11 * 11
+11 * -11
+-11 * 11
+-11 * -11
+11111 * 99999
+55555 * 55555
+12345 * 98765
+
+1 / 0
+0 / 1
+111 / 0
+0 / 111
+99999 / 11111
+88888 / 22222
+55555 / 55555
+98765 / 12345
+999 / 1
+1 / 999
+1 / 12345
+
+Error Estimates for power series functions
+------------------------------------------
+
+ln c            absval((x^n)/n) < 5 * 10^-n  or
+                absval((x^n)/n*c) < 5 * 10^-n if c != 0 , n == decimal places + 1
+
+e^c             2.72 / n!   <  5 * 10^-n , n == decimal places + 1
+
+e^-c            2.72 / n!   <  5 * 10^-n , n == decimal places + 1
+
+sin c           absval(x^(2n+1) / (2n+1)!) < 5 * 10^-n , n == decimal places
+
+cos c           absval(x^2n / (2n)!) < 5 * 10^-n , n == decimal places
+
+arctan c        absval(.7854 * x^(2n+1) / (2n+1)) < 5 * 10^-n , n == decimal places
+
+arcsin c        absval((.7854 * (2n)!*x^(2n+1)) / ((2^n*n!)^2 (2n+1))) < 5 * 10^-n , n == decimal places
+
+

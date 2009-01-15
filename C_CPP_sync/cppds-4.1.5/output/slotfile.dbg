@@ -1,0 +1,80 @@
+Correct output for slotted file program
+---------------------------------------
+
+1st run:
+210
+3250
+440
+5700
+1000
+0
+21600
+This is the header of the file
+1
+
+Output File Data:
+1000
+0
+21600
+440
+5700
+
+2nd run:
+21600
+440
+5700
+1000
+210
+3250
+440
+5700
+1000
+0
+21600
+This is the header of the file
+1
+
+Output File Data:
+1000
+0
+21600
+5700
+1000
+210
+3250
+440
+5700
+
+3rd Run:
+21600
+5700
+1000
+210
+3250
+440
+5700
+1000
+210
+3250
+440
+5700
+1000
+0
+21600
+This is the header of the file
+1
+
+Output File Data:
+1000
+0
+21600
+1000
+210
+3250
+440
+5700
+1000
+210
+3250
+440
+5700

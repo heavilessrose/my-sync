@@ -1,0 +1,54 @@
+  <sql string> ::= <double quoted string> | <single quoted string>;
+  <float> ::= <integer> | <integer>"."<integer> | "."<integer>;
+  <default value float> ::= "DEFAULT"<whitespace><float>;
+  <default value integer> ::= "DEFAULT"<whitespace><integer>;
+  <default value string> ::= "DEFAULT"<whitespace><sql string>;
+  <null status> ::= "NOT"<whitespace>"NULL" | "NULL";
+  <int length> ::= [<whitespace>]"("[<whitespace>]<integer>[<whitespace>]")";
+  <float length> ::= [<whitespace>]"("[<whitespace>]<integer>[<whitespace>]","[<whitespace>]<integer>[<whitespace>]")";
+  <string length> ::= [<whitespace>]"("[<whitespace>]<integer>[<whitespace>]")";
+
+  // mysql field type definitions
+  <mysql field type> ::= [<whitespace>](<integer field type> | <float field type> | <string field type> |
+  <date field type> | <time field type> | <blob field type> | <text field type>)
+  [<whitespace>"AUTO_INCREMENT"][<whitespace>"PRIMARY"<whitespace>"KEY"];
+  <integer field type> ::= "TINYINT"[<int length>][<whitespace>"UNSIGNED"][<whitespace>"ZEROFILL"][<whitespace><null status>][<whitespace><default value integer>] |
+  "SMALLINT"[<int length>][<whitespace>"UNSIGNED"][<whitespace>"ZEROFILL"][<whitespace><null status>][<whitespace><default value integer>] |
+  "MEDIUMINT"[<int length>][<whitespace>"UNSIGNED"][<whitespace>"ZEROFILL"][<whitespace><null status>][<whitespace><default value integer>] |
+  "INTEGER"[<int length>][<whitespace>"UNSIGNED"][<whitespace>"ZEROFILL"][<whitespace><null status>][<whitespace><default value integer>] |
+  "INT"[<int length>][<whitespace>"UNSIGNED"][<whitespace>"ZEROFILL"][<whitespace><null status>][<whitespace><default value integer>] |
+  "BIGINT"[<int length>][<whitespace>"UNSIGNED"][<whitespace>"ZEROFILL"][<whitespace><null status>][<whitespace><default value integer>];
+
+  <float field type> ::= "REAL"[<float length>][<whitespace>"UNSIGNED"][<whitespace>"ZEROFILL"][<whitespace><null status>][<whitespace><default value float>] |
+  "DOUBLE"[<float length>][<whitespace>"UNSIGNED"][<whitespace>"ZEROFILL"][<whitespace><null status>][<whitespace><default value float>] |
+  "FLOAT"[<float length>][<whitespace>"UNSIGNED"][<whitespace>"ZEROFILL"][<whitespace><null status>][<whitespace><default value float>];
+
+  <string field type> ::= "VARCHAR"<string length>[<whitespace>"BINARY"][<whitespace><null status>][<whitespace><default value string>] |
+  "CHAR"<string length>[<whitespace>"BINARY"][<whitespace><null status>][<whitespace><default value string>];
+
+  <date field type> ::= "DATETIME"[<whitespace><null status>][<whitespace><default value string>] |
+  "DATE"[<whitespace><null status>][<whitespace><default value string>];
+
+  <time field type> ::= "TIMESTAMP"[<whitespace><null status>][<whitespace><default value string>] |
+  "TIME"[<whitespace><null status>][<whitespace><default value string>];
+
+  <blob field type> ::= "TINYBLOB"[<whitespace><null status>][<whitespace><default value string>] |
+  "BLOB"[<whitespace><null status>][<whitespace><default value string>] |
+  "MEDIUMBLOB"[<whitespace><null status>][<whitespace><default value string>] |
+  "LONGBLOB"[<whitespace><null status>][<whitespace><default value string>];
+
+  <text field type> ::= "TINYTEXT"[<whitespace><null status>][<whitespace><default value string>] |
+  "TEXT"[<whitespace><null status>][<whitespace><default value string>] |
+  "MEDIUMTEXT"[<whitespace><null status>][<whitespace><default value string>] |
+  "LONGTEXT"[<whitespace><null status>][<whitespace><default value string>];
+
+  <mysql column definition> ::= {#set_icase#}[<whitespace>]<unquoted string><whitespace><mysql field type><terminator>;
+
+  // new table indexes definitions
+  <index column names> ::= [<whitespace>]<unquoted string>(","<index column names> | <whitespace>","<index column names> | ")");
+  <primary key definition> ::= {#set_icase#}[<whitespace>]"PRIMARY"<whitespace>"KEY"[<whitespace>]"("<index column names><terminator>;
+
+  <index key definition> ::= {#set_icase#}[<whitespace>]("INDEX" | "KEY")(<whitespace><unquoted string>
+  ("(" | <whitespace>"(") | [<whitespace>]"(")<index column names><terminator>;
+  <unique key definition> ::= {#set_icase#}[<whitespace>]"UNIQUE"[<whitespace>"INDEX"](<whitespace><unquoted string>
+  ("(" | <whitespace>"(") | [<whitespace>]"(")<index column names><terminator>;

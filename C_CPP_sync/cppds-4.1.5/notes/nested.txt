@@ -1,0 +1,52 @@
+// Project file should include :
+//	sptrs.cpp, asserts.cpp, dsdefs.cpp, dlnode.cpp, test.cpp
+//
+
+#include "sptrs.cpp"
+#include "dlnode.cpp"
+#include <iostream.h>
+
+// Example of nested templates
+
+template <class T>
+class MyType_t
+{
+  public:
+    typedef Dlnode_t<T> NodePtr_t;
+    typedef THE_TYPE<T, NodePtr_t> TestPtr;
+};
+
+template <class T, class NT>
+class THE_TYPE : public RPtr_t<NT>
+{
+  public:
+    THE_TYPE(NT* d):
+	RPtr_t<NT>(d){}
+
+    NT* getnested()
+	{ return giveptr(); }
+    T* getstuff()
+	{ return (giveptr() ? &giveptr()->getdata():NULL); }
+};
+
+void main()
+{
+  int somedata = 5;
+
+  Dlnode_t<int> node;
+  node.setdata(somedata);
+
+  // equivalent to THE_TYPE<int, Dlnode_t<int>>
+  MyType_t<int>::TestPtr myvar(&node);
+
+  if (myvar.getnested())
+  {
+    cout <<myvar.getnested()->getdata() <<endl;
+    cout <<*myvar.getstuff() <<endl;
+
+    myvar.getnested()->setdata(17);
+    cout <<myvar.getnested()->getdata() <<endl;
+  }
+  else
+    cout <<"NO DATA" <<endl;
+}

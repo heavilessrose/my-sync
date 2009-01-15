@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# script for changing short file names in cppds to use long file names
+#
+mv /winraw/C/cppwork/cppds-3.33/advforlp.h /winraw/C/cppwork/cppds-3.33/advforloop.h
+mv /winraw/C/cppwork/cppds-3.33/arbntree.h /winraw/C/cppwork/cppds-3.33/arraybintree.h
+mv /winraw/C/cppwork/cppds-3.33/arrclass.h /winraw/C/cppwork/cppds-3.33/arrayclass.h
+mv /winraw/C/cppwork/cppds-3.33/bsercmp.h /winraw/C/cppwork/cppds-3.33/bltinseriescmp.h
+mv /winraw/C/cppwork/cppds-3.33/darrbase.h /winraw/C/cppwork/cppds-3.33/dynarraybase.h
+mv /winraw/C/cppwork/cppds-3.33/datastor.h /winraw/C/cppwork/cppds-3.33/datastore.h
+mv /winraw/C/cppwork/cppds-3.33/datestuf.h /winraw/C/cppwork/cppds-3.33/datestuff.h
+mv /winraw/C/cppwork/cppds-3.33/fileread.h /winraw/C/cppwork/cppds-3.33/filereader.h
+mv /winraw/C/cppwork/cppds-3.33/hashtab.h /winraw/C/cppwork/cppds-3.33/hashtable.h
+mv /winraw/C/cppwork/cppds-3.33/imgstack.h /winraw/C/cppwork/cppds-3.33/imagestack.h
+mv /winraw/C/cppwork/cppds-3.33/objenv.h /winraw/C/cppwork/cppds-3.33/objenvelope.h
+mv /winraw/C/cppwork/cppds-3.33/pdynarra.h /winraw/C/cppwork/cppds-3.33/ptrdynarray.h
+mv /winraw/C/cppwork/cppds-3.33/polynomi.h /winraw/C/cppwork/cppds-3.33/polynomial.h
+mv /winraw/C/cppwork/cppds-3.33/recbrows.h /winraw/C/cppwork/cppds-3.33/recbrowser.h
+mv /winraw/C/cppwork/cppds-3.33/sercmp.h /winraw/C/cppwork/cppds-3.33/seriescmp.h
+mv /winraw/C/cppwork/cppds-3.33/simparray.h /winraw/C/cppwork/cppds-3.33/simplearray.h
+mv /winraw/C/cppwork/cppds-3.33/simplist.h /winraw/C/cppwork/cppds-3.33/simplelist.h
+mv /winraw/C/cppwork/cppds-3.33/strbrows.h /winraw/C/cppwork/cppds-3.33/strbrowser.h
+mv /winraw/C/cppwork/cppds-3.33/streamre.h /winraw/C/cppwork/cppds-3.33/streamreader.h
+mv /winraw/C/cppwork/cppds-3.33/string.h /winraw/C/cppwork/cppds-3.33/chrstring.h
+mv /winraw/C/cppwork/cppds-3.33/tempstrm.h /winraw/C/cppwork/cppds-3.33/tempstream.h
+mv /winraw/C/cppwork/cppds-3.33/ushrtint.h /winraw/C/cppwork/cppds-3.33/ushortint.h
+mv /winraw/C/cppwork/cppds-3.33/vlenfile.h /winraw/C/cppwork/cppds-3.33/varlengthfile.h
+
+mv /winraw/C/cppwork/cppds-3.33/advforlp.cpp /winraw/C/cppwork/cppds-3.33/advforloop.cpp
+mv /winraw/C/cppwork/cppds-3.33/arbntree.cpp /winraw/C/cppwork/cppds-3.33/arraybintree.cpp
+mv /winraw/C/cppwork/cppds-3.33/arrclass.cpp /winraw/C/cppwork/cppds-3.33/arrayclass.cpp
+mv /winraw/C/cppwork/cppds-3.33/bsercmp.cpp /winraw/C/cppwork/cppds-3.33/bltinseriescmp.cpp
+mv /winraw/C/cppwork/cppds-3.33/darrbase.cpp /winraw/C/cppwork/cppds-3.33/dynarraybase.cpp
+mv /winraw/C/cppwork/cppds-3.33/datastor.cpp /winraw/C/cppwork/cppds-3.33/datastore.cpp
+mv /winraw/C/cppwork/cppds-3.33/datestuf.cpp /winraw/C/cppwork/cppds-3.33/datestuff.cpp
+mv /winraw/C/cppwork/cppds-3.33/fileread.cpp /winraw/C/cppwork/cppds-3.33/filereader.cpp
+mv /winraw/C/cppwork/cppds-3.33/hashtab.cpp /winraw/C/cppwork/cppds-3.33/hashtable.cpp
+mv /winraw/C/cppwork/cppds-3.33/imgstack.cpp /winraw/C/cppwork/cppds-3.33/imagestack.cpp
+mv /winraw/C/cppwork/cppds-3.33/objenv.cpp /winraw/C/cppwork/cppds-3.33/objenvelope.cpp
+mv /winraw/C/cppwork/cppds-3.33/pdynarra.cpp /winraw/C/cppwork/cppds-3.33/ptrdynarray.cpp
+mv /winraw/C/cppwork/cppds-3.33/polynomi.cpp /winraw/C/cppwork/cppds-3.33/polynomial.cpp
+mv /winraw/C/cppwork/cppds-3.33/recbrows.cpp /winraw/C/cppwork/cppds-3.33/recbrowser.cpp
+mv /winraw/C/cppwork/cppds-3.33/sercmp.cpp /winraw/C/cppwork/cppds-3.33/seriescmp.cpp
+mv /winraw/C/cppwork/cppds-3.33/simparray.cpp /winraw/C/cppwork/cppds-3.33/simplearray.cpp
+mv /winraw/C/cppwork/cppds-3.33/simplist.cpp /winraw/C/cppwork/cppds-3.33/simplelist.cpp
+mv /winraw/C/cppwork/cppds-3.33/strbrows.cpp /winraw/C/cppwork/cppds-3.33/strbrowser.cpp
+mv /winraw/C/cppwork/cppds-3.33/streamre.cpp /winraw/C/cppwork/cppds-3.33/streamreader.cpp
+mv /winraw/C/cppwork/cppds-3.33/string.cpp /winraw/C/cppwork/cppds-3.33/chrstring.cpp
+mv /winraw/C/cppwork/cppds-3.33/tempstrm.cpp /winraw/C/cppwork/cppds-3.33/tempstream.cpp
+mv /winraw/C/cppwork/cppds-3.33/ushrtint.cpp /winraw/C/cppwork/cppds-3.33/ushortint.cpp
+mv /winraw/C/cppwork/cppds-3.33/vlenfile.cpp /winraw/C/cppwork/cppds-3.33/varlengthfile.cpp
+

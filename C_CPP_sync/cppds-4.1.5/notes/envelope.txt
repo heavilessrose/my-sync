@@ -1,0 +1,29 @@
+// The envelope idiom is useful in several situations
+//
+// One situation in which it is useful is when you have a class that is
+// designed not to have default constructors. The envelope class can provide
+// a wrapper around the client class in situations when a default constructor
+// is absolutely needed such as in the case of storing objects of that class
+// into an initialized array or other such data structures that require
+// the client class to contain at least a default constructor.
+// This method of storing client classes within an envelope that has a
+// default constructor simplifies a lot of the design and implementation for
+// container classes or built in arrays which would otherwise need
+// complicated allocation schemes to accomodate non-default constructor
+// classes.
+//
+// Another situation in which the envelope idiom would be useful is when you
+// need the behavior of some abstract class in order to provide for the
+// operations you plan to implement. An example would be the Object class
+// which interface you would like to use to implement other auxillary
+// operations such as file and stream manipulation. If given an instance of
+// a class or primitive data type in which you would like to apply the
+// operations to, you could have an envelope derived from the Object abstract
+// class which would serve as a wrapper around the client objects. in this
+// way you could customize your implementation for the behaviour of the
+// client objects while conforming to the Object abstract class interface.
+// This envelope class would provide the interface of the Object abstract
+// base class, but with the data of the client class object. This could be
+// used in situations where classes or functions expects an instance of an
+// Object class or expects the interface behaviour of an Object class.
+//

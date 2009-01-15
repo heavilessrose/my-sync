@@ -1,0 +1,46 @@
+Record Layouts:
+---------------
+
+Fixed length record:
+--------------------
+
+1) Record Class ID
+2) Record Object ID
+3) Record object null status
+4) Standard Data block of actual data
+
+4.1) Class ID
+4.2) Object ID
+4.3) Null object status
+4.4) Object data
+
+// Slotted record format:
+[ 1 ][ 2 ][ 3 ][ 4.1 ][ 4.2 ][ 4.3 ][ 4.4 ]
+
+Variable length record:
+-----------------------
+
+1) Record Class ID
+2) Record Object ID
+3) Record object null status
+4) Record Data
+5) Standard Data block of actual data
+
+4.1) Total size of data block
+4.2) count-down running total of remaining data
+
+5.1) Class ID
+5.2) Object ID
+5.3) Null object status
+5.4) Object data
+
+if 4.1 and 4.2 have the same value then we are currently at the starting file
+segment of the record.
+
+if 4.1 is not equal to 4.2 then
+if 4.2 is non-zero we are midway within a record
+if 4.2 has a value of zero then we are at the end of the record
+
+// Variable record format:
+[ 1 ][ 2 ][ 3 ][ 4.1 ][ 4.2 ][ 5.1 ][ 5.2 ][ 5.3 ][ 5.4 ]
+
