@@ -1,0 +1,131 @@
+// Data operations on a list
+
+1.      Adding a list node (sub-list)
+1.1       Adding to head
+1.2       Adding to tail
+1.3       Adding next to a list node
+1.4       Adding previous to a list node
+
+2.      Retrieving a list item
+2.1       Retrieving from head
+2.2       Retrieving from tail
+2.3       Retrieving from an arbitrary position in the list
+
+3.      Moving
+3.1     Moving forward (head to tail)
+3.1.1     Moving x number of increments forward
+3.2     Moving backward (tail to head)
+3.2.1     Moving x number of increments backward
+3.3     Move to head of list
+3.4     Move to tail of list
+3.5     Move to a numeric indexed position in the list
+3.6     Report on index position of list iterator (0 = head, n = tail)
+3.7     Indicate if iterator at head of list
+3.8     Indicate if iterator at tail of list
+
+4       Detaching a list node (sub-list)
+4.1       Detaching from the head of the list --> toward tail
+4.2       Detaching from the tail of the list --> toward head
+4.3       Detaching from an arbitrary position range in the list
+          (from x position to y position, toward head or tail)
+
+5.      Searching for a list item
+5.1       Searching in linear fashion
+5.1.1       Searching forward (head to tail)
+5.1.2       Searching backward (tail to head)
+5.1.3       reporting search results in list position index, node address,
+            item address or boolean status (found, not found)
+
+6.      Sorting
+          Sorting list into ascending order
+          Sorting list into descending order
+
+7.      Applying an operation on a list item
+7.1       Applying an operation on one item
+7.1.1       Updating
+7.1.1.1       Updating item in list at arbitrary position with another item
+7.2       Applying an operation on each item in the list
+7.2.1       Applying an operation in order from head --> toward tail
+7.2.1.1       Updating
+7.2.1.1.1       Updating item in list at arbitrary position with another item
+7.2.2       Applying an operation in order from tail --> toward head
+7.2.2.1       Updating
+7.2.2.1.1       Updating item in list at arbitrary position with another item
+7.2.3       Applying an operation from an arbitrary position range in the list
+            (from x position to y position, toward head or tail)
+7.2.3.1       Updating
+7.2.3.1.1       Updating item in list at arbitrary position with another item
+
+8.      Replacing a list node (sub-list)
+8.1     Steps 9 then Steps 1
+
+9.      Deleting an list node (sub-list)
+9.1     Steps 4 then Step 11 with sub-list
+
+10.     Retrieving a list node (sub-list)
+10.1       Retrieving from head --> toward tail
+10.2       Retrieving from tail --> toward head
+10.3       Retrieving from an arbitrary position range in the list
+           (from x position to y position, toward head or tail)
+
+11.     Destroy whole list
+11.1    Steps 7.2 with Steps 4 and delete function
+
+12.     Duplicating a list item
+12.1    Steps 1 with identical list item
+
+13.      Comparison of list items: <, =, >
+13.1       Comparing one item to another item
+           returning results as equal, less than or greater than
+13.2       Comparing in lexical order from head of list to tail,
+           comparing item to item, returning results as equal,
+           less than or greater than
+
+// List properties
+1.      List empty (0 items in list)
+2.      List full (Reach capacity limit)
+3.      Number of items in list
+4.      Capacity limit of list
+5.      List circular
+6.      List linear
+
+// Operations on list properties
+1.      Making list circular
+2.      Making list linear
+3.      Setting capacity limit on list
+4.      Incrementing capacity limit of list
+4.1       Incrementing x number of nodes in capacity
+5.      Decrementing capacity limit of list
+5.1       Decrementing x number of nodes in capacity
+
+// Whole list operations
+1     Assignment of one list to another
+2     Appending of one list to the end of another
+3     Appending of one list to the beginning of another
+4     Removal of ending sublist of a list
+5     Removal of beginning sublist of a list
+6     Removal of a middle sublist of a list
+7     Reversing a list
+8     Making a new list from arbitrary sublist of a list
+9     Detaching an existing sublist of a list
+10    Splicing one list into an arbitrary position of another list
+11    Destroying a list
+12    Converting a list into an array of objects
+13    Converting a list into an array of pointers
+14    Converting an array of objects into a list
+15    Converting an array of pointers into a list
+16    Shrinking a list to an arbitrary size (in number of nodes)
+17    Repeating an item at the end of the list
+18    Repeating an item at the beginning of the list
+19    Cloning a new identical list from an existing list
+
+// Data storage and copying
+1.      Storage operations: Deep-Copy (yes, no), Destroy (yes, no)
+
+Each item entered into the list can have the following storage properties:
+1.      Deep-Copy = no, Destroy = no
+2.      Deep-Copy = no, Destroy = yes
+3.      Deep-Copy = yes, Destroy = no
+4.      Deep-Copy = yes, Destroy = yes
+
+

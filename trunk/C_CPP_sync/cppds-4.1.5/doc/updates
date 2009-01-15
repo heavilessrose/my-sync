@@ -1,0 +1,17 @@
+UPDATES:
+--------
+
+- quickint interpreter updated march 30 2004
+    affected files: quickint.h, quickint.cpp, mysqldefn.txt
+- calclib calculator library updated april 8 2004
+    fixed round-off errors in calculation method
+    added extra comments in demo program help screen
+    affected files: calclib.cpp, calclib.h
+- added new pathtoken class for retrieving and chopping up individual path
+  entries for path environment strings april 9 2004
+- fixed path problems when loading data files needed by some programs/libraries
+  now searches multiple path entries as listed in the PATH environment variable
+  for the given file instead of just the current directory
+- fixed bugs in calculator library
+- remove all static variables from calculator library
+- changed all consts global variables to class members

@@ -1,0 +1,32 @@
+// Slotted File: Fixed length record file layout
+//
+// 1.	Class ID Byte (long)
+// 2.   SlottedFile object Object ID (long)
+// 3.   Slottedfile object null status (byte)
+// 4.   FileInfo Record
+// 5.   File Header (dependent on 4.4)
+// 6.   Fixed length record of "Object" objects
+//      in standard Object data block format
+//
+// 4.1  Slot size (long)
+// 4.2  Null Object (indefinite)
+// 4.3  Slots allocated (long)
+// 4.4  Header size (long)
+//
+// 6.1  Class ID (long)
+// 6.2  Object ID (long)
+// 6.3  Null object status (byte)
+// 6.4  Object data (indefinite)
+//
+// Slotted file format:
+//
+// [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ]
+//
+// FileInfo record format:
+//
+// [ 4.1 ][ 4.2 ][ 4.3 ][ 4.4 ]
+//
+// Standard object data block format:
+//
+// [ 6.1 ][ 6.2 ][ 6.3 ][ 6.4 ]
+//

@@ -1,0 +1,61 @@
+operations that can be done on a list node:
+-- taken from listprop.txt
+
+1.      Adding a list node (sub-list)
+1.3       Adding next to a list node
+1.4       Adding previous to a list node
+
+2.      Retrieving a list item
+2.3       Retrieving from an arbitrary position in the list
+
+3.      Moving
+3.1     Moving forward (head to tail) -- 1 increment
+3.2     Moving backward (tail to head) -- 1 increment
+
+4       Detaching a list node (sub-list)
+4.3       Detaching from an arbitrary position range in the list
+          (from x position to y position, toward head or tail)
+
+5.      Searching for a list item
+5.1       Searching in linear fashion
+5.1.3       reporting search results in list position index, node address,
+            item address or boolean status (found, not found)
+
+7.      Applying an operation on a list item
+7.1       Applying an operation on one item
+7.1.1       Updating
+7.1.1.1       Updating item in list at arbitrary position with another item
+
+8.      Replacing a list node (sub-list)
+8.1     Steps 9 then Steps 1
+
+9.      Deleting an list node (sub-list)
+9.1     Steps 4 then Step 11 with sub-list
+
+10.     Retrieving a list node (sub-list)
+10.3       Retrieving from an arbitrary position range in the list
+           (from x position to y position, toward head or tail)
+
+11.     Destroy whole list
+11.1    Steps 7.1 with Steps 4 and delete function
+
+12.     Duplicating a list item
+12.1    Steps 1 with identical list item
+
+12    Converting a list into an array of objects
+13    Converting a list into an array of pointers
+14    Converting an array of objects into a list
+15    Converting an array of pointers into a list
+19    Cloning a new identical list from an existing list
+
+// List properties
+1.      List empty (0 items in list)            N/A
+2.      List full (Reach capacity limit)        always true
+3.      Number of items in list                 always 1
+4.      Capacity limit of list                  always 1
+5.      List circular                           true if detached
+6.      List linear                             true if connected
+
+// Operations on list properties
+1.      Making list circular
+2.      Making list linear

@@ -1,0 +1,48 @@
+
+           _Data (_Data == ) (_HashIndex == ) (_Nil == ) this._Nil that._Nil
+Storable:    1                                               0
+Equality:    1       1           1                1          0         0
+Collision:   1       0           1                1          0         0
+Empty:       x       x           1                x          x         1
+
+
+Store Algorithm Double Hash:
+1.    Make Index
+2.    while Collision && (Not Full Cycle)
+3.      Probe Ahead
+4.    if EmptySlot
+5.      Store
+6.    else if (Not Full Cycle)
+7.      Probe Ahead
+8.    else (Full Table)
+
+
+Find Algorithm Double Hash:
+1.   Make Index
+2.   while Collision && (Not Full Cycle)
+3.     Probe Ahead
+4.   if table[index].Object Equal this.Object
+5.     return table[index].Object
+6.   else if (Not Full Cycle)
+7.     Probe Ahead
+8.   else not found
+
+Store Algorithm Chained Hash:
+1.    Make Index
+2.    while Collision && Next
+3.      Get Next
+4.    if EmptySlot
+5.      Store
+6.    else if (Get Next)
+7.      Get Next
+8.    else Store in Next
+
+Find Algorithm Chained Hash:
+1.   Make Index
+2.   while Collision && Next
+3.     Get Next
+4.   if table[index].Object Equal this.Object
+5.     return table[index].Object
+6.   else if (Get Next)
+7.     Get Next
+8.   else not found
