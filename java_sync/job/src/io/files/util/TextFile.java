@@ -1,4 +1,4 @@
-package io.files;
+package io.files.util;
 
 import java.io.*;
 import java.util.*;
@@ -20,6 +20,7 @@ public class TextFile extends ArrayList<String> {
 				in.close();
 			}
 		} catch (IOException e) {
+			// 把IOException转型为RuntimeException,因此用户不需要使用try-catch块
 			throw new RuntimeException(e);
 		}
 		return sb.toString();
