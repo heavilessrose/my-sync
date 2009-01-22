@@ -40,10 +40,10 @@ public class HeadersList extends Activity {
 		// create our list and custom adapter
 		SeparatedListAdapter adapter = new SeparatedListAdapter(this);
 		adapter.addSection("Array test", new ArrayAdapter<String>(this,
-				R.layout.headerSeparatingList_list_item, new String[] {
+				R.layout.headerseparatinglist_list_item, new String[] {
 						"First item", "Item two" }));
 		adapter.addSection("Security", new SimpleAdapter(this, security,
-				R.layout.headerSeparatingList_list_complex, new String[] {
+				R.layout.headerseparatinglist_list_complex, new String[] {
 						ITEM_TITLE, ITEM_CAPTION }, new int[] {
 						R.id.headerSeparatingList_list_complex_title,
 						R.id.headerSeparatingList_list_complex_caption }));

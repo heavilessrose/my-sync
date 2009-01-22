@@ -53,14 +53,14 @@ public class TodoActivity extends Activity implements OnCrossListener {
 
 		// build adapter to show todo cursor
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-				R.layout.todolist_item_todo, cursor, new String[] { db.FIELD_LIST_TITLE,
-						db.FIELD_LIST_CREATED, db.FIELD_LIST_CROSSED },
-				new int[] { android.R.id.text1, android.R.id.text2,
+				R.layout.todolist_item_todo, cursor, new String[] {
+						db.FIELD_LIST_TITLE, db.FIELD_LIST_CREATED,
+						db.FIELD_LIST_CROSSED }, new int[] {
+						android.R.id.text1, android.R.id.text2,
 						android.R.id.content });
 		adapter.setViewBinder(new CrossBinder());
 
 		list.setAdapter(adapter);
-
 	}
 
 	public void onStop() {
@@ -69,7 +69,6 @@ public class TodoActivity extends Activity implements OnCrossListener {
 		// clean up any cursor and database connections
 		cursor.close();
 		db.close();
-
 	}
 
 	public void onCross(int position, boolean crossed) {
@@ -95,7 +94,6 @@ public class TodoActivity extends Activity implements OnCrossListener {
 		View child = list.getChildAt(viewIndex);
 		if (child != null)
 			child.invalidate();
-
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -139,7 +137,6 @@ public class TodoActivity extends Activity implements OnCrossListener {
 		});
 
 		return true;
-
 	}
 
 	public synchronized void onCreateContextMenu(ContextMenu menu, View v,
@@ -176,7 +173,5 @@ public class TodoActivity extends Activity implements OnCrossListener {
 				return true;
 			}
 		});
-
 	}
-
 }
