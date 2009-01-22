@@ -124,7 +124,8 @@
 		</service>
 
 		<!-- #################todolist############### -->
-		<activity android:name=".app.todolist.TodoActivity" android:label="@string/todolist_appname">
+		<activity android:name=".app.todolist.TodoActivity"
+			android:label="@string/todolist_appname">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="luke.android.categoryShow" />
@@ -132,11 +133,20 @@
 		</activity>
 		<!-- ###########headerSeparatingList########## -->
 		<activity android:name=".app.headerSeparatingList.HeadersList"
-                  android:label="@string/headerSeparatingList_app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="luke.android.categoryShow" />
-            </intent-filter>
-        </activity>
+			android:label="@string/headerSeparatingList_app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
+		<!-- ###########GroupHome########## -->
+		<activity android:name=".app.groupHome.LauncherActivity"
+			android:theme="@style/Theme" android:label="@string/grouphome_app_name"
+			android:configChanges="orientation|keyboardHidden">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
 	</application>
 </manifest> 
