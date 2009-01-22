@@ -124,7 +124,7 @@
 		</service>
 
 		<!-- #################todolist############### -->
-		<activity android:name=".app.todolist.TodoActivity"
+		<activity android:name=".app.todoList.TodoActivity"
 			android:label="@string/todolist_appname">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -149,8 +149,32 @@
 			</intent-filter>
 		</activity>
 		<!-- ###########call Log displayer########## -->
-		<activity android:name=".app.callLog.CallLogDisplayer"
+		<activity android:name=".phone.callLog.CallLogDisplayer"
 			android:label="@string/calllog_app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
+
+		<!-- ###########File Browser########## -->
+		<activity android:name=".app.fileBrowser.AndroidFileBrowser"
+			android:label="@string/fileBrowser_app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".app.fileBrowser.DirNameInputActivity"
+			android:label="@string/fileBrowser_dirname_app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<!-- ###########image zoom########## -->
+		<activity android:name=".image.zoom.zooming" android:label="@string/image_zooming_app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="luke.android.categoryShow" />

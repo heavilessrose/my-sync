@@ -39,7 +39,6 @@ public class Zoom extends View {
 			zoomControler -= 10;
 		if (zoomControler < 10)
 			zoomControler = 10;
-
 		invalidate();
 		return true;
 	}
