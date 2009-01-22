@@ -12,8 +12,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Random;
 
-// 演示序列化机制的 "对象网"
-
+// 演示对象序列化的 "对象网"
 class Data implements Serializable {
 	private int n;
 
@@ -49,8 +48,10 @@ public class Worm implements Serializable {
 		StringBuilder result = new StringBuilder(":");
 		result.append(c);
 		result.append("(");
-		for (Data dat : d)
+		for (Data dat : d) {
 			result.append(dat);
+			result.append(", ");
+		}
 		result.append(")");
 		if (next != null)
 			result.append(next);
@@ -61,6 +62,8 @@ public class Worm implements Serializable {
 			IOException {
 		Worm w = new Worm(6, 'a');
 		print("w = " + w);
+		
+		// 持久化到文件
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(
 				"c:/worm.out"));
 		out.writeObject("Worm storage\n");
@@ -71,6 +74,8 @@ public class Worm implements Serializable {
 		String s = (String) in.readObject();
 		Worm w2 = (Worm) in.readObject();
 		print(s + "w2 = " + w2);
+
+		// 持久化到字节流
 		ByteArrayOutputStream bout = new ByteArrayOutputStream();
 		ObjectOutputStream out2 = new ObjectOutputStream(bout);
 		out2.writeObject("Worm storage\n");
