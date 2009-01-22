@@ -108,11 +108,9 @@
 			</intent-filter>
 		</activity>
 
-		<!--
-			#################################service-mplayer#########################
-
-	-->
-		<activity android:name=".service.mplayer.MyService" android:label="@string/service_mplayer_myservice">
+		<!--###############service-mplayer##############	-->
+		<activity android:name=".service.mplayer.MyService"
+			android:label="@string/service_mplayer_myservice">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="luke.android.categoryShow" />
@@ -124,5 +122,21 @@
 				<category android:name="android.intent.category.default" />
 			</intent-filter>
 		</service>
+
+		<!-- #################todolist############### -->
+		<activity android:name=".app.todolist.TodoActivity" android:label="@string/todolist_appname">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
+		<!-- ###########headerSeparatingList########## -->
+		<activity android:name=".app.headerSeparatingList.HeadersList"
+                  android:label="@string/headerSeparatingList_app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="luke.android.categoryShow" />
+            </intent-filter>
+        </activity>
 	</application>
 </manifest> 
