@@ -122,6 +122,7 @@ public final class R {
         public static final int gongfu=0x7f040000;
     }
     public static final class string {
+        public static final int DemoActivityListItem=0x7f070029;
         public static final int Expandlist_FriendList=0x7f07000d;
         public static final int PeopleListActivity=0x7f070006;
         public static final int activity_callingactivity=0x7f070002;
