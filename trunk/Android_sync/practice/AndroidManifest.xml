@@ -148,5 +148,13 @@
 				<category android:name="luke.android.categoryShow" />
 			</intent-filter>
 		</activity>
+		<!-- ###########call Log displayer########## -->
+		<activity android:name=".app.callLog.CallLogDisplayer"
+			android:label="@string/calllog_app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
 	</application>
 </manifest> 
