@@ -34,7 +34,7 @@ public class TodoActivity extends Activity implements OnCrossListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.todolist_main);
 
-		this.cross = (CrossView) this.findViewById(R.id.todolist_crossview);
+		this.cross = (CrossView) this.findViewById(R.id.crossview);
 		this.list = (ListView) this.findViewById(android.R.id.list);
 
 		this.registerForContextMenu(list);

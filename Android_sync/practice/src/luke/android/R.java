@@ -66,6 +66,7 @@ public final class R {
     public static final class id {
         public static final int avatar=0x7f090008;
         public static final int contacts_list=0x7f090002;
+        public static final int crossview=0x7f090017;
         public static final int headerSeparatingList_list_complex_caption=0x7f09000c;
         public static final int headerSeparatingList_list_complex_title=0x7f09000b;
         public static final int headerSeparatingList_list_header_title=0x7f09000d;
@@ -86,7 +87,6 @@ public final class R {
         public static final int submit=0x7f090014;
         public static final int text1=0x7f090011;
         public static final int text2=0x7f090012;
-        public static final int todolist_crossview=0x7f090017;
         public static final int userText=0x7f090010;
     }
     public static final class layout {
@@ -115,7 +115,8 @@ public final class R {
         public static final int service_mplayer_main=0x7f030016;
         public static final int subactivity=0x7f030017;
         public static final int todolist_dia_newitem=0x7f030018;
-        public static final int todolist_main=0x7f030019;
+        public static final int todolist_item_todo=0x7f030019;
+        public static final int todolist_main=0x7f03001a;
     }
     public static final class raw {
         public static final int gongfu=0x7f040000;
@@ -129,6 +130,8 @@ public final class R {
         public static final int cursor_PeopleListActivity=0x7f070007;
         public static final int empty=0x7f070005;
         public static final int expandableList1=0x7f070009;
+        public static final int fileBrowser_app_name=0x7f070026;
+        public static final int fileBrowser_dirname_app_name=0x7f070027;
         public static final int filebrowser_appname=0x7f070010;
         public static final int filebrowser_current_dir=0x7f070016;
         public static final int filebrowser_dirname_app_name=0x7f070011;
@@ -139,6 +142,7 @@ public final class R {
         public static final int grouphome_app_name=0x7f070024;
         public static final int headerSeparatingList_app_name=0x7f070022;
         public static final int headerseparatinglist_hello=0x7f070023;
+        public static final int image_zooming_app_name=0x7f070028;
         public static final int main=0x7f070000;
         public static final int main_tabs=0x7f070008;
         public static final int phone_call=0x7f07000a;
