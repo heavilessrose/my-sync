@@ -13,6 +13,7 @@ public final class R {
         public static final int fileEndingImage=0x7f050000;
         public static final int fileEndingPackage=0x7f050002;
         public static final int fileEndingWebText=0x7f050003;
+        public static final int list_examples=0x7f050004;
     }
     public static final class attr {
     }
@@ -32,8 +33,14 @@ public final class R {
         public static final int selector_glow_yellow=0x7f02000c;
         public static final int selector_glow_yellow_image=0x7f02000d;
         public static final int text=0x7f02000e;
-        public static final int uponelevel=0x7f02000f;
-        public static final int webtext=0x7f020010;
+        public static final int todolist_checkmark=0x7f02000f;
+        public static final int todolist_ic_text_dot_c=0x7f020010;
+        public static final int todolist_ic_text_dot_c_invert=0x7f020011;
+        public static final int todolist_icon=0x7f020012;
+        public static final int todolist_indicator_check_mark_dark=0x7f020013;
+        public static final int todolist_indicator_check_mark_dark_invert=0x7f020014;
+        public static final int uponelevel=0x7f020015;
+        public static final int webtext=0x7f020016;
     }
     public static final class id {
         public static final int avatar=0x7f070008;
@@ -54,6 +61,7 @@ public final class R {
         public static final int submit=0x7f070010;
         public static final int text1=0x7f07000d;
         public static final int text2=0x7f07000e;
+        public static final int todolist_crossview=0x7f070013;
         public static final int userText=0x7f07000c;
     }
     public static final class layout {
@@ -73,6 +81,8 @@ public final class R {
         public static final int phone_sms=0x7f03000d;
         public static final int service_mplayer_main=0x7f03000e;
         public static final int subactivity=0x7f03000f;
+        public static final int todolist_dia_newitem=0x7f030010;
+        public static final int todolist_main=0x7f030011;
     }
     public static final class raw {
         public static final int gongfu=0x7f040000;
@@ -92,6 +102,7 @@ public final class R {
         public static final int filebrowser_dirnameinput_hint=0x7f060014;
         public static final int filebrowser_menu_new_folder=0x7f060012;
         public static final int filebrowser_up_one_level=0x7f060015;
+        public static final int headerSeparatingList_app_name=0x7f060022;
         public static final int main=0x7f060000;
         public static final int main_tabs=0x7f060008;
         public static final int phone_call=0x7f06000a;
@@ -101,5 +112,16 @@ public final class R {
         public static final int service_mplayer_myservice=0x7f06000e;
         public static final int subactivity=0x7f060003;
         public static final int tabs_expandListTabs=0x7f06000c;
+        public static final int todolist_appname=0x7f060021;
+        public static final int todolist_bind_days=0x7f060019;
+        public static final int todolist_bind_hours=0x7f060018;
+        public static final int todolist_bind_minutes=0x7f060017;
+        public static final int todolist_todo_add=0x7f06001a;
+        public static final int todolist_todo_add_hint=0x7f06001c;
+        public static final int todolist_todo_add_neg=0x7f06001e;
+        public static final int todolist_todo_add_pos=0x7f06001d;
+        public static final int todolist_todo_add_title=0x7f06001b;
+        public static final int todolist_todo_cross=0x7f06001f;
+        public static final int todolist_todo_delete=0x7f060020;
     }
 }
