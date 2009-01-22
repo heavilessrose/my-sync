@@ -180,5 +180,13 @@
 				<category android:name="luke.android.categoryShow" />
 			</intent-filter>
 		</activity>
+		<!-- ###########利用反射的List########## -->
+		<activity android:name=".view.list.iconList.DemoActivityListItem"
+			android:label="@string/DemoActivityListItem">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="luke.android.categoryShow" />
+			</intent-filter>
+		</activity>
 	</application>
 </manifest> 
