@@ -30,7 +30,7 @@ public class Client {
 		DataOutputStream out = null;
 		DataInputStream in = null;
 		try {
-			client = new Socket("star", 5100);
+			client = new Socket("127.0.0.1", 5100);
 			client.setSoTimeout(10000);
 			out = new DataOutputStream((client.getOutputStream()));
 
@@ -50,6 +50,7 @@ public class Client {
 			client.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 	}

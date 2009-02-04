@@ -42,6 +42,7 @@ public final class Writer extends Thread {
 				// 处理写事件
 				write(key);
 			} catch (Exception e) {
+				e.printStackTrace();
 				continue;
 			}
 		}
@@ -70,6 +71,7 @@ public final class Writer extends Thread {
 			notifier.fireOnClosed((Request) key.attachment());
 		} catch (Exception e) {
 			notifier.fireOnError("Error occured in Writer: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
