@@ -21,6 +21,7 @@ public class RemoteFileClient {
 		String fileContents = remoteFileClient.getFile("c:/ss.txt");
 		remoteFileClient.tearDownConnection();
 
+		// 打印从服务器拿到的文件内容
 		System.out.println(fileContents);
 	}
 
