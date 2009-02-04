@@ -53,7 +53,7 @@ public class PooledConnectionHandler implements Runnable {
 
 	// 在连接池上等待，并且池中一有连接就处理它.
 	// 当 run() 拥有池的互斥锁时，processRequest() 如何能够把连接放到池中呢？答案是对池上的 wait() 的调用释放锁，而
-	// wait() 接着就在自己返回之前再次攫取该锁。这就使得池对象的其它同步代码可以获取该锁。
+	// wait() 接着就在自己返回之前再次攫取该锁(其他线程notify了)。这就使得池对象的其它同步代码可以获取该锁。
 	public void run() {
 		while (true) {
 			synchronized (pool) {
