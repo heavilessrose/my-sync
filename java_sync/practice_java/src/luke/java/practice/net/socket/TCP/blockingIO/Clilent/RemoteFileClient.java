@@ -1,4 +1,4 @@
-package luke.java.practice.net.socket.TCPClilent;
+package luke.java.practice.net.socket.TCP.blockingIO.Clilent;
 
 import java.io.*;
 import java.net.*;
