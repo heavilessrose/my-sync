@@ -1,4 +1,4 @@
-package luke.java.practice.net.socket.TCPserver.mutitreadedServer;
+package luke.java.practice.net.socket.TCP.blockingIO.mutitreaded;
 
 import java.io.*;
 import java.net.*;
