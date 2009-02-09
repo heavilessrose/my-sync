@@ -23,15 +23,19 @@ public abstract class EventAdapter implements ServerListener {
 	}
 
 	public void onError(String error) {
+		System.out.println("EventAdapter: onError()");
 	}
 
 	public void onAccept() throws Exception {
+		System.out.println("EventAdapter: onAccept()");
 	}
 
 	public void onAccepted(Request request) throws Exception {
+		System.out.println("EventAdapter: onAccepted()");
 	}
 
 	public void onRead(Request request) throws Exception {
+		System.out.println("EventAdapter: onRead()");
 	}
 
 	public void onWrite(Request request, Response response) throws Exception {

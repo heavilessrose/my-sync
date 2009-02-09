@@ -6,13 +6,14 @@ import java.util.*;
 import java.text.DateFormat;
 
 /**
- * 时间查询服务器
+ * 时间查询处理器
  */
 public class TimeHandler extends EventAdapter {
 	public TimeHandler() {
 	}
 
 	public void onWrite(Request request, Response response) throws Exception {
+		System.out.println("TimeHandler: onWrite()");
 		String command = new String(request.getDataInput());
 		String time = null;
 		Date date = new Date();
