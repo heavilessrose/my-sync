@@ -9,6 +9,7 @@ import java.util.*;
 
 /**
  * 使用非阻塞IO
+ * 客户端非阻塞IO?? 有点纳闷
  * 
  * @author WangYinghua
  * 
