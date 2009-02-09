@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 
 public class Reader extends Thread {
-	private static List pool = new LinkedList();
+	private static List<SelectionKey> pool = new LinkedList<SelectionKey>();
 	private static Notifier notifier = Notifier.getNotifier();
 
 	public Reader() {
@@ -36,7 +36,7 @@ public class Reader extends Thread {
 					while (pool.isEmpty()) {
 						pool.wait();
 					}
-					key = (SelectionKey) pool.remove(0);
+					key = pool.remove(0);
 				}
 
 				// ¶ÁÈ¡Êý¾Ý
@@ -100,6 +100,7 @@ public class Reader extends Thread {
 			Server.processWriteRequest(key);
 		} catch (Exception e) {
 			notifier.fireOnError("Error occured in Reader: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

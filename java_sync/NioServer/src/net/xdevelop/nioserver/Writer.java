@@ -19,15 +19,13 @@ import java.nio.channels.SelectionKey;
  */
 
 public final class Writer extends Thread {
-	private static List pool = new LinkedList();
+	private static List<SelectionKey> pool = new LinkedList<SelectionKey>();
 	private static Notifier notifier = Notifier.getNotifier();
 
 	public Writer() {
 	}
 
-	/**
-	 * SMS发送线程主控服务方法,负责调度整个处理过程
-	 */
+	/** SMS发送线程主控服务方法,负责调度整个处理过程 */
 	public void run() {
 		while (true) {
 			try {
@@ -36,12 +34,13 @@ public final class Writer extends Thread {
 					while (pool.isEmpty()) {
 						pool.wait();
 					}
-					key = (SelectionKey) pool.remove(0);
+					key = pool.remove(0);
 				}
 
 				// 处理写事件
 				write(key);
 			} catch (Exception e) {
+				notifier.fireOnError("Error occured in Writer: " + e.getMessage());
 				e.printStackTrace();
 				continue;
 			}
@@ -63,21 +62,20 @@ public final class Writer extends Thread {
 			notifier.fireOnWrite((Request) key.attachment(), response);
 
 			// 关闭
+			Request req = (Request) key.attachment();
 			sc.finishConnect();
 			sc.socket().close();
 			sc.close();
 
 			// 触发onClosed事件
-			notifier.fireOnClosed((Request) key.attachment());
+			notifier.fireOnClosed(req);
 		} catch (Exception e) {
 			notifier.fireOnError("Error occured in Writer: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * 处理客户请求,管理用户的联结池,并唤醒队列中的线程进行处理
-	 */
+	/** 处理客户请求,管理用户的连接池,并唤醒队列中的线程进行处理 */
 	public static void processRequest(SelectionKey key) {
 		synchronized (pool) {
 			pool.add(pool.size(), key);

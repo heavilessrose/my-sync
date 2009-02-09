@@ -31,7 +31,7 @@ public class Client {
 		DataInputStream in = null;
 		try {
 			client = new Socket("127.0.0.1", 5100);
-			client.setSoTimeout(10000);
+			client.setSoTimeout(9000000);
 			out = new DataOutputStream((client.getOutputStream()));
 
 			String query = "GB";
@@ -52,7 +52,6 @@ public class Client {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-
 	}
 
 }

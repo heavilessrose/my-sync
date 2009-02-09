@@ -13,6 +13,7 @@ import java.nio.channels.SocketChannel;
 
 public class Request {
 	private SocketChannel sc;
+	/** 从客户端读到的请求数据 */
 	private byte[] dataInput = null;;
 	Object obj;
 

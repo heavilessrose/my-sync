@@ -17,11 +17,11 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Notifier {
-	private static ArrayList listeners = null;
+	private static ArrayList<ServerListener> eventListeners = null;
 	private static Notifier instance = null;
 
 	private Notifier() {
-		listeners = new ArrayList();
+		eventListeners = new ArrayList<ServerListener>();
 	}
 
 	/**
@@ -44,41 +44,41 @@ public class Notifier {
 	 *            ¼àÌýÆ÷
 	 */
 	public void addListener(ServerListener l) {
-		synchronized (listeners) {
-			if (!listeners.contains(l))
-				listeners.add(l);
+		synchronized (eventListeners) {
+			if (!eventListeners.contains(l))
+				eventListeners.add(l);
 		}
 	}
 
 	public void fireOnAccept() throws Exception {
-		for (int i = listeners.size() - 1; i >= 0; i--)
-			((ServerListener) listeners.get(i)).onAccept();
+		for (int i = eventListeners.size() - 1; i >= 0; i--)
+			(eventListeners.get(i)).onAccept();
 	}
 
 	public void fireOnAccepted(Request request) throws Exception {
-		for (int i = listeners.size() - 1; i >= 0; i--)
-			((ServerListener) listeners.get(i)).onAccepted(request);
+		for (int i = eventListeners.size() - 1; i >= 0; i--)
+			(eventListeners.get(i)).onAccepted(request);
 	}
 
 	void fireOnRead(Request request) throws Exception {
-		for (int i = listeners.size() - 1; i >= 0; i--)
-			((ServerListener) listeners.get(i)).onRead(request);
+		for (int i = eventListeners.size() - 1; i >= 0; i--)
+			(eventListeners.get(i)).onRead(request);
 
 	}
 
 	void fireOnWrite(Request request, Response response) throws Exception {
-		for (int i = listeners.size() - 1; i >= 0; i--)
-			((ServerListener) listeners.get(i)).onWrite(request, response);
+		for (int i = eventListeners.size() - 1; i >= 0; i--)
+			(eventListeners.get(i)).onWrite(request, response);
 
 	}
 
 	public void fireOnClosed(Request request) throws Exception {
-		for (int i = listeners.size() - 1; i >= 0; i--)
-			((ServerListener) listeners.get(i)).onClosed(request);
+		for (int i = eventListeners.size() - 1; i >= 0; i--)
+			(eventListeners.get(i)).onClosed(request);
 	}
 
 	public void fireOnError(String error) {
-		for (int i = listeners.size() - 1; i >= 0; i--)
-			((ServerListener) listeners.get(i)).onError(error);
+		for (int i = eventListeners.size() - 1; i >= 0; i--)
+			(eventListeners.get(i)).onError(error);
 	}
 }

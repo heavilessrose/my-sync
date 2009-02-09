@@ -25,7 +25,7 @@ import net.xdevelop.nioserver.event.ServerListener;
  */
 
 public class Server implements Runnable {
-	private static List wpool = new LinkedList(); // 回应池
+	private static List<SelectionKey> wpool = new LinkedList<SelectionKey>(); // 回应池
 	private static Selector selector;
 	private ServerSocketChannel sschannel;
 	private InetSocketAddress address;
@@ -55,13 +55,14 @@ public class Server implements Runnable {
 			w.start();
 		}
 
-		// 创建无阻塞网络套接
+		// 创建非阻塞网络套接字
 		selector = Selector.open();
 		sschannel = ServerSocketChannel.open();
 		sschannel.configureBlocking(false);
 		address = new InetSocketAddress(port);
 		ServerSocket ss = sschannel.socket();
 		ss.bind(address);
+		// 向Selector注册server Channel及我们有兴趣的事件
 		sschannel.register(selector, SelectionKey.OP_ACCEPT);
 	}
 
@@ -82,28 +83,33 @@ public class Server implements Runnable {
 						it.remove();
 						// 处理IO事件
 						if ((key.readyOps() & SelectionKey.OP_ACCEPT) == SelectionKey.OP_ACCEPT) {
-							// Accept the new connection
-							ServerSocketChannel ssc = (ServerSocketChannel) key
-									.channel();
-							notifier.fireOnAccept();
+							if (key.isAcceptable()) {
+								// 接受一个新连接
+								ServerSocketChannel ssc = (ServerSocketChannel) key
+										.channel();
+								notifier.fireOnAccept();
 
-							SocketChannel sc = ssc.accept();
-							sc.configureBlocking(false);
+								SocketChannel sc = ssc.accept();
+								sc.configureBlocking(false);
 
-							// 触发接受连接事件
-							Request request = new Request(sc);
-							notifier.fireOnAccepted(request);
+								// 触发接受连接事件
+								Request request = new Request(sc);
+								notifier.fireOnAccepted(request);
 
-							// 注册读操作,以进行下一步的读操作
-							sc
-									.register(selector, SelectionKey.OP_READ,
-											request);
+								// 注册读操作,以进行下一步的读操作
+								sc.register(selector, SelectionKey.OP_READ,
+										request);
+							}
 						} else if ((key.readyOps() & SelectionKey.OP_READ) == SelectionKey.OP_READ) {
-							Reader.processRequest(key); // 提交读服务线程读取客户端数据
-							key.cancel();
+							if (key.isReadable()) {
+								Reader.processRequest(key); // 提交读服务线程读取客户端数据
+								key.cancel();
+							}
 						} else if ((key.readyOps() & SelectionKey.OP_WRITE) == SelectionKey.OP_WRITE) {
-							Writer.processRequest(key); // 提交写服务线程向客户端发送回应数据
-							key.cancel();
+							if (key.isWritable()) {
+								Writer.processRequest(key); // 提交写服务线程向客户端发送回应数据
+								key.cancel();
+							}
 						}
 					}
 				} else {
@@ -117,27 +123,28 @@ public class Server implements Runnable {
 		}
 	}
 
-	/**
-	 * 添加新的通道注册
-	 */
+	/** 添加新的通道注册 */
 	private void addRegister() {
 		synchronized (wpool) {
 			while (!wpool.isEmpty()) {
-				SelectionKey key = (SelectionKey) wpool.remove(0);
+				SelectionKey key = wpool.remove(0);
 				SocketChannel schannel = (SocketChannel) key.channel();
 				try {
 					schannel.register(selector, SelectionKey.OP_WRITE, key
 							.attachment());
 				} catch (Exception e) {
 					try {
+						Request req = (Request) key.attachment();
 						schannel.finishConnect();
 						schannel.close();
 						schannel.socket().close();
-						notifier.fireOnClosed((Request) key.attachment());
+						notifier.fireOnClosed(req);
 					} catch (Exception e1) {
+						e1.printStackTrace();
 					}
 					notifier.fireOnError("Error occured in addRegister: "
 							+ e.getMessage());
+					e.printStackTrace();
 				}
 			}
 		}
@@ -145,6 +152,8 @@ public class Server implements Runnable {
 
 	/**
 	 * 提交新的客户端写请求于主服务线程的回应池中
+	 * 
+	 * @param key
 	 */
 	public static void processWriteRequest(SelectionKey key) {
 		synchronized (wpool) {
