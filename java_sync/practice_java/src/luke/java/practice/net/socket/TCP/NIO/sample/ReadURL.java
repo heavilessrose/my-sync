@@ -1,10 +1,12 @@
 package luke.java.practice.net.socket.TCP.NIO.sample;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
@@ -16,14 +18,14 @@ import java.util.Set;
 
 public class ReadURL {
 	public static void main(String args[]) {
-		String host = /* args[0] */"www.google.com";
+		String host = /* args[0] */"www.knowledgesurf.com";
 		SocketChannel channel = null;
 
 		try {
 
 			// Setup
 			InetSocketAddress socketAddress = new InetSocketAddress(host, 80);
-			Charset charset = Charset.forName("GBK");
+			Charset charset = Charset.forName("UTF-8");
 			CharsetDecoder decoder = charset.newDecoder();
 			CharsetEncoder encoder = charset.newEncoder();
 
@@ -33,17 +35,21 @@ public class ReadURL {
 
 			// Connect
 			channel = SocketChannel.open();
-
 			channel.connect(socketAddress);
 
 			// Send request
 			String request = "GET / \r\n\r\n";
 			channel.write(encoder.encode(CharBuffer.wrap(request)));
 
+
+			FileOutputStream fs = new FileOutputStream("c:/csdn.html");
+			FileChannel fc = fs.getChannel();
 			// Read response
 			while ((channel.read(buffer)) != -1) {
 				buffer.flip();
+				fc.write(buffer);
 				// Decode buffer
+				buffer.flip();
 				decoder.decode(buffer, charBuffer, false);
 				// Display
 				charBuffer.flip();
