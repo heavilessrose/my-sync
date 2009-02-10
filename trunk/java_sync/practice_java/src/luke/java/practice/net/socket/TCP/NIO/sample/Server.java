@@ -17,7 +17,7 @@ public class Server {
 		InetSocketAddress isa = new InetSocketAddress(port);
 		channel.socket().bind(isa);
 
-		// Register interest in when connection
+		// Register interest in when connection 服务器serverSocketChannel只有OP_ACCEPT操作
 		channel.register(selector, SelectionKey.OP_ACCEPT);
 
 		// Wait for something of interest to happen
@@ -30,18 +30,20 @@ public class Server {
 			while (readyItor.hasNext()) {
 				// Get key from set
 				SelectionKey key = (SelectionKey) readyItor.next();
-				// Remove current entry
+				// Remove current entry 删除当前将要处理的选择键
 				readyItor.remove();
 
+				// 如果是有客户端连接请求
 				if (key.isAcceptable()) {
 					// Get channel
-					ServerSocketChannel keyChannel = (ServerSocketChannel) key
+					ServerSocketChannel nextReady = (ServerSocketChannel) key
 							.channel();
 
 					// Get server socket
-					ServerSocket serverSocket = keyChannel.socket();
-					// Accept request
+					ServerSocket serverSocket = nextReady.socket();
+					// Accept request 获取客户端套接字
 					Socket socket = serverSocket.accept();
+					
 					// Return canned message
 					PrintWriter out = new PrintWriter(socket.getOutputStream(),
 							true);
