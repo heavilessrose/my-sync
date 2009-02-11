@@ -1,0 +1,1 @@
+java -jar bin\http.jar -verbose -pass secret
