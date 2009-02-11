@@ -1,0 +1,53 @@
+<web-app>
+
+  <servlet>
+      <servlet-name>Hello</servlet-name>
+      <display-name>Hello</display-name>
+      <servlet-class>HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <url-pattern>/hello</url-pattern>
+    <servlet-name>Hello</servlet-name>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>Static05</servlet-name>
+      <display-name>Static05</display-name>
+      <servlet-class>StaticContentServlet05</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <url-pattern>/static05</url-pattern>
+    <servlet-name>Static05</servlet-name>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>Static1</servlet-name>
+      <display-name>Static1</display-name>
+      <servlet-class>StaticContentServlet1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <url-pattern>/static1</url-pattern>
+    <servlet-name>Static1</servlet-name>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>Static4</servlet-name>
+      <display-name>Static4</display-name>
+      <servlet-class>StaticContentServlet4</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <url-pattern>/static4</url-pattern>
+    <servlet-name>Static4</servlet-name>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>Static32</servlet-name>
+      <display-name>Static32</display-name>
+      <servlet-class>StaticContentServlet32</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <url-pattern>/static32</url-pattern>
+    <servlet-name>Static32</servlet-name>
+  </servlet-mapping>
+
+</web-app>
