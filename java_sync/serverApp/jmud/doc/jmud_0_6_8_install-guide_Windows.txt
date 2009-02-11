@@ -1,0 +1,83 @@
+(Reviewed April 23, 2007)
+
+Installing Lulu's JMUD
+
+If you run into problems fire me a "gmail": cwmaguire
+
+What you'll Need:
+
+- Sun's Java SDK or JRE
+- Java IDE (e.g. Netbeans) if installing from source
+- JMUD source or class files
+- MySQL Connector/J JDBC driver
+- My SQL Database Server
+- My SQL Gui package
+
+Step One: Install the Java Runtime
+
+Go to http://java.sun.com and figure out how to download the latest JRE or SDK
+Install the JRE/SDK
+
+Step Two: Obtaining Lulu-JMUD
+
+Method One: Installing from the Source
+
+Go to www.sourceforge.net/projects/lulu-jmud
+Click on the "Files" link and download the latest source .zip file
+Create a project called "jmud" (case matters?) in your Java IDE of choice
+Unzip the source files into that project's source directory
+Compile the source
+
+Method Two: Installing from .Class files
+
+Go to www.sourceforge.net/projects/lulu-jmud
+Click on the "Files" link and download the latest binary .zip file
+Unzip the class files into a directory
+
+Step Three: Install MySQL
+
+Go to www.mysql.com and download the latest version of the following:
+
+- MySQL
+- MySQL GUI Tools
+- MySQL Connector/J JDBC Database Driver
+
+Install all of the above
+
+Step Four: Create the JMUD Database
+
+Go to www.sourceforge.net/projects/lulu-jmud
+Click on the "Files" link and download the latest database backup .zip file (DB-BAK)
+Unzip the database backup script file into any directory
+Open MySQL Administrator (Start -> Programs -> MySQL -> MySQL Administrator)
+Click on the "Restore" button
+Browse for the .sql database backup file that you just unzipped
+Click "Open Backup File"
+
+Step Five: Set the classpath
+
+Note: This is for Windows only. If you are using *nix you're on your own :).
+
+Open a command prompt: Start -> Run -> "cmd" [Enter]
+Run the following command: set classpath=%classpath%;<full path to MySQL Connector/J .jar file>; 
+  e.g. For me the command is: C:\>set classpath=%classpath%;c:\mysql-connector-java-5.0.3\mysql-connector-java-5.0.3-bin.jar;
+
+Step Six: Start the server
+
+Open a command prompt: Start -> Run -> "cmd" [Enter]
+If you haven't added the jmud .class directory to the classpath then change to the directory where the .class files are.
+Run the following command: java jmud
+
+Step Seven: Create a login
+
+You can create a new login for yourself in the database or just use one that I've already created. 
+Logins can be found in the tblPlayers table
+Open the MySQL Query Browser (Start -> Programs -> MySQL -> MySQL Query Browser)
+Run this query: select vchPlayerLogin, vchPlayerPassword from tblPlayers
+
+Step Seven: Connect to the Server
+
+Open *another* command prompt: Start -> Run -> "cmd" [Enter]
+Run this command: telnet localhost 9000
+
+If you cannot connect you may need to open port 23 on your firewall. 

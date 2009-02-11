@@ -1,0 +1,99 @@
+--------alpha 0.8.7.1--------
+1)Building jar without examples and tests 
+2)Specifying port number for example server added
+3)able.jar removed
+
+--------alpha 0.8.7.0--------
+1)Able library changed (cache and executor using changed)
+
+--------alpha 0.8.6.0--------
+1)Command renamed to RequestContext
+2)HttpService added
+3)AsyncHttpServlet added
+4)HttpServlet support improved
+
+--------alpha 0.8.5.3--------
+1)EventListener, EventDispatcher added
+2)Configuration changed. Config interface added for each configurable class
+3)Examples changed after new changes
+
+--------alpha 0.8.5.2--------
+1)Servlet environment (HttpRequest,HttpResponse) implemented (simple Servlet tested)
+
+--------alpha 0.8.5.1--------
+1)Acceptor changed for allow registering listeners in runtime
+2)Some fixes when new channels adding, removed avoid Iterator creating
+3)Some refactoring made (examples and benchmark classes moved into ixtrim package)
+4)build.xml improved
+5)Bug fixed (read buffer not cleaning if exception occured in SelectorHandler)
+6)Some values for one parameter's name in request URI support added
+
+--------alpha 0.8.5.0--------
+1)Bug found and fixed - when client send some requests together
+    without waiting response, then server behavior was incorrect,
+    server send data without headers etc. And this bug discover
+    only if Callback.close() method called in dispatch time
+    and data length more than output buff size.
+    !!! Attention - this fix can decrease performance
+    (but after light test decreasing not found)
+
+2)In measurement tool changed Response signature to "</html>"
+    for more correct measurement
+
+3)m.bat in /bin/ directory fixed for set correct CLASSPATH
+
+--------alpha 0.8.4.2--------
+1)Measurement tools improved
+
+
+--------alpha 0.8.4.1--------
+1)Measurement tool added
+2)Some measurement tests made
+
+
+--------alpha 0.8.4.0--------
+1)Singleton made in ChunkedFileManager
+2)Velocity example removed (stream using example will added)
+3)Configuration loading from CLASSPATH added
+4)Server starting class moved to examples
+5)Version class added (HTTP header "Server" will use Version)
+6)build.xml file extended (jar task added, build doc task added)
+7)some changes in run scripts
+
+
+--------alpha 0.8.3.1--------
+1)FileRequestHandler optimized (ExpirableFIFOCache added for exipiring files in cache)
+2)getRemoteAddress() method added in HttpRequest
+3)Some fixes in examples
+
+
+--------alpha 0.8.3.0--------
+1)Converting response to bytes optimized
+2)Cookie implementation started
+    interface Response extended by method addCookie(...)
+    interface Request extended by method getCookies()
+3)Simple Sessions added
+    example for session added
+4)sendRedirect() method added in HttpResponse
+
+
+--------alpha 0.8.2.0--------
+1)URI %hh - symbols fixed
+2)Config class added (configuring from config/ixstrim.properties)
+3)Some packages refactoring made
+4)CreateValue function moved to StringUtil (from StreamParser and FormDataBuffer)
+5)Convertation response to bytes optimized 
+    (write in exists allocated byte[] instead allocate new in HttpConnectionHandler)
+    performance increased !!!
+6)One tip discovered - (set -Xms20M for JVM and perfomance will greatly increased)
+    Because of ...
+7)FileManager writed - very fast but not optimized finally
+    Old FileManager removed
+
+
+--------alpha 0.8.1.0--------
+1)Added bridge for using RequestHandler as OutputStream
+2)Velocity example added
+
+
+--------alpha 0.8.0.0--------

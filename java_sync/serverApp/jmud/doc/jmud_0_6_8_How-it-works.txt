@@ -1,0 +1,91 @@
+Feb 14, 2007 (Reviewed April 23, 2007)
+
+Lulu's Java MUD - How it Works
+
+Here is a high level view of how JMud works: 
+
+Jmud is built using threads that handle data input from network connections and a database to 
+persist game content. 
+
+Main Execution:
+---------------------------------------------------
+
+The main game thread spawns does a few things:
+
+1) loads the game map, players, mobs, items, etc. from the database
+2) spawns the threads that handle communication and game interaction
+
+
+Threads: 
+---------------------------------------------------
+
+There are four threads that are spawned to run JMud: 
+
+	1) The "acceptor" thread which accepts new connections
+	2) The login thread which handles authenticating players
+        3) The command parser thread which turns incoming data into command objects
+	4) The game engine thread which handles in-game commands from authenticated players
+
+Acceptor Thread: 
+---------------------------------------------------
+
+The acceptor thread listens for new connections, creates a "SocketChannel" for each new connection then 
+passes the connection to the login thread and says "wake up, new connection coming in"
+
+For details on this, see the comments in the code.
+
+Login Thread:
+---------------------------------------------------
+
+The login thread has a "selector" (Java non-blocking IO) that listens for data from connections
+(as opposed to the acceptor which listens for actual connections). The login thread also listens
+for a "wakeup" signal from the acceptor thread. Every time the login thread gets data or a "wakeup"
+message it does two things:
+	1) Handles new connections that need to be authenticated
+		a) Sets up a login state object that tracks the process of the login
+			(e.g. are they entering a login or password? how many attempts have they used?)
+		b) Sends the connection a login prompt
+	2) Checks for any new login data (i.e. login characters or password characters) and processes
+           it accordingly
+
+Once a user has entered a login or password they are either authenticated or given another try to get
+things right. This continues until the player is authenticated or their connection is dropped.
+
+Once a user is authenticated their "SocketChannel" is passed to the game engine with a "Player" object
+attached (well, it's attached to the SocketChannel's selector key) and the game engine gets a "wakeup"
+signal. The player object has all the data (from the database) associated with a player.
+
+Command Parser Thread:
+---------------------------------------------------
+
+The command parser thread listens for new players from the login thread and data from existing player
+connections. When players enter commands the command parser thread stores the text until a complete command
+is entered and then sends the commands to the engine thread. Commands are built from classes that 
+extend the superclass "Command" and must have an "exec" function that the engine will execute. Each 
+command expects a Player, a room, and a target with which to interact. Commands don't neccessarily 
+use all three pieces of information, but they need to be there just in case. Once a command input is 
+completed and a command is built the command object is placed in the command queue for the engine thread 
+to execute.
+
+Game Engine Thread:
+---------------------------------------------------
+
+The game engine thread runs commands that have been placed in the execution queue. Each command, 
+once executed will tell the engine if it's complete or if it needs to be run again. An example of a 
+command that completes in one iteration is the "South" command (e.g. "go south") which will move 
+the player one room south (if such a room exists) and thats it. An example of a command that needs 
+to run multiple times is the "Attack" command: the attack command needs to keep being run until 
+some sort of condition is met (the target dies, the attacker dies, the target leaves, etc.). Once
+a command is complete it is removed from the queue. Command objects handle communication of 
+results and prompts back to the user. 
+
+Database: 
+---------------------------------------------------
+
+All JMud content is stored in a MySQL database. MySQLConnector is used to retrieve data from the
+database using statements. This should be changed to use stored procedures. Stored procedures
+are much faster and can be edited on the fly.
+
+More content (such as messages, message verbs, etc.) should be stored in the database. In fact, very 
+little, if any, text or content should be in the code. Everything should be pulled from the database
+where it can be updated and customized. 

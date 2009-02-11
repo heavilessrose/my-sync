@@ -1,0 +1,79 @@
+(Dec 8, 2007)
+
+Installing Lulu's JMUD on Ubuntu
+
+If you run into problems fire me a gmail: cwmaguire
+
+What you'll Need:
+
+- Sun's Java SDK or JRE
+- Java IDE (e.g. Netbeans) if installing from source
+- JMUD source or class files
+- MySQL Connector/J JDBC driver
+- My SQL Database Server
+
+Step One: Install the Java Runtime
+
+In Synaptic Package Manager search for and install: 
+  1) Sun Java SDK
+  2) Sun Java JRE
+
+Step Two: Obtaining Lulu-JMUD
+
+Method One: Installing from the Source
+
+Go to www.sourceforge.net/projects/lulu-jmud
+Click on the "Files" link and download the latest source .zip file
+Create a project called "jmud" (case matters?) in your Java IDE of choice
+Unzip the source files into that project's source directory
+Compile the source
+
+Method Two: Installing from .Class files
+
+Go to www.sourceforge.net/projects/lulu-jmud
+Click on the "Files" link and download the latest binary .zip file
+Unzip the class files into a directory
+
+Step Three: Install MySQL
+
+In Synaptic Package Manager search for and install: 
+  3) mysql-server-5.0
+  4) mysql-client-5.0
+  5) libmysql-java
+  6) mysql-admin  (I think this is the name of the graphical utility, very handy)
+
+Step Four: Create the JMUD Database
+
+Go to www.sourceforge.net/projects/lulu-jmud
+Click on the "Files" link and download the latest database backup .zip file (DB-BAK)
+
+1) run "mysql -uroot -p<your password>"
+2) at the mysql prompt (mysql>) run "create database jmud"
+3) quit mysql (type "quit" and hit [Enter])
+4) run "mysql -uroot -p<your password> -Djmud < <fullpath to backup sql file>"
+
+   e.g. you@yourcomputer:/>mysql -uroot -pMyPassword -Djmud < /home/you/jmud_backup.sql
+
+Step Six: Start the server
+
+Open a terminal: 
+cd to the directory where you put or compiled the class files/jar
+If you have classes run the following command: java jmud
+If you have a jar run: java -jar jmud.jar
+
+Step Seven: Create a login
+
+You can create a new login for yourself in the database or just use one that I've already created. 
+Logins can be found in the tblPlayers table
+open a terminal and run mysql: mysql -uroot -pMyPassword 
+type: use jmud; [enter]
+type: select vchPlayerLogin, vchPlayerPassword from tblPlayers; [enter]
+
+Step Seven: Connect to the Server
+
+Open *another* terminal (in Ubuntu's default terminal I can hit Ctrl+t to open a new terminal in new tab)
+Run this command: telnet localhost 9000
+
+Login with the login and password found in tblPlayers (e.g. l[enter]q[enter])
+
+If you cannot connect you may need to open port 23 on your firewall. 
