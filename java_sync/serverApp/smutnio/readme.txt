@@ -1,0 +1,1 @@
+SMUT NIO is Scalable Multi User Technology based on Java NIO. This technology abstracts the client server communication and allows the user to create multi user applications concentrating on business logic rather than server communications.
