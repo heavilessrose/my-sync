@@ -28,7 +28,7 @@ public class EchoClient {
 	public static void main(String[] args) throws Exception {
 		String screenName = "luke";
 		String host = "127.0.0.1";
-		int port = 4444;
+		int port = 8000;
 
 		// connect to server and open up IO streams
 		Socket socket = new Socket(host, port);
@@ -41,11 +41,8 @@ public class EchoClient {
 		String ss;
 		while ((ss = stdin.readLine()) != null) {
 
-			// read line of client
-			String s = ss;
-
 			// send over socket to server
-			out.println("[" + screenName + "]: " + s);
+			out.println("[" + screenName + "]: " + ss);
 
 			// get reply from server and print it out
 			System.out.println(in.readLine());

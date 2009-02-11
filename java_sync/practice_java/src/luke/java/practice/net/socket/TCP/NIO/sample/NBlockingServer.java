@@ -36,7 +36,7 @@ public class NBlockingServer {
 		this.serverChannel = ServerSocketChannel.open();
 		this.serverChannel.configureBlocking(false);
 		InetAddress localhost = InetAddress.getLocalHost();
-		InetSocketAddress isa = new InetSocketAddress(localhost, this.port);
+		InetSocketAddress isa = new InetSocketAddress(/*localhost*/"127.0.0.1", this.port);
 		this.serverChannel.socket().bind(isa);// 将该套接字绑定到服务器某一可用端口
 	}
 
@@ -77,6 +77,7 @@ public class NBlockingServer {
 					ServerSocket ss = nextReady.socket();
 					// 获取客户端套接字
 					Socket s = ss.accept();
+					
 					// 设置对应的通道为异步方式并注册感兴趣事件
 					s.getChannel().configureBlocking(false);
 					SelectionKey readWriteKey = s.getChannel().register(
@@ -151,7 +152,7 @@ public class NBlockingServer {
 			buffer = new StringBuffer();
 		}
 
-		// 当一行没有结束时，将当前字窜置于缓冲尾
+		// 当一行没有结束时，将当前字符串置于缓冲尾
 		public void append(String values) {
 			buffer.append(values);
 		}

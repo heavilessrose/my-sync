@@ -31,7 +31,6 @@ public class ConnectionListener extends Thread {
 				if (message != null)
 					for (Connection jth : connections)
 						jth.println(message);
-
 			}
 
 			// don't monopolize processor
