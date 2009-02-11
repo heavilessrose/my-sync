@@ -1,0 +1,56 @@
+2008-10-07  建立初步框架和代码，发布0.1版本
+
+---------------------------------
+
+2008-10-08  发布0.20版本
+1、添加统计功能
+2、添加读和写的阻塞模式
+3、添加更多的配置选项，包括是否允许阻塞读写等。引入yanf4j.properties做配置文件。
+
+2008-10-08 发布0.21版本
+1、添加了AcceptorStateListener，用以监听服务器状态改变事件
+2、重构了统计功能，添加了统计协议处理效率
+3、更多测试
+4、添加yanf4j.handle.readwrite.concurrently参数
+
+
+2008-10-09  发布0.23版本，这是一个稳定版本
+1、修复了一些bug，包括处理时间统计错误问题等
+2、添加了部分单元测试
+
+2008-10-11  发布0.30版本，添加UDPController，重构代码
+1、添加UDPController，现在可以用yanf4j做一个udp server了！
+2、重构现有代码以适应UDPController
+3、bug的修复
+
+2008-10-12
+1、将AcceptorStateListener重命名为ControllerStateListener
+2、添加socket timeout选项
+2008-10-14
+1、增加sessionTimeout选项，用于连接超时
+2、Handler接口添加onExpired(Session s)方法
+3、Session接口添加isExpired()方法用于判断是否过期
+4、Handler接口添加onIdle(Session s)方法，暂未实现此功能
+
+2008-10-15 发布0.31
+1、添加session.flush方法
+2、实现了onIdle(Session session)方法
+
+2008-11-26 发布0.40稳定版
+1、将session.attach()重命名为session.attachment()
+2、重构部分代码
+3、添加聊天室例子
+
+2008-12-4 发布0.50 beta版
+1、Controller接口新增数个方法：
+a)以InetSocketAddress做参数的数个open方法，用以在多宿主机上绑定到不同网络接口
+b)添加了wakeup()方法，用以唤醒阻塞在select上的reactor，它有一个重载版本
+wakeup(Session session, EventType eventType)
+可以在wakeup同时通知某个session触发相应事件
+2、TCPController添加了backlog的getter、setter方法，用以设置backlog队列大小
+3、reuseAddress默认修改为false
+4、修复数个bug，如session启动未注册、关闭在异常情况下没有移除session可能造成内存泄露等
+5、一些优化手段，依照ACE建议调整事件派发顺序等
+
+
+
