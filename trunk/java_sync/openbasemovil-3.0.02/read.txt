@@ -1,0 +1,68 @@
+
+
+Yes, we have just gave birth to OpenBaseMovil, a free, Open Source platform for developing powerful J2ME business and consumer applications.
+
+OpenBaseMovil is comprised of several libraries, most of them are just our current ones but released under GPL 2.0. Others lack some of their current features, and some are simply nor included (by now).
+What is included in OpenBaseMovil:
+
+OpenBaseMovil-core
+    This library is the first one we have released, as all the rest depend on it. It contains many services: internationalization, task control, serialization, encryption, compression, floating point support, properties files support, an MVC framework, an event framework, files over RecordStores, and more.
+    We are very proud that in the first 12 hours after we uploaded this library to SourceForge it was downloaded 17 times, 3 of them in the first hour, and we have grown from a ranking of 26.000+ to a rank of 2.883. And we have not uploaded the rest of the framework yet!
+OpenBaseMovil-db
+    The database library, this one is the second most important one in the framework, only preceded by the BaseMovil-sync library (which is not yet Open Source).
+    This is a database engine that supports hundreds of tables, with even hundreds of thousands of rows per table. It is a relational database engine, with tables, which in turn have fields. This is not an object persistence framework as some that are around there, you don¡¯t have to care about serialization and deserialization of objects, you have a database like MySQL or any other RDBMS. Tables can have multiple indexes on one or more fields, even full-text-like indexes, so finding data is a really simple task. By now, it is not a SQL database nor an ACID system, we might implement that kind of things in the future. But you must not loose focus, we are talking about a cellular phone like a Nokia N70 or a SonyEricsson K610 dealing with many thousands of rows with search times of around 50-100ms for direct search indexes and abut 300-400ms for full-text searches. Phones are more powerful each day, but you can not ask them things like parsing complex SQL queries.
+    The database engine provides a simple API, very similar to that of JDBC, so you can manage your data easily. There are four main objects that you will deal with: Database, Table, Row and RowSet. You use the Database to hold Tables, and the Tables to create and handle Rows and also to search them. RowSet is, as you have already guessed, a set of Rows for a given search over a Table, and you use it almost as you would use a JDBC ResultSet.
+OpenBaseMovil-script
+    This is one of our latest creations, a scripting engine for JavaME (J2ME). We still consider it release candidate version, but it is very functional and powerful now. Many of our future plans have this engine as their basis, so we have built it with some clear goals:
+
+        * It must be easy to code
+        * The language must be very easily extended
+        * It must have a core library of tools that must be also easily extensible, so the scripts can interact with any current or future element.
+        * It must be very fast
+
+    We have called the language simply ¡°bmScript¡±. It is an object oriented language, with a syntax close to the C family (Java, C#, C++, etc.) but easier. It is compiled to a binary, optimized format, and that can be done at the mobile phone or you can compile the scripts and then send them to the device.
+    The core library has just some tools by now to be able to create maps (like arrays) and to interact with the basic system utilities (the console and so on). But, the database engine has some classes that when plugged into the engine let you access the database, just like you could do with Java. The same applies to the ui libraries.
+    This is the next library that we will upload to SourceForge, along with the proper documentation and examples.
+OpenBaseMovil-storage
+    The storage library is a pluggable library used by the database. It acts as a proxy to the underlying storage mechanism, currently the only one available: RecordStores. It also provides useful services on top of that to improve performance and ease of use.
+    Some devices do not impose limits on RecordStore sizes, some others do. Most of them have bugs, some very important, others not so. This pluggable library is designed to overcome that kind of things, releasing the database engine of that burden.
+OpenBaseMovil-ui
+    After years of dealing with the user interface, we¡¯ve come to some important conclusions:
+
+       1. The MIDP interface has some advantages, but also many shortcomings, many bugs and many differences between devices. It¡¯s a nightmare to deal with them all. At some points, the specification is too loose, and each manufacturer decides how to do it. And the bugs, the nasty bugs. For example, the latests Nokia phones with Symbian 3rd edition get hanged very often with forms with edit boxes. And they might fix it, but the truth is that they probably won¡¯t. The reason is very simple: J2ME is targeted to games, so their effort in the ¡°text¡± interface is clearly smaller.
+       2. As it comes from the first point, the graphical interface is much more powerful and less error prone.
+
+    And since we want a consistent interface through different models, simple to design, database aware, and user friendly we built the ui library.
+    This library lets you define your application views with a simple xml file, and has a lot of powerful different views: grid menus, list menus, forms and list browsers. For example, with a list browser you just give it a name, the fields you want to be displayed, and then you bind it to a RowSet and it shows the user a graphical list that shows information about the number or rows, the current one, and shows a single line for unselected rows and a extended view of the selected one. It handles all of the database navigation and data fetching for you.
+    We plan to evolve this library into a window toolkit, so the interface can became fully consistent. One of the drivers is the bug mentioned on the Symbian 3rd platform, but it imposes some challenges: dealing with user input in text fields is not easy and has it¡¯s drawbacks. For now, the forms are built with the standard MIDP forms, but enhanced with data binding and zero-code design.
+Helper tools: resource packing and checking, view compiling, and others.
+    These tools are simple helper tools in the development process. For example, the resource packer takes your resource files (properties files) and checks that all resources are defined in all files (no missing resources in any language). It also packs many bundles (each library has it¡¯s own set) into a single bundle, which is easier to handle from an application.
+
+What is not included in OpenBaseMovil that is currently only in BaseMovil:
+
+BaseMovil-net
+    This library hides the complexity of network usage, deals really well with network latency, errors, packet loss, and so on. It provides support for resumable downloads, uploads and more. It also provides a remote call protocol, optimized and that can be used from any kind of phone (no need for optional JSRs).
+BaseMovil-comm
+    Well, this one is easy to guess too. Communication port handling, for example for Bluetooth communication. We will probably release this one as OpenBaseMovil-comm soon. It also comes with some useful interfaces to Bluetooth devices like GPS antennas, barcode scanners or printers.
+BaseMovil-sync
+    Well, this is probably the most important one. This library is able to download a full database from bmServer, from the structure to the whole copy of the user¡¯s data. Afterwards, it is also able to send and receive only the data that has changed between both ends, in a full duplex way. Every thing you change in your local database (new data, modified data, removed data) is sent to bmServer, and everything that has changed in the server (whether by another device, by an integration point or by web access) is received and updates the local copy.
+bmServer
+    bmServer is the server part of the database synchronization engine, and of the remote procedure call protocol. It can handle many different databases, many different applications, and knows the current state of each subscribed device in order to send just the needed information when requested by the device. It also has web management interface, and integration protocols so data can be sent and received by backend systems like ERPs or CRMs.
+    It also provides a platform for application delivery. You just upload your application and database definition, and your users can send an SMS to get their push message that will install the application. The first time the application starts it proceeds with authentication and synchronization and downloads a full copy of the user¡¯s personal database (a corporate database can have, for example, 4000 customers but a single sales person will handle only 300).
+
+And now some history if you¡¯ve come this far:
+
+We have been thinking for long about releasing part of our work as Open Source code, even the full platform, but we didn¡¯t find the right motivation and of course, we were afraid because we code for a living. We have invested almost three years and a lot of money to make BaseMovil a reality. About half and a year ago, we met a mid sized company from Spain that sells sales force automation solutions for PDA and BlackBerry, and they were trying to get something like BaseMovil so they could develop their solutions for simple mobile phones with Java. They knew how hard it is (they tried), so they were interested in buying part of the company. We never got to a deal, but we now for sure that there is clear interest in BaseMovil. We don¡¯t want them to use our work for free, as you must understand.
+
+But we use Open Source software every day, I¡¯m writing this from my Ubuntu 7.10 powered laptop for example. And we feel that we should contribute to the community, and we also hope that the community will find our tools useful and will in turn help us to improve and spread them.
+
+So finally we came to the current point: we will release a very useful part of the platform under GPL, and to those who want to build closed source solutions we can offer commercial licenses and support. We have called it OpenBaseMovil, as you already know. The rest of the platform, the original BaseMovil, is in fact FREE for developers. You can use all of our libraries, including the closed source ones, and our servers for application delivery and commercialization. We just get a small piece of what you charge your customers in a monthly basis, to pay the infrastructure, bandwidth and (of course) earn some money too.
+
+We believe that this ¡°software as a service¡± approach is a better way to do business:
+
+    * better for the customer who cares for nothing, has a lower, fixed, kown cost and a much lower entry barrier. And he knows it has support and a live application.
+    * better for the developers, who know that they will earn money with a constant (growing) flow.
+
+We hope that you like our open tools, that you build great free applications with them. And we also hope that you also come to our professional developer program and create great commercial applications with us.
+
+Please, leave here your comments, we¡¯ll love to hear about your thoughts and opinions.

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="openbasemovil" default="rebuild" basedir=".">
+
+    <!--
+        OpenBaseMovil the Framework for enterprise-class J2ME Applications
+        Copyright (C) 2004-2007 Elondra S.L.
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 2 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.
+        If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+    -->
+
+    <property file="versions.properties" />
+    <property file="local.properties" />
+
+    <property name="deps.dir" value="${basedir}/deps" />
+
+    <property name="fbuild.tmp"              value="${basedir}/build" />
+    <property name="fbuild.dir"              value="${basedir}/framework" />
+    <property name="fbuild.deploy"           value="${fbuild.dir}/deploy" />
+    <property name="fbuild.deploy.src"       value="${fbuild.deploy}/src" />
+    <property name="fbuild.deploy.lib"       value="${fbuild.deploy}/lib" />
+    <property name="fbuild.deploy.apidoc"    value="${fbuild.deploy}/apidoc" />
+    <property name="file-src.dist"           value="${fbuild.dir}/${ant.project.name}-${openbasemovil-version}-src.zip" />
+    <property name="file-tools.dist"         value="${fbuild.dir}/${ant.project.name}-${openbasemovil-version}-buildtools.zip" />
+    <property name="file-bin.dist"           value="${fbuild.dir}/${ant.project.name}-${openbasemovil-version}-bin.zip" />
+    <property name="file.app-template"       value="${fbuild.dir}/app-template-${app-template.version}-src.zip" />
+    <property name="file.passkeep"           value="${fbuild.dir}/PasswordKeeper-${passkeep.version}-src.zip" />
+
+    <target name="init">
+        <mkdir dir="${fbuild.dir}" />
+        <mkdir dir="${fbuild.deploy}" />
+        <mkdir dir="${fbuild.deploy.src}" />
+        <mkdir dir="${fbuild.deploy.lib}" />
+        <mkdir dir="${fbuild.deploy.apidoc}" />
+    </target>
+
+    <target name="clean">
+        <delete failonerror="false" dir="${fbuild.tmp}"/>
+        <delete failonerror="false" dir="${fbuild.dir}"/>
+    </target>
+
+    <target name="clean-all" depends="clean">
+        <ant dir="openbasemovil-commenter" target="clean" />
+        <ant dir="openbasemovil-core" target="clean" />
+        <ant dir="openbasemovil-script" target="clean" />
+        <ant dir="openbasemovil-logimpl-console" target="clean" />
+        <ant dir="openbasemovil-comm" target="clean" />
+        <ant dir="openbasemovil-net" target="clean" />
+        <ant dir="openbasemovil-bluetooth" target="clean" />
+        <ant dir="openbasemovil-errorlog" target="clean" />
+        <!--<ant dir="basemovil-printer" target="clean" />-->
+        <ant dir="openbasemovil-storage" target="clean" />
+        <ant dir="openbasemovil-db" target="clean" />
+        <ant dir="openbasemovil-resource-pack" target="clean" />
+        <ant dir="openbasemovil-viewcompiler" target="clean" />
+        <ant dir="openbasemovil-util" target="clean" />
+        <ant dir="openbasemovil-ui" target="clean" />
+    </target>
+
+    <target name="rebuild">
+        <ant dir="openbasemovil-commenter" target="redistribute" />
+        <ant dir="openbasemovil-resource-pack" target="redistribute-text" />
+        <ant dir="openbasemovil-core" target="redistribute" />
+        <ant dir="openbasemovil-script" target="redistribute" />
+        <ant dir="openbasemovil-logimpl-console" target="redistribute" />
+        <ant dir="openbasemovil-comm" target="redistribute" />
+        <ant dir="openbasemovil-net" target="redistribute" />
+        <ant dir="openbasemovil-bluetooth" target="redistribute" />
+        <ant dir="openbasemovil-errorlog" target="redistribute" />
+        <!--<ant dir="basemovil-printer" target="redistribute" />-->
+        <ant dir="openbasemovil-storage" target="redistribute" />
+        <ant dir="openbasemovil-db" target="redistribute" />
+        <ant dir="openbasemovil-resource-pack" target="redistribute" />
+        <ant dir="openbasemovil-viewcompiler" target="redistribute" />
+        <ant dir="openbasemovil-util" target="redistribute" />
+        <ant dir="openbasemovil-ui" target="redistribute" />
+    </target>
+
+    <target name="copy-sources">
+        <mkdir dir="${fbuild.deploy.src}/${project}" />
+        <mkdir dir="${fbuild.deploy.src}/${project}/src" />
+        <mkdir dir="${fbuild.deploy.src}/${project}/res" />
+        <copy todir="${fbuild.deploy.src}/${project}/src" >
+            <fileset dir="${project}/src">
+                <exclude name="**/.svn/**" />
+            </fileset>
+        </copy>
+        <copy todir="${fbuild.deploy.src}/${project}/res" >
+            <fileset dir="${project}/res">
+                <exclude name="**/.svn/**" />
+            </fileset>
+        </copy>
+        <copy todir="${fbuild.deploy.src}/${project}" >
+            <fileset file="${project}/build.xml" />
+            <fileset file="${project}/build.properties" />
+        </copy>
+    </target>
+
+    <target name="javadoc">
+        <javadoc
+            packagenames    = "bm.*"
+            defaultexcludes = "yes"
+            destdir         = "${fbuild.deploy.apidoc}"
+            author          = "true"
+            version         = "true"
+            use             = "true"
+            stylesheetfile  = "${deps.dir}/stylesheet.css"
+            windowtitle     = "OpenBaseMovil v${openbasemovil-version} J2ME Enterprise Application Framework"
+            >
+            <packageset
+                dir="openbasemovil-core/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+            <packageset
+                dir="openbasemovil-errorlog/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+            <packageset
+                dir="openbasemovil-script/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+            <packageset
+                dir="openbasemovil-storage/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+            <packageset
+                dir="openbasemovil-db/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+            <packageset
+                dir="openbasemovil-comm/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+            <packageset
+                dir="openbasemovil-bluetooth/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+            <packageset
+                dir="openbasemovil-net/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+            <packageset
+                dir="openbasemovil-util/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+            <packageset
+                dir="openbasemovil-ui/src/main"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+        </javadoc>
+    </target>
+
+    <target name="dist" depends="clean, rebuild, javadoc">
+
+        <mkdir dir="${fbuild.dir}" />
+        <mkdir dir="${fbuild.deploy}" />
+        <mkdir dir="${fbuild.deploy.lib}" />
+
+        <copy todir="${fbuild.deploy}">
+            <fileset dir="license" includes="**/*" />
+        </copy>
+
+        <!-- copy binary files -->
+        <!--<copy todir="${build.deploy.lib}">-->
+            <!--<fileset dir="${basedir}/lib" />-->
+        <!--</copy>-->
+
+        <delete dir="${fbuild.deploy}/doc" />
+        <zip destfile="${file-bin.dist}" compress="true">
+            <fileset dir="${fbuild.deploy}">
+                <exclude name="**/*apidocs.zip" />
+                <exclude name="src" />
+            </fileset>
+        </zip>
+
+        <deltree dir="${fbuild.deploy.apidoc}" />
+        <delete dir="${fbuild.deploy.lib}">
+            <exclude name="*resource-packer*" />
+            <exclude name="*viewcompiler*" />
+        </delete>
+
+        <zip destfile="${file-tools.dist}" compress="true">
+            <fileset dir="${fbuild.deploy}">
+                <exclude name="**/*apidocs.zip" />
+                <exclude name="**/*.res" />
+                <exclude name="src" />
+            </fileset>
+        </zip>
+
+        <deltree dir="${fbuild.deploy.lib}" />
+
+        <!-- Pack sources and resources -->
+        <mkdir dir="${fbuild.deploy.src}" />
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-commenter" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-resource-pack" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-viewcompiler" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-core" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-logimpl-console" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-comm" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-bluetooth" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-net" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-db" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-errorlog" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-script" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-storage" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-util" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="openbasemovil-ui" />
+        </antcall>
+        <antcall target="copy-sources">
+            <param name="project" value="PasswordKeeper" />
+        </antcall>
+
+        <copy todir="${fbuild.deploy}">
+            <fileset dir="${basedir}" includes="build.xml" />
+            <fileset dir="${basedir}" includes="local.properties.template" />
+            <fileset dir="${basedir}" includes="versions.properties" />
+        </copy>
+
+        <mkdir dir="${fbuild.deploy}/deps" />
+        <copy todir="${fbuild.deploy}/deps">
+            <fileset dir="${deps.dir}" />
+        </copy>
+
+        <delete dir="${fbuild.deploy}/doc" />
+        <zip destfile="${file-src.dist}" compress="true">
+            <fileset dir="${fbuild.deploy}">
+                <exclude name="**/*apidocs.zip" />
+            </fileset>
+        </zip>
+    </target>
+
+    <target name="pack.app-template" depends="init">
+        <zip file="${file.app-template}">
+            <fileset dir="${basedir}/app-template" />
+        </zip>
+    </target>
+
+    <target name="pack.passkeep" depends="init">
+        <zip file="${file.passkeep}">
+            <fileset dir="${basedir}/PasswordKeeper" />
+        </zip>
+    </target>
+
+</project>

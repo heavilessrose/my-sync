@@ -1,0 +1,197 @@
+The first release of OpenBaseMovil comes from the commercial framework created
+by Elondra: BaseMovil. We have decided to keep version numbers accordingly, so
+the first release is the 3.0.
+================================================================================
+
+History:
+================================================================================
+
+OpenBaseMovil 3.0.02
+--------------------------------------------------------------------------------
+
+* Bug fixes:
+- Database: fixed bug 1887883. When creating a table, misses to add the tables
+    status to the memory structures, which makes the database fail the first
+    time. If the database is restarted it works fine. The bug has been fixed and
+    now it works without having to restart the database.
+- IndexInfo: fixed bug 1887906. When creating an IndexInfo structure, the order
+    was not checked, so the user could pass an invalid value that will make the
+    index fail. A new constant MIN_ORDER and proper checinkg have been
+    introduced.
+
+OpenBaseMovil 3.0 final
+--------------------------------------------------------------------------------
+
+Changes from 3.0 RC3:
+
+* Improvements and changes:
+
+- Added: application template for easy application creation (app-template)
+- Added: sample application (PasswordKeeper) based on the application template
+- Added: BaseController to openbasemovil-ui, this class should be subclassed by
+    actual controllers as it performs some useful tasks such as automatic menu
+    navigation and error handling.
+- Added: method addColumn suited to String columns to Table
+- Added: missing javadoc for Database and Table
+
+* Bug fixes:
+- Fixed: spaces and line wraps are now processed correctly in the files
+    properties of resource packer and view compiler
+- Fixed: device id initialization at LoginInfo
+- Fixed: version major for databases intilizes now to 0
+- Fixed: Database drop method now allows to drop incomplete or damaged databases
+- Fixed: Database setVersionMajor and setVersionMinor are now public and make
+    persistent changes when invoked
+- Fixed: addColumn method checks for Table, so you can not add String columns
+    with methods that do not support String type.
+
+OpenBaseMovil 3.0 RC3
+--------------------------------------------------------------------------------
+
+Changes from 3.0 RC2:
+
+* Improvements and changes:
+
+- BluetoothDriver, FlicReader, GpsInfo and GpsReader have been moved from util
+to bluetooth library.
+
+- StringTokenizer has been moved from util library (package bm.util) to core
+library (package bm.core.tools).
+
+- Improved the build system. Now all library versions are centralized in a
+single properties file (versions.property) and all dependencies in the build
+files take version numbers from there, so when a library changes it's release
+number the depending libraries take the correct version number.
+
+* Bug Fixes:
+
+- Table: fixed bug 1874552, table does not create the index for the built-in
+primary key
+
+- Fixed bug 1874622 that made the build system not to generate the binary file
+for openbasemovi-script.
+
+OpenBaseMovil 3.0 RC2
+--------------------------------------------------------------------------------
+This is the first COMPLETE version of the framework, which includes all the
+needed libraries and tools to create great enterprise class J2ME applications.
+
+Changes from 3.0 RC1:
+- Added: openbasemovil-comm 1.0
+This is an abstraction layer over COM ports to be able to interact with them no
+matter if they are bluetooth, serial or other COM port classes, or even if you
+are running the software on other platforms that need native libraries (such
+as Windows Mobile)
+
+- Added: openbasemovil-bluetooth 1.0
+This library has some utiltiy methods to discover and interact with bluetooth
+peripherals, as well as two views that you can directly use to search and select
+bluetooth devices and services. It defines a Bluetooth comm port.
+
+- Added: openbasemovil-net 3.0
+This is the network abstraction layer. It performs communications through the
+use of "Bindings" and provides an HttpBinding to use the phone http connection.
+This Binding architecture provides a very flexible and simple way to communicate
+with remote services or to even host a "mini-server" in the application.
+One of the reasons for this architecture is the future project to provide a
+Bluetooth binding that will communicate to a bluetooth proxy program hosted on
+a computer so the phone can connect seamlesly to the network through the computer's
+connection.
+It also contains an RPC (Remote Procedure Call) framework.
+
+- Added: openbasemovil-ui 2.0
+This is the user interface library, that let's you define your application views
+using an XML file. The XML file is then compiled to a binary, optimized format
+that you can then use from within your application.
+It has many useful data aware views, such as forms and "list browsers" that let
+you create, edit and navigate through data with just a few lines of code.
+The views perform all the bindings and transformations to show what you have
+defined in the XML.
+
+- Added: openbasemovil-util 1.0
+This library contains some useful resources:
+	* ApplicationState: this is a persistent store for application state.
+          Not every phone handles incomming calls friendly, so this helps you
+          to detect a "forced" exit and restore application state.
+	* BluetoothDriver: this is a base class to connect to bluetooth devices
+          like GPS antennas or barcode scanners.
+        * FlicReader: the driver for the Microvision Flic bluetooth barcode
+          scanner.
+        * GpsReader: a driver for any NMEA compatible bluetooth GPS antenna,
+          that will send you events with positioning from the GPS device.
+        * IndexResourceProvider: a provider for the core library ResourceManager
+          that uses indexes instead of property files. You an build this kind of
+          files with the already released resource-packer.
+	* StringTokenizer: a replacement for this JavaSE missing class.
+	* Util: a static class with some useful methods.
+
+- Added: openbasemovil-viewcompiler
+This is the command line tool and Ant task that converts the XML view definitions
+into it's binary optimized form.
+
+- Added: dependencies: some of the Jakarta Common libraries for the viewcompiler.
+
+- modified: build.xml for the project so it includes this new libraries.
+
+OpenBaseMovil 3.0 RC1
+--------------------------------------------------------------------------------
+This is the first "almost complete" version of the framework, it lacks the ui
+library and some tools for the complete build process. Those are to be included
+int RC2.
+We've called it RC1 because of this lack of the ui library and because we have
+added some methods and made some changes in the database engine so it can work
+in standalone mode. As opposed to the commercial version which always is created
+and populated over the air with the sync engine.
+But you can consider it really stable and spect minor changes in the following
+releases.
+We expect to release an RC2 with ui, tools, and probably some more libraries,
+and then the final 3.0.
+
+This version includes:
+- openbasemovil-commenter
+A command line tool and Ant Task that preprocesses source files commenting out
+lines with given patterns. It is used to absolutely strip logging from
+production version of libraries and programs (to reduce size and increase speed)
+
+- openbasemovil-core 2.0.1
+The core library which has the classes that support all of the infrastructure.
+It depends in no other, and all the rest depend on it.
+
+- openbasemovil-script 0.1
+The scripting library, currently can be considered standalone and only depends
+on openbasemovil-core.
+
+- openbasemovil-errorlog 3.0
+This is a persistent errorlog implementation. We are considering to remove it
+since it's main purpose in the commercial version is to track and send errors
+that might happen.
+
+- openbasemovil-storage 3.0
+This is an abstraction layer over the actual RMS, so the database engine only
+thinks in terms of Stores and records.
+It performs several important tasks, such as record multiplexing and much more
+in the upcomming 4.0 release.
+
+- openbasemovil-db 3.0.1 RC1
+The database library. This is the relational database engine.
+This version has no SQL support yet, and has an incomplete implementation of the
+scripting bindings (to use the database from the scripting engine).
+
+- openbasemovil-logimpl-console 1.0
+Implementation of the Log class that sends output to the console. This is used
+to build the debug version of applications, so you can see the log in the
+console.
+
+- openbasemovil-resource-pack
+A command line tool and Ant Task that consolidates multiple resource boundles
+into one single boundle, checking that all resources are present in all the
+languages detected.
+Can also be used to check that a single resource boundle has no missing
+resources.
+It is compiled in two flavors, one of them can conly generate properties files
+for the resources. This one is used along the libraries to check that no
+resources are missing, since it has no dependencies on any of them.
+The second flavor uses the core and db libraries and is able to output the
+resources also as a binary file in the form of a btree index.
+This version is for applications.
+

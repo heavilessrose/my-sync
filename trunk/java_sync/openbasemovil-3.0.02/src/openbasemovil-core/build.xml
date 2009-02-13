@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="openbasemovil-core" default="dist" basedir=".">
+    <!--
+        OpenBaseMovil Core Library, foundation of the OpenBaseMovil database and tools
+        Copyright (C) 2004-2008 Elondra S.L.
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 2 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.
+        If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+    -->
+
+    <!-- =================================================================== -->
+    <!-- Properties                                                          -->
+    <!-- =================================================================== -->
+
+    <!-- Properties definition:
+            * local.properties contains specific machine paths:
+
+                commenter.classpath = class path for the commenter tool
+                java1.5             = path to the java 1.5 or later command
+                wtk.home            = path to the home of the Wireless Toolkit
+
+            * build.properties contains proejct settings
+    -->
+    <property file="../local.properties"/>
+    <property file="build.properties"/>
+    <property file="../versions.properties" />
+    <property name="product.version" value="${openbasemovil-core.version}" />
+    <property name="deps.dir" value="${basedir}/../deps" />
+    <property name="lib.dir" value="${basedir}/../framework/deploy/lib" />
+
+    <!-- Source directories ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="dir.src"                value="${basedir}/src"/>
+    <property name="dir.src.main"           value="${dir.src}/main"/>
+    <property name="dir.doc"                value="${basedir}/doc"/>
+    <property name="dir.res"                value="${basedir}/res"/>
+
+    <!-- Build directories +++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="build.dir"              value="${basedir}/build"/>
+    <property name="build.comment"          value="${build.dir}/comment"/>
+    <property name="build.preprocess"       value="${build.dir}/preprocess"/>
+    <property name="build.preprocess.debug" value="${build.dir}/preprocessdbg"/>
+    <property name="build.preprocess-cldc11"       value="${build.dir}/preprocess-cldc11"/>
+    <property name="build.preprocess-cldc11.debug" value="${build.dir}/preprocessdbg-cldc11"/>
+
+    <property name="build.classes"          value="${build.dir}/classes"/>
+    <property name="build.classes.main"     value="${build.dir}/classes/main"/>
+    <property name="build.classes.debug"    value="${build.dir}/classes-debug"/>
+    <property name="build.classes.debug.main" value="${build.dir}/classes-debug/main"/>
+    <property name="build.classes.main-cldc11"     value="${build.dir}/classes/main-cldc11"/>
+    <property name="build.classes.debug.main-cldc11" value="${build.dir}/classes-debug/main-cldc11"/>
+
+    <property name="build.classes.test"     value="${build.dir}/test-classes"/>
+    <property name="build.lib"              value="${build.dir}/lib"/>
+    <property name="build.doc"              value="${build.dir}/docs"/>
+    <property name="build.deploy"           value="${build.dir}/deploy"/>
+    <property name="build.deploy.lib"       value="${build.deploy}/lib"/>
+    <property name="build.deploy.doc"       value="${build.deploy}/doc"/>
+    <property name="build.deploy.src"       value="${build.deploy}/src"/>
+    <property name="build.deploy.res"       value="${build.deploy}/res"/>
+    <property name="build.deploy.doc-api"   value="${build.deploy}/doc/api"/>
+    <property name="build.dist"             value="${build.deploy}/dist"/>
+
+    <!-- Archives ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="file.main.name"         value="${ant.project.name}-${product.version}.jar" />
+    <property name="file.main.debug.name"         value="${ant.project.name}-${product.version}-debug.jar" />
+    <property name="file.main.jar"          value="${build.lib}/${file.main.name}" />
+    <property name="file.main.debug.jar"    value="${build.lib}/${file.main.debug.name}" />
+
+    <property name="file.main-cldc11.name"         value="${ant.project.name}-${product.version}-cldc11.jar" />
+    <property name="file.main-cldc11.debug.name"         value="${ant.project.name}-${product.version}-cldc11-debug.jar" />
+    <property name="file.main-cldc11.jar"          value="${build.lib}/${file.main-cldc11.name}" />
+    <property name="file.main-cldc11.debug.jar"    value="${build.lib}/${file.main-cldc11.debug.name}" />
+
+    <property name="file.doc.zip"           value="${lib.dir}/${ant.project.name}-${product.version}-apidocs.zip" />
+
+
+    <property name="file.dist.src"  value="${build.dist}/${ant.project.name}-${product.version}-src.zip" />
+    <property name="file.dist.doc-api"  value="${build.dist}/${ant.project.name}-${product.version}-apidocs.zip" />
+    <property name="file.dist.bin"  value="${build.dist}/${ant.project.name}-${product.version}-bin.zip" />
+
+    <!-- Misc properties +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="build.compiler"         value="modern"/>
+    <property name="javadoc.window-title"   value="${product.description} v${product.version}"/>
+
+    <!-- =================================================================== -->
+    <!-- Paths                                                               -->
+    <!-- =================================================================== -->
+    <path id="cldc10.classpath">
+        <fileset file="${wtk.home}/lib/cldcapi10.jar" />
+        <fileset file="${wtk.home}/lib/midpapi20.jar" />
+    </path>
+
+    <path id="cldc11.classpath">
+        <fileset file="${wtk.home}/lib/cldcapi11.jar" />
+        <fileset file="${wtk.home}/lib/midpapi20.jar" />
+    </path>
+
+    <target name="clean">
+        <delete failonerror="false" dir="${build.dir}"/>
+    </target>
+
+    <target name="init" unless="initialized" >
+        <property name="initialized" value="true" />
+        <echo message="build.compiler   = ${build.compiler}"/>
+        <echo message="user.home        = ${user.home}"/>
+        <echo message="java.home        = ${java.home}"/>
+        <echo message="ant.home         = ${ant.home}"/>
+        <echo message="java.class.path  = ${java.class.path}"/>
+        <echo message=""/>
+        <available property="jdk1.3+" classname="java.lang.StrictMath"/>
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.lib}"/>
+        <mkdir dir="${build.deploy}"/>
+        <mkdir dir="${build.deploy.doc}"/>
+        <mkdir dir="${build.deploy.res}"/>
+        <mkdir dir="${build.deploy.doc-api}"/>
+        <mkdir dir="${build.deploy.lib}"/>
+
+        <mkdir dir="${build.classes}"/>
+        <mkdir dir="${build.comment}" />
+        <mkdir dir="${build.preprocess}" />
+        <mkdir dir="${build.preprocess.debug}" />
+        <mkdir dir="${build.classes.main}"/>
+        <mkdir dir="${build.classes.debug}"/>
+        <mkdir dir="${build.classes.debug.main}"/>
+        <mkdir dir="${build.classes.test}"/>
+
+        <mkdir dir="${build.preprocess-cldc11}" />
+        <mkdir dir="${build.preprocess-cldc11.debug}" />
+        <mkdir dir="${build.classes.debug.main-cldc11}"/>
+        <mkdir dir="${build.classes.main-cldc11}"/>
+
+        <mkdir dir="${build.doc}"/>
+        <mkdir dir="${build.dist}"/>
+    </target>
+
+    <path id="declare.path">
+        <fileset file="${lib.dir}/text-resource-packer.jar" />
+        <fileset file="${deps.dir}/antenna-bin.jar" />
+    </path>
+
+    <target name="declare" depends="init">
+        <taskdef resource="antenna.properties" classpathref="declare.path"/>
+        <taskdef resource="resourcePacker.properties" classpathref="declare.path"/>
+        <!--<typedef resource="resourceFile.properties" classpathref="declare.path"/>-->
+    </target>
+
+    <target name="comment">
+        <taskdef
+                resource="commenter.properties"
+                classpath="${lib.dir}/openbasemovil-commenter.jar"
+                />
+        <commenter in="${dir.src.main}" out="${build.comment}"
+                patterns="import bm.core.log., Log log, log.">
+        </commenter>
+    </target>
+
+    <target name="preprocess" depends="comment, declare">
+        <wtkpreprocess
+                srcdir="${build.comment}"
+                destdir="${build.preprocess}"
+                />
+    </target>
+
+    <target name="preprocess.debug" depends="declare">
+        <wtkpreprocess
+                srcdir="${dir.src.main}"
+                destdir="${build.preprocess.debug}"
+                symbols="debug_mode"
+                />
+    </target>
+
+    <target name="preprocess-cldc11" depends="comment, declare">
+        <wtkpreprocess
+                srcdir="${build.comment}"
+                destdir="${build.preprocess-cldc11}"
+                symbols="cldc11"
+                />
+    </target>
+
+    <target name="preprocess-cldc11.debug" depends="declare">
+        <wtkpreprocess
+                srcdir="${dir.src.main}"
+                destdir="${build.preprocess-cldc11.debug}"
+                symbols="cldc11,debug_mode"
+                />
+    </target>
+
+    <target name="compile" depends="preprocess">
+        <property name="wtk.cldc.version" value="1.0" />
+        <wtkbuild
+                srcdir="${build.preprocess}"
+                destdir="${build.classes.main}"
+                preverify="true"
+                debug="off"
+                optimize="on"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc10.classpath"
+        />
+    </target>
+
+    <target name="compile-debug" depends="preprocess.debug">
+        <property name="wtk.cldc.version" value="1.0" />
+        <wtkbuild
+                srcdir="${build.preprocess.debug}"
+                destdir="${build.classes.debug.main}"
+                preverify="true"
+                debug="on"
+                optimize="off"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc10.classpath"
+        />
+    </target>
+
+    <target name="compile-cldc11" depends="preprocess-cldc11">
+        <property name="wtk.cldc.version" value="1.1" />
+        <wtkbuild
+                srcdir="${build.preprocess-cldc11}"
+                destdir="${build.classes.main-cldc11}"
+                preverify="true"
+                debug="off"
+                optimize="on"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc11.classpath"
+        />
+    </target>
+
+    <target name="compile-cldc11-debug" depends="preprocess-cldc11.debug">
+        <property name="wtk.cldc.version" value="1.1" />
+        <wtkbuild
+                srcdir="${build.preprocess-cldc11.debug}"
+                destdir="${build.classes.debug.main-cldc11}"
+                preverify="true"
+                debug="on"
+                optimize="off"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc11.classpath"
+        />
+    </target>
+
+    <target name="pack" depends="compile">
+        <jar basedir="${build.classes.main}" destfile="${file.main.jar}" />
+    </target>
+
+    <target name="pack-debug" depends="compile-debug">
+        <jar basedir="${build.classes.debug.main}" destfile="${file.main.debug.jar}" />
+    </target>
+
+    <target name="pack-cldc11" depends="compile-cldc11">
+        <jar basedir="${build.classes.main-cldc11}" destfile="${file.main-cldc11.jar}" />
+    </target>
+
+    <target name="pack-cldc11-debug" depends="compile-cldc11-debug">
+        <jar basedir="${build.classes.debug.main-cldc11}" destfile="${file.main-cldc11.debug.jar}" />
+    </target>
+
+    <target name="javadoc">
+        <javadoc
+            packagenames    = "bm.*"
+            defaultexcludes = "yes"
+            destdir         = "${build.doc}"
+            author          = "true"
+            version         = "true"
+            use             = "true"
+            stylesheetfile  = "${lib.dir}/stylesheet.css"
+            windowtitle     = "${javadoc.window-title}"
+            >
+            <packageset
+                dir="${dir.src.main}"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+        </javadoc>
+        <zip basedir="${build.doc}" destfile="${file.doc.zip}" />
+    </target>
+
+    <target name="check-jars">
+        <uptodate property="update-needed">
+            <srcfiles
+                dir     = "${build.lib}"
+                includes= "*.jar"
+                />
+            <mapper
+                type    = "identity"
+                to      = "${lib.dir}"
+                />
+        </uptodate>
+    </target>
+
+    <target name="update-resources" depends="declare">
+        <resource-pack
+                out="${lib.dir}/core.res/bm-core"
+                files="${dir.res}/bm-core"
+                />
+    </target>
+
+    <target name="update-mylibraries" depends="check-jars, declare, update-resources" if="update-needed">
+        <copy todir="${lib.dir}">
+            <fileset dir="${build.lib}" includes="*.jar" />
+        </copy>
+    </target>
+
+    <target name="dist" depends="clean, javadoc, pack, pack-cldc11, pack-debug, pack-cldc11-debug">
+
+        <!-- Pack sources and resources -->
+        <copy todir="${build.deploy}">
+            <fileset dir="license" includes="**/*" />
+        </copy>
+        <resource-pack out="${build.deploy.res}/bm-core"
+                       files="${dir.res}/bm-core"
+                />
+        <copy todir="${build.deploy.src}">
+            <fileset dir="${dir.src.main}" includes="**/*" />
+        </copy>
+        <zip destfile="${file.dist.src}" compress="true">
+            <fileset dir="${build.deploy}">
+                <include name="README" />
+                <include name="COPYING" />
+                <include name="license/**" />
+                <include name="res/**" />
+                <include name="src/**" />
+            </fileset>
+        </zip>
+
+        <!-- pack api docs -->
+        <copy todir="${build.deploy.doc-api}">
+            <fileset dir="${build.doc}" />
+        </copy>
+        <zip destfile="${file.dist.doc-api}" compress="true">
+            <fileset dir="${build.deploy}">
+                <include name="README" />
+                <include name="COPYING" />
+                <include name="license/**" />
+                <include name="doc/api/**" />
+            </fileset>
+        </zip>
+
+        <!-- copy pdf docs -->
+        <copy todir="${build.dist}">
+            <fileset dir="${dir.doc}" includes="**/*.pdf" />
+        </copy>
+
+        <!-- create bin packages -->
+        <copy todir="${build.deploy.lib}">
+            <fileset dir="${build.lib}" includes="*.jar" />
+            <fileset dir="${basedir}/lib" includes="*.jar" />
+        </copy>
+        <zip destfile="${file.dist.bin}" compress="true">
+            <fileset dir="${build.deploy}" includes="lib/**"/>
+        </zip>
+    </target>
+
+    <target name="redistribute" depends="clean, pack, pack-debug, pack-cldc11, pack-cldc11-debug, update-mylibraries" />
+
+</project>

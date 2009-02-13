@@ -1,0 +1,112 @@
+/* -----------------------------------------------------------------------------
+    bmScript Scripting language for Mobile Devices
+    Copyright (C) 2004-2008 Elondra S.L.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.
+    If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+----------------------------------------------------------------------------- */
+
+// Sample bmScript class
+
+class Sample
+{
+    property String     string1;
+    property int        int1;
+    /*
+        Block comment
+    */
+    property short      short1;
+    property long       long1;
+    // line comment
+    property byte       byte1;;
+    property double     double1; // line comment
+
+    /**/
+
+    // /**/
+
+    method Sample()
+    {
+        set string1 = "string"; // comment
+        set int1 = 10;
+        /* comment
+        */
+        set short1 = 20;
+        set long1 = 4003;
+        set byte1 = 0x02;
+        set double1 = 2.56;
+    }
+
+    method int calc( int p1 )
+    {
+        var int retval;
+        set retval = ( short1 * p1 );
+        if( (retval == 10 ) )
+        {
+            return 10;
+        }
+        else
+        {
+            return 20;
+        }
+    }
+
+    method int calc3()
+    {
+        var int i;
+        set i = 1;
+        while( (i < 10) )
+        {
+            set i = (i + 1);
+        }
+        return i;
+    }
+
+    method int calc2()
+    {
+        return (( int1 * short1 ) + 2);
+    }
+
+    method Sample sampleMethod()
+    {
+        return this;
+    }
+
+    method String toString()
+    {
+        return ( ("Sample: {" + string1) + "}" );
+    }
+
+    method int main()
+    {
+        var Sample a1;
+        set a1 = this.sampleMethod();
+        system.println( a1 );
+        var int i1;
+        set i1 = this.calc2();
+        system.println( ( "calc3: " + this.calc3() ) );
+        system.println( ( "i1: " + i1 ) );
+        system.println( "Hola" );
+        system.println( a1.calc( i1 ) );
+
+        var A a;
+        set a = new A();
+        var B b;
+        set b = new B();
+        system.println( a.echo( "Manuel" ) );
+        system.println( b.echo( "Raquel" ) );
+        system.println( b.echo2( "Victoria" ) );
+        return 0;
+    }
+}

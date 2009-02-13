@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="passkeep" default="rebuild" basedir=".">
+
+    <!--
+        PasswordKeeper, keep your passwords safe and at hand
+        Copyright (C) 2004-2008 Elondra S.L.
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 2 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.
+        If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+    -->
+
+    <!-- =================================================================== -->
+    <!-- Properties                                                          -->
+    <!-- =================================================================== -->
+
+    <!-- Properties definition:
+            * First, try properties from user home (system dependent settings)
+            * Then, use the project ant.properties file
+    -->
+    <property file="local.properties"/>
+    <property file="build.properties"/>
+
+    <!-- Source directories ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="dir.src"                value="${basedir}/src"/>
+    <property name="dir.src.main"           value="${dir.src}/main"/>
+    <property name="dir.res"                value="${basedir}/res"/>
+    <property name="dir.lib"                value="${openbasemovil.dir}" />
+
+    <!-- Build directories +++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <property name="build.dir"              value="${basedir}/build"/>
+    <property name="build.classes"          value="${build.dir}/classes"/>
+    <property name="build.comment"          value="${build.dir}/comment"/>
+
+    <property name="build.preprocess"       value="${build.dir}/preprocess"/>
+    <property name="build.preprocess.debug" value="${build.dir}/preprocess-debug"/>
+    <property name="build.preprocess-cldc11"       value="${build.dir}/preprocess-cldc11"/>
+    <property name="build.preprocess-cldc11.debug" value="${build.dir}/preprocess-cldc11-debug"/>
+    <property name="build.preprocess-basic"       value="${build.dir}/preprocess-basic"/>
+    <property name="build.preprocess-basic.debug" value="${build.dir}/preprocess-basic-debug"/>
+    <property name="build.preprocess-basic-cldc11"       value="${build.dir}/preprocess-basic-cldc11"/>
+    <property name="build.preprocess-basic-cldc11.debug" value="${build.dir}/preprocess-basic-cldc11-debug"/>
+
+    <property name="build.classes.debug"    value="${build.dir}/classes-debug"/>
+    <property name="build.classes.main"     value="${build.dir}/classes/main"/>
+    <property name="build.classes.debug.main" value="${build.dir}/classes-debug/main"/>
+    <property name="build.classes.main-cldc11"     value="${build.dir}/classes/main-cldc11"/>
+    <property name="build.classes.debug.main-cldc11" value="${build.dir}/classes-debug/main-cldc11"/>
+    <property name="build.classes.main-basic"     value="${build.dir}/classes/main-basic"/>
+    <property name="build.classes.debug.main-basic" value="${build.dir}/classes-debug/main-basic"/>
+    <property name="build.classes.main-basic-cldc11"     value="${build.dir}/classes/main-basic-cldc11"/>
+    <property name="build.classes.debug.main-basic-cldc11" value="${build.dir}/classes-debug/main-basic-cldc11"/>
+
+    <property name="build.classes.test"     value="${build.dir}/test-classes"/>
+    <property name="build.lib"              value="${build.dir}/lib"/>
+    <property name="build.res"              value="${build.dir}/res"/>
+    <property name="build.deploy"           value="${build.dir}/deploy"/>
+    <property name="build.deploy.lib"       value="${build.deploy}/lib"/>
+    <property name="build.deploy.main"      value="${build.deploy}/main"/>
+
+    <!-- Archives ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <property name="file.main.jar"          value="${build.lib}/${midlet.appName}.jar" />
+    <property name="file.main.jad"          value="${build.lib}/${midlet.appName}.jad" />
+    <property name="file.main.debug.jar"    value="${build.lib}/${midlet.appName}-debug.jar" />
+    <property name="file.main.debug.jad"    value="${build.lib}/${midlet.appName}-debug.jad" />
+
+    <property name="file.main-cldc11.jar"          value="${build.lib}/${midlet.appName}-cldc11.jar" />
+    <property name="file.main-cldc11.jad"          value="${build.lib}/${midlet.appName}-cldc11.jad" />
+    <property name="file.main-cldc11.debug.jar"    value="${build.lib}/${midlet.appName}-cldc11-debug.jar" />
+    <property name="file.main-cldc11.debug.jad"    value="${build.lib}/${midlet.appName}-cldc11-debug.jad" />
+
+    <property name="file.main-basic.jar"          value="${build.lib}/${midlet.appName}-basic.jar" />
+    <property name="file.main-basic.jad"          value="${build.lib}/${midlet.appName}-basic.jad" />
+    <property name="file.main-basic.debug.jar"    value="${build.lib}/${midlet.appName}-basic-debug.jar" />
+    <property name="file.main-basic.debug.jad"    value="${build.lib}/${midlet.appName}-basic-debug.jad" />
+
+    <property name="file.main-basic-cldc11.jar"          value="${build.lib}/${midlet.appName}-basic-cldc11.jar" />
+    <property name="file.main-basic-cldc11.jad"          value="${build.lib}/${midlet.appName}-basic-cldc11.jad" />
+    <property name="file.main-basic-cldc11.debug.jar"    value="${build.lib}/${midlet.appName}-basic-cldc11-debug.jar" />
+    <property name="file.main-basic-cldc11.debug.jad"    value="${build.lib}/${midlet.appName}-basic-cldc11-debug.jad" />
+
+    <property name="file.views.in"          value="${dir.src.main}/views.xml" />
+    <property name="file.views.out"         value="${build.res}/views.index" />
+
+    <!-- Misc properties +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <property name="build.compiler"         value="modern"/>
+
+    <!-- =================================================================== -->
+    <!-- Paths                                                               -->
+    <!-- =================================================================== -->
+    <property
+        name    = "lib.bluetooth.res"
+        value   = "${dir.lib}/bluetooth.res" />
+    <property
+        name    = "lib.util.res"
+        value   = "${dir.lib}/util.res" />
+    <property
+        name    = "lib.ui.res"
+        value   = "${dir.lib}/ui.res" />
+    <property
+        name    = "lib.db.res"
+        value   = "${dir.lib}/db.res" />
+    <property
+        name    = "lib.core.res"
+        value   = "${dir.lib}/core.res" />
+    <property
+        name    = "lib.net.res"
+        value   = "${dir.lib}/net.res" />
+    <property
+        name    = "lib.storage.res"
+        value   = "${dir.lib}/storage.res" />
+    <property
+        name    = "lib.errorlog.res"
+        value   = "${dir.lib}/errorlog.res" />
+
+    <property
+        name    = "lib.basemovil-db"
+        value   = "${dir.lib}/openbasemovil-db-${openbasemovil-db.version}.jar" />
+    <property
+        name    = "lib.basemovil-net"
+        value   = "${dir.lib}/openbasemovil-net-${openbasemovil-net.version}.jar" />
+    <property
+        name    = "lib.basemovil-core"
+        value   = "${dir.lib}/openbasemovil-core-${openbasemovil-core.version}.jar" />
+    <property
+        name    = "lib.basemovil-core-cldc11"
+        value   = "${dir.lib}/openbasemovil-core-${openbasemovil-core.version}-cldc11.jar" />
+    <property
+        name    = "lib.basemovil-util"
+        value   = "${dir.lib}/openbasemovil-util-${openbasemovil-util.version}.jar" />
+    <property
+        name    = "lib.basemovil-ui"
+        value   = "${dir.lib}/openbasemovil-ui-${openbasemovil-ui.version}.jar" />
+    <property
+        name    = "lib.basemovil-comm"
+        value   = "${dir.lib}/openbasemovil-comm-${openbasemovil-comm.version}-midp.jar" />
+    <property
+        name    = "lib.basemovil-bluetooth"
+        value   = "${dir.lib}/openbasemovil-bluetooth-${openbasemovil-bluetooth.version}.jar" />
+    <property
+        name    = "lib.basemovil-errorlog"
+        value   = "${dir.lib}/openbasemovil-errorlog-${openbasemovil-errorlog.version}.jar" />
+    <property
+        name    = "lib.basemovil-storage"
+        value   = "${dir.lib}/openbasemovil-storage-${openbasemovil-storage.version}.jar" />
+    <property
+        name    = "lib.basemovil-script"
+        value   = "${dir.lib}/openbasemovil-script-${openbasemovil-script.version}.jar" />
+
+    <property
+        name    = "lib.basemovil-db-debug"
+        value   = "${dir.lib}/openbasemovil-db-${openbasemovil-db.version}-debug.jar" />
+    <property
+        name    = "lib.basemovil-net-debug"
+        value   = "${dir.lib}/openbasemovil-net-${openbasemovil-net.version}-debug.jar" />
+    <property
+        name    = "lib.basemovil-core-debug"
+        value   = "${dir.lib}/openbasemovil-core-${openbasemovil-core.version}-debug.jar" />
+    <property
+        name    = "lib.basemovil-core-cldc11-debug"
+        value   = "${dir.lib}/openbasemovil-core-${openbasemovil-core.version}-cldc11-debug.jar" />
+    <property
+        name    = "lib.basemovil-util-debug"
+        value   = "${dir.lib}/openbasemovil-util-${openbasemovil-util.version}-debug.jar" />
+    <property
+        name    = "lib.basemovil-ui-debug"
+        value   = "${dir.lib}/openbasemovil-ui-${openbasemovil-ui.version}-debug.jar" />
+    <property
+        name    = "lib.basemovil-comm-debug"
+        value   = "${dir.lib}/openbasemovil-comm-${openbasemovil-comm.version}-midp-debug.jar" />
+    <property
+        name    = "lib.basemovil-bluetooth-debug"
+        value   = "${dir.lib}/openbasemovil-bluetooth-${openbasemovil-bluetooth.version}-debug.jar" />
+    <property
+        name    = "lib.basemovil-log-debug"
+        value   = "${dir.lib}/openbasemovil-logimpl-console-${openbasemovil-logimpl-console.version}.jar" />
+    <property
+        name    = "lib.basemovil-errorlog-debug"
+        value   = "${dir.lib}/openbasemovil-errorlog-${openbasemovil-errorlog.version}-debug.jar" />
+    <property
+        name    = "lib.basemovil-storage-debug"
+        value   = "${dir.lib}/openbasemovil-storage-${openbasemovil-storage.version}-debug.jar" />
+    <property
+        name    = "lib.basemovil-script-debug"
+        value   = "${dir.lib}/openbasemovil-script-${openbasemovil-script.version}-debug.jar" />
+
+    <path id="common.class.path">
+        <pathelement location="${lib.basemovil-core}" />
+        <pathelement location="${lib.basemovil-util}" />
+        <pathelement location="${lib.basemovil-ui}" />
+        <pathelement location="${lib.basemovil-db}" />
+        <pathelement location="${lib.basemovil-net}" />
+        <pathelement location="${lib.basemovil-errorlog}" />
+        <pathelement location="${lib.basemovil-comm}" />
+        <pathelement location="${lib.basemovil-bluetooth}" />
+        <pathelement location="${lib.basemovil-storage}" />
+        <pathelement location="${lib.basemovil-script}" />
+    </path>
+
+    <path id="debug.class.path">
+        <pathelement location="${lib.basemovil-core-debug}" />
+        <pathelement location="${lib.basemovil-util-debug}" />
+        <pathelement location="${lib.basemovil-ui-debug}" />
+        <pathelement location="${lib.basemovil-log-debug}" />
+        <pathelement location="${lib.basemovil-db-debug}" />
+        <pathelement location="${lib.basemovil-net-debug}" />
+        <pathelement location="${lib.basemovil-errorlog-debug}" />
+        <pathelement location="${lib.basemovil-comm-debug}" />
+        <pathelement location="${lib.basemovil-bluetooth-debug}" />
+        <pathelement location="${lib.basemovil-storage-debug}" />
+        <pathelement location="${lib.basemovil-script-debug}" />
+    </path>
+
+    <path id="common-cldc11.class.path">
+        <pathelement location="${lib.basemovil-core-cldc11}" />
+        <pathelement location="${lib.basemovil-util}" />
+        <pathelement location="${lib.basemovil-ui}" />
+        <pathelement location="${lib.basemovil-db}" />
+        <pathelement location="${lib.basemovil-net}" />
+        <pathelement location="${lib.basemovil-errorlog}" />
+        <pathelement location="${lib.basemovil-comm}" />
+        <pathelement location="${lib.basemovil-bluetooth}" />
+        <pathelement location="${lib.basemovil-storage}" />
+        <pathelement location="${lib.basemovil-script}" />
+    </path>
+
+    <path id="debug-cldc11.class.path">
+        <pathelement location="${lib.basemovil-core-cldc11-debug}" />
+        <pathelement location="${lib.basemovil-util-debug}" />
+        <pathelement location="${lib.basemovil-ui-debug}" />
+        <pathelement location="${lib.basemovil-log-debug}" />
+        <pathelement location="${lib.basemovil-db-debug}" />
+        <pathelement location="${lib.basemovil-net-debug}" />
+        <pathelement location="${lib.basemovil-errorlog-debug}" />
+        <pathelement location="${lib.basemovil-comm-debug}" />
+        <pathelement location="${lib.basemovil-bluetooth-debug}" />
+        <pathelement location="${lib.basemovil-storage-debug}" />
+        <pathelement location="${lib.basemovil-script-debug}" />
+    </path>
+
+    <path id="basic.class.path">
+        <pathelement location="${lib.basemovil-core}" />
+        <pathelement location="${lib.basemovil-util}" />
+        <pathelement location="${lib.basemovil-ui}" />
+        <pathelement location="${lib.basemovil-db}" />
+        <pathelement location="${lib.basemovil-net}" />
+        <pathelement location="${lib.basemovil-errorlog}" />
+        <pathelement location="${lib.basemovil-storage}" />
+        <pathelement location="${lib.basemovil-script}" />
+    </path>
+
+    <path id="debug-basic.class.path">
+        <pathelement location="${lib.basemovil-core-debug}" />
+        <pathelement location="${lib.basemovil-util-debug}" />
+        <pathelement location="${lib.basemovil-ui-debug}" />
+        <pathelement location="${lib.basemovil-log-debug}" />
+        <pathelement location="${lib.basemovil-db-debug}" />
+        <pathelement location="${lib.basemovil-net-debug}" />
+        <pathelement location="${lib.basemovil-errorlog-debug}" />
+        <pathelement location="${lib.basemovil-storage-debug}" />
+        <pathelement location="${lib.basemovil-script-debug}" />
+    </path>
+
+    <path id="basic-cldc11.class.path">
+        <pathelement location="${lib.basemovil-core-cldc11}" />
+        <pathelement location="${lib.basemovil-util}" />
+        <pathelement location="${lib.basemovil-ui}" />
+        <pathelement location="${lib.basemovil-db}" />
+        <pathelement location="${lib.basemovil-net}" />
+        <pathelement location="${lib.basemovil-errorlog}" />
+        <pathelement location="${lib.basemovil-storage}" />
+        <pathelement location="${lib.basemovil-script}" />
+    </path>
+
+    <path id="debug-basic-cldc11.class.path">
+        <pathelement location="${lib.basemovil-core-cldc11-debug}" />
+        <pathelement location="${lib.basemovil-util-debug}" />
+        <pathelement location="${lib.basemovil-ui-debug}" />
+        <pathelement location="${lib.basemovil-log-debug}" />
+        <pathelement location="${lib.basemovil-db-debug}" />
+        <pathelement location="${lib.basemovil-net-debug}" />
+        <pathelement location="${lib.basemovil-errorlog-debug}" />
+        <pathelement location="${lib.basemovil-storage-debug}" />
+        <pathelement location="${lib.basemovil-script-debug}" />
+    </path>
+
+    <path id="cldc10.classpath">
+        <fileset file="${wtk.home}/lib/cldcapi10.jar" />
+        <fileset file="${wtk.home}/lib/midpapi20.jar" />
+        <fileset file="${wtk.home}/lib/jsr082.jar" />
+        <fileset file="${wtk.home}/lib/jsr184.jar" />
+        <fileset file="${wtk.home}/lib/jsr75.jar" />
+        <fileset file="${wtk.home}/lib/mmapi.jar" />
+        <fileset file="${wtk.home}/lib/wma20.jar" />
+    </path>
+
+    <path id="cldc11.classpath">
+        <fileset file="${wtk.home}/lib/cldcapi11.jar" />
+        <fileset file="${wtk.home}/lib/midpapi20.jar" />
+        <fileset file="${wtk.home}/lib/jsr082.jar" />
+        <fileset file="${wtk.home}/lib/jsr184.jar" />
+        <fileset file="${wtk.home}/lib/jsr75.jar" />
+        <fileset file="${wtk.home}/lib/mmapi.jar" />
+        <fileset file="${wtk.home}/lib/wma20.jar" />
+    </path>
+
+    <path id="cldc10-basic.classpath">
+        <fileset file="${wtk.home}/lib/cldcapi10.jar" />
+        <fileset file="${wtk.home}/lib/midpapi20.jar" />
+        <fileset file="${wtk.home}/lib/mmapi.jar" />
+        <fileset file="${wtk.home}/lib/wma20.jar" />
+    </path>
+
+    <path id="cldc11-basic.classpath">
+        <fileset file="${wtk.home}/lib/cldcapi11.jar" />
+        <fileset file="${wtk.home}/lib/midpapi20.jar" />
+        <fileset file="${wtk.home}/lib/mmapi.jar" />
+        <fileset file="${wtk.home}/lib/wma20.jar" />
+    </path>
+
+    <target name="clean">
+        <delete failonerror="false" dir="${build.dir}"/>
+    </target>
+
+    <target name="init" unless="initialized" >
+        <property name="initialized" value="true" />
+        <echo message="build.compiler   = ${build.compiler}"/>
+        <echo message="user.home        = ${user.home}"/>
+        <echo message="java.home        = ${java.home}"/>
+        <echo message="ant.home         = ${ant.home}"/>
+        <echo message="java.class.path  = ${java.class.path}"/>
+        <echo message=""/>
+        <available property="jdk1.3+" classname="java.lang.StrictMath"/>
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.lib}"/>
+        <mkdir dir="${build.res}"/>
+        <mkdir dir="${build.deploy}"/>
+        <mkdir dir="${build.deploy.lib}"/>
+        <mkdir dir="${build.deploy.main}"/>
+        <mkdir dir="${build.classes}"/>
+        <mkdir dir="${build.comment}"/>
+        <mkdir dir="${build.preprocess}"/>
+        <mkdir dir="${build.preprocess.debug}"/>
+        <mkdir dir="${build.classes.main}"/>
+        <mkdir dir="${build.classes.debug}"/>
+        <mkdir dir="${build.classes.debug.main}"/>
+        <mkdir dir="${build.classes.test}"/>
+    </target>
+
+    <target name="comment">
+        <taskdef
+                resource="commenter.properties"
+                classpath="${openbasemovil.dir}/openbasemovil-commenter.jar"
+                />
+        <commenter in="${dir.src.main}" out="${build.comment}"
+                patterns="import bm.core.log., Log log, log.">
+        </commenter>
+    </target>
+
+
+    <path id="declare.path">
+        <fileset file="${openbasemovil.dir}/resource-packer.jar" />
+        <fileset file="${openbasemovil.dir}/openbasemovil-viewcompiler.jar" />
+        <fileset file="${antenna.lib}" />
+        <fileset dir="${jakarta.dir}" includes="*.jar" />
+        <pathelement location="${lib.basemovil-core}" />
+        <pathelement location="${lib.basemovil-db}" />
+        <pathelement location="${lib.basemovil-errorlog}" />
+    </path>
+
+    <target name="declare" depends="init">
+        <taskdef resource="antenna.properties" classpathref="declare.path"/>
+        <taskdef resource="resourcePacker.properties" classpathref="declare.path"/>
+        <taskdef resource="viewcompiler.properties" classpathref="declare.path"/>
+    </target>
+
+    <target name="preprocess" depends="comment, declare">
+        <wtkpreprocess
+                srcdir="${build.comment}"
+                destdir="${build.preprocess}"
+                symbols="bluetooth"
+                />
+    </target>
+
+    <target name="preprocess.debug" depends="declare">
+        <wtkpreprocess
+                srcdir="${dir.src.main}"
+                destdir="${build.preprocess.debug}"
+                symbols="bluetooth,debug_mode"
+                />
+    </target>
+
+    <target name="preprocess-cldc11" depends="comment">
+        <wtkpreprocess
+                srcdir="${build.comment}"
+                destdir="${build.preprocess-cldc11}"
+                symbols="bluetooth,cldc11"
+                />
+    </target>
+
+    <target name="preprocess-cldc11.debug" depends="declare">
+        <wtkpreprocess
+                srcdir="${dir.src.main}"
+                destdir="${build.preprocess-cldc11.debug}"
+                symbols="bluetooth,debug_mode,cldc11"
+                />
+    </target>
+
+    <target name="preprocess-basic" depends="comment">
+        <wtkpreprocess
+                srcdir="${build.comment}"
+                destdir="${build.preprocess-basic}"
+                symbols=""
+                >
+            <exclude name="**/print/**/*" />
+        </wtkpreprocess>
+    </target>
+
+    <target name="preprocess-basic.debug" depends="declare">
+        <wtkpreprocess
+                srcdir="${dir.src.main}"
+                destdir="${build.preprocess-basic.debug}"
+                symbols="debug_mode"
+                >
+            <exclude name="**/print/**/*" />
+        </wtkpreprocess>
+    </target>
+
+    <target name="preprocess-basic-cldc11" depends="comment">
+        <wtkpreprocess
+                srcdir="${build.comment}"
+                destdir="${build.preprocess-basic-cldc11}"
+                symbols="cldc11"
+                >
+            <exclude name="**/print/**/*" />
+        </wtkpreprocess>
+    </target>
+
+    <target name="preprocess-basic-cldc11.debug" depends="declare">
+        <wtkpreprocess
+                srcdir="${dir.src.main}"
+                destdir="${build.preprocess-basic-cldc11.debug}"
+                symbols="debug_mode,cldc11"
+                >
+            <exclude name="**/print/**/*" />
+        </wtkpreprocess>
+    </target>
+
+    <target name="compile" depends="preprocess">
+        <wtkbuild
+                srcdir="${build.preprocess}"
+                destdir="${build.classes.main}"
+                preverify="true"
+                debug="off"
+                optimize="on"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc10.classpath"
+        >
+            <classpath>
+                <path refid="common.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="compile-debug" depends="preprocess.debug">
+        <wtkbuild
+                srcdir="${build.preprocess.debug}"
+                destdir="${build.classes.debug.main}"
+                preverify="true"
+                debug="on"
+                optimize="off"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc10.classpath"
+        >
+            <classpath>
+                <path refid="debug.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="compile-cldc11" depends="preprocess-cldc11">
+        <wtkbuild
+                srcdir="${build.preprocess-cldc11}"
+                destdir="${build.classes.main-cldc11}"
+                preverify="true"
+                debug="off"
+                optimize="on"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc11.classpath"
+        >
+            <classpath>
+                <path refid="common.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="compile-cldc11-debug" depends="preprocess-cldc11.debug">
+        <wtkbuild
+                srcdir="${build.preprocess-cldc11.debug}"
+                destdir="${build.classes.debug.main-cldc11}"
+                preverify="true"
+                debug="on"
+                optimize="off"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc11.classpath"
+        >
+            <classpath>
+                <path refid="debug.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="compile-basic" depends="preprocess-basic">
+        <wtkbuild
+                srcdir="${build.preprocess-basic}"
+                destdir="${build.classes.main-basic}"
+                preverify="true"
+                debug="off"
+                optimize="on"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc10-basic.classpath"
+        >
+            <exclude name="**/print/**/*" />
+            <classpath>
+                <path refid="basic.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="compile-basic-debug" depends="preprocess-basic.debug">
+        <wtkbuild
+                srcdir="${build.preprocess-basic.debug}"
+                destdir="${build.classes.debug.main-basic}"
+                preverify="true"
+                debug="on"
+                optimize="off"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc10-basic.classpath"
+        >
+            <exclude name="**/print/**/*" />
+            <classpath>
+                <path refid="debug-basic.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="compile-basic-cldc11" depends="preprocess-basic-cldc11">
+        <wtkbuild
+                srcdir="${build.preprocess-basic-cldc11}"
+                destdir="${build.classes.main-basic-cldc11}"
+                preverify="true"
+                debug="off"
+                optimize="on"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc11-basic.classpath"
+        >
+            <exclude name="**/print/**/*" />
+            <classpath>
+                <path refid="basic.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="compile-basic-cldc11-debug" depends="preprocess-basic-cldc11.debug">
+        <wtkbuild
+                srcdir="${build.preprocess-basic-cldc11.debug}"
+                destdir="${build.classes.debug.main-basic-cldc11}"
+                preverify="true"
+                debug="on"
+                optimize="off"
+                source="${javac.source}"
+                target="${javac.target}"
+                bootclasspathref="cldc11-basic.classpath"
+        >
+            <exclude name="**/print/**/*" />
+            <classpath>
+                <path refid="debug-basic.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="create-jad">
+        <wtkjad
+                jadfile="${jad-file}"
+                jarfile="${jar-file}"
+                name="${midlet.appName}"
+                vendor="${midlet.vendor}"
+                version="${midlet.version}"
+                >
+            <midlet
+                    name="${midlet.appName}"
+                    icon="${midlet.icon}"
+                    class="passkeep.PasswordKeeper"
+                    />
+            <!--<attribute name="basemovil.version" value="${midlet.version}" />-->
+        </wtkjad>
+    </target>
+
+    <target name="application.jad" depends="compile">
+        <antcall target="create-jad">
+            <param name="jad-file" value="${file.main.jad}" />
+            <param name="jar-file" value="${file.main.jar}" />
+        </antcall>
+    </target>
+
+    <target name="application.jad-debug" depends="compile-debug">
+        <antcall target="create-jad">
+            <param name="jad-file" value="${file.main.debug.jad}" />
+            <param name="jar-file" value="${file.main.debug.jar}" />
+        </antcall>
+    </target>
+
+    <target name="application-cldc11.jad" depends="compile-cldc11">
+        <antcall target="create-jad">
+            <param name="jad-file" value="${file.main-cldc11.jad}" />
+            <param name="jar-file" value="${file.main-cldc11.jar}" />
+        </antcall>
+    </target>
+
+    <target name="application-cldc11.jad-debug" depends="compile-cldc11-debug">
+        <antcall target="create-jad">
+            <param name="jad-file" value="${file.main-cldc11.debug.jad}" />
+            <param name="jar-file" value="${file.main-cldc11.debug.jar}" />
+        </antcall>
+    </target>
+
+    <target name="application-basic.jad" depends="compile-basic">
+        <antcall target="create-jad">
+            <param name="jad-file" value="${file.main-basic.jad}" />
+            <param name="jar-file" value="${file.main-basic.jar}" />
+        </antcall>
+    </target>
+
+    <target name="application-basic.jad-debug" depends="compile-basic-debug">
+        <antcall target="create-jad">
+            <param name="jad-file" value="${file.main-basic.debug.jad}" />
+            <param name="jar-file" value="${file.main-basic.debug.jar}" />
+        </antcall>
+    </target>
+
+    <target name="application-basic-cldc11.jad" depends="compile-basic-cldc11">
+        <antcall target="create-jad">
+            <param name="jad-file" value="${file.main-basic-cldc11.jad}" />
+            <param name="jar-file" value="${file.main-basic-cldc11.jar}" />
+        </antcall>
+    </target>
+
+    <target name="application-basic-cldc11.jad-debug" depends="compile-basic-cldc11-debug">
+        <antcall target="create-jad">
+            <param name="jad-file" value="${file.main-basic-cldc11.debug.jad}" />
+            <param name="jar-file" value="${file.main-basic-cldc11.debug.jar}" />
+        </antcall>
+    </target>
+
+    <target name="view.compile" depends="declare">
+        <viewcompiler
+                order="30"
+                files="${file.views.in}"
+                out="${file.views.out}"
+                />
+    </target>
+
+    <target name="resource.pack" depends="declare">
+        <resource-pack out="${build.res}/language" mode="binary" order="20"
+                files="
+                ${dir.res}/lang/passkeep,
+                ${lib.bluetooth.res}/bluetooth,
+                ${lib.util.res}/util,
+                ${lib.ui.res}/ui,
+                ${lib.db.res}/bm-db,
+                ${lib.core.res}/bm-core,
+                ${lib.net.res}/bm-net,
+                ${lib.storage.res}/bm-storage,
+                ${lib.errorlog.res}/errorlog
+                "
+                />
+    </target>
+
+    <target name="create-jar">
+        <wtkpackage
+                jarfile="${jar-file}"
+                jadfile="${jad-file}"
+                obfuscate="true"
+                preverify="true"
+                autoversion="false"
+                verbose="true"
+                libclasspathref="${classpathref}"
+                basedir="${base-dir}"
+                compress="true"
+                bootclasspathref="${boot-path}"
+                >
+            <fileset dir="${dir.res}/help" includes="*.txt" />
+            <fileset dir="${dir.res}/images" includes="*.png" />
+            <fileset dir="${dir.res}" includes="default.properties" />
+            <fileset dir="${dir.res}" includes="app.resolver" />
+            <fileset dir="${build.res}" includes="*.*" />
+            <preserve class="passkeep.control.MainController" />
+        </wtkpackage>
+
+    </target>
+
+    <target name="create-debug-jar">
+        <wtkpackage
+                jarfile="${jar-file}"
+                jadfile="${jad-file}"
+                obfuscate="false"
+                preverify="true"
+                autoversion="false"
+                verbose="true"
+                libclasspathref="${classpathref}"
+                basedir="${base-dir}"
+                compress="true"
+                bootclasspathref="${boot-path}"
+                >
+            <fileset dir="${dir.res}/help" includes="*.txt" />
+            <fileset dir="${dir.res}/images" includes="*.png" />
+            <fileset dir="${dir.res}" includes="default.properties" />
+            <fileset dir="${dir.res}" includes="app.resolver" />
+            <fileset dir="${build.res}" includes="*.*" />
+        </wtkpackage>
+    </target>
+
+    <target name="application.jar" depends="application.jad, resource.pack, view.compile">
+        <antcall target="create-jar">
+            <param name="jar-file" value="${file.main.jar}" />
+            <param name="jad-file" value="${file.main.jad}" />
+            <param name="classpathref" value="common.class.path" />
+            <param name="base-dir" value="${build.classes.main}" />
+            <param name="boot-path" value="cldc10.classpath" />
+        </antcall>
+    </target>
+
+    <target name="application.jar-debug" depends="application.jad-debug, resource.pack, view.compile">
+        <antcall target="create-debug-jar">
+            <param name="jar-file" value="${file.main.debug.jar}" />
+            <param name="jad-file" value="${file.main.debug.jad}" />
+            <param name="classpathref" value="debug.class.path" />
+            <param name="base-dir" value="${build.classes.debug.main}" />
+            <param name="boot-path" value="cldc10.classpath" />
+        </antcall>
+    </target>
+
+    <target name="application-cldc11.jar" depends="application-cldc11.jad, resource.pack, view.compile">
+        <antcall target="create-jar">
+            <param name="jar-file" value="${file.main-cldc11.jar}" />
+            <param name="jad-file" value="${file.main-cldc11.jad}" />
+            <param name="classpathref" value="common-cldc11.class.path" />
+            <param name="base-dir" value="${build.classes.main-cldc11}" />
+            <param name="boot-path" value="cldc11.classpath" />
+        </antcall>
+    </target>
+
+    <target name="application-cldc11.jar-debug" depends="application-cldc11.jad-debug, resource.pack, view.compile">
+        <antcall target="create-debug-jar">
+            <param name="jar-file" value="${file.main-cldc11.debug.jar}" />
+            <param name="jad-file" value="${file.main-cldc11.debug.jad}" />
+            <param name="classpathref" value="debug-cldc11.class.path" />
+            <param name="base-dir" value="${build.classes.debug.main-cldc11}" />
+            <param name="boot-path" value="cldc11.classpath" />
+        </antcall>
+    </target>
+
+    <target name="application-basic.jar" depends="application-basic.jad, resource.pack, view.compile">
+        <antcall target="create-jar">
+            <param name="jar-file" value="${file.main-basic.jar}" />
+            <param name="jad-file" value="${file.main-basic.jad}" />
+            <param name="classpathref" value="basic.class.path" />
+            <param name="base-dir" value="${build.classes.main-basic}" />
+            <param name="boot-path" value="cldc10-basic.classpath" />
+        </antcall>
+    </target>
+
+    <target name="application-basic.jar-debug" depends="application-basic.jad-debug, resource.pack, view.compile">
+        <antcall target="create-debug-jar">
+            <param name="jar-file" value="${file.main-basic.debug.jar}" />
+            <param name="jad-file" value="${file.main-basic.debug.jad}" />
+            <param name="classpathref" value="debug-basic.class.path" />
+            <param name="base-dir" value="${build.classes.debug.main-basic}" />
+            <param name="boot-path" value="cldc10-basic.classpath" />
+        </antcall>
+    </target>
+
+    <target name="application-basic-cldc11.jar" depends="application-basic-cldc11.jad, resource.pack, view.compile">
+        <antcall target="create-jar">
+            <param name="jar-file" value="${file.main-basic-cldc11.jar}" />
+            <param name="jad-file" value="${file.main-basic-cldc11.jad}" />
+            <param name="classpathref" value="basic-cldc11.class.path" />
+            <param name="base-dir" value="${build.classes.main-basic-cldc11}" />
+            <param name="boot-path" value="cldc11-basic.classpath" />
+        </antcall>
+    </target>
+
+    <target name="application-basic-cldc11.jar-debug" depends="application-basic-cldc11.jad-debug, resource.pack, view.compile">
+        <antcall target="create-debug-jar">
+            <param name="jar-file" value="${file.main-basic-cldc11.debug.jar}" />
+            <param name="jad-file" value="${file.main-basic-cldc11.debug.jad}" />
+            <param name="classpathref" value="debug-basic-cldc11.class.path" />
+            <param name="base-dir" value="${build.classes.debug.main-basic-cldc11}" />
+            <param name="boot-path" value="cldc11-basic.classpath" />
+        </antcall>
+    </target>
+
+    <target name="rebuild"
+            depends="clean,
+            application.jar,
+            application.jar-debug,
+            application-cldc11.jar,
+            application-basic.jar,
+            application-basic-cldc11.jar,
+            application-cldc11.jar-debug,
+            application-basic.jar-debug,
+            application-basic-cldc11.jar-debug"
+            />
+
+</project>

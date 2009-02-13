@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="resource-packer" default="pack" basedir=".">
+    <!--
+        OpenBaseMovil ResourcePacker, packs and checks resource files
+        Copyright (C) 2004-2008 Elondra S.L.
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 2 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.
+        If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+    -->
+
+    <property file="../local.properties" />
+    <property file="../versions.properties" />
+
+    <property name="deps.dir" value="${basedir}/../deps" />
+    <property name="lib.dir" value="${basedir}/../framework/deploy/lib" />
+
+    <property name="main.src.dir"   value="${basedir}/src/main" />
+    <property name="build.dir"      value="${basedir}/build" />
+    <property name="build.classes"  value="${build.dir}/classes" />
+    <property name="file.lib"       value="${build.dir}/${ant.project.name}.jar" />
+    <property name="file-text.lib"  value="${build.dir}/text-${ant.project.name}.jar" />
+
+    <property name="ant.lib"        value="${ant.home}/lib/ant.jar" />
+    <property name="lib.core"       value="${lib.dir}/openbasemovil-core-${openbasemovil-core.version}.jar" />
+    <property name="lib.db"         value="${lib.dir}/openbasemovil-db-${openbasemovil-db.version}.jar" />
+
+    <path id="main.classpath">
+        <pathelement location="${ant.lib}" />
+        <pathelement location="${lib.core}" />
+        <pathelement location="${lib.db}" />
+    </path>
+
+    <path id="text.classpath">
+        <pathelement location="${ant.lib}" />
+    </path>
+
+    <target name="clean">
+        <delete failonerror="false" dir="${build.dir}"/>
+    </target>
+
+    <target name="init">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${build.classes}" />
+    </target>
+
+    <target name="compile-text" depends="init">
+        <javac
+            debug="no"
+            optimize="yes"
+            destdir="${build.classes}"
+            srcdir="${main.src.dir}"
+            source="1.4"
+            target="1.4"
+            sourcepath=""
+            includes="com/elondra/rp/**"
+            excludes="com/elondra/rp/binary/**"
+        >
+            <classpath refid="text.classpath" />
+        </javac>
+        <copy todir="${build.classes}">
+            <fileset file="${main.src.dir}/resourceFile.properties" />
+        </copy>
+        <propertyfile file="${build.classes}/resourcePacker.properties">
+            <entry key="resource-pack" value="com.elondra.rp.text.TextResourcePacker" />
+        </propertyfile>
+    </target>
+
+    <target name="pack-text" depends="compile-text">
+        <jar
+                basedir="${build.classes}"
+                compress="yes"
+                destfile="${file-text.lib}"
+        />
+    </target>
+
+    <target name="redistribute-text" depends="pack-text">
+        <copy todir="${lib.dir}">
+            <fileset file="${file-text.lib}" />
+        </copy>
+    </target>
+
+    <target name="build.text" depends="clean, pack-text, redistribute-text" />
+
+    <target name="compile" depends="init">
+        <javac
+            debug="no"
+            optimize="yes"
+            destdir="${build.classes}"
+            srcdir="${main.src.dir}"
+            source="1.4"
+            target="1.4"
+            includes="com/elondra/rp/**,bm/**"
+            excludes="com/elondra/rp/text/**"
+        >
+            <classpath refid="main.classpath" />
+        </javac>
+        <copy todir="${build.classes}">
+            <fileset dir="${main.src.dir}" includes="*.properties" />
+        </copy>
+        <propertyfile file="${build.classes}/resourcePacker.properties" comment="">
+            <entry key="resource-pack" value="com.elondra.rp.binary.ResourcePacker" />
+        </propertyfile>
+    </target>
+
+    <target name="pack" depends="compile">
+        <jar
+                basedir="${build.classes}"
+                compress="yes"
+                destfile="${file.lib}"
+        />
+    </target>
+
+    <target name="redistribute" depends="pack">
+        <copy todir="${lib.dir}">
+            <fileset file="${file.lib}" />
+        </copy>
+    </target>
+
+    <target name="build" depends="clean, pack, redistribute" />
+
+    <!--<target name="declare">-->
+        <!--<taskdef resource="resourcePacker.properties" />-->
+        <!--<typedef resource="resourceFile.properties" />-->
+    <!--</target>-->
+
+    <!--<target name="test" depends="declare">-->
+        <!--<resource-pack out="${basedir}/test/test.out" mode="binary">-->
+            <!--<resource-file file="${basedir}/src/test/test1" />-->
+            <!--<resource-file file="${basedir}/src/test/test2" />-->
+        <!--</resource-pack>-->
+    <!--</target>-->
+
+    <!--<target name="test-fail" depends="declare">-->
+        <!--<resource-pack out="${basedir}/test/test2.out">-->
+            <!--<resource-file file="${basedir}/src/test/test3" />-->
+            <!--<resource-file file="${basedir}/src/test/test4" />-->
+        <!--</resource-pack>-->
+    <!--</target>-->
+
+</project>
