@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bm-vdl PUBLIC "-//Elondra S.L.//BaseMovil View Definition Language//EN" "http://www.basemovil.com/dtd/bm_vdl_1.0.dtd">
+<bm-vdl version="1.0">
+
+    <controller id="main" className="test.MainController" />
+
+    <form id="1430" name="customerSelector" title="customer.detail.Title" readOnly="true" controller="main">
+        <text name="name"
+                label="customer.detail.CommercialName"
+                labelExtra=":"
+                layout="16896"
+                readOnly="true"
+                bind="cust_name"
+        />
+        <text
+                name="fiscalName"
+                label="customer.detail.FiscalName"
+                labelExtra=":"
+                layout="16896"
+                readOnly="true"
+                bind="company_name"
+        />
+        <integer
+                name="code"
+                label="customer.detail.CustomerCode"
+                labelExtra=":"
+                layout="16896"
+                readOnly="true"
+                bind="custom_id"
+        />
+        <button name="okButton" buttonType="ok" />
+    </form>
+
+    <form id="1120" name="docDiscounts" title="orderDiscounts.Discounts" readOnly="false" saveOnAccept="false" controller="main">
+        <money
+                name="amountDiscount"
+                label="changePriceView.DiscountAmount"
+                readOnly="false"
+                bind="discount"
+                decimals="2"
+        />
+        <percent
+                name="percentDiscount"
+                label="changePriceView.DiscountPercent"
+                readOnly="false"
+                bind="per_discount"
+                decimals="0"
+        />
+    </form>
+
+    <form id="1350" name="linePrice" title="changePriceView.Title" readOnly="false" controller="main">
+        <money
+                name="price"
+                label="changePriceView.Price"
+                layout="16896"
+                readOnly="false"
+                bind="price"
+                decimals="2"
+        />
+        <money
+                name="moneyDiscount"
+                label="changePriceView.DiscountAmount"
+                layout="16896"
+                readOnly="false"
+                bind="money_discount"
+                decimals="2"
+        />
+        <percent
+                name="percentDiscount"
+                label="changePriceView.DiscountPercent"
+                layout="16896"
+                readOnly="false"
+                bind="percent_discount"
+                decimals="0"
+        />
+    </form>
+
+    <form id="1230" name="product" title="product.Detail.Title" readOnly="true" controller="main">
+        <text
+                name="code"
+                label="product.Detail.Code"
+                labelExtra=":"
+                layout="16896"
+                readOnly="true"
+                bind="custom_id"
+        />
+        <text
+                name="name"
+                label="product.Detail.Name"
+                labelExtra=":"
+                layout="16896"
+                readOnly="true"
+                bind="product_name"
+        />
+        <money
+                name="price"
+                label="product.Detail.Price"
+                labelExtra=":"
+                layout="16896"
+                readOnly="true"
+                decimals="2"
+        />
+    </form>
+
+    <form id="1010" name="login" title="loginView.Title" readOnly="false" controller="main">
+        <text name="company" label="loginView.Company" layout="16896" size="16" readOnly="false"/>
+        <text name="user" label="loginView.User" layout="16896" size="16" readOnly="false" />
+        <text name="password" label="loginView.Password" layout="16896" size="16" readOnly="false" constraints="65536"/>
+        <text name="okButton" label="global.Ok" appearance="button"/>
+        <action name="passwordOk" code="4" label="global.Ok" active="true" for="password" />
+        <action name="buttonOk" code="4" label="global.Ok" active="true" for="okButton" />
+    </form>
+
+    <form id="1613" name="imageView" title="imageViewer.title" readOnly="true" controller="main">
+        <image name="image" layout="3" />
+        <action name="back" code="2" label="gobal.Back" />
+    </form>
+
+    <menu
+            id="1000"
+            name="main"
+            title="mainView.Title"
+            helpId="MainView"
+            imageMap="/iconsSmall.png"
+            imageMapBig="/iconsBig.png"
+             controller="main"
+    >
+        <menuItem title="global.Customers" action="100" />
+        <menuItem title="global.Products" action="101" />
+        <menuItem title="global.Expenses" action="103" />
+        <menuItem title="global.Synchronize" action="104" />
+        <menuItem title="global.Tools" action="106" />
+        <menuItem title="global.CloseDay" action="107" />
+        <menuItem title="global.Help" action="10001" />
+        <menuItem title="main.About" action="110" />
+        <menuItem title="global.Exit" action="10000" />
+    </menu>
+
+    <menu id="1090" name="language" title="settings.Language" controller="main">
+        <menuItem title="language.es_ES" action="100" />
+        <menuItem title="language.en" action="101" />
+    </menu>
+
+    <menu id="1060" name="startDay" title="global.OpenDay" controller="main">
+        <menuItem title="openDay.Start" action="10" />
+        <menuItem title="global.Exit" action="10000" />
+    </menu>
+
+    <menu id="1240" name="productSelection" title="product.selMethod.Title" controller="main">
+        <menuItem title="product.selMethod.ByCode" action="0" />
+        <menuItem title="product.selMethod.ByName" action="1" />
+        <menuItem title="product.selMethod.ByCategory" action="2" />
+    </menu>
+
+    <menu id="1240" name="customerProductSelection" title="product.selMethod.Title" controller="main">
+        <menuItem title="product.selMethod.ByCode" action="0" />
+        <menuItem title="product.selMethod.ByName" action="1" />
+        <menuItem title="product.selMethod.ByCategory" action="2" />
+        <menuItem title="product.selMethod.ByHistory" action="10" />
+    </menu>
+
+    <menu id="1410" name="customerSearch" title="global.Customers" controller="main">
+        <menuItem title="customer.searchFor.ByRoute" action="0" />
+        <menuItem title="customer.searchFor.ByCode" action="1" />
+        <menuItem title="customer.searchFor.ByFiscalName" action="2" />
+        <menuItem title="customer.searchFor.ByCommercialName" action="3" />
+        <menuItem title="customer.searchFor.ByNIF" action="4" />
+        <menuItem title="global.Home" action="10006" />
+    </menu>
+
+    <menu id="1440" name="customerActions" title="global.Customer" controller="main">
+        <menuItem title="customer.actionsView.viewCart" action="105" />
+        <menuItem title="customer.actionsView.prodByCode" action="102" />
+        <menuItem title="customer.actionsView.prodByName" action="103" />
+        <menuItem title="customer.actionsView.prodByCategory" action="104" />
+        <menuItem title="customer.actionsView.prodByHistory" action="110" />
+        <menuItem title="customer.actionsView.pendingPayments" action="109" />
+        <menuItem title="customer.actionsView.pendingDocuments" action="106" />
+        <menuItem title="customer.actionsView.allDocuments" action="107" />
+        <menuItem title="customer.actionsView.viewDetail" action="108" />
+        <menuItem title="customer.actionsView.visits" action="112" />
+        <menuItem title="customer.actionsView.setPosition" action="113" />
+        <menuItem title="global.Home" action="10006" />
+    </menu>
+
+    <menu id="1020" name="tools" title="toolsView.Title" controller="main">
+        <menuItem title="toolsView.Documents" action="201" />
+        <menuItem title="toolsView.preferences" action="202" />
+        <menuItem title="toolsView.Peripherals" action="203" onlyIf="bluetooth" />
+        <menuItem title="toolsView.diagnostics" action="205" />
+        <menuItem title="toolsView.deleteData" action="204" />
+        <menuItem title="toolsView.checkVersion" action="206" />
+        <menuItem title="global.Home" action="10002" />
+    </menu>
+
+    <menu id="1023" name="peripherals" title="peripheralsView.Title" controller="main">
+        <menuItem title="peripheralsView.printerConfig" action="201" />
+        <menuItem title="peripheralsView.gpsConfig" action="203" />
+        <menuItem title="global.Home" action="10002" />
+    </menu>
+
+    <menu id="1021" name="docTools" title="docToolsView.Title" controller="main">
+        <menuItem title="docToolsView.pendingItems" action="201" />
+        <menuItem title="docToolsView.notConfirmedItems" action="202" />
+        <menuItem title="global.Home" action="10002" />
+    </menu>
+
+    <menu id="1600" name="diagnosis" title="diagnostics.Title" controller="main">
+        <menuItem title="global.Info" action="101" />
+        <menuItem title="diagnostics.CheckMemory" action="102" />
+        <menuItem title="diagnostics.dbReport" action="103" />
+        <menuItem title="diagnostics.unmarkOrders" action="104" />
+        <menuItem title="diagnostics.regenerateChanges" action="105" />
+        <menuItem title="diagnostics.deviceInfo" action="106" />
+        <menuItem title="diagnostics.forceDeviceInfo" action="107" />
+        <menuItem title="global.Home" action="10006" />
+    </menu>
+
+    <menu id="1022" name="preferences" title="preferencesView.Title" controller="main">
+        <menuItem title="preferences.Settings" action="201" />
+        <menuItem title="preferences.Download" action="202" />
+        <menuItem title="global.Language" action="203" />
+        <menuItem title="global.Home" action="10002" />
+    </menu>
+
+    <listBrowser
+            id="1400"
+            name="selectCustomerView"
+            title="global.Customers"
+            pageSize="20"
+            separator="\n"
+             controller="main"
+    >
+        <field name="cust_name" />
+        <field name="company_name" />
+        <field name="custom_id" />
+        <field name="local_address" />
+        <field name="local_phone" />
+        <action
+                name="switchToFiscal"
+                code="40001"
+                label="customer.selectCustomer.SwitchToFiscal"
+                order="1"
+                onlyIf="customerList.commercial"
+                />
+        <action
+                name="switchToCommercial"
+                code="40002"
+                label="customer.selectCustomer.SwitchToCommercial"
+                order="1"
+                onlyIf="customerList.fiscal"
+                />
+    </listBrowser>
+
+    <listBrowser
+            id="1340"
+            name="docTypeSelectionView"
+            title="doc.typeSelection.Title"
+            wrap="false"
+             controller="main"
+    >
+        <field name="name" />
+        <attachment name="nextView" type="int" value="0" />
+    </listBrowser>
+
+    <listBrowser
+            id="1300"
+            name="docSelectView"
+            title="document.select.Title"
+            wrap="false"
+             controller="main"
+            >
+        <field name="created_date" />
+    </listBrowser>
+
+    <listBrowser id="1220" name="selectCategoryView" title="category.List.Title" controller="main">
+        <field name="category_name" />
+    </listBrowser>
+
+    <listBrowser id="1500" name="selectRouteView" title="routeView.Title" wrap="false" controller="main">
+        <field name="custom_id" />
+        <field name="route_name" />
+        <action name="today" code="9000" label="routeView.Today" order="1"/>
+        <action name="monday" code="9001" label="format.weekday.2" order="2"/>
+        <action name="tuesday" code="9002" label="format.weekday.3" order="3"/>
+        <action name="wednesday" code="9003" label="format.weekday.4" order="4"/>
+        <action name="thursday" code="9004" label="format.weekday.5" order="5"/>
+        <action name="friday" code="9005" label="format.weekday.6" order="6"/>
+        <action name="saturday" code="9006" label="format.weekday.7" order="7"/>
+        <action name="sunday" code="9007" label="format.weekday.1" order="8"/>
+    </listBrowser>
+
+    <listBrowser
+            id="1210"
+            name="selectProductListView"
+            title="product.List.Title"
+            pageSize="20"
+            separator="\n"
+             controller="main"
+    >
+        <field name="product_name" />
+        <field name="custom_id" />
+        <action
+                name="delete"
+                code="200"
+                label="SelectProductListView.DeleteLine"
+                order="2"
+                active="false"
+        />
+        <action
+                name="stock"
+                code="300"
+                label="ProductView.Stock"
+                order="1"
+        />
+    </listBrowser>
+
+    <listBrowser id="1510" name="docChangeDeliverRouteView" title="changeDeliverRoute.Title" controller="main">
+        <field name="custom_id" />
+        <field name="route_name" />
+    </listBrowser>
+
+    <listBrowser id="1130" name="selectVisitView" title="visitView.Title" controller="main">
+        <field name="visit_code_name" />
+    </listBrowser>
+
+</bm-vdl>

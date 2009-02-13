@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="openbasemovil-logimpl-console" default="pack" basedir=".">
+
+    <!--
+        OpenBaseMovil LogImpl-Console Library, console implementation of logging
+        Copyright (C) 2004-2008 Elondra S.L.
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 2 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.
+        If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+    -->
+
+    <!-- =================================================================== -->
+    <!-- Properties                                                          -->
+    <!-- =================================================================== -->
+
+    <!-- Properties definition:
+            * First, try properties from user home (system dependent settings)
+            * Then, use the project ant.properties file
+    -->
+    <property file="../local.properties"/>
+    <property file="build.properties"/>
+    <property file="../versions.properties" />
+    <property name="product.version" value="${openbasemovil-logimpl-console.version}" />
+    <property name="deps.dir" value="${basedir}/../deps" />
+    <property name="lib.dir" value="${basedir}/../framework/deploy/lib" />
+
+    <!-- Source directories ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="dir.src"                value="${basedir}/src"/>
+    <property name="dir.src.main"           value="${dir.src}/main"/>
+
+    <!-- Build directories +++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="build.dir"              value="${basedir}/build"/>
+    <property name="build.classes"          value="${build.dir}/classes"/>
+    <property name="build.classes.main"     value="${build.dir}/classes/main"/>
+    <property name="build.classes.test"     value="${build.dir}/test-classes"/>
+    <property name="build.lib"              value="${build.dir}/lib"/>
+    <property name="build.doc"              value="${build.dir}/docs"/>
+    <property name="build.deploy"           value="${build.dir}/deploy"/>
+    <property name="build.deploy.lib"       value="${build.deploy}/lib"/>
+    <property name="build.deploy.main"      value="${build.deploy}/main"/>
+
+    <!-- Archives ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="file.main.jar"          value="${build.lib}/${ant.project.name}-${product.version}.jar" />
+
+    <!-- Misc properties +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="build.compiler"         value="modern"/>
+    <property name="javadoc.window-title"   value="${product.description} v${product.version}"/>
+
+    <!-- =================================================================== -->
+    <!-- Paths                                                               -->
+    <!-- =================================================================== -->
+    <property
+        name    = "lib.core"
+        value   = "${lib.dir}/openbasemovil-core-${openbasemovil-core.version}.jar" />
+
+    <path id="common.classpath">
+        <pathelement location="${lib.core}" />
+    </path>
+
+    <target name="clean">
+        <delete failonerror="false" dir="${build.dir}"/>
+    </target>
+
+    <target name="init" unless="initialized" >
+        <property name="initialized" value="true" />
+        <echo message="build.compiler   = ${build.compiler}"/>
+        <echo message="user.home        = ${user.home}"/>
+        <echo message="java.home        = ${java.home}"/>
+        <echo message="ant.home         = ${ant.home}"/>
+        <echo message="java.class.path  = ${java.class.path}"/>
+        <echo message=""/>
+        <available property="jdk1.3+" classname="java.lang.StrictMath"/>
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.lib}"/>
+        <mkdir dir="${build.deploy}"/>
+        <mkdir dir="${build.deploy.lib}"/>
+        <mkdir dir="${build.deploy.main}"/>
+
+        <mkdir dir="${build.classes}"/>
+        <mkdir dir="${build.classes.main}"/>
+        <mkdir dir="${build.classes.test}"/>
+
+        <mkdir dir="${build.doc}"/>
+    </target>
+
+    <path id="declare.path">
+        <fileset file="${deps.dir}/antenna-bin.jar" />
+    </path>
+
+    <target name="declare" depends="init">
+        <taskdef resource="antenna.properties" classpathref="declare.path"/>
+    </target>
+
+    <target name="compile" depends="declare">
+        <wtkbuild
+                srcdir="${dir.src.main}"
+                destdir="${build.classes.main}"
+                preverify="true"
+                debug="on"
+                optimize="on"
+                source="${javac.source}"
+                target="${javac.target}"
+        >
+            <classpath refid="common.classpath"/>
+        </wtkbuild>
+    </target>
+
+    <target name="pack" depends="compile">
+        <jar basedir="${build.classes.main}" destfile="${file.main.jar}" />
+    </target>
+
+    <target name="check-jars">
+        <uptodate property="update-needed">
+            <srcfiles
+                dir     = "${build.lib}"
+                includes= "*.jar"
+                />
+            <mapper
+                type    = "identity"
+                to      = "${lib.dir}"
+                />
+        </uptodate>
+    </target>
+
+    <target name="update-mylibraries" depends="check-jars" if="update-needed">
+        <copy todir="${lib.dir}">
+            <fileset dir="${build.lib}" includes="*.jar" />
+        </copy>
+    </target>
+
+    <target name="redistribute" depends="clean, pack, update-mylibraries" />
+
+</project>

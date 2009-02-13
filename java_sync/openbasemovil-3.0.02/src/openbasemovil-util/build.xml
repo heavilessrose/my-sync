@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="openbasemovil-util" default="pack" basedir=".">
+    <!--
+        OpenBaseMovil Util Library, miscellaneous tools
+        Copyright (C) 2004-2008 Elondra S.L.
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 2 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.
+        If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+    -->
+
+    <!-- =================================================================== -->
+    <!-- Properties                                                          -->
+    <!-- =================================================================== -->
+
+    <!-- Properties definition:
+            * First, try properties from user home (system dependent settings)
+            * Then, use the project ant.properties file
+    -->
+    <property file="build.properties"/>
+    <property file="../local.properties"/>
+    <property file="../versions.properties" />
+    <property name="product.version" value="${openbasemovil-util.version}" />
+    <property name="deps.dir" value="${basedir}/../deps" />
+    <property name="lib.dir" value="${basedir}/../framework/deploy/lib" />
+
+    <!-- Source directories ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="dir.src"                value="${basedir}/src"/>
+    <property name="dir.src.main"           value="${dir.src}/main"/>
+    <property name="dir.src.test"           value="${dir.src}/test"/>
+    <property name="dir.res"                value="${basedir}/res"/>
+
+    <!-- Build directories +++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="build.dir"              value="${basedir}/build"/>
+    <property name="build.comment"          value="${build.dir}/comment"/>
+    <property name="build.preprocess"       value="${build.dir}/preprocess"/>
+    <property name="build.preprocess.debug" value="${build.dir}/preprocess-debug"/>
+    <property name="build.classes"          value="${build.dir}/classes"/>
+    <property name="build.classes.main"     value="${build.dir}/classes/main"/>
+    <property name="build.classes.debug"    value="${build.dir}/classes-debug"/>
+    <property name="build.classes.debug.main" value="${build.dir}/classes-debug/main"/>
+    <property name="build.classes.debug.test" value="${build.dir}/classes-debug/test"/>
+    <property name="build.classes.test"     value="${build.dir}/test-classes"/>
+    <property name="build.lib"              value="${build.dir}/lib"/>
+    <property name="build.doc"              value="${build.dir}/docs"/>
+    <property name="build.deploy"           value="${build.dir}/deploy"/>
+    <property name="build.deploy.lib"       value="${build.deploy}/lib"/>
+    <property name="build.deploy.doc"       value="${build.deploy}/doc"/>
+
+    <!-- Archives ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="file.main.name"         value="${ant.project.name}-${product.version}.jar" />
+    <property name="file.main-basic.name"   value="${ant.project.name}-${product.version}-basic.jar" />
+    <property name="file.main-basic-debug.name"   value="${ant.project.name}-${product.version}-basic-debug.jar" />
+    <property name="file.obfuscated.name"   value="${ant.project.name}-${product.version}-redist.jar" />
+    <property name="file.main.jar"          value="${build.lib}/${file.main.name}" />
+    <property name="file.main-basic.jar"    value="${build.lib}/${file.main-basic.name}" />
+    <property name="file.main-basic.debug.jar"    value="${build.lib}/${file.main-basic-debug.name}" />
+    <property name="file.main.debug.jar"    value="${build.lib}/${ant.project.name}-${product.version}-debug.jar" />
+    <property name="file.obfuscated.jar"    value="${build.lib}/${file.obfuscated.name}" />
+    <property name="file.redistribute.zip"  value="${build.lib}/${ant.project.name}-${product.version}.zip" />
+
+    <property name="file.test.debug.jar"    value="${build.lib}/test-debug.jar" />
+    <property name="file.test.debug.jad"    value="${build.lib}/test-debug.jad" />
+
+    <!-- Misc properties +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <property name="build.compiler"         value="modern"/>
+    <property name="javadoc.window-title"   value="${product.description} v${product.version}"/>
+
+    <!-- =================================================================== -->
+    <!-- Paths                                                               -->
+    <!-- =================================================================== -->
+    <property
+        name    = "lib.core"
+        value   = "${lib.dir}/openbasemovil-core-${openbasemovil-core.version}.jar" />
+    <property
+        name    = "lib.network"
+        value   = "${lib.dir}/openbasemovil-net-${openbasemovil-net.version}.jar" />
+    <property
+        name    = "lib.db"
+        value   = "${lib.dir}/openbasemovil-db-${openbasemovil-db.version}.jar" />
+    <property
+        name    = "lib.storage"
+        value   = "${lib.dir}/openbasemovil-storage-${openbasemovil-storage.version}.jar" />
+    <property
+        name    = "lib.errorlog"
+        value   = "${lib.dir}/openbasemovil-errorlog-${openbasemovil-errorlog.version}.jar" />
+
+    <path id="common.class.path">
+        <pathelement location="${lib.core}" />
+        <pathelement location="${lib.network}" />
+        <pathelement location="${lib.db}" />
+        <pathelement location="${lib.storage}" />
+        <pathelement location="${lib.errorlog}" />
+    </path>
+
+    <target name="clean">
+        <delete failonerror="false" dir="${build.dir}"/>
+    </target>
+
+    <target name="init" unless="initialized" >
+        <property name="initialized" value="true" />
+        <echo message="build.compiler   = ${build.compiler}"/>
+        <echo message="user.home        = ${user.home}"/>
+        <echo message="java.home        = ${java.home}"/>
+        <echo message="ant.home         = ${ant.home}"/>
+        <echo message="java.class.path  = ${java.class.path}"/>
+        <echo message=""/>
+        <available property="jdk1.3+" classname="java.lang.StrictMath"/>
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.lib}"/>
+        <mkdir dir="${build.deploy}"/>
+        <mkdir dir="${build.deploy.lib}"/>
+        <mkdir dir="${build.deploy.doc}"/>
+
+        <mkdir dir="${build.classes}"/>
+        <mkdir dir="${build.comment}"/>
+        <mkdir dir="${build.preprocess}"/>
+        <mkdir dir="${build.preprocess.debug}"/>
+        <mkdir dir="${build.classes.main}"/>
+        <mkdir dir="${build.classes.debug}"/>
+        <mkdir dir="${build.classes.debug.main}"/>
+        <mkdir dir="${build.classes.debug.test}"/>
+        <mkdir dir="${build.classes.test}"/>
+
+        <mkdir dir="${build.doc}"/>
+    </target>
+
+    <path id="declare.path">
+        <fileset file="${lib.dir}/text-resource-packer.jar" />
+        <fileset file="${deps.dir}/antenna-bin.jar" />
+    </path>
+
+    <target name="declare" depends="init">
+        <taskdef resource="antenna.properties" classpathref="declare.path"/>
+        <taskdef resource="resourcePacker.properties" classpathref="declare.path"/>
+        <!--<typedef resource="resourceFile.properties" classpathref="declare.path"/>-->
+    </target>
+
+    <target name="comment">
+        <taskdef
+                resource="commenter.properties"
+                classpath="${lib.dir}/openbasemovil-commenter.jar"
+                />
+        <commenter in="${dir.src.main}" out="${build.comment}"
+                patterns="import bm.core.log., Log log, log.">
+        </commenter>
+    </target>
+
+    <target name="preprocess" depends="comment, declare">
+        <wtkpreprocess
+                srcdir="${build.comment}"
+                destdir="${build.preprocess}"
+                />
+    </target>
+
+    <target name="preprocess.debug" depends="declare">
+        <wtkpreprocess
+                srcdir="${dir.src.main}"
+                destdir="${build.preprocess.debug}"
+                symbols="debug_mode"
+        >
+        </wtkpreprocess>
+    </target>
+
+    <target name="compile" depends="preprocess">
+        <wtkbuild
+                srcdir="${build.preprocess}"
+                destdir="${build.classes.main}"
+                preverify="true"
+                debug="off"
+                optimize="on"
+                source="${javac.source}"
+                target="${javac.target}"
+        >
+            <classpath>
+                <path refid="common.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="compile-debug" depends="preprocess.debug">
+        <wtkbuild
+                srcdir="${build.preprocess.debug}"
+                destdir="${build.classes.debug.main}"
+                preverify="true"
+                debug="on"
+                optimize="off"
+                source="${javac.source}"
+                target="${javac.target}"
+        >
+            <classpath>
+                <path refid="common.class.path"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="pack" depends="compile">
+        <jar basedir="${build.classes.main}" destfile="${file.main.jar}" />
+        <jar basedir="${build.classes.main}" destfile="${file.main-basic.jar}" >
+            <exclude name="**/BluetoothDriver*" />
+            <exclude name="**/FlicReader*" />
+            <exclude name="**/Gps*" />
+        </jar>
+    </target>
+
+    <target name="pack-debug" depends="compile-debug">
+        <jar basedir="${build.classes.debug.main}" destfile="${file.main.debug.jar}" />
+        <jar basedir="${build.classes.debug.main}" destfile="${file.main-basic.debug.jar}" >
+            <exclude name="**/BluetoothDriver*" />
+            <exclude name="**/FlicReader*" />
+            <exclude name="**/Gps*" />
+        </jar>
+    </target>
+
+    <target name="javadoc">
+        <javadoc
+            packagenames    = "bm.*"
+            defaultexcludes = "yes"
+            destdir         = "${build.doc}"
+            author          = "true"
+            version         = "true"
+            use             = "true"
+            stylesheetfile  = "${lib.dir}/stylesheet.css"
+            windowtitle     = "${javadoc.window-title}"
+            >
+
+            <packageset
+                dir="${dir.src.main}"
+                defaultexcludes="yes"
+                >
+                <include name="bm/**" />
+            </packageset>
+
+            <classpath refid="common.class.path"/>
+
+        </javadoc>
+    </target>
+
+    <target name="check-jars">
+        <uptodate property="update-needed">
+            <srcfiles
+                dir     = "${build.lib}"
+                includes= "*.jar"
+                />
+            <mapper
+                type    = "identity"
+                to      = "${lib.dir}"
+                />
+        </uptodate>
+    </target>
+
+    <target name="update-resources" depends="declare">
+        <resource-pack out="${lib.dir}/util.res/util"
+                files="${dir.res}/util"
+                />
+    </target>
+
+    <target name="update-mylibraries"
+            depends="check-jars, update-resources"
+            if="update-needed">
+        <copy todir="${lib.dir}">
+            <fileset dir="${build.lib}" includes="*.jar" />
+        </copy>
+    </target>
+
+    <target name="redistribute"
+            depends="clean, pack, pack-debug, update-mylibraries" />
+
+</project>

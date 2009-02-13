@@ -1,0 +1,64 @@
+<HTML>
+<BODY>
+This library is the core, the foundation, over which the rest of the
+OpenBaseMovil projects are built.
+<p>
+    It provides many resources needed for database or resource handling, and
+    a lot of features present in JavaSE but no in JavaME.
+</p>
+<ul>
+    <li>Event management<br/>
+        A centralized event manager that handles different types of events
+        through the system, allowing multiple listeners globally or by event
+        type. With custom event types, and event filtering.
+    </li>
+    <li>File system<br/>
+        Replacements for classes such as FileOutputStream or
+        RandomAccessFileInputStream, but using record stores as the storage
+        system.
+    </li>
+    <li>Serialization<br/>
+        The Serializable interface is a replacement of the missing
+        java.io.Serializable, that allows any kind of object to be serialized
+        and deserialized to/from a stream.<br/>
+        It also contains streams for complex object
+        serialization/deserialization, including complex trees of objects, with
+        any mixture of Hashtables, Vectors, and other objects.
+    </li>
+    <li>Logging<br/>
+        A basic logging api that resembles that of the Jakarta Commons Logging
+        package, with plugable implementations for debuging and production
+        environments.
+    </li>
+    <li>Math<br/>
+        Contains the FixedPoint class, that replaces the missing Float/Double
+        classes in CLDC 1.0.
+    </li>
+    <li>MVC model<br/>
+        Contains the basis of a Model-View-Controller system, taking care of
+        such things as processing commands in a new Thread, and advanced concepts
+        such as Actions, integrated help management, and much more.
+    </li>
+    <li>Internationalization<br/>
+        Allows you to use multiple languages in your applications, using resource
+        files. Language is detected automatically, but can be changed manually
+        on the fly. It has also a plugable architecture, so you can use any
+        kind of resource storage, not just properties files.<br/>
+        It also handles dates, numeric formats, currencies, etc.
+    </li>
+    <li>Compression<br/>
+        An adapted and shorter version of the jzlib library, adapted from zlib.
+    </li>
+    <li>Other tools:<br/>
+        <ul>
+            <li>CRC, through the Adler32 algorithm.</li>
+            <li>Symetric encryption with Blowfish (from <a href="http://www.bouncycastle.org">bouncycastle.org</a>)</li>
+            <li>Message digest with MD5 (from <a href="http://www.bouncycastle.org">bouncycastle.org</a>)</li>
+            <li>Device extended information</li>
+            <li>Properties files support, for reading and for writing.</li>
+            <li>Simple cache system, with LRU discarding policy</li>
+        </ul>
+    </li>
+</ul>
+</BODY>
+</HTML>

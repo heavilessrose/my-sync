@@ -1,0 +1,161 @@
+The binary format that uses the ViewFactory on the ui library is an index where
+the keys are specified towards the element type, and the values are usually
+a binary form of the bean that describes the view or element.
+
+Definition of the present types and their binary formats:
+
+- General configuration:
+
+    Key: listBrowserMode
+    Value: "native" o "enhanced" (by default "enhanced")
+
+- Controladores:
+
+    - Key: "controller." + controller_name
+    - Value: binary
+
+        {byte       version}
+        {String     className}
+
+- IconSets:
+
+    - Key: "iconSet." + iconset_name
+    - Value: binary
+
+        {byte       version}
+        {String     source}
+        {int        width}
+        {int        height}
+
+- Views:
+
+    - Key: type + "." + view_name
+        where "type" can be: form, listBrowser, menu o settingsView
+    - Value: binary
+
+        {byte       version}
+        {int        id} // View id
+        {String     title} // title
+        {String     controller} // controller
+        {int        numActions} // number of actions in the view
+        (
+            {byte       version}
+            {String     name}
+            {int        code}
+            {String     label}
+            {int        order}
+            {boolean    active}
+            [String     onlyIf]
+            [String     unless]
+            [String     forItem]
+            [int        type]
+            [boolean    defaultAction]
+        ) : numActions
+        {int        numAttachments}
+        (
+            {byte       version}
+            {String     name}
+            {String     type}
+            {String     value}
+        ) : numAttachments
+        { The rest depends on the view type, see the following sections } :
+
+        * Form: ----------------------------------------------------------------
+
+        {byte       version}
+        {boolean    readOnly}
+        [boolean    saveOnAccept]
+        [boolean    defaultButtons]
+        {int        itemCount}
+        (
+            {byte       version}
+            {int        type}
+            {String     name}
+            [int        layout]
+
+            { The rest depends on the item type, see the item types } :
+
+            *
+
+        ) : itemCount
+
+        * ListBrowser: ---------------------------------------------------------
+
+        {byte       version}
+        [String     separator]
+        [int        pageSize]
+        [boolean    wrap]
+        [int        fontFace]
+        [int        fontStyle]
+        [int        fontSize]
+        [String     type]
+        [int        color]
+        [int        selectedColor]
+        [int        background]
+        [int        selectedBackground]
+        [int        maxLines]
+        {int        fieldCount}
+        (
+            {byte       version}
+            {String     name}
+            [int        mode]
+            [String     label]
+            [String     falseLabel]
+            [String     trueLabel]
+            [String     resource]
+        ) : fieldCount
+        {int        speedOptionCount}
+        (
+            {byte       version}
+            [String     text]
+            {int        code}
+            [String     iconSet]
+            [int        icon]
+            [String     help]
+            [String     onlyIf]
+            [String     unless]
+        ) : speedOptionCount
+
+        * Menu: ----------------------------------------------------------------
+
+        {byte       version}
+        [String     helpId]
+        [String     imageMap]
+        [String     imageMapBig]
+        [String     iconSet]
+        [int        mode]
+        [int        background]
+        [int        selectedBackground]
+        [int        color]
+        [int        selectedColor]
+        [int        fontFace]
+        [int        fontStyle]
+        [int        fontSize]
+        [int        helpLines]
+        {int        itemCount}
+        (
+            {byte       version}
+            {String     title}
+            {int        action}
+            [String     onlyIf]
+            [String     unless]
+            [int        iconIndex]
+            [int        selectedIconIndex]
+            [String     help]
+        ) : itemCount
+
+        * SettingsView: --------------------------------------------------------
+
+        {byte       version}
+        [String     helpId]
+        [String     imageMap]
+        [String     imageMapBig]
+        {int        itemCount}
+        (
+            {byte       version}
+            {String     title}
+            {String     key}
+            {boolean    defaultValue}
+            [String     onlyIf]
+            [String     unless]
+        ) : itemCount

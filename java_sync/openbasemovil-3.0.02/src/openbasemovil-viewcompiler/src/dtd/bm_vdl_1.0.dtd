@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    OpenBaseMovil The Framework for Enterprise-class J2ME applications
+    an XML file.
+    Copyright (C) 2004-2008 Elondra S.L.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.
+    If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+-->
+
+<!-- ===========================================================================
+BaseMovil View Definition Language (VDL) version 1.0
+
+VDL allows the definition of most applications views with a single xml file
+that gets translated into a properties file used by the ViewFactory.
+
+Attributes:
+- listBrowser : type of listbrowser to use as default. If not specified the
+                enhanced is used.
+
+Currently three types of views are supported:
+
+Form:
+A form contains controls such as edit boxes, string items, buttons, etc and
+can be binded to a row or rowset so it gets values from them.
+It can also create and modify rows, and if bound to a rowset it can navigate
+it.
+
+Menu:
+A menu is a simple implicit list with options.
+
+ListBrowser:
+A list browser can be used to explore a rowset with an implicit list. The
+ListBrowser uses pagination to show only one page at a time.
+============================================================================ -->
+<!ELEMENT bm-vdl ( iconSet*, controller+, (form | menu | listBrowser | settingsView)+ )>
+<!ATTLIST bm-vdl
+    version         CDATA                   #REQUIRED
+    listBrowser     ( native | enhanced )   #IMPLIED
+>
+
+<!-- ===========================================================================
+IconSet:
+Add a new icon set to the system, to be used by views.
+
+Attributes:
+    + id : name
+    + source : file to load iconset from
+    + width : width of icons in the set
+    + height : height of icons in the set
+============================================================================ -->
+<!ELEMENT iconSet EMPTY>
+<!ATTLIST iconSet
+    id              CDATA           #REQUIRED
+    source          CDATA           #REQUIRED
+    width           CDATA           #REQUIRED
+    height          CDATA           #REQUIRED
+>
+
+<!-- ===========================================================================
+Controller:
+Defines a controller for use in the following views.
+The class must have a public, no arguments, constructor.
+
+Attributes:
+    + id : controller id
+    + className : class name for controller class loading
+============================================================================ -->
+<!ELEMENT controller EMPTY>
+<!ATTLIST controller
+    id              CDATA           #REQUIRED
+    className       CDATA           #REQUIRED
+>
+
+<!-- ===========================================================================
+Form:
+A form contains controls such as edit boxes, string items, buttons, etc and
+can be binded to a row or rowset so it gets values from them.
+It can also create and modify rows, and if bound to a rowset it can navigate
+it.
+
+Every control must have a name, all the other attributes are usually optional.
+In the following comments, an attribute preceded by + is mandatory, and by -
+is optional.
+
+With the exception of the spacer, all controls can be bound to a field in a row.
+The bind attribute is the name of the field. If not present the field is not
+bound.
+
+A read-only form has by default just one command: back. A read-write form has
+by default two commands: accept and cancel.
+
+Attributes:
+    + id    : integer view id
+    + name  : view name
+    + title : a view title, can be a text or a resource uri
+    - readOnly : if the form is readonly, by default false
+    - saveOnAccept : if the row should be actually saved one user clikcs accept, true by default
+    - defaultButtons : if the default buttons should be added, true by default
+============================================================================ -->
+<!ELEMENT form ( (text | date | time | timestamp | gauge | spacer | image | choice | money | percent | integer | fixedpoint | button)+ , action* , attachment* )>
+<!ATTLIST form
+    id              CDATA               #REQUIRED
+    name            CDATA               #REQUIRED
+    title           CDATA               #REQUIRED
+    controller      CDATA               #REQUIRED
+    readOnly        ( true | false )    #IMPLIED
+    saveOnAccept    ( true | false )    #IMPLIED
+    defaultButtons  CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Text:
+A text field for showing or entering text based information.
+Attributes:
+    + name  : control name
+    - label : control label, can be a text or a resource uri
+    - labelExtra : a piece of text to follow the label, such as a colon, for example.
+    - layout : an integer with the layout value as specified by MIDP.
+    - readOnly : if the field is bound, whether the content is read-only.
+    - bind : field to bind to
+    - size : if bound size is the maximum size of the text to allow
+    - constraints : an integer as specified by MIDP, for example PASSWORD, NON_PREDICTIVE
+    - appearance : the appearance as specified by MIDP, by default PLAIN
+============================================================================ -->
+<!ELEMENT text (#PCDATA)>
+<!ATTLIST text
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    readOnly    ( true | false )        #IMPLIED
+    bind            CDATA               #IMPLIED
+    size            CDATA               #IMPLIED
+    constraints     CDATA               #IMPLIED
+    appearance  ( plain | hyperlink | button )  #IMPLIED
+>
+
+<!-- ===========================================================================
+Fixedpoint:
+A text field for showing or entering FixedPoint number based information.
+Attributes (refer to Text for full list):
+    - decimals : optional number of decimals to show (by default 0)
+============================================================================ -->
+<!ELEMENT fixedpoint (#PCDATA)>
+<!ATTLIST fixedpoint
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    readOnly    ( true | false )        #IMPLIED
+    bind            CDATA               #IMPLIED
+    size            CDATA               #IMPLIED
+    constraints     CDATA               #IMPLIED
+    appearance  ( plain | hyperlink | button )  #IMPLIED
+    decimals        CDATA               #REQUIRED
+>
+
+<!-- ===========================================================================
+Integer:
+A text field for showing or entering integer number based information.
+Attributes (refer to Text for full list)
+============================================================================ -->
+<!ELEMENT integer (#PCDATA)>
+<!ATTLIST integer
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    readOnly    ( true | false )        #IMPLIED
+    bind            CDATA               #IMPLIED
+    size            CDATA               #IMPLIED
+    constraints     CDATA               #IMPLIED
+    appearance  ( plain | hyperlink | button )  #IMPLIED
+>
+
+<!-- ===========================================================================
+Money:
+A text field for showing or entering FixedPoint number based information with
+money symbols.
+Attributes (refer to Text for full list):
+    - decimals : optional number of decimals to show (by default 0)
+============================================================================ -->
+<!ELEMENT money (#PCDATA)>
+<!ATTLIST money
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    readOnly    ( true | false )        #IMPLIED
+    bind            CDATA               #IMPLIED
+    size            CDATA               #IMPLIED
+    constraints     CDATA               #IMPLIED
+    appearance  ( plain | hyperlink | button )  #IMPLIED
+    decimals        CDATA               #REQUIRED
+>
+
+<!-- ===========================================================================
+Percent:
+A text field for showing or entering percent number based information.
+Attributes (refer to Text for full list):
+    - decimals : optional number of decimals to show (by default 0)
+============================================================================ -->
+<!ELEMENT percent (#PCDATA)>
+<!ATTLIST percent
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    readOnly    ( true | false )        #IMPLIED
+    bind            CDATA               #IMPLIED
+    size            CDATA               #IMPLIED
+    constraints     CDATA               #IMPLIED
+    appearance  ( plain | hyperlink | button )  #IMPLIED
+    decimals        CDATA               #REQUIRED
+>
+
+<!-- ===========================================================================
+Date:
+A date/time field for showing or entering date based information.
+Attributes:
+    + name  : control name
+    - label : control label, can be a text or a resource uri
+    - labelExtra : a piece of text to follow the label, such as a colon, for example.
+    - layout : an integer with the layout value as specified by MIDP.
+    - readOnly : if the field is bound, whether the content is read-only.
+    - bind : field to bind to
+============================================================================ -->
+<!ELEMENT date (#PCDATA)>
+<!ATTLIST date
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    readOnly    ( true | false )        #IMPLIED
+    bind            CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Date:
+A date/time field for showing or entering time based information.
+Attributes (refer to Date for full list)
+============================================================================ -->
+<!ELEMENT time (#PCDATA)>
+<!ATTLIST time
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    readOnly    ( true | false )        #IMPLIED
+    bind            CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Date:
+A date/time field for showing or entering timestamp based information.
+Attributes (refer to Date for full list)
+============================================================================ -->
+<!ELEMENT timestamp (#PCDATA)>
+<!ATTLIST timestamp
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    readOnly    ( true | false )        #IMPLIED
+    bind            CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Gauge:
+A gauge control for showing or entering integer based information.
+Attributes (refer to Text for full list):
+    - maxValue : maximum value for gauge, by default 100.
+============================================================================ -->
+<!ELEMENT gauge EMPTY>
+<!ATTLIST gauge
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    readOnly    ( true | false )        #IMPLIED
+    bind            CDATA               #IMPLIED
+    maxValue        CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Spacer:
+A simple spacer for fixing form distribution.
+Attributes:
+    + name  : control name
+    - layout : an integer with the layout value as specified by MIDP.
+    - minWidth : integer with minimum width, by default 1.
+    - minHeight: integer with minimum height, by default 1.
+============================================================================ -->
+<!ELEMENT spacer EMPTY>
+<!ATTLIST spacer
+    name            CDATA               #REQUIRED
+    layout          CDATA               #IMPLIED
+    minWidth        CDATA               #IMPLIED
+    minHeight       CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Image:
+Am image control for showing or entering image based information. If bound to
+a field, the field must be a kind of BLOB.
+Attributes (refer to Text for full list):
+    - altText : alternative text if image can't be showed.
+============================================================================ -->
+<!ELEMENT image EMPTY>
+<!ATTLIST image
+    name            CDATA               #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    appearance  ( plain | hyperlink | button )  #IMPLIED
+    altText         CDATA               #IMPLIED
+    bind            CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Choice:
+A choice control for showing or entering data.
+****************** Currently not implemented! **********************************
+Attributes:
+    + name : control name
+    + choiceType : type of choice, refer to MIDP
+    - label : control label, can be a text or a resource uri
+    - labelExtra : a piece of text to follow the label, such as a colon, for example.
+    - wrap : if text should wrap, by default true
+    - layout : an integer with the layout value as specified by MIDP.
+    - bind : field to bind to
+============================================================================ -->
+<!ELEMENT choice ( option* )>
+<!ATTLIST choice
+    name            CDATA               #REQUIRED
+    choiceType ( exclusive | multiple | popup ) #REQUIRED
+    label           CDATA               #IMPLIED
+    labelExtra      CDATA               #IMPLIED
+    wrap            ( true | false )    #IMPLIED
+    layout          CDATA               #IMPLIED
+    bind            CDATA               #IMPLIED
+>
+
+<!ELEMENT option EMPTY>
+<!ATTLIST option
+    label           CDATA               #REQUIRED
+>
+
+<!-- ===========================================================================
+Button:
+A button, will have an action associated to it.
+Attributes:
+    + name  : control name
+    + type : type of button, can be any of the system defined or custom.
+        If custom specified you must set the code.
+    - code : action code associated to the button for custom codes
+    - label : control label, can be a text or a resource uri
+    - labelExtra : a piece of text to follow the label, such as a colon, for example.
+    - layout : an integer with the layout value as specified by MIDP.
+    - image : the name of an image resource
+============================================================================ -->
+<!ELEMENT button EMPTY>
+<!ATTLIST button
+    name            CDATA               #REQUIRED
+    buttonType ( back | cancel | exit | help | ok | stop | home | custom )   #REQUIRED
+    code            CDATA               #IMPLIED
+    label           CDATA               #IMPLIED
+    layout          CDATA               #IMPLIED
+    image           CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Menu:
+A menu is a simple implicit list with options.
+Attributes:
+    + id : view id
+    + name : view name
+    + title : view title, can be a text or resource uri
+    - type : type of view, native or enhanced (default)
+    - helpId : if the view has a help text associated, this is the key for that text
+
+Attributes only for native menus:
+    - imageMap : if the menu has an image map associated (12x12 pixels each frame)
+    - imageMapBig : high resolution image map for high res devices (24x24 pixels each frame)
+
+Attributes only for enhanced menus:
+    + iconSet : name of iconSet to use
+    - mode : menu mode, either grid or list (default)
+    - fontFace : one of the Font constants
+    - fontStyle : one of the Font constants
+    - fontSize : one of the Font constants
+    - color : default color for normal text (black)
+    - selectedColor : color for selected text (list mode)
+    - background: background color
+    - selectedBackground : selected background color
+    - helpLines: number of help lines to show
+============================================================================ -->
+<!ELEMENT menu ( menuItem+, action*, attachment* )>
+<!ATTLIST menu
+    id                  CDATA                   #REQUIRED
+    name                CDATA                   #REQUIRED
+    title               CDATA                   #REQUIRED
+    controller          CDATA                   #REQUIRED
+    type                ( native | enhanced )   #IMPLIED
+    helpId              CDATA                   #IMPLIED
+    imageMap            CDATA                   #IMPLIED
+    imageMapBig         CDATA                   #IMPLIED
+    mode                ( list | grid )         #IMPLIED
+    iconSet             CDATA                   #IMPLIED
+    fontFace            CDATA                   #IMPLIED
+    fontStyle           CDATA                   #IMPLIED
+    fontSize            CDATA                   #IMPLIED
+    color               CDATA                   #IMPLIED
+    selectedColor       CDATA                   #IMPLIED
+    background          CDATA                   #IMPLIED
+    selectedBackground  CDATA                   #IMPLIED
+    helpLines           CDATA                   #IMPLIED
+>
+
+<!-- ===========================================================================
+MenuItem:
+An item in the menu, has an action associated.
+Attributes:
+    + title : menu item title, can be a text or a resource uri
+    + action : integer with action code
+    - onlyIf : if specified, the item will be shown only if a Flag with the given key is present
+    - unless : if specified, the item will be shown unless a Flag with the given key is present
+Attributes for enhanced menus only:
+    - iconIndex : index of icon in the icon set for the unselected status
+    - selectedIconIndex : index of icon in the icon set for the selected status
+    - help : help text for item
+    - view : the name of the view that follows if this is a simple transition,
+    if appears, then action is ignored
+============================================================================ -->
+<!ELEMENT menuItem EMPTY>
+<!ATTLIST menuItem
+    title               CDATA               #REQUIRED
+    action              CDATA               #REQUIRED
+    onlyIf              CDATA               #IMPLIED
+    unless              CDATA               #IMPLIED
+    iconIndex           CDATA               #IMPLIED
+    selectedIconIndex   CDATA               #IMPLIED
+    help                CDATA               #IMPLIED
+    view                CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+ListBrowser:
+A list browser can be used to explore a rowset with an implicit list.
+
+The ListBrowser uses pagination to show only one page at a time.
+Attributes:
+    + id : view id
+    + name : view name
+    + title : view title, can be a text or a resource uri
+    + controller : id of the controller that will handle this view
+    - type : override the global type for this listBrowser
+    - separator : string to separate content from the fields, by default a single space
+    - fontFace : an integer as specified by MIDP Font
+    - fontStyle : an integer as specified by MIDP Font
+    - fontSize : an integer as specified by MIDP Font
+
+    The following attributes only apply to native list browser:
+    - pageSize : page size for paging, by default 10
+    - wrap : if the text should wrap to multiple lines (depends on the device), true by default
+
+    The follwing attributes only apply to enhanced list browser:
+    - color : an integer with the color for drawing unselected options and normal text
+    - selectedColor : an integer with the color for the text of the selected element
+    - background : an integer with the background color for normal text and unselected elements
+    - selectedBackground : an integer with the background for selected elements
+    - maxLines : maximum number of lines to show for the selected element
+============================================================================ -->
+<!ELEMENT listBrowser ( field+ , speedOption*, action* , attachment* )>
+<!ATTLIST listBrowser
+    id                  CDATA                   #REQUIRED
+    name                CDATA                   #REQUIRED
+    title               CDATA                   #REQUIRED
+    controller          CDATA                   #REQUIRED
+    type                ( native | enhanced )   #IMPLIED
+    separator           CDATA                   #IMPLIED
+    pageSize            CDATA                   #IMPLIED
+    wrap                ( true | false )        #IMPLIED
+    fontFace            CDATA                   #IMPLIED
+    fontStyle           CDATA                   #IMPLIED
+    fontSize            CDATA                   #IMPLIED
+    color               CDATA                   #IMPLIED
+    selectedColor       CDATA                   #IMPLIED
+    background          CDATA                   #IMPLIED
+    selectedBackground  CDATA                   #IMPLIED
+    maxLines            CDATA                   #IMPLIED
+>
+
+<!-- ===========================================================================
+Field:
+A field in a listBrowser.
+Attributes:
+    + name : name of the row field to bind
+    This attribute only apply to enhanced list browsers:
+    - mode : mode for field output
+        * plain : default mode. when the field is a DATE it's shown as a
+                    timestamp, with date and hour
+        * date : for DATE fields, shows only the date
+        * time : for DATE fields, shows only the hour
+        * money : for FixedPoints shows them as money (with symnbol and 2 decimals)
+        * static : field name is not really used, and label is used as the value
+    - label : optional text that precedes field value, or value itself in static fields
+============================================================================ -->
+<!ELEMENT field EMPTY>
+<!ATTLIST field
+    name            CDATA                                       #REQUIRED
+    mode            ( plain | date | time | money | static )    #IMPLIED
+    label           CDATA                                       #IMPLIED
+    trueLabel       CDATA                                       #IMPLIED
+    falseLabel      CDATA                                       #IMPLIED
+    resource        CDATA                                       #IMPLIED
+>
+
+<!-- ===========================================================================
+speedOption:
+A speed option in a listBrowser, it's always present in the first places of
+the list, and acts like an action but it's triggered from list itself.
+Attributes:
+    + code : action code to send when option is selected
+    - text : text or resource name of the text to show (necessary for native listBrowsers)
+
+    The following apply only to enhanced listBrowsers:
+    - iconSet : id of the icon set that holds the icon for this option
+    - icon : index of the icon in the iconSet
+    - help : help text
+    - onlyIf : if specified, the action will be active only if a Flag with the given key is present
+    - unless : if specified, the action will be active unless a Flag with the given key is present
+============================================================================ -->
+<!ELEMENT speedOption EMPTY>
+<!ATTLIST speedOption
+    code            CDATA               #REQUIRED
+    text            CDATA               #IMPLIED
+    iconSet         CDATA               #IMPLIED
+    icon            CDATA               #IMPLIED
+    help            CDATA               #IMPLIED
+    onlyIf          CDATA               #IMPLIED
+    unless          CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Action:
+An action associated to a view or to an item in it (for Forms).
+Attributes:
+    + name : action name
+    + code : integer with action code
+    + label : action label, can be a text or a resource uri
+    - order : order of precedence for actions
+    - active : if the action is active, true by default.
+    - onlyIf : if specified, the action will be active only if a Flag with the given key is present
+    - unless : if specified, the action will be active unless a Flag with the given key is present
+    - for : if present it must be the name of a Form item that the action is associated to
+    - type : the type of Command associated to the action, by default SCREEN.
+        If for is specified then type is ITEM no matter what this property says.
+============================================================================ -->
+<!ELEMENT action EMPTY>
+<!ATTLIST action
+    name            CDATA               #REQUIRED
+    code            CDATA               #REQUIRED
+    label           CDATA               #REQUIRED
+    order           CDATA               #IMPLIED
+    active          ( true | false )    #IMPLIED
+    onlyIf          CDATA               #IMPLIED
+    unless          CDATA               #IMPLIED
+    for             CDATA               #IMPLIED
+    type ( screen | back | cancel | ok | help | stop | exit ) #IMPLIED
+    default         ( true | false )    #IMPLIED
+>
+
+<!-- ===========================================================================
+Attachment:
+An attachment for a view. View attachments can use Object keys and Object values,
+but here we limit the key to string and the value to Integer, String or Boolean.
+More data types will be added in the future.
+Attributes:
+    + name : attachment name
+    + type: attachment type
+    + value : actual attachment value
+============================================================================ -->
+<!ELEMENT attachment EMPTY>
+<!ATTLIST attachment
+    name            CDATA               #REQUIRED
+    type ( int | string | boolean )     #REQUIRED
+    value           CDATA               #REQUIRED
+>
+
+<!-- ===========================================================================
+SettingsView:
+A special kind of Menu that handles toggling of boolean settings.
+Attributes:
+    + id : view id
+    + name : view name
+    + title : view title, can be a text or resource uri
+    - helpId : if the view has a help text associated, this is the key for that text
+    - imageMap : if the menu has an image map associated (12x12 pixels each frame)
+    - imageMapBig : high resolution image map for high res devices (24x24 pixels each frame)
+============================================================================ -->
+<!ELEMENT settingsView ( setting+, action*, attachment* )>
+<!ATTLIST settingsView
+    id              CDATA               #REQUIRED
+    name            CDATA               #REQUIRED
+    title           CDATA               #REQUIRED
+    helpId          CDATA               #IMPLIED
+    imageMap        CDATA               #IMPLIED
+    imageMapBig     CDATA               #IMPLIED
+>
+
+<!-- ===========================================================================
+Setting:
+A setting in the settingsView, that toggles a key.
+Attributes:
+    + title : menu item title, can be a text or a resource uri
+    + key : key of the associated setting
+    + defaultValue : default value for option if not set
+    - onlyIf : if specified, the item will be shown only if a Flag with the given key is present
+    - unless : if specified, the item will be shown unless a Flag with the given key is present
+============================================================================ -->
+<!ELEMENT setting EMPTY>
+<!ATTLIST setting
+    title           CDATA               #REQUIRED
+    key             CDATA               #REQUIRED
+    defaultValue    ( true | false )    #REQUIRED
+    onlyIf          CDATA               #IMPLIED
+    unless          CDATA               #IMPLIED
+>

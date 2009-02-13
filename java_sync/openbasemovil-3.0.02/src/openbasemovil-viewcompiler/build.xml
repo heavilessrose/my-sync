@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="openbasemovil-viewcompiler" default="pack" basedir=".">
+
+    <!--
+        OpenBaseMovil View Compiler, generates the binary form of views from
+        an XML file.
+        Copyright (C) 2004-2008 Elondra S.L.
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 2 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.
+        If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+    -->
+
+    <property file="build.properties" />
+    <property file="../local.properties" />
+    <property file="../versions.properties" />
+    <property name="deps.dir" value="${basedir}/../deps" />
+    <property name="lib.dir" value="${basedir}/../framework/deploy/lib" />
+
+    <property name="main.src.dir"   value="${basedir}/src/main" />
+    <property name="dtd.src.dir"    value="${basedir}/src/dtd" />
+    <property name="build.dir"      value="${basedir}/build" />
+    <property name="build.classes"  value="${build.dir}/classes" />
+    <property name="file.lib"       value="${build.dir}/${ant.project.name}.jar" />
+
+    <property name="ant.lib"        value="${ant.home}/lib/ant.jar" />
+    <property name="jakarta"        value="${deps.dir}/jakarta/commons" />
+
+    <property name="core.lib"       value="${lib.dir}/openbasemovil-core-${openbasemovil-core.version}.jar" />
+    <property name="db.lib"         value="${lib.dir}/openbasemovil-db-${openbasemovil-db.version}.jar" />
+
+    <path id="main.classpath">
+        <pathelement location="${ant.lib}" />
+        <fileset dir="${jakarta}" includes="*.jar" />
+        <pathelement location="${core.lib}" />
+        <pathelement location="${db.lib}" />
+    </path>
+
+    <target name="clean">
+        <delete failonerror="false" dir="${build.dir}"/>
+    </target>
+
+    <target name="init">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${build.classes}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac
+            debug="no"
+            optimize="yes"
+            destdir="${build.classes}"
+            srcdir="${main.src.dir}"
+            target="1.4"
+            source="1.4"
+            includes="com/basemovil/vc/**"
+        >
+            <classpath refid="main.classpath" />
+        </javac>
+        <javac
+            debug="no"
+            optimize="yes"
+            destdir="${build.classes}"
+            srcdir="${main.src.dir}"
+            includes="bm/**"
+        >
+            <classpath refid="main.classpath" />
+        </javac>
+        <copy todir="${build.classes}">
+            <fileset dir="${main.src.dir}" includes="viewcompiler.properties" />
+            <fileset dir="${main.src.dir}" includes="viewcompilerfile.properties" />
+            <fileset dir="${dtd.src.dir}" includes="*.dtd" />
+        </copy>
+    </target>
+
+    <target name="pack" depends="compile">
+        <jar
+                basedir="${build.classes}"
+                compress="yes"
+                destfile="${file.lib}"
+        />
+    </target>
+
+    <target name="redistribute" depends="pack">
+        <copy todir="${lib.dir}">
+            <fileset file="${file.lib}" />
+        </copy>
+    </target>
+
+    <!--<target name="declare">-->
+        <!--<taskdef resource="resourcePacker.properties" />-->
+        <!--<typedef resource="resourceFile.properties" />-->
+    <!--</target>-->
+
+    <!--<target name="test" depends="declare">-->
+        <!--<resource-pack out="${basedir}/test/test.out">-->
+            <!--<resource-file file="${basedir}/src/test/test1" />-->
+            <!--<resource-file file="${basedir}/src/test/test2" />-->
+        <!--</resource-pack>-->
+    <!--</target>-->
+
+    <!--<target name="test-fail" depends="declare">-->
+        <!--<resource-pack out="${basedir}/test/test2.out">-->
+            <!--<resource-file file="${basedir}/src/test/test3" />-->
+            <!--<resource-file file="${basedir}/src/test/test4" />-->
+        <!--</resource-pack>-->
+    <!--</target>-->
+
+</project>

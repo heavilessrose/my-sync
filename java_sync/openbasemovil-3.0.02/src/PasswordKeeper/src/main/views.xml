@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bm-vdl PUBLIC "-//Elondra S.L.//BaseMovil View Definition Language//EN" "http://www.basemovil.com/dtd/bm_vdl_1.0.dtd">
+<bm-vdl version="1.0">
+
+    <!--
+    PasswordKeeper, keep your passwords safe and at hand
+    Copyright (C) 2004-2008 Elondra S.L.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.
+    If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+    -->
+    <iconSet id="mainIcons" source="/mainIcons.png" width="32" height="32" />
+    <iconSet id="toolIcons" source="/toolIcons.png" width="32" height="32" />
+    <iconSet id="browseCatIcons" source="/catBrowserIcons.png" width="24" height="24" />
+    <iconSet id="browseEntriesIcons"
+             source="/passBrowserIcons.png"
+             width="24"
+             height="24"
+        />
+
+    <controller id="main" className="passkeep.control.MainController" />
+
+    <menu id="1"
+          name="mainMenu"
+          title="mainMenu.Title"
+          controller="main"
+          iconSet="mainIcons"
+          helpId="MainView"
+          mode="grid"
+    >
+        <menuItem title="mainMenu.Categories"
+                  help="mainMenu.Categories.help"
+                  action="100"
+                />
+        <menuItem title="mainMenu.Search"
+                  help="mainMenu.Search.help"
+                  action="101"
+                />
+        <menuItem title="mainMenu.Tools"
+                  help="mainMenu.Tools.help"
+                  action="104"
+                  view="tools"
+                />
+        <menuItem title="global.Help"
+                  action="10001"
+                  help="global.Help.help"
+                />
+        <menuItem title="mainMenu.About"
+                  help="mainMenu.About.help"
+                  action="105"
+                />
+        <menuItem title="global.Exit"
+                  action="10000"
+                  help="global.Exit.help"
+                />
+    </menu>
+
+    <menu id="2" name="language" title="settings.Language" controller="main" helpLines="0">
+        <menuItem title="language.es_ES" action="201" />
+        <menuItem title="language.en" action="202" />
+    </menu>
+
+    <menu
+            id="15"
+            name="tools"
+            title="toolsView.Title"
+            controller="main"
+            iconSet="toolIcons"
+            mode="grid"
+            >
+        <menuItem title="toolsView.preferences"
+                  action="202"
+                  help="toolsView.preferences.help"
+                  view="preferences"
+                />
+        <menuItem title="toolsView.diagnostics"
+                  action="205"
+                  help="toolsView.diagnostics.help"
+                  view="diagnosis"
+                />
+        <menuItem title="toolsView.deleteData"
+                  action="204"
+                  help="toolsView.deleteData.help"
+                />
+        <menuItem title="global.Home"
+                  action="10002"
+                  help="global.Home.help"
+                />
+    </menu>
+
+    <menu
+            id="16"
+            name="preferences"
+            title="preferencesView.Title"
+            controller="main"
+            >
+        <menuItem title="global.Language"
+                  action="203"
+                  help="preferences.Language.help"
+                  view="language"
+                />
+        <menuItem title="preferences.fontSize"
+                  action="205"
+                  help="preferences.fontSize.help"
+                  view="fontSize"
+                />
+        <menuItem title="global.Home" action="10002" help="global.Home.help"/>
+    </menu>
+
+    <menu
+            id="18"
+            name="fontSize"
+            title="fontSizeView.Title"
+            controller="main"
+            helpLines="0"
+            >
+        <menuItem title="fontSize.Small" action="201" />
+        <menuItem title="fontSize.Medium" action="202" />
+        <menuItem title="fontSize.Large" action="203" />
+        <menuItem title="global.Home" action="10002" />
+    </menu>
+
+    <menu
+            id="19"
+            name="diagnosis"
+            title="diagnostics.Title"
+            controller="main"
+            >
+        <menuItem title="global.Info"
+                  action="101"
+                  help="diagnostics.Info.help"
+                />
+        <menuItem title="diagnostics.CheckMemory"
+                  action="102"
+                  help="diagnostics.CheckMemory.help"
+                />
+        <menuItem title="diagnostics.deviceInfo"
+                  action="106"
+                  help="diagnostics.deviceInfo.help"
+                />
+        <menuItem title="diagnostics.forceDeviceInfo"
+                  action="107"
+                  help="diagnostics.forceDeviceInfo.help"
+                />
+        <menuItem title="diagnostics.viewLog"
+                  action="109"
+                  help="diagnostics.viewLog.help"
+                />
+        <menuItem title="global.Home" action="10006" help="global.Home.help"/>
+    </menu>
+
+    <listBrowser id="3"
+                 name="browseCategories"
+                 title="browseCategories.Title"
+                 controller="main"
+                 separator="\n"
+    >
+        <field name="name" />
+        <field name="description" />
+        <speedOption code="1"
+                     iconSet="browseCatIcons"
+                     help="browseCategories.add.help"
+                />
+        <speedOption code="2"
+                     iconSet="browseCatIcons"
+                     help="browseCategories.remove.help"
+                />
+        <speedOption code="3"
+                     iconSet="browseCatIcons"
+                     help="browseCategories.edit.help"
+                />
+        <speedOption code="4"
+                     iconSet="browseCatIcons"
+                     help="browseCategories.addKey.help"
+                />
+    </listBrowser>
+
+    <form id="4"
+          name="editCategory"
+          title="editCategory.Title"
+          controller="main"
+          defaultButtons="false"
+          saveOnAccept="false"
+          readOnly="false"
+    >
+        <text name="name" bind="name" label="category.Name" labelExtra=":"
+                layout="16896" size="32"
+                />
+        <text name="description" bind="description" label="category.Description"
+              labelExtra=":" layout="16896" size="128"
+                />
+        <button name="okButton" buttonType="ok" label="global.Ok" />
+    </form>
+
+    <form id="5"
+          name="searchEntries"
+          title="searchEntries.Title"
+          controller="main"
+          defaultButtons="true"
+          readOnly="false"
+    >
+        <text name="search" label="gobal.Search" layout="16896" size="32"/>
+        <button name="okButton" buttonType="ok" label="global.Ok" />
+        <action name="search"
+                code="10003"
+                label="global.Search"
+                for="name"
+                default="true"
+                />
+    </form>
+
+    <listBrowser id="6"
+                 name="browseEntries"
+                 title="browseEntries.Title"
+                 controller="main"
+                 separator="\n"
+    >
+        <field name="title" />
+        <field name="comment" />
+        <speedOption
+                code="1"
+                help="browseEntries.addEntry.help"
+                iconSet="browseEntriesIcons"
+            />
+        <speedOption
+                code="2"
+                help="browseEntries.removeEntry.help"
+                iconSet="browseEntriesIcons"
+            />
+    </listBrowser>
+
+    <form id="7" name="editEntry" title="editEntry.Title" controller="main"
+            defaultButtons="false"
+            saveOnAccept="false"
+            readOnly="false"
+            >
+        <text name="title"
+              bind="title"
+              label="editEntry.title"
+              labelExtra=":"
+              layout="16896"
+              size="32"
+                />
+        <text name="password"
+              bind="password"
+              label="editEntry.password"
+              labelExtra=":"
+              layout="16896"
+              size="32"
+                />
+        <text name="repeat_password"
+              bind="password"
+              label="editEntry.repeatPassword"
+              labelExtra=":"
+              layout="16896"
+              size="32"
+                />
+        <text name="user_name"
+              bind="user_name"
+              label="editEntry.userName"
+              labelExtra=":"
+              layout="16896"
+              size="32"
+                />
+        <text name="url"
+              bind="url"
+              label="editEntry.url"
+              labelExtra=":"
+              layout="16896"
+              size="256"
+                />
+        <text name="comment"
+              bind="comment"
+              label="editEntry.comment"
+              labelExtra=":"
+              layout="16896"
+              size="128"
+                />
+        <date name="expires"
+              bind="expires"
+              label="editEntry.expires"
+              labelExtra=":"
+              layout="16896"
+                />
+        <button name="okButton" buttonType="ok" label="global.Ok" />
+    </form>
+
+</bm-vdl>
