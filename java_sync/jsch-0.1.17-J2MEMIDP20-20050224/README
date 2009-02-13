@@ -1,0 +1,99 @@
+
+                          JSch for J2ME/CLDC/MIDP2.0
+
+                      Java Secure Channel for J2ME/CLDC/MIDP 2.0
+                         by ymnk@jcraft.com, JCraft,Inc.
+
+                              http://j2me.jsch.org/
+
+Last modified: Thu Feb 24 05:31:23 UTC 2005
+
+
+Description
+===========
+JSch is a pure Java implementation of SSH2.  This archive includes
+JSch for J2ME/CLDC/MIDP 2.0.  For usages of JSch, please visit at
+its homepage(http://www.jcraft.com/jsch/).
+This software requires BouncyCastle Crypto API(http://www.bouncycastle.org/).
+
+
+Features
+========
+* JSch for J2ME/CLDC/MIDP 2.0 is in pure Java.  It is know to work with:
+  o J2ME/CLDC/MIDP 2.0 with BouncyCastle Crypto API(http://www.bouncycastle.org/)
+* SSH2 protocol support.
+* Key exchange: diffie-hellman-group-exchange-sha1, diffie-hellman-group1-sha1
+* Cipher: blowfish-cbc,3des-cbc
+* MAC: hmac-md5,hmac-md5-96,hmac-sha1,hmac-sha1-96
+* Host key type: ssh-dss, ssh-rsa
+* Userauth: password
+* Userauth: publickey(DSA,RSA)
+* stream forwarding.
+* remote exec.
+* partial authentication
+* JSch for J2ME/CLDC/MIDP 2.0 is licensed under BSD style license
+  (refer to LICENSE.txt).
+
+
+Requirements
+============
+* J2ME/CLDC/MIDP 2.0
+* BouncyCastle Crypto API for J2ME 1.26 or later.
+* To compile this stuff, we are using Sun's Wireless Toolkit 2.2.
+
+Obfuscation
+===========
+The programs using BouncyCastle Crypto API must be obfuscated,
+becuase that API includes 'java.security.SecureRandom', 
+'java.math.BigInteger', etc., and you will get errors by the security 
+check by JavaVM; class name should not be started with 'java'.  
+Please note that you have to keep following class names in obfuscation process.
+
+ * com.jcraft.jsch.DHG1
+ * com.jcraft.jsch.DHGEX
+ * com.jcraft.jsch.bc.*
+
+For example, ProGuard's configuration file('proguard/wtk/default.pro'
+included in 'proguard.jar') must include following lines,
+
+-keep class com.jcraft.jsch.DHG1
+-keep class com.jcraft.jsch.DHGEX
+-keep class com.jcraft.jsch.bc.*
+
+You know that ProGuard is a free Java class file shrinker, optimizer
+and obfuscator.  It is licensed under GNU GPL and available at 
+http://proguard.sourceforge.net/
+
+
+
+Eexample
+========
+For demonstration, we have ported JCTerm(http://www.jcraft.com/jcterm/) to
+J2ME/CLDC/MIDP 2.0. The source code is available at 
+  http://www.jcraft.com/jcterm/ 
+and jad and jar files are available on http://j2me.jsch.org/ .
+
+
+Copyrights & Disclaimers
+========================
+JSch is copyrighted by ymnk, JCraft,Inc. and is licensed through BSD 
+style license. Read the LICENSE.txt file for the complete license.
+
+
+Credits and Acknowledgments
+============================
+JSch for J2ME/CLDC/MIDP 2.0 has been developed by ymnk@jcaft.com and it can 
+not be hacked without several help.
+* We appreciate the contributor for JSch for J2SE.
+* We appreciate BoncyCastle Crypto API project.
+* This work is supported by the grant from Information-technology 
+  Promotion Agency, Japan(known as IPA in Japan).
+* This project is supported by SourceForge.net
+
+
+If you have any comments, suggestions and questions, write us 
+at jsch@jcraft.com
+
+
+``SSH is a registered trademark and Secure Shell is a trademark of
+SSH Communications Security Corp (www.ssh.com)''.
