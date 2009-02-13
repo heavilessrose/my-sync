@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+
+<project name="Thinking in Java (composite)" default="composite.run" basedir=".">
+
+  <description>
+  build.xml for composite of "Thinking in Java, 3rd Edition"
+  by Bruce Eckel
+  Available at http://www.MindView.net
+  See copyright notice in CopyRight.txt
+
+  Ant must be downloaded from:
+  http://jakarta.apache.org/ant
+
+  Options:
+  ant
+    compiles and runs all examples (if necessary)
+  ant test
+    compiles and runs all examples
+  ant composite.build
+    compiles but does not run examples
+  ant clean
+    removes old class files
+  </description>
+  
+  <target name="JDK.version.check" unless="JDK.version.ok">
+    <javac
+      includes="CheckVersion.java"
+      srcdir="${basedir}/../com/bruceeckel/tools/"
+      classpath="${basedir}/.."
+    />
+    <java
+      taskname="CheckVersion"
+      classname="com.bruceeckel.tools.CheckVersion"
+      classpath="${basedir}/.."
+      fork="true"
+      failonerror="true"
+    />
+    <property name="JDK.version.ok" value="true"/>
+  </target>
+  
+  <!-- build all dependencies and check to see if tests are up to date -->
+  <target name="composite.prepare">
+    <condition property="test.run" value="true">
+      <or>
+        <uptodate>
+          <srcfiles dir= "${basedir}" includes="**/*Output.txt"/>
+          <mapper type="glob" from="*Output.txt" to="*.class"/>
+        </uptodate>
+        <available file="failed"/>
+      </or>
+    </condition>
+  </target>
+
+  <!-- build all classes in this directory -->
+  <target name="composite.build" depends="JDK.version.check,composite.prepare"
+    description="Compile all source files">
+    <javac
+      srcdir="${basedir}"
+      classpath="${basedir}/.."
+      source="1.4"
+    />
+  </target>
+  
+  <!-- force all tests to be run -->
+  <target name="test" description="Compile and test all examples">
+    <property name="test.run" value="true"/>
+    <antcall target="composite.run"/>
+  </target>
+
+  <!-- run all untested examples in this directory -->
+  <target name="composite.run" depends="composite.build" if="test.run"
+    description="Compile and run untested examples">
+    <touch file="failed"/>
+    <antcall target="CompositeStructure.run"/>
+    <delete file="failed"/>
+  </target>
+  
+  <target name="CompositeStructure.run">
+    <java
+      taskname="CompositeStructure"
+      classname="composite.CompositeStructure"
+      classpath="${basedir}/.."
+      fork="true" 
+      failonerror="true"
+    />
+  </target>
+
+  <!-- delete all class files, javadocs, and other byproducts -->
+  <target name="clean" description="Removes all old class files">
+    <delete>
+      <fileset dir="${basedir}" includes="**/*.class"/>
+      <fileset dir="${basedir}" includes="**/*Output.txt"/>
+      <fileset dir="${basedir}" includes="**/log.txt"/>
+      <fileset dir="${basedir}" includes="failed"/>
+    </delete>
+    <echo message="clean successful"/>
+  </target>
+
+  <target name="jcsc">
+    <taskdef name="jcsc" classname="rj.tools.jcsc.ant.JCSCTask"/>
+    <jcsc rules="${basedir}/../tij.jcsc"
+      startpackage="composite"
+      destdir="${basedir}/../jcsc"
+      worstcount="20">
+      <fileset dir="${basedir}" includes="**/*.java"/>
+    </jcsc>
+  </target>
+  
+</project>

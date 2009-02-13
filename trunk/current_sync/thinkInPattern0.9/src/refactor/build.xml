@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+
+<project name="Thinking in Java (refactor)" default="refactor.run" basedir=".">
+
+  <description>
+  build.xml for refactor of "Thinking in Java, 3rd Edition"
+  by Bruce Eckel
+  Available at http://www.MindView.net
+  See copyright notice in CopyRight.txt
+
+  Ant must be downloaded from:
+  http://jakarta.apache.org/ant
+
+  Options:
+  ant
+    compiles and runs all examples (if necessary)
+  ant test
+    compiles and runs all examples
+  ant refactor.build
+    compiles but does not run examples
+  ant clean
+    removes old class files
+  </description>
+  
+  <target name="JDK.version.check" unless="JDK.version.ok">
+    <javac
+      includes="CheckVersion.java"
+      srcdir="${basedir}/../com/bruceeckel/tools/"
+      classpath="${basedir}/.."
+    />
+    <java
+      taskname="CheckVersion"
+      classname="com.bruceeckel.tools.CheckVersion"
+      classpath="${basedir}/.."
+      fork="true"
+      failonerror="true"
+    />
+    <property name="JDK.version.ok" value="true"/>
+  </target>
+  
+  <!-- build all dependencies and check to see if tests are up to date -->
+  <target name="refactor.prepare">
+    <condition property="test.run" value="true">
+      <or>
+        <uptodate>
+          <srcfiles dir= "${basedir}" includes="**/*Output.txt"/>
+          <mapper type="glob" from="*Output.txt" to="*.class"/>
+        </uptodate>
+        <available file="failed"/>
+      </or>
+    </condition>
+    <ant
+      antfile="${basedir}/../com/build.xml"
+      target="com.build"
+      dir="${basedir}/../com"
+      output="${basedir}/../com/log.txt"
+    />
+  </target>
+
+  <!-- build all classes in this directory -->
+  <target name="refactor.build" depends="JDK.version.check,refactor.prepare"
+    description="Compile all source files">
+    <javac
+      srcdir="${basedir}"
+      classpath="${basedir}/.."
+      source="1.4"
+    />
+  </target>
+  
+  <!-- force all tests to be run -->
+  <target name="test" description="Compile and test all examples">
+    <property name="test.run" value="true"/>
+    <antcall target="refactor.run"/>
+  </target>
+
+  <!-- run all untested examples in this directory -->
+  <target name="refactor.run" depends="refactor.build" if="test.run"
+    description="Compile and run untested examples">
+    <touch file="failed"/>
+    <antcall target="RecycleA.run"/>
+    <antcall target="RecycleAP.run"/>
+    <antcall target="RecycleB.run"/>
+    <antcall target="DoubleDispatch.run"/>
+    <antcall target="TrashVisitor.run"/>
+    <antcall target="DynaTrash.run"/>
+    <delete file="failed"/>
+  </target>
+  
+  <target name="RecycleA.run">
+    <java
+      taskname="RecycleA"
+      classname="refactor.recyclea.RecycleA"
+      classpath="${basedir}/.."
+      dir="../refactor/recyclea"
+      fork="true" 
+      failonerror="true"
+    />
+  </target>
+
+  <target name="RecycleAP.run">
+    <java
+      taskname="RecycleAP"
+      classname="refactor.recycleap.RecycleAP"
+      classpath="${basedir}/.."
+      dir="../refactor/recycleap"
+      fork="true" 
+      failonerror="true"
+    />
+  </target>
+
+  <target name="RecycleB.run">
+    <java
+      taskname="RecycleB"
+      classname="refactor.recycleb.RecycleB"
+      classpath="${basedir}/.."
+      dir="../refactor/recycleb"
+      fork="true" 
+      failonerror="true"
+    />
+  </target>
+
+  <target name="DoubleDispatch.run">
+    <java
+      taskname="DoubleDispatch"
+      classname="refactor.doubledispatch.DoubleDispatch"
+      classpath="${basedir}/.."
+      dir="../refactor/doubledispatch"
+      fork="true" 
+      failonerror="true"
+    />
+  </target>
+
+  <target name="TrashVisitor.run">
+    <java
+      taskname="TrashVisitor"
+      classname="refactor.trashvisitor.TrashVisitor"
+      classpath="${basedir}/.."
+      dir="../refactor/trashvisitor"
+      fork="true" 
+      failonerror="true"
+    />
+  </target>
+
+  <target name="DynaTrash.run">
+    <java
+      taskname="DynaTrash"
+      classname="refactor.dynatrash.DynaTrash"
+      classpath="${basedir}/.."
+      dir="../refactor/dynatrash"
+      fork="true" 
+      failonerror="true"
+    />
+  </target>
+
+  <!-- delete all class files, javadocs, and other byproducts -->
+  <target name="clean" description="Removes all old class files">
+    <delete>
+      <fileset dir="${basedir}" includes="**/*.class"/>
+      <fileset dir="${basedir}" includes="**/*Output.txt"/>
+      <fileset dir="${basedir}" includes="**/log.txt"/>
+      <fileset dir="${basedir}" includes="failed"/>
+    </delete>
+    <echo message="clean successful"/>
+  </target>
+
+  <target name="jcsc">
+    <taskdef name="jcsc" classname="rj.tools.jcsc.ant.JCSCTask"/>
+    <jcsc rules="${basedir}/../tij.jcsc"
+      startpackage="refactor"
+      destdir="${basedir}/../jcsc"
+      worstcount="20">
+      <fileset dir="${basedir}" includes="**/*.java"/>
+    </jcsc>
+  </target>
+  
+</project>
