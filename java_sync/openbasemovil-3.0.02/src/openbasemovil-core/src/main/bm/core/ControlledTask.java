@@ -289,7 +289,7 @@ public abstract class ControlledTask
     public String toString()
     {
         //#ifdef cldc11
-        return taskName + "[" + getPriority() + "]";
+        //# return taskName + "[" + getPriority() + "]";
         //#else
         return super.toString();
         //#endif
