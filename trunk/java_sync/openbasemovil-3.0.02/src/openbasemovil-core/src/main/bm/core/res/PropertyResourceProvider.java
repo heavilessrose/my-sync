@@ -1,22 +1,23 @@
 package bm.core.res;
+
 /* -----------------------------------------------------------------------------
-    OpenBaseMovil Core Library, foundation of the OpenBaseMovil database and tools
-    Copyright (C) 2004-2008 Elondra S.L.
+ OpenBaseMovil Core Library, foundation of the OpenBaseMovil database and tools
+ Copyright (C) 2004-2008 Elondra S.L.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 2 of the License, or
-    (at your option) any later version.
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.
-    If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
------------------------------------------------------------------------------ */
+ You should have received a copy of the GNU General Public License
+ along with this program.
+ If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
+ ----------------------------------------------------------------------------- */
 import bm.core.Properties;
 import bm.core.ResourceManager;
 import bm.core.log.LogFactory;
@@ -24,6 +25,7 @@ import bm.core.log.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 /*
  * File Information
  *
@@ -36,98 +38,75 @@ import java.io.InputStream;
 
 /**
  * ResourceProvider that gets resources from properties files.
- *
+ * 
  * @author <a href="mailto:narciso@elondra.com">Narciso Cerezo</a>
  * @version $Revision: 6 $
  */
-public class PropertyResourceProvider
-    implements ResourceProvider
-{
-    private static final Log log = LogFactory.getLog( "PropertyResourceProvider" );
+public class PropertyResourceProvider implements ResourceProvider {
+	private static final Log log = LogFactory
+			.getLog("PropertyResourceProvider");
 
-    private Properties  bundle;
-    private String      name;
+	private Properties bundle;
+	private String name;
 
-    public PropertyResourceProvider( final String resourceBundle )
-    {
-        try
-        {
-            name = resourceBundle;
-            bundle = findBundle( name );
-        }
-        catch( IOException e )
-        {
-            log.error( "loading resource bundle: " + resourceBundle, e );
-        }
-    }
+	public PropertyResourceProvider(final String resourceBundle) {
+		try {
+			name = resourceBundle;
+			bundle = findBundle(name);
+		} catch (IOException e) {
+			log.error("loading resource bundle: " + resourceBundle, e);
+		}
+	}
 
-    /**
-     * Set the active locale for resource look up.
-     *
-     * @param locale active locale
-     */
-    public void setLocale( String locale )
-    {
-        try
-        {
-            bundle = findBundle( name );
-        }
-        catch( IOException e )
-        {
-            log.error( "changing locale [" + locale + "] : " + name, e );
-        }
-    }
+	/**
+	 * Set the active locale for resource look up.
+	 * 
+	 * @param locale
+	 *            active locale
+	 */
+	public void setLocale(String locale) {
+		try {
+			bundle = findBundle(name);
+		} catch (IOException e) {
+			log.error("changing locale [" + locale + "] : " + name, e);
+		}
+	}
 
-    /**
-     * Get a resource given it's key.
-     *
-     * @param key resource key
-     * @return resource if found, null if not found.
-     */
-    public String getResource( String key )
-    {
-        return bundle.getProperty( key );
-    }
+	/**
+	 * Get a resource given it's key.
+	 * 
+	 * @param key
+	 *            resource key
+	 * @return resource if found, null if not found.
+	 */
+	public String getResource(String key) {
+		return bundle.getProperty(key);
+	}
 
-    private Properties findBundle( final String name )
-            throws IOException
-    {
-        InputStream is = ResourceManager.findLocalizedStream(
-                this.getClass(),
-                name,
-                ".properties",
-                true
-        );
-        if( is == null )
-        {
-            is = ResourceManager.findLocalizedStream(
-                    this.getClass(),
-                    name,
-                    ".txt",
-                    true
-            );
-        }
-        if( is != null )
-        {
-            return new Properties( is );
-        }
-        else
-        {
-            return null;
-        }
-    }
+	private Properties findBundle(final String name) throws IOException {
+		InputStream is = ResourceManager.findLocalizedStream(this.getClass(),
+				name, ".properties", true);
+		if (is == null) {
+			is = ResourceManager.findLocalizedStream(this.getClass(), name,
+					".txt", true);
+		}
+		if (is != null) {
+			return new Properties(is);
+		} else {
+			return null;
+		}
+	}
 
-    /**
-     * Open any underlying resource so subsequent calls to getResource go faster.
-     */
-    public void open()
-    {
-    }
+	/**
+	 * Open any underlying resource so subsequent calls to getResource go
+	 * faster.
+	 */
+	public void open() {
+	}
 
-    /**
-     * Close any underlying resource previously open.
-     */
-    public void close()
-    {
-    }
+	/**
+	 * Close any underlying resource previously open.
+	 */
+	public void close() {
+	}
 }

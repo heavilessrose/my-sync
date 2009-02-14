@@ -70,7 +70,7 @@ public class FixedPoint
 
     private static char         decimalSeparator    = ',';
     private static Character    groupingSeparator;
-    private static String       moneySymbol         = "€";
+    private static String       moneySymbol         = "Y";
     private static boolean      moneySymbolAfter    = true;
 
     static
