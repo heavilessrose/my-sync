@@ -126,6 +126,7 @@ public abstract class MidpApplication extends MIDlet implements
 				display.setCurrent(form);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -204,6 +205,7 @@ public abstract class MidpApplication extends MIDlet implements
 			destroyApp(true);
 			notifyDestroyed();
 		} catch (MIDletStateChangeException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -378,6 +380,7 @@ public abstract class MidpApplication extends MIDlet implements
 				return value;
 			}
 		} catch (DBException e) {
+			e.printStackTrace();
 		}
 
 		value = defaultProperties.getProperty(key);
@@ -404,6 +407,7 @@ public abstract class MidpApplication extends MIDlet implements
 			try {
 				return new Integer(Integer.parseInt(value));
 			} catch (NumberFormatException e) {
+				e.printStackTrace();
 				return null;
 			}
 		} else {
@@ -422,6 +426,7 @@ public abstract class MidpApplication extends MIDlet implements
 			try {
 				return new Long(Long.parseLong(value));
 			} catch (NumberFormatException e) {
+				e.printStackTrace();
 				return null;
 			}
 		} else {
