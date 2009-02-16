@@ -1,27 +1,10 @@
 package bm.ui.def.view.form;
-/* -----------------------------------------------------------------------------
-    OpenBaseMovil User Interface Library
-    Copyright (C) 2004-2008 Elondra S.L.
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.
-    If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
------------------------------------------------------------------------------ */
 
 import bm.core.io.SerializationException;
 import bm.core.io.SerializerInputStream;
 
 import javax.microedition.lcdui.Item;
+
 /*
  * File Information
  *
@@ -34,53 +17,45 @@ import javax.microedition.lcdui.Item;
 
 /**
  * A text item.
- *
+ * 
  * @author <a href="mailto:narciso@elondra.com">Narciso Cerezo</a>
  * @version $Revision$
  */
-public class ImageDef
-        extends ItemDef
-{
-    protected String    label;
-    protected String    labelExtra;
-    protected Integer   appearance;
-    protected String    bind;
-    protected String    altText;
+public class ImageDef extends ItemDef {
+	protected String label;
+	protected String labelExtra;
+	protected Integer appearance;
+	protected String bind;
+	protected String altText;
 
-    public String getLabel()
-    {
-        return label;
-    }
+	public String getLabel() {
+		return label;
+	}
 
-    public String getLabelExtra()
-    {
-        return labelExtra;
-    }
+	public String getLabelExtra() {
+		return labelExtra;
+	}
 
-    public int getAppearance()
-    {
-        return appearance != null ? appearance.intValue() : Item.PLAIN;
-    }
+	public int getAppearance() {
+		return appearance != null ? appearance.intValue() : Item.PLAIN;
+	}
 
-    public String getBind()
-    {
-        return bind;
-    }
+	public String getBind() {
+		return bind;
+	}
 
-    public String getAltText()
-    {
-        return altText;
-    }
+	public String getAltText() {
+		return altText;
+	}
 
-    protected void read( final SerializerInputStream in )
-            throws SerializationException
-    {
-        in.readByte(); // skip version
+	protected void read(final SerializerInputStream in)
+			throws SerializationException {
+		in.readByte(); // skip version
 
-        label = in.readNullableString();
-        labelExtra = in.readNullableString();
-        bind = in.readNullableString();
-        altText = in.readNullableString();
-        appearance = in.readNullableInt();
-    }
+		label = in.readNullableString();
+		labelExtra = in.readNullableString();
+		bind = in.readNullableString();
+		altText = in.readNullableString();
+		appearance = in.readNullableInt();
+	}
 }

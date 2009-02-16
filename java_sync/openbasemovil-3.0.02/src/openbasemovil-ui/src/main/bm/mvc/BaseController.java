@@ -1,22 +1,4 @@
 package bm.mvc;
-/* -----------------------------------------------------------------------------
-    OpenBaseMovil User Interface Library
-    Copyright (C) 2004-2008 Elondra S.L.
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.
-    If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
------------------------------------------------------------------------------ */
 
 import bm.core.Application;
 import bm.core.ResourceManager;
@@ -38,6 +20,7 @@ import bm.storage.RecordStoreFullException;
 import javax.microedition.lcdui.Gauge;
 import java.io.IOException;
 import java.util.Hashtable;
+
 /*
  * File Information
  *
@@ -51,235 +34,183 @@ import java.util.Hashtable;
 /**
  * Base Controller with functionality common to all the controllers in the
  * application.
- *
+ * 
  * @author <a href="mailto:narciso@elondra.com">Narciso Cerezo</a>
  * @version $Revision$
  * @noinspection ThrowableInstanceNeverThrown
  */
-public abstract class BaseController
-    extends AbstractController
-{
-    /** @noinspection AnalyzingVariableNaming*/
-    private static final Log log = LogFactory.getLog( "BaseController" );
+public abstract class BaseController extends AbstractController {
+	/** @noinspection AnalyzingVariableNaming */
+	private static final Log log = LogFactory.getLog("BaseController");
 
-    protected static final int KB               = 1024;
-    protected static final int MB               = KB * KB;
-    protected static final int MIN_FREE_DISK    = 500 * KB;
+	protected static final int KB = 1024;
+	protected static final int MB = KB * KB;
+	protected static final int MIN_FREE_DISK = 500 * KB;
 
-    protected static Hashtable      errorMessages = new Hashtable( 7 );
-    protected static ProgressEvent  waitEvent;
-    static
-    {
-        waitEvent = new ProgressEvent();
-        waitEvent.setAnimate( true );
-        final String waitMessage = ResourceManager.getResource( "global.Wait" );
-        waitEvent.setMessage( "" );
-        waitEvent.setPhase( waitMessage );
-        waitEvent.setTitle( waitMessage );
+	protected static Hashtable errorMessages = new Hashtable(7);
+	protected static ProgressEvent waitEvent;
+	static {
+		waitEvent = new ProgressEvent();
+		waitEvent.setAnimate(true);
+		final String waitMessage = ResourceManager.getResource("global.Wait");
+		waitEvent.setMessage("");
+		waitEvent.setPhase(waitMessage);
+		waitEvent.setTitle(waitMessage);
 
-        errorMessages.put( new SerializationException(0).getClass(), "error.Serialization" );
-        errorMessages.put( new RemoteCallException(0).getClass(), "error.RemoteCall" );
-        errorMessages.put( new NetException(0).getClass(), "error.Network" );
-        errorMessages.put( new IOException().getClass(), "error.Serialization" );
-        errorMessages.put( new DBException(0).getClass(), "error.DB" );
-        errorMessages.put( new RSException(0).getClass(), "error.DB" );
-        errorMessages.put( new RecordStoreFullException( 0 ).getClass(), "error.RSFull" );
-    }
+		errorMessages.put(new SerializationException(0).getClass(),
+				"error.Serialization");
+		errorMessages.put(new RemoteCallException(0).getClass(),
+				"error.RemoteCall");
+		errorMessages.put(new NetException(0).getClass(), "error.Network");
+		errorMessages.put(new IOException().getClass(), "error.Serialization");
+		errorMessages.put(new DBException(0).getClass(), "error.DB");
+		errorMessages.put(new RSException(0).getClass(), "error.DB");
+		errorMessages.put(new RecordStoreFullException(0).getClass(),
+				"error.RSFull");
+	}
 
-    protected int versionWarningCount;
-    protected int warningCount;
+	protected int versionWarningCount;
+	protected int warningCount;
 
-    /** @noinspection DuplicateThrows,JavaDoc*/
-    protected abstract void continueProcess( final ControllerEvent event )
-            throws SerializationException,
-                   NetException,
-                   RecordStoreFullException,
-                   DBException,
-                   RSException,
-                   RemoteCallException,
-                   Exception;
+	/** @noinspection DuplicateThrows,JavaDoc */
+	protected abstract void continueProcess(final ControllerEvent event)
+			throws SerializationException, NetException,
+			RecordStoreFullException, DBException, RSException,
+			RemoteCallException, Exception;
 
-    public void mildExitApplication()
-    {
-        final boolean confirmExit = Application.getManager().confirm(
-                ResourceManager.getResource( "global.Exit" ),
-                ResourceManager.getResource( "main.AskExitApplication" )
-        );
-        if( confirmExit )
-        {
-            exitApplication();
-        }
-    }
+	public void mildExitApplication() {
+		final boolean confirmExit = Application.getManager().confirm(
+				ResourceManager.getResource("global.Exit"),
+				ResourceManager.getResource("main.AskExitApplication"));
+		if (confirmExit) {
+			exitApplication();
+		}
+	}
 
-    /**
-     * Process an event. Subclasesses must implement this method to handle
-     * events.
-     *
-     * @param event event to handle
-     */
-    protected void process( final ControllerEvent event )
-    {
-        try
-        {
-            boolean consumed = false;
-            final View source = event.getSource();
-            if( source instanceof ListBrowserView )
-            {
-                consumed = processListBrowserView( event );
-            }
-            if( !consumed )
-            {
-                if( event.getCode() == 11000 )
-                {
-                    event.getSource().go(
-                            ViewFactory.getMenu( (String) event.get( "view" ) )
-                    );
-                }
-                else
-                {
-                    continueProcess( event );
-                }
-            }
-        }
-        catch( Exception e )
-        {
-            handleError( event.getSource(), e, null );
-        }
-    }
+	/**
+	 * Process an event. Subclasesses must implement this method to handle
+	 * events.
+	 * 
+	 * @param event
+	 *            event to handle
+	 */
+	protected void process(final ControllerEvent event) {
+		try {
+			boolean consumed = false;
+			final View source = event.getSource();
+			if (source instanceof ListBrowserView) {
+				consumed = processListBrowserView(event);
+			}
+			if (!consumed) {
+				if (event.getCode() == 11000) {
+					event.getSource().go(
+							ViewFactory.getMenu((String) event.get("view")));
+				} else {
+					continueProcess(event);
+				}
+			}
+		} catch (Exception e) {
+			handleError(event.getSource(), e, null);
+		}
+	}
 
-    /**
-     * Handle an error.
-     *
-     * @param source source view that originated the error, if any.
-     * @param e      the error
-     * @param message error message
-     */
-    public void handleError(
-            final Object source,
-            final Exception e,
-            final String message
-    )
-    {
-        showError( e, message );
-        ErrorLog.addError(
-                source != null ? source.getClass().getName() : "BaseController",
-                "unkown",
-                null,
-                message,
-                e
-        );
-        checkDatabaseSanity();
-        recoverView( source != null && source instanceof View ?
-                     (View) source :
-                     null
-        );
-    }
+	/**
+	 * Handle an error.
+	 * 
+	 * @param source
+	 *            source view that originated the error, if any.
+	 * @param e
+	 *            the error
+	 * @param message
+	 *            error message
+	 */
+	public void handleError(final Object source, final Exception e,
+			final String message) {
+		showError(e, message);
+		ErrorLog.addError(source != null ? source.getClass().getName()
+				: "BaseController", "unkown", null, message, e);
+		checkDatabaseSanity();
+		recoverView(source != null && source instanceof View ? (View) source
+				: null);
+	}
 
-    /**
-     * Get access to the application database.
-     *
-     * @return the application database
-     * @throws DBException on database errors
-     * @throws RecordStoreFullException if no space left
-     * @throws RSException on storage errors
-     * @throws SerializationException on object serialization errors
-     */
-    protected abstract Database getDatabase()
-            throws DBException,
-                   RecordStoreFullException,
-                   RSException,
-                   SerializationException;
+	/**
+	 * Get access to the application database.
+	 * 
+	 * @return the application database
+	 * @throws DBException
+	 *             on database errors
+	 * @throws RecordStoreFullException
+	 *             if no space left
+	 * @throws RSException
+	 *             on storage errors
+	 * @throws SerializationException
+	 *             on object serialization errors
+	 */
+	protected abstract Database getDatabase() throws DBException,
+			RecordStoreFullException, RSException, SerializationException;
 
-    protected void checkDatabaseSanity()
-    {
-        try
-        {
-            getDatabase().sanityCheck();
-            if( getDatabase().isDamaged() )
-            {
-                Application.getManager().showWarning(
-                        ResourceManager.getResource( "warn.databaseDamaged" )
-                );
-            }
-        }
-        catch( Exception e )
-        {
-            showError( e, null );
-        }
-    }
+	protected void checkDatabaseSanity() {
+		try {
+			getDatabase().sanityCheck();
+			if (getDatabase().isDamaged()) {
+				Application.getManager().showWarning(
+						ResourceManager.getResource("warn.databaseDamaged"));
+			}
+		} catch (Exception e) {
+			showError(e, null);
+		}
+	}
 
-    protected void showError( final Exception e, final String msg )
-    {
-        log.error( e );
-        final String message = (String) errorMessages.get( e.getClass() );
-        if( message != null )
-        {
-            Application.getManager().showError(
-                ResourceManager.getResource( message ) +
-                    ( msg != null ? ", " + msg : "" ),
-                e
-            );
-        }
-        else if ( msg != null )
-        {
-            Application.getManager().showError( msg, e );
-        }
-        else
-        {
-            Application.getManager().showError( e );
-        }
-    }
+	protected void showError(final Exception e, final String msg) {
+		log.error(e);
+		final String message = (String) errorMessages.get(e.getClass());
+		if (message != null) {
+			Application.getManager().showError(
+					ResourceManager.getResource(message)
+							+ (msg != null ? ", " + msg : ""), e);
+		} else if (msg != null) {
+			Application.getManager().showError(msg, e);
+		} else {
+			Application.getManager().showError(e);
+		}
+	}
 
-    protected void exitApplication()
-    {
-        Application.getManager().exitApplication();
-    }
+	protected void exitApplication() {
+		Application.getManager().exitApplication();
+	}
 
-    // This method is only intented for the Native interface ListBrowsers
-    private boolean processListBrowserView( final ControllerEvent event )
-            throws RecordStoreFullException,
-                   DBException,
-                   RSException
-    {
-        switch( event.getCode() )
-        {
-            case ListBrowserView.PAGE_DOWN:
-                ((ListBrowserView) event.getSource()).pageDown();
-                return true;
+	// This method is only intented for the Native interface ListBrowsers
+	private boolean processListBrowserView(final ControllerEvent event)
+			throws RecordStoreFullException, DBException, RSException {
+		switch (event.getCode()) {
+		case ListBrowserView.PAGE_DOWN:
+			((ListBrowserView) event.getSource()).pageDown();
+			return true;
 
-            case ListBrowserView.PAGE_UP:
-                ((ListBrowserView) event.getSource()).pageUp();
-                return true;
+		case ListBrowserView.PAGE_UP:
+			((ListBrowserView) event.getSource()).pageUp();
+			return true;
 
-            default:
-                return false;
-        }
-    }
+		default:
+			return false;
+		}
+	}
 
-    protected void showSearchingProgress( final ControllerEvent event )
-    {
-        final String title = ResourceManager.getResource(
-                "global.Searching"
-        );
-        final ProgressEvent pe = new ProgressEvent(
-                event.getSource(),
-                new Integer( Gauge.INDEFINITE ),
-                Gauge.CONTINUOUS_RUNNING
-        );
-        pe.setTitle( title );
-        pe.setPhase( title );
-        pe.dispatch();
-    }
+	protected void showSearchingProgress(final ControllerEvent event) {
+		final String title = ResourceManager.getResource("global.Searching");
+		final ProgressEvent pe = new ProgressEvent(event.getSource(),
+				new Integer(Gauge.INDEFINITE), Gauge.CONTINUOUS_RUNNING);
+		pe.setTitle(title);
+		pe.setPhase(title);
+		pe.dispatch();
+	}
 
-    protected void recoverView( final View source )
-    {
-        if( source != null )
-        {
-            source.show();
-        }
-        else
-        {
-            Application.getManager().getMainView().show();
-        }
-    }
+	protected void recoverView(final View source) {
+		if (source != null) {
+			source.show();
+		} else {
+			Application.getManager().getMainView().show();
+		}
+	}
 }

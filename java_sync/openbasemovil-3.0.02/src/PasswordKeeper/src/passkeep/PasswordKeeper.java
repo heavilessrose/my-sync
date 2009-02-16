@@ -113,6 +113,7 @@ public class PasswordKeeper extends MidpApplication {
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
+		System.out.println("startApp");
 		try {
 			// If the last time the application exited it set the install.url
 			// setting, it means that we should install a new version of the
