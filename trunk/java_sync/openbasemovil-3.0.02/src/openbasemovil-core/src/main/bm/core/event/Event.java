@@ -1,26 +1,4 @@
-/*
- * Copyright (c) 2006 Elondra S.L. All Rights Reserved.
- */
 package bm.core.event;
-
-/* -----------------------------------------------------------------------------
-    OpenBaseMovil Core Library, foundation of the OpenBaseMovil database and tools
-    Copyright (C) 2004-2008 Elondra S.L.
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.
-    If not, see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>.
------------------------------------------------------------------------------ */
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -37,324 +15,311 @@ import java.util.Vector;
 
 /**
  * Basic event, provides also dispatching mechanism.
- *
+ * 
  * @author <a href="mailto:narciso@elondra.com">Narciso Cerezo</a>
  * @version $Revision: 6 $
  */
-public class Event
-{
-    public static final int ET_GLOBAL           = 0;
-    /**
-     * The event is a progress event, and the object will be an
-     * instance of ProgressEvent.
-     */
-    public static final int ET_PROGRESS         = 1;
-    /**
-     * The event signals a language change at the ResourceManager.
-     */
-    public static final int ET_LANGUAGE_CHANGE  = 2;
+public class Event {
+	public static final int ET_GLOBAL = 0;
+	/**
+	 * The event is a progress event, and the object will be an instance of
+	 * ProgressEvent.
+	 */
+	public static final int ET_PROGRESS = 1;
+	/**
+	 * The event signals a language change at the ResourceManager.
+	 */
+	public static final int ET_LANGUAGE_CHANGE = 2;
 
-    public static final Integer GLOBAL          = new Integer( ET_GLOBAL );
-    public static final Integer PROGRESS        = new Integer( ET_PROGRESS );
-    public static final Integer LANGUAGE_CHANGE = new Integer( ET_LANGUAGE_CHANGE );
+	public static final Integer GLOBAL = new Integer(ET_GLOBAL);
+	public static final Integer PROGRESS = new Integer(ET_PROGRESS);
+	public static final Integer LANGUAGE_CHANGE = new Integer(
+			ET_LANGUAGE_CHANGE);
 
-    private static Vector   backgroundTasks = new Vector( 10 );
-    private static Hashtable listeners = new Hashtable( 10 );
-    static
-    {
-        listeners.put( GLOBAL, new Vector( 1 ) );
-        listeners.put( PROGRESS, new Vector( 1 ) );
-        listeners.put( LANGUAGE_CHANGE, new Vector( 1 ) );
-    }
+	private static Vector backgroundTasks = new Vector(10);
+	private static Hashtable listeners = new Hashtable(10);
+	static {
+		listeners.put(GLOBAL, new Vector(1));
+		listeners.put(PROGRESS, new Vector(1));
+		listeners.put(LANGUAGE_CHANGE, new Vector(1));
+	}
 
-    protected Integer   type;
-    protected boolean   consumed;
-    protected Hashtable attachments;
+	protected Integer type;
+	protected boolean consumed;
+	protected Hashtable attachments;
 
-    /**
-     * Add a background task. A thread registered as background task won't
-     * generate progress events.
-     *
-     * @param thread thread
-     */
-    public static void addBackgroundTask( final Thread thread )
-    {
-        backgroundTasks.addElement( thread );
-    }
+	/**
+	 * Add a background task. A thread registered as background task won't
+	 * generate progress events.
+	 * 
+	 * @param thread
+	 *            thread
+	 */
+	public static void addBackgroundTask(final Thread thread) {
+		backgroundTasks.addElement(thread);
+	}
 
-    /**
-     * Remove a background task.
-     * @param thread thread
-     */
-    public static void removeBackgroundTask( final Thread thread )
-    {
-        backgroundTasks.removeElement( thread );
-    }
+	/**
+	 * Remove a background task.
+	 * 
+	 * @param thread
+	 *            thread
+	 */
+	public static void removeBackgroundTask(final Thread thread) {
+		backgroundTasks.removeElement(thread);
+	}
 
-    /**
-     * Register a global event event listener.
-     * @param listener listener
-     */
-    public static void register( final EventListener listener )
-    {
-        register( listener, GLOBAL );
-    }
+	/**
+	 * Register a global event event listener.
+	 * 
+	 * @param listener
+	 *            listener
+	 */
+	public static void register(final EventListener listener) {
+		register(listener, GLOBAL);
+	}
 
-    /**
-     * Register a listener for a certain type of event.
-     *
-     * @param listener listener
-     * @param type event type
-     */
-    public static synchronized void register(
-            final EventListener listener,
-            final Integer       type
-    )
-    {
-        Vector v = (Vector) listeners.get( type );
-        if( v == null )
-        {
-            v = new Vector( 1 );
-        }
-        if( !v.contains( listener ) )
-        {
-            v.addElement( listener );
-        }
-        listeners.put( type, v );
-    }
+	/**
+	 * Register a listener for a certain type of event.
+	 * 
+	 * @param listener
+	 *            listener
+	 * @param type
+	 *            event type
+	 */
+	public static synchronized void register(final EventListener listener,
+			final Integer type) {
+		Vector v = (Vector) listeners.get(type);
+		if (v == null) {
+			v = new Vector(1);
+		}
+		if (!v.contains(listener)) {
+			v.addElement(listener);
+		}
+		listeners.put(type, v);
+	}
 
-    /**
-     * Unregister a global event event listener.
-     * @param listener listener
-     */
-    public static synchronized void unregister( final EventListener listener )
-    {
-        unregister( listener, GLOBAL );
-    }
+	/**
+	 * Unregister a global event event listener.
+	 * 
+	 * @param listener
+	 *            listener
+	 */
+	public static synchronized void unregister(final EventListener listener) {
+		unregister(listener, GLOBAL);
+	}
 
-    /**
-     * Unregister a listener from a concrete event type.
-     *
-     * @param listener listener
-     * @param type event type
-     */
-    public static synchronized void unregister(
-            final EventListener listener,
-            final Integer type
-    )
-    {
-        Vector v = (Vector) listeners.get( type );
-        if( v != null )
-        {
-            if( v.contains( listener ) )
-            {
-                v.removeElement( listener );
-            }
-            listeners.put( type, v );
-        }
-    }
+	/**
+	 * Unregister a listener from a concrete event type.
+	 * 
+	 * @param listener
+	 *            listener
+	 * @param type
+	 *            event type
+	 */
+	public static synchronized void unregister(final EventListener listener,
+			final Integer type) {
+		Vector v = (Vector) listeners.get(type);
+		if (v != null) {
+			if (v.contains(listener)) {
+				v.removeElement(listener);
+			}
+			listeners.put(type, v);
+		}
+	}
 
-    /**
-     * Remove all the listeners for a given event type.
-     *
-     * @param type event type
-     */
-    public static void unregisterAll( final Integer type )
-    {
-        if( listeners.containsKey( type ) )
-        {
-            listeners.remove( type );
-        }
-    }
+	/**
+	 * Remove all the listeners for a given event type.
+	 * 
+	 * @param type
+	 *            event type
+	 */
+	public static void unregisterAll(final Integer type) {
+		if (listeners.containsKey(type)) {
+			listeners.remove(type);
+		}
+	}
 
-    /**
-     * Remove all listeners for all event types.
-     */
-    public static void unregisterAll()
-    {
-        listeners.clear();
-    }
+	/**
+	 * Remove all listeners for all event types.
+	 */
+	public static void unregisterAll() {
+		listeners.clear();
+	}
 
-    /**
-     * Dispatch the event to all the registered event listeners, in the same
-     * order they were registered. If a listener is a ProgressView then it's
-     * made visible if it's not.<br/>
-     * @param event event to dispatch
-     */
-    public static void dispatch( final Event event )
-    {
-        if(
-                !event.type.equals( PROGRESS ) ||
-                !backgroundTasks.contains( Thread.currentThread() )
-        )
-        {
-            final Vector v = (Vector) listeners.get( event.type );
-            if( v != null )
-            {
-                final int count = v.size();
-                for( int i = 0; i < count && !event.consumed; i++ )
-                {
-                    final EventListener listener = (EventListener) v.elementAt( i );
-                    listener.handleEvent( event );
-                    Thread.yield();
-                }
-                event.consumed = false;
-            }
-        }
-    }
+	/**
+	 * Dispatch the event to all the registered event listeners, in the same
+	 * order they were registered. If a listener is a ProgressView then it's
+	 * made visible if it's not.<br/>
+	 * 
+	 * @param event
+	 *            event to dispatch
+	 */
+	public static void dispatch(final Event event) {
+		if (!event.type.equals(PROGRESS)
+				|| !backgroundTasks.contains(Thread.currentThread())) {
+			final Vector v = (Vector) listeners.get(event.type);
+			if (v != null) {
+				final int count = v.size();
+				for (int i = 0; i < count && !event.consumed; i++) {
+					final EventListener listener = (EventListener) v
+							.elementAt(i);
+					listener.handleEvent(event);
+					Thread.yield();
+				}
+				event.consumed = false;
+			}
+		}
+	}
 
-    /**
-     * Get registered listeners for a given event type.
-     * @param type type
-     * @return listeners, null if none
-     */
-    public static Vector getListeners( final Integer type )
-    {
-        return (Vector) listeners.get( type );
-    }
+	/**
+	 * Get registered listeners for a given event type.
+	 * 
+	 * @param type
+	 *            type
+	 * @return listeners, null if none
+	 */
+	public static Vector getListeners(final Integer type) {
+		return (Vector) listeners.get(type);
+	}
 
-    /**
-     * Set the list of registered listeners for a given event type.
-     * @param type type
-     * @param list listeners, null if none
-     */
-    public static void setListeners( final Integer type, final Vector list )
-    {
-        listeners.put( type, list );
-    }
+	/**
+	 * Set the list of registered listeners for a given event type.
+	 * 
+	 * @param type
+	 *            type
+	 * @param list
+	 *            listeners, null if none
+	 */
+	public static void setListeners(final Integer type, final Vector list) {
+		listeners.put(type, list);
+	}
 
-    public Event()
-    {
-    }
+	public Event() {
+	}
 
-    public Event( final int type )
-    {
-        this.type = new Integer( type );
-    }
+	public Event(final int type) {
+		this.type = new Integer(type);
+	}
 
-    public Event( final Integer type )
-    {
-        this.type = type;
-    }
+	public Event(final Integer type) {
+		this.type = type;
+	}
 
-    public void dispatch()
-    {
-        dispatch( this );
-    }
+	public void dispatch() {
+		dispatch(this);
+	}
 
-    /**
-     * Get the event type.
-     *
-     * @return event type
-     */
-    public Integer getType()
-    {
-        return type;
-    }
+	/**
+	 * Get the event type.
+	 * 
+	 * @return event type
+	 */
+	public Integer getType() {
+		return type;
+	}
 
-    /**
-     * Set the event type.
-     *
-     * @param type event type
-     */
-    public synchronized void setType( final int type )
-    {
-        this.type = new Integer( type );
-    }
+	/**
+	 * Set the event type.
+	 * 
+	 * @param type
+	 *            event type
+	 */
+	public synchronized void setType(final int type) {
+		this.type = new Integer(type);
+	}
 
-    /**
-     * Set the event type.
-     *
-     * @param type event type
-     */
-    public synchronized void setType( final Integer type )
-    {
-        this.type = type;
-    }
+	/**
+	 * Set the event type.
+	 * 
+	 * @param type
+	 *            event type
+	 */
+	public synchronized void setType(final Integer type) {
+		this.type = type;
+	}
 
-    /**
-     * Check if the event has been consumed.
-     *
-     * @return consumed
-     */
-    public boolean isConsumed()
-    {
-        return consumed;
-    }
+	/**
+	 * Check if the event has been consumed.
+	 * 
+	 * @return consumed
+	 */
+	public boolean isConsumed() {
+		return consumed;
+	}
 
-    /**
-     * Mark the event as consumed or not.<br/>
-     * When an event is consumed, the dispatcher stops passing the event
-     * to further registered listeners.
-     *
-     * @param consumed consumed
-     */
-    public synchronized void setConsumed( final boolean consumed )
-    {
-        this.consumed = consumed;
-    }
+	/**
+	 * Mark the event as consumed or not.<br/>
+	 * When an event is consumed, the dispatcher stops passing the event to
+	 * further registered listeners.
+	 * 
+	 * @param consumed
+	 *            consumed
+	 */
+	public synchronized void setConsumed(final boolean consumed) {
+		this.consumed = consumed;
+	}
 
-    /**
-     * Attach an object to the event.
-     * @param key key
-     * @param attachment object
-     */
-    public synchronized void attach( final String key, final Object attachment )
-    {
-        if( attachments == null ) // Conserve memory unless needed
-        {
-            attachments = new Hashtable( 2 );
-        }
-        attachments.put( key, attachment );
-    }
+	/**
+	 * Attach an object to the event.
+	 * 
+	 * @param key
+	 *            key
+	 * @param attachment
+	 *            object
+	 */
+	public synchronized void attach(final String key, final Object attachment) {
+		if (attachments == null) // Conserve memory unless needed
+		{
+			attachments = new Hashtable(2);
+		}
+		attachments.put(key, attachment);
+	}
 
-    /**
-     * Detach an object.
-     *
-     * @param key key
-     */
-    public void detach( final String key )
-    {
-        if( attachments != null )
-        {
-            attachments.remove( key );
-        }
-    }
+	/**
+	 * Detach an object.
+	 * 
+	 * @param key
+	 *            key
+	 */
+	public void detach(final String key) {
+		if (attachments != null) {
+			attachments.remove(key);
+		}
+	}
 
-    /**
-     * Detach all objects.
-     */
-    public void detachAll()
-    {
-        if( attachments != null )
-        {
-            attachments.clear();
-        }
-    }
+	/**
+	 * Detach all objects.
+	 */
+	public void detachAll() {
+		if (attachments != null) {
+			attachments.clear();
+		}
+	}
 
-    /**
-     * Get an attachment.
-     * @param key key
-     * @return object or null if not attached
-     */
-    public Object getAttachment( final String key )
-    {
-        return attachments != null ? attachments.get( key ) : null;
-    }
+	/**
+	 * Get an attachment.
+	 * 
+	 * @param key
+	 *            key
+	 * @return object or null if not attached
+	 */
+	public Object getAttachment(final String key) {
+		return attachments != null ? attachments.get(key) : null;
+	}
 
-    /**
-     * Check if a given listener is currently listening to a given event type.
-     *
-     * @param type event type
-     * @param listener the listener
-     * @return true if so
-     */
-    public static boolean isRegistered(
-            final Integer           type,
-            final EventListener     listener
-    )
-    {
-        Vector v = (Vector) listeners.get( type );
-        return v != null && v.contains( listener );
-    }
+	/**
+	 * Check if a given listener is currently listening to a given event type.
+	 * 
+	 * @param type
+	 *            event type
+	 * @param listener
+	 *            the listener
+	 * @return true if so
+	 */
+	public static boolean isRegistered(final Integer type,
+			final EventListener listener) {
+		Vector v = (Vector) listeners.get(type);
+		return v != null && v.contains(listener);
+	}
 }
