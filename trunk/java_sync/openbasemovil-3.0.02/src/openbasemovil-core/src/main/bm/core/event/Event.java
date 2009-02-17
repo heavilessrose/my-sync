@@ -11,10 +11,19 @@ import java.util.Vector;
  * Last modified by : $Author: narciso_cerezo $
  * Last modified on : $Date: 2008-01-16 23:55:21 +0000 (mi茅, 16 ene 2008) $
  * Revision         : $Revision: 6 $
+ * 
+ * modified by luke 09.2.17
  */
 
 /**
  * Basic event, provides also dispatching mechanism.
+ * 
+ * <p>
+ * 事件封装类: represents the event itself but also has static methods that control
+ * the registration of listeners and event dispatching.
+ * </p>
+ * There are a number of predefined event types for situations controlled by the
+ * core library, and some subclasses of Event that extend the properties of it.
  * 
  * @author <a href="mailto:narciso@elondra.com">Narciso Cerezo</a>
  * @version $Revision: 6 $
