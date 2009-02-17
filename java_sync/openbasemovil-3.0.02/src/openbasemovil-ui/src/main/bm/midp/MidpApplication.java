@@ -80,13 +80,9 @@ public abstract class MidpApplication extends MIDlet implements
 	 *            image
 	 */
 	protected void showSplash(final int bigSplashSize) {
-		System.out.println("showSplash");
 		try {
-			System.out.println("showSplash");
 			String splash = null;
-			System.out.println("showSplash");
 			final Form form = new Form("");
-			System.out.println("showSplash");
 			final int width = form.getWidth();
 			if (width > bigSplashSize) {
 				splash = defaultProperties.getProperty("splash.big.image");
@@ -464,7 +460,6 @@ public abstract class MidpApplication extends MIDlet implements
 		try {
 			defaultProperties = new Properties(getClass().getResourceAsStream(
 					"/default.properties"));
-			System.out.println(defaultProperties);
 		} catch (IOException e) {
 			e.printStackTrace();
 			defaultProperties = null;
