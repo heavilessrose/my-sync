@@ -8,11 +8,11 @@ public class ConsoleLogImpl implements Log, LogConfigurator {
 	}
 
 	public void debug(String message) {
-		System.out.println("[" + name + " Debug:]\n" + message);
+		System.out.println("[" + name + " Debug:] - " + message);
 	}
 
 	public void debug(String message, Throwable e) {
-		System.out.println("[" + name + " Debug:]\n" + message);
+		System.out.println("[" + name + " Debug:] - " + message);
 		e.printStackTrace();
 	}
 
@@ -21,11 +21,11 @@ public class ConsoleLogImpl implements Log, LogConfigurator {
 	}
 
 	public void error(String message) {
-		System.err.println("[" + name + " Error:]\n" + message);
+		System.err.println("[" + name + " Error:] - " + message);
 	}
 
 	public void error(String message, Throwable e) {
-		System.err.println("[" + name + " Error:]\n" + message);
+		System.err.println("[" + name + " Error:] - " + message);
 		e.printStackTrace();
 	}
 
@@ -34,11 +34,11 @@ public class ConsoleLogImpl implements Log, LogConfigurator {
 	}
 
 	public void fatal(String message) {
-		System.err.println("[" + name + " Fatal:]\n" + message);
+		System.err.println("[" + name + " Fatal:] - " + message);
 	}
 
 	public void fatal(String message, Throwable e) {
-		System.err.println("[" + name + " Fatal:]\n" + message);
+		System.err.println("[" + name + " Fatal:] - " + message);
 		e.printStackTrace();
 	}
 
@@ -51,15 +51,15 @@ public class ConsoleLogImpl implements Log, LogConfigurator {
 	}
 
 	public void info(String message) {
-		System.out.println("[" + name + " Info:]\n" + message);
+		System.out.println("[" + name + " Info:] - " + message);
 	}
 
 	public void warn(String message) {
-		System.out.println("[" + name + " Warn:]\n" + message);
+		System.out.println("[" + name + " Warn:] - " + message);
 	}
 
 	public void warn(String message, Throwable e) {
-		System.out.println("[" + name + " Warn:]\n" + message);
+		System.out.println("[" + name + " Warn:] - " + message);
 		e.printStackTrace();
 	}
 
