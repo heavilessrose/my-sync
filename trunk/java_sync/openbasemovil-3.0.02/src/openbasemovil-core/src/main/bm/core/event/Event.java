@@ -35,9 +35,7 @@ public class Event {
 	 * ProgressEvent.
 	 */
 	public static final int ET_PROGRESS = 1;
-	/**
-	 * The event signals a language change at the ResourceManager.
-	 */
+	/** The event signals a language change at the ResourceManager. */
 	public static final int ET_LANGUAGE_CHANGE = 2;
 
 	public static final Integer GLOBAL = new Integer(ET_GLOBAL);

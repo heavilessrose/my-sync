@@ -1,49 +1,62 @@
 package bm.core.log;
 
 public class ConsoleLogImpl implements Log, LogConfigurator {
-	private String name;
+	private static final String INFO = "[INFO ]";
+	private static final String WARN = "[WARN ]";
+	private static final String DEBUG = "[DEBUG]";
+	private static final String ERROR = "[ERROR]";
+	private static final String FATAL = "[FATAL]";
+	private String shortName;
+
+	private void doLog(final String level, final String message,
+			final Throwable e) {
+		final StringBuffer msg = new StringBuffer();
+		msg.append("[").append(shortName).append("] ").append(level).append(
+				" - ").append(message);
+		System.out.println(msg.toString());
+		if (e != null) {
+			e.printStackTrace();
+		}
+	}
 
 	public void clear() {
 
 	}
 
 	public void debug(String message) {
-		System.out.println("[" + name + " Debug:] - " + message);
+		doLog(DEBUG, message, null);
 	}
 
 	public void debug(String message, Throwable e) {
-		System.out.println("[" + name + " Debug:] - " + message);
-		e.printStackTrace();
+		doLog(DEBUG, message, e);
 	}
 
 	public void debug(Throwable e) {
-		e.printStackTrace();
+		doLog(DEBUG, null, e);
 	}
 
 	public void error(String message) {
-		System.err.println("[" + name + " Error:] - " + message);
+		doLog(ERROR, message, null);
 	}
 
 	public void error(String message, Throwable e) {
-		System.err.println("[" + name + " Error:] - " + message);
-		e.printStackTrace();
+		doLog(ERROR, message, e);
 	}
 
 	public void error(Throwable e) {
-		e.printStackTrace();
+		doLog(ERROR, null, e);
 	}
 
 	public void fatal(String message) {
-		System.err.println("[" + name + " Fatal:] - " + message);
+		doLog(FATAL, message, null);
 	}
 
 	public void fatal(String message, Throwable e) {
-		System.err.println("[" + name + " Fatal:] - " + message);
-		e.printStackTrace();
+		doLog(FATAL, message, e);
 	}
 
 	public void fatal(Throwable e) {
-		e.printStackTrace();
+		doLog(FATAL, null, e);
 	}
 
 	public String getContent() {
@@ -51,24 +64,23 @@ public class ConsoleLogImpl implements Log, LogConfigurator {
 	}
 
 	public void info(String message) {
-		System.out.println("[" + name + " Info:] - " + message);
+		doLog(INFO, message, null);
 	}
 
 	public void warn(String message) {
-		System.out.println("[" + name + " Warn:] - " + message);
+		doLog(WARN, message, null);
 	}
 
 	public void warn(String message, Throwable e) {
-		System.out.println("[" + name + " Warn:] - " + message);
-		e.printStackTrace();
+		doLog(WARN, message, e);
 	}
 
 	public void warn(Throwable e) {
-		e.printStackTrace();
+		doLog(WARN, null, e);
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.shortName = name;
 	}
 
 }
