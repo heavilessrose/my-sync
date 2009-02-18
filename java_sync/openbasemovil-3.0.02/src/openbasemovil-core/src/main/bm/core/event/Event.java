@@ -295,9 +295,7 @@ public class Event {
 		}
 	}
 
-	/**
-	 * Detach all objects.
-	 */
+	/** Detach all objects. */
 	public void detachAll() {
 		if (attachments != null) {
 			attachments.clear();
