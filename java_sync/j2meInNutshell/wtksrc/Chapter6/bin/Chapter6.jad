@@ -1,0 +1,12 @@
+MIDlet-Name:Chapter6
+MIDlet-Vendor: J2ME in a Nutshell
+MIDlet-Description: Chapter 6 Examples
+MIDlet-Version: 1.0
+MIDlet-Jar-URL: Chapter6.jar
+MicroEdition-Configuration:CLDC-1.0
+MicroEdition-Profile:MIDP-1.0
+MIDlet-1:Socket,,ora.ch6.SocketMIDlet
+MIDlet-2:Time,,ora.ch6.TimeMIDlet
+MIDlet-3:Ranking,,ora.ch6.RankingMIDlet
+MIDlet-4:PersistentRanking,,ora.ch6.PersistentRankingMIDlet
+MIDlet-5:HttpClient,,ora.ch6.HttpMIDlet
