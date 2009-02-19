@@ -136,7 +136,7 @@ public class Strings {
     
     /**
      * Converts first the string to lower cases
-     * Then replaces the "ae", "oe", "ue", "ss" with "ä", "ö", "ü", "ß"
+     * Then replaces the "ae", "oe", "ue", "ss" with 
      * @param source
      * @return String with the chars replaced, lower cased
      */
@@ -146,22 +146,22 @@ public class Strings {
             final char currChar = buffer.charAt(i);
             final char nextChar = buffer.charAt(i + 1);
             if (currChar == 'a' && nextChar == 'e') {
-                buffer.setCharAt(i, 'ä');
+                buffer.setCharAt(i, ' ');
                 buffer.deleteCharAt(i + 1);
             }
             else
                 if (currChar == 'o' && nextChar == 'e') {
-                    buffer.setCharAt(i, 'ö');
+                    buffer.setCharAt(i, ' ');
                     buffer.deleteCharAt(i + 1);
                 }
                 else
                     if (currChar == 'u' && nextChar == 'e') {
-                        buffer.setCharAt(i, 'ü');
+                        buffer.setCharAt(i, ' ');
                         buffer.deleteCharAt(i + 1);
                     }
                     else
                         if (currChar == 's' && nextChar == 's') {
-                            buffer.setCharAt(i, 'ß');
+                            buffer.setCharAt(i, ' ');
                             buffer.deleteCharAt(i + 1);
                         }
 
