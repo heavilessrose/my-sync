@@ -34,17 +34,11 @@ public class MainFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	private JSplitPane splitPaneH;
-
 	private SearchResultPanel searchResultPanel;
-
 	private SearchIndexPanel searchIndexPanel;
-
 	private SearchPanel searchPanel;
-
 	private JTabbedPane indexTab;
-
 	private MainMenuBar menuBar;
 
 	/**
@@ -68,7 +62,6 @@ public class MainFrame extends JFrame {
 	 * config
 	 */
 	public void loadFonts() {
-		// TODO Auto-generated method stub
 		initLanguage();
 		setTitle(MenuResource.getKey("hanyu.main.title"));
 		searchResultPanel.loadFonts();
@@ -82,11 +75,9 @@ public class MainFrame extends JFrame {
 	 * Load application configuration (change config required restart program)
 	 */
 	private void initConfig() {
-		// TODO Auto-generated method stub
 		try {
 			AppConfig.getInstance().loadAppConf();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -185,7 +176,6 @@ public class MainFrame extends JFrame {
 			UIManager.setLookAndFeel(UIManager
 					.getCrossPlatformLookAndFeelClassName());
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		// }
