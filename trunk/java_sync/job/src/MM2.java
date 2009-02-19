@@ -3,7 +3,8 @@ public class MM2 extends MM {
 		super();
 	}
 
-	public void ff() {
+	protected void ff() {
+		// super.ff();
 		System.out.println("MM2: ff()");
 	}
 

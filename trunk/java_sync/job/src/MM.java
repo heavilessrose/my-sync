@@ -8,7 +8,7 @@ public class MM {
 		ff();
 	}
 
-	public void ff() {
+	/* protected */private void ff() {
 		System.out.println("MM: ff()");
 	}
 
