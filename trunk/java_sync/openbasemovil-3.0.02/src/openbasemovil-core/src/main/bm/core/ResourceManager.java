@@ -20,7 +20,8 @@ import java.util.Vector;
  */
 
 /**
- * Centralized resource manager for internationalization.<br/>
+ * 国际化的资源管理中心.<br/>
+ * 
  * The resource manager is an internationalization tool that allows applications
  * to specify resources in a localized way.<br/>
  * The locale can be set programatically using the activeLocale property, if
@@ -85,9 +86,7 @@ public class ResourceManager {
 		return providers.elements();
 	}
 
-	/**
-	 * Remove all registered providers.
-	 */
+	/** Remove all registered providers. */
 	public static void clear() {
 		providers.removeAllElements();
 	}

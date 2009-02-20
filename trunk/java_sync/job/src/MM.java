@@ -5,11 +5,16 @@ public class MM {
 	static MO mmo = new MO("mmo");
 
 	public MM() {
-		ff();
+		// ff();
+		ff(2);
 	}
 
 	/* protected */private void ff() {
 		System.out.println("MM: ff()");
+	}
+
+	public void ff(int i) {
+		System.out.println("MM: " + i);
 	}
 
 	/**

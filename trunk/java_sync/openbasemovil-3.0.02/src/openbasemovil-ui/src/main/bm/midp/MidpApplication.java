@@ -68,12 +68,7 @@ public abstract class MidpApplication extends MIDlet implements
 	}
 
 	/**
-	 * Load the splash image.<br/>
-	 * If screen width is over bigSplashSize pixels, it will try to load the
-	 * resource path from the default property &quot;splash.big.image&quot;,
-	 * otherwise it will try &quot;splash.small.image&quot;. If the appropiate
-	 * image is not defined, it will default to &quot;splash.image&quot;. If
-	 * none of them are defined, no splash image is loaded.
+	 * 加载显示splash image.<br/>
 	 * 
 	 * @param bigSplashSize
 	 *            horizontal resolution that triggers the use of the big splash
@@ -116,7 +111,8 @@ public abstract class MidpApplication extends MIDlet implements
 	}
 
 	/**
-	 * Register resource bundles during application startup.<br/>
+	 * 程序启动期间Register resource bundles.<br/>
+	 * 
 	 * It registers a single resource bundle called &quot;language&quot; which
 	 * should include all the resources needed for the application.<br/>
 	 * You should pack all the resources in that bundle and not override this
@@ -456,6 +452,7 @@ public abstract class MidpApplication extends MIDlet implements
 		}
 	}
 
+	/** 加载配置 */
 	private void loadProperties() {
 		try {
 			defaultProperties = new Properties(getClass().getResourceAsStream(
