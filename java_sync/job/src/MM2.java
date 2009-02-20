@@ -8,6 +8,12 @@ public class MM2 extends MM {
 		System.out.println("MM2: ff()");
 	}
 
+	public void ff(int i) {
+		// super.ff();
+		// super.ff(3);
+		System.out.println("MM2: " + i);
+	}
+
 	/**
 	 * @param args
 	 */
