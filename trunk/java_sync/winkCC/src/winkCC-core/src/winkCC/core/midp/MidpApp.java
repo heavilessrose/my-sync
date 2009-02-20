@@ -3,6 +3,7 @@ package winkCC.core.midp;
 import java.util.Timer;
 import java.util.Vector;
 
+import javax.microedition.lcdui.Command;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
@@ -22,12 +23,23 @@ public abstract class MidpApp extends MIDlet implements IEventListener {
 
 	// --------------------------------
 	/*
-	 * 每个Timer有自己的一个后台线程(线程安全的)来顺序的执行该timer上的所以任务(任务应该能迅速的返回).
-	 * 多个线程可共享一个Timer, 因为Timer是线程安全的.
+	 * 每个Timer有自己的一个后台线程(线程安全的)来顺序的执行该timer上的所以任务(任务应该能迅速的返回). 多个线程可共享一个Timer,
+	 * 因为Timer是线程安全的.
 	 */
 	private Timer timer;
 
 	// --------------------------------
+
+	protected static MidpApp instance;
+
+	protected static Command backCommand;
+	protected static Command helpCommand;
+	protected static Command exitCommand;
+	protected static Command cancelCommand;
+	protected static Command okCommand;
+	protected static Command stopCommand;
+	protected static Command homeCommand;
+
 	// --------------------------------
 	/**
 	 * Protected constructor for subclasses. The application management software
