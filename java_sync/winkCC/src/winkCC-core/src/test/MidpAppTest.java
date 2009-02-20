@@ -3,6 +3,7 @@ package test;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.microedition.lcdui.Command;
 import javax.microedition.midlet.MIDletStateChangeException;
 
 import winkCC.core.event.Event;
@@ -130,5 +131,45 @@ public class MidpAppTest extends MidpApp {
 	// @Override
 	public void handleEvent(Event event) {
 
+	}
+
+	// @Override
+	public Command backCommand() {
+		return null;
+	}
+
+	// @Override
+	public Command cancelCommand() {
+		return null;
+	}
+
+	// @Override
+	public Command exitCommand() {
+		return null;
+	}
+
+	// @Override
+	public Command getCommand(int id) {
+		return null;
+	}
+
+	// @Override
+	public Command helpCommand() {
+		return null;
+	}
+
+	// @Override
+	public Command homeCommand() {
+		return null;
+	}
+
+	// @Override
+	public Command okCommand() {
+		return null;
+	}
+
+	// @Override
+	public Command stopCommand() {
+		return null;
 	}
 }
