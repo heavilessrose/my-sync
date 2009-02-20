@@ -9,7 +9,8 @@ import javax.microedition.midlet.MIDletStateChangeException;
 
 import winkCC.core.event.IEventListener;
 
-public abstract class MidpApp extends MIDlet implements IEventListener {
+public abstract class MidpApp extends MIDlet implements IEventListener,
+		CommandFactory {
 
 	// Ïß³Ì³Ø
 	private int poolCap = 2;
