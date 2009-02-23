@@ -4,7 +4,7 @@
 	<!-- ============== -->
 	<!-- Invoke the JAM -->
 	<!-- ============== -->
-	<property name="wtkbase" value="C:\WTK20" />
+	<property name="wtkbase" value="D:\env\WTK2.5.2" />
 	<target name="jam">
 		<exec executable="${wtkbase}\bin\emulator">
 			<arg line="-Xjam" />
