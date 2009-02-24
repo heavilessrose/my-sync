@@ -242,7 +242,7 @@ public class BasicPushMIDlet extends MIDlet implements CommandListener,
 
 		// MIDlet class name.
 		String midletClassName = this.getClass().getName();
-		// Register a dynamic connection.
+		// Register a dynamic connection, 系统分配host及port.
 		String url = "socket://";
 		// Use an unrestricted filter.
 		String filter = "*";
@@ -253,8 +253,8 @@ public class BasicPushMIDlet extends MIDlet implements CommandListener,
 					.open(url);
 			// Discover the system-assigned port.
 			int port = ssc.getLocalPort();
-			url = "socket://:" + port;
-			System.out.println("TCP: " + port);
+			url = "socket://:" + /*port*/9191;
+			System.out.println("TCP: " + ssc.getLocalAddress() + ":" + port);
 			// Register the connection now. The AMS will remember the registered
 			// URL even when the MIDlet is not active.
 			PushRegistry.registerConnection(url, midletClassName, filter);
@@ -262,7 +262,7 @@ public class BasicPushMIDlet extends MIDlet implements CommandListener,
 			// datagram for this.
 			String purl;
 			int port1 = ssc.getLocalPort();
-			purl = "socket://" + ssc.getLocalAddress() + ":" + port1;
+			purl = "socket://" + ssc.getLocalAddress() + ":" + /*port1*/9191;
 			System.out.println("TCP: " + port1);
 			// 发布
 			publishInboundConnection(purl, midletClassName);
