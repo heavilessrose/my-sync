@@ -1,4 +1,4 @@
-package winkCC.core.log;
+package winkCC.log;
 
 /**
  * 根据特定实现创建一个ILog实例
