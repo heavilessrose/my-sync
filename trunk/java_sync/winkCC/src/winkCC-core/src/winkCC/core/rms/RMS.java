@@ -5,8 +5,8 @@ import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreFullException;
 import javax.microedition.rms.RecordStoreNotFoundException;
 
-import winkCC.core.log.ILog;
-import winkCC.core.log.LogFactory;
+import winkCC.log.ILog;
+import winkCC.log.LogFactory;
 
 public class RMS {
 
