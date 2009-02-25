@@ -1,4 +1,4 @@
-package winkCC.core.log;
+package winkCC.log;
 
 /**
  * LogImpl 必须实现此接口. 为了保持ILog接口清晰, 独立出来

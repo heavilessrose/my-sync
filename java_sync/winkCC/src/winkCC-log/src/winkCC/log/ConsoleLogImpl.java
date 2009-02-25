@@ -1,4 +1,4 @@
-package winkCC.core.log;
+package winkCC.log;
 
 /**
  * 打印日志到console的实现

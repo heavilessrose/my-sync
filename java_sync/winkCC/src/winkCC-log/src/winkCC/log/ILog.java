@@ -1,4 +1,4 @@
-package winkCC.core.log;
+package winkCC.log;
 
 /**
  * Log system interface.
