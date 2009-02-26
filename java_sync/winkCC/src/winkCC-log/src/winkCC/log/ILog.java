@@ -6,6 +6,11 @@ package winkCC.log;
  * @author WangYinghua
  */
 public interface ILog {
+	static final String INFO = "[INFO ]";
+	static final String WARN = "[WARN ]";
+	static final String DEBUG = "[DEBUG]";
+	static final String ERROR = "[ERROR]";
+	static final String FATAL = "[FATAL]";
 
 	void debug(String message);
 

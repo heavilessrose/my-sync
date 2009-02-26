@@ -21,6 +21,7 @@ public class MidpAppTest extends MidpApp {
 	// omitted if nothing to do and no other
 	// constructors are created.
 	public MidpAppTest() {
+		super(240);
 		System.out.println("Constructor executed");
 
 		String interval = getAppProperty("Timer-Interval");

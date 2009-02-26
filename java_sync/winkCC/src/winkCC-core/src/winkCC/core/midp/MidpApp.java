@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.Vector;
 
 import javax.microedition.lcdui.Command;
+import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
@@ -32,6 +33,7 @@ public abstract class MidpApp extends MIDlet implements IEventListener,
 	// --------------------------------
 
 	protected static MidpApp instance;
+	protected Display display;
 
 	protected static Command backCommand;
 	protected static Command helpCommand;
@@ -54,8 +56,27 @@ public abstract class MidpApp extends MIDlet implements IEventListener,
 	 *             unless the application management software is creating the
 	 *             MIDlet.
 	 */
-	protected MidpApp() throws SecurityException {
+	protected MidpApp(final int spalashSize) throws SecurityException {
 
+		instance = this;
+		display = Display.getDisplay(this);
+		// loadProperties();
+		// showSplash(bigSplashSize);
+		initCommands();
+	}
+
+	public static MidpApp getInstance() {
+		return instance;
+	}
+
+	public void initCommands() {
+		backCommand = new Command("Back", Command.BACK, 1);
+		helpCommand = new Command("Help", Command.HELP, 2);
+		exitCommand = new Command("Exit", Command.EXIT, 1);
+		okCommand = new Command("OK", Command.OK, 1);
+		stopCommand = new Command("Stop", Command.STOP, 1);
+		homeCommand = new Command("Home", Command.SCREEN, 1);
+		cancelCommand = new Command("Cancel", Command.CANCEL, 1);
 	}
 
 	/**
@@ -96,6 +117,7 @@ public abstract class MidpApp extends MIDlet implements IEventListener,
 	 */
 	public final void exit() {
 		try {
+			display = null;
 			// 释放资源.
 			destroyApp(false);
 			// 通知JAM销毁MIDlet, JAM不会调用destroyApp(),所以在这个方法前一般应主动调用destroyApp().
