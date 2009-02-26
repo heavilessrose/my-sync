@@ -10,8 +10,8 @@ public class LogFactory {
 
 	public static ILog getLog(final String name) {
 		try {
-			final Class clazz = Class.forName("bm.core.log.ConsoleLogImpl"); // [Commenter-Don't]
-			final ILog log = (ILog) clazz.newInstance(); // [Commenter-Don't]
+			final Class clazz = Class.forName("winkCC.log.ConsoleLogImpl");
+			final ILog log = (ILog) clazz.newInstance();
 			((ILogConfigurator) log).setName(name);
 			return log;
 		} catch (Exception e) {

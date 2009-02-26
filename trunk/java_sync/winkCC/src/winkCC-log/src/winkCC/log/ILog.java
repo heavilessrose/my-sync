@@ -1,7 +1,7 @@
 package winkCC.log;
 
 /**
- * Log system interface.
+ * ILog½Ó¿Ú
  * 
  * @author WangYinghua
  */
