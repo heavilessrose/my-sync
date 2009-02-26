@@ -136,7 +136,6 @@ public class BasicPushMIDlet extends MIDlet implements CommandListener,
 		}
 	} // commandAction()
 
-	/** Thread run method. */
 	public void run() {
 		try {
 			// Do alarm or inbound connection test based

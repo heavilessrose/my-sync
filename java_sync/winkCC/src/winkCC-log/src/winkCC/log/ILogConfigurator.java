@@ -8,7 +8,7 @@ package winkCC.log;
  */
 public interface ILogConfigurator {
 	/**
-	 * Set the name (class or package) that this instance represents.
+	 * 设置此实例表示的类名
 	 * 
 	 * @param name
 	 *            instance name
