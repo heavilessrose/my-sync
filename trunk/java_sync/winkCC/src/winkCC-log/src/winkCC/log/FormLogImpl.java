@@ -1,26 +1,10 @@
 package winkCC.log;
 
-/**
- * 打印日志到console的实现
- * 
- * @author WangYinghua
- * 
- */
-public class ConsoleLogImpl implements ILog, ILogConfigurator {
+public class FormLogImpl implements ILog, ILogConfigurator {
 	private String shortName;
 
 	private void doLog(final String level, final String message,
 			final Throwable e) {
-		final StringBuffer msg = new StringBuffer();
-		msg.append("[").append(shortName).append("] ").append(level).append(
-				" - ").append(message);
-		System.out.println(msg.toString());
-		if (e != null) {
-			e.printStackTrace();
-		}
-	}
-
-	public void clear() {
 
 	}
 
@@ -80,7 +64,13 @@ public class ConsoleLogImpl implements ILog, ILogConfigurator {
 		this.shortName = name;
 	}
 
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public String getContent() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
