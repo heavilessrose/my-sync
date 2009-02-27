@@ -27,7 +27,7 @@ public class NioEchoServer {
 
 		ServerSocketChannel serverSocketChannel;
 		Selector selector;
-		InetSocketAddress addr = new InetSocketAddress("127.0.0.1", 4444);
+		InetSocketAddress addr = new InetSocketAddress("127.0.0.1", 8088);
 		Charset charset = Charset.forName("GBK");
 		CharsetDecoder decode = charset.newDecoder();
 		CharsetEncoder encode = charset.newEncoder();
