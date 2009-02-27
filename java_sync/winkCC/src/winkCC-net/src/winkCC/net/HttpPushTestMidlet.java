@@ -49,33 +49,28 @@ public class HttpPushTestMidlet extends MidpApp implements
 		// work();
 		// } else if (!PushUtil.isPushActivated()) {
 		display.setCurrent(form);
-		// Alert alert = new Alert("Tip", "Push start", null, AlertType.ERROR);
-		// alert.setTimeout(Alert.FOREVER);
-		// display.setCurrent(alert);
 		work();
+		Alert alert = new Alert("Tip", "Push start", null, AlertType.ERROR);
+		alert.setTimeout(Alert.FOREVER);
+		display.setCurrent(alert);
 		// }
 
 		log.info("i = " + (++i));
 	}
 
 	private void work() {
-		try {
-			final HttpConnection conn = HttpUtil
-					.connect("http://www.google.com");
-			new Thread() {
-				public void run() {
-					try {
-						HttpUtil.getPage(conn);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						log.debug(e);
-					}
+		new Thread() {
+			public void run() {
+				try {
+					final HttpConnection conn = HttpUtil
+							.connect("http://www.google.com");
+					HttpUtil.getPage(conn);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					log.debug(e);
 				}
-			}.start();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			log.debug(e);
-		}
+			}
+		}.start();
 	}
 
 	public void handleEvent(Event event) {

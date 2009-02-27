@@ -42,7 +42,7 @@ public class HttpUtil {
 			byte[] htmlPage = getBytes(is);
 			log.info("get page success");
 			// 设置定时激活
-			PushUtil.scheduleMIDlet(10000, HttpPushTestMidlet.getInstance()
+			PushUtil.scheduleMIDlet(60000, HttpPushTestMidlet.getInstance()
 					.getClass().getName());
 			writeToFile(htmlPage/* .getBytes() */);
 		}
@@ -98,13 +98,13 @@ public class HttpUtil {
 		String fileName = null;
 		try {
 			fileName = "google.html";
-			// fc = (FileConnection) Connector.open("file:///root1/");
-			fc = (FileConnection) Connector.open("file:///e:/ccpp/");
+//			fc = (FileConnection) Connector.open("file:///root1/");
+			 fc = (FileConnection) Connector.open("file:///e:/ccpp/");
 			if (!fc.exists())
 				fc.mkdir();
-			// fc = (FileConnection) Connector.open("file:///root1/" +
-			// fileName);
-			fc = (FileConnection) Connector.open("file:///e:/ccpp/" + fileName);
+//			fc = (FileConnection) Connector.open("file:///root1/" + fileName);
+			 fc = (FileConnection) Connector.open("file:///e:/ccpp/" +
+			 fileName);
 			if (!fc.exists())
 				fc.create();
 

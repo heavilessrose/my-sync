@@ -11,6 +11,7 @@ public class LogFactory {
 	public static ILog getLog(final String name) {
 		try {
 			final Class clazz = Class.forName("winkCC.log.ConsoleLogImpl");
+			// final Class clazz = Class.forName("winkCC.log.AlertLogImpl");
 			final ILog log = (ILog) clazz.newInstance();
 			((ILogConfigurator) log).setName(name);
 			return log;
