@@ -28,7 +28,7 @@ public class EchoServer {
 	public static void main(String[] args) throws Exception {
 
 		// create socket
-		int port = 4444;
+		int port = 8088;
 		ServerSocket serverSocket = new ServerSocket(port);
 		System.err.println("Started server on port " + port);
 
