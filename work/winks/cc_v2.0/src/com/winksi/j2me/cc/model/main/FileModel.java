@@ -100,6 +100,7 @@ public class FileModel extends Thread {
 		}
 	}
 
+	/** 遍历彩像文件夹 */
 	public void traverseDirectory(String fileName) {
 		isread = true;
 		if (currDirName.equals(SEP_STR)) {

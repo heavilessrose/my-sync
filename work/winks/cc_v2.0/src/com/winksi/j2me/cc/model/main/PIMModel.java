@@ -21,7 +21,7 @@ public class PIMModel extends Thread {
 	private PimListener listener;
 	private Hashtable uidHt = new Hashtable();
 	private Hashtable fullNameHt = new Hashtable();
-	/** 保存电话号码及对应彩像 */
+	/** 保存号码簿中电话号码及对应彩像 */
 	private Hashtable ht = new Hashtable();
 	private int event = 0;
 	/** 所有通讯录的名字 */
@@ -242,7 +242,8 @@ public class PIMModel extends Thread {
 		return contactLists;
 	}
 
-	public Hashtable getContactHashtable() {
+	/** 得到电话簿中号码与图片对应关系 */
+	public Hashtable getPhoneBookNumAndImgHashtable() {
 		return ht;
 	}
 
@@ -254,7 +255,7 @@ public class PIMModel extends Thread {
 		return fullNameHt;
 	}
 
-	/** 为联系人匹配彩像 */
+	/** 为号码簿中的联系人匹配彩像 */
 	public void parseContact(Vector[] fieldsValue) {
 		String uid = fieldsValue[CPProperty.UID].elementAt(1).toString();
 		//        System.out.println("uid : "+uid);
