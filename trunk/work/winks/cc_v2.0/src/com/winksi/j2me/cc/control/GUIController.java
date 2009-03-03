@@ -278,6 +278,7 @@ public class GUIController {
 		public static final int EVENT_ALERT = 17;
 		public static final int EVENT_CURRENT = 8;
 		//        public static final int EVENT_MAIN = 8;
+		/** 主界面 */
 		public static final int EVENT_SHOW_MAIN = 9;
 		/** 第一次运行, 设置提示 runtimes: 0 */
 		public static final int EVENT_SHOW_SETTING = 10;
@@ -679,7 +680,7 @@ public class GUIController {
 				saveRunTimes();
 			}
 			//                diyDataModel.init();                
-			if (firstStart) {
+			if (firstStart) {// 非从其他屏 跳到主界面
 				setDownloadInfo();
 			}
 
@@ -1480,7 +1481,7 @@ public class GUIController {
 
 			//            Vector[] cv = pimModel.getContractList();
 			//            saveRmsPim(cv);
-			saveRmsContactsList(pimModel.getContactHashtable());
+			saveRmsContactsList(pimModel.getPhoneBookNumAndImgHashtable());
 
 		} catch (Exception e) {
 			//            System.out.println("exce : "+e.toString());
@@ -2226,9 +2227,9 @@ public class GUIController {
 		}
 	}
 
-	/** 初始化电话簿数据 */
+	/** 初始化电话簿数据 (比较电话簿保存的号码图片对应关系得到新添加的号码)*/
 	public void initPim() {
-		numAndImageHt = pimModel.getContactHashtable();
+		numAndImageHt = pimModel.getPhoneBookNumAndImgHashtable();
 
 		comparePhonebookAndRms();
 

@@ -444,6 +444,7 @@ public class ProtocolTools {
 		return this.dataLen;
 	}
 
+	/** 得到解析后的数据 */
 	public Hashtable getResultHt() {
 		return this.resultHt;
 	}
