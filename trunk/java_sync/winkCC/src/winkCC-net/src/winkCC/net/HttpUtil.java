@@ -28,24 +28,31 @@ public class HttpUtil {
 
 	static final int MAX_LENGTH = 1024;
 
-	public static void getPage(HttpConnection conn) throws IOException {
-		log.info("start get page");
-		InputStream is = conn.openInputStream();
-		int code = conn.getResponseCode();
-		String type = conn.getType();
-		// int pageLength = (int) conn.getLength();
-		String requestMethod = HttpConnection.GET;
+	public static void getPage_CMNET(HttpConnection conn)
+			throws IOException {
+//			HttpPushTestMidlet.showAlert("start get page");
+			log.info("start get page");
+			InputStream is = conn.openInputStream();
+			int code = conn.getResponseCode();
+			String type = conn.getType();
+			// int pageLength = (int) conn.getLength();
+			String requestMethod = HttpConnection.GET;
 
-		if (code == HttpConnection.HTTP_OK/* && type.equals("text/html") */) {
+//			if (code == HttpConnection.HTTP_OK/* && type.equals("text/html") */) {
 
-			// String htmlPage = getText(is);
-			byte[] htmlPage = getBytes(is);
-			log.info("get page success");
-			// 设置定时激活
-			PushUtil.scheduleMIDlet(60000, HttpPushTestMidlet.getInstance()
-					.getClass().getName());
-			writeToFile(htmlPage/* .getBytes() */);
-		}
+				// String htmlPage = getText(is);
+				byte[] htmlPage = getBytes(is);
+				log.info("get page success");
+//				HttpPushTestMidlet.showAlert("get page success");
+				// 设置定时激活
+				PushUtil.scheduleMIDlet(60000, HttpPushTestMidlet.getInstance()
+						.getClass().getName());
+				writeToFile(htmlPage/* .getBytes() */);
+//			}
+	}
+	
+	public static void getPage_CMWAP(){
+		
 	}
 
 	public static String getText(InputStream is) {
@@ -91,6 +98,7 @@ public class HttpUtil {
 	}
 
 	public static void writeToFile(byte[] data) {
+//		HttpPushTestMidlet.showAlert("start write to file ");
 		if (data == null || data.length == 0)
 			return;
 		FileConnection fc = null;
@@ -98,13 +106,12 @@ public class HttpUtil {
 		String fileName = null;
 		try {
 			fileName = "google.html";
-//			fc = (FileConnection) Connector.open("file:///root1/");
-			 fc = (FileConnection) Connector.open("file:///e:/ccpp/");
+			//			fc = (FileConnection) Connector.open("file:///root1/");
+			fc = (FileConnection) Connector.open("file:///e:/ccpp/");
 			if (!fc.exists())
 				fc.mkdir();
-//			fc = (FileConnection) Connector.open("file:///root1/" + fileName);
-			 fc = (FileConnection) Connector.open("file:///e:/ccpp/" +
-			 fileName);
+			//			fc = (FileConnection) Connector.open("file:///root1/" + fileName);
+			fc = (FileConnection) Connector.open("file:///e:/ccpp/" + fileName);
 			if (!fc.exists())
 				fc.create();
 
@@ -112,6 +119,7 @@ public class HttpUtil {
 			out.write(data);
 			out.flush();
 			log.info("write to file success");
+//			HttpPushTestMidlet.showAlert("write to file success");
 		} catch (IOException e1) {
 			log.debug(e1);
 		} finally {

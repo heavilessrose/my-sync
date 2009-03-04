@@ -33,7 +33,7 @@ public abstract class MidpApp extends MIDlet implements IEventListener,
 	// --------------------------------
 
 	protected static MidpApp instance;
-	protected Display display;
+	protected static Display display;
 
 	protected static Command backCommand;
 	protected static Command helpCommand;
