@@ -50,12 +50,16 @@ public class HttpPushTestMidlet extends MidpApp implements
 		// } else if (!PushUtil.isPushActivated()) {
 		display.setCurrent(form);
 		work();
-		Alert alert = new Alert("Tip", "Push start", null, AlertType.ERROR);
-		alert.setTimeout(Alert.FOREVER);
-		display.setCurrent(alert);
+//		showAlert();
 		// }
 
 		log.info("i = " + (++i));
+	}
+
+	public static void showAlert(String message) {
+		Alert alert = new Alert("Tip", message, null, AlertType.INFO);
+		alert.setTimeout(Alert.FOREVER);
+		display.setCurrent(alert);
 	}
 
 	private void work() {
@@ -64,10 +68,12 @@ public class HttpPushTestMidlet extends MidpApp implements
 				try {
 					final HttpConnection conn = HttpUtil
 							.connect("http://www.google.com");
-					HttpUtil.getPage(conn);
+//					showAlert("open connection success");
+					HttpUtil.getPage_CMNET(conn);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					log.debug(e);
+//					showAlert("ioexception while getpage" + e.getMessage());
 				}
 			}
 		}.start();
