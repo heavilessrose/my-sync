@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="winkCC-push" default="jam" basedir=".">
+
+	<!-- ============== -->
+	<!-- Invoke the JAM -->
+	<!-- ============== -->
+	<property name="wtkbase" value="D:\env\WTK2.5.2" />
+	<target name="jam">
+		<exec executable="${wtkbase}\bin\emulator">
+			<arg line="-Xjam" />
+		</exec>
+	</target>
+
+</project>

@@ -188,7 +188,7 @@ public class SplashCanvas extends Canvas implements Runnable, PimListener {
 		infoVector = StringTools.getSubsection(s, CPProperty.defaultFont, showWidthMax, ".,;?!");
 	}
 
-	/** 设置问候语? */
+	/** 显示显示的联系人名字 */
 	public void setMessage(String msg) {
 		this.msg = msg;
 	}
