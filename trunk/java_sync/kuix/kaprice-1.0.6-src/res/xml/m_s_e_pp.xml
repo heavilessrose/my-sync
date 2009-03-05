@@ -1,0 +1,6 @@
+<popupBox style="align:fill;layout:inlinelayout(false,fill)">
+	%SHOPLIST_NAME%
+	<textfield id="name">${name}</textfield>
+	<popupBoxFirstMenuItem onAction="edit(#name.text)">%VALIDATE%</popupBoxFirstMenuItem>
+	<popupBoxSecondMenuItem>%CANCEL%</popupBoxSecondMenuItem>
+</popupBox>

@@ -1,0 +1,8 @@
+<popupBox style="align:fill;layout:inlinelayout(false,fill)">
+	%PRODUCT_NAME%
+	<textfield id="name"/>
+	%PRODUCT_QUANTITY%
+	<textfield id="quantity" constraints="numeric">1</textfield>
+	<popupBoxFirstMenuItem onAction="add(#name.text, #quantity.text)">%VALIDATE%</popupBoxFirstMenuItem>
+	<popupBoxSecondMenuItem>%CANCEL%</popupBoxSecondMenuItem>
+</popupBox>

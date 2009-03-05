@@ -1,0 +1,45 @@
+<screen shortcuts="back=return|left=return" focusloop="true">
+	<_title>%SHOPLIST_SCREEN_TITLE(${name},@{numInCartProducts},@{numProducts})%</_title>
+	<scrollPane>
+		<list id="list">
+			<_renderer>
+			<![CDATA[
+			<checkbox onAction="select(this.dataprovider)">
+				<_selected>@{inCart}</_selected>
+				<text>@{name}</text>
+				<text>
+					<_visible>@{quantitygt1}</_visible>
+					(x@{quantity})
+				</text>
+			</checkbox>
+			]]>
+			</_renderer>
+			<_items>@{products}</_items>
+		</list>
+	</scrollPane>
+	<screenFirstMenu onAction="askAdd">%NEW_PRODUCT%</screenFirstMenu>
+	<screenSecondMenu>
+		%MENU%
+		<menupopup>
+			<menuitem onAction="select">%SELECT%</menuitem>
+			<menu>
+				%SORT%
+				<menupopup>
+					<menuitem onAction="sort(inCart)">%IN_CART%</menuitem>
+					<menuitem onAction="sort(name)">%NAME%</menuitem>
+				</menupopup>
+			</menu>
+			<menu>
+				%FILTER%
+				<menupopup>
+					<menuitem onAction="setFilter(true)">%UNADDED%</menuitem>
+					<menuitem onAction="setFilter">%ALL%</menuitem>
+				</menupopup>
+			</menu>
+			<menuitem onAction="askEdit(#list.focusedwidget.dataprovider)">%EDIT_PRODUCT%</menuitem>
+			<menuitem onAction="askDelete">%REMOVE_PRODUCT%</menuitem>
+			<menuitem onAction="askClear">%REMOVEALL_PRODUCTS%</menuitem>
+			<menuitem onAction="return">%RETURN%</menuitem>
+		</menupopup>
+	</screenSecondMenu>
+</screen>
