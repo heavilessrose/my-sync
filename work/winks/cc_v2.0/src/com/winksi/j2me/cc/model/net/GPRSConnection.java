@@ -126,7 +126,7 @@ public class GPRSConnection extends Thread {
 						conn.setRequestProperty("Content-Language", "UTF-8");
 						//                    conn.setRequestProperty("Content-Length", Integer.toString(body.length));
 						//                    conn.setRequestProperty("Connection", "Keep-Alive");
-						//                    conn.setRequestProperty("Connection", "Close");                
+						//                    conn.setRequestProperty("Connection", "Close");
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
