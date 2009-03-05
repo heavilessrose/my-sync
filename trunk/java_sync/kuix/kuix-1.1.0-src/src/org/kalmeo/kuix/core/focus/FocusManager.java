@@ -39,22 +39,22 @@ public class FocusManager {
 
 	// The widget that this FocusManager is reltative to
 	protected Widget rootWidget;
-	
+
 	// Define if the selection can loop
 	private boolean loop;
-	
+
 	// The current focused widget
 	protected Widget focusedWidget;
-	
+
 	// Key shortcut handler list
 	private Vector shortcuts;
-	
+
 	// Represent the widget where the drag event starts
 	private Widget draggedEventWidget = null;
-	
+
 	/**
 	 * Construct a {@link FocusManager}
-	 *
+	 * 
 	 * @param rootWidget
 	 * @param loop
 	 */
@@ -62,7 +62,7 @@ public class FocusManager {
 		this.rootWidget = rootWidget;
 		setLoop(loop);
 	}
-	
+
 	/**
 	 * @return the loop
 	 */
@@ -71,7 +71,8 @@ public class FocusManager {
 	}
 
 	/**
-	 * @param loop the loop to set
+	 * @param loop
+	 *            the loop to set
 	 */
 	public void setLoop(boolean loop) {
 		this.loop = loop;
@@ -85,11 +86,13 @@ public class FocusManager {
 	public Widget getFocusedWidget() {
 		return focusedWidget;
 	}
-	
+
 	/**
-	 * Returns the focused widget. <br/><b>Caution</b> : if focused widget is a
-	 * {@link TabFolder} the current {@link TabItem}'s focused widget is returned.<br/>
-	 * For focusManager internal use, prefer to use the protected <code>focusedWidget</code> member.
+	 * Returns the focused widget. <br/>
+	 * <b>Caution</b> : if focused widget is a {@link TabFolder} the current
+	 * {@link TabItem}'s focused widget is returned.<br/>
+	 * For focusManager internal use, prefer to use the protected
+	 * <code>focusedWidget</code> member.
 	 * 
 	 * @return the focusedWidget
 	 */
@@ -102,18 +105,19 @@ public class FocusManager {
 		}
 		return getFocusedWidget();
 	}
-	
+
 	/**
 	 * Reset the focues widget
 	 */
 	public void reset() {
 		requestFocus(null);
 	}
-	
+
 	/**
 	 * Add a shortcut key event handler to shortcuts list
 	 * 
-	 * @param widget the widget that handle the shortcut key event
+	 * @param widget
+	 *            the widget that handle the shortcut key event
 	 */
 	public void addShortcutHandler(Widget widget) {
 		if (widget != null) {
@@ -125,11 +129,12 @@ public class FocusManager {
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove a shortcut key event handler to shortcuts list
 	 * 
-	 * @param widget the widget that handle the shortcut key event
+	 * @param widget
+	 *            the widget that handle the shortcut key event
 	 */
 	public void removeShortcutHandler(Widget widget) {
 		if (widget != null && shortcuts != null) {
@@ -138,7 +143,7 @@ public class FocusManager {
 			}
 		}
 	}
-	
+
 	/**
 	 * Try to retrieve the direct or indirect parent scrollPane of the given
 	 * <code>widget</code> instance.
@@ -169,11 +174,12 @@ public class FocusManager {
 				previous.processFocusEvent(KuixConstants.FOCUS_LOST_EVENT_TYPE);
 			}
 			if (focusedWidget != null) {
-				focusedWidget.processFocusEvent(KuixConstants.FOCUS_GAINED_EVENT_TYPE);
+				focusedWidget
+						.processFocusEvent(KuixConstants.FOCUS_GAINED_EVENT_TYPE);
 			}
 		}
 	}
-	
+
 	/**
 	 * Request the previous/next focusable {@link Widget}. The previous/next
 	 * focusable widget search start from <code>startWidget</code>.<br>
@@ -186,23 +192,32 @@ public class FocusManager {
 	 * @param direction
 	 * @param loopCount
 	 */
-	private void requestOtherFocus(Widget startWidget, boolean forward, Alignment direction, int loopCount) {
+	private void requestOtherFocus(Widget startWidget, boolean forward,
+			Alignment direction, int loopCount) {
 		if (loopCount > 1) {
 			return;
 		}
-		Widget otherFocus = ((startWidget == null) ? rootWidget : startWidget).getOtherFocus(rootWidget, startWidget, null, forward, direction, true, true, true);
+		Widget otherFocus = ((startWidget == null) ? rootWidget : startWidget)
+				.getOtherFocus(rootWidget, startWidget, null, forward,
+						direction, true, true, true);
 		if (otherFocus != null) {
 			ScrollPane scrollPane = findFirstScrollPaneParent(otherFocus);
 			if (scrollPane != null) {
-				if (!scrollPane.bestScrollToChild(otherFocus, startWidget != null)) {
+				if (!scrollPane.bestScrollToChild(otherFocus,
+						startWidget != null)) {
 					return;
 				}
 				if (scrollPane.isMarkerWidget(otherFocus)) {
-					Widget nextOtherFocus = otherFocus.getOtherFocus(rootWidget, otherFocus, null, forward, direction, false, true, true);
+					Widget nextOtherFocus = otherFocus.getOtherFocus(
+							rootWidget, otherFocus, null, forward, direction,
+							false, true, true);
 					if (nextOtherFocus == null) {
 						return;
 					}
-					if (findFirstScrollPaneParent(nextOtherFocus) != scrollPane || scrollPane.isChildInsideClippedArea(nextOtherFocus) && !scrollPane.isMarkerWidget(nextOtherFocus)) {
+					if (findFirstScrollPaneParent(nextOtherFocus) != scrollPane
+							|| scrollPane
+									.isChildInsideClippedArea(nextOtherFocus)
+							&& !scrollPane.isMarkerWidget(nextOtherFocus)) {
 						otherFocus = nextOtherFocus;
 					}
 				}
@@ -218,7 +233,7 @@ public class FocusManager {
 			requestOtherFocus(null, forward, direction, ++loopCount);
 		}
 	}
-	
+
 	/**
 	 * Request the forward or backward focusable {@link Widget}. The forward or
 	 * backward focusable widget search start from <code>widget</code>.<br>
@@ -229,7 +244,8 @@ public class FocusManager {
 	 * @param startWidget
 	 * @param direction
 	 */
-	public void requestOtherFocus(Widget startWidget, boolean forward, Alignment direction) {
+	public void requestOtherFocus(Widget startWidget, boolean forward,
+			Alignment direction) {
 		requestOtherFocus(startWidget, forward, direction, 0);
 	}
 
@@ -252,7 +268,7 @@ public class FocusManager {
 		requestFocus(null);
 		requestOtherFocus(true, null);
 	}
-	
+
 	/**
 	 * Request focus for the last focusable widget
 	 */
@@ -260,23 +276,24 @@ public class FocusManager {
 		requestFocus(null);
 		requestOtherFocus(false, null);
 	}
-	
+
 	/**
 	 * Process a key event
 	 * 
 	 * @param type
 	 * @param kuixKeyCode
-	 * @return <code>true</code> if the event do something, else <code>false</code>
+	 * @return <code>true</code> if the event do something, else
+	 *         <code>false</code>
 	 */
 	public boolean processKeyEvent(byte type, int kuixKeyCode) {
-		
+
 		// Check focusedWidget event process
 		if (focusedWidget != null) {
 			if (focusedWidget.processKeyEvent(type, kuixKeyCode)) {
 				return true;
 			}
 		}
-		
+
 		// Check shortcuts
 		boolean processDefault = true;
 		if (shortcuts != null && !shortcuts.isEmpty()) {
@@ -285,14 +302,18 @@ public class FocusManager {
 				widget = (Widget) shortcuts.elementAt(i);
 
 				// If the widget has a Released or Repeated shortcut associated with the current kuixKeyCode default processing will be passed
-				if (processDefault 
-					&& type == KuixConstants.KEY_PRESSED_EVENT_TYPE
-					&& (widget.isShortcutKeyCodeCompatible(kuixKeyCode, KuixConstants.KEY_RELEASED_EVENT_TYPE)
-							|| widget.isShortcutKeyCodeCompatible(kuixKeyCode, KuixConstants.KEY_REPEATED_EVENT_TYPE))) {
-						processDefault = false;
+				if (processDefault
+						&& type == KuixConstants.KEY_PRESSED_EVENT_TYPE
+						&& (widget.isShortcutKeyCodeCompatible(kuixKeyCode,
+								KuixConstants.KEY_RELEASED_EVENT_TYPE) || widget
+								.isShortcutKeyCodeCompatible(kuixKeyCode,
+										KuixConstants.KEY_REPEATED_EVENT_TYPE))) {
+					processDefault = false;
 				}
-				
-				if (widget != null && widget.isVisible() && widget.isInWidgetTree() && widget.hasShortcutKeyCodes(type)) {
+
+				if (widget != null && widget.isVisible()
+						&& widget.isInWidgetTree()
+						&& widget.hasShortcutKeyCodes(type)) {
 					if (widget.isShortcutKeyCodeCompatible(kuixKeyCode, type)) {
 						if (widget.processShortcutKeyEvent(type, kuixKeyCode)) {
 							return true;
@@ -303,91 +324,94 @@ public class FocusManager {
 				}
 			}
 		}
-		
+
 		if (!processDefault) {
 			return true;
 		}
-		
+
 		switch (type) {
-			
-			case KuixConstants.KEY_PRESSED_EVENT_TYPE:	
-			case KuixConstants.KEY_REPEATED_EVENT_TYPE: {
-				
-				switch (kuixKeyCode) {
-					
-					case KuixConstants.KUIX_KEY_UP:
-						requestOtherFocus(false, Alignment.TOP);
-						return true;
-						
-					case KuixConstants.KUIX_KEY_LEFT:
-						requestOtherFocus(false, Alignment.LEFT);
-						return true;
-	
-					case KuixConstants.KUIX_KEY_DOWN:
-						requestOtherFocus(true, Alignment.BOTTOM);
-						return true;
-						
-					case KuixConstants.KUIX_KEY_RIGHT:
-						requestOtherFocus(true, Alignment.RIGHT);
-						return true;
-						
-				}
-				break;
-				
+
+		case KuixConstants.KEY_PRESSED_EVENT_TYPE:
+		case KuixConstants.KEY_REPEATED_EVENT_TYPE: {
+
+			switch (kuixKeyCode) {
+
+			case KuixConstants.KUIX_KEY_UP:
+				requestOtherFocus(false, Alignment.TOP);
+				return true;
+
+			case KuixConstants.KUIX_KEY_LEFT:
+				requestOtherFocus(false, Alignment.LEFT);
+				return true;
+
+			case KuixConstants.KUIX_KEY_DOWN:
+				requestOtherFocus(true, Alignment.BOTTOM);
+				return true;
+
+			case KuixConstants.KUIX_KEY_RIGHT:
+				requestOtherFocus(true, Alignment.RIGHT);
+				return true;
+
 			}
+			break;
+
+		}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Process key event if it's generated by soft key
 	 * 
 	 * @param type
 	 * @param kuixKeyCode
-	 * @return <code>true</code> if the event do something, else <code>false</code>
+	 * @return <code>true</code> if the event do something, else
+	 *         <code>false</code>
 	 */
 	protected boolean processSoftKeyEvent(byte type, int kuixKeyCode) {
 		// Default event process
 		switch (type) {
-			
-			case KuixConstants.KEY_PRESSED_EVENT_TYPE:
-			case KuixConstants.KEY_REPEATED_EVENT_TYPE: {
-				
-				if (kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_LEFT || kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_RIGHT) {
-					Screen screen = rootWidget.getDesktop().getCurrentScreen();
-					if (screen != null) {
-						Menu menu = screen.getScreenMenu(kuixKeyCode);
-						if (menu != null) {
-							menu.processActionEvent();
-						}
-						return true;
+
+		case KuixConstants.KEY_PRESSED_EVENT_TYPE:
+		case KuixConstants.KEY_REPEATED_EVENT_TYPE: {
+
+			if (kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_LEFT
+					|| kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_RIGHT) {
+				Screen screen = rootWidget.getDesktop().getCurrentScreen();
+				if (screen != null) {
+					Menu menu = screen.getScreenMenu(kuixKeyCode);
+					if (menu != null) {
+						menu.processActionEvent();
 					}
+					return true;
 				}
-				break;
-				
 			}
+			break;
 
 		}
-		return false;	
-		
+
+		}
+		return false;
+
 	}
-	
+
 	/**
 	 * Process a pointer event
 	 * 
 	 * @param type
 	 * @param x
 	 * @param y
-	 * @return <code>true</code> if the event do something, else <code>false</code>
+	 * @return <code>true</code> if the event do something, else
+	 *         <code>false</code>
 	 */
 	public boolean processPointerEvent(byte type, int x, int y) {
-		
+
 		// Convert coordinates
 		for (Widget widget = rootWidget.parent; widget != null; widget = widget.parent) {
 			x -= widget.getX();
 			y -= widget.getY();
 		}
-		
+
 		if (type == KuixConstants.POINTER_DRAGGED_EVENT_TYPE) {
 			if (draggedEventWidget == null) {
 				draggedEventWidget = rootWidget.getWidgetAt(x, y);
@@ -397,16 +421,16 @@ public class FocusManager {
 			}
 			return false;
 		}
-		
+
 		draggedEventWidget = null;
-		
+
 		// Find targeted widget
 		Widget targetedWidget = rootWidget.getWidgetAt(x, y);
 		if (targetedWidget != null) {
 			return targetedWidget.processPointerEvent(type, x, y);
 		}
 		return false;
-		
+
 	}
-	
+
 }

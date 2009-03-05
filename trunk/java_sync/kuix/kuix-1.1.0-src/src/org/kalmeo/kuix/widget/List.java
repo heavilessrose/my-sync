@@ -48,11 +48,12 @@ public class List extends Widget {
 
 	// Defaults
 	private static final Alignment LIST_ALIGN = Alignment.FILL_TOP;
-	private static final Layout LIST_LAYOUT = new InlineLayout(false, Alignment.FILL);
-	
+	private static final Layout LIST_LAYOUT = new InlineLayout(false,
+			Alignment.FILL);
+
 	// Default item widget renderer
 	private ByteArrayInputStream renderer;
-	
+
 	// Represent the mapping between DataProviders and ItemWidgets
 	private final Hashtable dataProvidersMapping = new Hashtable();
 
@@ -62,18 +63,21 @@ public class List extends Widget {
 	public List() {
 		this(KuixConstants.LIST_WIDGET_TAG);
 	}
-	
+
 	/**
 	 * Construct a {@link List}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public List(String tag) {
 		super(tag);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.RENDERER_ATTRIBUTE.equals(name)) {
@@ -85,9 +89,12 @@ public class List extends Widget {
 		}
 		return super.setAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setObjectAttribute(java.lang.String, java.lang.Object)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setObjectAttribute(java.lang.String,
+	 * java.lang.Object)
 	 */
 	public boolean setObjectAttribute(String name, Object value) {
 		if (KuixConstants.ITEMS_ATTRIBUTE.equals(name)) {
@@ -102,8 +109,10 @@ public class List extends Widget {
 		}
 		return super.setObjectAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#isObjectAttribute(java.lang.String)
 	 */
 	public boolean isObjectAttribute(String name) {
@@ -113,8 +122,12 @@ public class List extends Widget {
 		return super.isObjectAttribute(name);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getDefaultStyleAttributeValue(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getDefaultStyleAttributeValue(java.lang
+	 * .String)
 	 */
 	protected Object getDefaultStylePropertyValue(String name) {
 		if (KuixConstants.LAYOUT_STYLE_PROPERTY.equals(name)) {
@@ -125,7 +138,7 @@ public class List extends Widget {
 		}
 		return super.getDefaultStylePropertyValue(name);
 	}
-	
+
 	/**
 	 * @return the renderer
 	 */
@@ -134,7 +147,8 @@ public class List extends Widget {
 	}
 
 	/**
-	 * @param renderer the renderer to set
+	 * @param renderer
+	 *            the renderer to set
 	 */
 	public void setRenderer(ByteArrayInputStream renderer) {
 		this.renderer = renderer;
@@ -164,12 +178,13 @@ public class List extends Widget {
 	 * Add an item value
 	 * 
 	 * @param item
-	 * @return The added {@link Widget} or <code>null</code> if no renderer is set on the list.
+	 * @return The added {@link Widget} or <code>null</code> if no renderer is
+	 *         set on the list.
 	 */
 	public Widget addItem(DataProvider item) {
 		return addItem(item, null, false);
 	}
-	
+
 	/**
 	 * Add an item value
 	 * 
@@ -180,23 +195,25 @@ public class List extends Widget {
 	public Widget addItem(DataProvider item, InputStream renderer) {
 		return addItem(item, renderer, null, false);
 	}
-	
+
 	/**
 	 * Add an item value
 	 * 
 	 * @param item
 	 * @param enabled
 	 * @param prepend
-	 * @return The added {@link Widget} or <code>null</code> if no renderer is set on the list
+	 * @return The added {@link Widget} or <code>null</code> if no renderer is
+	 *         set on the list
 	 */
-	public Widget addItem(DataProvider item, DataProvider referenceItem, boolean after) {
+	public Widget addItem(DataProvider item, DataProvider referenceItem,
+			boolean after) {
 		if (renderer != null) {
 			renderer.reset();
 			return addItem(item, renderer, referenceItem, after);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Add an item value near an other.
 	 * 
@@ -206,10 +223,13 @@ public class List extends Widget {
 	 * @param after
 	 * @return The added {@link Widget}
 	 */
-	public Widget addItem(DataProvider item, InputStream renderer, DataProvider referenceItem, boolean after) {
-		return internalAddItem(item, renderer, referenceItem != null ? getItemWidget(referenceItem) : null, after);
+	public Widget addItem(DataProvider item, InputStream renderer,
+			DataProvider referenceItem, boolean after) {
+		return internalAddItem(item, renderer,
+				referenceItem != null ? getItemWidget(referenceItem) : null,
+				after);
 	}
-	
+
 	/**
 	 * Add an item value near an other {@link Widget}.
 	 * 
@@ -219,7 +239,8 @@ public class List extends Widget {
 	 * @param after
 	 * @return The added {@link Widget}
 	 */
-	private Widget internalAddItem(DataProvider item, InputStream renderer, Widget referenceWidget, boolean after) {
+	private Widget internalAddItem(DataProvider item, InputStream renderer,
+			Widget referenceWidget, boolean after) {
 		Widget itemWidget = Kuix.loadWidget(renderer, item);
 		itemWidget.setDataProvider(item);
 		if (referenceWidget != null) {
@@ -230,7 +251,7 @@ public class List extends Widget {
 		dataProvidersMapping.put(item, itemWidget);
 		return itemWidget;
 	}
-	
+
 	/**
 	 * Remove an item value if it exists in the {@link List}
 	 * 
@@ -243,7 +264,7 @@ public class List extends Widget {
 		internalRemoveItem(itemWidget);
 		return itemWidget != null;
 	}
-	
+
 	/**
 	 * @param itemWidget
 	 * @return <code>true</code> if the <code>itemWidget</code> is found and the
@@ -256,7 +277,7 @@ public class List extends Widget {
 			itemWidget.remove();
 		}
 	}
-	
+
 	/**
 	 * Remove all items
 	 */
@@ -265,7 +286,7 @@ public class List extends Widget {
 		removeAll();
 		dataProvidersMapping.clear();
 	}
-	
+
 	/**
 	 * @param item
 	 * @return The item {@link Widget} associated with the specified
@@ -275,127 +296,149 @@ public class List extends Widget {
 	public Widget getItemWidget(DataProvider item) {
 		return (Widget) dataProvidersMapping.get(item);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#processItemsModelUpdateEvent(byte, java.lang.String, org.kalmeo.kuix.core.model.DataProvider, org.kalmeo.util.LinkedList.LinkedListEnumeration)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#processItemsModelUpdateEvent(byte,
+	 * java.lang.String, org.kalmeo.kuix.core.model.DataProvider,
+	 * org.kalmeo.util.LinkedList.LinkedListEnumeration)
 	 */
-	public boolean processItemsModelUpdateEvent(byte type, String property, DataProvider item, LinkedListEnumeration itemsEnumeration) {
+	public boolean processItemsModelUpdateEvent(byte type, String property,
+			DataProvider item, LinkedListEnumeration itemsEnumeration) {
 		if (hasBindInstruction()) {
-			for (BindInstruction bindInstruction = (BindInstruction) bindInstructions.getFirst(); bindInstruction != null; bindInstruction = bindInstruction.next) {
+			for (BindInstruction bindInstruction = (BindInstruction) bindInstructions
+					.getFirst(); bindInstruction != null; bindInstruction = bindInstruction.next) {
 				if (bindInstruction.hasProperty(property)) {
 					switch (type) {
 
-						case DataProvider.ADD_MODEL_UPDATE_EVENT_TYPE:
-							addItem(item);
-							return true;
+					case DataProvider.ADD_MODEL_UPDATE_EVENT_TYPE:
+						addItem(item);
+						return true;
 
-						case DataProvider.ADD_BEFORE_MODEL_UPDATE_EVENT_TYPE:
-							addItem(item, (DataProvider) item.getNext(), false);
-							return true;
-							
-						case DataProvider.ADD_AFTER_MODEL_UPDATE_EVENT_TYPE:
-							addItem(item, (DataProvider) item.getPrevious(), true);
-							return true;
-							
-						case DataProvider.REMOVE_MODEL_UPDATE_EVENT_TYPE:
-							removeItem(item);
-							return true;
+					case DataProvider.ADD_BEFORE_MODEL_UPDATE_EVENT_TYPE:
+						addItem(item, (DataProvider) item.getNext(), false);
+						return true;
 
-						case DataProvider.SORT_MODEL_UPDATE_EVENT_TYPE: {
-							
-							// Reorder item widgets
-							
-							Widget previousItemWidget = null;
-							itemsEnumeration.reset();
-							if (itemsEnumeration.hasNextItems()) {
-								// Bring the first item to front
-								previousItemWidget = getItemWidget((DataProvider) itemsEnumeration.nextItem());
-								bringToFront(previousItemWidget);
-							}
-							
-							// BringNear the orthers
-							Widget itemWidget;
-							while (itemsEnumeration.hasNextItems()) {
-								itemWidget = getItemWidget((DataProvider) itemsEnumeration.nextItem());
-								if (itemWidget != null) {
-									bringNear(itemWidget, previousItemWidget, true);
-									previousItemWidget = itemWidget;
-								}
-							}
-							return true;
+					case DataProvider.ADD_AFTER_MODEL_UPDATE_EVENT_TYPE:
+						addItem(item, (DataProvider) item.getPrevious(), true);
+						return true;
+
+					case DataProvider.REMOVE_MODEL_UPDATE_EVENT_TYPE:
+						removeItem(item);
+						return true;
+
+					case DataProvider.SORT_MODEL_UPDATE_EVENT_TYPE: {
+
+						// Reorder item widgets
+
+						Widget previousItemWidget = null;
+						itemsEnumeration.reset();
+						if (itemsEnumeration.hasNextItems()) {
+							// Bring the first item to front
+							previousItemWidget = getItemWidget((DataProvider) itemsEnumeration
+									.nextItem());
+							bringToFront(previousItemWidget);
 						}
-							
-						case DataProvider.FILTER_MODEL_UPDATE_EVENT_TYPE: {
-							
-							itemsEnumeration.reset();
-							if (itemsEnumeration.hasNextItems()) {
-								
-								LinkedList items = itemsEnumeration.getList();
-								LinkedListItem linkedListItem = itemsEnumeration.nextItem();
-								Widget itemWidget = getChild();
-								
-								for (LinkedListItem currentItem = items.getFirst(); currentItem != null; currentItem = currentItem.getNext()) {
-									
-									boolean isEnumerationItem = currentItem.equals(linkedListItem);
-									boolean isItemWidgetDataProvider = itemWidget != null && currentItem.equals(itemWidget.getDataProvider());
-									
-									// If itemWidget and linkedListItem are not in at least one of two list, continue
-									if (!isItemWidgetDataProvider && !isEnumerationItem) {
-										continue;
+
+						// BringNear the orthers
+						Widget itemWidget;
+						while (itemsEnumeration.hasNextItems()) {
+							itemWidget = getItemWidget((DataProvider) itemsEnumeration
+									.nextItem());
+							if (itemWidget != null) {
+								bringNear(itemWidget, previousItemWidget, true);
+								previousItemWidget = itemWidget;
+							}
+						}
+						return true;
+					}
+
+					case DataProvider.FILTER_MODEL_UPDATE_EVENT_TYPE: {
+
+						itemsEnumeration.reset();
+						if (itemsEnumeration.hasNextItems()) {
+
+							LinkedList items = itemsEnumeration.getList();
+							LinkedListItem linkedListItem = itemsEnumeration
+									.nextItem();
+							Widget itemWidget = getChild();
+
+							for (LinkedListItem currentItem = items.getFirst(); currentItem != null; currentItem = currentItem
+									.getNext()) {
+
+								boolean isEnumerationItem = currentItem
+										.equals(linkedListItem);
+								boolean isItemWidgetDataProvider = itemWidget != null
+										&& currentItem.equals(itemWidget
+												.getDataProvider());
+
+								// If itemWidget and linkedListItem are not in at least one of two list, continue
+								if (!isItemWidgetDataProvider
+										&& !isEnumerationItem) {
+									continue;
+								}
+
+								// If itemWidget and linkedListItem are in both of two list, get next items and continue
+								if (isItemWidgetDataProvider
+										&& isEnumerationItem) {
+									linkedListItem = null;
+									if (itemsEnumeration.hasNextItems()) {
+										linkedListItem = itemsEnumeration
+												.nextItem();
 									}
-									
-									// If itemWidget and linkedListItem are in both of two list, get next items and continue
-									if (isItemWidgetDataProvider && isEnumerationItem) {
+
+									itemWidget = itemWidget.next;
+									continue;
+								}
+
+								// If not in list but in enumeration, add in list
+								if (!isItemWidgetDataProvider
+										&& isEnumerationItem) {
+									if (itemWidget != null) {
+										if (renderer != null) {
+											renderer.reset();
+										}
+										internalAddItem(
+												(DataProvider) linkedListItem,
+												renderer, itemWidget, false);
+									} else {
+										addItem((DataProvider) linkedListItem);
+									}
+
+									if (itemsEnumeration.hasNextItems()) {
+										linkedListItem = itemsEnumeration
+												.nextItem();
+									} else {
 										linkedListItem = null;
-										if (itemsEnumeration.hasNextItems()) {
-											linkedListItem = itemsEnumeration.nextItem();
-										}
-										
-										itemWidget = itemWidget.next;
-										continue;
 									}
-									
-									// If not in list but in enumeration, add in list
-									if (!isItemWidgetDataProvider && isEnumerationItem) {
-										if (itemWidget != null) {
-											if (renderer != null) {
-												renderer.reset();
-											}
-											internalAddItem((DataProvider) linkedListItem, renderer, itemWidget, false);
-										} else {
-											addItem((DataProvider) linkedListItem);
-										}
-										
-										if (itemsEnumeration.hasNextItems()) {
-											linkedListItem = itemsEnumeration.nextItem();
-										} else {
-											linkedListItem = null;
-										}
-										
+
 									// If already in list but not in enumeration, remove it
-									} else if (isItemWidgetDataProvider && !isEnumerationItem) {
-										Widget nextItemWidget = itemWidget.next;
-										internalRemoveItem(itemWidget);
-										itemWidget = nextItemWidget;
-									}
-									
-									// All items are trailed in linkedList and list
-									if (linkedListItem == null && itemWidget == null) {
-										break;
-									}
+								} else if (isItemWidgetDataProvider
+										&& !isEnumerationItem) {
+									Widget nextItemWidget = itemWidget.next;
+									internalRemoveItem(itemWidget);
+									itemWidget = nextItemWidget;
 								}
-								return true;
-								
+
+								// All items are trailed in linkedList and list
+								if (linkedListItem == null
+										&& itemWidget == null) {
+									break;
+								}
 							}
-							
-							removeAllItems();
 							return true;
+
 						}
-							
-						case DataProvider.CLEAR_MODEL_UPDATE_EVENT_TYPE:
-							removeAllItems();
-							return true;
-							
+
+						removeAllItems();
+						return true;
+					}
+
+					case DataProvider.CLEAR_MODEL_UPDATE_EVENT_TYPE:
+						removeAllItems();
+						return true;
+
 					}
 				}
 			}

@@ -9,19 +9,30 @@ package org.kalmeo.util;
 
 /**
  * <b>J2ME Fixed-Point Math Library</b>
- *
- * <p>Provided under the artistic license: <a href="http://www.opensource.org/licenses/artistic-license.html">http://www.opensource.org/licenses/artistic-license.html</a></p>
- *
- * <p>Basically it means you can use this library for free, even for commercial purposes.</p>
- *
- * <p><b>References:</b></p>
+ * 
+ * <p>
+ * Provided under the artistic license: <a
+ * href="http://www.opensource.org/licenses/artistic-license.html"
+ * >http://www.opensource.org/licenses/artistic-license.html</a>
+ * </p>
+ * 
+ * <p>
+ * Basically it means you can use this library for free, even for commercial
+ * purposes.
+ * </p>
+ * 
+ * <p>
+ * <b>References:</b>
+ * </p>
  * <ul>
- * <li>exp(), log(), atan2() converted from this free, floating-point implementation:<br>
+ * <li>exp(), log(), atan2() converted from this free, floating-point
+ * implementation:<br>
  * <a href="http://www.netlib.org/fdlibm/">http://www.netlib.org/fdlibm</a></li>
- * <li>sin(), asin() converted from the free, fast trigonometric library found at:<br>
+ * <li>sin(), asin() converted from the free, fast trigonometric library found
+ * at:<br>
  * <a href="http://www.magic-software.com">http://www.magic-software.com</a></li>
  * </ul>
- *
+ * 
  * @author Dan Carter (<a href="http://orbisstudios.com">orbisstudios.com</a>)
  * @author bbeaulant (Refactor and bug fix)
  */
@@ -52,15 +63,13 @@ public abstract class MathFP {
 	public static final int INFINITY = 0x7fffffff;
 
 	private static final int skPrecision = 31;
-	private static final int sk[] = { 
-			16342350, //7.61e-03 * 2^31
+	private static final int sk[] = { 16342350, //7.61e-03 * 2^31
 			356589659, //1.6605e-01
 	};
 	private static int SK[] = new int[sk.length];
 
 	private static final int asPrecision = 30;
-	private static final int as[] = { 
-			-20110432, //-0.0187293 * 2^30
+	private static final int as[] = { -20110432, //-0.0187293 * 2^30
 			79737141, //0.0742610 
 			227756102, //0.2121144
 			1686557206 //1.5707288
@@ -73,8 +82,7 @@ public abstract class MathFP {
 	private static int LN2, LN2_INV;
 
 	private static final int lgPrecision = 31;
-	private static final int lg[] = { 
-			1431655765, //6.666666666666735130e-01 * 2^31
+	private static final int lg[] = { 1431655765, //6.666666666666735130e-01 * 2^31
 			858993459, //3.999999999940941908e-01
 			613566760, //2.857142874366239149e-01
 			477218077, //2.222219843214978396e-01
@@ -85,8 +93,7 @@ public abstract class MathFP {
 	private static int LG[] = new int[lg.length];
 
 	private static final int expPPrecision = 31;
-	private static final int expP[] = { 
-			357913941, //1.66666666666666019037e-01 * 2^31
+	private static final int expP[] = { 357913941, //1.66666666666666019037e-01 * 2^31
 			-5965232, //-2.77777777770155933842e-03
 			142029, //6.61375632143793436117e-05
 			-3550, //-1.65339022054652515390e-06
@@ -98,7 +105,7 @@ public abstract class MathFP {
 	static {
 		setPrecision(DEFAULT_PRECISION);
 	}
-	
+
 	/**
 	 * @return the precision
 	 */
@@ -110,7 +117,8 @@ public abstract class MathFP {
 	 * Sets the precision for all fixed-point operations. <br>
 	 * The maximum precision is 31 bits.
 	 * 
-	 * @param precision the desired precision in number of bits
+	 * @param precision
+	 *            the desired precision in number of bits
 	 */
 	public static void setPrecision(int precision) {
 		if (precision > maxPrecision || precision < 0) {
@@ -121,23 +129,31 @@ public abstract class MathFP {
 		ONE = 1 << precision;
 		HALF = ONE >> 1;
 		TWO = ONE << 1;
-		PI = (precision <= piPrecision) ? pi >> (piPrecision - precision) : pi << (precision - piPrecision);
+		PI = (precision <= piPrecision) ? pi >> (piPrecision - precision)
+				: pi << (precision - piPrecision);
 		PI_HALF = PI >> 1;
 		PI_TWO = PI << 1;
-		E = (precision <= ePrecision) ? e >> (ePrecision - precision) : e >> (precision - ePrecision);
+		E = (precision <= ePrecision) ? e >> (ePrecision - precision)
+				: e >> (precision - ePrecision);
 		for (i = 0; i < sk.length; i++) {
-			SK[i] = (precision <= skPrecision) ? sk[i] >> (skPrecision - precision) : sk[i] << (precision - skPrecision);
+			SK[i] = (precision <= skPrecision) ? sk[i] >> (skPrecision - precision)
+					: sk[i] << (precision - skPrecision);
 		}
 		for (i = 0; i < as.length; i++) {
-			AS[i] = (precision <= asPrecision) ? as[i] >> (asPrecision - precision) : as[i] << (precision - asPrecision);
+			AS[i] = (precision <= asPrecision) ? as[i] >> (asPrecision - precision)
+					: as[i] << (precision - asPrecision);
 		}
-		LN2 = (precision <= ln2Precision) ? ln2 >> (ln2Precision - precision) : ln2 << (precision - ln2Precision);
-		LN2_INV = (precision <= ln2Precision) ? ln2_inv >> (ln2Precision - precision) : ln2_inv << (precision - ln2Precision);
+		LN2 = (precision <= ln2Precision) ? ln2 >> (ln2Precision - precision)
+				: ln2 << (precision - ln2Precision);
+		LN2_INV = (precision <= ln2Precision) ? ln2_inv >> (ln2Precision - precision)
+				: ln2_inv << (precision - ln2Precision);
 		for (i = 0; i < lg.length; i++) {
-			LG[i] = (precision <= lgPrecision) ? lg[i] >> (lgPrecision - precision) : lg[i] << (precision - lgPrecision);
+			LG[i] = (precision <= lgPrecision) ? lg[i] >> (lgPrecision - precision)
+					: lg[i] << (precision - lgPrecision);
 		}
 		for (i = 0; i < expP.length; i++) {
-			EXP_P[i] = (precision <= expPPrecision) ? expP[i] >> (expPPrecision - precision) : expP[i] << (precision - expPPrecision);
+			EXP_P[i] = (precision <= expPPrecision) ? expP[i] >> (expPPrecision - precision)
+					: expP[i] << (precision - expPPrecision);
 		}
 		fracMask = ONE - 1;
 		piOverOneEighty = div(PI, toFP(180));
@@ -155,8 +171,10 @@ public abstract class MathFP {
 	/**
 	 * Converts a fixed-point value to the current set precision.
 	 * 
-	 * @param fp the fixed-point value to convert.
-	 * @param precision the precision of the fixed-point value passed in.
+	 * @param fp
+	 *            the fixed-point value to convert.
+	 * @param precision
+	 *            the precision of the fixed-point value passed in.
 	 * @return a fixed-point value of the current precision
 	 */
 	public static int convert(int fp, int precision) {
@@ -178,7 +196,8 @@ public abstract class MathFP {
 	/**
 	 * Converts an int to a fixed-point int.
 	 * 
-	 * @param i int to convert.
+	 * @param i
+	 *            int to convert.
 	 * @return the converted fixed-point value.
 	 */
 	public static int toFP(int i) {
@@ -198,7 +217,8 @@ public abstract class MathFP {
 	 * -30000.12345
 	 * </pre>
 	 * 
-	 * @param s the string to convert.
+	 * @param s
+	 *            the string to convert.
 	 * @return the fixed-point value.
 	 */
 	public static int toFP(String s) {
@@ -244,7 +264,8 @@ public abstract class MathFP {
 	/**
 	 * Converts a fixed-point value to an int.
 	 * 
-	 * @param fp fixed-point value to convert
+	 * @param fp
+	 *            fixed-point value to convert
 	 * @return the converted int value.
 	 */
 	public static int toInt(int fp) {
@@ -256,7 +277,8 @@ public abstract class MathFP {
 	 * 
 	 * Same as <code>toString(x, 0, max_possible_digits)</code>
 	 * 
-	 * @param fp the fixed-point value to convert.
+	 * @param fp
+	 *            the fixed-point value to convert.
 	 * @return a string representing the fixed-point value with a minimum of
 	 *         decimals in the string.
 	 */
@@ -267,8 +289,9 @@ public abstract class MathFP {
 			fp = -fp;
 		}
 		int integer = fp >> precision;
-		String fracString = String.valueOf(((fp & fracMask) * maxDigitsMul) >> precision);
-		
+		String fracString = String
+				.valueOf(((fp & fracMask) * maxDigitsMul) >> precision);
+
 		int len = maxDigitsCount - fracString.length();
 		for (int i = len; i > 0; --i) {
 			fracString = "0" + fracString;
@@ -284,7 +307,8 @@ public abstract class MathFP {
 	 * that is greater than or equal to the argument and is equal to a
 	 * mathematical integer.
 	 * 
-	 * @param fp a fixed-point value.
+	 * @param fp
+	 *            a fixed-point value.
 	 * @return the smallest (closest to negative infinity) fixed-point value
 	 *         that is greater than or equal to the argument and is equal to a
 	 *         mathematical integer.
@@ -309,7 +333,8 @@ public abstract class MathFP {
 	 * value that is less than or equal to the argument and is equal to a
 	 * mathematical integer.
 	 * 
-	 * @param fp a fixed-point value.
+	 * @param fp
+	 *            a fixed-point value.
 	 * @return the largest (closest to positive infinity) fixed-point value that
 	 *         less than or equal to the argument and is equal to a mathematical
 	 *         integer.
@@ -331,7 +356,8 @@ public abstract class MathFP {
 	/**
 	 * Removes the fractional part of a fixed-point value.
 	 * 
-	 * @param fp the fixed-point value to truncate.
+	 * @param fp
+	 *            the fixed-point value to truncate.
 	 * @return a truncated fixed-point value.
 	 */
 	public static int trunc(int fp) {
@@ -341,7 +367,8 @@ public abstract class MathFP {
 	/**
 	 * Returns the fractional part of a fixed-point value.
 	 * 
-	 * @param fp a fixed-point value to get fractional part of.
+	 * @param fp
+	 *            a fixed-point value to get fractional part of.
 	 * @return positive fractional fixed-point value if input is positive,
 	 *         negative fractional otherwise.
 	 */
@@ -352,11 +379,12 @@ public abstract class MathFP {
 	/**
 	 * Converts a fixed-point integer to an int with only the decimal value.
 	 * <p>
-	 * For example, if <code>fp</code> represents <code>12.34</code> the
-	 * method returns <code>34</code>
+	 * For example, if <code>fp</code> represents <code>12.34</code> the method
+	 * returns <code>34</code>
 	 * </p>
 	 * 
-	 * @param fp the fixed-point integer to be converted
+	 * @param fp
+	 *            the fixed-point integer to be converted
 	 * @return a int in a normal integer representation
 	 */
 	public static int fracAsInt(int fp) {
@@ -365,11 +393,12 @@ public abstract class MathFP {
 		}
 		return maxDigitsMul * (fp & fracMask) >> precision;
 	}
-	
+
 	/**
 	 * Returns the closest integer to the argument.
 	 * 
-	 * @param fp the fixed-point value to round
+	 * @param fp
+	 *            the fixed-point value to round
 	 * @return the value of the argument rounded to the nearest integer value.
 	 */
 	public static int round(int fp) {
@@ -386,8 +415,10 @@ public abstract class MathFP {
 	/**
 	 * Multiplies two fixed-point values.
 	 * 
-	 * @param fp1 first fixed-point value.
-	 * @param fp2 second fixed-point value.
+	 * @param fp1
+	 *            first fixed-point value.
+	 * @param fp2
+	 *            second fixed-point value.
 	 * @return the result of the multiplication.
 	 */
 	public static int mul(int fp1, int fp2) {
@@ -397,8 +428,10 @@ public abstract class MathFP {
 	/**
 	 * Divides two fixed-point values.
 	 * 
-	 * @param fp1 mumerator fixed-point value.
-	 * @param fp2 denominator fixed-point value.
+	 * @param fp1
+	 *            mumerator fixed-point value.
+	 * @param fp2
+	 *            denominator fixed-point value.
 	 * @return the result of the division.
 	 */
 	public static int div(int fp1, int fp2) {
@@ -441,9 +474,10 @@ public abstract class MathFP {
 	 * Returns the correctly rounded positive square root of a fixed-point
 	 * value.
 	 * 
-	 * @param fp a fixed-point value.
-	 * @return the positive square root of <code>fp</code>. If the argument
-	 *         is NaN or less than zero, the result is NaN.
+	 * @param fp
+	 *            a fixed-point value.
+	 * @return the positive square root of <code>fp</code>. If the argument is
+	 *         NaN or less than zero, the result is NaN.
 	 */
 	public static int sqrt(int fp) {
 		int s = (fp + ONE) >> 1;
@@ -456,7 +490,8 @@ public abstract class MathFP {
 	/**
 	 * Returns the trigonometric sine of an angle.
 	 * 
-	 * @param fp the angle in radians
+	 * @param fp
+	 *            the angle in radians
 	 * @return the sine of the argument.
 	 */
 	public static int sin(int fp) {
@@ -488,7 +523,8 @@ public abstract class MathFP {
 	/**
 	 * Returns the trigonometric cosine of an angle.
 	 * 
-	 * @param fp the angle in radians
+	 * @param fp
+	 *            the angle in radians
 	 * @return the cosine of the argument.
 	 */
 	public static int cos(int fp) {
@@ -498,7 +534,8 @@ public abstract class MathFP {
 	/**
 	 * Returns the trigonometric tangent of an angle.
 	 * 
-	 * @param fp the angle in radians
+	 * @param fp
+	 *            the angle in radians
 	 * @return the tangent of the argument.
 	 */
 	public static int tan(int fp) {
@@ -506,10 +543,11 @@ public abstract class MathFP {
 	}
 
 	/**
-	 * Returns the arc sine of a value; the returned angle is in the range -<i>pi</i>/2
-	 * through <i>pi</i>/2.
+	 * Returns the arc sine of a value; the returned angle is in the range
+	 * -<i>pi</i>/2 through <i>pi</i>/2.
 	 * 
-	 * @param fp the fixed-point value whose arc sine is to be returned.
+	 * @param fp
+	 *            the fixed-point value whose arc sine is to be returned.
 	 * @return the arc sine of the argument.
 	 */
 	public static int asin(int fp) {
@@ -540,7 +578,8 @@ public abstract class MathFP {
 	 * Returns the arc cosine of a value; the returned angle is in the range 0.0
 	 * through <i>pi</i>.
 	 * 
-	 * @param fp the fixed-point value whose arc cosine is to be returned.
+	 * @param fp
+	 *            the fixed-point value whose arc cosine is to be returned.
 	 * @return the arc cosine of the argument.
 	 */
 	public static int acos(int fp) {
@@ -548,10 +587,11 @@ public abstract class MathFP {
 	}
 
 	/**
-	 * Returns the arc tangent of a value; the returned angle is in the range -<i>pi</i>/2
-	 * through <i>pi</i>/2.
+	 * Returns the arc tangent of a value; the returned angle is in the range
+	 * -<i>pi</i>/2 through <i>pi</i>/2.
 	 * 
-	 * @param fp the fiexed-point value whose arc tangent is to be returned.
+	 * @param fp
+	 *            the fiexed-point value whose arc tangent is to be returned.
 	 * @return the arc tangent of the argument.
 	 */
 	public static int atan(int fp) {
@@ -566,11 +606,14 @@ public abstract class MathFP {
 	 * coordinates (<code>fpX</code>,&nbsp;<code>fpY</code>) to polar
 	 * coordinates (r,&nbsp;<i>theta</i>).
 	 * 
-	 * @param fpX the ordinate coordinate
-	 * @param fpY the abscissa coordinate
-	 * @return the <i>theta</i> component of the point (<i>r</i>,&nbsp;<i>theta</i>)
-	 *         in polar coordinates that corresponds to the point (<i>fpX</i>,&nbsp;<i>fpY</i>)
-	 *         in Cartesian coordinates.
+	 * @param fpX
+	 *            the ordinate coordinate
+	 * @param fpY
+	 *            the abscissa coordinate
+	 * @return the <i>theta</i> component of the point
+	 *         (<i>r</i>,&nbsp;<i>theta</i>) in polar coordinates that
+	 *         corresponds to the point (<i>fpX</i>,&nbsp;<i>fpY</i>) in
+	 *         Cartesian coordinates.
 	 */
 	public static int atan2(int fpX, int fpY) {
 		if (fpX == 0) {
@@ -594,9 +637,10 @@ public abstract class MathFP {
 	 * Returns Euler's number <i>e</i> raised to the power of a fixed-point
 	 * value.
 	 * 
-	 * @param fp the exponent to raise <i>e</i> to.
-	 * @return the value <i>e</i><sup><code>fp</code></sup>, where <i>e</i>
-	 *         is the base of the natural logarithms.
+	 * @param fp
+	 *            the exponent to raise <i>e</i> to.
+	 * @return the value <i>e</i><sup><code>fp</code></sup>, where <i>e</i> is
+	 *         the base of the natural logarithms.
 	 */
 	public static int exp(int fp) {
 		if (fp == 0) {
@@ -611,7 +655,11 @@ public abstract class MathFP {
 		}
 		fp -= mul(k, LN2);
 		int z = mul(fp, fp);
-		int R = TWO + mul(z, EXP_P[0] + mul(z, EXP_P[1] + mul(z, EXP_P[2] + mul(z, EXP_P[3] + mul(z, EXP_P[4])))));
+		int R = TWO
+				+ mul(z, EXP_P[0]
+						+ mul(z, EXP_P[1]
+								+ mul(z, EXP_P[2]
+										+ mul(z, EXP_P[3] + mul(z, EXP_P[4])))));
 		int xp = ONE + div(mul(TWO, fp), R - fp);
 		if (k < 0) {
 			k = ONE >> (-k >> precision);
@@ -624,7 +672,8 @@ public abstract class MathFP {
 	/**
 	 * Returns the natural logarithm (base e) of a fixed-point value.
 	 * 
-	 * @param fp a fixed-point value
+	 * @param fp
+	 *            a fixed-point value
 	 * @return the value ln&nbsp;<code>a</code>, the natural logarithm of
 	 *         <code>fp</code>.
 	 */
@@ -644,14 +693,16 @@ public abstract class MathFP {
 		int s = div(f, TWO + f);
 		int z = mul(s, s);
 		int w = mul(z, z);
-		int R = mul(w, LG[1] + mul(w, LG[3] + mul(w, LG[5]))) + mul(z, LG[0] + mul(w, LG[2] + mul(w, LG[4] + mul(w, LG[6]))));
+		int R = mul(w, LG[1] + mul(w, LG[3] + mul(w, LG[5])))
+				+ mul(z, LG[0] + mul(w, LG[2] + mul(w, LG[4] + mul(w, LG[6]))));
 		return mul(LN2, (log2 << precision)) + f - mul(s, f - R);
 	}
 
 	/**
 	 * Returns the logarithm (base <code>base</code>) of a fixed-point value.
 	 * 
-	 * @param fp a fixed-point value
+	 * @param fp
+	 *            a fixed-point value
 	 * @param base
 	 * @return the value log&nbsp;<code>a</code>, the logarithm of
 	 *         <code>fp</code>
@@ -664,8 +715,10 @@ public abstract class MathFP {
 	 * Returns the value of the first argument raised to the power of the second
 	 * argument
 	 * 
-	 * @param fp1 the base
-	 * @param fp2 the exponent
+	 * @param fp1
+	 *            the base
+	 * @param fp2
+	 *            the exponent
 	 * @return the value <code>a<sup>b</sup></code>.
 	 */
 	public static int pow(int fp1, int fp2) {
@@ -682,7 +735,8 @@ public abstract class MathFP {
 	 * Converts an angle measured in degrees to an approximately equivalent
 	 * angle measured in radians.
 	 * 
-	 * @param fp a fixed-point angle in degrees
+	 * @param fp
+	 *            a fixed-point angle in degrees
 	 * @return the measurement of the angle angrad in radians.
 	 */
 	public static int toRadians(int fp) {
@@ -693,7 +747,8 @@ public abstract class MathFP {
 	 * Converts an angle measured in radians to an approximately equivalent
 	 * angle measured in degrees.
 	 * 
-	 * @param fp a fixed-point angle in radians
+	 * @param fp
+	 *            a fixed-point angle in radians
 	 * @return the measurement of the angle angrad in degrees.
 	 */
 	public static int toDegrees(int fp) {

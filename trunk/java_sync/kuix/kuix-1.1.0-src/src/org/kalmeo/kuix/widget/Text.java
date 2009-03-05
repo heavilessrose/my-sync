@@ -48,36 +48,40 @@ public class Text extends TextWidget {
 	protected int textX;
 	protected int textY;
 	protected int insetHeight;
-	
+
 	// Slide animation stuff
 	private int originalTextX;
 	private int slideTextIncrement = 1;
 	private WorkerTask slideTextWorkerTask;
-	
+
 	/**
 	 * Construct a {@link Text}
 	 */
 	public Text() {
 		this(KuixConstants.TEXT_WIDGET_TAG);
 	}
-	
+
 	/**
 	 * Construct a {@link Text}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public Text(String tag) {
 		super(tag);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 	 */
 	public Layout getLayout() {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getPreferredSize(int)
 	 */
 	public Metrics getPreferredSize(int preferredWidth) {
@@ -100,27 +104,31 @@ public class Text extends TextWidget {
 		return metrics;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)
 	 */
 	public Widget add(Widget widget) {
 		// Impossible to add any child to a text widget
 		return null;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#doLayout()
 	 */
 	protected void doLayout() {
-		
+
 		Insets insets = getInsets();
 		insetHeight = getHeight() - insets.top - insets.bottom;
-		textX = insets.left; 
+		textX = insets.left;
 		textY = insets.top;
-		
+
 		String text = getDisplayedText();
 		if (text != null) {
-			
+
 			// Compute text size and position
 			Font font = getFont();
 			Alignment alignment = getAlign();
@@ -131,7 +139,7 @@ public class Text extends TextWidget {
 				textY += alignment.alignY(insetHeight, font.getHeight());
 			}
 			originalTextX = textX;
-			
+
 			// Slide animation if text is bigger than insetWidth
 			if (slideTextWorkerTask != null) {
 				Worker.instance.removeTask(slideTextWorkerTask);
@@ -144,11 +152,13 @@ public class Text extends TextWidget {
 				slideTextIncrement = 1;
 				slideTextWorkerTask = new WorkerTask() {
 
-					/* (non-Javadoc)
+					/*
+					 * (non-Javadoc)
+					 * 
 					 * @see org.kalmeo.util.worker.WorkerTask#run()
 					 */
 					public boolean run() {
-						
+
 						if (isVisible()) {
 							if (textX < minOffset || textX > maxOffset) {
 								slideTextIncrement *= -1;
@@ -156,32 +166,39 @@ public class Text extends TextWidget {
 							textX += slideTextIncrement;
 							invalidateAppearance();
 						}
-						
+
 						// Remove the WorkerTask if the widget is not in the widget tree
 						return !isInWidgetTree();
 					}
-					
+
 				};
 				if (isFocusWidgetChild()) {
 					Worker.instance.pushTask(slideTextWorkerTask);
 				}
 			}
-			
+
 		}
-		
+
 		markAsValidate();
-		
+
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#paint(javax.microedition.lcdui.Graphics)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#paint(javax.microedition.lcdui.Graphics)
 	 */
 	public void paint(Graphics g) {
 		paintBackground(g);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#paintChildrenImpl(javax.microedition.lcdui.Graphics)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#paintChildrenImpl(javax.microedition.lcdui
+	 * .Graphics)
 	 */
 	protected void paintChildrenImpl(Graphics g) {
 		String text = getDisplayedText();
@@ -195,11 +212,13 @@ public class Text extends TextWidget {
 			}
 			g.setFont(getFont());
 			g.drawString(text, textX, textY, 0);
-			
+
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#onFocus(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onFocus(Widget focusedWidget) {
@@ -209,8 +228,11 @@ public class Text extends TextWidget {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#onLostFocus(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#onLostFocus(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onLostFocus(Widget focusedWidget) {
 		if (slideTextWorkerTask != null) {
@@ -219,5 +241,5 @@ public class Text extends TextWidget {
 			slideTextIncrement = 1;
 		}
 	}
-	
+
 }

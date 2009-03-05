@@ -48,11 +48,19 @@ public class GZIP {
 	private static final int EOB_CODE = 256;
 
 	// Datos prefijados (LENGTH: 257..287 / DISTANCE: 0..29 / DYNAMIC_LENGTH_ORDER: 0..18).
-	private static final int LENGTH_EXTRA_BITS[] = { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 99, 99 };
-	private static final int LENGTH_VALUES[] = { 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0 };
-	private static final int DISTANCE_EXTRA_BITS[] = { 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13 };
-	private static final int DISTANCE_VALUES[] = { 1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193, 257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145, 8193, 12289, 16385, 24577 };
-	private static final int DYNAMIC_LENGTH_ORDER[] = { 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 };
+	private static final int LENGTH_EXTRA_BITS[] = { 0, 0, 0, 0, 0, 0, 0, 0, 1,
+			1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 99, 99 };
+	private static final int LENGTH_VALUES[] = { 3, 4, 5, 6, 7, 8, 9, 10, 11,
+			13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59, 67, 83, 99, 115, 131,
+			163, 195, 227, 258, 0, 0 };
+	private static final int DISTANCE_EXTRA_BITS[] = { 0, 0, 0, 0, 1, 1, 2, 2,
+			3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12,
+			13, 13 };
+	private static final int DISTANCE_VALUES[] = { 1, 2, 3, 4, 5, 7, 9, 13, 17,
+			25, 33, 49, 65, 97, 129, 193, 257, 385, 513, 769, 1025, 1537, 2049,
+			3073, 4097, 6145, 8193, 12289, 16385, 24577 };
+	private static final int DYNAMIC_LENGTH_ORDER[] = { 16, 17, 18, 0, 8, 7, 9,
+			6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 };
 
 	// Variables para la lectura de datos comprimidos.
 	private static int gzipIndex, gzipByte, gzipBit;
@@ -60,22 +68,25 @@ public class GZIP {
 	/**
 	 * Descomprime un fichero GZIP.
 	 * 
-	 * @param gzip Array con los datos del fichero comprimido
+	 * @param gzip
+	 *            Array con los datos del fichero comprimido
 	 * @return Array con los datos descomprimidos
 	 */
 	public static byte[] inflate(byte[] gzip) throws IOException {
 		return inflate(gzip, 0, gzip.length);
 	}
-	
+
 	/**
 	 * Descomprime un fichero GZIP.
 	 * 
-	 * @param gzip Array con los datos del fichero comprimido
+	 * @param gzip
+	 *            Array con los datos del fichero comprimido
 	 * @param offset
 	 * @param length
 	 * @return Array con los datos descomprimidos
 	 */
-	public static byte[] inflate(byte[] gzip, int offset, int length) throws IOException {
+	public static byte[] inflate(byte[] gzip, int offset, int length)
+			throws IOException {
 		// Inicializa.
 		int gzipMaxIndex = Math.min(offset + length, gzip.length);
 		gzipIndex = offset;
@@ -106,7 +117,8 @@ public class GZIP {
 		// Tamaño de los datos descomprimidos.
 		int index = gzipIndex;
 		gzipIndex = gzip.length - 4;
-		byte uncompressed[] = new byte[readBits(gzip, 16) | (readBits(gzip, 16) << 16)];
+		byte uncompressed[] = new byte[readBits(gzip, 16)
+				| (readBits(gzip, 16) << 16)];
 		int uncompressedIndex = 0;
 		gzipIndex = index;
 		// Bloque con datos comprimidos.
@@ -124,7 +136,8 @@ public class GZIP {
 				// NLEN.
 				readBits(gzip, 16);
 				// Lee los datos.
-				System.arraycopy(gzip, gzipIndex, uncompressed, uncompressedIndex, len);
+				System.arraycopy(gzip, gzipIndex, uncompressed,
+						uncompressedIndex, len);
 				gzipIndex += len;
 				// Actualiza el índice de los datos descomprimidos.
 				uncompressedIndex += len;
@@ -138,12 +151,16 @@ public class GZIP {
 					// Lee el número de bits para cada código de longitud.
 					byte lengthBits[] = new byte[MAX_CODE_LENGTHS + 1];
 					for (int i = 0; i < hclen; i++)
-						lengthBits[DYNAMIC_LENGTH_ORDER[i]] = (byte) readBits(gzip, 3);
+						lengthBits[DYNAMIC_LENGTH_ORDER[i]] = (byte) readBits(
+								gzip, 3);
 					// Crea los códigos para la longitud.
-					int lengthTree[] = createHuffmanTree(lengthBits, MAX_CODE_LENGTHS);
+					int lengthTree[] = createHuffmanTree(lengthBits,
+							MAX_CODE_LENGTHS);
 					// Genera los árboles.
-					literalTree = createHuffmanTree(decodeCodeLengths(gzip, lengthTree, hlit), hlit - 1);
-					distanceTree = createHuffmanTree(decodeCodeLengths(gzip, lengthTree, hdist), hdist - 1);
+					literalTree = createHuffmanTree(decodeCodeLengths(gzip,
+							lengthTree, hlit), hlit - 1);
+					distanceTree = createHuffmanTree(decodeCodeLengths(gzip,
+							lengthTree, hdist), hdist - 1);
 				} else {
 					byte literalBits[] = new byte[MAX_CODE_LITERALS + 1];
 					for (int i = 0; i < 144; i++) {
@@ -158,13 +175,15 @@ public class GZIP {
 					for (int i = 280; i < 288; i++) {
 						literalBits[i] = 8;
 					}
-					literalTree = createHuffmanTree(literalBits, MAX_CODE_LITERALS);
+					literalTree = createHuffmanTree(literalBits,
+							MAX_CODE_LITERALS);
 					//
 					byte distanceBits[] = new byte[MAX_CODE_DISTANCES + 1];
 					for (int i = 0; i < distanceBits.length; i++) {
 						distanceBits[i] = 5;
 					}
-					distanceTree = createHuffmanTree(distanceBits, MAX_CODE_DISTANCES);
+					distanceTree = createHuffmanTree(distanceBits,
+							MAX_CODE_DISTANCES);
 				}
 				// Descomprime el bloque.
 				int code = 0, leb = 0, deb = 0;
@@ -183,12 +202,14 @@ public class GZIP {
 						// Repite la información.
 						int localOffset = uncompressedIndex - distance;
 						while (distance < len) {
-							System.arraycopy(uncompressed, localOffset, uncompressed, uncompressedIndex, distance);
+							System.arraycopy(uncompressed, localOffset,
+									uncompressed, uncompressedIndex, distance);
 							uncompressedIndex += distance;
 							len -= distance;
 							distance <<= 1;
 						}
-						System.arraycopy(uncompressed, localOffset, uncompressed, uncompressedIndex, len);
+						System.arraycopy(uncompressed, localOffset,
+								uncompressed, uncompressedIndex, len);
 						uncompressedIndex += len;
 					} else {
 						uncompressed[uncompressedIndex++] = (byte) code;
@@ -203,11 +224,13 @@ public class GZIP {
 	/**
 	 * Lee un número de bits
 	 * 
-	 * @param n Número de bits [0..16]
+	 * @param n
+	 *            Número de bits [0..16]
 	 */
 	private static int readBits(byte gzip[], int n) {
 		// Asegura que tenemos un byte.
-		int data = (gzipBit == 0 ? (gzipByte = (gzip[gzipIndex++] & 0xFF)) : (gzipByte >> gzipBit));
+		int data = (gzipBit == 0 ? (gzipByte = (gzip[gzipIndex++] & 0xFF))
+				: (gzipByte >> gzipBit));
 		// Lee hasta completar los bits.
 		for (int i = (8 - gzipBit); i < n; i += 8) {
 			gzipByte = (gzip[gzipIndex++] & 0xFF);
@@ -229,7 +252,8 @@ public class GZIP {
 			if (gzipBit == 0)
 				gzipByte = (gzip[gzipIndex++] & 0xFF);
 			// Accede al nodo correspondiente.
-			node = (((gzipByte & (1 << gzipBit)) == 0) ? tree[node >> 16] : tree[node & 0xFFFF]);
+			node = (((gzipByte & (1 << gzipBit)) == 0) ? tree[node >> 16]
+					: tree[node & 0xFFFF]);
 			// Ajusta la posición actual.
 			gzipBit = (gzipBit + 1) & 7;
 		}
@@ -240,7 +264,8 @@ public class GZIP {
 	 * Decodifica la longitud de códigos (usado en bloques comprimidos con
 	 * códigos dinámicos).
 	 */
-	private static byte[] decodeCodeLengths(byte gzip[], int lengthTree[], int count) {
+	private static byte[] decodeCodeLengths(byte gzip[], int lengthTree[],
+			int count) {
 		byte bits[] = new byte[count];
 		for (int i = 0, code = 0, last = 0; i < count;) {
 			code = readCode(gzip, lengthTree);

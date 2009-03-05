@@ -34,7 +34,7 @@ public class StaticLayout implements Layout {
 
 	// Static instance of a StaticLayout
 	public static final StaticLayout instance = new StaticLayout();
-	
+
 	/**
 	 * Construct a {@link StaticLayout}
 	 */
@@ -42,20 +42,28 @@ public class StaticLayout implements Layout {
 		// Constructor is private because only the static instance could be use
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.layout.Layout#computePreferredSize(org.kalmeo.kuix.widget.Widget, int, org.kalmeo.kuix.util.Metrics)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.layout.Layout#computePreferredSize(org.kalmeo.kuix.widget
+	 * .Widget, int, org.kalmeo.kuix.util.Metrics)
 	 */
-	public void measurePreferredSize(Widget target, int preferredWidth, Metrics metrics) {
+	public void measurePreferredSize(Widget target, int preferredWidth,
+			Metrics metrics) {
 		measure(target, false, preferredWidth, metrics);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.layout.Layout#doLayout(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.layout.Layout#doLayout(org.kalmeo.kuix.widget.Widget)
 	 */
 	public void doLayout(Widget target) {
 		measure(target, true, target.getWidth(), null);
 	}
-	
+
 	/**
 	 * Measure <code>target</code> children layout
 	 * 
@@ -64,16 +72,17 @@ public class StaticLayout implements Layout {
 	 * @param preferredWidth
 	 * @param metrics
 	 */
-	private void measure(Widget target, boolean layout, int preferredWidth, Metrics metrics) {
-		
+	private void measure(Widget target, boolean layout, int preferredWidth,
+			Metrics metrics) {
+
 		Insets insets = target.getInsets();
 		Metrics minSize = target.getMinSize();
 		int width = preferredWidth - insets.left - insets.right;
 		int height = target.getHeight() - insets.top - insets.bottom;
-		
+
 		int maxWidth = 0;
 		int maxHeight = 0;
-		
+
 		int x = 0;
 		int y = 0;
 		int widgetWidth = 0;
@@ -81,7 +90,7 @@ public class StaticLayout implements Layout {
 		Metrics preferredSize;
 
 		for (Widget widget = target.getChild(); widget != null; widget = widget.next) {
-			
+
 			if (!widget.isIndividualyVisible()) {
 				continue;
 			}
@@ -91,16 +100,16 @@ public class StaticLayout implements Layout {
 			widgetWidth = 0;
 			widgetHeight = 0;
 			preferredSize = null;
-			
+
 			LayoutData layoutData = widget.getLayoutData();
 			if (layoutData instanceof StaticLayoutData) {
-				
+
 				StaticLayoutData staticLayoutData = (StaticLayoutData) layoutData;
 				Alignment alignment = staticLayoutData.alignment;
-				
+
 				x = staticLayoutData.x;
 				y = staticLayoutData.y;
-				
+
 				// Width
 				if (staticLayoutData.width > MathFP.ONE) {
 					// Pixel
@@ -111,9 +120,10 @@ public class StaticLayout implements Layout {
 					widgetWidth = preferredSize.width;
 				} else {
 					// %
-					widgetWidth = MathFP.toInt(MathFP.mul(MathFP.toFP(width), staticLayoutData.width));
+					widgetWidth = MathFP.toInt(MathFP.mul(MathFP.toFP(width),
+							staticLayoutData.width));
 				}
-				
+
 				// Height
 				if (staticLayoutData.height > MathFP.ONE) {
 					// Pixel
@@ -126,9 +136,10 @@ public class StaticLayout implements Layout {
 					widgetHeight = preferredSize.height;
 				} else {
 					// %
-					widgetHeight = MathFP.toInt(MathFP.mul(MathFP.toFP(height), staticLayoutData.height));
+					widgetHeight = MathFP.toInt(MathFP.mul(MathFP.toFP(height),
+							staticLayoutData.height));
 				}
-				
+
 				if (alignment != null) {
 					if (alignment.isRight()) {
 						x += width - widgetWidth;
@@ -141,31 +152,31 @@ public class StaticLayout implements Layout {
 						y += (height - widgetHeight) / 2;
 					}
 				}
-				
+
 			} else {
-				
+
 				preferredSize = widget.getPreferredSize(width);
 				widgetWidth = preferredSize.width;
 				widgetHeight = preferredSize.height;
-				
+
 			}
-			
+
 			if (layout) {
-				widget.setBounds(	insets.left + x, 
-									insets.top + y, 
-									widgetWidth, 
-									widgetHeight);
+				widget.setBounds(insets.left + x, insets.top + y, widgetWidth,
+						widgetHeight);
 			}
-			
+
 			maxWidth = Math.max(maxWidth, widgetWidth);
 			maxHeight = Math.max(maxHeight, widgetHeight);
 		}
-		
+
 		if (!layout) {
-			metrics.width = insets.left + Math.max(minSize.width, maxWidth) + insets.right;
-			metrics.height = insets.top + Math.max(minSize.height, maxHeight) + insets.bottom;
+			metrics.width = insets.left + Math.max(minSize.width, maxWidth)
+					+ insets.right;
+			metrics.height = insets.top + Math.max(minSize.height, maxHeight)
+					+ insets.bottom;
 		}
-		
+
 	}
 
 }

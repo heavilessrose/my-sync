@@ -39,7 +39,7 @@ public interface Transition {
 	 * @param newImage
 	 */
 	public void init(Image oldImage, Image newImage);
-	
+
 	/**
 	 * This method is called each frame during the transition.
 	 * 
@@ -47,5 +47,5 @@ public interface Transition {
 	 * @return <code>true</code> if the transition is finished
 	 */
 	public boolean process(Graphics g);
-	
+
 }

@@ -47,21 +47,21 @@ import org.kalmeo.util.LinkedList.LinkedListEnumeration;
 public class DataProvider implements LinkedListItem {
 
 	// Update event types
-	public static final byte ADD_MODEL_UPDATE_EVENT_TYPE 			= 1;
-	public static final byte ADD_BEFORE_MODEL_UPDATE_EVENT_TYPE 	= 2;
-	public static final byte ADD_AFTER_MODEL_UPDATE_EVENT_TYPE 		= 3;
-	public static final byte REMOVE_MODEL_UPDATE_EVENT_TYPE 		= 4;
-	public static final byte SORT_MODEL_UPDATE_EVENT_TYPE 			= 5;
-	public static final byte FILTER_MODEL_UPDATE_EVENT_TYPE 		= 6;
-	public static final byte CLEAR_MODEL_UPDATE_EVENT_TYPE 			= 7;
+	public static final byte ADD_MODEL_UPDATE_EVENT_TYPE = 1;
+	public static final byte ADD_BEFORE_MODEL_UPDATE_EVENT_TYPE = 2;
+	public static final byte ADD_AFTER_MODEL_UPDATE_EVENT_TYPE = 3;
+	public static final byte REMOVE_MODEL_UPDATE_EVENT_TYPE = 4;
+	public static final byte SORT_MODEL_UPDATE_EVENT_TYPE = 5;
+	public static final byte FILTER_MODEL_UPDATE_EVENT_TYPE = 6;
+	public static final byte CLEAR_MODEL_UPDATE_EVENT_TYPE = 7;
 
 	// Masters / slaves vectors
 	private Vector masters;
 	private Vector slaves;
-	
+
 	// Hashtable of property / itemsValues (Object) pair
 	private Hashtable itemsValues;
-	
+
 	// Hashtable of property / itemsFilters (Filter) pair
 	private Hashtable itemsFilters;
 
@@ -71,37 +71,48 @@ public class DataProvider implements LinkedListItem {
 	// LinkedListItem properties
 	private DataProvider previous;
 	private DataProvider next;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.LinkedListItem#getNext()
 	 */
 	public LinkedListItem getNext() {
 		return next;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.LinkedListItem#getPrevious()
 	 */
 	public LinkedListItem getPrevious() {
 		return previous;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.util.LinkedListItem#setNext(org.kalmeo.util.LinkedListItem)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.util.LinkedListItem#setNext(org.kalmeo.util.LinkedListItem)
 	 */
 	public void setNext(LinkedListItem next) {
 		this.next = (DataProvider) next;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.util.LinkedListItem#setPrevious(org.kalmeo.util.LinkedListItem)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.util.LinkedListItem#setPrevious(org.kalmeo.util.LinkedListItem
+	 * )
 	 */
 	public void setPrevious(LinkedListItem previous) {
 		this.previous = (DataProvider) previous;
 	}
-	
+
 	// Masters / Slaves ////////////////////////////////////////////////////////////////////
-	
+
 	/**
 	 * Add a slave {@link DataProvider} to this {@link DataProvider}.
 	 * 
@@ -122,7 +133,7 @@ public class DataProvider implements LinkedListItem {
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove the <code>slaveDataProvider</code> instance from this
 	 * {@link DataProvider} slaves.
@@ -131,14 +142,15 @@ public class DataProvider implements LinkedListItem {
 	 * @since 1.0.1
 	 */
 	public void removeSlave(DataProvider slaveDataProvider) {
-		if (slaves != null && slaveDataProvider != null && slaves.contains(slaveDataProvider)) {
+		if (slaves != null && slaveDataProvider != null
+				&& slaves.contains(slaveDataProvider)) {
 			if (slaveDataProvider.masters != null) {
 				slaveDataProvider.masters.removeElement(this);
 			}
 			slaves.removeElement(slaveDataProvider);
 		}
 	}
-	
+
 	/**
 	 * Remove all {@link DataProvider} slaves of this instance.
 	 * 
@@ -151,7 +163,7 @@ public class DataProvider implements LinkedListItem {
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove this {@link DataProvider} from a specific master.
 	 * 
@@ -159,11 +171,12 @@ public class DataProvider implements LinkedListItem {
 	 * @since 1.0.1
 	 */
 	public void removeFromMaster(DataProvider masterDataProvider) {
-		if (masters != null && masterDataProvider != null && masters.contains(masterDataProvider)) {
+		if (masters != null && masterDataProvider != null
+				&& masters.contains(masterDataProvider)) {
 			masterDataProvider.removeSlave(this);
 		}
 	}
-	
+
 	/**
 	 * Remove this {@link DataProvider} from its masters.
 	 * 
@@ -176,12 +189,12 @@ public class DataProvider implements LinkedListItem {
 			}
 		}
 	}
-	
+
 	// Values ////////////////////////////////////////////////////////////////////
-	
+
 	/**
-	 * Returns the value (user defined values and items values) corresponding the
-	 * given <code>property</code>.
+	 * Returns the value (user defined values and items values) corresponding
+	 * the given <code>property</code>.
 	 * 
 	 * @param property
 	 * @return the value associated with the given <code>property</code>.
@@ -201,24 +214,26 @@ public class DataProvider implements LinkedListItem {
 		}
 		return value;
 	}
-	
+
 	/**
-	 * Returns the user defined value corresponding the given <code>property</code>.<br>
+	 * Returns the user defined value corresponding the given
+	 * <code>property</code>.<br>
 	 * Override the method to returns your customs values.
 	 * 
-	 * @return the user defined value associated with the given <code>property</code>.
+	 * @return the user defined value associated with the given
+	 *         <code>property</code>.
 	 */
 	protected Object getUserDefinedValue(String property) {
 		return null;
 	}
 
 	/**
-	 * Returns the <code>property</code> associated string value, or null if
-	 * the property has no value or value is not a string.
+	 * Returns the <code>property</code> associated string value, or null if the
+	 * property has no value or value is not a string.
 	 * 
 	 * @param property
-	 * @return the string value, or null if the property
-	 *         has no value or value is not a string.
+	 * @return the string value, or null if the property has no value or value
+	 *         is not a string.
 	 */
 	public String getStringValue(String property) {
 		try {
@@ -229,8 +244,8 @@ public class DataProvider implements LinkedListItem {
 	}
 
 	/**
-	 * Returns the <code>property</code> associated items value, or null if
-	 * the property has no value or value is not a {@link LinkedList}.<br>
+	 * Returns the <code>property</code> associated items value, or null if the
+	 * property has no value or value is not a {@link LinkedList}.<br>
 	 * This method defer from <code>getValue</code> because it returns a unique
 	 * {@link LinkedList} instance by property instead of a new
 	 * {@link LinkedListEnumeration} each time the method is called.
@@ -256,8 +271,8 @@ public class DataProvider implements LinkedListItem {
 	 * 
 	 * @param property
 	 * @return the {@link LinkedList} relative to the given
-	 *         <code>property</code>, or <code>null</code> if an other non
-	 *         items value is associated with this <code>property</code>.
+	 *         <code>property</code>, or <code>null</code> if an other non items
+	 *         value is associated with this <code>property</code>.
 	 */
 	private LinkedList getOrCreateItemsValue(String property) {
 		if (itemsValues == null) {
@@ -272,8 +287,8 @@ public class DataProvider implements LinkedListItem {
 	}
 
 	/**
-	 * Returns the first or last item for a specific <code>property</code>
-	 * items list.
+	 * Returns the first or last item for a specific <code>property</code> items
+	 * list.
 	 * 
 	 * @param property
 	 * @param first
@@ -290,7 +305,7 @@ public class DataProvider implements LinkedListItem {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Returns the count of items assocayed with the specified
 	 * <code>property</code>.
@@ -306,7 +321,7 @@ public class DataProvider implements LinkedListItem {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Returns the first {@link DataProvider} item of the <code>property</code>
 	 * items list or <code>null</code> if the list is empty or doesn't exists.
@@ -328,20 +343,20 @@ public class DataProvider implements LinkedListItem {
 	public DataProvider getLastItem(String property) {
 		return getFirstOrLastItem(property, false);
 	}
-	
+
 	/**
 	 * Returns the {@link LinkedListEnumeration} instance or <code>null</code>
-	 * if no value is associated with this <code>property</code>. If a filter
-	 * is associated with this <code>property</code> and
-	 * <code>useFilter</code> is set to <code>true</code>, the enumeration
-	 * use it.
+	 * if no value is associated with this <code>property</code>. If a filter is
+	 * associated with this <code>property</code> and <code>useFilter</code> is
+	 * set to <code>true</code>, the enumeration use it.
 	 * 
 	 * @param property
 	 * @param useFilter
 	 * @return the {@link LinkedListEnumeration} instance or <code>null</code>
 	 *         if no value is associated with this <code>property</code>.
 	 */
-	public LinkedListEnumeration enumerateItems(String property, boolean useFilter) {
+	public LinkedListEnumeration enumerateItems(String property,
+			boolean useFilter) {
 		LinkedList items = getItemsValue(property);
 		if (items != null) {
 			Filter filter = null;
@@ -353,7 +368,7 @@ public class DataProvider implements LinkedListItem {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Add the <code>item</code> to the <code>property</code> items list.
 	 * 
@@ -365,7 +380,7 @@ public class DataProvider implements LinkedListItem {
 	public int addItem(String property, DataProvider item) {
 		return addItem(property, item, null, false);
 	}
-	
+
 	/**
 	 * Add the <code>item</code> to the <code>property</code> items list by
 	 * placing it after or before the <code>referenceItem</code> according to
@@ -379,17 +394,22 @@ public class DataProvider implements LinkedListItem {
 	 * @return the new items linkedList size or <code>-1</code> if adding is
 	 *         faild.
 	 */
-	public int addItem(String property, DataProvider item, DataProvider referenceItem, boolean after) {
+	public int addItem(String property, DataProvider item,
+			DataProvider referenceItem, boolean after) {
 		if (item != null) {
 			LinkedList items = getOrCreateItemsValue(property);
 			if (items != null) {
 				if (items.isEmpty() || referenceItem == null) {
 					items.add(item);
-					dispatchItemsUpdateEvent(ADD_MODEL_UPDATE_EVENT_TYPE, property, item, null);
+					dispatchItemsUpdateEvent(ADD_MODEL_UPDATE_EVENT_TYPE,
+							property, item, null);
 				} else {
 					try {
 						items.add(item, referenceItem, after);
-						dispatchItemsUpdateEvent(after ? ADD_AFTER_MODEL_UPDATE_EVENT_TYPE : ADD_BEFORE_MODEL_UPDATE_EVENT_TYPE, property, item, null);
+						dispatchItemsUpdateEvent(
+								after ? ADD_AFTER_MODEL_UPDATE_EVENT_TYPE
+										: ADD_BEFORE_MODEL_UPDATE_EVENT_TYPE,
+								property, item, null);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -399,10 +419,9 @@ public class DataProvider implements LinkedListItem {
 		}
 		return -1;
 	}
-	
+
 	/**
-	 * Remove the <code>item</code> from the <code>property</code> items
-	 * list.
+	 * Remove the <code>item</code> from the <code>property</code> items list.
 	 * 
 	 * @param property
 	 * @param item
@@ -415,7 +434,8 @@ public class DataProvider implements LinkedListItem {
 			if (items != null) {
 				int itemsLength = items.getLength();
 				items.remove(item);
-				dispatchItemsUpdateEvent(REMOVE_MODEL_UPDATE_EVENT_TYPE, property, item, null);
+				dispatchItemsUpdateEvent(REMOVE_MODEL_UPDATE_EVENT_TYPE,
+						property, item, null);
 				return items.getLength() < itemsLength ? itemsLength - 1 : -1;
 			}
 		}
@@ -430,7 +450,8 @@ public class DataProvider implements LinkedListItem {
 	public void removeAllItems(String property) {
 		if (itemsValues != null) {
 			itemsValues.remove(property);
-			dispatchItemsUpdateEvent(CLEAR_MODEL_UPDATE_EVENT_TYPE, property, null, null);
+			dispatchItemsUpdateEvent(CLEAR_MODEL_UPDATE_EVENT_TYPE, property,
+					null, null);
 		}
 	}
 
@@ -439,8 +460,10 @@ public class DataProvider implements LinkedListItem {
 	 * <code>true</code> if it's in. The value linked to <code>property</code>
 	 * must be a {@link LinkedList}.
 	 * 
-	 * @param property the property where <code>item</code> may be found
-	 * @param item the {@link LinkedListItem} to search
+	 * @param property
+	 *            the property where <code>item</code> may be found
+	 * @param item
+	 *            the {@link LinkedListItem} to search
 	 * @return <code>true</code> if <code>item</code> exist in
 	 *         {@link LinkedList} <code>property</code>, <code>false</code>
 	 *         else.
@@ -463,7 +486,7 @@ public class DataProvider implements LinkedListItem {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Sort <code>property</code> items list.
 	 * 
@@ -474,15 +497,18 @@ public class DataProvider implements LinkedListItem {
 		LinkedList items = getItemsValue(property);
 		if (items != null) {
 			items.sort(flag);
-			dispatchItemsUpdateEvent(SORT_MODEL_UPDATE_EVENT_TYPE, property, null, enumerateItems(property, true));
+			dispatchItemsUpdateEvent(SORT_MODEL_UPDATE_EVENT_TYPE, property,
+					null, enumerateItems(property, true));
 		}
 	}
-	
+
 	/**
 	 * Filter <code>property</code> items list.
 	 * 
 	 * @param property
-	 * @param filter the {@link Filter} to apply to the enumeration. Set it null to retrieve all items of the enumeration
+	 * @param filter
+	 *            the {@link Filter} to apply to the enumeration. Set it null to
+	 *            retrieve all items of the enumeration
 	 */
 	public void setItemsFilter(String property, Filter filter) {
 		LinkedList items = getItemsValue(property);
@@ -491,7 +517,7 @@ public class DataProvider implements LinkedListItem {
 				if (itemsFilters == null) {
 					// No previous filter and no new filter : do nothing
 					return;
-				}	
+				}
 				if (itemsFilters.containsKey(property)) {
 					// Previous filter is removed from filter list
 					itemsFilters.remove(property);
@@ -503,7 +529,8 @@ public class DataProvider implements LinkedListItem {
 				itemsFilters.put(property, filter);
 			}
 			LinkedListEnumeration itemsEnumeration = items.enumerate(filter);
-			dispatchItemsUpdateEvent(FILTER_MODEL_UPDATE_EVENT_TYPE, property, null, itemsEnumeration);
+			dispatchItemsUpdateEvent(FILTER_MODEL_UPDATE_EVENT_TYPE, property,
+					null, itemsEnumeration);
 		}
 	}
 
@@ -556,40 +583,50 @@ public class DataProvider implements LinkedListItem {
 	protected void dispatchUpdateEvent(String property) {
 		if (bindedWidgets != null) {
 			for (int i = bindedWidgets.size() - 1; i >= 0; --i) {
-				((Widget) (bindedWidgets.elementAt(i))).processModelUpdateEvent(property);
+				((Widget) (bindedWidgets.elementAt(i)))
+						.processModelUpdateEvent(property);
 			}
 		}
 		if (masters != null) {
 			for (int i = masters.size() - 1; i >= 0; --i) {
-				((DataProvider) masters.elementAt(i)).dispatchUpdateEvent(property);
+				((DataProvider) masters.elementAt(i))
+						.dispatchUpdateEvent(property);
 			}
 		}
 	}
 
 	/**
-	 * Dispatch an items update event for a specific <code>property</code> to all
-	 * binded widgets.
+	 * Dispatch an items update event for a specific <code>property</code> to
+	 * all binded widgets.
 	 * 
 	 * @param type
 	 * @param property
 	 * @param item
 	 * @param itemsEnumeration
 	 */
-	protected void dispatchItemsUpdateEvent(byte type, String property, DataProvider item, LinkedListEnumeration itemsEnumeration) {
+	protected void dispatchItemsUpdateEvent(byte type, String property,
+			DataProvider item, LinkedListEnumeration itemsEnumeration) {
 		if (bindedWidgets != null) {
 			for (int i = bindedWidgets.size() - 1; i >= 0; --i) {
-				((Widget) (bindedWidgets.elementAt(i))).processItemsModelUpdateEvent(type, property, item, itemsEnumeration);
+				((Widget) (bindedWidgets.elementAt(i)))
+						.processItemsModelUpdateEvent(type, property, item,
+								itemsEnumeration);
 			}
 		}
 		if (masters != null) {
 			for (int i = masters.size() - 1; i >= 0; --i) {
-				((DataProvider) masters.elementAt(i)).dispatchItemsUpdateEvent(type, property, item, itemsEnumeration);
+				((DataProvider) masters.elementAt(i)).dispatchItemsUpdateEvent(
+						type, property, item, itemsEnumeration);
 			}
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.util.LinkedListItem#compareTo(org.kalmeo.util.LinkedListItem, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.util.LinkedListItem#compareTo(org.kalmeo.util.LinkedListItem,
+	 * int)
 	 */
 	public int compareTo(LinkedListItem item, int flag) {
 		return 0;

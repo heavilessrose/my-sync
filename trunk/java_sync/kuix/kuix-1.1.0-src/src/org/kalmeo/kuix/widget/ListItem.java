@@ -38,7 +38,8 @@ import org.kalmeo.kuix.util.Alignment;
 public class ListItem extends ActionWidget {
 
 	// Defaults
-	private static final Layout LIST_ITEM_DEFAULT_LAYOUT = new InlineLayout(true, Alignment.FILL);
+	private static final Layout LIST_ITEM_DEFAULT_LAYOUT = new InlineLayout(
+			true, Alignment.FILL);
 
 	/**
 	 * Construct a {@link ListItem}
@@ -46,18 +47,22 @@ public class ListItem extends ActionWidget {
 	public ListItem() {
 		this(KuixConstants.LIST_ITEM_WIDGET_TAG);
 	}
-	
+
 	/**
 	 * Construct a {@link ListItem}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public ListItem(String tag) {
 		super(tag);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getDefaultStyleAttributeValue(java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getDefaultStyleAttributeValue(java.lang
+	 * .String)
 	 */
 	protected Object getDefaultStylePropertyValue(String name) {
 		if (KuixConstants.LAYOUT_STYLE_PROPERTY.equals(name)) {

@@ -32,7 +32,7 @@ import org.kalmeo.kuix.core.Kuix;
  * @author bbeaulant
  */
 public class UnpaintableWidget extends Widget {
-	
+
 	/**
 	 * Construct a {@link UnpaintableWidget}
 	 * 
@@ -41,27 +41,32 @@ public class UnpaintableWidget extends Widget {
 	public UnpaintableWidget(String tag) {
 		super(tag);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#paintImpl(javax.microedition.lcdui.Graphics)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#paintImpl(javax.microedition.lcdui.Graphics
+	 * )
 	 */
 	public void paintImpl(Graphics g) {
 		Kuix.getCanvas().addUnpaintableWidget(this);
-		
+
 		// Ignore children painting
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#cleanUp()
 	 */
 	public void cleanUp() {
 		super.cleanUp();
-		
+
 		// Remove this widget from the KuixCanvas unpaintable widget list
 		Kuix.getCanvas().removeUnpaintableWidget(this);
-		
+
 	}
-	
 
 }

@@ -38,11 +38,12 @@ public class CheckBox extends ActionWidget {
 
 	// Widget's pseudo class list
 	public static final String SELECTED_PSEUDO_CLASS = "selected";
-	protected static final String[] PSEUDO_CLASSES = new String[] { HOVER_PSEUDO_CLASS, DISABLED_PSEUDO_CLASS, SELECTED_PSEUDO_CLASS };
+	protected static final String[] PSEUDO_CLASSES = new String[] {
+			HOVER_PSEUDO_CLASS, DISABLED_PSEUDO_CLASS, SELECTED_PSEUDO_CLASS };
 
 	// The selection state
 	private boolean selected = false;
-	
+
 	// Selection actions
 	private String onSelect;
 	private String onUnselect;
@@ -62,9 +63,13 @@ public class CheckBox extends ActionWidget {
 	public CheckBox(String tag) {
 		super(tag);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.AbstractActionWidget#setAttribute(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.AbstractActionWidget#setAttribute(java.lang.String
+	 * , java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.SELECTED_ATTRIBUTE.equals(name)) {
@@ -81,8 +86,10 @@ public class CheckBox extends ActionWidget {
 		}
 		return super.setAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getAttribute(java.lang.String)
 	 */
 	public Object getAttribute(String name) {
@@ -92,8 +99,12 @@ public class CheckBox extends ActionWidget {
 		return super.getAttribute(name);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.AbstractFocusableWidget#isPseudoClassCompatible(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.AbstractFocusableWidget#isPseudoClassCompatible
+	 * (java.lang.String)
 	 */
 	public boolean isPseudoClassCompatible(String pseudoClass) {
 		if (SELECTED_PSEUDO_CLASS.equals(pseudoClass)) {
@@ -110,7 +121,8 @@ public class CheckBox extends ActionWidget {
 	}
 
 	/**
-	 * @param selected the selected to set
+	 * @param selected
+	 *            the selected to set
 	 */
 	public void setSelected(boolean selected) {
 		if (this.selected != selected) {
@@ -123,7 +135,7 @@ public class CheckBox extends ActionWidget {
 			}
 		}
 	}
-	
+
 	/**
 	 * @return the onSelect
 	 */
@@ -152,7 +164,9 @@ public class CheckBox extends ActionWidget {
 		this.onUnselect = onUnselect;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.AbstractActionWidget#processActionEvent()
 	 */
 	public boolean processActionEvent() {
@@ -160,5 +174,5 @@ public class CheckBox extends ActionWidget {
 		super.processActionEvent();
 		return true;
 	}
-	
+
 }

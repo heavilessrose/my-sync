@@ -34,7 +34,7 @@ import org.kalmeo.util.StringTokenizer;
 public class LightXmlParser {
 
 	private static final String WHITESPACE_DEFINITIONS = " \t\n\r";
-	
+
 	/**
 	 * Parse an XML input stream
 	 * 
@@ -43,26 +43,29 @@ public class LightXmlParser {
 	 * @param handler
 	 * @throws IOException
 	 */
-	public static void parse(InputStream inputStream, String encoding, LightXmlParserHandler handler) throws IOException {
-		
+	public static void parse(InputStream inputStream, String encoding,
+			LightXmlParserHandler handler) throws IOException {
+
 		if (handler == null) {
 			throw new IllegalArgumentException("No handler");
 		}
 		handler.startDocument();
-		
+
 		int c;
 		StringBuffer text = new StringBuffer();
 		boolean tagOpen = false;
-		
+
 		// Read first non-whitespace xml char
-		while ((c = inputStream.read()) != -1 && WHITESPACE_DEFINITIONS.indexOf(c) != -1); 
-		
+		while ((c = inputStream.read()) != -1
+				&& WHITESPACE_DEFINITIONS.indexOf(c) != -1)
+			;
+
 		// Check processing instructions (only if no tag was read before) to extract encoding
 		boolean invalidHeader = false;
 		if (c == '<') {
 			tagOpen = true;
 			if ((c = inputStream.read()) == '?') {
-				
+
 				boolean question = false; // read until '?>'
 				while (((c = inputStream.read()) != '>') || !question) {
 					question = (c == '?');
@@ -71,33 +74,36 @@ public class LightXmlParser {
 					}
 				}
 				if (text.length() != 0) {
-					String desiredEncoding = extractEncodingFromProcessingInstructions(text.toString());
+					String desiredEncoding = extractEncodingFromProcessingInstructions(text
+							.toString());
 					if (desiredEncoding != null) {
 						encoding = desiredEncoding;
 					}
 					text.setLength(0);
 				}
-				
+
 				// Read next non-whitespace char
-				while ((c = inputStream.read()) != -1 && WHITESPACE_DEFINITIONS.indexOf(c) != -1); 
-				
+				while ((c = inputStream.read()) != -1
+						&& WHITESPACE_DEFINITIONS.indexOf(c) != -1)
+					;
+
 				// Check if file starts with a '<'
 				if (c == '<') {
 					c = inputStream.read();
 				} else {
 					invalidHeader = true;
 				}
-				
+
 			}
 		} else if (inputStream.available() != 0) {
 			invalidHeader = true;
 		}
-		
+
 		// An XML file need to start with a '<'
 		if (invalidHeader) {
 			throw new IllegalArgumentException("Invalid xml header");
 		}
-		
+
 		// Create an InputStreamReader with the wanted encoding
 		Reader reader;
 		if (encoding == null) {
@@ -128,7 +134,8 @@ public class LightXmlParser {
 						String tagName = (String) parentlist[2];
 						for (int i = 0; i < tagName.length(); i++) { // compare open tag and close tag
 							if ((c = reader.read()) != tagName.charAt(i)) {
-								throw new IllegalArgumentException("Invalid close tag : " + tagName);
+								throw new IllegalArgumentException(
+										"Invalid close tag : " + tagName);
 							}
 						}
 						c = skipWhitespaces(reader.read(), reader);
@@ -144,8 +151,8 @@ public class LightXmlParser {
 						}
 						current = parentlist[0];
 						parentlist = (Object[]) parentlist[1];
-					} else if (c == '!') { 
-						if ((c = reader.read()) == '[') {	//'<![CDATA[' ']]>'
+					} else if (c == '!') {
+						if ((c = reader.read()) == '[') { //'<![CDATA[' ']]>'
 							text.setLength(0);
 							while ((c = reader.read()) != '[') {
 								text.append((char) c);
@@ -177,7 +184,8 @@ public class LightXmlParser {
 									if (c == -1) {
 										break;
 									}
-									if (c == '-' && (c = reader.read()) == '-' && (c = reader.read()) == '>') {
+									if (c == '-' && (c = reader.read()) == '-'
+											&& (c = reader.read()) == '>') {
 										c = reader.read();
 										break;
 									}
@@ -195,13 +203,15 @@ public class LightXmlParser {
 						}
 						while (">/ \t\n\r".indexOf(c) == -1) {
 							text.append((char) c);
-							c = reader.read(); 
+							c = reader.read();
 						}
 						String tagName = text.toString();
 						if (tagName.length() == 0) {
-							throw new IllegalArgumentException("Invalid open tag");
+							throw new IllegalArgumentException(
+									"Invalid open tag");
 						}
-						parentlist = new Object[] { current, parentlist, tagName };
+						parentlist = new Object[] { current, parentlist,
+								tagName };
 						current = tagName;
 						text.setLength(0);
 						while (true) {
@@ -211,7 +221,8 @@ public class LightXmlParser {
 								whitespace = true;
 							}
 							if (c == '>') {
-								handler.startElement((String) current, attributeList);
+								handler.startElement((String) current,
+										attributeList);
 								attributeList = null;
 								c = reader.read();
 								break;
@@ -219,7 +230,8 @@ public class LightXmlParser {
 								if ((c = reader.read()) != '>') {
 									throw new IllegalArgumentException(tagName); // '>'
 								}
-								handler.startElement((String) current, attributeList);
+								handler.startElement((String) current,
+										attributeList);
 								attributeList = null;
 								handler.endElement((String) current);
 								if (parentlist[0] == null) {
@@ -245,7 +257,8 @@ public class LightXmlParser {
 								c = skipWhitespaces(reader.read(), reader);
 								char quote = (char) c;
 								if ((c != '\"') && (c != '\'')) {
-									throw new IllegalArgumentException("\" or '");
+									throw new IllegalArgumentException(
+											"\" or '");
 								}
 								c = reader.read();
 								while (c != quote && c != -1) {
@@ -258,13 +271,16 @@ public class LightXmlParser {
 								text.setLength(0);
 								c = reader.read();
 							} else {
-								throw new IllegalArgumentException("Unexpected character (" + (char) c + ")");
+								throw new IllegalArgumentException(
+										"Unexpected character (" + (char) c
+												+ ")");
 							}
 						}
 					}
 				} else {
 					if (WHITESPACE_DEFINITIONS.indexOf(c) != -1) {
-						if ((text.length() > 0) && (text.charAt(text.length() - 1) != ' ')) {
+						if ((text.length() > 0)
+								&& (text.charAt(text.length() - 1) != ' ')) {
 							text.append(' ');
 						}
 						c = reader.read();
@@ -281,11 +297,13 @@ public class LightXmlParser {
 		}
 
 	}
-	
-	private static String extractEncodingFromProcessingInstructions(String instructions) {
+
+	private static String extractEncodingFromProcessingInstructions(
+			String instructions) {
 		String tag = null;
 		String attribute = null;
-		StringTokenizer st = new StringTokenizer(instructions, WHITESPACE_DEFINITIONS);
+		StringTokenizer st = new StringTokenizer(instructions,
+				WHITESPACE_DEFINITIONS);
 		while (st.hasMoreTokens()) {
 			if (tag == null) {
 				tag = st.nextToken();
@@ -301,20 +319,22 @@ public class LightXmlParser {
 		}
 		return null;
 	}
-	
+
 	private static int skipWhitespaces(int c, Reader reader) throws IOException {
 		while (WHITESPACE_DEFINITIONS.indexOf(c) != -1) {
 			c = reader.read();
 		}
 		return c;
 	}
-	
+
 	private static final String ENCODED_SPECIAL_CHARS_PATTERN = "abcdefABCDEF#x0123456789ltgmpquos";
-	
-	private static int decodeSpecialChars(int c, StringBuffer text, Reader reader) throws IOException {
+
+	private static int decodeSpecialChars(int c, StringBuffer text,
+			Reader reader) throws IOException {
 		if (c == '&') {
 			StringBuffer buffer = new StringBuffer();
-			while (ENCODED_SPECIAL_CHARS_PATTERN.indexOf(c = reader.read()) != -1 && c != -1) {
+			while (ENCODED_SPECIAL_CHARS_PATTERN.indexOf(c = reader.read()) != -1
+					&& c != -1) {
 				buffer.append((char) c);
 			}
 			String entity = buffer.toString();
@@ -331,7 +351,8 @@ public class LightXmlParser {
 					text.append('\'');
 				} else if (entity.startsWith("#")) {
 					boolean hexa = (entity.charAt(1) == 'x');
-					text.append((char) Integer.parseInt(entity.substring(hexa ? 2 : 1), hexa ? 16 : 10));
+					text.append((char) Integer.parseInt(entity
+							.substring(hexa ? 2 : 1), hexa ? 16 : 10));
 				}
 				c = reader.read();
 			} else {

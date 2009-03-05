@@ -40,10 +40,10 @@ public abstract class TextWidget extends FocusableWidget {
 	private Integer defaultFontFace = null;
 	private Integer defaultFontStyle = null;
 	private Integer defaultFontSize = null;
-	
+
 	// Text value
 	protected String text;
-	
+
 	// The cached objects
 	private Font cachedFont;
 
@@ -55,9 +55,12 @@ public abstract class TextWidget extends FocusableWidget {
 	public TextWidget(String tag) {
 		super(tag);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.TEXT_ATTRIBUTE.equals(name)) {
@@ -66,8 +69,10 @@ public abstract class TextWidget extends FocusableWidget {
 		}
 		return super.setAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getAttribute(java.lang.String)
 	 */
 	public Object getAttribute(String name) {
@@ -77,29 +82,34 @@ public abstract class TextWidget extends FocusableWidget {
 		return super.getAttribute(name);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.FocusableWidget#isFocusable()
 	 */
 	public boolean isFocusable() {
 		return false;
 	}
-	
+
 	/**
-	 * @param defaultFontFace the defaultFontFace to set
+	 * @param defaultFontFace
+	 *            the defaultFontFace to set
 	 */
 	public void setDefaultFontFace(int defaultFontFace) {
 		this.defaultFontFace = new Integer(defaultFontFace);
 	}
 
 	/**
-	 * @param defaultFontStyle the defaultFontStyle to set
+	 * @param defaultFontStyle
+	 *            the defaultFontStyle to set
 	 */
 	public void setDefaultFontStyle(int defaultFontStyle) {
 		this.defaultFontStyle = new Integer(defaultFontStyle);
 	}
 
 	/**
-	 * @param defaultFontSize the defaultFontSize to set
+	 * @param defaultFontSize
+	 *            the defaultFontSize to set
 	 */
 	public void setDefaultFontSize(int defaultFontSize) {
 		this.defaultFontSize = new Integer(defaultFontSize);
@@ -113,7 +123,7 @@ public abstract class TextWidget extends FocusableWidget {
 	public String getText() {
 		return text;
 	}
-	
+
 	/**
 	 * Returns the displayed text. By default displayed text is the text value.
 	 * 
@@ -124,29 +134,30 @@ public abstract class TextWidget extends FocusableWidget {
 	}
 
 	/**
-	 * Returns the instance of this {@link TextWidget}
-	 * Useful in this case :
+	 * Returns the instance of this {@link TextWidget} Useful in this case :
 	 * <code>AbstractTextWidget text = new Text().setText("message");</code>
 	 * 
-	 * @param text the text to set
+	 * @param text
+	 *            the text to set
 	 */
 	public TextWidget setText(String text) {
 		this.text = text;
 		invalidate();
 		return this;
 	}
-	
+
 	/**
 	 * @return The font face
 	 */
 	private int getFontFace() {
-		Object fontFaceValue = getStylePropertyValue(KuixConstants.FONT_FACE_STYLE_PROPERTY, true);
+		Object fontFaceValue = getStylePropertyValue(
+				KuixConstants.FONT_FACE_STYLE_PROPERTY, true);
 		if (fontFaceValue != null) {
 			return ((Integer) fontFaceValue).intValue();
 		}
 		return Font.FACE_SYSTEM;
 	}
-	
+
 	/**
 	 * @return The font style
 	 */
@@ -154,57 +165,69 @@ public abstract class TextWidget extends FocusableWidget {
 		int fontStyle = Font.STYLE_PLAIN;
 		Object fontStyleValue;
 		for (Widget widget = this; widget != null; widget = widget.parent) {
-			fontStyleValue = widget.getStylePropertyValue(KuixConstants.FONT_STYLE_STYLE_PROPERTY, false);
+			fontStyleValue = widget.getStylePropertyValue(
+					KuixConstants.FONT_STYLE_STYLE_PROPERTY, false);
 			if (fontStyleValue != null) {
 				fontStyle |= ((Integer) fontStyleValue).intValue();
 			}
 		}
 		return fontStyle;
 	}
-	
+
 	/**
 	 * @return The font size
 	 */
 	private int getFontSize() {
-		Object fontSizeValue = getStylePropertyValue(KuixConstants.FONT_SIZE_STYLE_PROPERTY, true);
+		Object fontSizeValue = getStylePropertyValue(
+				KuixConstants.FONT_SIZE_STYLE_PROPERTY, true);
 		if (fontSizeValue != null) {
 			return ((Integer) fontSizeValue).intValue();
 		}
 		return Font.SIZE_MEDIUM;
 	}
-	
+
 	/**
 	 * @return The font of this {@link Text}
 	 */
 	protected Font getFont() {
 		if (cachedFont == null) {
-			cachedFont = Font.getFont(getFontFace(), getFontStyle(), getFontSize());
+			cachedFont = Font.getFont(getFontFace(), getFontStyle(),
+					getFontSize());
 		}
 		return cachedFont;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java.lang.
+	 * String)
 	 */
 	protected Object getDefaultStylePropertyValue(String name) {
-		if (defaultFontFace != null && KuixConstants.FONT_FACE_STYLE_PROPERTY.equals(name)) {
+		if (defaultFontFace != null
+				&& KuixConstants.FONT_FACE_STYLE_PROPERTY.equals(name)) {
 			return defaultFontFace;
 		}
-		if (defaultFontStyle != null && KuixConstants.FONT_STYLE_STYLE_PROPERTY.equals(name)) {
+		if (defaultFontStyle != null
+				&& KuixConstants.FONT_STYLE_STYLE_PROPERTY.equals(name)) {
 			return defaultFontStyle;
 		}
-		if (defaultFontSize != null && KuixConstants.FONT_SIZE_STYLE_PROPERTY.equals(name)) {
+		if (defaultFontSize != null
+				&& KuixConstants.FONT_SIZE_STYLE_PROPERTY.equals(name)) {
 			return defaultFontSize;
 		}
 		return super.getDefaultStylePropertyValue(name);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#clearCachedStyle(boolean)
 	 */
 	public void clearCachedStyle(boolean propagateToChildren) {
 		cachedFont = null;
 		super.clearCachedStyle(propagateToChildren);
 	}
-	
+
 }

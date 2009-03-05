@@ -37,7 +37,7 @@ public class ImageManager {
 
 	// Image cache
 	private final Hashtable images = new Hashtable();
-	
+
 	/**
 	 * Retrieve an {@link Image} instance from the specified <code>path</code>.
 	 * 
@@ -95,7 +95,7 @@ public class ImageManager {
 			images.remove(path);
 		}
 	}
-	
+
 	/**
 	 * Release all cached image instances.
 	 */

@@ -33,7 +33,7 @@ import org.kalmeo.kuix.core.KuixConstants;
  * @author bbeaulant
  */
 public class RadioButton extends CheckBox {
-	
+
 	// The associated string value
 	private String value;
 
@@ -43,9 +43,12 @@ public class RadioButton extends CheckBox {
 	public RadioButton() {
 		super(KuixConstants.RADIO_BUTTON_WIDGET_TAG);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.CheckBox#setAttribute(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.CheckBox#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.VALUE_ATTRIBUTE.equals(name)) {
@@ -54,8 +57,10 @@ public class RadioButton extends CheckBox {
 		}
 		return super.setAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getAttribute(java.lang.String)
 	 */
 	public Object getAttribute(String name) {
@@ -65,7 +70,9 @@ public class RadioButton extends CheckBox {
 		return super.getAttribute(name);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.CheckBox#setSelected(boolean)
 	 */
 	public void setSelected(boolean selected) {
@@ -79,7 +86,8 @@ public class RadioButton extends CheckBox {
 	 * @param selected
 	 * @param propagateToRadioGroup
 	 */
-	protected void internalSetSelected(boolean selected, boolean propagateToRadioGroup) {
+	protected void internalSetSelected(boolean selected,
+			boolean propagateToRadioGroup) {
 		if (propagateToRadioGroup) {
 			RadioGroup group = getRadioGroup();
 			if (group != null) {
@@ -91,7 +99,7 @@ public class RadioButton extends CheckBox {
 			super.setSelected(selected);
 		}
 	}
-	
+
 	/**
 	 * @return the value
 	 */
@@ -100,7 +108,8 @@ public class RadioButton extends CheckBox {
 	}
 
 	/**
-	 * @param value the value to set
+	 * @param value
+	 *            the value to set
 	 */
 	public void setValue(String value) {
 		this.value = value;
@@ -119,6 +128,5 @@ public class RadioButton extends CheckBox {
 		}
 		return null;
 	}
-	
-}
 
+}

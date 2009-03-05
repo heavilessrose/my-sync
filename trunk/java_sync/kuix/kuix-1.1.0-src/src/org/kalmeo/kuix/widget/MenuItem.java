@@ -41,33 +41,35 @@ public class MenuItem extends ListItem {
 	public MenuItem() {
 		this(KuixConstants.MENU_ITEM_WIDGET_TAG);
 	}
-	
+
 	/**
 	 * Construct a {@link MenuItem}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public MenuItem(String tag) {
 		super(tag);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.AbstractActionWidget#processActionEvent()
 	 */
 	public boolean processActionEvent() {
-		
+
 		// Keep the parent instance
 		Widget tmpParent = parent;
-		
+
 		// Process the onAction event
 		super.processActionEvent();
-		
+
 		// Caution the action is processed before hiding the menu tree !
 		if (tmpParent != null && tmpParent instanceof MenuPopup) {
 			((MenuPopup) tmpParent).getMenu().hideMenuTree();
 		}
-		
+
 		return true;
 	}
-	
+
 }

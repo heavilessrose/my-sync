@@ -52,7 +52,7 @@ public class Desktop extends Widget {
 	 * This class represents the popup content container
 	 */
 	private class PopupContainer extends Widget {
-		
+
 		/**
 		 * Construct a {@link PopupContainer}
 		 */
@@ -60,20 +60,24 @@ public class Desktop extends Widget {
 			parent = Desktop.this;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 		 */
 		public Layout getLayout() {
 			return StaticLayout.instance;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getDesktop()
 		 */
 		public Desktop getDesktop() {
 			return Desktop.this;
 		}
-		
+
 		/**
 		 * Revalidate the PopupContainer
 		 */
@@ -81,8 +85,11 @@ public class Desktop extends Widget {
 			super.doLayout();
 		}
 
-		/* (non-Javadoc)
-		 * @see org.kalmeo.kuix.widget.Widget#onAdded(org.kalmeo.kuix.widget.Widget)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.kalmeo.kuix.widget.Widget#onAdded(org.kalmeo.kuix.widget.Widget)
 		 */
 		protected void onChildAdded(Widget widget) {
 			FocusManager focusManager = widget.getFocusManager();
@@ -91,8 +98,12 @@ public class Desktop extends Widget {
 			}
 		}
 
-		/* (non-Javadoc)
-		 * @see org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget
+		 * )
 		 */
 		protected void onChildRemoved(Widget widget) {
 			FocusManager focusManager = widget.getFocusManager();
@@ -100,23 +111,25 @@ public class Desktop extends Widget {
 				removePopupFocusManager(focusManager);
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * This class represents the dragged widget container
 	 */
 	private class DraggedWidgetContainer extends Widget {
 
 		private Widget draggedWidgetParent;
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 		 */
 		public LayoutData getLayoutData() {
 			return layoutData;
 		}
-		
+
 		/**
 		 * @param widget
 		 * @param x
@@ -130,14 +143,16 @@ public class Desktop extends Widget {
 				super.add(widget);
 			}
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)
 		 */
 		public Widget add(Widget widget) {
 			return this;
 		}
-		
+
 		/**
 		 * @return the draggedWidgetParent
 		 */
@@ -145,8 +160,11 @@ public class Desktop extends Widget {
 			return draggedWidgetParent;
 		}
 
-		/* (non-Javadoc)
-		 * @see org.kalmeo.kuix.widget.Widget#processPointerEvent(byte, int, int)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see org.kalmeo.kuix.widget.Widget#processPointerEvent(byte, int,
+		 * int)
 		 */
 		public boolean processPointerEvent(byte type, int x, int y) {
 			layoutData.x = x - getWidth() / 2;
@@ -154,56 +172,67 @@ public class Desktop extends Widget {
 			this.invalidate();
 			return true;
 		}
-		
-		/* (non-Javadoc)
-		 * @see org.kalmeo.kuix.widget.Widget#onChildAdded(org.kalmeo.kuix.widget.Widget)
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.kalmeo.kuix.widget.Widget#onChildAdded(org.kalmeo.kuix.widget
+		 * .Widget)
 		 */
 		protected void onChildAdded(Widget widget) {
 			popupContainer.add(this);
 		}
 
-		/* (non-Javadoc)
-		 * @see org.kalmeo.kuix.widget.Widget#onChildRemoved(org.kalmeo.kuix.widget.Widget)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.kalmeo.kuix.widget.Widget#onChildRemoved(org.kalmeo.kuix.widget
+		 * .Widget)
 		 */
 		protected void onChildRemoved(Widget widget) {
 			draggedWidgetParent = null;
 			remove();
 		}
-		
+
 	};
-	
+
 	// Instance of Desktop StaticLayoutData
-	private final StaticLayoutData layoutData = new StaticLayoutData(null, -1, -1);
-	
+	private final StaticLayoutData layoutData = new StaticLayoutData(null, -1,
+			-1);
+
 	// FocusManagers
 	private final Stack popupFocusManagers;
 	private FocusManager screenFocusManager;
-	
+
 	// The content's widgets
 	private final PopupContainer popupContainer;
 	private Screen screen;
-	
+
 	// Drag
 	private final DraggedWidgetContainer draggedWidgetContainer;
-	
+
 	/**
 	 * Construct a {@link Desktop}
 	 */
 	public Desktop() {
 		super(KuixConstants.DESKTOP_WIDGET_TAG);
-		
+
 		// Init focusManagers
 		popupFocusManagers = new Stack();
 		screenFocusManager = null;
-		
+
 		// Init content's widgets
 		popupContainer = new PopupContainer();
-		
+
 		// Init dragged widget container
 		draggedWidgetContainer = new DraggedWidgetContainer();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#setBounds(int, int, int, int)
 	 */
 	public void setBounds(int x, int y, int width, int height) {
@@ -211,20 +240,24 @@ public class Desktop extends Widget {
 		popupContainer.setBounds(x, y, width, height);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#isInWidgetTree()
 	 */
 	public boolean isInWidgetTree() {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getDesktop()
 	 */
 	public Desktop getDesktop() {
 		return this;
 	}
-	
+
 	/**
 	 * @return the screen
 	 */
@@ -233,7 +266,8 @@ public class Desktop extends Widget {
 	}
 
 	/**
-	 * @param screen the screen to set
+	 * @param screen
+	 *            the screen to set
 	 */
 	public void setCurrentScreen(Screen screen) {
 		if (this.screen == screen) {
@@ -242,10 +276,10 @@ public class Desktop extends Widget {
 		if (this.screen != null) {
 			this.screen.remove();
 		}
-		
+
 		// Hide menuPopups
 		Menu.hideAllMenuPopups();
-		
+
 		// Check transition
 		if (screen != null) {
 			Transition transition = screen.getTransition();
@@ -253,14 +287,16 @@ public class Desktop extends Widget {
 				Kuix.getCanvas().setTransition(transition);
 			}
 		}
-		
+
 		this.screen = screen;
 		if (screen != null) {
 			super.add(screen);
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getWidget(java.lang.String)
 	 */
 	public Widget getWidget(String id) {
@@ -271,13 +307,15 @@ public class Desktop extends Widget {
 		return widget;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getFocusManager()
 	 */
 	public FocusManager getFocusManager() {
 		return null;
 	}
-	
+
 	/**
 	 * @return the current focusManager
 	 */
@@ -287,9 +325,10 @@ public class Desktop extends Widget {
 		}
 		return (FocusManager) popupFocusManagers.lastElement();
 	}
-	
+
 	/**
-	 * @param focusManager the popup focusManager to set
+	 * @param focusManager
+	 *            the popup focusManager to set
 	 */
 	public void pushPopupFocusManager(FocusManager focusManager) {
 		if (focusManager != null) {
@@ -302,7 +341,7 @@ public class Desktop extends Widget {
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove the specified popup focusManager
 	 * 
@@ -311,42 +350,52 @@ public class Desktop extends Widget {
 	public void removePopupFocusManager(FocusManager focusManager) {
 		popupFocusManagers.removeElement(focusManager);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 	 */
 	public Layout getLayout() {
 		return GridLayout.instanceOneByOne;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 	 */
 	public LayoutData getLayoutData() {
 		return null;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getMargin()
 	 */
 	public Insets getMargin() {
 		return DEFAULT_MARGIN;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getBorder()
 	 */
 	public Insets getBorder() {
 		return DEFAULT_BORDER;
 	}
- 
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getPadding()
 	 */
 	public Insets getPadding() {
 		return DEFAULT_PADDING;
 	}
-	
+
 	/**
 	 * Define the dragged widget.
 	 * 
@@ -357,25 +406,27 @@ public class Desktop extends Widget {
 			draggedWidgetContainer.setDraggedWidget(widget, x, y);
 		}
 	}
-	
+
 	/**
 	 * @return the dragged widget if it exists
 	 */
 	public Widget getDraggedWidget() {
 		return draggedWidgetContainer.getChild();
 	}
-	
+
 	/**
 	 * Remove the dragged widget and returns its instance. If
-	 * <code>restore</code> is <code>true</code> the dragged widget is
-	 * restor to its original parent.
+	 * <code>restore</code> is <code>true</code> the dragged widget is restor to
+	 * its original parent.
 	 * 
-	 * @param restore restore the dragged widget to its original parent
+	 * @param restore
+	 *            restore the dragged widget to its original parent
 	 * @return the removed dragged widget
 	 */
 	public Widget removeDraggedWidget(boolean restore) {
 		Widget draggedWidget = getDraggedWidget();
-		Widget draggedWidgetParent = draggedWidgetContainer.getDraggedWidgetParent();
+		Widget draggedWidgetParent = draggedWidgetContainer
+				.getDraggedWidgetParent();
 		if (restore && draggedWidgetParent != null) {
 			draggedWidgetParent.add(draggedWidget);
 		} else if (draggedWidget != null) {
@@ -383,7 +434,7 @@ public class Desktop extends Widget {
 		}
 		return draggedWidget;
 	}
-	
+
 	/**
 	 * Add a popup widget
 	 * 
@@ -393,7 +444,7 @@ public class Desktop extends Widget {
 	public void addPopup(Widget widget) {
 		popupContainer.add(widget);
 	}
-	
+
 	/**
 	 * Remove all popup widgets where tag equals <code>tag</code>.
 	 * 
@@ -413,15 +464,19 @@ public class Desktop extends Widget {
 			}
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)
 	 */
 	public Widget add(Widget widget) {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#removeAll()
 	 */
 	public void removeAll() {
@@ -429,9 +484,12 @@ public class Desktop extends Widget {
 		popupFocusManagers.removeAllElements();
 		setCurrentScreen(null);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#invalidate(org.kalmeo.kuix.widget.Widget)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#invalidate(org.kalmeo.kuix.widget.Widget)
 	 */
 	public void invalidate(Widget fromWidget) {
 		super.invalidate(fromWidget);
@@ -444,8 +502,10 @@ public class Desktop extends Widget {
 	public void revalidate() {
 		doLayout();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#doLayout()
 	 */
 	protected void doLayout() {
@@ -453,15 +513,23 @@ public class Desktop extends Widget {
 		popupContainer.doLayout();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#invalidateAppearanceRegion(int, int, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#invalidateAppearanceRegion(int, int,
+	 * int, int)
 	 */
-	protected void invalidateAppearanceRegion(int x, int y, int width, int height) {
+	protected void invalidateAppearanceRegion(int x, int y, int width,
+			int height) {
 		Kuix.getCanvas().repaintNextFrame(x, y, width, height);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#paintImpl(javax.microedition.lcdui.Graphics)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#paintImpl(javax.microedition.lcdui.Graphics
+	 * )
 	 */
 	public void paintImpl(Graphics g) {
 		if (getBackgroundColor() == null) {
@@ -469,14 +537,14 @@ public class Desktop extends Widget {
 			g.fillRect(0, 0, getWidth(), getHeight());
 		}
 		super.paintImpl(g);
-		
+
 		// Grayed layer if defined on the las popup child
 		if (popupContainer.getLastChild() != null) {
-			
+
 			// Retrieve the last child gray color
 			Color grayedColor = popupContainer.getLastChild().getGrayedColor();
 			if (grayedColor != null) {
-			
+
 				// Draw the grayed layer
 				int maxSize = Math.max(getWidth(), getHeight());
 				int minSize = Math.min(getWidth(), getHeight());
@@ -490,20 +558,25 @@ public class Desktop extends Widget {
 				}
 
 			}
-			
+
 		}
-		
+
 		popupContainer.paintImpl(g);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#paint(javax.microedition.lcdui.Graphics)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#paint(javax.microedition.lcdui.Graphics)
 	 */
 	public void paint(Graphics g) {
 		paintBackground(g);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#onAdded(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onChildAdded(Widget widget) {
@@ -513,11 +586,14 @@ public class Desktop extends Widget {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onChildRemoved(Widget widget) {
 		screenFocusManager = null;
 	}
-	
+
 }

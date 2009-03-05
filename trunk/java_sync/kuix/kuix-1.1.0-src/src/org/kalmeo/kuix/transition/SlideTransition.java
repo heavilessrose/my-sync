@@ -35,31 +35,35 @@ import org.kalmeo.kuix.util.Alignment;
 public class SlideTransition implements Transition {
 
 	private Alignment direction;
-	
+
 	protected Image oldImage;
 	protected Image newImage;
-	
+
 	private int xOffset;
 	private int yOffset;
-	
+
 	/**
 	 * Construct a {@link SlideTransition}
-	 *
+	 * 
 	 * @param direction
 	 */
 	public SlideTransition(Alignment direction) {
 		this.direction = direction;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.transition.Transition#init(javax.microedition.lcdui.Image, javax.microedition.lcdui.Image)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.transition.Transition#init(javax.microedition.lcdui.Image
+	 * , javax.microedition.lcdui.Image)
 	 */
 	public void init(Image oldImage, Image newImage) {
-		
+
 		// Save images
 		this.oldImage = oldImage;
 		this.newImage = newImage;
-		
+
 		// Init offsets
 		xOffset = 0;
 		yOffset = 0;
@@ -72,11 +76,15 @@ public class SlideTransition implements Transition {
 		} else if (direction.isBottom()) {
 			yOffset = newImage.getHeight();
 		}
-		
+
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.transition.Transition#process(javax.microedition.lcdui.Graphics)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.transition.Transition#process(javax.microedition.lcdui
+	 * .Graphics)
 	 */
 	public boolean process(Graphics g) {
 		xOffset = xOffset / 2;

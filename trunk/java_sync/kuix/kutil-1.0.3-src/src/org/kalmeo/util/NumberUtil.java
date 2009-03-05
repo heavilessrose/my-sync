@@ -29,20 +29,22 @@ public class NumberUtil {
 	// formatByte values
 	public static final int MEGA_BYTE = 1048576;
 	public static final int KILO_BYTE = 1024;
-	
+
 	// formatByte flags
 	public static final int MEGA_FORMAT = 1;
 	public static final int KILO_FORMAT = 2;
 	public static final int ALL_FORMAT = 3;
-	
+
 	/**
 	 * Format a bytes's count in string
 	 * 
-	 * @param bytes the bytes's count
-	 * @param formsAllowed specifie wich form are autorized by the formater.
-	 * 		  MEGA_FORMAT return bytes under MegaByte form, Byte else
-	 * 		  KILO_FORMAT return bytes under KiloByte form, Byte else
-	 * 		  ALL_FORMAT return bytes under MegaByte, KiloByte ot Byte form.
+	 * @param bytes
+	 *            the bytes's count
+	 * @param formsAllowed
+	 *            specifie wich form are autorized by the formater. MEGA_FORMAT
+	 *            return bytes under MegaByte form, Byte else KILO_FORMAT return
+	 *            bytes under KiloByte form, Byte else ALL_FORMAT return bytes
+	 *            under MegaByte, KiloByte ot Byte form.
 	 * @return formated string containing bytes's count
 	 */
 	public static String formatByte(int bytes, int formsAllowed) {
@@ -54,12 +56,14 @@ public class NumberUtil {
 		}
 		return Integer.toString(bytes);
 	}
-	
+
 	/**
 	 * Format an integer value with specifie integer digits number
 	 * 
-	 * @param value the value wich be formated
-	 * @param numDigit specifie the integer part size
+	 * @param value
+	 *            the value wich be formated
+	 * @param numDigit
+	 *            specifie the integer part size
 	 * @return formated integer
 	 */
 	public static String formatInt(int value, int numDigit) {
@@ -89,7 +93,9 @@ public class NumberUtil {
 		if (lengthValue > numDigit) {
 			stringValue = stringValue.substring(lengthValue - numDigit);
 		} else {
-			for (int i = lengthValue; i++ < numDigit; stringValue = "0" + stringValue);
+			for (int i = lengthValue; i++ < numDigit; stringValue = "0"
+					+ stringValue)
+				;
 		}
 
 		// Return the value with is sign
@@ -99,12 +105,16 @@ public class NumberUtil {
 	/**
 	 * Format a fpValue with specified integer and decimal digits number
 	 * 
-	 * @param fpValue is the fixed point integer wich be formated
-	 * @param integerDigit specifie the integer part size
-	 * @param decimalDigit specifie the decimal part size
+	 * @param fpValue
+	 *            is the fixed point integer wich be formated
+	 * @param integerDigit
+	 *            specifie the integer part size
+	 * @param decimalDigit
+	 *            specifie the decimal part size
 	 * @return formated fixed point
 	 */
-	public static String formatFP(int fpValue, int integerDigit, int decimalDigit) {
+	public static String formatFP(int fpValue, int integerDigit,
+			int decimalDigit) {
 		// Take integer and decimal part of fpValue
 		boolean negative = false;
 		if (fpValue < 0) {
@@ -123,10 +133,12 @@ public class NumberUtil {
 		if (decimalDigit >= 0) {
 			// If there are to much digit stringValue is truncated
 			if (stringDecimalPart.length() > decimalDigit) {
-				stringDecimalPart = stringDecimalPart.substring(0, decimalDigit);
+				stringDecimalPart = stringDecimalPart
+						.substring(0, decimalDigit);
 			}
 			// Else if there is not enought digit, decimal part is completed
-			for (; stringDecimalPart.length() < decimalDigit; stringDecimalPart += "0");
+			for (; stringDecimalPart.length() < decimalDigit; stringDecimalPart += "0")
+				;
 		}
 
 		// And concatenate them
@@ -139,9 +151,10 @@ public class NumberUtil {
 		}
 
 		// Add minus sign if integer part si limited to 0 digits and decimal part isn't 'null'
-		return (negative && integerDigit == 0 && decimalDigit != 0 ? "-" : "") + stringValue;
+		return (negative && integerDigit == 0 && decimalDigit != 0 ? "-" : "")
+				+ stringValue;
 	}
-	
+
 	/**
 	 * Convert a short to a byte array
 	 * 
@@ -153,7 +166,7 @@ public class NumberUtil {
 		toBytes(value, bytes, 0);
 		return bytes;
 	}
-	
+
 	/**
 	 * Convert an int to a byte array
 	 * 
@@ -165,7 +178,7 @@ public class NumberUtil {
 		toBytes(value, bytes, 0);
 		return bytes;
 	}
-	
+
 	/**
 	 * Convert a long to a byte array
 	 * 
@@ -177,10 +190,10 @@ public class NumberUtil {
 		toBytes(value, bytes, 0);
 		return bytes;
 	}
-	
+
 	/**
-	 * Convert a short to a byte array and set it into <code>buffer</code>
-	 * at specified <code>offset</code>
+	 * Convert a short to a byte array and set it into <code>buffer</code> at
+	 * specified <code>offset</code>
 	 * 
 	 * @param value
 	 * @param buffer
@@ -191,14 +204,14 @@ public class NumberUtil {
 		if (buffer.length - offset < 2) {
 			throw new ArrayIndexOutOfBoundsException();
 		}
-		
+
 		buffer[offset] = (byte) (value >> 8);
 		buffer[offset + 1] = (byte) value;
 	}
-	
+
 	/**
-	 * Convert an int to a byte array and set it into <code>buffer</code>
-	 * at specified <code>offset</code>
+	 * Convert an int to a byte array and set it into <code>buffer</code> at
+	 * specified <code>offset</code>
 	 * 
 	 * @param value
 	 * @param buffer
@@ -213,10 +226,10 @@ public class NumberUtil {
 			buffer[offset + i] = (byte) (value >> ((3 - i) * 8));
 		}
 	}
-	
+
 	/**
-	 * Convert a long to a byte array and set it into <code>buffer</code>
-	 * at specified <code>offset</code>
+	 * Convert a long to a byte array and set it into <code>buffer</code> at
+	 * specified <code>offset</code>
 	 * 
 	 * @param value
 	 * @param buffer
@@ -231,7 +244,7 @@ public class NumberUtil {
 			buffer[offset + i] = (byte) (value >> ((7 - i) * 8));
 		}
 	}
-	
+
 	/**
 	 * Convert a byte array to a short value
 	 * 
@@ -248,7 +261,7 @@ public class NumberUtil {
 		}
 		return value;
 	}
-	
+
 	/**
 	 * Convert a byte array to an int value
 	 * 
@@ -266,7 +279,7 @@ public class NumberUtil {
 		}
 		return value;
 	}
-	
+
 	/**
 	 * Convert a byte array to a long value
 	 * 
@@ -284,5 +297,5 @@ public class NumberUtil {
 		}
 		return value;
 	}
-	
+
 }

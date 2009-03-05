@@ -30,7 +30,7 @@ public class Worker implements Runnable {
 
 	// The Worker static instance
 	public static final Worker instance = new Worker();
-	
+
 	// The error listener of the worker thread
 	private WorkerErrorListener workerErrorListener;
 
@@ -39,28 +39,29 @@ public class Worker implements Runnable {
 
 	// The worker run state
 	private boolean running = false;
-	
+
 	// Frame duration (in ms)
 	private int frameDuration = 60;
 
 	// Task list
 	private final Vector tasks = new Vector();
-	
+
 	// Running task index
 	private int runningTaskIndex = -1;
-	
+
 	// Synchronization mutex
-	private final Object mutex = new Object(); 
-	
+	private final Object mutex = new Object();
+
 	/**
 	 * @param workerErrorListener
 	 */
 	public void setWorkerErrorListener(WorkerErrorListener workerErrorListener) {
 		this.workerErrorListener = workerErrorListener;
 	}
-	
+
 	/**
-	 * @return <code>true</code> if the current Thread is the {@link Worker} thread
+	 * @return <code>true</code> if the current Thread is the {@link Worker}
+	 *         thread
 	 */
 	public boolean isCurrentThread() {
 		return (Thread.currentThread() == thread);
@@ -81,7 +82,8 @@ public class Worker implements Runnable {
 	}
 
 	/**
-	 * @param frameDuration the frameDuration to set in milliseconds
+	 * @param frameDuration
+	 *            the frameDuration to set in milliseconds
 	 */
 	public void setFrameDuration(int frameDuration) {
 		this.frameDuration = frameDuration;
@@ -109,7 +111,8 @@ public class Worker implements Runnable {
 			int taskIndex = tasks.indexOf(task);
 			if (taskIndex != -1) {
 				if (taskIndex == runningTaskIndex) {
-					throw new IllegalArgumentException("A WorkerTask couldn't remove itself");
+					throw new IllegalArgumentException(
+							"A WorkerTask couldn't remove itself");
 				}
 				tasks.removeElementAt(taskIndex);
 				if (taskIndex < runningTaskIndex) {
@@ -120,7 +123,7 @@ public class Worker implements Runnable {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Remove all instances of {@link WorkerTask} from task list. The action is
 	 * possible only if the worker is not running.
@@ -149,7 +152,9 @@ public class Worker implements Runnable {
 		running = false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
@@ -159,8 +164,10 @@ public class Worker implements Runnable {
 			try {
 				synchronized (mutex) {
 					if (!tasks.isEmpty()) {
-						for (runningTaskIndex = 0; runningTaskIndex < tasks.size(); ++runningTaskIndex) {
-							task = (WorkerTask) tasks.elementAt(runningTaskIndex);
+						for (runningTaskIndex = 0; runningTaskIndex < tasks
+								.size(); ++runningTaskIndex) {
+							task = (WorkerTask) tasks
+									.elementAt(runningTaskIndex);
 							if (task.run()) {
 								tasks.removeElementAt(runningTaskIndex);
 								runningTaskIndex--;
@@ -195,12 +202,13 @@ public class Worker implements Runnable {
 			if (running) {
 				long executionTime = System.currentTimeMillis() - startTime;
 				try {
-					Thread.sleep(!running || executionTime > frameDuration ? 1 : frameDuration - executionTime);
+					Thread.sleep(!running || executionTime > frameDuration ? 1
+							: frameDuration - executionTime);
 				} catch (InterruptedException e) {
 				}
 			}
 		}
 		thread = null;
 	}
-	
+
 }

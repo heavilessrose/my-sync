@@ -56,30 +56,30 @@ public class TextField extends Text implements CommandListener {
 	public static final String PHONENUMBER = "phonenumber";
 	public static final String DECIMAL = "decimal";
 	public static final String URL = "url";
-	
+
 	public static final String PASSWORD = "password";
-	
+
 	public static final String SENSITIVE = "sensitive";
 	public static final String NON_PREDICTIVE = "non_predictive";
 	public static final String INITIAL_CAPS_WORD = "initial_caps_word";
 	public static final String INITIAL_CAPS_SENTENCE = "initial_caps_sentence";
-	
+
 	// TextBox command
 	private final Command validateCommand;
 	private final Command cancelCommand;
-	
+
 	// The associated textBox
 	private TextBox textBox;
-	
+
 	// TextBox's title
 	private String title = null;
-	
+
 	// TextBox's maxSize
 	private int maxSize = 1000;
 
 	// TextBox's constraints
 	private int constraints = javax.microedition.lcdui.TextField.ANY;
-	
+
 	// Define if the edit dialog is opened when a key is hit
 	private boolean editOnAllKeys = true;
 
@@ -91,7 +91,7 @@ public class TextField extends Text implements CommandListener {
 
 	// The change method
 	private String onChange;
-	
+
 	// Internal 
 	private String displayedText = null;
 
@@ -100,14 +100,19 @@ public class TextField extends Text implements CommandListener {
 	 */
 	public TextField() {
 		super(KuixConstants.TEXT_FIELD_WIDGET_TAG);
-		
+
 		// Create command to be sure that labels have the correct value
-		validateCommand = new Command(Kuix.getMessage(KuixConstants.VALIDATE_I18N_KEY), Command.OK, 1);
-		cancelCommand = new Command(Kuix.getMessage(KuixConstants.CANCEL_I18N_KEY), Command.BACK, 0);
+		validateCommand = new Command(Kuix
+				.getMessage(KuixConstants.VALIDATE_I18N_KEY), Command.OK, 1);
+		cancelCommand = new Command(Kuix
+				.getMessage(KuixConstants.CANCEL_I18N_KEY), Command.BACK, 0);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Text#setAttribute(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Text#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.TITLE_ATTRIBUTE.equals(name)) {
@@ -161,7 +166,7 @@ public class TextField extends Text implements CommandListener {
 		}
 		return super.setAttribute(name, value);
 	}
-	
+
 	/**
 	 * @return the title
 	 */
@@ -170,7 +175,8 @@ public class TextField extends Text implements CommandListener {
 	}
 
 	/**
-	 * @param title the title to set
+	 * @param title
+	 *            the title to set
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -184,7 +190,8 @@ public class TextField extends Text implements CommandListener {
 	}
 
 	/**
-	 * @param maxSize the maxSize to set
+	 * @param maxSize
+	 *            the maxSize to set
 	 */
 	public void setMaxSize(int maxSize) {
 		this.maxSize = Math.max(1, maxSize);
@@ -201,12 +208,13 @@ public class TextField extends Text implements CommandListener {
 	}
 
 	/**
-	 * @param constraints the constraints to set
+	 * @param constraints
+	 *            the constraints to set
 	 */
 	public void setConstraints(int constraints) {
 		this.constraints = constraints;
 	}
-	
+
 	/**
 	 * @return the editOnAllKeys
 	 */
@@ -215,7 +223,8 @@ public class TextField extends Text implements CommandListener {
 	}
 
 	/**
-	 * @param editOnAllKeys the editOnAllKeys to set
+	 * @param editOnAllKeys
+	 *            the editOnAllKeys to set
 	 */
 	public void setEditOnAllKeys(boolean editOnAllKeys) {
 		this.editOnAllKeys = editOnAllKeys;
@@ -230,7 +239,7 @@ public class TextField extends Text implements CommandListener {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Define the {@link TextField} tooltip text.
 	 * 
@@ -240,11 +249,12 @@ public class TextField extends Text implements CommandListener {
 		if (tooltipText == null) {
 			tooltipText = new Text();
 			tooltipText.parent = this;
-			tooltipText.setStyleClass(KuixConstants.TEXT_FIELD_TOOLTIP_STYLE_CLASS);
+			tooltipText
+					.setStyleClass(KuixConstants.TEXT_FIELD_TOOLTIP_STYLE_CLASS);
 		}
 		tooltipText.setText(text);
 	}
-	
+
 	/**
 	 * @return the onChange
 	 */
@@ -253,35 +263,43 @@ public class TextField extends Text implements CommandListener {
 	}
 
 	/**
-	 * @param onChange the onChange to set
+	 * @param onChange
+	 *            the onChange to set
 	 */
 	public void setOnChange(String onChange) {
 		this.onChange = onChange;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.FocusableWidget#isFocusable()
 	 */
 	public boolean isFocusable() {
 		return enabled && focusable;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.AbstractTextWidget#setText(java.lang.String)
 	 */
 	public TextWidget setText(String text) {
 		displayedText = null;
-		return super.setText(text != null ? text.substring(0, Math.min(text.length(), maxSize)) : null);
+		return super.setText(text != null ? text.substring(0, Math.min(text
+				.length(), maxSize)) : null);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.AbstractTextWidget#getDisplayedText()
 	 */
 	protected String getDisplayedText() {
 		if ((constraints & javax.microedition.lcdui.TextField.PASSWORD) == javax.microedition.lcdui.TextField.PASSWORD) {
 			if (displayedText == null && text != null) {
 				StringBuffer buffer = new StringBuffer();
-				for(int i=0; i<text.length(); ++i) {
+				for (int i = 0; i < text.length(); ++i) {
 					buffer.append('*');
 				}
 				displayedText = buffer.toString();
@@ -291,7 +309,9 @@ public class TextField extends Text implements CommandListener {
 		return super.getDisplayedText();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#doLayout()
 	 */
 	protected void doLayout() {
@@ -300,20 +320,27 @@ public class TextField extends Text implements CommandListener {
 			Metrics preferredSize = tooltipText.getPreferredSize(getWidth());
 			int x = Alignment.CENTER.alignX(getWidth(), preferredSize.width);
 			int y = Alignment.CENTER.alignY(getHeight(), preferredSize.height);
-			tooltipText.setBounds(x, y, preferredSize.width, preferredSize.height);
+			tooltipText.setBounds(x, y, preferredSize.width,
+					preferredSize.height);
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Text#paint(javax.microedition.lcdui.Graphics)
 	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 		paintBorder(g);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Text#paintChildrenImpl(javax.microedition.lcdui.Graphics)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Text#paintChildrenImpl(javax.microedition.lcdui
+	 * .Graphics)
 	 */
 	protected void paintChildrenImpl(Graphics g) {
 		super.paintChildrenImpl(g);
@@ -332,31 +359,42 @@ public class TextField extends Text implements CommandListener {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.microedition.lcdui.CommandListener#commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * javax.microedition.lcdui.CommandListener#commandAction(javax.microedition
+	 * .lcdui.Command, javax.microedition.lcdui.Displayable)
 	 */
 	public void commandAction(Command command, Displayable displayable) {
 		if (command == validateCommand) {
 			String textBoxString = textBox.getString();
 			hideTooltip();
-			boolean changed = textBoxString != null && !textBoxString.equals(getText());
+			boolean changed = textBoxString != null
+					&& !textBoxString.equals(getText());
 			setText(textBoxString);
 			if (changed && onChange != null) {
 				Worker.instance.pushTask(new WorkerTask() {
 
 					public boolean run() {
-						Kuix.callActionMethod(Kuix.parseMethod(onChange, TextField.this));
+						Kuix.callActionMethod(Kuix.parseMethod(onChange,
+								TextField.this));
 						return true;
 					}
-					
+
 				});
 			}
 		}
-		Display.getDisplay(Kuix.getCanvas().getInitializer().getMIDlet()).setCurrent(Kuix.getCanvas());
+		Display.getDisplay(Kuix.getCanvas().getInitializer().getMIDlet())
+				.setCurrent(Kuix.getCanvas());
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.AbstractFocusableWidget#processPointerEvent(byte, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.AbstractFocusableWidget#processPointerEvent(byte,
+	 * int, int)
 	 */
 	public boolean processPointerEvent(byte type, int x, int y) {
 		if (isEnabled() && type == KuixConstants.POINTER_RELEASED_EVENT_TYPE) {
@@ -364,45 +402,48 @@ public class TextField extends Text implements CommandListener {
 		}
 		return super.processPointerEvent(type, x, y);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processKeyEvent(byte, int)
 	 */
 	public boolean processKeyEvent(byte type, int kuixKeyCode) {
-		if (isEnabled() && type == KuixConstants.KEY_PRESSED_EVENT_TYPE
-				 && (kuixKeyCode == KuixConstants.KUIX_KEY_FIRE
-						 || (editOnAllKeys
-								 && ( 	   kuixKeyCode == KuixConstants.KUIX_KEY_1
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_2
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_3
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_4
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_5
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_6
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_7
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_8
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_9
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_STAR
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_POUND
-										|| kuixKeyCode == KuixConstants.KUIX_KEY_PENCIL))
-				)) {
+		if (isEnabled()
+				&& type == KuixConstants.KEY_PRESSED_EVENT_TYPE
+				&& (kuixKeyCode == KuixConstants.KUIX_KEY_FIRE || (editOnAllKeys && (kuixKeyCode == KuixConstants.KUIX_KEY_1
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_2
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_3
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_4
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_5
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_6
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_7
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_8
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_9
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_STAR
+						|| kuixKeyCode == KuixConstants.KUIX_KEY_POUND || kuixKeyCode == KuixConstants.KUIX_KEY_PENCIL)))) {
 			return processActionEvent();
 		}
 		return super.processKeyEvent(type, kuixKeyCode);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processActionEvent()
 	 */
 	public boolean processActionEvent() {
 
 		// Setup TextBox properties
-		textBox = new TextBox(title == null ? "" : title, text == null ? "" : text, maxSize, constraints);
+		textBox = new TextBox(title == null ? "" : title, text == null ? ""
+				: text, maxSize, constraints);
 		textBox.addCommand(validateCommand);
 		textBox.addCommand(cancelCommand);
 		textBox.setCommandListener(this);
 
 		// Show TextBox
-		Display.getDisplay(Kuix.getCanvas().getInitializer().getMIDlet()).setCurrent(textBox);
+		Display.getDisplay(Kuix.getCanvas().getInitializer().getMIDlet())
+				.setCurrent(textBox);
 
 		return true;
 	}
@@ -418,7 +459,9 @@ public class TextField extends Text implements CommandListener {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#onFocus(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onFocus(Widget focusedWidget) {
@@ -430,7 +473,9 @@ public class TextField extends Text implements CommandListener {
 				tooltipTimer = System.currentTimeMillis();
 				tooltipTask = new WorkerTask() {
 
-					/* (non-Javadoc)
+					/*
+					 * (non-Javadoc)
+					 * 
 					 * @see com.kalmeo.util.worker.WorkerTask#execute()
 					 */
 					public boolean run() {
@@ -444,15 +489,18 @@ public class TextField extends Text implements CommandListener {
 						}
 						return false;
 					}
-					
+
 				};
 				Worker.instance.pushTask(tooltipTask);
 			}
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#onLostFocus(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#onLostFocus(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onLostFocus(Widget focusedWidget) {
 		super.onLostFocus(focusedWidget);

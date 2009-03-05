@@ -45,7 +45,7 @@ public class StyleSelector {
 	private boolean hasId = false;
 	private boolean hasStyleClass = false;
 	private boolean hasPseudoClass = false;
-	
+
 	private String tag;
 	private String id;
 	private String styleClass;
@@ -58,36 +58,36 @@ public class StyleSelector {
 	 */
 	public StyleSelector(String name) {
 		this.name = name;
-		
+
 		StringBuffer tagReader = new StringBuffer();
 		StringBuffer idReader = new StringBuffer();
 		StringBuffer classReader = new StringBuffer();
 		Vector pseudoClassReaders = new Vector();
 		StringBuffer currentReader = tagReader;
-		
-		for (int i = 0; i<name.length(); ++i) {
+
+		for (int i = 0; i < name.length(); ++i) {
 			char c = name.charAt(i);
 			switch (c) {
-				
-				case '#':
-					currentReader = idReader;
-					break;
 
-				case '.':
-					currentReader = classReader;
-					break;
-					
-				case ':':
-					currentReader = new StringBuffer();
-					pseudoClassReaders.addElement(currentReader);
-					break;
-					
-				default:
-					currentReader.append(c);
-					break;
+			case '#':
+				currentReader = idReader;
+				break;
+
+			case '.':
+				currentReader = classReader;
+				break;
+
+			case ':':
+				currentReader = new StringBuffer();
+				pseudoClassReaders.addElement(currentReader);
+				break;
+
+			default:
+				currentReader.append(c);
+				break;
 			}
 		}
-		
+
 		hasTag = tagReader.length() != 0;
 		if (hasTag) {
 			tag = tagReader.toString();
@@ -104,11 +104,12 @@ public class StyleSelector {
 		hasPseudoClass = size != 0;
 		if (hasPseudoClass) {
 			pseudoClasses = new String[size];
-			for (int i = 0; i<size; ++i) {
-				pseudoClasses[i] = ((StringBuffer) pseudoClassReaders.elementAt(i)).toString();
+			for (int i = 0; i < size; ++i) {
+				pseudoClasses[i] = ((StringBuffer) pseudoClassReaders
+						.elementAt(i)).toString();
 			}
 		}
-		
+
 	}
 
 	/**
@@ -117,7 +118,7 @@ public class StyleSelector {
 	public boolean hasParent() {
 		return parent != null;
 	}
-	
+
 	/**
 	 * @return the hasTag
 	 */
@@ -145,14 +146,14 @@ public class StyleSelector {
 	public boolean hasPseudoClass() {
 		return hasPseudoClass;
 	}
-	
+
 	/**
 	 * @return the pseudoClasses
 	 */
 	public String[] getPseudoClasses() {
 		return pseudoClasses;
 	}
-	
+
 	/**
 	 * @return the tag
 	 */
@@ -174,7 +175,9 @@ public class StyleSelector {
 		return styleClass;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object obj) {

@@ -39,7 +39,7 @@ import org.kalmeo.kuix.util.Gap;
  * @author bbeaulant
  */
 public class Choice extends ActionWidget {
-	
+
 	// The internal choice container (hold the selected radio button content)
 	private final Widget choiceContainer;
 
@@ -50,10 +50,10 @@ public class Choice extends ActionWidget {
 	// The screen where this choice is attached
 	private Screen ownerScreen;
 	private boolean ownerScreenCleanUpWhenRemoved = false;
-	
+
 	// Keep there the lastest selected radio button (for internal use)
 	private RadioButton lastSelectedRadioButton = null;
-	
+
 	// Internal use
 	private Widget noChoiceText;
 
@@ -66,7 +66,9 @@ public class Choice extends ActionWidget {
 		// Create the inner choice container
 		choiceContainer = new Widget(KuixConstants.CHOICE_CONTAINER_WIDGET_TAG) {
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getAlign()
 			 */
 			public Alignment getAlign() {
@@ -76,7 +78,9 @@ public class Choice extends ActionWidget {
 				return super.getAlign();
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getGap()
 			 */
 			public Gap getGap() {
@@ -86,7 +90,9 @@ public class Choice extends ActionWidget {
 				return super.getGap();
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 			 */
 			public Layout getLayout() {
@@ -96,9 +102,10 @@ public class Choice extends ActionWidget {
 						noChoiceText = null;
 					}
 					return lastSelectedRadioButton.getLayout();
-				} else if (getChild() ==  null) {
+				} else if (getChild() == null) {
 					// No radioButton was selected, display the no choice text
-					noChoiceText = new Text().setText(Kuix.getMessage(KuixConstants.PLEASE_SELECT_I18N_KEY));
+					noChoiceText = new Text().setText(Kuix
+							.getMessage(KuixConstants.PLEASE_SELECT_I18N_KEY));
 					this.add(noChoiceText);
 				}
 				return super.getLayout();
@@ -106,36 +113,46 @@ public class Choice extends ActionWidget {
 
 		};
 		super.add(choiceContainer);
-		
+
 		// Create the inner screen
 		screen = new Screen(KuixConstants.CHOICE_SCREEN_WIDGET_TAG) {
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getInheritedTag()
 			 */
 			public String getInheritedTag() {
 				return KuixConstants.SCREEN_WIDGET_TAG;
 			}
 
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.widget.Screen#processMenuAction(org.kalmeo.kuix.widget.Menu, boolean, boolean)
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.widget.Screen#processMenuAction(org.kalmeo.kuix
+			 * .widget.Menu, boolean, boolean)
 			 */
-			protected boolean processMenuAction(Menu menu, boolean internal, boolean isFirst) {
+			protected boolean processMenuAction(Menu menu, boolean internal,
+					boolean isFirst) {
 				if (isFirst) {
-					FocusManager focusManager = getDesktop().getCurrentFocusManager();
+					FocusManager focusManager = getDesktop()
+							.getCurrentFocusManager();
 					if (focusManager != null) {
-						focusManager.processKeyEvent(KuixConstants.KEY_PRESSED_EVENT_TYPE, KuixConstants.KUIX_KEY_FIRE);
+						focusManager.processKeyEvent(
+								KuixConstants.KEY_PRESSED_EVENT_TYPE,
+								KuixConstants.KUIX_KEY_FIRE);
 						return true;
 					}
 				}
 				restoreOwnerScreen();
 				return true;
 			}
-			
+
 		};
 		screen.switchToInternalMenus();
 		screen.setTitle(Kuix.getMessage(KuixConstants.PLEASE_SELECT_I18N_KEY));
-		
+
 		// Create the inner scroll container
 		ScrollPane scrollContainer = new ScrollPane();
 		screen.add(scrollContainer);
@@ -143,44 +160,56 @@ public class Choice extends ActionWidget {
 		// Create the inner radio group
 		radioGroup = new RadioGroup(KuixConstants.CHOICE_RADIO_GROUP_WIDGET_TAG) {
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getInheritedTag()
 			 */
 			public String getInheritedTag() {
 				return KuixConstants.RADIO_GROUP_WIDGET_TAG;
 			}
 
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.widget.RadioGroup#setSelectedRadioButton(org.kalmeo.kuix.widget.RadioButton, boolean)
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.widget.RadioGroup#setSelectedRadioButton(org.
+			 * kalmeo.kuix.widget.RadioButton, boolean)
 			 */
-			public void setSelectedRadioButton(RadioButton radioButton, boolean propagateChangeEvent) {
+			public void setSelectedRadioButton(RadioButton radioButton,
+					boolean propagateChangeEvent) {
 				// Check if selection has changed
 				if (radioButton != lastSelectedRadioButton) {
-					
+
 					// Restore last selected button content
-					if (lastSelectedRadioButton != null && lastSelectedRadioButton.getChild() == null) {
-						lastSelectedRadioButton.catchChildrenFrom(choiceContainer);
+					if (lastSelectedRadioButton != null
+							&& lastSelectedRadioButton.getChild() == null) {
+						lastSelectedRadioButton
+								.catchChildrenFrom(choiceContainer);
 					}
-					
+
 					lastSelectedRadioButton = radioButton;
 				}
-				
+
 				// Invalidate the choice container
 				choiceContainer.invalidate();
-				
+
 				// Restore the owner screen if not current
 				restoreOwnerScreen();
-				
+
 				super.setSelectedRadioButton(radioButton, propagateChangeEvent);
 			}
 
 		};
 		scrollContainer.add(radioGroup);
-		
+
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.ActionWidget#setAttribute(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.ActionWidget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.TITLE_ATTRIBUTE.equals(name)) {
@@ -190,8 +219,11 @@ public class Choice extends ActionWidget {
 		return super.setAttribute(name, value);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
 	 */
 	public Widget getInternalChildInstance(String tag) {
 		if (KuixConstants.CHOICE_CONTAINER_WIDGET_TAG.equals(tag)) {
@@ -205,7 +237,7 @@ public class Choice extends ActionWidget {
 		}
 		return super.getInternalChildInstance(tag);
 	}
-	
+
 	/**
 	 * Define the sub screen title.
 	 * 
@@ -214,7 +246,7 @@ public class Choice extends ActionWidget {
 	public void setTitle(String title) {
 		screen.setTitle(title);
 	}
-	
+
 	/**
 	 * @return the choiceContainer
 	 */
@@ -235,15 +267,19 @@ public class Choice extends ActionWidget {
 	public RadioGroup getRadioGroup() {
 		return radioGroup;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 	 */
 	public Layout getLayout() {
 		return GridLayout.instanceOneByOne;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getWidget(java.lang.String)
 	 */
 	public Widget getWidget(String id) {
@@ -254,56 +290,62 @@ public class Choice extends ActionWidget {
 		return widget;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)
 	 */
 	public Widget add(Widget widget) {
 		return this;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#cleanUp()
 	 */
 	public void cleanUp() {
 		super.cleanUp();
 		screen.cleanUp();
 	}
-	
+
 	/**
 	 * Restore the owner screen.
 	 */
 	private void restoreOwnerScreen() {
 		if (ownerScreen != null) {
-			
+
 			ownerScreen.setCurrent();
-			
+
 			// Restore the cleanUpWhenRemoved property
 			ownerScreen.cleanUpWhenRemoved = ownerScreenCleanUpWhenRemoved;
 			ownerScreen = null;
-			
+
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.AbstractActionWidget#processActionEvent()
 	 */
 	public boolean processActionEvent() {
 		Desktop desktop = Kuix.getCanvas().getDesktop();
 		if (desktop != null) {
-			
+
 			if (lastSelectedRadioButton != null) {
 				lastSelectedRadioButton.catchChildrenFrom(choiceContainer);
 			}
-			
+
 			// Retrieve the owner screen instance
 			ownerScreen = desktop.getCurrentScreen();
-			
+
 			// Keep the cleanUpWhenRemoved property value
 			ownerScreenCleanUpWhenRemoved = ownerScreen.cleanUpWhenRemoved;
 			ownerScreen.cleanUpWhenRemoved = false;
-			
+
 			desktop.setCurrentScreen(screen);
-			
+
 		}
 		return super.processActionEvent();
 	}

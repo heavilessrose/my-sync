@@ -27,7 +27,7 @@ import java.util.NoSuchElementException;
 public class StringTokenizer {
 
 	public static final String DEFAULT_DELIM = " \t\n\r\f";
-	
+
 	private int currentPosition;
 
 	private String delimiters;
@@ -51,12 +51,13 @@ public class StringTokenizer {
 	/**
 	 * Constructs a string tokenizer for the specified string. The tokenizer
 	 * uses the default delimiter set, which is
-	 * <code>"&nbsp;&#92;t&#92;n&#92;r&#92;f"</code>: the space character,
-	 * the tab character, the newline character, the carriage-return character,
-	 * and the form-feed character. Delimiter characters themselves will not be
+	 * <code>"&nbsp;&#92;t&#92;n&#92;r&#92;f"</code>: the space character, the
+	 * tab character, the newline character, the carriage-return character, and
+	 * the form-feed character. Delimiter characters themselves will not be
 	 * treated as tokens.
 	 * 
-	 * @param str a string to be parsed.
+	 * @param str
+	 *            a string to be parsed.
 	 */
 	public StringTokenizer(String str) {
 		this(str, DEFAULT_DELIM, false);
@@ -64,11 +65,13 @@ public class StringTokenizer {
 
 	/**
 	 * Constructs a string tokenizer for the specified string. The characters in
-	 * the <code>delim</code> argument are the delimiters for separating
-	 * tokens. Delimiter characters themselves will not be treated as tokens.
+	 * the <code>delim</code> argument are the delimiters for separating tokens.
+	 * Delimiter characters themselves will not be treated as tokens.
 	 * 
-	 * @param str a string to be parsed.
-	 * @param delim the delimiters.
+	 * @param str
+	 *            a string to be parsed.
+	 * @param delim
+	 *            the delimiters.
 	 */
 	public StringTokenizer(String str, String delim) {
 		this(str, delim, false);
@@ -76,8 +79,7 @@ public class StringTokenizer {
 
 	/**
 	 * Constructs a string tokenizer for the specified string. All characters in
-	 * the <code>delim</code> argument are the delimiters for separating
-	 * tokens.
+	 * the <code>delim</code> argument are the delimiters for separating tokens.
 	 * <p>
 	 * If the <code>returnDelims</code> flag is <code>true</code>, then the
 	 * delimiter characters are also returned as tokens. Each delimiter is
@@ -85,15 +87,17 @@ public class StringTokenizer {
 	 * the delimiter characters are skipped and only serve as separators between
 	 * tokens.
 	 * <p>
-	 * Note that if <tt>delim</tt> is <tt>null</tt>, this constructor does
-	 * not throw an exception. However, trying to invoke other methods on the
+	 * Note that if <tt>delim</tt> is <tt>null</tt>, this constructor does not
+	 * throw an exception. However, trying to invoke other methods on the
 	 * resulting <tt>StringTokenizer</tt> may result in a
 	 * <tt>NullPointerException</tt>.
 	 * 
-	 * @param str a string to be parsed.
-	 * @param delim the delimiters.
-	 * @param returnDelims flag indicating whether to return the delimiters as
-	 *            tokens.
+	 * @param str
+	 *            a string to be parsed.
+	 * @param delim
+	 *            the delimiters.
+	 * @param returnDelims
+	 *            flag indicating whether to return the delimiters as tokens.
 	 */
 	public StringTokenizer(String str, String delim, boolean returnDelims) {
 		currentPosition = 0;
@@ -162,14 +166,14 @@ public class StringTokenizer {
 	}
 
 	/**
-	 * Returns the same value as the <code>nextToken</code> method, except
-	 * that its declared return value is <code>Object</code> rather than
+	 * Returns the same value as the <code>nextToken</code> method, except that
+	 * its declared return value is <code>Object</code> rather than
 	 * <code>String</code>. It exists so that this class can implement the
 	 * <code>Enumeration</code> interface.
 	 * 
 	 * @return the next token in the string.
-	 * @exception NoSuchElementException if there are no more tokens in this
-	 *                tokenizer's string.
+	 * @exception NoSuchElementException
+	 *                if there are no more tokens in this tokenizer's string.
 	 * @see java.util.Enumeration
 	 * @see StringTokenizer#nextToken()
 	 */
@@ -181,8 +185,8 @@ public class StringTokenizer {
 	 * Returns the next token from this string tokenizer.
 	 * 
 	 * @return the next token from this string tokenizer.
-	 * @exception NoSuchElementException if there are no more tokens in this
-	 *                tokenizer's string.
+	 * @exception NoSuchElementException
+	 *                if there are no more tokens in this tokenizer's string.
 	 */
 	public String nextToken() {
 		/*
@@ -191,7 +195,8 @@ public class StringTokenizer {
 		 * the computed value.
 		 */
 
-		currentPosition = (newPosition >= 0 && !delimsChanged) ? newPosition : skipDelimiters(currentPosition);
+		currentPosition = (newPosition >= 0 && !delimsChanged) ? newPosition
+				: skipDelimiters(currentPosition);
 
 		/* Reset these anyway */
 		delimsChanged = false;
@@ -213,10 +218,11 @@ public class StringTokenizer {
 	 * recognized token. The new delimiter set remains the default after this
 	 * call.
 	 * 
-	 * @param delim the new delimiters.
+	 * @param delim
+	 *            the new delimiters.
 	 * @return the next token, after switching to the new delimiter set.
-	 * @exception NoSuchElementException if there are no more tokens in this
-	 *                tokenizer's string.
+	 * @exception NoSuchElementException
+	 *                if there are no more tokens in this tokenizer's string.
 	 */
 	public String nextToken(String delim) {
 		delimiters = delim;

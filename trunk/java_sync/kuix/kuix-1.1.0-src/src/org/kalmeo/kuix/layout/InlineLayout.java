@@ -43,7 +43,7 @@ public class InlineLayout implements Layout {
 	public InlineLayout() {
 		this(true, Alignment.TOP_LEFT);
 	}
-	
+
 	/**
 	 * Construct an {@link InlineLayout}
 	 * 
@@ -64,20 +64,28 @@ public class InlineLayout implements Layout {
 		this.alignment = alignment;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.layout.Layout#computePreferredSize(org.kalmeo.kuix.widget.Widget, int, org.kalmeo.kuix.util.Metrics)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.layout.Layout#computePreferredSize(org.kalmeo.kuix.widget
+	 * .Widget, int, org.kalmeo.kuix.util.Metrics)
 	 */
-	public void measurePreferredSize(Widget target, int preferredWidth, Metrics metrics) {
+	public void measurePreferredSize(Widget target, int preferredWidth,
+			Metrics metrics) {
 		measure(target, false, preferredWidth, metrics);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.layout.Layout#doLayout(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.layout.Layout#doLayout(org.kalmeo.kuix.widget.Widget)
 	 */
 	public void doLayout(Widget target) {
 		measure(target, true, target.getWidth(), null);
 	}
-	
+
 	/**
 	 * Measure <code>target</code> children layout
 	 * 
@@ -86,8 +94,9 @@ public class InlineLayout implements Layout {
 	 * @param preferredWidth
 	 * @param metrics
 	 */
-	private void measure(Widget target, boolean layout, int preferredWidth, Metrics metrics) {
-		
+	private void measure(Widget target, boolean layout, int preferredWidth,
+			Metrics metrics) {
+
 		Alignment targetAlignment = target.getAlign();
 		Insets insets = target.getInsets();
 		Metrics minSize = target.getMinSize();
@@ -98,9 +107,9 @@ public class InlineLayout implements Layout {
 		int contentHeight = 0;
 		Metrics first = null;
 		Metrics current = null;
-		
+
 		for (Widget widget = target.getChild(); widget != null; widget = widget.next) {
-			
+
 			if (!widget.isIndividualyVisible()) {
 				continue;
 			}
@@ -111,13 +120,15 @@ public class InlineLayout implements Layout {
 
 			Metrics preferredSize = widget.getPreferredSize(width);
 			if (horizontal) {
-				contentWidth += preferredSize.width + (first != null ? gap.horizontalGap : 0);
+				contentWidth += preferredSize.width
+						+ (first != null ? gap.horizontalGap : 0);
 				contentHeight = Math.max(preferredSize.height, contentHeight);
 			} else {
 				contentWidth = Math.max(preferredSize.width, contentWidth);
-				contentHeight += preferredSize.height + (first != null ? gap.verticalGap : 0);
+				contentHeight += preferredSize.height
+						+ (first != null ? gap.verticalGap : 0);
 			}
-			
+
 			if (first == null) {
 				first = current = preferredSize;
 			} else {
@@ -128,8 +139,10 @@ public class InlineLayout implements Layout {
 		}
 
 		if (!layout) {
-			metrics.width = insets.left + Math.max(minSize.width, contentWidth) + insets.right;
-			metrics.height = insets.top + Math.max(minSize.height, contentHeight) + insets.bottom;
+			metrics.width = insets.left + Math.max(minSize.width, contentWidth)
+					+ insets.right;
+			metrics.height = insets.top
+					+ Math.max(minSize.height, contentHeight) + insets.bottom;
 			return;
 		}
 
@@ -149,9 +162,9 @@ public class InlineLayout implements Layout {
 			x = insets.left + targetAlignment.alignX(width, contentWidth);
 			y = insets.top + targetAlignment.alignY(height, contentHeight);
 		}
-		
+
 		if (horizontal) {
-			
+
 			for (Metrics widgetMetrics = first; widgetMetrics != null; widgetMetrics = widgetMetrics.next) {
 				Widget widget = widgetMetrics.widget;
 				int h = widgetMetrics.height;
@@ -159,15 +172,12 @@ public class InlineLayout implements Layout {
 				if (alignment.isFill()) {
 					h = contentHeight;
 				}
-				widget.setBounds(	x, 
-									y + contentY, 
-									widgetMetrics.width, 
-									h);
+				widget.setBounds(x, y + contentY, widgetMetrics.width, h);
 				x += widgetMetrics.width + gap.horizontalGap;
 			}
-			
+
 		} else {
-			
+
 			for (Metrics widgetMetrics = first; widgetMetrics != null; widgetMetrics = widgetMetrics.next) {
 				Widget widget = widgetMetrics.widget;
 				int w = widgetMetrics.width;
@@ -175,10 +185,7 @@ public class InlineLayout implements Layout {
 				if (alignment.isFill()) {
 					w = contentWidth;
 				}
-				widget.setBounds(	x + contentX, 
-									y, 
-									w, 
-									widgetMetrics.height);
+				widget.setBounds(x + contentX, y, w, widgetMetrics.height);
 				y += widgetMetrics.height + gap.verticalGap;
 			}
 

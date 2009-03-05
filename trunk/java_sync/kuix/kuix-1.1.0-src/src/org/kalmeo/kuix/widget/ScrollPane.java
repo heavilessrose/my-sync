@@ -52,7 +52,7 @@ public class ScrollPane extends Widget {
 
 	// ScrollBar widget
 	private final ScrollBar scrollBar;
-	
+
 	// Markers
 	private boolean useMarkers = false;
 	private FocusableWidget firstMarker = null;
@@ -63,7 +63,7 @@ public class ScrollPane extends Widget {
 	private boolean showScrollBar;
 	private boolean autoScroll = false;
 	private boolean needToAutoScroll = false;
-	
+
 	// offsets
 	private int xOffset = 0;
 	private int yOffset = 0;
@@ -78,82 +78,99 @@ public class ScrollPane extends Widget {
 	private int pressedY = 0;
 	private int pressedXOffset = 0;
 	private int pressedYOffset = 0;
-	
+
 	/**
 	 * Construct a {@link ScrollPane}
 	 */
 	public ScrollPane() {
 		this(KuixConstants.SCROLL_PANE_WIDGET_TAG);
 	}
-	
+
 	/**
 	 * Construct a {@link ScrollPane}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public ScrollPane(String tag) {
 		this(tag, true);
 	}
-	
+
 	/**
 	 * Construct a {@link ScrollPane}
-	 *
+	 * 
 	 * @param tag
 	 * @param useMarkers
 	 */
 	public ScrollPane(String tag, boolean useMarkers) {
 		super(tag);
 		container = new Widget(KuixConstants.SCROLL_PANE_CONTAINER_WIDGET_TAG) {
-			
-			private final InlineLayout layout = new InlineLayout(false, Alignment.FILL);
-			
-			/* (non-Javadoc)
+
+			private final InlineLayout layout = new InlineLayout(false,
+					Alignment.FILL);
+
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getDisplayX()
 			 */
 			public int getDisplayX() {
 				return super.getDisplayX() - xOffset;
 			}
-			
-			/* (non-Javadoc)
+
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getDisplayY()
 			 */
 			public int getDisplayY() {
 				return super.getDisplayY() - yOffset;
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 			 */
 			public Layout getLayout() {
 				return layout;
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getAlign()
 			 */
 			public Alignment getAlign() {
 				return horizontal ? Alignment.FILL_LEFT : Alignment.FILL_TOP;
 			}
-			
-			/* (non-Javadoc)
+
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getWidgetAt(int, int)
 			 */
 			public Widget getWidgetAt(int mx, int my) {
-				return getWidgetAt(mx + xOffset, my + yOffset, getX(), getY(), contentWidth, contentHeight);
+				return getWidgetAt(mx + xOffset, my + yOffset, getX(), getY(),
+						contentWidth, contentHeight);
 			}
-			
-			/* (non-Javadoc)
+
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#removeAll()
 			 */
 			public void removeAll() {
 				if (getChild() != null) {
-					for (Widget widget = getChild().next; widget != null && widget != getLastChild(); widget = widget.next) {
+					for (Widget widget = getChild().next; widget != null
+							&& widget != getLastChild(); widget = widget.next) {
 						widget.parent = null;
 					}
 				}
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#doLayout()
 			 */
 			protected void doLayout() {
@@ -161,7 +178,8 @@ public class ScrollPane extends Widget {
 				Insets insets = getInsets();
 				if (horizontal) {
 					innerWidth = container.getInnerWidth();
-					contentWidth = container.getPreferredSize(getWidth()).width - insets.left - insets.right;
+					contentWidth = container.getPreferredSize(getWidth()).width
+							- insets.left - insets.right;
 					contentHeight = container.getInnerHeight();
 					maxIncrement = innerWidth / MAX_INCREMENT_DIVIDER;
 					if (autoScroll && needToAutoScroll) {
@@ -173,7 +191,8 @@ public class ScrollPane extends Widget {
 				} else {
 					innerHeight = container.getInnerHeight();
 					contentWidth = container.getInnerWidth();
-					contentHeight = container.getPreferredSize(getWidth()).height - insets.top - insets.bottom;
+					contentHeight = container.getPreferredSize(getWidth()).height
+							- insets.top - insets.bottom;
 					maxIncrement = innerHeight / MAX_INCREMENT_DIVIDER;
 					if (autoScroll && needToAutoScroll) {
 						setYOffset(contentHeight);
@@ -184,16 +203,26 @@ public class ScrollPane extends Widget {
 				}
 				updateScrollBarValues();
 			}
-			
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.widget.Widget#invalidateAppearanceRegion(int, int, int, int)
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.widget.Widget#invalidateAppearanceRegion(int,
+			 * int, int, int)
 			 */
-			protected void invalidateAppearanceRegion(int x, int y, int width, int height) {
-				super.invalidateAppearanceRegion(x - xOffset, y - yOffset, width, height);
+			protected void invalidateAppearanceRegion(int x, int y, int width,
+					int height) {
+				super.invalidateAppearanceRegion(x - xOffset, y - yOffset,
+						width, height);
 			}
 
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.widget.Widget#paintChildrenImpl(javax.microedition.lcdui.Graphics)
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.widget.Widget#paintChildrenImpl(javax.microedition
+			 * .lcdui.Graphics)
 			 */
 			protected void paintChildrenImpl(Graphics g) {
 				g.translate(-xOffset, -yOffset);
@@ -203,7 +232,7 @@ public class ScrollPane extends Widget {
 
 		};
 		super.add(container);
-		
+
 		// Add markers
 		this.useMarkers = useMarkers;
 		if (useMarkers) {
@@ -212,18 +241,25 @@ public class ScrollPane extends Widget {
 			container.add(firstMarker);
 			container.add(lastMarker);
 		}
-		
-		scrollBar = new ScrollBar(KuixConstants.SCROLL_PANE_SCROLL_BAR_WIDGET_TAG) {
 
-			/* (non-Javadoc)
+		scrollBar = new ScrollBar(
+				KuixConstants.SCROLL_PANE_SCROLL_BAR_WIDGET_TAG) {
+
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getInheritedTag()
 			 */
 			public String getInheritedTag() {
 				return KuixConstants.SCROLL_BAR_WIDGET_TAG;
 			}
 
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java.lang.String)
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java
+			 * .lang.String)
 			 */
 			protected Object getDefaultStylePropertyValue(String name) {
 				if (KuixConstants.LAYOUT_DATA_STYLE_PROPERTY.equals(name)) {
@@ -235,25 +271,32 @@ public class ScrollPane extends Widget {
 				}
 				return super.getDefaultStylePropertyValue(name);
 			}
-			
-			/* (non-Javadoc)
+
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.ScrollBar#processChangeEvent()
 			 */
 			protected void processChangeEvent() {
 				if (horizontal) {
-					setXOffset(MathFP.mul(getValue(), contentWidth - innerWidth));
+					setXOffset(MathFP
+							.mul(getValue(), contentWidth - innerWidth));
 				} else {
-					setYOffset(MathFP.mul(getValue(), contentHeight - innerHeight));
+					setYOffset(MathFP.mul(getValue(), contentHeight
+							- innerHeight));
 				}
 			}
-			
+
 		};
 		setShowScrollBar(true);
 		setHorizontal(false);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.HORIZONTAL_ATTRIBUTE.equals(name)) {
@@ -270,9 +313,12 @@ public class ScrollPane extends Widget {
 		}
 		return super.setAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
 	 */
 	public Widget getInternalChildInstance(String tag) {
 		if (KuixConstants.SCROLL_PANE_CONTAINER_WIDGET_TAG.equals(tag)) {
@@ -284,13 +330,15 @@ public class ScrollPane extends Widget {
 		return super.getInternalChildInstance(tag);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 	 */
 	public Layout getLayout() {
 		return BorderLayout.instance;
 	}
-	
+
 	/**
 	 * @return the horizontal
 	 */
@@ -299,7 +347,8 @@ public class ScrollPane extends Widget {
 	}
 
 	/**
-	 * @param horizontal the horizontal to set
+	 * @param horizontal
+	 *            the horizontal to set
 	 */
 	public void setHorizontal(boolean horizontal) {
 		this.horizontal = horizontal;
@@ -316,15 +365,16 @@ public class ScrollPane extends Widget {
 	public boolean isShowScrollBar() {
 		return showScrollBar;
 	}
-	
+
 	/**
-	 * @param showScrollBar the showScrollBar to set
+	 * @param showScrollBar
+	 *            the showScrollBar to set
 	 */
 	public void setShowScrollBar(boolean showScrollBar) {
 		this.showScrollBar = showScrollBar;
 		updateScrollBarVisibility();
 	}
-	
+
 	/**
 	 * @return the autoScroll
 	 */
@@ -336,7 +386,8 @@ public class ScrollPane extends Widget {
 	 * The autoScroll attribute force the scroll position to the max value each
 	 * time the {@link ScrollPane} content change or is invalidated.
 	 * 
-	 * @param autoScroll the autoScroll to set
+	 * @param autoScroll
+	 *            the autoScroll to set
 	 */
 	public void setAutoScroll(boolean autoScroll) {
 		this.autoScroll = autoScroll;
@@ -350,9 +401,10 @@ public class ScrollPane extends Widget {
 	 *         markers.
 	 */
 	public boolean isMarkerWidget(Widget widget) {
-		return widget != null && (widget == firstMarker || widget == lastMarker);
+		return widget != null
+				&& (widget == firstMarker || widget == lastMarker);
 	}
-	
+
 	/**
 	 * @return the container
 	 */
@@ -370,7 +422,8 @@ public class ScrollPane extends Widget {
 	}
 
 	/**
-	 * @param xOffset the xOffset to set
+	 * @param xOffset
+	 *            the xOffset to set
 	 * @return <code>true</code> if the xOffset value has changed
 	 */
 	private boolean setXOffset(int xOffset) {
@@ -379,12 +432,14 @@ public class ScrollPane extends Widget {
 			return true;
 		}
 		int lastXOffset = this.xOffset;
-		this.xOffset = Math.max(0, Math.min(contentWidth - innerWidth, xOffset));
+		this.xOffset = Math
+				.max(0, Math.min(contentWidth - innerWidth, xOffset));
 		return lastXOffset != this.xOffset;
 	}
 
 	/**
-	 * @param yOffset the yOffset to set
+	 * @param yOffset
+	 *            the yOffset to set
 	 * @return <code>true</code> if the yOffset value has changed
 	 */
 	private boolean setYOffset(int yOffset) {
@@ -393,12 +448,16 @@ public class ScrollPane extends Widget {
 			return true;
 		}
 		int lastYOffset = this.yOffset;
-		this.yOffset = Math.max(0, Math.min(contentHeight - innerHeight, yOffset));
+		this.yOffset = Math.max(0, Math.min(contentHeight - innerHeight,
+				yOffset));
 		return lastYOffset != this.yOffset;
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#invalidate(org.kalmeo.kuix.widget.Widget)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#invalidate(org.kalmeo.kuix.widget.Widget)
 	 */
 	public void invalidate(Widget fromWidget) {
 		super.invalidate(fromWidget);
@@ -406,7 +465,7 @@ public class ScrollPane extends Widget {
 			needToAutoScroll = true;
 		}
 	}
-	
+
 	/**
 	 * Check if the given <code>child</code> widget has a part of its area in
 	 * the {@link ScrollPane} clipped area.
@@ -422,7 +481,8 @@ public class ScrollPane extends Widget {
 		Widget container;
 		if (horizontal) {
 			int childX = child.getX() - this.container.getInsets().left;
-			for (container = child.parent; container != null && container != this.container; container = container.parent) {
+			for (container = child.parent; container != null
+					&& container != this.container; container = container.parent) {
 				childX += container.getX();
 			}
 			if (container == null) {
@@ -437,7 +497,8 @@ public class ScrollPane extends Widget {
 			return true;
 		} else {
 			int childY = child.getY() - this.container.getInsets().top;
-			for (container = child.parent; container != null && container != this.container; container = container.parent) {
+			for (container = child.parent; container != null
+					&& container != this.container; container = container.parent) {
 				childY += container.getY();
 			}
 			if (container == null) {
@@ -458,7 +519,8 @@ public class ScrollPane extends Widget {
 	 * 
 	 * @param child
 	 * @param useIncrementLimit
-	 * @return <code>true</code> the child is displayable after scroll, else <code>false</code>
+	 * @return <code>true</code> the child is displayable after scroll, else
+	 *         <code>false</code>
 	 */
 	public boolean bestScrollToChild(Widget child, boolean useIncrementLimit) {
 		if (child == null) {
@@ -469,7 +531,8 @@ public class ScrollPane extends Widget {
 			useIncrementLimit &= innerWidth > 0;
 			int childX = child.getX() - this.container.getInsets().left;
 			Widget container;
-			for (container = child.parent; container != null && container != this.container; container = container.parent) {
+			for (container = child.parent; container != null
+					&& container != this.container; container = container.parent) {
 				childX += container.getX();
 			}
 			if (container == null) {
@@ -485,7 +548,8 @@ public class ScrollPane extends Widget {
 					setXOffset(childX);
 				}
 			} else if (xOffset + innerWidth < childX + child.getWidth()) {
-				int increment = childX + child.getWidth() - (xOffset + innerWidth);
+				int increment = childX + child.getWidth()
+						- (xOffset + innerWidth);
 				if (useIncrementLimit && increment > maxIncrement) {
 					setXOffset(xOffset + maxIncrement);
 					widgetIsVisible = false;
@@ -497,7 +561,8 @@ public class ScrollPane extends Widget {
 			useIncrementLimit &= innerHeight > 0;
 			int childY = child.getY() - this.container.getInsets().top;
 			Widget container;
-			for (container = child.parent; container != null && container != this.container; container = container.parent) {
+			for (container = child.parent; container != null
+					&& container != this.container; container = container.parent) {
 				childY += container.getY();
 			}
 			if (container == null) {
@@ -513,7 +578,8 @@ public class ScrollPane extends Widget {
 					setYOffset(childY);
 				}
 			} else if (yOffset + innerHeight < childY + child.getHeight()) {
-				int increment = childY + child.getHeight() - (yOffset + innerHeight);
+				int increment = childY + child.getHeight()
+						- (yOffset + innerHeight);
 				if (useIncrementLimit && increment > maxIncrement) {
 					setYOffset(yOffset + maxIncrement);
 					widgetIsVisible = false;
@@ -525,16 +591,20 @@ public class ScrollPane extends Widget {
 		updateScrollBarValues();
 		return widgetIsVisible;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)
 	 */
 	public Widget add(Widget widget) {
 		container.add(widget, container.getLastChild(), !useMarkers);
 		return this;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#removeAll()
 	 */
 	public void removeAll() {
@@ -547,17 +617,19 @@ public class ScrollPane extends Widget {
 	private void updateScrollBarValues() {
 		if (horizontal) {
 			if (contentWidth != 0) {
-				scrollBar.setValue(MathFP.div(xOffset, contentWidth - innerWidth));
+				scrollBar.setValue(MathFP.div(xOffset, contentWidth
+						- innerWidth));
 				scrollBar.setSelection(MathFP.div(innerWidth, contentWidth));
 			}
 		} else {
 			if (contentHeight != 0) {
-				scrollBar.setValue(MathFP.div(yOffset, contentHeight - innerHeight));
+				scrollBar.setValue(MathFP.div(yOffset, contentHeight
+						- innerHeight));
 				scrollBar.setSelection(MathFP.div(innerHeight, contentHeight));
 			}
 		}
 	}
-	
+
 	/**
 	 * Update the scrollBar visibility according to its selection size.
 	 */
@@ -572,36 +644,40 @@ public class ScrollPane extends Widget {
 			}
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processPointerEvent(byte, int, int)
 	 */
 	public boolean processPointerEvent(byte type, int x, int y) {
 		switch (type) {
-			
-			case KuixConstants.POINTER_PRESSED_EVENT_TYPE: {
-				pressedX = x;
-				pressedY = y;
-				pressedXOffset = xOffset;
-				pressedYOffset = yOffset;
-				return true;
-			}
-			
-			case KuixConstants.POINTER_DRAGGED_EVENT_TYPE: {
-				if (horizontal) {
-					if (setXOffset(pressedXOffset - (x - pressedX) * KuixConstants.SCROLL_BOOSTER_FACTOR)) {
-						updateScrollBarValues();
-						return true;
-					}
-				} else {
-					if (setYOffset(pressedYOffset - (y - pressedY) * KuixConstants.SCROLL_BOOSTER_FACTOR)) {
-						updateScrollBarValues();
-						return true;
-					}
+
+		case KuixConstants.POINTER_PRESSED_EVENT_TYPE: {
+			pressedX = x;
+			pressedY = y;
+			pressedXOffset = xOffset;
+			pressedYOffset = yOffset;
+			return true;
+		}
+
+		case KuixConstants.POINTER_DRAGGED_EVENT_TYPE: {
+			if (horizontal) {
+				if (setXOffset(pressedXOffset - (x - pressedX)
+						* KuixConstants.SCROLL_BOOSTER_FACTOR)) {
+					updateScrollBarValues();
+					return true;
 				}
-				return false;
+			} else {
+				if (setYOffset(pressedYOffset - (y - pressedY)
+						* KuixConstants.SCROLL_BOOSTER_FACTOR)) {
+					updateScrollBarValues();
+					return true;
+				}
 			}
-			
+			return false;
+		}
+
 		}
 		return super.processPointerEvent(type, x, y);
 	}

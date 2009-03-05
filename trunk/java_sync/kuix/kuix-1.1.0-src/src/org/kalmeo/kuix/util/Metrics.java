@@ -57,7 +57,7 @@ public class Metrics {
 
 	/**
 	 * Construct a {@link Metrics}
-	 *
+	 * 
 	 * @param widget
 	 * @param x
 	 * @param y
@@ -68,7 +68,7 @@ public class Metrics {
 		this(widget);
 		setBounds(x, y, width, height);
 	}
-	
+
 	/**
 	 * Tests whether or not this {@link Metrics} represents an empty region.
 	 * 

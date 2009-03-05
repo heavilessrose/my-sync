@@ -53,7 +53,7 @@ public class StyleProperty implements LinkedListItem {
 		this.name = name.toLowerCase();
 		this.rawValue = rawValue;
 	}
-	
+
 	/**
 	 * Construct a {@link StyleAttribute}
 	 * 
@@ -65,29 +65,39 @@ public class StyleProperty implements LinkedListItem {
 		this.value = value;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.kalmeo.util.LinkedListItem#getNext()
 	 */
 	public LinkedListItem getNext() {
 		return next;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.kalmeo.util.LinkedListItem#getParent()
 	 */
 	public LinkedListItem getPrevious() {
 		return parent;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.kalmeo.util.LinkedListItem#setNext(com.kalmeo.util.LinkedListItem)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.kalmeo.util.LinkedListItem#setNext(com.kalmeo.util.LinkedListItem)
 	 */
 	public void setNext(LinkedListItem next) {
 		this.next = (StyleProperty) next;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.kalmeo.util.LinkedListItem#setParent(com.kalmeo.util.LinkedListItem)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.kalmeo.util.LinkedListItem#setParent(com.kalmeo.util.LinkedListItem)
 	 */
 	public void setPrevious(LinkedListItem parent) {
 		this.parent = (StyleProperty) parent;
@@ -109,20 +119,20 @@ public class StyleProperty implements LinkedListItem {
 	 */
 	public Object getValue() {
 		if (rawValue != null) {
-			
+
 			// Convert the property value
 			value = Kuix.getConverter().convertStyleProperty(name, rawValue);
-			
+
 			// Reset the rawValue to tag it as converted
 			rawValue = null;
-			
+
 		}
 		return value;
 	}
 
 	/**
-	 * Returns a copy of this {@link StyleProperty}. Only <code>name</code>
-	 * and <code>value</code> fields ae copied.
+	 * Returns a copy of this {@link StyleProperty}. Only <code>name</code> and
+	 * <code>value</code> fields ae copied.
 	 * 
 	 * @return A copy of this {@link StyleProperty}
 	 */
@@ -132,8 +142,12 @@ public class StyleProperty implements LinkedListItem {
 		return styleProperty;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.util.LinkedListItem#compareTo(org.kalmeo.util.LinkedListItem, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.util.LinkedListItem#compareTo(org.kalmeo.util.LinkedListItem,
+	 * int)
 	 */
 	public int compareTo(LinkedListItem item, int flag) {
 		return 0;
