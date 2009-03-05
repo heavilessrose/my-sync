@@ -32,16 +32,19 @@ public interface Layout {
 	/**
 	 * Returns the {@link Metrics} that represents the widget's preferedSize
 	 * 
-	 * @param target The target widget
+	 * @param target
+	 *            The target widget
 	 * @param preferredWidth
 	 */
-	public void measurePreferredSize(Widget target, int preferredWidth, Metrics metrics);
+	public void measurePreferredSize(Widget target, int preferredWidth,
+			Metrics metrics);
 
 	/**
 	 * Do the layout on the specified {@link Widget}
 	 * 
-	 * @param target The target widget
+	 * @param target
+	 *            The target widget
 	 */
 	public void doLayout(Widget target);
-	
+
 }

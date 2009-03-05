@@ -34,21 +34,24 @@ import org.kalmeo.kuix.core.KuixConstants;
  * @author bbeaulant
  */
 public class ActionWidget extends FocusableWidget {
-	
+
 	// The action method
 	private String onAction;
 
 	/**
 	 * Construct a {@link ActionWidget}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public ActionWidget(String tag) {
 		super(tag);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.ON_ACTION_ATTRIBUTE.equals(name)) {
@@ -57,7 +60,7 @@ public class ActionWidget extends FocusableWidget {
 		}
 		return super.setAttribute(name, value);
 	}
-	
+
 	/**
 	 * @return the onAction
 	 */
@@ -71,20 +74,23 @@ public class ActionWidget extends FocusableWidget {
 	public void setOnAction(String onAction) {
 		this.onAction = onAction;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processKeyEvent(byte, intt)
 	 */
 	public boolean processKeyEvent(byte type, int kuixKeyCode) {
-		if (isEnabled()
-				&& kuixKeyCode == KuixConstants.KUIX_KEY_FIRE
+		if (isEnabled() && kuixKeyCode == KuixConstants.KUIX_KEY_FIRE
 				&& type == KuixConstants.KEY_PRESSED_EVENT_TYPE) {
 			return processActionEvent();
 		}
 		return false;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processShortcutKeyEvent(byte, int)
 	 */
 	public boolean processShortcutKeyEvent(byte type, int kuixKeyCode) {
@@ -96,7 +102,9 @@ public class ActionWidget extends FocusableWidget {
 		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processPointerEvent(byte, int, int)
 	 */
 	public boolean processPointerEvent(byte type, int x, int y) {
@@ -107,7 +115,9 @@ public class ActionWidget extends FocusableWidget {
 		return super.processPointerEvent(type, x, y);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processActionEvent()
 	 */
 	public boolean processActionEvent() {
@@ -117,5 +127,5 @@ public class ActionWidget extends FocusableWidget {
 		}
 		return false;
 	}
-	
+
 }

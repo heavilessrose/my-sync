@@ -1,23 +1,3 @@
-/*
- * This file is part of org.kalmeo.demo.kuix.
- * 
- * org.kalmeo.demo.kuix is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * org.kalmeo.demo.kuix is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with org.kalmeo.demo.kuix.  If not, see <http://www.gnu.org/licenses/>.
- * 
- * Creation date : 10 mar. 2008
- * Copyright (c) Kalmeo 2007-2008. All rights reserved.
- */
-
 package org.kalmeo.demo.kuix.frames;
 
 import org.kalmeo.demo.kuix.model.Calculator;
@@ -39,19 +19,25 @@ public class KuixDemoAppsFrame implements Frame {
 	private Desktop desktop;
 
 	private String[] xmlFiles = { "form.xml", "calculator.xml", "library.xml" };
-	private DataProvider[] providers = { new DataProvider(), new Calculator(), new MediaList() };
+	private DataProvider[] providers = { new DataProvider(), new Calculator(),
+			new MediaList() };
 	private int pos = -1;
 
 	/**
 	 * Add a Media to the MediaList
 	 * 
-	 * @param arguments arguments comming from <code>add</code>,
+	 * @param arguments
+	 *            arguments comming from <code>add</code>,
 	 *            <code>addBefore</code>, <code>addAfter</code> methods in
 	 *            <code>library.xml</code> file
-	 * @param reference the Media taken as reference to add the new Media
-	 * @param after <code>true</code> to add after the reference, <code>false</code> else
+	 * @param reference
+	 *            the Media taken as reference to add the new Media
+	 * @param after
+	 *            <code>true</code> to add after the reference,
+	 *            <code>false</code> else
 	 */
-	public void addMedia(Object[] arguments, DataProvider reference, boolean after) {
+	public void addMedia(Object[] arguments, DataProvider reference,
+			boolean after) {
 		Media media = new Media();
 
 		if (arguments[0] != null) {
@@ -63,25 +49,30 @@ public class KuixDemoAppsFrame implements Frame {
 		String title = (String) arguments[1];
 		media.title = title;
 		if (title != null && title != "") {
-			providers[2].addItem(MediaList.LIST_PROPERTY, media, reference, after);
+			providers[2].addItem(MediaList.LIST_PROPERTY, media, reference,
+					after);
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.util.frame.Frame#onMessage(java.lang.Object, java.lang.Object[])
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.util.frame.Frame#onMessage(java.lang.Object,
+	 * java.lang.Object[])
 	 */
 	public boolean onMessage(Object identifier, Object[] arguments) {
 		// form.xml methods
 		if ("setLang".equals(identifier)) {
 			desktop.getCurrentScreen().cleanUp();
 			Kuix.initI18nSupport((String) arguments[0]);
-			desktop.setCurrentScreen(Kuix.loadScreen("/xml/apps/form.xml", null));
+			desktop.setCurrentScreen(Kuix
+					.loadScreen("/xml/apps/form.xml", null));
 			return false;
 		}
 		if ("showPopup".equals(identifier)) {
 			final String mr = Kuix.getMessage("MR");
 			final String miss = Kuix.getMessage("MISS");
-			
+
 			String civility = mr + "/" + miss;
 			String username = (String) arguments[0];
 			String firstname = (String) arguments[1];
@@ -144,28 +135,32 @@ public class KuixDemoAppsFrame implements Frame {
 			Widget widget;
 			int position = Integer.valueOf((String) arguments[2]).intValue();
 			switch (position) {
-				case 1:
-					addMedia(arguments, null, false);
-					break;
-				case 2:
-					widget = Kuix.getCanvas().getDesktop().getCurrentScreen().getFocusManager().getVirtualFocusedWidget();
-					if (widget != null) {
-						addMedia(arguments, widget.getDataProvider(), false);
-					}
-					break;
-				case 3:
-					widget = Kuix.getCanvas().getDesktop().getCurrentScreen().getFocusManager().getVirtualFocusedWidget();
-					if (widget != null) {
-						addMedia(arguments, widget.getDataProvider(), true);
-					}
-					break;
+			case 1:
+				addMedia(arguments, null, false);
+				break;
+			case 2:
+				widget = Kuix.getCanvas().getDesktop().getCurrentScreen()
+						.getFocusManager().getVirtualFocusedWidget();
+				if (widget != null) {
+					addMedia(arguments, widget.getDataProvider(), false);
+				}
+				break;
+			case 3:
+				widget = Kuix.getCanvas().getDesktop().getCurrentScreen()
+						.getFocusManager().getVirtualFocusedWidget();
+				if (widget != null) {
+					addMedia(arguments, widget.getDataProvider(), true);
+				}
+				break;
 			}
 			return false;
 		}
 		if ("remove".equals(identifier)) {
-			Widget widget = Kuix.getCanvas().getDesktop().getCurrentScreen().getFocusManager().getVirtualFocusedWidget();
+			Widget widget = Kuix.getCanvas().getDesktop().getCurrentScreen()
+					.getFocusManager().getVirtualFocusedWidget();
 			if (widget instanceof ListItem) {
-				mediaList.removeItem(MediaList.LIST_PROPERTY, ((ListItem) widget).getDataProvider());
+				mediaList.removeItem(MediaList.LIST_PROPERTY,
+						((ListItem) widget).getDataProvider());
 			}
 			return false;
 		}
@@ -182,7 +177,7 @@ public class KuixDemoAppsFrame implements Frame {
 			}
 			return false;
 		}
-		
+
 		if ("goHome".equals(identifier)) {
 			pos = -1;
 		}
@@ -203,18 +198,23 @@ public class KuixDemoAppsFrame implements Frame {
 			return false;
 		}
 
-		Kuix.loadScreen("/xml/apps/" + xmlFiles[pos], providers[pos]).setCurrent();
+		Kuix.loadScreen("/xml/apps/" + xmlFiles[pos], providers[pos])
+				.setCurrent();
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.frame.Frame#onAdded()
 	 */
 	public void onAdded() {
 		desktop = Kuix.getCanvas().getDesktop();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.frame.Frame#onRemoved()
 	 */
 	public void onRemoved() {

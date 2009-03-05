@@ -27,9 +27,9 @@ package org.kalmeo.kuix.util;
 public class Color {
 
 	// Default colors
-	public static final Color RED 	= new Color(0xFF0000);
+	public static final Color RED = new Color(0xFF0000);
 	public static final Color GREEN = new Color(0x00FF00);
-	public static final Color BLUE 	= new Color(0x0000FF);
+	public static final Color BLUE = new Color(0x0000FF);
 	public static final Color BLACK = new Color(0x000000);
 	public static final Color WHITE = new Color(0xFFFFFF);
 
@@ -47,7 +47,8 @@ public class Color {
 	/**
 	 * Construct a {@link Color}
 	 * 
-	 * @param rgbHex The RGB value in Hexadecimal format
+	 * @param rgbHex
+	 *            The RGB value in Hexadecimal format
 	 */
 	public Color(String rgbHex) {
 		if (rgbHex.startsWith("#")) {

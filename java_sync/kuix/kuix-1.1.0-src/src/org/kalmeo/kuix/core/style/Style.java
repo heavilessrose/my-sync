@@ -38,7 +38,7 @@ public class Style implements LinkedListItem {
 	// LinkedListItem vars
 	private Style previous;
 	private Style next;
-	
+
 	/**
 	 * Construct a {@link Style}
 	 * 
@@ -49,29 +49,39 @@ public class Style implements LinkedListItem {
 		this.properties = new LinkedList();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.kalmeo.util.LinkedListItem#getNext()
 	 */
 	public LinkedListItem getNext() {
 		return next;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.kalmeo.util.LinkedListItem#getParent()
 	 */
 	public LinkedListItem getPrevious() {
 		return previous;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.kalmeo.util.LinkedListItem#setNext(com.kalmeo.util.LinkedListItem)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.kalmeo.util.LinkedListItem#setNext(com.kalmeo.util.LinkedListItem)
 	 */
 	public void setNext(LinkedListItem next) {
 		this.next = (Style) next;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.kalmeo.util.LinkedListItem#setParent(com.kalmeo.util.LinkedListItem)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.kalmeo.util.LinkedListItem#setParent(com.kalmeo.util.LinkedListItem)
 	 */
 	public void setPrevious(LinkedListItem parent) {
 		this.previous = (Style) parent;
@@ -100,7 +110,8 @@ public class Style implements LinkedListItem {
 	 */
 	public StyleProperty getProperty(final String name) {
 		if (properties.getFirst() != null) {
-			for (StyleProperty property = (StyleProperty) properties.getFirst(); property != null; property = (StyleProperty) property.getNext()) {
+			for (StyleProperty property = (StyleProperty) properties.getFirst(); property != null; property = (StyleProperty) property
+					.getNext()) {
 				if (property.getName().equals(name)) {
 					return property;
 				}
@@ -118,8 +129,12 @@ public class Style implements LinkedListItem {
 		properties.add(styleProperty);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.util.LinkedListItem#compareTo(org.kalmeo.util.LinkedListItem, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.util.LinkedListItem#compareTo(org.kalmeo.util.LinkedListItem,
+	 * int)
 	 */
 	public int compareTo(LinkedListItem item, int flag) {
 		return 0;

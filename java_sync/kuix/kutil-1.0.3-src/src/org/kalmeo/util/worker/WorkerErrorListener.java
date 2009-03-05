@@ -25,7 +25,7 @@ package org.kalmeo.util.worker;
  * @author omarino
  */
 public interface WorkerErrorListener {
-	
+
 	/**
 	 * The catched error in Worker loop
 	 * 
@@ -41,5 +41,5 @@ public interface WorkerErrorListener {
 	 * @param task
 	 */
 	public void onWorkerException(WorkerTask task, Exception exception);
-	
+
 }

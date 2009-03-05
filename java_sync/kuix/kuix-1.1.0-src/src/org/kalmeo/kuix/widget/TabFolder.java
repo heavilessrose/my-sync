@@ -44,26 +44,31 @@ public class TabFolder extends List {
 
 	// The default widget visible if there's no valid tabs
 	private TabItem defaultTabItem;
-	
+
 	// Tab navigation
 	private int backwardTabKey = KuixConstants.KUIX_KEY_LEFT;
 	private int forwardTabKey = KuixConstants.KUIX_KEY_RIGHT;
-	
+
 	// Internal widgets
 	private final ScrollPane buttonsContainer;
 	private final Widget container;
 	private TabItem currentTabItem;
-	
+
 	/**
 	 * Construct a {@link TabFolder}
 	 */
 	public TabFolder() {
 		super(KuixConstants.TAB_FOLDER_WIDGET_TAG);
-		
-		buttonsContainer = new ScrollPane(KuixConstants.TAB_FOLDER_BUTTONS_CONTAINER_WIDGET_TAG, false) {
 
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java.lang.String)
+		buttonsContainer = new ScrollPane(
+				KuixConstants.TAB_FOLDER_BUTTONS_CONTAINER_WIDGET_TAG, false) {
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java
+			 * .lang.String)
 			 */
 			protected Object getDefaultStylePropertyValue(String name) {
 				if (KuixConstants.LAYOUT_DATA_STYLE_PROPERTY.equals(name)) {
@@ -76,39 +81,50 @@ public class TabFolder extends List {
 		buttonsContainer.setHorizontal(true);
 		buttonsContainer.setShowScrollBar(false);
 		super.add(buttonsContainer);
-		
+
 		container = new Widget(KuixConstants.TAB_FOLDER_CONTAINER_WIDGET_TAG) {
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 			 */
 			public Layout getLayout() {
 				return StaticLayout.instance;
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 			 */
 			public LayoutData getLayoutData() {
 				return BorderLayoutData.instanceCenter;
 			}
-			
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.widget.Widget#onChildRemoved(org.kalmeo.kuix.widget.Widget)
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.widget.Widget#onChildRemoved(org.kalmeo.kuix.
+			 * widget.Widget)
 			 */
 			protected void onChildRemoved(Widget widget) {
 				if (widget == currentTabItem) {
 					selectOtherTab(true, true);
 				}
 			}
-			
+
 		};
 		super.add(container);
-		
+
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.List#setAttribute(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.List#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.BACKWARD_TAB_KEY_ATTRIBUTE.equals(name)) {
@@ -121,8 +137,10 @@ public class TabFolder extends List {
 		}
 		return super.setAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getAttribute(java.lang.String)
 	 */
 	public Object getAttribute(String name) {
@@ -132,8 +150,11 @@ public class TabFolder extends List {
 		return super.getAttribute(name);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
 	 */
 	public Widget getInternalChildInstance(String tag) {
 		if (KuixConstants.TAB_FOLDER_DEFAULT_TAB_ITEM_WIDGET_TAG.equals(tag)) {
@@ -147,15 +168,19 @@ public class TabFolder extends List {
 		}
 		return super.getInternalChildInstance(tag);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#isFocusWidgetChild()
 	 */
 	public boolean isFocusWidgetChild() {
-		return false;	// Special case for TabFolder focus stop recursion
+		return false; // Special case for TabFolder focus stop recursion
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 	 */
 	public Layout getLayout() {
@@ -175,7 +200,7 @@ public class TabFolder extends List {
 		}
 		return defaultTabItem;
 	}
-	
+
 	/**
 	 * Returns the backwardTabKey. The backward tab key represents the
 	 * KuixKeyCode used as shortcut to switch to the backward tab.
@@ -190,15 +215,16 @@ public class TabFolder extends List {
 	 * Set the backwardTabKey. The backward tab key represents the KuixKeyCode
 	 * used as shortcut to switch to the backward tab.
 	 * 
-	 * @param backwardTabKey to set
+	 * @param backwardTabKey
+	 *            to set
 	 */
 	public void setBackwardTabKey(int backwardTabKey) {
 		this.backwardTabKey = backwardTabKey;
 	}
 
 	/**
-	 * Returns the forwardTabKey. The forward tab key represents the
-	 * KuixKeyCode used as shortcut to switch to the forward tab.
+	 * Returns the forwardTabKey. The forward tab key represents the KuixKeyCode
+	 * used as shortcut to switch to the forward tab.
 	 * 
 	 * @return the nextTabKey
 	 */
@@ -210,7 +236,8 @@ public class TabFolder extends List {
 	 * Set the forwardTabKey. The forward tab key represents the KuixKeyCode
 	 * used as shortcut to switch to the forward tab.
 	 * 
-	 * @param forwardTabKey to set
+	 * @param forwardTabKey
+	 *            to set
 	 */
 	public void setForwardTabKey(int forwardTabKey) {
 		this.forwardTabKey = forwardTabKey;
@@ -241,7 +268,7 @@ public class TabFolder extends List {
 	public TabItem getCurrentTabItem() {
 		return currentTabItem;
 	}
-	
+
 	/**
 	 * Set the current {@link TabItem} (only if this instance is a child of the
 	 * {@link TabFolder})
@@ -267,7 +294,7 @@ public class TabFolder extends List {
 			buttonsContainer.setVisible(currentTabItem != null);
 		}
 	}
-	
+
 	/**
 	 * Initialize the defaultTabItem
 	 */
@@ -278,8 +305,10 @@ public class TabFolder extends List {
 			buttonsContainer.setVisible(currentTabItem != null);
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)
 	 */
 	public Widget add(Widget widget) {
@@ -297,40 +326,45 @@ public class TabFolder extends List {
 	 */
 	public void addTabItem(final TabItem tabItem) {
 		if (tabItem != null && tabItem.parent != container) {
-			
+
 			// Add the tabButton to the buttonsContainer
 			buttonsContainer.add(tabItem.getButton());
-			
+
 			// Add tabItem
 			container.add(tabItem);
-			if ((currentTabItem == null || tabItem.isSelected()) && tabItem.isEnabled()) {
+			if ((currentTabItem == null || tabItem.isSelected())
+					&& tabItem.isEnabled()) {
 				setCurrentTabItem(tabItem);
 			} else {
 				tabItem.setVisible(false);
 			}
-			
+
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.List#removeAllItems()
 	 */
 	public void removeAllItems() {
 		if (defaultTabItem != null) {
-			defaultTabItem.remove();		// Remove the default tab item to keep the data binding it will be restaured later by the removeAll method
+			defaultTabItem.remove(); // Remove the default tab item to keep the data binding it will be restaured later by the removeAll method
 		}
 		super.removeAllItems();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#removeAll()
 	 */
 	public void removeAll() {
 		container.removeAll();
-		initDefaultTabItem();				// Restaure the defaultTabItem
-		setCurrentTabItem(null);			// No tabItem : setCurrent to null
+		initDefaultTabItem(); // Restaure the defaultTabItem
+		setCurrentTabItem(null); // No tabItem : setCurrent to null
 	}
-	
+
 	/**
 	 * Select an other enabled tab.
 	 * 
@@ -338,12 +372,16 @@ public class TabFolder extends List {
 	 * @param unselectIfNoOther
 	 */
 	protected void selectOtherTab(boolean forward, boolean unselectIfNoOther) {
-		Widget currentTabButton = currentTabItem != null ? currentTabItem.getButton() : (forward ? buttonsContainer.getContainer().getChild() : buttonsContainer.getContainer().getLastChild());
+		Widget currentTabButton = currentTabItem != null ? currentTabItem
+				.getButton() : (forward ? buttonsContainer.getContainer()
+				.getChild() : buttonsContainer.getContainer().getLastChild());
 		Widget tabButton = currentTabButton;
 		while (tabButton != null) {
 			tabButton = forward ? tabButton.next : tabButton.previous;
 			if (tabButton == null) {
-				tabButton = (forward ? buttonsContainer.getContainer().getChild() : buttonsContainer.getContainer().getLastChild());
+				tabButton = (forward ? buttonsContainer.getContainer()
+						.getChild() : buttonsContainer.getContainer()
+						.getLastChild());
 			}
 			if (tabButton != null) {
 				if (tabButton == currentTabButton) {
@@ -366,22 +404,24 @@ public class TabFolder extends List {
 	public void selectPreviousTab() {
 		selectOtherTab(false, false);
 	}
-	
+
 	/**
 	 * Select the next enabled tab.
 	 */
 	public void selectNextTab() {
 		selectOtherTab(true, false);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processKeyEvent(byte, int)
 	 */
 	public boolean processKeyEvent(byte type, int kuixKeyCode) {
 		if (currentTabItem != null) {
-			
+
 			// Tab navigation
-			if (type == KuixConstants.KEY_PRESSED_EVENT_TYPE	
+			if (type == KuixConstants.KEY_PRESSED_EVENT_TYPE
 					|| type == KuixConstants.KEY_REPEATED_EVENT_TYPE) {
 				if (kuixKeyCode == backwardTabKey) {
 					selectPreviousTab();
@@ -392,16 +432,21 @@ public class TabFolder extends List {
 					return true;
 				}
 			}
-		
+
 			// Default key process
-			return currentTabItem.getFocusManager().processKeyEvent(type, kuixKeyCode);
-			
+			return currentTabItem.getFocusManager().processKeyEvent(type,
+					kuixKeyCode);
+
 		}
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#propagateFocusEvent(org.kalmeo.kuix.widget.Widget, boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#propagateFocusEvent(org.kalmeo.kuix.widget
+	 * .Widget, boolean)
 	 */
 	protected void propagateFocusEvent(Widget focusedWidget, boolean lost) {
 		if (lost) {
@@ -411,7 +456,9 @@ public class TabFolder extends List {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#onAdded(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onAdded(Widget parent) {

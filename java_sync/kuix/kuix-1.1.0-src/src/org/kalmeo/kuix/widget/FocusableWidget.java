@@ -40,42 +40,46 @@ public class FocusableWidget extends Widget {
 	// Widget's pseudo class list
 	public static final String HOVER_PSEUDO_CLASS = "hover";
 	public static final String DISABLED_PSEUDO_CLASS = "disabled";
-	protected static final String[] PSEUDO_CLASSES = new String[] { HOVER_PSEUDO_CLASS, DISABLED_PSEUDO_CLASS };
+	protected static final String[] PSEUDO_CLASSES = new String[] {
+			HOVER_PSEUDO_CLASS, DISABLED_PSEUDO_CLASS };
 
 	// Focusable ?
 	protected boolean focusable = true;
-	
+
 	// Button focus state
 	protected boolean focused = false;
-	
+
 	// The focus methods
 	private String onFocus;
 	private String onLostFocus;
-	
+
 	// Define the action widget state
 	protected boolean enabled = true;
-	
+
 	// Internal properties
 	private boolean requestFocusOnAdded = false;
-	
+
 	/**
 	 * Construct a {@link FocusableWidget}
 	 */
 	public FocusableWidget() {
 		super();
 	}
-	
+
 	/**
 	 * Construct a {@link FocusableWidget}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public FocusableWidget(String tag) {
 		super(tag);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.ON_FOCUS_ATTRIBUTE.equals(name)) {
@@ -102,8 +106,10 @@ public class FocusableWidget extends Widget {
 		}
 		return super.setAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getAttribute(java.lang.String)
 	 */
 	public Object getAttribute(String name) {
@@ -114,7 +120,8 @@ public class FocusableWidget extends Widget {
 	}
 
 	/**
-	 * @param focusable the focusable to set
+	 * @param focusable
+	 *            the focusable to set
 	 */
 	public void setFocusable(boolean focusable) {
 		this.focusable = focusable;
@@ -123,14 +130,18 @@ public class FocusableWidget extends Widget {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#isFocusable()
 	 */
 	public boolean isFocusable() {
 		return enabled && focusable;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#isFocused()
 	 */
 	public boolean isFocused() {
@@ -145,7 +156,8 @@ public class FocusableWidget extends Widget {
 	}
 
 	/**
-	 * @param enabled the enabled to set
+	 * @param enabled
+	 *            the enabled to set
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
@@ -154,8 +166,10 @@ public class FocusableWidget extends Widget {
 			giveFocusToNearestWidget();
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#setVisible(boolean)
 	 */
 	public void setVisible(boolean visible) {
@@ -173,7 +187,8 @@ public class FocusableWidget extends Widget {
 	}
 
 	/**
-	 * @param onFocus the onFocus to set
+	 * @param onFocus
+	 *            the onFocus to set
 	 */
 	public void setOnFocus(String onFocus) {
 		this.onFocus = onFocus;
@@ -187,21 +202,27 @@ public class FocusableWidget extends Widget {
 	}
 
 	/**
-	 * @param onLostFocus the onLostFocus to set
+	 * @param onLostFocus
+	 *            the onLostFocus to set
 	 */
 	public void setOnLostFocus(String onLostFocus) {
 		this.onLostFocus = onLostFocus;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getPseudoClass()
 	 */
 	public String[] getAvailablePseudoClasses() {
 		return PSEUDO_CLASSES;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#isPseudoClassCompatible(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#isPseudoClassCompatible(java.lang.String)
 	 */
 	public boolean isPseudoClassCompatible(String pseudoClass) {
 		if (HOVER_PSEUDO_CLASS.equals(pseudoClass)) {
@@ -212,7 +233,7 @@ public class FocusableWidget extends Widget {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Give the focus to the nearest focusable widget.
 	 */
@@ -220,18 +241,20 @@ public class FocusableWidget extends Widget {
 		if (isFocused()) {
 			FocusManager focusManager = getFocusManager();
 			if (focusManager != null) {
-				focusManager.requestOtherFocus(true, null);				// Request forward focus
-				if (focusManager.getFocusedWidget() == this) {			// No next focus ?
-					focusManager.requestOtherFocus(false, null);		// Request backward focus
-					if (focusManager.getFocusedWidget() == this) {		// No previous focus ?
-						focusManager.requestFocus(null);				// No focus
+				focusManager.requestOtherFocus(true, null); // Request forward focus
+				if (focusManager.getFocusedWidget() == this) { // No next focus ?
+					focusManager.requestOtherFocus(false, null); // Request backward focus
+					if (focusManager.getFocusedWidget() == this) { // No previous focus ?
+						focusManager.requestFocus(null); // No focus
 					}
 				}
 			}
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#remove()
 	 */
 	public void remove() {
@@ -239,14 +262,17 @@ public class FocusableWidget extends Widget {
 		super.remove();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#requestFocus()
 	 */
 	public void requestFocus() {
 		if (isFocusable()) {
 			FocusManager focusManager = getFocusManager();
 			if (focusManager != null) {
-				ScrollPane scrollContainer = focusManager.findFirstScrollPaneParent(this);
+				ScrollPane scrollContainer = focusManager
+						.findFirstScrollPaneParent(this);
 				if (scrollContainer != null) {
 					scrollContainer.bestScrollToChild(this, false);
 				}
@@ -256,35 +282,41 @@ public class FocusableWidget extends Widget {
 			}
 		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#processEvent(org.kalmeo.kuix.core.event.KuixEvent)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#processEvent(org.kalmeo.kuix.core.event
+	 * .KuixEvent)
 	 */
 	public boolean processFocusEvent(byte type) {
 		switch (type) {
-			case KuixConstants.FOCUS_GAINED_EVENT_TYPE: {
-				focused = true;
-				invalidateStylePropertiesCache(true);
-				if (onFocus != null) {
-					Kuix.callActionMethod(Kuix.parseMethod(onFocus, this));
-				}
-				propagateFocusEvent(this, false);
-				return true;
+		case KuixConstants.FOCUS_GAINED_EVENT_TYPE: {
+			focused = true;
+			invalidateStylePropertiesCache(true);
+			if (onFocus != null) {
+				Kuix.callActionMethod(Kuix.parseMethod(onFocus, this));
 			}
-			case KuixConstants.FOCUS_LOST_EVENT_TYPE: {
-				focused = false;
-				invalidateStylePropertiesCache(true);
-				if (onLostFocus != null) {
-					Kuix.callActionMethod(Kuix.parseMethod(onLostFocus, this));
-				}
-				propagateFocusEvent(this, true);
-				return true;
+			propagateFocusEvent(this, false);
+			return true;
+		}
+		case KuixConstants.FOCUS_LOST_EVENT_TYPE: {
+			focused = false;
+			invalidateStylePropertiesCache(true);
+			if (onLostFocus != null) {
+				Kuix.callActionMethod(Kuix.parseMethod(onLostFocus, this));
 			}
+			propagateFocusEvent(this, true);
+			return true;
+		}
 		}
 		return super.processFocusEvent(type);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processPointerEvent(byte, int, int)
 	 */
 	public boolean processPointerEvent(byte type, int x, int y) {
@@ -295,7 +327,9 @@ public class FocusableWidget extends Widget {
 		return super.processPointerEvent(type, x, y);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#onAdded(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onAdded(Widget parent) {
@@ -304,5 +338,5 @@ public class FocusableWidget extends Widget {
 			requestFocusOnAdded = false;
 		}
 	}
-	
+
 }

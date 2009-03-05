@@ -52,16 +52,17 @@ import org.kalmeo.util.MathFP;
 public class Screen extends Widget {
 
 	/**
-	 * This class represents a screen top or bottom bar (used for title and/or menu)
+	 * This class represents a screen top or bottom bar (used for title and/or
+	 * menu)
 	 */
 	public class ScreenBar extends Widget {
-		
+
 		private final boolean isTop;
 		private StaticLayoutData staticLayoutData;
-		
+
 		/**
 		 * Construct a {@link ScreenBar}
-		 *
+		 * 
 		 * @param tag
 		 * @param isTop
 		 */
@@ -69,46 +70,53 @@ public class Screen extends Widget {
 			super(tag);
 			this.isTop = isTop;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 		 */
 		public Layout getLayout() {
 			return StaticLayout.instance;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 		 */
 		public LayoutData getLayoutData() {
 			if (barsOnTop) {
 				if (staticLayoutData == null) {
-					staticLayoutData = new StaticLayoutData(isTop ? Alignment.TOP_LEFT : Alignment.BOTTOM_LEFT, MathFP.ONE, -1);
+					staticLayoutData = new StaticLayoutData(
+							isTop ? Alignment.TOP_LEFT : Alignment.BOTTOM_LEFT,
+							MathFP.ONE, -1);
 				}
 				return staticLayoutData;
 			} else {
-				return isTop ? BorderLayoutData.instanceNorth : BorderLayoutData.instanceSouth;
+				return isTop ? BorderLayoutData.instanceNorth
+						: BorderLayoutData.instanceSouth;
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * This class represents a screen menu
 	 */
 	public class ScreenMenu extends Menu {
 
 		private LayoutData layoutData;
-		
+
 		private boolean first;
 		private boolean internal;
-		
+
 		private boolean desiredVisible = true;
 		private boolean internalVisible = true;
 
 		/**
 		 * Construct a {@link ScreenMenu}
-		 *
+		 * 
 		 * @param tag
 		 * @param layoutData
 		 * @param internal
@@ -118,25 +126,33 @@ public class Screen extends Widget {
 			this.first = first;
 			this.internal = internal;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 		 */
 		public LayoutData getLayoutData() {
 			if (layoutData == null) {
-				Alignment alignment = Kuix.firstIsLeft && first || !Kuix.firstIsLeft && !first ? Alignment.LEFT : Alignment.RIGHT;
+				Alignment alignment = Kuix.firstIsLeft && first
+						|| !Kuix.firstIsLeft && !first ? Alignment.LEFT
+						: Alignment.RIGHT;
 				LayoutData superLayoutData = super.getLayoutData();
 				if (superLayoutData instanceof StaticLayoutData) {
 					StaticLayoutData staticLayoutData = (StaticLayoutData) superLayoutData;
-					layoutData = new StaticLayoutData(Alignment.combine(staticLayoutData.alignment, alignment), staticLayoutData.width, staticLayoutData.height);
+					layoutData = new StaticLayoutData(Alignment.combine(
+							staticLayoutData.alignment, alignment),
+							staticLayoutData.width, staticLayoutData.height);
 				} else {
 					layoutData = new StaticLayoutData(alignment);
 				}
 			}
 			return layoutData;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#clearCachedStyle(boolean)
 		 */
 		public void clearCachedStyle(boolean propagateToChildren) {
@@ -144,14 +160,18 @@ public class Screen extends Widget {
 			super.clearCachedStyle(propagateToChildren);
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.AbstractFocusableWidget#isFocusable()
 		 */
 		public boolean isFocusable() {
 			return false;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.MenuItem#hideMenuTree()
 		 */
 		public void hideMenuTree() {
@@ -159,31 +179,39 @@ public class Screen extends Widget {
 			super.hideMenuTree();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Menu#showPopup()
 		 */
 		public void showPopup() {
 			showPopup(getDisplayX(), getDisplayY());
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Menu#processActionEvent()
 		 */
 		public boolean processActionEvent() {
-			if (!processMenuAction(this, internal, internal && this == firstInternalMenu || !internal && this == firstMenu)) {
+			if (!processMenuAction(this, internal, internal
+					&& this == firstInternalMenu || !internal
+					&& this == firstMenu)) {
 				return super.processActionEvent();
 			}
 			return true;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#setVisible(boolean)
 		 */
 		public void setVisible(boolean visible) {
 			desiredVisible = visible;
 			combineVisible();
 		}
-		
+
 		/**
 		 * Set the internal visiblity (used to switch between internal and
 		 * default menus).
@@ -194,7 +222,7 @@ public class Screen extends Widget {
 			internalVisible = visible;
 			combineVisible();
 		}
-		
+
 		/**
 		 * Combine the internal and desired visiblilty.
 		 * 
@@ -203,13 +231,13 @@ public class Screen extends Widget {
 		private void combineVisible() {
 			super.setVisible(internalVisible && desiredVisible);
 		}
-		
+
 	}
-	
+
 	// Screen menu label renderers customization
 	private static ByteArrayInputStream screenMenuSelectLabelRenderer;
 	private static ByteArrayInputStream screenMenuCancelLabelRenderer;
-	
+
 	// FocusManager
 	private final FocusManager focusManager;
 
@@ -217,29 +245,29 @@ public class Screen extends Widget {
 	private final Widget container;
 	private ScreenBar topBar;
 	private ScreenBar bottomBar;
-	
+
 	// Text widget for title
 	private Text titleText;
-	
+
 	// Used to determine if this screen call its cleanUp method when removed from its parent
 	public boolean cleanUpWhenRemoved = false;
-	
+
 	// Used to determine if topBar and bottomBar are displayed on top of the screen content
 	public boolean barsOnTop = false;
-	
+
 	// Menus 
 	private ScreenMenu firstMenu;
 	private ScreenMenu secondMenu;
 	private ScreenMenu firstInternalMenu;
 	private ScreenMenu secondInternalMenu;
-	
+
 	/**
 	 * Construct a {Screen}
 	 */
 	public Screen() {
 		this(KuixConstants.SCREEN_WIDGET_TAG);
 	}
-	
+
 	/**
 	 * Construct a {Screen}
 	 * 
@@ -247,18 +275,23 @@ public class Screen extends Widget {
 	 */
 	public Screen(String tag) {
 		super(tag);
-		
+
 		// Init content's widgets
 		container = new Widget() {
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 			 */
 			public Layout getLayout() {
-				return (Layout) Screen.this.getStylePropertyValue(KuixConstants.LAYOUT_STYLE_PROPERTY, false);
+				return (Layout) Screen.this.getStylePropertyValue(
+						KuixConstants.LAYOUT_STYLE_PROPERTY, false);
 			}
-			
-			/* (non-Javadoc)
+
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 			 */
 			public LayoutData getLayoutData() {
@@ -267,75 +300,101 @@ public class Screen extends Widget {
 				}
 				return BorderLayoutData.instanceCenter;
 			}
-			
-			/* (non-Javadoc)
+
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getMargin()
 			 */
 			public Insets getMargin() {
-				return (Insets) Screen.this.getStylePropertyValue(KuixConstants.MARGIN_STYLE_PROPERTY, false);
+				return (Insets) Screen.this.getStylePropertyValue(
+						KuixConstants.MARGIN_STYLE_PROPERTY, false);
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getBorder()
 			 */
 			public Insets getBorder() {
-				return (Insets) Screen.this.getStylePropertyValue(KuixConstants.BORDER_STYLE_PROPERTY, false);
+				return (Insets) Screen.this.getStylePropertyValue(
+						KuixConstants.BORDER_STYLE_PROPERTY, false);
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getPadding()
 			 */
 			public Insets getPadding() {
-				return (Insets) Screen.this.getStylePropertyValue(KuixConstants.PADDING_STYLE_PROPERTY, false);
+				return (Insets) Screen.this.getStylePropertyValue(
+						KuixConstants.PADDING_STYLE_PROPERTY, false);
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getAlign()
 			 */
 			public Alignment getAlign() {
-				return (Alignment) Screen.this.getStylePropertyValue(KuixConstants.ALIGN_STYLE_PROPERTY, false);
+				return (Alignment) Screen.this.getStylePropertyValue(
+						KuixConstants.ALIGN_STYLE_PROPERTY, false);
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getGap()
 			 */
 			public Gap getGap() {
-				return (Gap) Screen.this.getStylePropertyValue(KuixConstants.GAP_STYLE_PROPERTY, false);
+				return (Gap) Screen.this.getStylePropertyValue(
+						KuixConstants.GAP_STYLE_PROPERTY, false);
 			}
-			
+
 		};
 		super.add(container);
-		
+
 		// Init focusManagers
 		focusManager = new FocusManager(this, false) {
-			
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.core.focus.FocusManager#processKeyEvent(byte, int)
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.core.focus.FocusManager#processKeyEvent(byte,
+			 * int)
 			 */
 			public boolean processKeyEvent(byte type, int kuixKeyCode) {
 				if (!super.processKeyEvent(type, kuixKeyCode)) {
 					return processSoftKeyEvent(type, kuixKeyCode);
 				}
-				return true;	
+				return true;
 			}
 
 		};
-		
+
 	}
-	
+
 	/**
 	 * Cutomize Kuix screen menu labels.
 	 * 
-	 * @param selectLabelRenderer the renderer (xml input stream) used as select label
-	 * @param cancelLabelRenderer the renderer (xml input scream) used as cancel label
+	 * @param selectLabelRenderer
+	 *            the renderer (xml input stream) used as select label
+	 * @param cancelLabelRenderer
+	 *            the renderer (xml input scream) used as cancel label
 	 */
-	public static void customizeScreenMenuLabels(ByteArrayInputStream selectLabelRenderer, ByteArrayInputStream cancelLabelRenderer) {
+	public static void customizeScreenMenuLabels(
+			ByteArrayInputStream selectLabelRenderer,
+			ByteArrayInputStream cancelLabelRenderer) {
 		screenMenuSelectLabelRenderer = selectLabelRenderer;
 		screenMenuCancelLabelRenderer = cancelLabelRenderer;
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
 	 */
 	public Widget getInternalChildInstance(String tag) {
 		if (KuixConstants.SCREEN_TOP_BAR_WIDGET_TAG.equals(tag)) {
@@ -353,8 +412,11 @@ public class Screen extends Widget {
 		return super.getInternalChildInstance(tag);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.TITLE_ATTRIBUTE.equals(name)) {
@@ -375,14 +437,14 @@ public class Screen extends Widget {
 		}
 		return super.setAttribute(name, value);
 	}
-	
+
 	/**
 	 * @return the title
 	 */
 	public String getTitleText() {
 		return titleText != null ? titleText.getText() : null;
 	}
-	
+
 	/**
 	 * Define the desktop title
 	 * 
@@ -402,7 +464,7 @@ public class Screen extends Widget {
 			titleText.setText(title);
 		}
 	}
-	
+
 	/**
 	 * @return the cleanUpWhenRemoved
 	 */
@@ -411,7 +473,8 @@ public class Screen extends Widget {
 	}
 
 	/**
-	 * @param cleanUpWhenRemoved the cleanUpWhenRemoved to set
+	 * @param cleanUpWhenRemoved
+	 *            the cleanUpWhenRemoved to set
 	 */
 	public void setCleanUpWhenRemoved(boolean cleanUpWhenRemoved) {
 		this.cleanUpWhenRemoved = cleanUpWhenRemoved;
@@ -425,21 +488,26 @@ public class Screen extends Widget {
 	}
 
 	/**
-	 * @param barsOnTop the barsOnTop to set
+	 * @param barsOnTop
+	 *            the barsOnTop to set
 	 */
 	public void setBarsOnTop(boolean barsOnTop) {
 		this.barsOnTop = barsOnTop;
 		invalidate();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getFocusManager()
 	 */
 	public FocusManager getFocusManager() {
 		return focusManager;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 	 */
 	public Layout getLayout() {
@@ -449,35 +517,45 @@ public class Screen extends Widget {
 		return BorderLayout.instance;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getMargin()
 	 */
 	public Insets getMargin() {
 		return Widget.DEFAULT_MARGIN;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getBorder()
 	 */
 	public Insets getBorder() {
 		return Widget.DEFAULT_BORDER;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getPadding()
 	 */
 	public Insets getPadding() {
 		return Widget.DEFAULT_PADDING;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getAlign()
 	 */
 	public Alignment getAlign() {
 		return Widget.DEFAULT_ALIGN;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getGap()
 	 */
 	public Gap getGap() {
@@ -488,15 +566,20 @@ public class Screen extends Widget {
 	 * @return the transition
 	 */
 	public Transition getTransition() {
-		Object transition = getStylePropertyValue(KuixConstants.TRANSITION_STYLE_PROPERTY, false);
+		Object transition = getStylePropertyValue(
+				KuixConstants.TRANSITION_STYLE_PROPERTY, false);
 		if (transition != null) {
 			return (Transition) transition;
 		}
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java.lang.
+	 * String)
 	 */
 	protected Object getDefaultStylePropertyValue(String name) {
 		if (KuixConstants.LAYOUT_STYLE_PROPERTY.equals(name)) {
@@ -504,7 +587,7 @@ public class Screen extends Widget {
 		}
 		return super.getDefaultStylePropertyValue(name);
 	}
-	
+
 	/**
 	 * Create the internal topBar instance if it doesn't exist and return it.
 	 * 
@@ -512,12 +595,13 @@ public class Screen extends Widget {
 	 */
 	public ScreenBar getTopBar() {
 		if (topBar == null) {
-			topBar = new ScreenBar(KuixConstants.SCREEN_TOP_BAR_WIDGET_TAG, true);
+			topBar = new ScreenBar(KuixConstants.SCREEN_TOP_BAR_WIDGET_TAG,
+					true);
 			super.add(topBar);
 		}
 		return topBar;
 	}
-	
+
 	/**
 	 * Create the internal bottomBar instance if it doesn't exist and return it.
 	 * 
@@ -525,12 +609,13 @@ public class Screen extends Widget {
 	 */
 	public ScreenBar getBottomBar() {
 		if (bottomBar == null) {
-			bottomBar = new ScreenBar(KuixConstants.SCREEN_BOTTOM_BAR_WIDGET_TAG, false);
+			bottomBar = new ScreenBar(
+					KuixConstants.SCREEN_BOTTOM_BAR_WIDGET_TAG, false);
 			super.add(bottomBar);
 		}
 		return bottomBar;
 	}
-	
+
 	/**
 	 * Returns the {@link ScreenMenu} that correspond to the given
 	 * <code>kuixKeyCode</code>.
@@ -540,7 +625,9 @@ public class Screen extends Widget {
 	 *         <code>kuixKeyCode</code>
 	 */
 	public Menu getScreenMenu(int kuixKeyCode) {
-		if (Kuix.firstIsLeft && kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_LEFT || !Kuix.firstIsLeft && kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_RIGHT) {
+		if (Kuix.firstIsLeft && kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_LEFT
+				|| !Kuix.firstIsLeft
+				&& kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_RIGHT) {
 			if (firstMenu != null && firstMenu.isVisible()) {
 				return firstMenu;
 			}
@@ -552,7 +639,7 @@ public class Screen extends Widget {
 			return secondInternalMenu;
 		}
 	}
-	
+
 	/**
 	 * Create the firstMenu instance if it doesn't exist and return it.
 	 * 
@@ -560,12 +647,13 @@ public class Screen extends Widget {
 	 */
 	public Menu getFirstMenu() {
 		if (firstMenu == null) {
-			firstMenu = new ScreenMenu(KuixConstants.SCREEN_FIRST_MENU_WIDGET_TAG, true, false);
+			firstMenu = new ScreenMenu(
+					KuixConstants.SCREEN_FIRST_MENU_WIDGET_TAG, true, false);
 			getBottomBar().add(firstMenu);
 		}
 		return firstMenu;
 	}
-	
+
 	/**
 	 * Create the secondMenu instance if it doesn't exist and return it.
 	 * 
@@ -573,12 +661,13 @@ public class Screen extends Widget {
 	 */
 	public Menu getSecondMenu() {
 		if (secondMenu == null) {
-			secondMenu = new ScreenMenu(KuixConstants.SCREEN_SECOND_MENU_WIDGET_TAG, false, false);
+			secondMenu = new ScreenMenu(
+					KuixConstants.SCREEN_SECOND_MENU_WIDGET_TAG, false, false);
 			getBottomBar().add(secondMenu);
 		}
 		return secondMenu;
 	}
-	
+
 	/**
 	 * Create the internal firstMenu instance if it doesn't exist and return it.
 	 * 
@@ -586,31 +675,38 @@ public class Screen extends Widget {
 	 */
 	protected ScreenMenu getFirstInternalMenu() {
 		if (firstInternalMenu == null) {
-			firstInternalMenu = new ScreenMenu(KuixConstants.SCREEN_FIRST_MENU_WIDGET_TAG, true, true);
+			firstInternalMenu = new ScreenMenu(
+					KuixConstants.SCREEN_FIRST_MENU_WIDGET_TAG, true, true);
 			if (screenMenuSelectLabelRenderer != null) {
 				screenMenuSelectLabelRenderer.reset();
-				firstInternalMenu.add(Kuix.loadWidget(screenMenuSelectLabelRenderer, null));
+				firstInternalMenu.add(Kuix.loadWidget(
+						screenMenuSelectLabelRenderer, null));
 			} else {
-				firstInternalMenu.add(new Text().setText(Kuix.getMessage(KuixConstants.SELECT_I18N_KEY)));
+				firstInternalMenu.add(new Text().setText(Kuix
+						.getMessage(KuixConstants.SELECT_I18N_KEY)));
 			}
 			getBottomBar().add(firstInternalMenu);
 		}
 		return firstInternalMenu;
 	}
-	
+
 	/**
-	 * Create the internal secondMenu instance if it doesn't exist and return it.
+	 * Create the internal secondMenu instance if it doesn't exist and return
+	 * it.
 	 * 
 	 * @return the internal secondMenu instance
 	 */
 	protected ScreenMenu getSecondInternalMenu() {
 		if (secondInternalMenu == null) {
-			secondInternalMenu = new ScreenMenu(KuixConstants.SCREEN_SECOND_MENU_WIDGET_TAG, false, true);
+			secondInternalMenu = new ScreenMenu(
+					KuixConstants.SCREEN_SECOND_MENU_WIDGET_TAG, false, true);
 			if (screenMenuCancelLabelRenderer != null) {
 				screenMenuCancelLabelRenderer.reset();
-				secondInternalMenu.add(Kuix.loadWidget(screenMenuCancelLabelRenderer, null));
+				secondInternalMenu.add(Kuix.loadWidget(
+						screenMenuCancelLabelRenderer, null));
 			} else {
-				secondInternalMenu.add(new Text().setText(Kuix.getMessage(KuixConstants.CANCEL_I18N_KEY)));
+				secondInternalMenu.add(new Text().setText(Kuix
+						.getMessage(KuixConstants.CANCEL_I18N_KEY)));
 			}
 			getBottomBar().add(secondInternalMenu);
 		}
@@ -630,7 +726,7 @@ public class Screen extends Widget {
 		getFirstInternalMenu().setInternalVisible(true);
 		getSecondInternalMenu().setInternalVisible(true);
 	}
-	
+
 	/**
 	 * Switch menu display from internal menus to default menus
 	 */
@@ -648,7 +744,7 @@ public class Screen extends Widget {
 			secondMenu.setInternalVisible(true);
 		}
 	}
-	
+
 	/**
 	 * Set this {@link Screen} has current.
 	 */
@@ -658,43 +754,54 @@ public class Screen extends Widget {
 		} catch (Exception e) {
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#doLayout()
 	 */
 	protected void doLayout() {
 		super.doLayout();
-		
+
 		// Check if current focused widget is visible
 		Widget focusedWidget = focusManager.getFocusedWidget();
-		if (focusedWidget == null || focusedWidget != null && !focusedWidget.isVisible()) {
+		if (focusedWidget == null || focusedWidget != null
+				&& !focusedWidget.isVisible()) {
 			focusManager.requestFirstFocus();
 		}
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)
 	 */
 	public Widget add(Widget widget) {
 		return container.add(widget);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#removeAll()
 	 */
 	public void removeAll() {
 		container.removeAll();
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.AbstractActionWidget#processPointerEvent(byte, int, int)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.AbstractActionWidget#processPointerEvent(byte,
+	 * int, int)
 	 */
 	public boolean processPointerEvent(byte type, int x, int y) {
 		// Does nothing on pointer events
 		return false;
 	}
-	
+
 	/**
 	 * Process an internal or default menu action.
 	 * 
@@ -703,13 +810,18 @@ public class Screen extends Widget {
 	 * @param isFirst
 	 * @return <code>true</code> if the event is treated by the widget
 	 */
-	protected boolean processMenuAction(Menu menu, boolean internal, boolean isFirst) {
+	protected boolean processMenuAction(Menu menu, boolean internal,
+			boolean isFirst) {
 		if (internal) {
 			boolean switchToDefaultMenu = true;
 			if (isFirst) {
-				FocusManager tmpFocusManager = getDesktop().getCurrentFocusManager();
+				FocusManager tmpFocusManager = getDesktop()
+						.getCurrentFocusManager();
 				if (tmpFocusManager != null) {
-					switchToDefaultMenu = tmpFocusManager.processKeyEvent(KuixConstants.KEY_PRESSED_EVENT_TYPE, KuixConstants.KUIX_KEY_FIRE) && !(tmpFocusManager.getFocusedWidget() instanceof Menu);
+					switchToDefaultMenu = tmpFocusManager.processKeyEvent(
+							KuixConstants.KEY_PRESSED_EVENT_TYPE,
+							KuixConstants.KUIX_KEY_FIRE)
+							&& !(tmpFocusManager.getFocusedWidget() instanceof Menu);
 				}
 			} else {
 				Menu.hideAllMenuPopups();
@@ -724,13 +836,16 @@ public class Screen extends Widget {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onRemoved(Widget parent) {
 		if (cleanUpWhenRemoved) {
 			cleanUp();
 		}
 	}
-	
+
 }

@@ -38,7 +38,8 @@ import org.kalmeo.kuix.util.Alignment;
 public class Button extends ActionWidget {
 
 	// Defaults
-	private static final Layout BUTTON_DEFAULT_LAYOUT = new InlineLayout(true, Alignment.CENTER);
+	private static final Layout BUTTON_DEFAULT_LAYOUT = new InlineLayout(true,
+			Alignment.CENTER);
 
 	/**
 	 * Construct a {@link Button}
@@ -49,15 +50,19 @@ public class Button extends ActionWidget {
 
 	/**
 	 * Construct a {@link Button}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public Button(String tag) {
 		super(tag);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getDefaultStyleAttributeValue(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getDefaultStyleAttributeValue(java.lang
+	 * .String)
 	 */
 	protected Object getDefaultStylePropertyValue(String name) {
 		if (KuixConstants.LAYOUT_STYLE_PROPERTY.equals(name)) {

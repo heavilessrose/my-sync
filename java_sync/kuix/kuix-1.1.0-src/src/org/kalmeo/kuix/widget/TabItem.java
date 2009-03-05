@@ -45,10 +45,10 @@ public class TabItem extends Widget {
 	 * This class represents the tabItem button.
 	 */
 	public class TabItemButton extends CheckBox {
-		
+
 		private Text labelWidget;
 		private Picture iconWidget;
-		
+
 		/**
 		 * Construct a {@link TabItemButton}
 		 */
@@ -56,7 +56,9 @@ public class TabItem extends Widget {
 			super(KuixConstants.TAB_ITEM_BUTTON_WIDGET_TAG);
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.AbstractActionWidget#processActionEvent()
 		 */
 		public boolean processActionEvent() {
@@ -66,13 +68,15 @@ public class TabItem extends Widget {
 			return true;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.AbstractFocusableWidget#isFocusable()
 		 */
 		public boolean isFocusable() {
 			return false;
 		}
-		
+
 		/**
 		 * Set the label of this tab button.
 		 * 
@@ -89,7 +93,7 @@ public class TabItem extends Widget {
 			}
 			labelWidget.setText(label);
 		}
-		
+
 		/**
 		 * Set the icon of this tab button.
 		 * 
@@ -106,25 +110,25 @@ public class TabItem extends Widget {
 			}
 			iconWidget.setSource(icon);
 		}
-		
+
 	}
-	
+
 	// Defaults
 	private static final Layout TAB_ITEM_DEFAULT_LAYOUT = GridLayout.instanceOneByOne;
 
 	// Tab item properties
 	private String label;
 	private String icon;
-	
+
 	// The associated tabFolder
 	private TabFolder tabFolder;
-	
+
 	// The associated TabButton
 	private final TabItemButton button;
-	
+
 	// FocusManager
 	private final FocusManager focusManager;
-	
+
 	// Selection actions
 	private String onSelect;
 	private String onUnselect;
@@ -134,16 +138,19 @@ public class TabItem extends Widget {
 	 */
 	public TabItem() {
 		super(KuixConstants.TAB_ITEM_WIDGET_TAG);
-		
+
 		// Create the tabItem button
 		button = new TabItemButton();
-		
+
 		// Init focusManagers
 		focusManager = new FocusManager(this, false);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.LABEL_ATTRIBUTE.equals(name)) {
@@ -172,9 +179,12 @@ public class TabItem extends Widget {
 		}
 		return super.setAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
 	 */
 	public Widget getInternalChildInstance(String tag) {
 		if (KuixConstants.TAB_ITEM_BUTTON_WIDGET_TAG.equals(tag)) {
@@ -183,22 +193,30 @@ public class TabItem extends Widget {
 		return super.getInternalChildInstance(tag);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getFocusManager()
 	 */
 	public FocusManager getFocusManager() {
 		return focusManager;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 	 */
 	public LayoutData getLayoutData() {
 		return StaticLayoutData.instanceFull;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getDefaultStyleAttributeValue(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getDefaultStyleAttributeValue(java.lang
+	 * .String)
 	 */
 	protected Object getDefaultStylePropertyValue(String name) {
 		if (KuixConstants.LAYOUT_STYLE_PROPERTY.equals(name)) {
@@ -206,7 +224,7 @@ public class TabItem extends Widget {
 		}
 		return super.getDefaultStylePropertyValue(name);
 	}
-	
+
 	/**
 	 * @return the tabItem button
 	 */
@@ -222,7 +240,8 @@ public class TabItem extends Widget {
 	}
 
 	/**
-	 * @param label the label to set
+	 * @param label
+	 *            the label to set
 	 */
 	public void setLabel(String label) {
 		if (button != null) {
@@ -239,7 +258,8 @@ public class TabItem extends Widget {
 	}
 
 	/**
-	 * @param icon the icon to set
+	 * @param icon
+	 *            the icon to set
 	 */
 	public void setIcon(String icon) {
 		if (button != null) {
@@ -256,7 +276,8 @@ public class TabItem extends Widget {
 	}
 
 	/**
-	 * @param enabled the enabled to set
+	 * @param enabled
+	 *            the enabled to set
 	 */
 	public void setEnabled(boolean enabled) {
 		button.setEnabled(enabled);
@@ -273,7 +294,7 @@ public class TabItem extends Widget {
 			}
 		}
 	}
-	
+
 	/**
 	 * @return the selected
 	 */
@@ -282,7 +303,8 @@ public class TabItem extends Widget {
 	}
 
 	/**
-	 * @param selected the selected to set
+	 * @param selected
+	 *            the selected to set
 	 */
 	public void setSelected(boolean selected) {
 		if (selected != isSelected()) {
@@ -291,10 +313,12 @@ public class TabItem extends Widget {
 	}
 
 	/**
-	 * @param selected the selected to set
+	 * @param selected
+	 *            the selected to set
 	 * @param propagateToTabFolder
 	 */
-	protected void internalSetSelected(boolean selected, boolean propagateToTabFolder) {
+	protected void internalSetSelected(boolean selected,
+			boolean propagateToTabFolder) {
 		if (propagateToTabFolder && tabFolder != null) {
 			if (selected) {
 				tabFolder.setCurrentTabItem(this);
@@ -311,7 +335,7 @@ public class TabItem extends Widget {
 			}
 		}
 	}
-	
+
 	/**
 	 * The onSelect to set
 	 */
@@ -325,22 +349,27 @@ public class TabItem extends Widget {
 	public void setOnUnselect(String onUnselect) {
 		this.onUnselect = onUnselect;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#doLayout()
 	 */
 	protected void doLayout() {
 		super.doLayout();
-		
+
 		// Check if current focused widget is visible (special for tabitem because it has its own focusManager)
 		Widget focusedWidget = focusManager.getFocusedWidget();
-		if (focusedWidget == null || focusedWidget != null && !focusedWidget.isVisible()) {
+		if (focusedWidget == null || focusedWidget != null
+				&& !focusedWidget.isVisible()) {
 			focusManager.requestFirstFocus();
 		}
-		
+
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#onAdded(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onAdded(Widget parent) {
@@ -349,8 +378,11 @@ public class TabItem extends Widget {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onRemoved(Widget parent) {
 		if (button != null) {

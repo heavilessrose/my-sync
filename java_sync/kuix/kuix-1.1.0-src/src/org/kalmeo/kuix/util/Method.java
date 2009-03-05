@@ -59,7 +59,8 @@ public class Method {
 	}
 
 	/**
-	 * @param arguments the arguments to set
+	 * @param arguments
+	 *            the arguments to set
 	 */
 	public void setArguments(Object[] arguments) {
 		this.arguments = arguments;

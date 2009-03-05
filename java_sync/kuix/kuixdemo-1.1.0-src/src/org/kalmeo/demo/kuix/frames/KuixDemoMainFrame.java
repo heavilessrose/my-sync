@@ -1,23 +1,3 @@
-/*
- * This file is part of org.kalmeo.demo.kuix.
- * 
- * org.kalmeo.demo.kuix is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * org.kalmeo.demo.kuix is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with org.kalmeo.demo.kuix.  If not, see <http://www.gnu.org/licenses/>.
- * 
- * Creation date : 10 mar. 2008
- * Copyright (c) Kalmeo 2007-2008. All rights reserved.
- */
-
 package org.kalmeo.demo.kuix.frames;
 
 import javax.microedition.lcdui.Command;
@@ -45,7 +25,7 @@ public class KuixDemoMainFrame implements Frame {
 
 	// Static frame instance
 	public static final KuixDemoMainFrame instance = new KuixDemoMainFrame();
-	
+
 	private final Screen screen = Kuix.loadScreen("/xml/screen.xml", null);
 
 	/**
@@ -54,9 +34,12 @@ public class KuixDemoMainFrame implements Frame {
 	public void showScreen() {
 		screen.setCurrent();
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.util.frame.Frame#onMessage(java.lang.Object, java.lang.Object[])
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.util.frame.Frame#onMessage(java.lang.Object,
+	 * java.lang.Object[])
 	 */
 	public boolean onMessage(Object identifier, Object[] arguments) {
 		if ("demo".equals(identifier)) {
@@ -67,7 +50,7 @@ public class KuixDemoMainFrame implements Frame {
 			return false;
 		}
 		if ("apps".equals(identifier)) {
-			Kuix.getFrameHandler().pushFrame(KuixDemoAppsFrame.instance); 
+			Kuix.getFrameHandler().pushFrame(KuixDemoAppsFrame.instance);
 			if (arguments[0] instanceof String) {
 				Kuix.getFrameHandler().processMessage(arguments[0], null);
 			}
@@ -75,9 +58,11 @@ public class KuixDemoMainFrame implements Frame {
 		}
 		if ("progress".equals(identifier)) {
 			final Gauge gauge = new Gauge();
-			final PopupBox progressBox = Kuix.showPopupBox(null, -1, gauge, Kuix.getMessage(KuixConstants.OK_I18N_KEY), null, null, null, null);
+			final PopupBox progressBox = Kuix.showPopupBox(null, -1, gauge,
+					Kuix.getMessage(KuixConstants.OK_I18N_KEY), null, null,
+					null, null);
 			Worker.instance.pushTask(new WorkerTask() {
-				
+
 				private final int PROGRESS_INCREMENT = 1;
 				private final int MAX_PROGRESS = 100;
 				private int progress = 0;
@@ -91,19 +76,23 @@ public class KuixDemoMainFrame implements Frame {
 					}
 					return false;
 				}
-				
+
 			});
 		}
 		if ("threadProgress".equals(identifier)) {
 			final Gauge gauge = new Gauge();
-			final PopupBox progressBox = Kuix.showPopupBox(null, -1, gauge, Kuix.getMessage(KuixConstants.OK_I18N_KEY), null, null, null, null);
+			final PopupBox progressBox = Kuix.showPopupBox(null, -1, gauge,
+					Kuix.getMessage(KuixConstants.OK_I18N_KEY), null, null,
+					null, null);
 			new Thread() {
 
 				private final int PROGRESS_INCREMENT = 1;
 				private final int MAX_PROGRESS = 100;
 				private int progress = 0;
-				
-				/* (non-Javadoc)
+
+				/*
+				 * (non-Javadoc)
+				 * 
 				 * @see java.lang.Thread#run()
 				 */
 				public void run() {
@@ -121,7 +110,7 @@ public class KuixDemoMainFrame implements Frame {
 						}
 					}
 				}
-				
+
 			}.start();
 		}
 		if ("showMainScreen".equals(identifier)) {
@@ -131,20 +120,28 @@ public class KuixDemoMainFrame implements Frame {
 		if ("goMidpForm".equals(identifier)) {
 			Form form = new Form("MIDP Form");
 			form.append(new TextField("Label", "", 10, 0));
-			form.append(new javax.microedition.lcdui.Gauge("Gauge", true, 100, 50));
-			final Command backToKuixCommand = new Command("Back", Command.BACK, 0);
+			form.append(new javax.microedition.lcdui.Gauge("Gauge", true, 100,
+					50));
+			final Command backToKuixCommand = new Command("Back", Command.BACK,
+					0);
 			form.addCommand(backToKuixCommand);
 			form.setCommandListener(new CommandListener() {
 
-				/* (non-Javadoc)
-				 * @see javax.microedition.lcdui.CommandListener#commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable)
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see
+				 * javax.microedition.lcdui.CommandListener#commandAction(javax
+				 * .microedition.lcdui.Command,
+				 * javax.microedition.lcdui.Displayable)
 				 */
 				public void commandAction(Command c, Displayable d) {
 					if (c == backToKuixCommand) {
-						KuixDemo.getDefault().getDisplay().setCurrent(Kuix.getCanvas());
+						KuixDemo.getDefault().getDisplay().setCurrent(
+								Kuix.getCanvas());
 					}
 				}
-				
+
 			});
 			KuixDemo.getDefault().getDisplay().setCurrent(form);
 			return false;
@@ -152,7 +149,9 @@ public class KuixDemoMainFrame implements Frame {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.frame.Frame#onAdded()
 	 */
 	public void onAdded() {
@@ -160,7 +159,9 @@ public class KuixDemoMainFrame implements Frame {
 		Kuix.splash(2000, splash, "showMainScreen");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.frame.Frame#onRemoved()
 	 */
 	public void onRemoved() {

@@ -53,19 +53,19 @@ import org.kalmeo.util.worker.WorkerTask;
  * @author bbeaulant
  */
 public class PopupBox extends ActionWidget {
-	
+
 	/**
 	 * This class represents a popupBox menuItem
 	 */
 	public class PopupBoxMenuItem extends MenuItem {
 
 		private LayoutData layoutData;
-		
+
 		private boolean first;
-		
+
 		/**
 		 * Construct a {@link ScreenMenu}
-		 *
+		 * 
 		 * @param tag
 		 * @param layoutData
 		 * @param internal
@@ -74,8 +74,10 @@ public class PopupBox extends ActionWidget {
 			super(tag);
 			this.first = first;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getInheritedTag()
 		 */
 		public String getInheritedTag() {
@@ -87,24 +89,32 @@ public class PopupBox extends ActionWidget {
 			}
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 		 */
 		public LayoutData getLayoutData() {
 			if (layoutData == null) {
-				Alignment alignment = Kuix.firstIsLeft && first || !Kuix.firstIsLeft && !first ? Alignment.LEFT : Alignment.RIGHT;
+				Alignment alignment = Kuix.firstIsLeft && first
+						|| !Kuix.firstIsLeft && !first ? Alignment.LEFT
+						: Alignment.RIGHT;
 				LayoutData superLayoutData = super.getLayoutData();
 				if (superLayoutData instanceof StaticLayoutData) {
 					StaticLayoutData staticLayoutData = (StaticLayoutData) superLayoutData;
-					layoutData = new StaticLayoutData(Alignment.combine(staticLayoutData.alignment, alignment), staticLayoutData.width, staticLayoutData.height);
+					layoutData = new StaticLayoutData(Alignment.combine(
+							staticLayoutData.alignment, alignment),
+							staticLayoutData.width, staticLayoutData.height);
 				} else {
 					layoutData = new StaticLayoutData(alignment);
 				}
 			}
 			return layoutData;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#clearCachedStyle(boolean)
 		 */
 		public void clearCachedStyle(boolean propagateToChildren) {
@@ -112,14 +122,18 @@ public class PopupBox extends ActionWidget {
 			super.clearCachedStyle(propagateToChildren);
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.AbstractFocusableWidget#isFocusable()
 		 */
 		public boolean isFocusable() {
 			return false;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.MenuItem#processActionEvent()
 		 */
 		public boolean processActionEvent() {
@@ -127,15 +141,16 @@ public class PopupBox extends ActionWidget {
 			PopupBox.this.remove();
 			return superProcess;
 		}
-		
+
 	}
-	
+
 	// Defaults
-	private static final LayoutData DEFAULT_CONTENT_CONTAINER_LAYOUT_DATA = new StaticLayoutData(Alignment.CENTER);
+	private static final LayoutData DEFAULT_CONTENT_CONTAINER_LAYOUT_DATA = new StaticLayoutData(
+			Alignment.CENTER);
 
 	// The duration of presence of this popup (in ms)
 	private int duration = -1;
-	
+
 	// FocusManager
 	private final FocusManager focusManager;
 
@@ -146,30 +161,34 @@ public class PopupBox extends ActionWidget {
 
 	// Used to determine if this screen call its cleanUp method when removed from its parent
 	public boolean cleanUpWhenRemoved = false;
-	
+
 	// Used to determine if topBar and bottomBar are displayed on top of the screen content
 	public boolean barsOnTop = false;
-	
+
 	// MenuItems
 	private PopupBoxMenuItem firstMenuItem;
 	private PopupBoxMenuItem secondMenuItem;
-	
+
 	/**
 	 * Construct a {@link PopupBox}
 	 */
 	public PopupBox() {
 		super(KuixConstants.POPUP_BOX_WIDGET_TAG);
-		
+
 		container = new Widget() {
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 			 */
 			public Layout getLayout() {
 				return StaticLayout.instance;
 			}
 
-			/* (non-Javadoc)
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 			 */
 			public LayoutData getLayoutData() {
@@ -178,60 +197,73 @@ public class PopupBox extends ActionWidget {
 				}
 				return BorderLayoutData.instanceCenter;
 			}
-			
+
 		};
 		super.add(container);
-		
+
 		contentContainer = new Widget() {
-			
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.widget.Widget#getStylePropertyValue(java.lang.String, boolean)
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.widget.Widget#getStylePropertyValue(java.lang
+			 * .String, boolean)
 			 */
-			protected Object getStylePropertyValue(String name, boolean inherited) {
+			protected Object getStylePropertyValue(String name,
+					boolean inherited) {
 				return PopupBox.this.getStylePropertyValue(name, inherited);
 			}
 
 		};
 		container.add(contentContainer);
-		
+
 		// Init focusManagers
 		focusManager = new FocusManager(this, false) {
-			
-			/* (non-Javadoc)
-			 * @see org.kalmeo.kuix.core.focus.FocusManager#processKeyEvent(byte, int)
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.kalmeo.kuix.core.focus.FocusManager#processKeyEvent(byte,
+			 * int)
 			 */
 			public boolean processKeyEvent(byte type, int kuixKeyCode) {
 				if (!super.processKeyEvent(type, kuixKeyCode)) {
-					
+
 					// Default event process
 					switch (type) {
-						
-						case KuixConstants.KEY_PRESSED_EVENT_TYPE:
-						case KuixConstants.KEY_REPEATED_EVENT_TYPE: {
-							
-							if (kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_LEFT || kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_RIGHT) {
-								MenuItem menuItem = getPopupBoxMenuItem(kuixKeyCode);
-								if (menuItem != null) {
-									menuItem.processActionEvent();
-								}
-								return true;
+
+					case KuixConstants.KEY_PRESSED_EVENT_TYPE:
+					case KuixConstants.KEY_REPEATED_EVENT_TYPE: {
+
+						if (kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_LEFT
+								|| kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_RIGHT) {
+							MenuItem menuItem = getPopupBoxMenuItem(kuixKeyCode);
+							if (menuItem != null) {
+								menuItem.processActionEvent();
 							}
-							break;
-							
+							return true;
 						}
+						break;
 
 					}
-					
+
+					}
+
 				}
-				return true;	
+				return true;
 			}
 
 		};
-		
+
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
 	 */
 	public Widget getInternalChildInstance(String tag) {
 		if (KuixConstants.POPUP_BOX_BOTTOM_BAR_WIDGET_TAG.equals(tag)) {
@@ -246,8 +278,11 @@ public class PopupBox extends ActionWidget {
 		return super.getInternalChildInstance(tag);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.FOCUS_LOOP_ATTRIBUTE.equals(name)) {
@@ -264,7 +299,7 @@ public class PopupBox extends ActionWidget {
 		}
 		return super.setAttribute(name, value);
 	}
-	
+
 	/**
 	 * @return the cleanUpWhenRemoved
 	 */
@@ -273,7 +308,8 @@ public class PopupBox extends ActionWidget {
 	}
 
 	/**
-	 * @param cleanUpWhenRemoved the cleanUpWhenRemoved to set
+	 * @param cleanUpWhenRemoved
+	 *            the cleanUpWhenRemoved to set
 	 */
 	public void setCleanUpWhenRemoved(boolean cleanUpWhenRemoved) {
 		this.cleanUpWhenRemoved = cleanUpWhenRemoved;
@@ -287,7 +323,8 @@ public class PopupBox extends ActionWidget {
 	}
 
 	/**
-	 * @param barsOnTop the barsOnTop to set
+	 * @param barsOnTop
+	 *            the barsOnTop to set
 	 */
 	public void setBarsOnTop(boolean barsOnTop) {
 		this.barsOnTop = barsOnTop;
@@ -301,11 +338,14 @@ public class PopupBox extends ActionWidget {
 	 */
 	public Widget getBottomBar() {
 		if (bottomBar == null) {
-			bottomBar = new Widget(KuixConstants.POPUP_BOX_BOTTOM_BAR_WIDGET_TAG) {
-				
+			bottomBar = new Widget(
+					KuixConstants.POPUP_BOX_BOTTOM_BAR_WIDGET_TAG) {
+
 				private StaticLayoutData staticLayoutData;
-				
-				/* (non-Javadoc)
+
+				/*
+				 * (non-Javadoc)
+				 * 
 				 * @see org.kalmeo.kuix.widget.Widget#getInheritedTag()
 				 */
 				public String getInheritedTag() {
@@ -313,49 +353,62 @@ public class PopupBox extends ActionWidget {
 					return KuixConstants.SCREEN_BOTTOM_BAR_WIDGET_TAG;
 				}
 
-				/* (non-Javadoc)
+				/*
+				 * (non-Javadoc)
+				 * 
 				 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 				 */
 				public Layout getLayout() {
 					return StaticLayout.instance;
 				}
-	
-				/* (non-Javadoc)
+
+				/*
+				 * (non-Javadoc)
+				 * 
 				 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 				 */
 				public LayoutData getLayoutData() {
 					if (barsOnTop) {
 						if (staticLayoutData == null) {
-							staticLayoutData = new StaticLayoutData(Alignment.BOTTOM_LEFT, MathFP.ONE, -1);
+							staticLayoutData = new StaticLayoutData(
+									Alignment.BOTTOM_LEFT, MathFP.ONE, -1);
 						}
 						return staticLayoutData;
 					} else {
 						return BorderLayoutData.instanceSouth;
 					}
 				}
-				
+
 			};
 			super.add(bottomBar);
 		}
 		return bottomBar;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getFocusManager()
 	 */
 	public FocusManager getFocusManager() {
 		return focusManager;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.AbstractFocusableWidget#isFocusable()
 	 */
 	public boolean isFocusable() {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getDefaultStylePropertyValue(java.lang.
+	 * String)
 	 */
 	protected Object getDefaultStylePropertyValue(String name) {
 		if (KuixConstants.LAYOUT_STYLE_PROPERTY.equals(name)) {
@@ -365,43 +418,55 @@ public class PopupBox extends ActionWidget {
 		}
 		return super.getDefaultStylePropertyValue(name);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getMargin()
 	 */
 	public Insets getMargin() {
 		return Widget.DEFAULT_MARGIN;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getBorder()
 	 */
 	public Insets getBorder() {
 		return Widget.DEFAULT_BORDER;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getPadding()
 	 */
 	public Insets getPadding() {
 		return Widget.DEFAULT_PADDING;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getAlign()
 	 */
 	public Alignment getAlign() {
 		return Widget.DEFAULT_ALIGN;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getGap()
 	 */
 	public Gap getGap() {
 		return Widget.DEFAULT_GAP;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayout()
 	 */
 	public Layout getLayout() {
@@ -411,29 +476,36 @@ public class PopupBox extends ActionWidget {
 		return BorderLayout.instance;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 	 */
 	public LayoutData getLayoutData() {
 		return StaticLayoutData.instanceFull;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getBackgroundColor()
 	 */
 	public Color getBackgroundColor() {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getBackgroundImage()
 	 */
 	public Image[] getBackgroundImage() {
 		return null;
 	}
-	
+
 	/**
-	 * @param duration the duration to set
+	 * @param duration
+	 *            the duration to set
 	 */
 	public void setDuration(int duration) {
 		this.duration = duration;
@@ -443,7 +515,8 @@ public class PopupBox extends ActionWidget {
 	 * Define the content of the {@link PopupBox}. The content object could be s
 	 * straing or a {@link Widget}.
 	 * 
-	 * @param content the string or widget to add as content
+	 * @param content
+	 *            the string or widget to add as content
 	 */
 	public void setContent(Object content) {
 		contentContainer.removeAll();
@@ -453,28 +526,33 @@ public class PopupBox extends ActionWidget {
 			contentContainer.add((Widget) content);
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#doLayout()
 	 */
 	protected void doLayout() {
 		super.doLayout();
-		
+
 		// Check if current focused widget is visible (special for popupBox because it has its own focusManager)
 		Widget focusedWidget = focusManager.getFocusedWidget();
-		if (focusedWidget == null || focusedWidget != null && !focusedWidget.isVisible()) {
+		if (focusedWidget == null || focusedWidget != null
+				&& !focusedWidget.isVisible()) {
 			focusManager.requestFirstFocus();
 		}
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)
 	 */
 	public Widget add(Widget widget) {
 		return contentContainer.add(widget);
 	}
-	
+
 	/**
 	 * Returns the {@link ScreenMenu} that correspond to the given
 	 * <code>kuixKeyCode</code>.
@@ -484,7 +562,9 @@ public class PopupBox extends ActionWidget {
 	 *         <code>kuixKeyCode</code>
 	 */
 	public MenuItem getPopupBoxMenuItem(int kuixKeyCode) {
-		if (Kuix.firstIsLeft && kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_LEFT || !Kuix.firstIsLeft && kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_RIGHT) {
+		if (Kuix.firstIsLeft && kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_LEFT
+				|| !Kuix.firstIsLeft
+				&& kuixKeyCode == KuixConstants.KUIX_KEY_SOFT_RIGHT) {
 			if (firstMenuItem != null && firstMenuItem.isVisible()) {
 				return firstMenuItem;
 			}
@@ -495,7 +575,7 @@ public class PopupBox extends ActionWidget {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Create the firstMenuItem instance if it doesn't exist and return it.
 	 * 
@@ -503,12 +583,13 @@ public class PopupBox extends ActionWidget {
 	 */
 	public MenuItem getFirstMenuItem() {
 		if (firstMenuItem == null) {
-			firstMenuItem = new PopupBoxMenuItem(KuixConstants.POPUP_BOX_FIRST_MENU_ITEM_WIDGET_TAG, true);
+			firstMenuItem = new PopupBoxMenuItem(
+					KuixConstants.POPUP_BOX_FIRST_MENU_ITEM_WIDGET_TAG, true);
 			getBottomBar().add(firstMenuItem);
 		}
 		return firstMenuItem;
 	}
-	
+
 	/**
 	 * Create the secondMenuItem instance if it doesn't exist and return it.
 	 * 
@@ -516,22 +597,27 @@ public class PopupBox extends ActionWidget {
 	 */
 	public MenuItem getSecondMenuItem() {
 		if (secondMenuItem == null) {
-			secondMenuItem = new PopupBoxMenuItem(KuixConstants.POPUP_BOX_SECOND_MENU_ITEM_WIDGET_TAG, false);
+			secondMenuItem = new PopupBoxMenuItem(
+					KuixConstants.POPUP_BOX_SECOND_MENU_ITEM_WIDGET_TAG, false);
 			getBottomBar().add(secondMenuItem);
 		}
 		return secondMenuItem;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#onAdded(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onAdded(Widget parent) {
 		if (duration != -1) {
 			Worker.instance.pushTask(new WorkerTask() {
-				
+
 				private long startTime = System.currentTimeMillis();
-				
-				/* (non-Javadoc)
+
+				/*
+				 * (non-Javadoc)
+				 * 
 				 * @see org.kalmeo.kuix.core.worker.WorkerTask#execute()
 				 */
 				public boolean run() {
@@ -541,13 +627,16 @@ public class PopupBox extends ActionWidget {
 					}
 					return false;
 				}
-				
+
 			});
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
 	 */
 	protected void onRemoved(Widget parent) {
 		if (cleanUpWhenRemoved) {
@@ -556,5 +645,5 @@ public class PopupBox extends ActionWidget {
 		processActionEvent();
 		Kuix.getCanvas().repaintNextFrame();
 	}
-	
+
 }

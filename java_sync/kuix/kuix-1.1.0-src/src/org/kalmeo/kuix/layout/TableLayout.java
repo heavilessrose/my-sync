@@ -38,7 +38,7 @@ public class TableLayout implements Layout {
 
 	// Static instance of a TableLayout
 	public static final TableLayout instance = new TableLayout();
-	
+
 	/**
 	 * Construct a {@link TableLayout}
 	 */
@@ -46,20 +46,28 @@ public class TableLayout implements Layout {
 		// Constructor is private because only the static instance could be use
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.layout.Layout#computePreferredSize(org.kalmeo.kuix.widget.Widget, int, org.kalmeo.kuix.util.Metrics)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.layout.Layout#computePreferredSize(org.kalmeo.kuix.widget
+	 * .Widget, int, org.kalmeo.kuix.util.Metrics)
 	 */
-	public void measurePreferredSize(Widget target, int preferredWidth, Metrics metrics) {
+	public void measurePreferredSize(Widget target, int preferredWidth,
+			Metrics metrics) {
 		measure(target, false, preferredWidth, metrics);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.layout.Layout#doLayout(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.layout.Layout#doLayout(org.kalmeo.kuix.widget.Widget)
 	 */
 	public void doLayout(Widget target) {
 		measure(target, true, target.getWidth(), null);
 	}
-	
+
 	/**
 	 * Measure <code>target</code> children layout
 	 * 
@@ -68,13 +76,14 @@ public class TableLayout implements Layout {
 	 * @param preferredWidth
 	 * @param metrics
 	 */
-	private void measure(Widget target, boolean layout, int preferredWidth, Metrics metrics) {
-		
+	private void measure(Widget target, boolean layout, int preferredWidth,
+			Metrics metrics) {
+
 		Alignment targetAlignment = target.getAlign();
 		Insets insets = target.getInsets();
 		Metrics minSize = target.getMinSize();
 		Gap gap = target.getGap();
-		
+
 		int width = preferredWidth - insets.left - insets.right;
 		int height = target.getHeight() - insets.top - insets.bottom;
 		int[] colHeights = null;
@@ -128,7 +137,8 @@ public class TableLayout implements Layout {
 					colHeights = new int[ncol];
 				} else if (colHeights.length < ncol) {
 					int[] newheights = new int[ncol];
-					System.arraycopy(colHeights, 0, newheights, 0, colHeights.length);
+					System.arraycopy(colHeights, 0, newheights, 0,
+							colHeights.length);
 					colHeights = newheights;
 				}
 				for (int j = 0; j < colspan; j++) {
@@ -137,7 +147,7 @@ public class TableLayout implements Layout {
 			}
 
 			col += colspan;
-			
+
 		}
 
 		// Compute weights for each col an row
@@ -145,23 +155,27 @@ public class TableLayout implements Layout {
 		int[] rowWeights = new int[nrow];
 		align(first, colWeights, null, true, 0);
 		align(first, rowWeights, null, false, 0);
-		
+
 		// Compute sizes for each col an row
 		int[] colWidths = new int[ncol];
 		int[] rowHeights = new int[nrow];
-		align(first, colWidths, colWeights, true, width - gap.horizontalGap * (ncol - 1));
-		align(first, rowHeights, rowWeights, false, height - gap.verticalGap * (nrow - 1));
+		align(first, colWidths, colWeights, true, width - gap.horizontalGap
+				* (ncol - 1));
+		align(first, rowHeights, rowWeights, false, height - gap.verticalGap
+				* (nrow - 1));
 
 		// Compute content size
 		int contentWidth = sum(colWidths, 0, ncol, gap.horizontalGap);
 		int contentHeight = sum(rowHeights, 0, nrow, gap.verticalGap);
-		
+
 		if (!layout) {
-			metrics.width = insets.left + Math.max(minSize.width, contentWidth) + insets.right;
-			metrics.height = insets.top + Math.max(minSize.height, contentHeight) + insets.bottom;
+			metrics.width = insets.left + Math.max(minSize.width, contentWidth)
+					+ insets.right;
+			metrics.height = insets.top
+					+ Math.max(minSize.height, contentHeight) + insets.bottom;
 			return;
 		}
-		
+
 		// Compute the content box origine
 		int contentX = 0;
 		int contentY = 0;
@@ -176,23 +190,30 @@ public class TableLayout implements Layout {
 		for (Metrics widgetMetrics = first; widgetMetrics != null; widgetMetrics = widgetMetrics.next) {
 			Widget widget = widgetMetrics.widget;
 			Span widgetSpan = widget.getSpan();
-			int x = contentX + sum(colWidths, 0, widgetMetrics.x, gap.horizontalGap) + ((widgetMetrics.x > 0) ? gap.horizontalGap : 0);
-			int y = contentY + sum(rowHeights, 0, widgetMetrics.y, gap.verticalGap) + ((widgetMetrics.y > 0) ? gap.verticalGap : 0);
-			int widgetWidth = sum(colWidths, widgetMetrics.x, widgetSpan.colspan, gap.horizontalGap);
-			int widgetHeight = sum(rowHeights, widgetMetrics.y, widgetSpan.rowspan, gap.verticalGap);
+			int x = contentX
+					+ sum(colWidths, 0, widgetMetrics.x, gap.horizontalGap)
+					+ ((widgetMetrics.x > 0) ? gap.horizontalGap : 0);
+			int y = contentY
+					+ sum(rowHeights, 0, widgetMetrics.y, gap.verticalGap)
+					+ ((widgetMetrics.y > 0) ? gap.verticalGap : 0);
+			int widgetWidth = sum(colWidths, widgetMetrics.x,
+					widgetSpan.colspan, gap.horizontalGap);
+			int widgetHeight = sum(rowHeights, widgetMetrics.y,
+					widgetSpan.rowspan, gap.verticalGap);
 			height = widgetMetrics.height;
 			widget.setBounds(x, y, widgetWidth, widgetHeight);
 		}
 
 	}
 
-	private static final void align(Metrics first, int[] values, int[] weights, boolean horizontal, int fullSize) {
+	private static final void align(Metrics first, int[] values, int[] weights,
+			boolean horizontal, int fullSize) {
 		for (int size = 1, next = 0; size != 0; size = next, next = 0) {
 			for (Metrics metrics = first; metrics != null; metrics = metrics.next) {
 				Span span = metrics.widget.getSpan();
 				int orientedSpan = horizontal ? span.colspan : span.rowspan;
 				if (orientedSpan == size) {
-					
+
 					int value;
 					if (weights != null) {
 						value = horizontal ? metrics.width : metrics.height;
@@ -200,14 +221,16 @@ public class TableLayout implements Layout {
 						Weight weight = metrics.widget.getWeight();
 						value = horizontal ? weight.weightx : weight.weighty;
 					}
-					
+
 					int index = horizontal ? metrics.x : metrics.y;
 					if (weights != null && weights[index] != 0) {
-						value = MathFP.toInt(MathFP.mul(weights[index], MathFP.toFP(fullSize)));
+						value = MathFP.toInt(MathFP.mul(weights[index], MathFP
+								.toFP(fullSize)));
 					}
 					values[index] = Math.max(values[index], value);
-					
-				} else if ((orientedSpan > size) && ((next == 0) || (next > orientedSpan))) {
+
+				} else if ((orientedSpan > size)
+						&& ((next == 0) || (next > orientedSpan))) {
 					next = orientedSpan;
 				}
 			}
@@ -224,5 +247,5 @@ public class TableLayout implements Layout {
 		}
 		return sum;
 	}
-	
+
 }

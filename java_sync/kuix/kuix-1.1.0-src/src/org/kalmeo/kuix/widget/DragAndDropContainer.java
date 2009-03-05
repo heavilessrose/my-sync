@@ -41,17 +41,19 @@ public class DragAndDropContainer extends Widget {
 		super(KuixConstants.DRAG_AND_DROP_CONTAINER_WIDGET_TAG);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#processPointerEvent(byte, int, int)
 	 */
 	public boolean processPointerEvent(byte type, int x, int y) {
-		
+
 		if (type == KuixConstants.POINTER_DRAGGED_EVENT_TYPE) {
 			getDesktop().setDraggedWidget(getChild(), x, y);
 			markAsValidate();
 			return true;
 		}
-		
+
 		if (type == KuixConstants.POINTER_DROPPED_EVENT_TYPE) {
 			Widget draggedWidget = getDesktop().removeDraggedWidget(false);
 			if (draggedWidget != null) {
@@ -59,7 +61,7 @@ public class DragAndDropContainer extends Widget {
 			}
 			return true;
 		}
-		
+
 		return false;
 	}
 

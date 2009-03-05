@@ -34,8 +34,7 @@ public class Insets {
 	public int right;
 
 	/**
-	 * Creates and initializes a new <code>Insets</code> object with null
-	 * values
+	 * Creates and initializes a new <code>Insets</code> object with null values
 	 */
 	public Insets() {
 		this(0, 0, 0, 0);
@@ -45,10 +44,14 @@ public class Insets {
 	 * Creates and initializes a new <code>Insets</code> object with the
 	 * specified top, left, bottom, and right insets.
 	 * 
-	 * @param top the inset from the top.
-	 * @param right the inset from the right.
-	 * @param bottom the inset from the bottom.
-	 * @param left the inset from the left.
+	 * @param top
+	 *            the inset from the top.
+	 * @param right
+	 *            the inset from the right.
+	 * @param bottom
+	 *            the inset from the bottom.
+	 * @param left
+	 *            the inset from the left.
 	 */
 	public Insets(int top, int right, int bottom, int left) {
 		this.top = top;

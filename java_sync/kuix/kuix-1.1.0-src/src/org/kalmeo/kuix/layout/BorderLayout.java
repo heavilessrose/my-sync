@@ -33,28 +33,36 @@ public class BorderLayout implements Layout {
 
 	// Static instance of a BorderLayout
 	public static final BorderLayout instance = new BorderLayout();
-	
+
 	/**
 	 * Construct a {@link BorderLayout}
 	 */
 	private BorderLayout() {
 		// Constructor is private because only the static instance could be use
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.layout.Layout#computePreferredSize(org.kalmeo.kuix.widget.Widget, int, org.kalmeo.kuix.util.Metrics)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.layout.Layout#computePreferredSize(org.kalmeo.kuix.widget
+	 * .Widget, int, org.kalmeo.kuix.util.Metrics)
 	 */
-	public void measurePreferredSize(Widget target, int preferredWidth, Metrics metrics) {
+	public void measurePreferredSize(Widget target, int preferredWidth,
+			Metrics metrics) {
 		measure(target, false, preferredWidth, metrics);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.layout.Layout#doLayout(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.layout.Layout#doLayout(org.kalmeo.kuix.widget.Widget)
 	 */
 	public void doLayout(Widget target) {
 		measure(target, true, target.getWidth(), null);
 	}
-	
+
 	/**
 	 * Measure <code>target</code> children layout
 	 * 
@@ -63,8 +71,9 @@ public class BorderLayout implements Layout {
 	 * @param preferredWidth
 	 * @param metrics
 	 */
-	private void measure(Widget target, boolean layout, int preferredWidth, Metrics metrics) {
-		
+	private void measure(Widget target, boolean layout, int preferredWidth,
+			Metrics metrics) {
+
 		Insets insets = target.getInsets();
 		Metrics minSize = target.getMinSize();
 		Gap gap = target.getGap();
@@ -76,7 +85,7 @@ public class BorderLayout implements Layout {
 		int bottom = 0;
 		int centerHeight = 0;
 		int centerWidth = 0;
-		
+
 		// Order widgets 
 		Widget northWidget = null;
 		Widget westWidget = null;
@@ -84,137 +93,139 @@ public class BorderLayout implements Layout {
 		Widget southWidget = null;
 		Widget centerWidget = null;
 		for (Widget widget = target.getChild(); widget != null; widget = widget.next) {
-			
+
 			if (!widget.isIndividualyVisible()) {
 				continue;
 			}
-			
+
 			LayoutData layoutData = widget.getLayoutData();
 			if (layoutData instanceof BorderLayoutData) {
 				byte position = ((BorderLayoutData) layoutData).position;
 				switch (position) {
-					
-					case BorderLayoutData.NORTH:
-						northWidget = widget;
-						break;
-						
-					case BorderLayoutData.WEST:
-						westWidget = widget;
-						break;
-						
-					case BorderLayoutData.EAST:
-						eastWidget = widget;
-						break;
-						
-					case BorderLayoutData.SOUTH:
-						southWidget = widget;
-						break;
-						
-					default:
-						centerWidget = widget;
-						break;
-						
+
+				case BorderLayoutData.NORTH:
+					northWidget = widget;
+					break;
+
+				case BorderLayoutData.WEST:
+					westWidget = widget;
+					break;
+
+				case BorderLayoutData.EAST:
+					eastWidget = widget;
+					break;
+
+				case BorderLayoutData.SOUTH:
+					southWidget = widget;
+					break;
+
+				default:
+					centerWidget = widget;
+					break;
+
 				}
 			} else if (centerWidget == null) {
 				centerWidget = widget;
 			}
-			
+
 		}
 
-		
 		// Compute gaps values
-		int verticalTopGap = (northWidget != null && (westWidget != null || centerWidget != null || eastWidget != null || southWidget != null)) ? gap.verticalGap : 0;
-		int verticalBottompGap = (southWidget != null && (westWidget != null || centerWidget != null || eastWidget != null)) ? gap.verticalGap : 0;
-		int horizontalLeftGap = (westWidget != null && (centerWidget != null || eastWidget != null)) ? gap.horizontalGap : 0;
-		int horizontalRightGap = (eastWidget != null && (centerWidget != null || westWidget != null)) ? gap.horizontalGap : 0;
-		
+		int verticalTopGap = (northWidget != null && (westWidget != null
+				|| centerWidget != null || eastWidget != null || southWidget != null)) ? gap.verticalGap
+				: 0;
+		int verticalBottompGap = (southWidget != null && (westWidget != null
+				|| centerWidget != null || eastWidget != null)) ? gap.verticalGap
+				: 0;
+		int horizontalLeftGap = (westWidget != null && (centerWidget != null || eastWidget != null)) ? gap.horizontalGap
+				: 0;
+		int horizontalRightGap = (eastWidget != null && (centerWidget != null || westWidget != null)) ? gap.horizontalGap
+				: 0;
+
 		int horizontalGap = horizontalLeftGap + horizontalRightGap;
 		int verticalGap = verticalTopGap + verticalBottompGap;
-		
+
 		// North
 		if (northWidget != null) {
 			Metrics preferredSize = northWidget.getPreferredSize(width);
 			centerWidth = preferredSize.width;
 			top = preferredSize.height;
 		}
-		
+
 		// West
 		if (westWidget != null) {
-			Metrics preferredSize = westWidget.getPreferredSize(width - horizontalGap);
+			Metrics preferredSize = westWidget.getPreferredSize(width
+					- horizontalGap);
 			left = preferredSize.width;
 			centerHeight = preferredSize.height;
 		}
-		
+
 		// East
 		if (eastWidget != null) {
-			Metrics preferredSize = eastWidget.getPreferredSize(width - left - horizontalGap);
+			Metrics preferredSize = eastWidget.getPreferredSize(width - left
+					- horizontalGap);
 			right = preferredSize.width;
 			centerHeight = Math.max(centerHeight, preferredSize.height);
 		}
-		
+
 		// South
 		if (southWidget != null) {
 			Metrics preferredSize = southWidget.getPreferredSize(width);
 			centerWidth = Math.max(centerWidth, preferredSize.width);
 			bottom = preferredSize.height;
 		}
-		
+
 		// Center
 		if (centerWidget != null) {
-			Metrics preferredSize = centerWidget.getPreferredSize(width - left - right - horizontalGap);
+			Metrics preferredSize = centerWidget.getPreferredSize(width - left
+					- right - horizontalGap);
 			centerWidth = Math.max(centerWidth, preferredSize.width);
 			centerHeight = Math.max(centerHeight, preferredSize.height);
 		}
-		
+
 		if (!layout) {
-			metrics.width = insets.left + Math.max(minSize.width, left + centerWidth + right + horizontalGap) + insets.right;
-			metrics.height = insets.top + Math.max(minSize.height, top + centerHeight + bottom + verticalGap) + insets.bottom;
+			metrics.width = insets.left
+					+ Math.max(minSize.width, left + centerWidth + right
+							+ horizontalGap) + insets.right;
+			metrics.height = insets.top
+					+ Math.max(minSize.height, top + centerHeight + bottom
+							+ verticalGap) + insets.bottom;
 			return;
 		}
-			
+
 		centerWidth = width - left - right - horizontalGap;
 		centerHeight = height - top - bottom - verticalGap;
-		
+
 		// Center
 		if (centerWidget != null) {
-			centerWidget.setBounds(	insets.left + left + horizontalLeftGap, 
-									insets.top + top + verticalTopGap, 
-									centerWidth, 
-									centerHeight);
+			centerWidget.setBounds(insets.left + left + horizontalLeftGap,
+					insets.top + top + verticalTopGap, centerWidth,
+					centerHeight);
 		}
-		
+
 		// North
 		if (northWidget != null) {
-			northWidget.setBounds(	insets.left, 
-									insets.top, 
-									width, 
-									top);
+			northWidget.setBounds(insets.left, insets.top, width, top);
 		}
-		
+
 		// West
 		if (westWidget != null) {
-			westWidget.setBounds(	insets.left, 
-									insets.top + top + verticalTopGap, 
-									left, 
-									centerHeight);
+			westWidget.setBounds(insets.left,
+					insets.top + top + verticalTopGap, left, centerHeight);
 		}
-		
+
 		// East
 		if (eastWidget != null) {
-			eastWidget.setBounds(	insets.left + width - right, 
-									insets.top + top + verticalTopGap, 
-									right, 
-									centerHeight);
+			eastWidget.setBounds(insets.left + width - right, insets.top + top
+					+ verticalTopGap, right, centerHeight);
 		}
-		
+
 		// South
 		if (southWidget != null) {
-			southWidget.setBounds(	insets.left, 
-									insets.top + height - bottom, 
-									width, 
-									bottom);
+			southWidget.setBounds(insets.left, insets.top + height - bottom,
+					width, bottom);
 		}
-			
+
 	}
-	
+
 }

@@ -38,7 +38,7 @@ import org.kalmeo.kuix.util.Metrics;
  * @author bbeaulant
  */
 public class Menu extends MenuItem {
-	
+
 	/**
 	 * This class represents a menu popup
 	 */
@@ -46,69 +46,79 @@ public class Menu extends MenuItem {
 
 		// The associated FocusManager
 		private final FocusManager focusManager;
-		
+
 		// Instance of MenuPopup StaticLayoutData
-		private final StaticLayoutData layoutData = new StaticLayoutData(null, -1, -1);
-		
+		private final StaticLayoutData layoutData = new StaticLayoutData(null,
+				-1, -1);
+
 		/**
 		 * Construct a {@link MenuPopup}
 		 */
 		public MenuPopup() {
 			super(KuixConstants.MENU_POPUP_WIDGET_TAG);
-			
+
 			// Create the associated focusManager
 			focusManager = new FocusManager(this, true) {
 
-				/* (non-Javadoc)
-				 * @see org.kalmeo.kuix.core.focus.FocusManager#processKeyEvent(byte, int)
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see
+				 * org.kalmeo.kuix.core.focus.FocusManager#processKeyEvent(byte,
+				 * int)
 				 */
 				public boolean processKeyEvent(byte type, int kuixKeyCode) {
 					switch (type) {
 
-						case KuixConstants.KEY_PRESSED_EVENT_TYPE:
-						case KuixConstants.KEY_REPEATED_EVENT_TYPE: {
+					case KuixConstants.KEY_PRESSED_EVENT_TYPE:
+					case KuixConstants.KEY_REPEATED_EVENT_TYPE: {
 
-							switch (kuixKeyCode) {
-								
-								case KuixConstants.KUIX_KEY_BACK:
-								case KuixConstants.KUIX_KEY_LEFT:
-									hideMenuPopup();
-									return true;
+						switch (kuixKeyCode) {
 
-								case KuixConstants.KUIX_KEY_RIGHT:
-									Widget widget;
-									// Search forward first
-									for (widget = focusedWidget; widget != null; widget = widget.next) {
-										if (widget instanceof Menu) {
-											requestFocus(widget);
-											((Menu) widget).processActionEvent();
-											break;
-										}
-									}
-									// Search backward
-									for (widget = focusedWidget; widget != null; widget = widget.previous) {
-										if (widget instanceof Menu) {
-											requestFocus(widget);
-											((Menu) widget).processActionEvent();
-											break;
-										}
-									}
-									return true;
+						case KuixConstants.KUIX_KEY_BACK:
+						case KuixConstants.KUIX_KEY_LEFT:
+							hideMenuPopup();
+							return true;
 
+						case KuixConstants.KUIX_KEY_RIGHT:
+							Widget widget;
+							// Search forward first
+							for (widget = focusedWidget; widget != null; widget = widget.next) {
+								if (widget instanceof Menu) {
+									requestFocus(widget);
+									((Menu) widget).processActionEvent();
+									break;
+								}
 							}
+							// Search backward
+							for (widget = focusedWidget; widget != null; widget = widget.previous) {
+								if (widget instanceof Menu) {
+									requestFocus(widget);
+									((Menu) widget).processActionEvent();
+									break;
+								}
+							}
+							return true;
+
 						}
+					}
 					}
 					if (!super.processKeyEvent(type, kuixKeyCode)) {
 						return processSoftKeyEvent(type, kuixKeyCode);
 					}
 					return true;
 				}
-				
-				/* (non-Javadoc)
-				 * @see org.kalmeo.kuix.core.focus.FocusManager#processPointerEvent(byte, int, int)
+
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see
+				 * org.kalmeo.kuix.core.focus.FocusManager#processPointerEvent
+				 * (byte, int, int)
 				 */
 				public boolean processPointerEvent(byte type, int x, int y) {
-					boolean superProcess = super.processPointerEvent(type, x, y);
+					boolean superProcess = super
+							.processPointerEvent(type, x, y);
 					if (type == KuixConstants.POINTER_RELEASED_EVENT_TYPE) {
 						if (!superProcess) {
 							hideMenuPopup();
@@ -116,24 +126,25 @@ public class Menu extends MenuItem {
 						}
 					}
 					return superProcess;
-				}	
-				
+				}
+
 				/**
 				 * Hide the associated {@link MenuPopup}
 				 */
 				private void hideMenuPopup() {
 					MenuPopup menuPopup = ((MenuPopup) rootWidget);
-					if (getMenu() != null && !(getMenu().parent instanceof MenuPopup)) {
+					if (getMenu() != null
+							&& !(getMenu().parent instanceof MenuPopup)) {
 						getMenu().hideMenuTree();
 					} else {
 						menuPopup.hide();
 					}
 				}
-				
+
 			};
-			
+
 		}
-		
+
 		/**
 		 * @return the associated {@link Menu}
 		 */
@@ -141,20 +152,24 @@ public class Menu extends MenuItem {
 			return Menu.this;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getFocusManager()
 		 */
 		public FocusManager getFocusManager() {
 			return focusManager;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.kuix.widget.Widget#getLayoutData()
 		 */
 		public LayoutData getLayoutData() {
 			return layoutData;
 		}
-		
+
 		/**
 		 * Display the {@link MenuPopup}
 		 * 
@@ -164,29 +179,29 @@ public class Menu extends MenuItem {
 		 */
 		public void show(Desktop desktop, int displayX, int displayY) {
 			if (desktop != null) {
-				
+
 				int desktopWidth = desktop.getWidth();
 				int desktopHeight = desktop.getHeight();
 				Metrics preferredSize = getPreferredSize(desktopWidth);
 				int width = preferredSize.width;
 				int height = Math.min(preferredSize.height, desktopHeight);
-				
+
 				int x = displayX;
 				int y = displayY;
-				
+
 				y -= height;
-				
+
 				if (x + width > desktopWidth) {
 					x = desktopWidth - width;
 				}
-				
+
 				layoutData.x = x;
 				layoutData.y = y;
-				
+
 				desktop.addPopup(this);
 			}
 		}
-		
+
 		/**
 		 * Hide this {@link MenuPopup}
 		 */
@@ -205,35 +220,40 @@ public class Menu extends MenuItem {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget)
+		 * @see
+		 * org.kalmeo.kuix.widget.Widget#onRemoved(org.kalmeo.kuix.widget.Widget
+		 * )
 		 */
 		protected void onRemoved(Widget parent) {
 			focusManager.reset();
 		}
-		
+
 	}
-	
+
 	// The associated menuPopup
 	protected MenuPopup popup;
-	
+
 	/**
 	 * Construct a {@link Menu}
 	 */
 	public Menu() {
 		this(KuixConstants.MENU_WIDGET_TAG);
 	}
-	
+
 	/**
 	 * Construct a {@link Menu}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public Menu(String tag) {
 		super(tag);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#getInternalChildInstance(java.lang.String)
 	 */
 	public Widget getInternalChildInstance(String tag) {
 		if (KuixConstants.MENU_POPUP_WIDGET_TAG.equals(tag)) {
@@ -283,7 +303,7 @@ public class Menu extends MenuItem {
 			popup.show(getDesktop(), displayX, displayY);
 		}
 	}
-	
+
 	/**
 	 * Close the menuPopup
 	 */
@@ -292,7 +312,7 @@ public class Menu extends MenuItem {
 			popup.hide();
 		}
 	}
-	
+
 	/**
 	 * Hide the menu tree
 	 */
@@ -308,10 +328,13 @@ public class Menu extends MenuItem {
 	 * Hide all visible menuPopups
 	 */
 	protected static void hideAllMenuPopups() {
-		Kuix.getCanvas().getDesktop().removeAllPopupFromTag(KuixConstants.MENU_POPUP_WIDGET_TAG);
+		Kuix.getCanvas().getDesktop().removeAllPopupFromTag(
+				KuixConstants.MENU_POPUP_WIDGET_TAG);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#cleanUp()
 	 */
 	public void cleanUp() {
@@ -322,7 +345,9 @@ public class Menu extends MenuItem {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#removeAll()
 	 */
 	public void removeAll() {
@@ -332,8 +357,10 @@ public class Menu extends MenuItem {
 			popup = null;
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.MenuItem#processActionEvent()
 	 */
 	public boolean processActionEvent() {

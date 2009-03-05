@@ -36,58 +36,56 @@ public class LinkedList {
 	 * This class represent a {@link LinkedList} enumeration.
 	 */
 	public class LinkedListEnumeration {
-		
+
 		// The LinkedListItem count of this enumeration
 		private int length = -1;
-		
+
 		// The current item
 		private LinkedListItem currentItem;
-		
+
 		// The brothers items
 		private LinkedListItem previousItem;
 		private LinkedListItem nextItem;
-		
+
 		// true when a bound is reached
 		private boolean endReach;
 		private boolean beginReach;
-		
+
 		// The filter to apply to the enumeration
 		private Filter filter;
-		
+
 		/**
 		 * Construct a {@link LinkedListEnumeration}
 		 */
 		private LinkedListEnumeration(Filter filter) {
 			reset(filter);
 		}
-		
+
 		/**
 		 * @return the associated {@link LinkedList}
 		 */
 		public LinkedList getList() {
 			return LinkedList.this;
 		}
-		
+
 		/**
-		 * @return a value between 0 and the associated {@link LinkedList} length
-		 * corresponding to the {@link LinkedListEnumeration} length
+		 * @return a value between 0 and the associated {@link LinkedList}
+		 *         length corresponding to the {@link LinkedListEnumeration}
+		 *         length
 		 */
 		public int getLength() {
 			if (length < 0) {
 				// Get current state of the enumeration
-				LinkedListItem 	currentItemBackup = currentItem,
-								previousItemBackup = previousItem,
-								nextItemBackup = nextItem;
-				boolean endReachBackup = endReach,
-						beginReachBackup = beginReach;
-						
+				LinkedListItem currentItemBackup = currentItem, previousItemBackup = previousItem, nextItemBackup = nextItem;
+				boolean endReachBackup = endReach, beginReachBackup = beginReach;
+
 				// Compute the length
 				length = 0;
 				while (hasNextItems()) {
 					nextItem();
 					++length;
 				}
-				
+
 				// Restore the enumeration state
 				currentItem = currentItemBackup;
 				previousItem = previousItemBackup;
@@ -97,7 +95,7 @@ public class LinkedList {
 			}
 			return length;
 		}
-		
+
 		/**
 		 * @return the next {@link LinkedListItem} in this enumeration
 		 */
@@ -105,23 +103,24 @@ public class LinkedList {
 			if (endReach) {
 				return null;
 			}
-			
+
 			LinkedListItem linkedListItem;
 			if (currentItem == null) {
 				linkedListItem = first;
 			} else {
 				linkedListItem = currentItem.getNext();
 			}
-			
+
 			if (filter != null) {
-				for (; linkedListItem != null; linkedListItem = linkedListItem.getNext()) {
+				for (; linkedListItem != null; linkedListItem = linkedListItem
+						.getNext()) {
 					if (filter.accept(linkedListItem) != 0) {
 						break;
 					}
 				}
 			}
 			endReach = linkedListItem == null;
-			
+
 			return linkedListItem;
 		}
 
@@ -132,23 +131,24 @@ public class LinkedList {
 			if (beginReach) {
 				return null;
 			}
-			
+
 			LinkedListItem linkedListItem;
 			if (currentItem == null) {
 				linkedListItem = last;
 			} else {
 				linkedListItem = currentItem.getPrevious();
 			}
-			
+
 			if (filter != null) {
-				for (; linkedListItem != null; linkedListItem = linkedListItem.getPrevious()) {
+				for (; linkedListItem != null; linkedListItem = linkedListItem
+						.getPrevious()) {
 					if (filter.accept(linkedListItem) != 0) {
 						break;
 					}
 				}
 			}
 			beginReach = linkedListItem == null;
-			
+
 			return linkedListItem;
 		}
 
@@ -159,12 +159,13 @@ public class LinkedList {
 		 * 
 		 * @return the previous {@link LinkedListItem} in this enumeration
 		 * 
-		 * @throws NoSuchElementException When there is no next item available in the enumeration
+		 * @throws NoSuchElementException
+		 *             When there is no next item available in the enumeration
 		 */
 		public LinkedListItem nextItem() {
 			LinkedListItem item = nextItem != null ? nextItem : getNextItem();
 			if (item == null) {
-				throw new NoSuchElementException(); 
+				throw new NoSuchElementException();
 			}
 			currentItem = item;
 			nextItem = null;
@@ -179,12 +180,15 @@ public class LinkedList {
 		 * 
 		 * @return the previous {@link LinkedListItem} in this enumeration
 		 * 
-		 * @throws NoSuchElementException When there is no previous item available in the enumeration
+		 * @throws NoSuchElementException
+		 *             When there is no previous item available in the
+		 *             enumeration
 		 */
 		public LinkedListItem previousItem() {
-			LinkedListItem item = previousItem != null ? previousItem : getPreviousItem();
+			LinkedListItem item = previousItem != null ? previousItem
+					: getPreviousItem();
 			if (item == null) {
-				throw new NoSuchElementException(); 
+				throw new NoSuchElementException();
 			}
 			currentItem = item;
 			nextItem = null;
@@ -195,8 +199,7 @@ public class LinkedList {
 		/**
 		 * Returns true if more items exist in the next direction.
 		 * 
-		 * @return <code>true</code> if more items exist in the next
-		 *         direction
+		 * @return <code>true</code> if more items exist in the next direction
 		 */
 		public boolean hasNextItems() {
 			if (!endReach && nextItem == null) {
@@ -234,7 +237,7 @@ public class LinkedList {
 			length = -1;
 			reset();
 		}
-		
+
 		/**
 		 * Returns the enumeration index to the same state as right after the
 		 * enumeration was created.
@@ -243,9 +246,9 @@ public class LinkedList {
 			currentItem = previousItem = nextItem = null;
 			endReach = beginReach = false;
 		}
-		
+
 	}
-	
+
 	// The first and last item of the list
 	private LinkedListItem first;
 	private LinkedListItem last;
@@ -273,14 +276,14 @@ public class LinkedList {
 	public int getLength() {
 		return length;
 	}
-	
+
 	/**
 	 * @return <code>true</code> if this {@link LinkedList} is empty
 	 */
 	public boolean isEmpty() {
 		return first == null;
 	}
-	
+
 	/**
 	 * Returns the best occurence of the corresponding {@link LinkedListItem}
 	 * witch is acceptable by the <code>filter</code>
@@ -354,23 +357,28 @@ public class LinkedList {
 			item.setNext(null);
 		}
 	}
-	
+
 	/**
 	 * Add a {@link LinkedListItem} to this {@link LinkedList} by placing it
 	 * after or before the <code>referenceItem</code> according to the
 	 * <code>after</code> parameter.
 	 * 
-	 * @param item the {@link LinkedListItem} to add
-	 * @param referenceItem the {@link LinkedListItem} used as reference
-	 * @param after <code>true</code> if the item is added after the <code>referenceItem</code>
+	 * @param item
+	 *            the {@link LinkedListItem} to add
+	 * @param referenceItem
+	 *            the {@link LinkedListItem} used as reference
+	 * @param after
+	 *            <code>true</code> if the item is added after the
+	 *            <code>referenceItem</code>
 	 */
-	public void add(LinkedListItem item, LinkedListItem referenceItem, boolean after) {
-		
+	public void add(LinkedListItem item, LinkedListItem referenceItem,
+			boolean after) {
+
 		// By default the item is appended
 		if (isEmpty() || referenceItem == null) {
 			add(item);
 		}
-		
+
 		// Check if referenceItem is realy an item of this list
 		boolean valid = false;
 		for (LinkedListItem i = referenceItem; i != null; i = i.getPrevious()) {
@@ -380,7 +388,7 @@ public class LinkedList {
 			}
 		}
 		if (valid) {
-			
+
 			if (after) {
 				LinkedListItem next = referenceItem.getNext();
 				referenceItem.setNext(item);
@@ -404,12 +412,12 @@ public class LinkedList {
 			}
 			length++;
 			return;
-			
+
 		}
-			
+
 		throw new IllegalArgumentException();
 	}
-	
+
 	/**
 	 * Remove a {@link LinkedListItem} from this {@link LinkedList}
 	 * 
@@ -449,19 +457,27 @@ public class LinkedList {
 		last = null;
 		length = 0;
 	}
-	
-	/** 
-	 * Sort a list
-	 * e.g. : 
-	 * <p><code>Person</code> class implement <code>LinkedListItem</code>, a <code>Person</code> have name and firstname value</p>
-	 * <p>Set NAME = 0 and FIRSTNAME = 1 flags as <code>public static final int</code> variable and then, when sort is called with NAME flag, the list is sorted by name</p>
+
+	/**
+	 * Sort a list e.g. :
+	 * <p>
+	 * <code>Person</code> class implement <code>LinkedListItem</code>, a
+	 * <code>Person</code> have name and firstname value
+	 * </p>
+	 * <p>
+	 * Set NAME = 0 and FIRSTNAME = 1 flags as
+	 * <code>public static final int</code> variable and then, when sort is
+	 * called with NAME flag, the list is sorted by name
+	 * </p>
 	 * 
-	 * @param flag is an int value used for specifie test wich be done for sorting the list
+	 * @param flag
+	 *            is an int value used for specifie test wich be done for
+	 *            sorting the list
 	 */
 	public void sort(int flag) {
 		LinkedListItem item1 = null;
 		LinkedListItem item2 = null;
-		
+
 		// True if an other sort is needed, imply that almost 1 switch was done during a list's route
 		boolean reDo = true;
 
@@ -482,7 +498,7 @@ public class LinkedList {
 					} else {
 						first = item2;
 					}
-					
+
 					// If there are next items
 					//  Item just after item2 change is previous for item1
 					LinkedListItem nextItems = item2.getNext();
@@ -491,7 +507,7 @@ public class LinkedList {
 					} else {
 						last = item1;
 					}
-					
+
 					// new previous item for item2 are previousItems 
 					item2.setPrevious(previousItems);
 					// new next item for item2 is item1
@@ -502,7 +518,7 @@ public class LinkedList {
 					item1.setNext(nextItems);
 
 					item2 = item1.getNext();
-					
+
 					// While a switch is done, reDo is true
 					reDo = true;
 				} else {
@@ -515,7 +531,8 @@ public class LinkedList {
 	}
 
 	/**
-	 * Returns an Object array containing all references of the elements in this {@link LinkedList}.
+	 * Returns an Object array containing all references of the elements in this
+	 * {@link LinkedList}.
 	 * 
 	 * @return an array representation of this list
 	 */
@@ -527,14 +544,15 @@ public class LinkedList {
 		}
 		return array;
 	}
-	
+
 	/**
 	 * Return the {@link LinkedListEnumeration}
-	 *
-	 * @param filter the filter to apply to the {@link LinkedListEnumeration}
+	 * 
+	 * @param filter
+	 *            the filter to apply to the {@link LinkedListEnumeration}
 	 */
 	public LinkedListEnumeration enumerate(Filter filter) {
 		return new LinkedListEnumeration(filter);
 	}
-	
+
 }

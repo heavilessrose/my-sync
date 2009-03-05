@@ -21,14 +21,13 @@
 
 package org.kalmeo.util;
 
-
 /**
  * @author bbeaulant
  */
 public class Encoder {
 
 	private static final String HASH = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-";
-	
+
 	/**
 	 * Encode 64 a byte array.
 	 * 
@@ -38,7 +37,7 @@ public class Encoder {
 	public static String encode64(byte[] rawData) {
 		StringBuffer buffer = new StringBuffer();
 		for (int i = 0; i < rawData.length; i += 3) {
-			
+
 			// Encode a block
 			int block = 0;
 			int slack = rawData.length - i - 1;
@@ -61,12 +60,12 @@ public class Encoder {
 			if (slack < 2) {
 				base64[3] = '=';
 			}
-			
+
 			buffer.append(base64);
 		}
 		return buffer.toString();
 	}
-	
+
 	/**
 	 * Decode 64 a a String to a byte array.
 	 * 
@@ -74,7 +73,7 @@ public class Encoder {
 	 * @return base 64 decoded byte
 	 */
 	public static byte[] decode64(String base64Data) {
-        try {
+		try {
 
 			String base64 = new String(base64Data + "====");
 
@@ -88,16 +87,16 @@ public class Encoder {
 			byte[] rawData = new byte[base64Data.length() * 6 / 8 - pad];
 			int rawIndex = 0;
 			for (int i = 0; i < base64Data.length(); i += 4) {
-				int block = (HASH.indexOf(base64.charAt(i)) << 18) + 
-							(HASH.indexOf(base64.charAt(i + 1)) << 12) + 
-							(HASH.indexOf(base64.charAt(i + 2)) << 6) + 
-							(HASH.indexOf(base64.charAt(i + 3)));
+				int block = (HASH.indexOf(base64.charAt(i)) << 18)
+						+ (HASH.indexOf(base64.charAt(i + 1)) << 12)
+						+ (HASH.indexOf(base64.charAt(i + 2)) << 6)
+						+ (HASH.indexOf(base64.charAt(i + 3)));
 				for (int j = 0; j < 3 && rawIndex + j < rawData.length; j++) {
 					rawData[rawIndex + j] = (byte) ((block >> (8 * (2 - j))) & 0xff);
 				}
 				rawIndex += 3;
 			}
-			
+
 			return rawData;
 
 		} catch (Exception e) {
@@ -105,7 +104,7 @@ public class Encoder {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * @param string
 	 * @return The URL encoded String
@@ -117,7 +116,8 @@ public class Encoder {
 			try {
 				while (true) {
 					int b = (int) string.charAt(i++);
-					if ((b >= 0x30 && b <= 0x39) || (b >= 0x41 && b <= 0x5A) || (b >= 0x61 && b <= 0x7A)) {
+					if ((b >= 0x30 && b <= 0x39) || (b >= 0x41 && b <= 0x5A)
+							|| (b >= 0x61 && b <= 0x7A)) {
 						buffer.append((char) b);
 					} else {
 						buffer.append("%");
@@ -132,5 +132,5 @@ public class Encoder {
 		}
 		return null;
 	}
-	
+
 }

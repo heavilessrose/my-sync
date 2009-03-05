@@ -43,7 +43,7 @@ public class FrameHandler {
 
 		// Th associated Frame
 		private Frame frame;
-		
+
 		// Define if the LinkedFrame need to be removed on next remove process
 		private boolean removable = false;
 
@@ -54,42 +54,59 @@ public class FrameHandler {
 		/**
 		 * Construct a {@link LinkedFrame}
 		 * 
-		 * @param frame the associated {@link Frame}
+		 * @param frame
+		 *            the associated {@link Frame}
 		 */
 		public LinkedFrame(Frame frame) {
 			this.frame = frame;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.util.LinkedListItem#getNext()
 		 */
 		public LinkedListItem getNext() {
 			return next;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.kalmeo.util.LinkedListItem#getPrevious()
 		 */
 		public LinkedListItem getPrevious() {
 			return previous;
 		}
 
-		/* (non-Javadoc)
-		 * @see org.kalmeo.util.LinkedListItem#setNext(org.kalmeo.util.LinkedListItem)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.kalmeo.util.LinkedListItem#setNext(org.kalmeo.util.LinkedListItem
+		 * )
 		 */
 		public void setNext(LinkedListItem next) {
 			this.next = (LinkedFrame) next;
 		}
 
-		/* (non-Javadoc)
-		 * @see org.kalmeo.util.LinkedListItem#setPrevious(org.kalmeo.util.LinkedListItem)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.kalmeo.util.LinkedListItem#setPrevious(org.kalmeo.util.LinkedListItem
+		 * )
 		 */
 		public void setPrevious(LinkedListItem previous) {
 			this.previous = (LinkedFrame) previous;
 		}
 
-		/* (non-Javadoc)
-		 * @see org.kalmeo.util.LinkedListItem#compareTo(org.kalmeo.util.LinkedListItem, int)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.kalmeo.util.LinkedListItem#compareTo(org.kalmeo.util.LinkedListItem
+		 * , int)
 		 */
 		public int compareTo(LinkedListItem item, int flag) {
 			return 0;
@@ -99,7 +116,7 @@ public class FrameHandler {
 
 	// The frame stack
 	private final LinkedList frames = new LinkedList();
-	
+
 	// Number of current running processMessage
 	private int runningProcessMessageCount = 0;
 
@@ -107,21 +124,22 @@ public class FrameHandler {
 	private int removableLinkedFrameCount = 0;
 
 	// Synchronization mutex
-	private final Object mutex = new Object(); 
-	
+	private final Object mutex = new Object();
+
 	/**
-	 * Returns {@link LinkedFrame} associated withe the given <code>frame</code>,
-	 * or null if the <code>frame</code> is not in the stack.
+	 * Returns {@link LinkedFrame} associated withe the given <code>frame</code>
+	 * , or null if the <code>frame</code> is not in the stack.
 	 * 
 	 * @param frame
 	 * @return The {@link LinkedFrame} associated withe the given
-	 *         <code>frame</code>, or null if the <code>frame</code> is not
-	 *         in the stack
+	 *         <code>frame</code>, or null if the <code>frame</code> is not in
+	 *         the stack
 	 */
 	private LinkedFrame getLinkedFrame(Frame frame) {
 		synchronized (mutex) {
 			for (LinkedFrame linkedFrame = (LinkedFrame) frames.getFirst(); linkedFrame != null; linkedFrame = linkedFrame.next) {
-				if (linkedFrame.frame == frame && linkedFrame.removable == false) {
+				if (linkedFrame.frame == frame
+						&& linkedFrame.removable == false) {
 					return linkedFrame;
 				}
 			}
@@ -152,9 +170,10 @@ public class FrameHandler {
 	/**
 	 * Push a frame on top of the frames stack
 	 * 
-	 * @param frame the {@link Frame} to push
-	 * @return <code>true</code> if frame is pushed or <code>false</code> if
-	 *         the frame was already present in to the stack
+	 * @param frame
+	 *            the {@link Frame} to push
+	 * @return <code>true</code> if frame is pushed or <code>false</code> if the
+	 *         frame was already present in to the stack
 	 */
 	public boolean pushFrame(Frame frame) {
 		synchronized (mutex) {
@@ -167,11 +186,12 @@ public class FrameHandler {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Remove a frame ont top of the frames stack
 	 * 
-	 * @param frame the {@link Frame} to remove
+	 * @param frame
+	 *            the {@link Frame} to remove
 	 * @return <code>true</code> if frame is removed or <code>false</code> if
 	 *         the frame wasn't present in to the stack
 	 */
@@ -193,7 +213,7 @@ public class FrameHandler {
 		synchronized (mutex) {
 			LinkedFrame tmpLinkedFrame;
 			// Remove all frames from the top to bottom
-			for (LinkedFrame linkedFrame = (LinkedFrame) frames.getLast(); linkedFrame != null; ) {
+			for (LinkedFrame linkedFrame = (LinkedFrame) frames.getLast(); linkedFrame != null;) {
 				tmpLinkedFrame = linkedFrame.previous;
 				internalLinkedFrameRemoveProcess(linkedFrame);
 				linkedFrame = tmpLinkedFrame;
@@ -205,7 +225,8 @@ public class FrameHandler {
 	 * Remove all frames on top of the given <code>frame</code>. The
 	 * <code>frame</code> is not removed and become the new top frame.
 	 * 
-	 * @param frame the reference {@link Frame}
+	 * @param frame
+	 *            the reference {@link Frame}
 	 */
 	public void removeAllFrameOnTopOf(Frame frame) {
 		synchronized (mutex) {
@@ -220,7 +241,7 @@ public class FrameHandler {
 			}
 		}
 	}
-	
+
 	/**
 	 * Internal linkedFrame remove process invoked by all removeFrameXX methods.
 	 * 
@@ -239,29 +260,33 @@ public class FrameHandler {
 	/**
 	 * Process a message into the frame stack.
 	 * 
-	 * @param identifier the message identifier
-	 * @param arguments the message arguments
+	 * @param identifier
+	 *            the message identifier
+	 * @param arguments
+	 *            the message arguments
 	 * @return <code>true</code> if the message has been processed by a frame.
 	 */
 	public boolean processMessage(Object identifier, Object[] arguments) {
 		boolean messageProcessed = false;
 		synchronized (mutex) {
-			
+
 			// Message process
 			runningProcessMessageCount++;
 			LinkedFrame linkedFrame = (LinkedFrame) frames.getLast();
 			while (linkedFrame != null) {
-				if (!linkedFrame.removable && !linkedFrame.frame.onMessage(identifier, arguments)) {
+				if (!linkedFrame.removable
+						&& !linkedFrame.frame.onMessage(identifier, arguments)) {
 					messageProcessed = true;
 					break;
 				}
 				linkedFrame = linkedFrame.previous;
 			}
 			runningProcessMessageCount--;
-			
+
 			// Remove process
-			if (runningProcessMessageCount == 0 && removableLinkedFrameCount != 0) {
-				
+			if (runningProcessMessageCount == 0
+					&& removableLinkedFrameCount != 0) {
+
 				LinkedFrame nextLinkedFrame = null;
 				linkedFrame = (LinkedFrame) frames.getFirst();
 				while (linkedFrame != null) {
@@ -274,21 +299,24 @@ public class FrameHandler {
 					}
 				}
 				removableLinkedFrameCount = 0;
-				
+
 			}
-			
+
 		}
 		return messageProcessed;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		StringBuffer buffer = new StringBuffer("framesHandler :");
 		for (LinkedFrame linkedFrame = (LinkedFrame) frames.getLast(); linkedFrame != null; linkedFrame = linkedFrame.previous) {
 			String className = linkedFrame.frame.getClass().getName();
-			buffer.append("\n > ").append(className.substring(className.lastIndexOf('.') + 1));
+			buffer.append("\n > ").append(
+					className.substring(className.lastIndexOf('.') + 1));
 		}
 		return buffer.toString();
 	}

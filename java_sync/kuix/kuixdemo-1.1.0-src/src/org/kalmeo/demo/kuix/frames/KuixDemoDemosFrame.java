@@ -1,23 +1,3 @@
-/*
- * This file is part of org.kalmeo.demo.kuix.
- * 
- * org.kalmeo.demo.kuix is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * org.kalmeo.demo.kuix is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with org.kalmeo.demo.kuix.  If not, see <http://www.gnu.org/licenses/>.
- * 
- * Creation date : 10 mar. 2008
- * Copyright (c) Kalmeo 2007-2008. All rights reserved.
- */
-
 package org.kalmeo.demo.kuix.frames;
 
 import java.util.Random;
@@ -37,17 +17,17 @@ public class KuixDemoDemosFrame implements Frame {
 	 * @author omarino
 	 */
 	public class Provider extends DataProvider {
-	
+
 		private static final String TEXT_TABITEM_ENABLED_PROPERTY = "bText";
 		private static final String BUTTON_TABITEM_ENABLED_PROPERTY = "bButton";
 		private static final String CHOICE_TABITEM_ENABLED_PROPERTY = "bChoice";
 		private static final String LIST_TABITEM_ENABLED_PROPERTY = "bList";
-		
+
 		private boolean tabTextEnabled = true;
 		private boolean tabButtonEnabled = true;
 		private boolean tabChoiceEnabled = true;
 		private boolean tabListEnabled = true;
-		
+
 		/**
 		 * Enable or disable the Text TabItem in widget.xml
 		 */
@@ -55,7 +35,7 @@ public class KuixDemoDemosFrame implements Frame {
 			tabTextEnabled = !tabTextEnabled;
 			dispatchUpdateEvent(TEXT_TABITEM_ENABLED_PROPERTY);
 		}
-		
+
 		/**
 		 * Enable or disable the Button TabItem in widget.xml
 		 */
@@ -63,7 +43,7 @@ public class KuixDemoDemosFrame implements Frame {
 			tabButtonEnabled = !tabButtonEnabled;
 			dispatchUpdateEvent(BUTTON_TABITEM_ENABLED_PROPERTY);
 		}
-		
+
 		/**
 		 * Enable or disable the Choice TabItem in widget.xml
 		 */
@@ -71,7 +51,7 @@ public class KuixDemoDemosFrame implements Frame {
 			tabChoiceEnabled = !tabChoiceEnabled;
 			dispatchUpdateEvent(CHOICE_TABITEM_ENABLED_PROPERTY);
 		}
-		
+
 		/**
 		 * Enable or disable the List TabItem in widget.xml
 		 */
@@ -79,9 +59,13 @@ public class KuixDemoDemosFrame implements Frame {
 			tabListEnabled = !tabListEnabled;
 			dispatchUpdateEvent(LIST_TABITEM_ENABLED_PROPERTY);
 		}
-		
-		/* (non-Javadoc)
-		 * @see org.kalmeo.kuix.core.model.DataProvider#getUserDefinedValue(java.lang.String)
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.kalmeo.kuix.core.model.DataProvider#getUserDefinedValue(java.
+		 * lang.String)
 		 */
 		protected Object getUserDefinedValue(String property) {
 			if (TEXT_TABITEM_ENABLED_PROPERTY.equals(property)) {
@@ -99,18 +83,24 @@ public class KuixDemoDemosFrame implements Frame {
 			return null;
 		}
 	}
-	
+
 	public static final KuixDemoDemosFrame instance = new KuixDemoDemosFrame();
 	private Desktop desktop;
 
-	private String[] xmlFiles = { "borderLayoutDemo.xml", "gridLayoutDemo.xml", "flowLayoutDemo.xml", "staticLayoutDemo.xml", "inLineLayoutDemo1.xml", "inLineLayoutDemo2.xml", "inLineLayoutDemo3.xml", "tableLayoutDemo.xml", "widgets.xml" };
+	private String[] xmlFiles = { "borderLayoutDemo.xml", "gridLayoutDemo.xml",
+			"flowLayoutDemo.xml", "staticLayoutDemo.xml",
+			"inLineLayoutDemo1.xml", "inLineLayoutDemo2.xml",
+			"inLineLayoutDemo3.xml", "tableLayoutDemo.xml", "widgets.xml" };
 	private int pos = -1;
-	
+
 	Random random = new Random(5);
 	private Provider provider = new Provider();
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.util.frame.Frame#onMessage(java.lang.Object, java.lang.Object[])
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.util.frame.Frame#onMessage(java.lang.Object,
+	 * java.lang.Object[])
 	 */
 	public boolean onMessage(Object identifier, Object[] arguments) {
 		// widget.xml menu
@@ -130,11 +120,11 @@ public class KuixDemoDemosFrame implements Frame {
 			provider.switchTabListEnabledState();
 			return false;
 		}
-		
+
 		if ("goHome".equals(identifier)) {
 			pos = -1;
 		}
-		
+
 		// global
 		if (identifier.equals("back")) {
 			--pos;
@@ -146,24 +136,28 @@ public class KuixDemoDemosFrame implements Frame {
 			} catch (Exception e) {
 			}
 		}
-		
+
 		if (pos == -1) {
 			Kuix.getFrameHandler().removeFrame(this);
 			return false;
 		}
-		
+
 		Kuix.loadScreen("/xml/demos/" + xmlFiles[pos], provider).setCurrent();
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.frame.Frame#onAdded()
 	 */
 	public void onAdded() {
 		desktop = Kuix.getCanvas().getDesktop();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.frame.Frame#onRemoved()
 	 */
 	public void onRemoved() {

@@ -188,9 +188,11 @@ public class KuixConverter {
 
 			// Create the StyleSelector tree
 			StyleSelector previousStyleSelector = null;
-			StringTokenizer contextualSelectors = new StringTokenizer(selectors.nextToken(), " \t\n\r");
+			StringTokenizer contextualSelectors = new StringTokenizer(selectors
+					.nextToken(), " \t\n\r");
 			while (contextualSelectors.hasMoreTokens()) {
-				StyleSelector styleSelector = new StyleSelector(contextualSelectors.nextToken().toLowerCase());
+				StyleSelector styleSelector = new StyleSelector(
+						contextualSelectors.nextToken().toLowerCase());
 				if (previousStyleSelector != null) {
 					styleSelector.parent = previousStyleSelector;
 				}
@@ -232,10 +234,11 @@ public class KuixConverter {
 	 * @param rawData
 	 * @return a specific object instance.
 	 */
-	public Object convertStyleProperty(String name, String rawData) throws IllegalArgumentException {
-		
+	public Object convertStyleProperty(String name, String rawData)
+			throws IllegalArgumentException {
+
 		// Color
-		if (KuixConstants.COLOR_STYLE_PROPERTY.equals(name) 
+		if (KuixConstants.COLOR_STYLE_PROPERTY.equals(name)
 				|| KuixConstants.BACKGROUND_COLOR_STYLE_PROPERTY.equals(name)
 				|| KuixConstants.GRAYED_COLOR_STYLE_PROPERTY.equals(name)) {
 			return convertColor(rawData);
@@ -248,29 +251,29 @@ public class KuixConverter {
 		if (KuixConstants.FONT_FACE_STYLE_PROPERTY.equals(name)) {
 			return convertFontFace(rawData);
 		}
-		
+
 		// Font style
 		if (KuixConstants.FONT_STYLE_STYLE_PROPERTY.equals(name)) {
 			return convertFontStyle(rawData);
 		}
-		
+
 		// Font size
 		if (KuixConstants.FONT_SIZE_STYLE_PROPERTY.equals(name)) {
 			return convertFontSize(rawData);
 		}
-		
+
 		// Stroke
 		if (KuixConstants.BORDER_STROKE_STYLE_PROPERTY.equals(name)) {
 			return convertStroke(rawData);
 		}
-		
+
 		// Inset
-		if (KuixConstants.MARGIN_STYLE_PROPERTY.equals(name) 
-				|| KuixConstants.BORDER_STYLE_PROPERTY.equals(name) 
+		if (KuixConstants.MARGIN_STYLE_PROPERTY.equals(name)
+				|| KuixConstants.BORDER_STYLE_PROPERTY.equals(name)
 				|| KuixConstants.PADDING_STYLE_PROPERTY.equals(name)) {
 			return convertInset(rawData);
 		}
-		
+
 		// Metrics
 		if (KuixConstants.MIN_SIZE_STYLE_PROPERTY.equals(name)) {
 			return convertMetrics(rawData);
@@ -299,7 +302,8 @@ public class KuixConverter {
 			return convertAlignmentArray(rawData, 1, "|");
 		}
 		if (KuixConstants.BORDER_ALIGN_STYLE_PROPERTY.equals(name)) {
-			return convertAlignmentArray(rawData, 8, StringTokenizer.DEFAULT_DELIM);
+			return convertAlignmentArray(rawData, 8,
+					StringTokenizer.DEFAULT_DELIM);
 		}
 
 		// Image
@@ -309,7 +313,7 @@ public class KuixConverter {
 		if (KuixConstants.BORDER_IMAGE_STYLE_PROPERTY.equals(name)) {
 			return convertBorderImage(rawData);
 		}
-		
+
 		// Layout
 		if (KuixConstants.LAYOUT_STYLE_PROPERTY.equals(name)) {
 			return convertLayout(rawData);
@@ -317,20 +321,20 @@ public class KuixConverter {
 		if (KuixConstants.LAYOUT_DATA_STYLE_PROPERTY.equals(name)) {
 			return convertLayoutData(rawData);
 		}
-		
+
 		// Background repeat
 		if (KuixConstants.BACKGROUND_REPEAT_STYLE_PROPERTY.equals(name)) {
 			return convertRepeatArray(rawData, 1, "|");
 		}
-		
+
 		// Transition
 		if (KuixConstants.TRANSITION_STYLE_PROPERTY.equals(name)) {
 			return convertTransition(rawData);
 		}
-		
+
 		throw new IllegalArgumentException("Unknow style name " + name);
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted {@link Transition}
@@ -349,7 +353,7 @@ public class KuixConverter {
 		}
 		throw new IllegalArgumentException("Bad transition value");
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted {@link Color}
@@ -388,17 +392,17 @@ public class KuixConverter {
 	 */
 	protected Integer convertFontFace(String rawData) {
 		int face = Font.FACE_SYSTEM;
-			
+
 		// Face (system|monospace|proportional)
 		if ("monospace".equals(rawData)) {
 			face = Font.FACE_MONOSPACE;
 		} else if ("proportional".equals(rawData)) {
 			face = Font.FACE_PROPORTIONAL;
 		}
-		
+
 		return new Integer(face);
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted font style
@@ -407,9 +411,9 @@ public class KuixConverter {
 		StringTokenizer values = new StringTokenizer(rawData);
 		int style = Font.STYLE_PLAIN;
 		while (values.hasMoreTokens()) {
-			
+
 			String fontAttribute = values.nextToken().toLowerCase();
-			
+
 			// Style (plain bold italic underline)
 			if ("bold".equals(fontAttribute)) {
 				style |= Font.STYLE_BOLD;
@@ -418,17 +422,17 @@ public class KuixConverter {
 			} else if ("underlined".equals(fontAttribute)) {
 				style |= Font.STYLE_UNDERLINED;
 			}
-			
+
 		}
 		return new Integer(style);
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted font size
 	 */
 	protected Integer convertFontSize(String rawData) {
-			
+
 		// Size (medium|large|small)
 		int size;
 		if ("large".equals(rawData)) {
@@ -438,18 +442,19 @@ public class KuixConverter {
 		} else if ("medium".equals(rawData)) {
 			size = Font.SIZE_MEDIUM;
 		} else {
-			throw new IllegalArgumentException("Invalid font-size value : " + rawData);
+			throw new IllegalArgumentException("Invalid font-size value : "
+					+ rawData);
 		}
-		
+
 		return new Integer(size);
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted stoke
 	 */
 	protected Integer convertStroke(String rawData) {
-		
+
 		// Size (solid|dotted)
 		int stroke;
 		if ("dotted".equals(rawData)) {
@@ -457,12 +462,13 @@ public class KuixConverter {
 		} else if ("solid".equals(rawData)) {
 			stroke = Graphics.SOLID;
 		} else {
-			throw new IllegalArgumentException("Invalid stroke value : " + rawData);
+			throw new IllegalArgumentException("Invalid stroke value : "
+					+ rawData);
 		}
-		
+
 		return new Integer(stroke);
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted {@link Insets}
@@ -471,17 +477,20 @@ public class KuixConverter {
 		if (isNone(rawData)) {
 			return null;
 		}
-		int[] intValues = convertIntArray(rawData, 1, StringTokenizer.DEFAULT_DELIM);
+		int[] intValues = convertIntArray(rawData, 1,
+				StringTokenizer.DEFAULT_DELIM);
 		if (intValues != null) {
 			if (intValues.length == 1) {
-				return new Insets(intValues[0], intValues[0], intValues[0], intValues[0]);
+				return new Insets(intValues[0], intValues[0], intValues[0],
+						intValues[0]);
 			} else if (intValues.length >= 4) {
-				return new Insets(intValues[0], intValues[1], intValues[2], intValues[3]);
+				return new Insets(intValues[0], intValues[1], intValues[2],
+						intValues[3]);
 			}
 		}
 		throw new IllegalArgumentException("Bad inset value");
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted {@link Metrics}
@@ -490,12 +499,14 @@ public class KuixConverter {
 		if (isNone(rawData)) {
 			return null;
 		}
-		int[] intValues = convertIntArray(rawData, 2, StringTokenizer.DEFAULT_DELIM);
+		int[] intValues = convertIntArray(rawData, 2,
+				StringTokenizer.DEFAULT_DELIM);
 		if (intValues != null) {
 			if (intValues.length == 2) {
 				return new Metrics(null, 0, 0, intValues[0], intValues[1]);
 			} else if (intValues.length >= 4) {
-				return new Metrics(null, intValues[0], intValues[1], intValues[2], intValues[3]);
+				return new Metrics(null, intValues[0], intValues[1],
+						intValues[2], intValues[3]);
 			}
 		}
 		throw new IllegalArgumentException("Bad metrics value");
@@ -509,7 +520,8 @@ public class KuixConverter {
 		if (isNone(rawData)) {
 			return null;
 		}
-		int[] intValues = convertIntArray(rawData, 1, StringTokenizer.DEFAULT_DELIM);
+		int[] intValues = convertIntArray(rawData, 1,
+				StringTokenizer.DEFAULT_DELIM);
 		if (intValues != null) {
 			if (intValues.length == 1) {
 				return new Gap(intValues[0], intValues[0]);
@@ -528,7 +540,8 @@ public class KuixConverter {
 		if (isNone(rawData)) {
 			return null;
 		}
-		int[] intValues = convertIntArray(rawData.trim(), 1, StringTokenizer.DEFAULT_DELIM);
+		int[] intValues = convertIntArray(rawData.trim(), 1,
+				StringTokenizer.DEFAULT_DELIM);
 		if (intValues != null) {
 			if (intValues.length == 1) {
 				return new Repeat(intValues[0], intValues[0]);
@@ -538,14 +551,15 @@ public class KuixConverter {
 		}
 		throw new IllegalArgumentException("Bad repeat value");
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @param wantedSize
 	 * @param delim
 	 * @return The converted Repeat[]
 	 */
-	protected Repeat[] convertRepeatArray(String rawData, int wantedSize, String delim) {
+	protected Repeat[] convertRepeatArray(String rawData, int wantedSize,
+			String delim) {
 		if (isNone(rawData)) {
 			return null;
 		}
@@ -564,7 +578,7 @@ public class KuixConverter {
 		}
 		throw new IllegalArgumentException("Bad repeats value");
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted {@link Span}
@@ -573,7 +587,8 @@ public class KuixConverter {
 		if (isNone(rawData)) {
 			return null;
 		}
-		int[] intValues = convertIntArray(rawData, 2, StringTokenizer.DEFAULT_DELIM);
+		int[] intValues = convertIntArray(rawData, 2,
+				StringTokenizer.DEFAULT_DELIM);
 		if (intValues != null) {
 			return new Span(intValues[0], intValues[1]);
 		}
@@ -588,7 +603,8 @@ public class KuixConverter {
 		if (isNone(rawData)) {
 			return null;
 		}
-		int[] fpValues = convertFPArray(rawData, 2, StringTokenizer.DEFAULT_DELIM);
+		int[] fpValues = convertFPArray(rawData, 2,
+				StringTokenizer.DEFAULT_DELIM);
 		if (fpValues != null) {
 			return new Weight(fpValues[0], fpValues[1]);
 		}
@@ -649,7 +665,8 @@ public class KuixConverter {
 	 * @param delim
 	 * @return The converted Alignment[]
 	 */
-	protected Alignment[] convertAlignmentArray(String rawData, int wantedSize, String delim) {
+	protected Alignment[] convertAlignmentArray(String rawData, int wantedSize,
+			String delim) {
 		if (isNone(rawData)) {
 			return null;
 		}
@@ -668,7 +685,7 @@ public class KuixConverter {
 		}
 		throw new IllegalArgumentException("Bad alignments value");
 	}
-	
+
 	/**
 	 * Syntax :
 	 * <ul>
@@ -692,9 +709,10 @@ public class KuixConverter {
 				return image;
 			}
 		}
-		throw new IllegalArgumentException("Bad image value : " + (imgSrc != null ? imgSrc : ""));
+		throw new IllegalArgumentException("Bad image value : "
+				+ (imgSrc != null ? imgSrc : ""));
 	}
-	
+
 	/**
 	 * Syntax :
 	 * <ul>
@@ -714,28 +732,30 @@ public class KuixConverter {
 			String imgSrc = st.nextToken();
 			if (!imgSrc.startsWith("/")) {
 				// By default the relative path point to /img
-				imgSrc = new StringBuffer(KuixConstants.DEFAULT_IMG_RES_FOLDER).append(imgSrc).toString();
+				imgSrc = new StringBuffer(KuixConstants.DEFAULT_IMG_RES_FOLDER)
+						.append(imgSrc).toString();
 			}
 			fullImage = ImageManager.instance.getImage(imgSrc);
 			if (fullImage != null) {
 				if (numTokens >= 5) {
-					
+
 					int x = Integer.parseInt(st.nextToken());
 					int y = Integer.parseInt(st.nextToken());
 					int width = Integer.parseInt(st.nextToken());
 					int height = Integer.parseInt(st.nextToken());
 					int transform = Sprite.TRANS_NONE;
-					
+
 					if (numTokens == 6) {
 						transform = convertTransform(st.nextToken());
 					}
-					
+
 					try {
-						return Image.createImage(fullImage, x, y, width, height, transform);
+						return Image.createImage(fullImage, x, y, width,
+								height, transform);
 					} catch (Exception e) {
 						System.err.println("Error loading custom : " + imgSrc);
 					}
-					
+
 				} else {
 					return fullImage;
 				}
@@ -743,14 +763,15 @@ public class KuixConverter {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @param wantedSize
 	 * @param delim
 	 * @return The converted Image[]
 	 */
-	protected Image[] convertImageArray(String rawData, int wantedSize, String delim) {
+	protected Image[] convertImageArray(String rawData, int wantedSize,
+			String delim) {
 		if (isNone(rawData)) {
 			return null;
 		}
@@ -769,7 +790,7 @@ public class KuixConverter {
 		}
 		throw new IllegalArgumentException("Bad images value");
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @param wantedSize
@@ -785,14 +806,14 @@ public class KuixConverter {
 			Color color = convertColor(values.nextToken());
 			return new Color[] { color, color, color, color };
 		} else if (values.countTokens() >= 4) {
-			return new Color[] { 	convertColor(values.nextToken()), 
-									convertColor(values.nextToken()),
-									convertColor(values.nextToken()),
-									convertColor(values.nextToken()) };
+			return new Color[] { convertColor(values.nextToken()),
+					convertColor(values.nextToken()),
+					convertColor(values.nextToken()),
+					convertColor(values.nextToken()) };
 		}
 		throw new IllegalArgumentException("Bad border-color value");
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @param wantedSize
@@ -820,41 +841,52 @@ public class KuixConverter {
 			Image image = convertImage(values.nextToken());
 			if (image != null) {
 				try {
-					
+
 					int imageWidth = image.getWidth();
 					int imageHeight = image.getHeight();
 					int top = Integer.parseInt(values.nextToken().trim());
 					int right = Integer.parseInt(values.nextToken().trim());
 					int bottom = Integer.parseInt(values.nextToken().trim());
 					int left = Integer.parseInt(values.nextToken().trim());
-					
+
 					if (top != 0) {
-						images[0] = Image.createImage(image, left, 0, imageWidth - left - right, top, 0);							// top
+						images[0] = Image.createImage(image, left, 0,
+								imageWidth - left - right, top, 0); // top
 						if (right != 0) {
-							images[1] = Image.createImage(image, imageWidth - right, 0, right, top, 0);								// top-right
+							images[1] = Image.createImage(image, imageWidth
+									- right, 0, right, top, 0); // top-right
 						}
 					}
 					if (right != 0) {
-						images[2] = Image.createImage(image, imageWidth - right, top, right, imageHeight - top - bottom, 0);		// right
+						images[2] = Image.createImage(image,
+								imageWidth - right, top, right, imageHeight
+										- top - bottom, 0); // right
 						if (bottom != 0) {
-							images[3] = Image.createImage(image, imageWidth - right, imageHeight - bottom, right, bottom, 0);		// bottom-right
+							images[3] = Image.createImage(image, imageWidth
+									- right, imageHeight - bottom, right,
+									bottom, 0); // bottom-right
 						}
 					}
 					if (bottom != 0) {
-						images[4] = Image.createImage(image, left, imageHeight - bottom, imageWidth - left - right, bottom, 0);		// bottom
+						images[4] = Image.createImage(image, left, imageHeight
+								- bottom, imageWidth - left - right, bottom, 0); // bottom
 						if (left != 0) {
-							images[5] = Image.createImage(image, 0, imageHeight - bottom, left, bottom, 0);							// bottom-left
+							images[5] = Image.createImage(image, 0, imageHeight
+									- bottom, left, bottom, 0); // bottom-left
 						}
 					}
 					if (left != 0) {
-						images[6] = Image.createImage(image, 0, top, left, imageHeight - top - bottom, 0);							// left
+						images[6] = Image.createImage(image, 0, top, left,
+								imageHeight - top - bottom, 0); // left
 						if (top != 0) {
-							images[7] = Image.createImage(image, 0, 0, left, top, 0);												// top-left
+							images[7] = Image.createImage(image, 0, 0, left,
+									top, 0); // top-left
 						}
 					}
-					
+
 				} catch (Exception e) {
-					throw new IllegalArgumentException("Bad top, right, bottom or left value");
+					throw new IllegalArgumentException(
+							"Bad top, right, bottom or left value");
 				}
 			} else {
 				throw new IllegalArgumentException("Bad image value");
@@ -875,7 +907,7 @@ public class KuixConverter {
 		}
 		throw new IllegalArgumentException("Bad border-image value");
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted {@link Layout}
@@ -892,21 +924,23 @@ public class KuixConverter {
 				Alignment alignment = convertAlignment(st.nextToken());
 				if (alignment != null) {
 					return new InlineLayout(horizontal, alignment);
-				} 
+				}
 				return new InlineLayout(horizontal);
 			}
 			return new InlineLayout();
-		} else if ((rawParams = StringUtil.extractRawParams("flowlayout", rawData)) != null) {
+		} else if ((rawParams = StringUtil.extractRawParams("flowlayout",
+				rawData)) != null) {
 			Alignment alignment = convertAlignment(rawParams);
 			if (alignment != null) {
 				return new FlowLayout(alignment);
-			} 
+			}
 			return new FlowLayout();
 		} else if (rawData.startsWith("tablelayout")) {
 			return TableLayout.instance;
 		} else if (rawData.startsWith("borderlayout")) {
 			return BorderLayout.instance;
-		} else if ((rawParams = StringUtil.extractRawParams("gridlayout", rawData)) != null) {
+		} else if ((rawParams = StringUtil.extractRawParams("gridlayout",
+				rawData)) != null) {
 			StringTokenizer st = new StringTokenizer(rawParams, ",");
 			if (st.countTokens() >= 2) {
 				int numCols = Integer.parseInt(st.nextToken().trim());
@@ -941,17 +975,21 @@ public class KuixConverter {
 			} else if ("center".equals(rawParams)) {
 				return BorderLayoutData.instanceCenter;
 			}
-			throw new IllegalArgumentException("Invalid bld value : " + rawParams);
+			throw new IllegalArgumentException("Invalid bld value : "
+					+ rawParams);
 		}
 		// StaticLayoutData
 		if ((rawParams = StringUtil.extractRawParams("sld", rawData)) != null) {
 			int pos = rawParams.indexOf(",");
 			if (pos != -1) {
 				try {
-					Alignment alignment = convertAlignment(rawParams.substring(0, pos));
-					int[] values = convertFPArray(rawParams.substring(pos + 1), 2, ",");
+					Alignment alignment = convertAlignment(rawParams.substring(
+							0, pos));
+					int[] values = convertFPArray(rawParams.substring(pos + 1),
+							2, ",");
 					if (values != null) {
-						return new StaticLayoutData(alignment, values[0], values[1]);
+						return new StaticLayoutData(alignment, values[0],
+								values[1]);
 					}
 				} catch (Exception e) {
 				}
@@ -959,11 +997,12 @@ public class KuixConverter {
 				Alignment alignment = convertAlignment(rawParams);
 				return new StaticLayoutData(alignment);
 			}
-			throw new IllegalArgumentException("Invalid sld value : " + rawParams);
+			throw new IllegalArgumentException("Invalid sld value : "
+					+ rawParams);
 		}
 		throw new IllegalArgumentException("Bad layout data value");
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted image transform
@@ -988,7 +1027,7 @@ public class KuixConverter {
 		}
 		return Sprite.TRANS_NONE;
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @return The converted style classes
@@ -1009,7 +1048,7 @@ public class KuixConverter {
 			throw new IllegalArgumentException("Bad class value");
 		}
 	}
-	
+
 	/**
 	 * Convert a key code (like <code>left</code> or <code>right</code>) string
 	 * definition to internal representation.
@@ -1078,10 +1117,11 @@ public class KuixConverter {
 	 * @return The shortcut kuix key code converted byte array.
 	 */
 	public byte[] convertShortcuts(String rawData) {
-		
+
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-		DataOutputStream outputStream = new DataOutputStream(byteArrayOutputStream);
-		
+		DataOutputStream outputStream = new DataOutputStream(
+				byteArrayOutputStream);
+
 		int shortcutKuixKeyCodes = 0;
 		StringTokenizer values = new StringTokenizer(rawData, "|");
 		String value = null;
@@ -1089,7 +1129,7 @@ public class KuixConverter {
 		int kuixKeyCode;
 		while (values.hasMoreTokens()) {
 			value = values.nextToken().trim();
-			
+
 			// Check if definition is like 'key=action'
 			action = null;
 			int equalityPos = value.indexOf('=');
@@ -1097,15 +1137,15 @@ public class KuixConverter {
 				action = value.substring(equalityPos + 1);
 				value = value.substring(0, equalityPos);
 			}
-			
+
 			// Convert keyCode
 			kuixKeyCode = convertKuixKeyCode(value);
 			if (kuixKeyCode != KuixConstants.NOT_DEFINED_KEY) {
 				shortcutKuixKeyCodes |= kuixKeyCode;
 				if (action != null) {
 					try {
-						outputStream.writeInt(kuixKeyCode);	// (4 bytes)
-						outputStream.writeUTF(action);		// length (2 bytes) + action
+						outputStream.writeInt(kuixKeyCode); // (4 bytes)
+						outputStream.writeUTF(action); // length (2 bytes) + action
 					} catch (IOException e) {
 					}
 				}
@@ -1124,7 +1164,7 @@ public class KuixConverter {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @param rawData
 	 * @param wantedMinSize
@@ -1170,7 +1210,7 @@ public class KuixConverter {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Check if the given <code>rawData</code> is 'none'
 	 * 
@@ -1180,5 +1220,5 @@ public class KuixConverter {
 	protected boolean isNone(String rawData) {
 		return ("none".equals(rawData));
 	}
-	
+
 }

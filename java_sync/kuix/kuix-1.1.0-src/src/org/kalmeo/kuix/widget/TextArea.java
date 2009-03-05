@@ -50,17 +50,18 @@ import org.kalmeo.util.xml.LightXmlParserHandler;
 public class TextArea extends TextWidget {
 
 	// Defaults
-	private static final Layout TEXTAREA_DEFAULT_LAYOUT = new FlowLayout(Alignment.BOTTOM);
+	private static final Layout TEXTAREA_DEFAULT_LAYOUT = new FlowLayout(
+			Alignment.BOTTOM);
 
 	// Indicate is the text input need to be parse to extract HTML style tags during reflow 
 	private boolean styled = false;
 
 	// Indicate if the textArea need to be reflow before next getPreferredSize call
 	private boolean needToReflow;
-	
+
 	// The cached objects
 	private Gap cachedGap;
-	
+
 	/**
 	 * Construct a {@link TextArea}
 	 */
@@ -68,8 +69,11 @@ public class TextArea extends TextWidget {
 		super(KuixConstants.TEXT_AREA_WIDGET_TAG);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.Widget#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.STYLED_ATTRIBUTE.equals(name)) {
@@ -80,7 +84,9 @@ public class TextArea extends TextWidget {
 		return super.setAttribute(name, value);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Text#setText(java.lang.String)
 	 */
 	public TextWidget setText(String text) {
@@ -88,7 +94,7 @@ public class TextArea extends TextWidget {
 		needToReflow = true;
 		return this;
 	}
-	
+
 	/**
 	 * @return the styled
 	 */
@@ -97,21 +103,26 @@ public class TextArea extends TextWidget {
 	}
 
 	/**
-	 * @param styled the styled to set
+	 * @param styled
+	 *            the styled to set
 	 */
 	public void setStyled(boolean styled) {
 		this.styled = styled;
 		needToReflow = true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Text#getLayout()
 	 */
 	public Layout getLayout() {
 		return TEXTAREA_DEFAULT_LAYOUT;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getPreferredSize(int)
 	 */
 	public Metrics getPreferredSize(int preferredWidth) {
@@ -120,8 +131,10 @@ public class TextArea extends TextWidget {
 		}
 		return super.getPreferredSize(preferredWidth);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getGap()
 	 */
 	public Gap getGap() {
@@ -131,20 +144,27 @@ public class TextArea extends TextWidget {
 		return cachedGap;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#paintChildrenImpl(javax.microedition.lcdui.Graphics)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#paintChildrenImpl(javax.microedition.lcdui
+	 * .Graphics)
 	 */
 	protected void paintChildrenImpl(Graphics g) {
 		int minY = g.getClipY();
 		int maxY = minY + g.getClipHeight();
 		for (Widget widget = getChild(); widget != null; widget = widget.next) {
-			if (widget.getY() + widget.getHeight() >= minY && widget.getY() < maxY) {	// Optimized children paint if in scrollContainer
+			if (widget.getY() + widget.getHeight() >= minY
+					&& widget.getY() < maxY) { // Optimized children paint if in scrollContainer
 				widget.paintImpl(g);
 			}
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.AbstractTextWidget#clearCachedStyle(boolean)
 	 */
 	public void clearCachedStyle(boolean clearCachedStyle) {
@@ -152,147 +172,189 @@ public class TextArea extends TextWidget {
 		super.clearCachedStyle(clearCachedStyle);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#propagateFocusEvent(org.kalmeo.kuix.widget.Widget, boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#propagateFocusEvent(org.kalmeo.kuix.widget
+	 * .Widget, boolean)
 	 */
 	protected void propagateFocusEvent(Widget focusedWidget, boolean lost) {
 		// Do nothing to optimize
 	}
-	
+
 	/**
 	 * Construct all Text child according to the text input ans styled option
 	 */
 	private void reflow() {
 		needToReflow = false;
 		removeAll();
-		
+
 		if (text == null || text.length() == 0) {
 			return;
 		}
-		
+
 		if (!styled) {
 			splitWords(text, Font.STYLE_PLAIN);
 			return;
 		}
-		
-		String xmlText = new StringBuffer("<t>").append(text).append("</t>").toString();
+
+		String xmlText = new StringBuffer("<t>").append(text).append("</t>")
+				.toString();
 		try {
 
-			InputStream inputStream = new ByteArrayInputStream(xmlText.getBytes(KuixConstants.DEFAULT_CHARSET_NAME));
-			LightXmlParser.parse(inputStream, KuixConstants.DEFAULT_CHARSET_NAME, new LightXmlParserHandler() {
+			InputStream inputStream = new ByteArrayInputStream(xmlText
+					.getBytes(KuixConstants.DEFAULT_CHARSET_NAME));
+			LightXmlParser.parse(inputStream,
+					KuixConstants.DEFAULT_CHARSET_NAME,
+					new LightXmlParserHandler() {
 
-				short bold = 0;
-				short italic = 0;
-				short underlined = 0;
-				
-				String lastCharacters = null;
-				String lastHref = null;
-				
-				/* (non-Javadoc)
-				 * @see com.kalmeo.util.xml.DefaultHandler#startDocument()
-				 */
-				public void startDocument() {
-				}
-				
-				/* (non-Javadoc)
-				 * @see com.kalmeo.util.xml.DefaultHandler#startElement(java.lang.String, java.util.Hashtable)
-				 */
-				public void startElement(String name, Hashtable attributes) {
-					processLastCharacters();
-					if (KuixConstants.BOLD_TAG.equals(name) || KuixConstants.STRONG_TAG.equals(name)) {
-						bold++;
-					} else if (KuixConstants.ITALIC_TAG.equals(name)) {
-						italic++;
-					} else if (KuixConstants.UNDERLINE_TAG.equals(name)) {
-						underlined++;
-					} else if (KuixConstants.ANCROR_TAG.equals(name)) {
-						Object attribute = attributes.get(KuixConstants.ANCROR_TAG_HREF_ATTRIBUTE);
-						if (attribute != null) {
-							lastHref = (String) attribute;
-						}
-					} else if (KuixConstants.IMAGE_TAG.equals(name)) {
-						Object attribute = attributes.get(KuixConstants.IMAGE_TAG_SRC_ATTRIBUTE);
-						if (attribute != null) {
-							Picture picture = new Picture().setSource((String) attribute);
-							add(picture);
-						}
-					}
-				}
-				
-				/* (non-Javadoc)
-				 * @see org.kalmeo.util.xml.LightXmlParserHandler#characters(java.lang.String, boolean)
-				 */
-				public void characters(String characters, boolean isCDATA) {
-					lastCharacters = characters;
-				}
+						short bold = 0;
+						short italic = 0;
+						short underlined = 0;
 
-				/* (non-Javadoc)
-				 * @see com.kalmeo.util.xml.DefaultHandler#endElement(java.lang.String)
-				 */
-				public void endElement(String name) {
-					if (KuixConstants.ANCROR_TAG.equals(name)) {
-						Button hyperlink = new Button(KuixConstants.HYPERLINK_WIDGET_TAG);
-						hyperlink.add(new Text().setText(lastCharacters));
-						if (lastHref != null) {
-							hyperlink.setOnAction("goUrl(" + lastHref + ")");
-							lastHref = null;
+						String lastCharacters = null;
+						String lastHref = null;
+
+						/*
+						 * (non-Javadoc)
+						 * 
+						 * @see
+						 * com.kalmeo.util.xml.DefaultHandler#startDocument()
+						 */
+						public void startDocument() {
 						}
-						add(hyperlink);
-						lastCharacters = null;
-					} else {
-						processLastCharacters();
-						if (KuixConstants.BREAD_RETURN_TAG.equals(name) 
-								|| KuixConstants.PARAGRAPH_TAG.equals(name) 
-								|| KuixConstants.DIV_TAG.equals(name)) {
-							add(new Widget(KuixConstants.BREAK_WIDGET_TAG));
-							if (KuixConstants.PARAGRAPH_TAG.equals(name) 
-									|| KuixConstants.DIV_TAG.equals(name)) {
-								add(new Text().setText(" "));
-								add(new Widget(KuixConstants.BREAK_WIDGET_TAG));
+
+						/*
+						 * (non-Javadoc)
+						 * 
+						 * @see
+						 * com.kalmeo.util.xml.DefaultHandler#startElement(java
+						 * .lang.String, java.util.Hashtable)
+						 */
+						public void startElement(String name,
+								Hashtable attributes) {
+							processLastCharacters();
+							if (KuixConstants.BOLD_TAG.equals(name)
+									|| KuixConstants.STRONG_TAG.equals(name)) {
+								bold++;
+							} else if (KuixConstants.ITALIC_TAG.equals(name)) {
+								italic++;
+							} else if (KuixConstants.UNDERLINE_TAG.equals(name)) {
+								underlined++;
+							} else if (KuixConstants.ANCROR_TAG.equals(name)) {
+								Object attribute = attributes
+										.get(KuixConstants.ANCROR_TAG_HREF_ATTRIBUTE);
+								if (attribute != null) {
+									lastHref = (String) attribute;
+								}
+							} else if (KuixConstants.IMAGE_TAG.equals(name)) {
+								Object attribute = attributes
+										.get(KuixConstants.IMAGE_TAG_SRC_ATTRIBUTE);
+								if (attribute != null) {
+									Picture picture = new Picture()
+											.setSource((String) attribute);
+									add(picture);
+								}
 							}
-						} else if (KuixConstants.BOLD_TAG.equals(name) || KuixConstants.STRONG_TAG.equals(name)) {
-							bold--;
-						} else if (KuixConstants.ITALIC_TAG.equals(name)) {
-							italic--;
-						} else if (KuixConstants.UNDERLINE_TAG.equals(name)) {
-							underlined--;
 						}
-					}
-				}
 
-				/* (non-Javadoc)
-				 * @see com.kalmeo.util.xml.DefaultHandler#endDocument()
-				 */
-				public void endDocument() {
-				}
-				
-				private void processLastCharacters() {
-					if (lastCharacters != null) {
-						int style = Font.STYLE_PLAIN;
-						if (bold != 0) {
-							style |= Font.STYLE_BOLD;
+						/*
+						 * (non-Javadoc)
+						 * 
+						 * @see
+						 * org.kalmeo.util.xml.LightXmlParserHandler#characters
+						 * (java.lang.String, boolean)
+						 */
+						public void characters(String characters,
+								boolean isCDATA) {
+							lastCharacters = characters;
 						}
-						if (italic != 0) {
-							style |= Font.STYLE_ITALIC;
+
+						/*
+						 * (non-Javadoc)
+						 * 
+						 * @see
+						 * com.kalmeo.util.xml.DefaultHandler#endElement(java
+						 * .lang.String)
+						 */
+						public void endElement(String name) {
+							if (KuixConstants.ANCROR_TAG.equals(name)) {
+								Button hyperlink = new Button(
+										KuixConstants.HYPERLINK_WIDGET_TAG);
+								hyperlink.add(new Text()
+										.setText(lastCharacters));
+								if (lastHref != null) {
+									hyperlink.setOnAction("goUrl(" + lastHref
+											+ ")");
+									lastHref = null;
+								}
+								add(hyperlink);
+								lastCharacters = null;
+							} else {
+								processLastCharacters();
+								if (KuixConstants.BREAD_RETURN_TAG.equals(name)
+										|| KuixConstants.PARAGRAPH_TAG
+												.equals(name)
+										|| KuixConstants.DIV_TAG.equals(name)) {
+									add(new Widget(
+											KuixConstants.BREAK_WIDGET_TAG));
+									if (KuixConstants.PARAGRAPH_TAG
+											.equals(name)
+											|| KuixConstants.DIV_TAG
+													.equals(name)) {
+										add(new Text().setText(" "));
+										add(new Widget(
+												KuixConstants.BREAK_WIDGET_TAG));
+									}
+								} else if (KuixConstants.BOLD_TAG.equals(name)
+										|| KuixConstants.STRONG_TAG
+												.equals(name)) {
+									bold--;
+								} else if (KuixConstants.ITALIC_TAG
+										.equals(name)) {
+									italic--;
+								} else if (KuixConstants.UNDERLINE_TAG
+										.equals(name)) {
+									underlined--;
+								}
+							}
 						}
-						if (underlined != 0) {
-							style |= Font.STYLE_UNDERLINED;
+
+						/*
+						 * (non-Javadoc)
+						 * 
+						 * @see com.kalmeo.util.xml.DefaultHandler#endDocument()
+						 */
+						public void endDocument() {
 						}
-						
-						splitWords(lastCharacters, style);
-						lastCharacters = null;
-					}
-				}
-				
-			});
-			
-			
+
+						private void processLastCharacters() {
+							if (lastCharacters != null) {
+								int style = Font.STYLE_PLAIN;
+								if (bold != 0) {
+									style |= Font.STYLE_BOLD;
+								}
+								if (italic != 0) {
+									style |= Font.STYLE_ITALIC;
+								}
+								if (underlined != 0) {
+									style |= Font.STYLE_UNDERLINED;
+								}
+
+								splitWords(lastCharacters, style);
+								lastCharacters = null;
+							}
+						}
+
+					});
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private void splitWords(String fullText, int style) {
 		int beginIndex = 0;
 		int endIndex = 0;
@@ -313,7 +375,7 @@ public class TextArea extends TextWidget {
 				add(textWidget);
 			}
 			beginIndex = endIndex + 1;
-		} while (endIndex  != -1);
+		} while (endIndex != -1);
 	}
-	
+
 }

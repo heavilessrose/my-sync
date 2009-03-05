@@ -50,7 +50,8 @@ public class StringUtil {
 				}
 				if (pattern.charAt(i) == '}') {
 					if (n == 1) {
-						toAppendTo.append(processPattern(pattern.substring(lIndex + 1, i), args));
+						toAppendTo.append(processPattern(pattern.substring(
+								lIndex + 1, i), args));
 						lIndex = -1;
 						lastIndex = i + 1;
 					}
@@ -58,7 +59,8 @@ public class StringUtil {
 				}
 			}
 			if (n > 0) {
-				toAppendTo.append(processPattern(pattern.substring(lIndex + 1), args));
+				toAppendTo.append(processPattern(pattern.substring(lIndex + 1),
+						args));
 			} else {
 				toAppendTo.append(pattern.substring(lastIndex));
 			}
@@ -70,8 +72,10 @@ public class StringUtil {
 	/**
 	 * Extracts N-th from an array of argumens.
 	 * 
-	 * @param indexString a String number
-	 * @param args array of arguments
+	 * @param indexString
+	 *            a String number
+	 * @param args
+	 *            array of arguments
 	 * @return the indexString-th parameter from the array
 	 */
 	private static String processPattern(String indexString, Object[] args) {
@@ -101,7 +105,8 @@ public class StringUtil {
 			int posStart = rawData.indexOf(prefix + "(");
 			int posEnd = rawData.indexOf(")");
 			if (posStart != -1 && posEnd != -1 && posStart < posEnd) {
-				return rawData.substring(posStart + prefix.length() + 1, posEnd);
+				return rawData
+						.substring(posStart + prefix.length() + 1, posEnd);
 			}
 		}
 		return null;

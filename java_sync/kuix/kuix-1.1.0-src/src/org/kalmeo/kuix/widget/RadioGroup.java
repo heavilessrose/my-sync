@@ -37,31 +37,34 @@ public class RadioGroup extends List {
 
 	// The selected RadioButton
 	private RadioButton selectedRadioButton = null;
-	
+
 	// The change method
 	private String onChange;
-	
+
 	// The value is kept in this variable only if no radio button corresponding
 	private String wantedValue;
-	
+
 	/**
 	 * Construct a {@link RadioGroup}
 	 */
 	public RadioGroup() {
 		this(KuixConstants.RADIO_GROUP_WIDGET_TAG);
 	}
-	
+
 	/**
 	 * Construct a {@link RadioGroup}
-	 *
+	 * 
 	 * @param tag
 	 */
 	public RadioGroup(String tag) {
 		super(tag);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.CheckBox#setAttribute(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.kuix.widget.CheckBox#setAttribute(java.lang.String,
+	 * java.lang.String)
 	 */
 	public boolean setAttribute(String name, String value) {
 		if (KuixConstants.VALUE_ATTRIBUTE.equals(name)) {
@@ -74,8 +77,10 @@ public class RadioGroup extends List {
 		}
 		return super.setAttribute(name, value);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#getAttribute(java.lang.String)
 	 */
 	public Object getAttribute(String name) {
@@ -97,7 +102,7 @@ public class RadioGroup extends List {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Check if the value exists in RadioButton children value and the select
 	 * the first occurrence
@@ -120,7 +125,7 @@ public class RadioGroup extends List {
 		setSelectedRadioButton(null, false);
 		wantedValue = value;
 	}
-	
+
 	/**
 	 * @return the onChange
 	 */
@@ -129,7 +134,8 @@ public class RadioGroup extends List {
 	}
 
 	/**
-	 * @param onChange the onChange to set
+	 * @param onChange
+	 *            the onChange to set
 	 */
 	public void setOnChange(String onChange) {
 		this.onChange = onChange;
@@ -145,10 +151,13 @@ public class RadioGroup extends List {
 	/**
 	 * Set the current selected {@link RadioButton}.
 	 * 
-	 * @param radioButton the selectedButton to set
-	 * @param propagateChangeEvent if <code>true</code> the onChange event could be propagated
+	 * @param radioButton
+	 *            the selectedButton to set
+	 * @param propagateChangeEvent
+	 *            if <code>true</code> the onChange event could be propagated
 	 */
-	public void setSelectedRadioButton(RadioButton radioButton, boolean propagateChangeEvent) {
+	public void setSelectedRadioButton(RadioButton radioButton,
+			boolean propagateChangeEvent) {
 		if (radioButton != null && radioButton.parent != this) {
 			return;
 		}
@@ -166,8 +175,10 @@ public class RadioGroup extends List {
 			}
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)
 	 */
 	public Widget add(Widget widget) {
@@ -178,7 +189,9 @@ public class RadioGroup extends List {
 		return this;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#cleanUp()
 	 */
 	public void cleanUp() {
@@ -186,20 +199,26 @@ public class RadioGroup extends List {
 		wantedValue = null;
 		super.cleanUp();
 	}
-	
+
 	/**
 	 * @param radioButton
 	 */
 	protected void processNewRadioButtonValue(RadioButton radioButton) {
 		if (radioButton != null && radioButton.parent == this) {
-			if (radioButton.isSelected() || (wantedValue != null && wantedValue.equals(radioButton.getValue()))) {
+			if (radioButton.isSelected()
+					|| (wantedValue != null && wantedValue.equals(radioButton
+							.getValue()))) {
 				setSelectedRadioButton(radioButton, false);
 			}
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.widget.Widget#onChildRemoved(org.kalmeo.kuix.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.widget.Widget#onChildRemoved(org.kalmeo.kuix.widget.Widget
+	 * )
 	 */
 	protected void onChildRemoved(Widget widget) {
 		if (widget == selectedRadioButton) {
@@ -207,6 +226,5 @@ public class RadioGroup extends List {
 		}
 		super.onChildRemoved(widget);
 	}
-	
-}
 
+}
