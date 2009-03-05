@@ -55,9 +55,10 @@ public class ShopList extends DataProvider {
 
 	// ShopList's 'in cart' products count
 	private int numInCartProducts;
-	
+
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -65,7 +66,8 @@ public class ShopList extends DataProvider {
 	}
 
 	/**
-	 * @param date the date to set
+	 * @param date
+	 *            the date to set
 	 */
 	public void setDate(long date) {
 		this.date = date;
@@ -73,13 +75,14 @@ public class ShopList extends DataProvider {
 	}
 
 	/**
-	 * @param numProducts the numProducts to set
+	 * @param numProducts
+	 *            the numProducts to set
 	 */
 	public void setNumProducts(int numProducts) {
 		this.numProducts = numProducts;
 		dispatchUpdateEvent(NUM_PRODUCTS_PROPERTY);
 	}
-	
+
 	/**
 	 * @param inc
 	 */
@@ -88,8 +91,12 @@ public class ShopList extends DataProvider {
 		dispatchUpdateEvent(NUM_IN_CART_PRODUCTS_PROPERTY);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.core.model.DataProvider#getUserDefinedValue(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.core.model.DataProvider#getUserDefinedValue(java.lang
+	 * .String)
 	 */
 	protected Object getUserDefinedValue(String property) {
 		if (NAME_PROPERTY.equals(property)) {
@@ -107,7 +114,9 @@ public class ShopList extends DataProvider {
 			int year = calendar.get(Calendar.YEAR);
 
 			// Define an array of string adding a "0" character to day or month if necessary
-			String decomposedDate[] = { NumberUtil.formatInt(day, 2), NumberUtil.formatInt(month, 2), NumberUtil.formatInt(year, 4) };
+			String decomposedDate[] = { NumberUtil.formatInt(day, 2),
+					NumberUtil.formatInt(month, 2),
+					NumberUtil.formatInt(year, 4) };
 
 			// Get message DATE from messages.property file, givin it decomposedDate array
 			return Kuix.getMessage("DATE", decomposedDate);
@@ -124,8 +133,10 @@ public class ShopList extends DataProvider {
 	/**
 	 * Create a new Product and add it to shopList and list
 	 * 
-	 * @param name product's name
-	 * @param quantity product's quantity
+	 * @param name
+	 *            product's name
+	 * @param quantity
+	 *            product's quantity
 	 * @return the new Product if it success, null else
 	 */
 	public boolean addProduct(String name, short quantity) {
@@ -165,14 +176,18 @@ public class ShopList extends DataProvider {
 	/**
 	 * Modify <code>product</code>'s name and quantity.
 	 * 
-	 * @param product the Product to modify
-	 * @param name the new product's name (if null, previous name is kept)
-	 * @param quantity the new product's quantity (if negative, previous
-	 *            quantity is kept)
+	 * @param product
+	 *            the Product to modify
+	 * @param name
+	 *            the new product's name (if null, previous name is kept)
+	 * @param quantity
+	 *            the new product's quantity (if negative, previous quantity is
+	 *            kept)
 	 * @return <code>true</code> if all is right
 	 */
 	public boolean modifyProduct(Product product, String name, short quantity) {
-		if (product != null && ((name != null && name.length() > 0) || quantity > -1)) {
+		if (product != null
+				&& ((name != null && name.length() > 0) || quantity > -1)) {
 			if (name != null && name.length() > 0) {
 				product.setName(name);
 			}
@@ -191,7 +206,7 @@ public class ShopList extends DataProvider {
 	public void unloadProducts() {
 		removeAllItems(PRODUCTS_PROPERTY);
 	}
-	
+
 	/**
 	 * Remove all products
 	 */
@@ -210,7 +225,7 @@ public class ShopList extends DataProvider {
 	public void sortProducts(int flag) {
 		sortItems(PRODUCTS_PROPERTY, flag);
 	}
-	
+
 	/**
 	 * Filter the products
 	 * 
@@ -234,19 +249,23 @@ public class ShopList extends DataProvider {
 	 */
 	public byte[] serialize() {
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-		DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+		DataOutputStream dataOutputStream = new DataOutputStream(
+				byteArrayOutputStream);
 		try {
 
 			dataOutputStream.writeUTF(name);
 			dataOutputStream.writeLong(date);
 
-			LinkedListEnumeration productsEnumeration = enumerateItems(PRODUCTS_PROPERTY, false);
-			if (productsEnumeration != null)  {
-				dataOutputStream.writeInt(productsEnumeration.getList().getLength());
+			LinkedListEnumeration productsEnumeration = enumerateItems(
+					PRODUCTS_PROPERTY, false);
+			if (productsEnumeration != null) {
+				dataOutputStream.writeInt(productsEnumeration.getList()
+						.getLength());
 				productsEnumeration.reset();
 				while (productsEnumeration.hasNextItems()) {
-					((Product) productsEnumeration.nextItem()).serialize(dataOutputStream);
-					
+					((Product) productsEnumeration.nextItem())
+							.serialize(dataOutputStream);
+
 				}
 			} else {
 				dataOutputStream.writeInt(0);
@@ -263,13 +282,16 @@ public class ShopList extends DataProvider {
 	 * Unserialize a byte array to get name and date of the ShopList and also
 	 * fill it with products if withproducts is true
 	 * 
-	 * @param rawData byte array containing ShopList under serialized form
-	 * @param withProducts true if needed to get Products in the ShopList, false
-	 *            else
+	 * @param rawData
+	 *            byte array containing ShopList under serialized form
+	 * @param withProducts
+	 *            true if needed to get Products in the ShopList, false else
 	 */
 	public boolean unserialized(byte[] rawData, boolean withProducts) {
-		ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(rawData);
-		DataInputStream dataInputStream = new DataInputStream(byteArrayInputStream);
+		ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
+				rawData);
+		DataInputStream dataInputStream = new DataInputStream(
+				byteArrayInputStream);
 		try {
 			name = dataInputStream.readUTF();
 			date = dataInputStream.readLong();
