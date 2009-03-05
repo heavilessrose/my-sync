@@ -41,7 +41,7 @@ public class FrameHandler {
 	 */
 	private class LinkedFrame implements LinkedListItem {
 
-		// Th associated Frame
+		// The associated Frame
 		private Frame frame;
 
 		// Define if the LinkedFrame need to be removed on next remove process

@@ -30,18 +30,24 @@ import org.kalmeo.kuix.widget.Desktop;
  */
 public class Kaprice extends KuixMIDlet {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.kuix.core.KuixMIDlet#initDesktopStyles()
 	 */
 	public void initDesktopStyles() {
 		Kuix.loadCss("/css/style.css");
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.kuix.core.KuixMIDlet#initDesktopContent(org.kalmeo.kuix.widget.Desktop)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.kalmeo.kuix.core.KuixMIDlet#initDesktopContent(org.kalmeo.kuix.widget
+	 * .Desktop)
 	 */
 	public void initDesktopContent(Desktop desktop) {
 		Kuix.getFrameHandler().pushFrame(MainFrame.instance);
 	}
-	
+
 }

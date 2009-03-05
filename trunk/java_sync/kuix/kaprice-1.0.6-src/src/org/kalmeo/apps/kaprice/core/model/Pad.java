@@ -40,7 +40,7 @@ public class Pad extends DataProvider {
 
 	// The associated recordStore
 	private RecordStore recordStore;
-	
+
 	/**
 	 * Open the pad and then the RecordStore and load stored shopLists without
 	 * products.
@@ -49,12 +49,14 @@ public class Pad extends DataProvider {
 	 */
 	public void open() throws Exception {
 		// Open the recordStore
-		recordStore = RecordStore.openRecordStore(KapriceConstants.DEFAULT_RECORDSTORE, true);
-		
+		recordStore = RecordStore.openRecordStore(
+				KapriceConstants.DEFAULT_RECORDSTORE, true);
+
 		// Load shopLists from recordStore
-		RecordEnumeration recordEnumeration = recordStore.enumerateRecords(null, null, true);
+		RecordEnumeration recordEnumeration = recordStore.enumerateRecords(
+				null, null, true);
 		while (recordEnumeration.hasPreviousElement()) {
-			
+
 			int recordId = recordEnumeration.previousRecordId();
 			byte[] rawData = recordStore.getRecord(recordId);
 
@@ -66,10 +68,10 @@ public class Pad extends DataProvider {
 				// Invalid record : we delete it
 				recordStore.deleteRecord(recordId);
 			}
-			
+
 		}
 	}
-	
+
 	/**
 	 * Close the Pad and then the RecordStore
 	 * 
@@ -78,7 +80,7 @@ public class Pad extends DataProvider {
 	public void close() throws Exception {
 		recordStore.closeRecordStore();
 	}
-	
+
 	/**
 	 * Relead shopList with products
 	 * 
@@ -105,7 +107,7 @@ public class Pad extends DataProvider {
 	 */
 	public boolean createShopList(String name) {
 		if (name != null && name.length() > 0) {
-			
+
 			// Create the model
 			ShopList shopList = new ShopList();
 			shopList.setName(name);
@@ -113,7 +115,7 @@ public class Pad extends DataProvider {
 
 			// Add shopList model
 			addItem(SHOP_LISTS_PROPERTY, shopList);
-			
+
 			// Store it in the recordStore
 			byte[] rawData = shopList.serialize();
 			int recordId = -1;
@@ -123,20 +125,20 @@ public class Pad extends DataProvider {
 				e.printStackTrace();
 			}
 			shopList.recordId = recordId;
-			
+
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * @param shopList
 	 */
 	public void removeShopList(ShopList shopList) {
-		
+
 		// Remove shopList model
 		removeItem(SHOP_LISTS_PROPERTY, shopList);
-		
+
 		// Remove the record
 		if (shopList.recordId != -1) {
 			try {
@@ -145,9 +147,9 @@ public class Pad extends DataProvider {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * Modify shopList's name
 	 * 
@@ -157,18 +159,18 @@ public class Pad extends DataProvider {
 	 */
 	public boolean modifyShopList(ShopList shopList, String name) {
 		if (name != null && name.length() > 0) {
-		
+
 			// Update shopList name
 			shopList.setName(name);
-			
+
 			// Store the shop list
 			storeShopList(shopList);
-			
+
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Store the Shoplist if it has been already stored.
 	 * 
@@ -178,23 +180,25 @@ public class Pad extends DataProvider {
 		if (shopList.recordId != -1) {
 			byte[] rawData = shopList.serialize();
 			try {
-				recordStore.setRecord(shopList.recordId, rawData, 0, rawData.length);
+				recordStore.setRecord(shopList.recordId, rawData, 0,
+						rawData.length);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove all shopLists.
 	 */
 	public void removeAllShopLists() {
-		
+
 		// Remove all records
 		Object tmpShopLists = getValue(SHOP_LISTS_PROPERTY);
 		if (tmpShopLists instanceof LinkedList) {
 			LinkedList shopLists = (LinkedList) tmpShopLists;
-			for (LinkedListItem shopList = shopLists.getFirst(); shopList != null; shopList = shopList.getNext()) {
+			for (LinkedListItem shopList = shopLists.getFirst(); shopList != null; shopList = shopList
+					.getNext()) {
 				int recordId = ((ShopList) shopList).recordId;
 				if (recordId != -1) {
 					try {
@@ -205,10 +209,10 @@ public class Pad extends DataProvider {
 				}
 			}
 		}
-		
+
 		// Remove all shopList models
 		removeAllItems(SHOP_LISTS_PROPERTY);
-		
+
 	}
-	
+
 }

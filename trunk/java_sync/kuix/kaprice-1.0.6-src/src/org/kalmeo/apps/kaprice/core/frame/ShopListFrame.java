@@ -49,14 +49,18 @@ public class ShopListFrame implements Frame {
 	 * Initialize shopList with a ShopList given in parameter. setList MUST BE
 	 * called before frame is pushed in FrameHandler
 	 * 
-	 * @param shopList the ShopList wich be display (threw list)
+	 * @param shopList
+	 *            the ShopList wich be display (threw list)
 	 */
 	public void setShopList(ShopList shopList) {
 		this.shopList = shopList;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.kalmeo.util.frame.Frame#onMessage(java.lang.Object, java.lang.Object[])
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.kalmeo.util.frame.Frame#onMessage(java.lang.Object,
+	 * java.lang.Object[])
 	 */
 	public boolean onMessage(Object identifier, Object[] arguments) {
 		if ("askAdd".equals(identifier)) {
@@ -65,46 +69,61 @@ public class ShopListFrame implements Frame {
 		}
 		if ("add".equals(identifier)) {
 			// Add a new product only if TextFields are corectly filled 
-			if (arguments != null && arguments.length > 1 && arguments[0] instanceof String && arguments[1] instanceof String) {
+			if (arguments != null && arguments.length > 1
+					&& arguments[0] instanceof String
+					&& arguments[1] instanceof String) {
 				String productName = (String) arguments[0];
 				String productQuantityString = (String) arguments[1];
 				short productQuantity = -1;
-				if (productQuantityString != null && productQuantityString.length() > 0) {
+				if (productQuantityString != null
+						&& productQuantityString.length() > 0) {
 					productQuantity = Short.parseShort(productQuantityString);
 				}
 
 				if (!shopList.addProduct(productName, productQuantity)) {
-					Kuix.alert(Kuix.getMessage("ERROR"), KuixConstants.ALERT_ERROR);
+					Kuix.alert(Kuix.getMessage("ERROR"),
+							KuixConstants.ALERT_ERROR);
 				}
 			}
 			return false;
 		}
 		if ("askEdit".equals(identifier)) {
 			// Call to showAskBox if ListItem is selected, show warning alert else
-			if (arguments != null && arguments.length > 0 && arguments[0] instanceof Product) {
-				Kuix.showPopupBox(KapriceConstants.SHOPLISTFRAME_EDIT_POPUP, (Product) arguments[0]);
+			if (arguments != null && arguments.length > 0
+					&& arguments[0] instanceof Product) {
+				Kuix.showPopupBox(KapriceConstants.SHOPLISTFRAME_EDIT_POPUP,
+						(Product) arguments[0]);
 			} else {
-				Kuix.alert(Kuix.getMessage("WARNING_UNSELECTED_PRODUCT"), KuixConstants.ALERT_WARNING);
+				Kuix.alert(Kuix.getMessage("WARNING_UNSELECTED_PRODUCT"),
+						KuixConstants.ALERT_WARNING);
 			}
 			return false;
 		}
 		if ("edit".equals(identifier)) {
 			// Call to editProduct method givin it new name and quantity of the selected item
 			// Show error message if it failed
-			if (arguments != null && arguments.length > 1 && arguments[0] instanceof String && arguments[1] instanceof String) {
+			if (arguments != null && arguments.length > 1
+					&& arguments[0] instanceof String
+					&& arguments[1] instanceof String) {
 				String newProductName = (String) arguments[0];
 				String newProductQuantityString = (String) arguments[1];
 				short newProductQuantity = -1;
-				if (newProductQuantityString != null && newProductQuantityString.length() > 0) {
-					newProductQuantity = Short.parseShort(newProductQuantityString);
+				if (newProductQuantityString != null
+						&& newProductQuantityString.length() > 0) {
+					newProductQuantity = Short
+							.parseShort(newProductQuantityString);
 				}
-				
-				Widget focusedWidget = screen.getFocusManager().getFocusedWidget();
+
+				Widget focusedWidget = screen.getFocusManager()
+						.getFocusedWidget();
 				if (focusedWidget instanceof CheckBox) {
-					DataProvider dataProvider = ((CheckBox) focusedWidget).getDataProvider();
+					DataProvider dataProvider = ((CheckBox) focusedWidget)
+							.getDataProvider();
 					if (dataProvider instanceof Product) {
-						if (!shopList.modifyProduct((Product) dataProvider, newProductName, newProductQuantity)) {
-							Kuix.alert(Kuix.getMessage("ERROR"), KuixConstants.ALERT_ERROR);
+						if (!shopList.modifyProduct((Product) dataProvider,
+								newProductName, newProductQuantity)) {
+							Kuix.alert(Kuix.getMessage("ERROR"),
+									KuixConstants.ALERT_ERROR);
 						}
 					}
 				}
@@ -115,15 +134,18 @@ public class ShopListFrame implements Frame {
 			// Call onMessage method with "delete" name and null arguments only if a ListItem value (so a Product) is selected
 			Widget focusedWidget = screen.getFocusManager().getFocusedWidget();
 			if (focusedWidget instanceof CheckBox) {
-				DataProvider dataProvider = ((CheckBox) focusedWidget).getDataProvider();
+				DataProvider dataProvider = ((CheckBox) focusedWidget)
+						.getDataProvider();
 				if (dataProvider instanceof Product) {
-					Kuix.alert(	Kuix.getMessage("ASK_DELETE", new String[] { ((Product) dataProvider).name }),
-								KuixConstants.ALERT_QUESTION | KuixConstants.ALERT_YES | KuixConstants.ALERT_NO,
-								"delete", 
-								null);
+					Kuix.alert(Kuix.getMessage("ASK_DELETE",
+							new String[] { ((Product) dataProvider).name }),
+							KuixConstants.ALERT_QUESTION
+									| KuixConstants.ALERT_YES
+									| KuixConstants.ALERT_NO, "delete", null);
 				}
 			} else {
-				Kuix.alert(Kuix.getMessage("WARNING_UNSELECTED_PRODUCT"), KuixConstants.ALERT_WARNING);
+				Kuix.alert(Kuix.getMessage("WARNING_UNSELECTED_PRODUCT"),
+						KuixConstants.ALERT_WARNING);
 			}
 			return false;
 		}
@@ -131,7 +153,8 @@ public class ShopListFrame implements Frame {
 			// Ask for a delete to deleteProduct method
 			Widget focusedWidget = screen.getFocusManager().getFocusedWidget();
 			if (focusedWidget instanceof CheckBox) {
-				DataProvider dataProvider = ((CheckBox) focusedWidget).getDataProvider();
+				DataProvider dataProvider = ((CheckBox) focusedWidget)
+						.getDataProvider();
 				if (dataProvider != null) {
 					shopList.removeProduct((Product) dataProvider);
 				}
@@ -140,10 +163,9 @@ public class ShopListFrame implements Frame {
 		}
 		if ("askClear".equals(identifier)) {
 			// show askClear box wich call onMessage method with "clear" name and null arguments
-			Kuix.alert(	Kuix.getMessage("REMOVEALL_PRODUCTS"),
-						KuixConstants.ALERT_QUESTION | KuixConstants.ALERT_YES | KuixConstants.ALERT_NO,
-						"clear", 
-						null);
+			Kuix.alert(Kuix.getMessage("REMOVEALL_PRODUCTS"),
+					KuixConstants.ALERT_QUESTION | KuixConstants.ALERT_YES
+							| KuixConstants.ALERT_NO, "clear", null);
 			return false;
 		}
 		if ("clear".equals(identifier)) {
@@ -151,7 +173,8 @@ public class ShopListFrame implements Frame {
 			return false;
 		}
 		if ("select".equals(identifier)) {
-			if (arguments != null && arguments.length == 1 && arguments[0] instanceof Product) {
+			if (arguments != null && arguments.length == 1
+					&& arguments[0] instanceof Product) {
 				Product product = ((Product) arguments[0]);
 				product.setInCart(!product.inCart);
 			}
@@ -181,27 +204,32 @@ public class ShopListFrame implements Frame {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.frame.Frame#onAdded()
 	 */
 	public void onAdded() {
-		
+
 		// Load the screen
-		screen = Kuix.loadScreen(KapriceConstants.SHOPLISTFRAME_SCREEN, shopList);
-		
+		screen = Kuix.loadScreen(KapriceConstants.SHOPLISTFRAME_SCREEN,
+				shopList);
+
 		// Set screen as current screen
 		screen.setCurrent();
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.kalmeo.util.frame.Frame#onRemoved()
 	 */
 	public void onRemoved() {
-		
+
 		// show MainFrame screen
 		MainFrame.instance.showScreen();
-		
+
 		// Save the shopList
 		// /!\ all changes are saved only if ShopListFrame (this) is removed
 		MainFrame.instance.storeShopList(shopList);
@@ -212,10 +240,10 @@ public class ShopListFrame implements Frame {
 		// /!\ On unserialize ShopList's method we just add product form the record store
 		//  so if shopList is already loaded is contain is doubled
 		shopList.unloadProducts();
-		
+
 		// Clean unused variables
 		shopList = null;
 		screen = null;
-		
+
 	}
 }
