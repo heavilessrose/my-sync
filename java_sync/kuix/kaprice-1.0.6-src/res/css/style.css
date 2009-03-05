@@ -1,0 +1,150 @@
+screen {
+	bg-color:white;
+	transition: slide(right);
+}
+
+screentopbar {
+	bg-color:#529800;
+	bg-image:url(tb_bg.png);
+	bg-align:bottom-left;
+	bg-repeat:0 1;
+	padding:2 5 2 2;
+}
+
+screentopbar text {
+	color:white;
+	bg-image:url(icon.png);
+	bg-align:left;
+	bg-repeat:1 1;
+	padding:0 0 0 18;
+}
+
+screenbottombar,popupboxbottombar {
+	bg-color:#529800;
+	bg-image:url(bb_bg.png);
+	bg-repeat:0 1;
+	bg-align:top-left;
+	padding:2 5 2 5;
+}
+
+screenbottombar text {
+	color:white;
+}
+
+menupopup {
+	bg-color:white;
+	border:1;
+	border-color:#6BC200;
+	padding:1;
+}
+
+menu, menuitem {
+	padding:2 18 2 2;
+	color:#6BC200;
+}
+
+menu {
+	bg-image:url(arrow.png);
+	bg-align:right;
+	bg-repeat:1 1;
+}
+
+menu:hover, menuitem:hover {
+	color:white;
+	bg-color:#6BC200;
+}
+
+scrollbar {
+	bg-color:#EEEEEE;
+}
+
+scrollbarbar {
+	bg-color:#818181;
+	padding:0 0 0 4;
+}
+
+scrollpane {
+	padding: 0 1 0 1;
+	margin: 1 1 1 0;
+}
+
+listitem {
+	padding: 2;
+}
+
+listitem,checkbox {
+	border: 0 0 1 0;
+	border-color:#818181;
+}
+
+listitem:hover,checkbox:hover {
+	bg-color:#EEEEEE;
+}
+
+checkbox {
+	padding: 2 2 2 20;
+	min-size: 16 16;
+}
+
+checkbox:selected {
+	bg-image: url(cart.png);
+	bg-repeat: 1 1;
+	bg-align: left;
+}
+
+popupbox.alertquestion popupboxcontainer {
+	bg-image:url(question.png);
+}
+
+popupbox.alertwarning popupboxcontainer {
+	bg-image:url(warning.png);
+}
+
+popupbox.alerterror popupboxcontainer {
+	bg-image:url(error.png);
+}
+
+popupbox.alertquestion popupboxcontainer, popupbox.alertwarning popupboxcontainer, popupbox.alerterror popupboxcontainer {
+	padding:0 0 0 20;
+	bg-repeat:1 1;
+}
+
+popupbox.splash {
+	margin:0;
+	padding:0 0 10 0;
+	layout-data:sld(center,.9,.9);
+	bg-color:white;
+	border:1;
+	border-color:#2D2D2D;
+}
+
+popupbox.splash text {
+	color:black;
+	align:center;
+	font-size:large;
+}
+
+popupbox {
+	padding:10;
+	layout-data:sld(bottom,1,-1);
+	bg-color:#2D2D2D;
+	grayed-color:white;
+}
+
+popupbox textfield {
+	padding:2;
+	bg-color:white;
+	border:2;
+}
+
+popupbox textfield:hover {
+	border-color:#6BC200;
+}
+
+popupbox text {
+	color:white;
+}
+
+text.small {
+	font-size:small;
+}

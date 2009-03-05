@@ -1,0 +1,30 @@
+<screen shortcuts="back=askQuit|left=askQuit" title="Kaprice" focusloop="true">
+	<scrollPane>
+		<list id="list">
+			<_renderer>
+			<![CDATA[
+			<listItem style="layout:borderlayout;gap:5 0" onAction="show">
+				<picture src="shop_list.png" style="layout-data:bld(west)" />
+				<container style="layout:inlinelayout(false,fill)">
+					<text>@{name}</text>
+					<text class="small">${date}</text>
+				</container>
+				<text style="layout-data:bld(east)" class="small">(@{numProducts})</text>
+			</listItem>
+			]]>
+			</_renderer>
+			<_items>@{shopLists}</_items>
+		</list>
+	</scrollPane>
+	<screenFirstMenu onAction="askAdd">%NEW_LIST%</screenFirstMenu>
+	<screenSecondMenu>
+		%MENU%
+		<menupopup>
+			<menuItem onAction="show">%SHOW%</menuItem>
+			<menuItem onAction="askEdit(#list.focusedwidget.dataprovider)">%EDIT_LIST%</menuItem>
+			<menuItem onAction="askDelete">%REMOVE_LIST%</menuItem>
+			<menuItem onAction="askClear">%REMOVEALL_LIST%</menuItem>
+			<menuItem onAction="askQuit">%QUIT%</menuItem>
+		</menupopup>
+	</screenSecondMenu>
+</screen>
