@@ -8,7 +8,7 @@ import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Displayable;
 
 /**
- *
+ * 警告信息提示
  * @author Administrator
  */
 public class ErrorAlert extends Alert implements CommandListener{

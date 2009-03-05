@@ -18,7 +18,7 @@ import javax.microedition.lcdui.Canvas;
 import javax.microedition.lcdui.Graphics;
 
 /**
- *
+ * 主界面
  * @author JERRY
  */
 public class CCCanvas extends Canvas implements HttpListener {

@@ -7,7 +7,7 @@ import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
 /**
- *
+ * 警告界面
  * @author Administrator
  */
 public class AlertBoard {
