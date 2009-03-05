@@ -14,10 +14,13 @@ import java.util.Enumeration;
 public class RMSAdapter {
 
 	private int language = 0;
+	/** 保存第几次运行 */
 	private RecordStore rs1 = null;
+	/** 保存特服号码 */
 	private RecordStore rs2 = null;
 	/** 号码与图片对应关系recordStore */
 	private RecordStore rs3 = null;
+	/** 已下载彩像ID */
 	private RecordStore rs4 = null;
 	private RecordStore rs5 = null;
 	private RecordStore rs6 = null;
@@ -55,6 +58,7 @@ public class RMSAdapter {
 	}
 
 	/**
+	 * 打开RMS
 	 * 
 	 * @param rmsNum
 	 */
@@ -298,7 +302,7 @@ public class RMSAdapter {
 		return ht;
 	}
 
-	/** 添加一个联系人图片对应关系 ? */
+	/** 添加一个联系人图片对应关系? */
 	public void addNumAndPic(Hashtable ht) {
 		try {
 			ByteArrayOutputStream baos = null;
@@ -765,7 +769,6 @@ public class RMSAdapter {
 			ex.printStackTrace();
 		}
 	}
-
 
 	/** 从rms中得到激活时提供的本机号码 */
 	public String getMyPhoneNum() {

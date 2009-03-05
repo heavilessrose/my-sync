@@ -326,7 +326,7 @@ public class GUIController {
 		public static final int EVENT_FILELIST = 104;
 		public static final int EVENT_NAMELIST = 105;
 		public static final int EVENT_NUMBERLIST = 106;
-		/** 存储下载的图片文件? */
+		/** 存储下载的图片文件 */
 		public static final int EVENT_SAVE_CCFILE = 107;
 		public static final int EVENT_UPDATASOFTWARE = 108;
 		public static final int EVENT_REQUESTFORPAY = 109;
@@ -1595,7 +1595,6 @@ public class GUIController {
 
 		//        StringBuffer sb = new StringBuffer();
 		//        String content = null;
-
 		//        try {
 		//            int ch = -1;
 		//            InputStream is = getClass().getResourceAsStream("/lprogress1.png");///lprogress1.png
@@ -1706,7 +1705,7 @@ public class GUIController {
 		gprsConnection.start();
 	}
 
-	/** 上传电话本 */
+	/** 首次激活时上传电话本, 终端类型, 软件类型, 屏幕类型等 */
 	public void combineInitBody() {
 		System.out.println("GUIController:combineInitBody(): -----combine and upload contacts-----");
 		protocolTools.reset();

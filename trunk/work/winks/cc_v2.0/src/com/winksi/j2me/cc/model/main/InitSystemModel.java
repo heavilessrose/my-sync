@@ -55,7 +55,7 @@ public class InitSystemModel {
 		this.controller = controller;
 	}
 
-	/** 初始化通讯服务器等 */
+	/** 用解析的数据初始化通讯服务器, 更新彩像等 */
 	public void initComuServer(Hashtable ht) {
 		if (ht.containsKey(new Integer(ProtocolTools.PROPERTY_ERROR))) {//错误属性
 			byte[] temp = (byte[]) ht.get(new Integer(ProtocolTools.PROPERTY_ERROR));
@@ -299,15 +299,15 @@ public class InitSystemModel {
 					String keystring = new String(keytemp, CPProperty.UTF8);
 					byte[] type = (byte[]) tempht.get(new Integer(ProtocolTools.PROPERTY_SPECIALNUMBER_TYPE));
 					int specialtype = (int) type[0];
-					byte[] voluetemp = (byte[]) tempht.get(new Integer(ProtocolTools.PROPERTY_SPECIALNUMBER_VALUE));
-					String voluestring = new String(voluetemp, CPProperty.UTF8);
+					byte[] valuetemp = (byte[]) tempht.get(new Integer(ProtocolTools.PROPERTY_SPECIALNUMBER_VALUE));
+					String valuestring = new String(valuetemp, CPProperty.UTF8);
 					//                    System.out.println("key: " + keystring);
 					//                    System.out.println("type: " + specialtype);
-					//                    System.out.println("value: " + voluestring);
+					//                    System.out.println("value: " + valuestring);
 					if (specialtype == 1) {
-						specialHt_add.put(keystring, voluestring);
+						specialHt_add.put(keystring, valuestring);
 					} else {
-						specialHt_del.put(keystring, voluestring);
+						specialHt_del.put(keystring, valuestring);
 					}
 
 				} catch (UnsupportedEncodingException ex) {
@@ -428,6 +428,7 @@ public class InitSystemModel {
 		return this.ccIdHt_del;
 	}
 
+	/** 得到彩像ID的vector */
 	public Vector getCCIdVector() {
 		return this.ccIdVector;
 	}
