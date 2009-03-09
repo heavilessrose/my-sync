@@ -1,13 +1,13 @@
-// function to compute an expression using int value parameters
-// 传值参数 -- 值传递不会改变参数的值
-
+// template function using reference parameters to compute an expression
+// 引用参数, 常量引用参数
 #include<iostream>
 
 using namespace std;
 
-int abc(int a, int b, int c)
+template<class T>
+T abc(const T& a, const T& b, const T& c)
 {
-	a = 100;
+//	a = 1; 声明为常量引用参数时, 值不能改变
    return a + b + c;
 }
 
