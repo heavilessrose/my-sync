@@ -1,24 +1,3 @@
-/*
- * This file is part of org.kalmeo.util.
- * 
- * org.kalmeo.util is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * org.kalmeo.util is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public License
- * along with org.kalmeo.util.  If not, see <http://www.gnu.org/licenses/>.
- *  
- * Creation date : 21 nov. 2007
- * Copyright (c) Kalmeo 2007-2008. All rights reserved.
- * http://www.kalmeo.org
- */
-
 package org.kalmeo.util.frame;
 
 import org.kalmeo.util.LinkedList;
@@ -61,7 +40,7 @@ public class FrameHandler {
 			this.frame = frame;
 		}
 
-		/*
+		/**
 		 * (non-Javadoc)
 		 * 
 		 * @see org.kalmeo.util.LinkedListItem#getNext()
@@ -70,7 +49,7 @@ public class FrameHandler {
 			return next;
 		}
 
-		/*
+		/**
 		 * (non-Javadoc)
 		 * 
 		 * @see org.kalmeo.util.LinkedListItem#getPrevious()
@@ -79,7 +58,7 @@ public class FrameHandler {
 			return previous;
 		}
 
-		/*
+		/**
 		 * (non-Javadoc)
 		 * 
 		 * @see
@@ -90,7 +69,7 @@ public class FrameHandler {
 			this.next = (LinkedFrame) next;
 		}
 
-		/*
+		/**
 		 * (non-Javadoc)
 		 * 
 		 * @see
@@ -101,7 +80,7 @@ public class FrameHandler {
 			this.previous = (LinkedFrame) previous;
 		}
 
-		/*
+		/**
 		 * (non-Javadoc)
 		 * 
 		 * @see
@@ -123,7 +102,7 @@ public class FrameHandler {
 	// Number of removable linkedFrame
 	private int removableLinkedFrameCount = 0;
 
-	// Synchronization mutex
+	// Synchronization mutex(»¥³âËø)
 	private final Object mutex = new Object();
 
 	/**
@@ -306,7 +285,7 @@ public class FrameHandler {
 		return messageProcessed;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#toString()

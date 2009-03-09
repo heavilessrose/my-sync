@@ -1,24 +1,3 @@
-/*
- * This file is part of org.kalmeo.kuix.
- * 
- * org.kalmeo.kuix is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * org.kalmeo.kuix is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with org.kalmeo.kuix.  If not, see <http://www.gnu.org/licenses/>.
- *  
- * Creation date : 21 nov. 2007
- * Copyright (c) Kalmeo 2007-2008. All rights reserved.
- * http://www.kalmeo.org
- */
-
 package org.kalmeo.kuix.core;
 
 import java.io.ByteArrayInputStream;
@@ -58,9 +37,10 @@ import org.kalmeo.util.xml.LightXmlParser;
 import org.kalmeo.util.xml.LightXmlParserHandler;
 
 /**
- * This class is the central class for Kuix framework management. It pertmits to
- * load XML files, load CSS files. It contains the {@link FrameHandler} object
- * instance that manages Frames.
+ * Kuix框架管理的中心类.允许载入XML,CSS文件. 包含管理Frames的FramHandler对象实例. This class is the
+ * central class for Kuix framework management. It permits to load XML files,
+ * load CSS files. It contains the {@link FrameHandler} object instance that
+ * manages Frames.
  * 
  * @author bbeaulant
  */
@@ -69,8 +49,8 @@ public final class Kuix {
 	// FrameHandler
 	private static final FrameHandler frameHandler = new FrameHandler();
 
-	// List of registred styles
-	private static final LinkedList registredStyles = new LinkedList();
+	// List of registered styles
+	private static final LinkedList registeredStyles = new LinkedList();
 
 	// The converter used to convert string representation to java object
 	private static KuixConverter converter;
@@ -1444,7 +1424,6 @@ public final class Kuix {
 		if (inputStream != null) {
 			Reader reader = new InputStreamReader(inputStream);
 			try {
-
 				boolean selectorsCapture = true;
 				boolean commentCapture = false;
 
@@ -1647,7 +1626,7 @@ public final class Kuix {
 	 */
 	public static void registerStyle(final Style style) {
 		if (style != null) {
-			Style registredStyle = (Style) registredStyles.getFirst();
+			Style registredStyle = (Style) registeredStyles.getFirst();
 			for (; registredStyle != null; registredStyle = (Style) registredStyle
 					.getNext()) {
 				if (registredStyle.getSelector().equals(style.getSelector())) {
@@ -1665,7 +1644,7 @@ public final class Kuix {
 				}
 
 			} else {
-				registredStyles.add(style);
+				registeredStyles.add(style);
 			}
 		}
 	}
@@ -1787,7 +1766,7 @@ public final class Kuix {
 				}
 			};
 
-			Vector styles = registredStyles.findAll(filter);
+			Vector styles = registeredStyles.findAll(filter);
 			if (widget.getAuthorStyle() != null) {
 				// Insert the author style at the first position
 				styles.insertElementAt(widget.getAuthorStyle(), 0);
@@ -1804,7 +1783,7 @@ public final class Kuix {
 	 * Remove all registred styles
 	 */
 	public static void removeAllStyles() {
-		registredStyles.removeAll();
+		registeredStyles.removeAll();
 	}
 
 	/**

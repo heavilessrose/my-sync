@@ -1,24 +1,3 @@
-/*
- * This file is part of org.kalmeo.kuix.
- * 
- * org.kalmeo.kuix is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * org.kalmeo.kuix is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with org.kalmeo.kuix.  If not, see <http://www.gnu.org/licenses/>.
- *  
- * Creation date : 5 dec. 07
- * Copyright (c) Kalmeo 2007-2008. All rights reserved.
- * http://www.kalmeo.org
- */
-
 package org.kalmeo.kuix.widget;
 
 import java.io.ByteArrayInputStream;
@@ -234,7 +213,7 @@ public class Screen extends Widget {
 
 	}
 
-	// Screen menu label renderers customization
+	// Screen menu label renders customization
 	private static ByteArrayInputStream screenMenuSelectLabelRenderer;
 	private static ByteArrayInputStream screenMenuCancelLabelRenderer;
 
@@ -755,7 +734,7 @@ public class Screen extends Widget {
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#doLayout()
@@ -772,7 +751,7 @@ public class Screen extends Widget {
 
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see org.kalmeo.kuix.widget.Widget#add(org.kalmeo.kuix.widget.Widget)

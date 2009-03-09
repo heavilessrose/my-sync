@@ -39,7 +39,7 @@ public abstract class KuixMIDlet extends MIDlet implements KuixInitializer,
 		defaultInstance = this;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see org.kalmeo.kuix.core.KuixInitializer#getMIDlet()
@@ -78,7 +78,7 @@ public abstract class KuixMIDlet extends MIDlet implements KuixInitializer,
 	}
 
 	/**
-	 * Overide this method to customize your {@link KuixMIDlet} fullscreen
+	 * Override this method to customize your {@link KuixMIDlet} fullscreen
 	 * attribute. By default the value is <code>true</code>.
 	 * 
 	 * @return <code>true</code> if the midlet is full screen
@@ -87,7 +87,7 @@ public abstract class KuixMIDlet extends MIDlet implements KuixInitializer,
 		return true;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see
@@ -97,7 +97,7 @@ public abstract class KuixMIDlet extends MIDlet implements KuixInitializer,
 		return 0xFFFFFF;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see org.kalmeo.kuix.core.KuixInitializer#getInitializationMessageColor()
@@ -106,16 +106,16 @@ public abstract class KuixMIDlet extends MIDlet implements KuixInitializer,
 		return 0x000000;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see org.kalmeo.kuix.core.KuixInitializer#getInitializationMessage()
 	 */
 	public String getInitializationMessage() {
-		return "Loading";
+		return "Loading...";
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see org.kalmeo.kuix.core.KuixInitializer#getInitializationImageFile()
@@ -136,14 +136,14 @@ public abstract class KuixMIDlet extends MIDlet implements KuixInitializer,
 		return new KuixConverter();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see org.kalmeo.kuix.core.KuixInitializer#initDesktopStyles()
 	 */
 	public abstract void initDesktopStyles();
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see

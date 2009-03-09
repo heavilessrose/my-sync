@@ -1,27 +1,8 @@
-/*
- * This file is part of org.kalmeo.kuix.
- * 
- * org.kalmeo.kuix is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * org.kalmeo.kuix is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with org.kalmeo.kuix.  If not, see <http://www.gnu.org/licenses/>.
- *  
- * Creation date : 21 nov. 2007
- * Copyright (c) Kalmeo 2007-2008. All rights reserved.
- * http://www.kalmeo.org
- */
-
 package org.kalmeo.kuix.util;
 
 /**
+ * 边缘的空白
+ * 
  * @author bbeaulant
  */
 public class Alignment {
@@ -128,12 +109,12 @@ public class Alignment {
 	}
 
 	/**
-	 * Calculte the aligned x coordiante from <code>contentWidth</code> in
-	 * <code>width</code>
+	 * Calculate the aligned x coordinate from <code>contentWidth</code> in
+	 * <code>width</code>. 计算x轴方向的空白 
 	 * 
 	 * @param width
 	 * @param contentWidth
-	 * @return The aligned x coordiante from <code>contentWidth</code> in
+	 * @return The aligned x coordinate from <code>contentWidth</code> in
 	 *         <code>width</code>
 	 */
 	public int alignX(int width, int contentWidth) {
@@ -146,12 +127,12 @@ public class Alignment {
 	}
 
 	/**
-	 * Calculte the aligned y coordiante from <code>contentWidth</code> in
-	 * <code>height</code>
+	 * Calculate the aligned y coordinate from <code>contentWidth</code> in
+	 * <code>height</code>. 计算y轴方向的空白
 	 * 
 	 * @param height
 	 * @param contentHeight
-	 * @return The aligned y coordiante from <code>contentHeight</code> in
+	 * @return The aligned y coordinate from <code>contentHeight</code> in
 	 *         <code>height</code>
 	 */
 	public int alignY(int height, int contentHeight) {
