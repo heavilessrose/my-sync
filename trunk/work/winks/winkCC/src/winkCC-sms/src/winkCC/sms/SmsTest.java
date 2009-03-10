@@ -20,6 +20,8 @@ import javax.wireless.messaging.MessageListener;
  * 
  * 测试发送与接收.
  * 
+ * 未进行push短信的测试.
+ * 
  * @author WangYinghua
  * 
  */
