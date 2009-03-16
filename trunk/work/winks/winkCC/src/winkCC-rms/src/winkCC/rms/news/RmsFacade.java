@@ -7,7 +7,7 @@
 //
 // THIS SOFTWARE IS COMPLEMENTARY OF JAYWAY AB (www.jayway.se)
 
-package com.yila.utils;
+package winkCC.rms.news;
 
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
@@ -15,7 +15,7 @@ import javax.microedition.rms.RecordStoreFullException;
 import javax.microedition.rms.RecordStoreNotFoundException;
 import javax.microedition.rms.RecordStoreNotOpenException;
 
-import com.yila.cache.LocalCache;
+//import com.yila.cache.LocalCache;
 
 /**
  * <p>
@@ -32,7 +32,7 @@ import com.yila.cache.LocalCache;
  * @author Peter Andersson
  */
 public class RmsFacade {
-	
+
 	/** The record store singleton instance of this midlet */
 	protected static RecordStore m_rs = null;
 
@@ -115,18 +115,18 @@ public class RmsFacade {
 				// Create key indices
 				m_keyCache = new byte[maxNbrOfKeys * 2];
 				getStore().addRecord(m_keyCache, 0, maxNbrOfKeys);
-				
+
 				//初始化声音和代理服务器设置
-				LocalCache.setSound(true);
-				LocalCache.setProxy(true);
-				
+//				LocalCache.setSound(true);
+//				LocalCache.setProxy(true);
+
 				//是否注册自动启动
-				LocalCache.setRegisterPush(false);
+//				LocalCache.setRegisterPush(false);
 
 			}
-			
+
 			//初始化检索标签
-			LocalCache.setSearchTag("");
+//			LocalCache.setSearchTag("");
 		} catch (Throwable t) {
 			t.printStackTrace();
 			return false;
