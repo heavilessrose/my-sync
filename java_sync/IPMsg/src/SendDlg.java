@@ -19,8 +19,7 @@ import java.awt.Label;
 import java.awt.Choice;
 import java.awt.TextArea;
 import java.awt.Button;
-import java.awt.Checkbox;
-//import jp.kyasu.awt.Frame;
+import java.awt.Checkbox; //import jp.kyasu.awt.Frame;
 //import jp.kyasu.awt.Panel;
 //import jp.kyasu.awt.Label;
 //import jp.kyasu.awt.Choice;
@@ -42,17 +41,17 @@ import java.util.MissingResourceException;
 public class SendDlg extends Dialog {
 	IPMsg ipmsg;
 	IPMComEvent[] users;
-	
+
 	TextArea body;
 	Checkbox secret, passwd;
-	
+
 	public SendDlg(Frame p, IPMsg i, IPMComEvent[] e) {
 		super(p, false);
 		ipmsg = i;
 		users = e;
 		createWindow(p);
 	}
-	
+
 	void createWindow(final Frame p) {
 		setVisible(false);
 		setTitle(ipmsg.getPref("senddlgName"));
@@ -70,16 +69,17 @@ public class SendDlg extends Dialog {
 		} else if (users.length == 1) {
 			Label to = new Label(ipmsg.getPref("toUnicastLabel"));
 			p1.add(to);
-			Label user = new Label(
-				Cp932.toCp932(ipmsg.makeListStr(users[0].getPack())));
+			Label user = new Label(Cp932.toCp932(ipmsg.makeListStr(users[0]
+					.getPack())));
 			p1.add(user);
 		} else {
 			Label to = new Label(ipmsg.getPref("toMulticastLabel"));
 			p1.add(to);
 			Choice choice = new Choice();
 			for (int i = 0; i < users.length; i++)
-				choice.add(
-					Cp932.toCp932(ipmsg.makeListStr(users[i].getPack())));
+				choice
+						.add(Cp932.toCp932(ipmsg
+								.makeListStr(users[i].getPack())));
 			p1.add(choice);
 		}
 		body = new TextArea();
@@ -107,22 +107,22 @@ public class SendDlg extends Dialog {
 					tmpaddrs[0] = users[0].getIPMAddress();
 					tostr = "To: " + ipmsg.makeListStr(users[0].getPack());
 					for (int i = 1; i < users.length; i++) {
-						suffix = "(" + ipmsg.getPref("multicastLogFlag")
-							+ ") " + suffix;
+						suffix = "(" + ipmsg.getPref("multicastLogFlag") + ") "
+								+ suffix;
 						tmpaddrs[i] = users[i].getIPMAddress();
 						tostr = System.getProperty("line.separator", "\n")
-							+ "To: " + ipmsg.makeListStr(users[i].getPack());
+								+ "To: "
+								+ ipmsg.makeListStr(users[i].getPack());
 					}
 				} else {
 					tostr = "To: BROADCAST";
 					suffix = "(" + ipmsg.getPref("broadcastLogFlag") + ") "
-						+ suffix;
+							+ suffix;
 				}
 				ipmsg.sendMsg(tmpaddrs, Cp932.toJIS(body.getText()), flag);
-				ipmsg.writeLog(tostr
-					, ipmsg.makeDateStr(new Date(System.currentTimeMillis()))
-					+ " " + suffix
-					, Cp932.toJIS(body.getText()));
+				ipmsg.writeLog(tostr, ipmsg.makeDateStr(new Date(System
+						.currentTimeMillis()))
+						+ " " + suffix, Cp932.toJIS(body.getText()));
 			}
 		});
 		p2.add(send);
@@ -138,11 +138,11 @@ public class SendDlg extends Dialog {
 			}
 		});
 		secret.setState(new Boolean(ipmsg.getPref("secretState"))
-			.booleanValue());
+				.booleanValue());
 		p2.add(secret);
 		passwd = new Checkbox(ipmsg.getPref("passwdLabel"));
 		passwd.setState(new Boolean(ipmsg.getPref("passwdState"))
-			.booleanValue());
+				.booleanValue());
 		passwd.setEnabled(secret.getState());
 		p2.add(passwd);
 		Button cancel = new Button(ipmsg.getPref("cancelLabel"));
@@ -166,16 +166,16 @@ public class SendDlg extends Dialog {
 		} catch (MissingResourceException ex) {
 			Dimension sc = getToolkit().getScreenSize();
 			Dimension sz = getSize();
-			setLocation(sc.width/2-sz.width, sc.height/2-sz.height/2);
+			setLocation(sc.width / 2 - sz.width, sc.height / 2 - sz.height / 2);
 		}
 	}
-	
+
 	void exitAction() {
 		if (new Boolean(ipmsg.getPref("resumeState")).booleanValue()) {
-			ipmsg.setPref("secretState"
-				, new Boolean(secret.getState()).toString());
-			ipmsg.setPref("passwdState"
-				, new Boolean(passwd.getState()).toString());
+			ipmsg.setPref("secretState", new Boolean(secret.getState())
+					.toString());
+			ipmsg.setPref("passwdState", new Boolean(passwd.getState())
+					.toString());
 		}
 		Dimension size = getSize();
 		ipmsg.setPref("dlgSizeX", Integer.toString(size.width));
@@ -185,7 +185,7 @@ public class SendDlg extends Dialog {
 		ipmsg.setPref("senddlgY", Integer.toString(location.y));
 		dispose();
 	}
-	
+
 	public void setText(String text) {
 		body.setText(Cp932.toCp932(text));
 	}

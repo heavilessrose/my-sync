@@ -20,8 +20,7 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.TextArea;
 import java.awt.Button;
-import java.awt.Checkbox;
-//import jp.kyasu.awt.Frame;
+import java.awt.Checkbox; //import jp.kyasu.awt.Frame;
 //import jp.kyasu.awt.Panel;
 //import jp.kyasu.awt.Label;
 //import jp.kyasu.awt.TextField;
@@ -42,13 +41,13 @@ public class RecvDlg extends Dialog {
 	IPMsg ipmsg;
 	IPMEvent ipme;
 	IPMComEvent ipmce;
-	
+
 	String suffix = "";
-	
+
 	Label user;
 	TextArea body;
 	Checkbox quote;
-	
+
 	public RecvDlg(Frame p, IPMsg i, IPMComEvent c, IPMEvent e) {
 		super(p, false);
 		ipmsg = i;
@@ -56,7 +55,7 @@ public class RecvDlg extends Dialog {
 		ipme = e;
 		createWindow(p);
 	}
-	
+
 	void createWindow(final Frame p) {
 		setVisible(false);
 		setTitle(ipmsg.getPref("recvdlgName"));
@@ -83,7 +82,7 @@ public class RecvDlg extends Dialog {
 		add("Center", body);
 		Panel p2 = new Panel(new BorderLayout());
 		add("South", p2);
-		Label time = new Label(ipmsg.makeDateStr(ipme.getDate()),Label.CENTER);
+		Label time = new Label(ipmsg.makeDateStr(ipme.getDate()), Label.CENTER);
 		p2.add("North", time);
 		Panel p3 = new Panel(new FlowLayout(FlowLayout.CENTER));
 		p2.add("South", p3);
@@ -99,11 +98,12 @@ public class RecvDlg extends Dialog {
 				}
 				SendDlg sd = new SendDlg(p, ipmsg, tmpipmce);
 				if (quote.getState()) {
-				//	String cr = (String) System.getProperty("line.separator");
+					//	String cr = (String) System.getProperty("line.separator");
 					String cr = "\n";
 					String tmpstr = ipmsg.getPref("quoter")
-						+ Cp932.toJIS(body.getText());
-					tmpstr = StringReplacer.replaceString(tmpstr, cr, cr+"> ");
+							+ Cp932.toJIS(body.getText());
+					tmpstr = StringReplacer
+							.replaceString(tmpstr, cr, cr + "> ");
 					sd.setText(tmpstr);
 				}
 				sd.setVisible(true);
@@ -111,8 +111,7 @@ public class RecvDlg extends Dialog {
 		});
 		p3.add(reply);
 		quote = new Checkbox(ipmsg.getPref("quoteLabel"));
-		quote.setState(new Boolean(ipmsg.getPref("quoteState"))
-			.booleanValue());
+		quote.setState(new Boolean(ipmsg.getPref("quoteState")).booleanValue());
 		p3.add(quote);
 		Button close = new Button(ipmsg.getPref("closeLabel"));
 		close.addActionListener(new ActionListener() {
@@ -131,8 +130,8 @@ public class RecvDlg extends Dialog {
 		Dimension sc = getToolkit().getScreenSize();
 		Dimension sz = getSize();
 		Random random = new Random();
-		setLocation(sc.width/2 + (random.nextInt() % 64)
-			, sc.height/2-sz.height/2 + (random.nextInt() % 64));
+		setLocation(sc.width / 2 + (random.nextInt() % 64), sc.height / 2
+				- sz.height / 2 + (random.nextInt() % 64));
 		if ((ipme.getPack().getCommand() & IPMsg.IPMSG_MULTICASTOPT) != 0)
 			suffix = " (" + ipmsg.getPref("multicastLogFlag") + ")";
 		else if ((ipme.getPack().getCommand() & IPMsg.IPMSG_BROADCASTOPT) != 0)
@@ -143,8 +142,7 @@ public class RecvDlg extends Dialog {
 				final String strpass = ipmsg.getPref("password");
 				final Panel p4 = new Panel(new FlowLayout());
 				add("Center", p4);
-				Label passwdlabel
-					= new Label(ipmsg.getPref("inputPasswdLabel"));
+				Label passwdlabel = new Label(ipmsg.getPref("inputPasswdLabel"));
 				p4.add(passwdlabel);
 				final TextField input = new TextField(20);
 				input.setEchoChar('*');
@@ -152,17 +150,18 @@ public class RecvDlg extends Dialog {
 				Button open = new Button(ipmsg.getPref("openLabel"));
 				open.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent ae) {
-						if (strpass.equals(
-							MessageDigester.getMD5(input.getText()))) {
+						if (strpass.equals(MessageDigester.getMD5(input
+								.getText()))) {
 							ipmsg.sendReadMsg(ipme);
 							remove(p4);
 							add("Center", body);
 							reply.setEnabled(true);
 							quote.setEnabled(true);
 							validate();
-							ipmsg.writeLog("From: "+Cp932.toJIS(user.getText())
-								, ipmsg.makeDateStr(ipme.getDate()) + suffix
-								, ipme.getPack().getExtra());
+							ipmsg.writeLog("From: "
+									+ Cp932.toJIS(user.getText()), ipmsg
+									.makeDateStr(ipme.getDate())
+									+ suffix, ipme.getPack().getExtra());
 						} else
 							getToolkit().beep();
 					}
@@ -171,7 +170,8 @@ public class RecvDlg extends Dialog {
 				reply.setEnabled(false);
 				quote.setEnabled(false);
 				return;
-			} catch (MissingResourceException ex) {}
+			} catch (MissingResourceException ex) {
+			}
 		}
 		if ((ipme.getPack().getCommand() & IPMsg.IPMSG_SECRETOPT) != 0) {
 			suffix = suffix + " (" + ipmsg.getPref("secretLogFlag") + ")";
@@ -184,9 +184,9 @@ public class RecvDlg extends Dialog {
 					reply.setEnabled(true);
 					quote.setEnabled(true);
 					validate();
-					ipmsg.writeLog("From: " + Cp932.toJIS(user.getText())
-						, ipmsg.makeDateStr(ipme.getDate()) + suffix
-						, ipme.getPack().getExtra());
+					ipmsg.writeLog("From: " + Cp932.toJIS(user.getText()),
+							ipmsg.makeDateStr(ipme.getDate()) + suffix, ipme
+									.getPack().getExtra());
 				}
 			});
 			add("Center", open);
@@ -194,17 +194,17 @@ public class RecvDlg extends Dialog {
 			quote.setEnabled(false);
 			return;
 		}
-		ipmsg.writeLog("From: " + Cp932.toJIS(user.getText())
-			, ipmsg.makeDateStr(ipme.getDate()) + suffix
-			, ipme.getPack().getExtra());
+		ipmsg.writeLog("From: " + Cp932.toJIS(user.getText()), ipmsg
+				.makeDateStr(ipme.getDate())
+				+ suffix, ipme.getPack().getExtra());
 	}
-	
+
 	void exitAction() {
 		if (!quote.isEnabled())
 			ipmsg.sendDeleteMsg(ipme);
 		if (new Boolean(ipmsg.getPref("resumeState")).booleanValue())
-			ipmsg.setPref("quoteState"
-				, new Boolean(quote.getState()).toString());
+			ipmsg.setPref("quoteState", new Boolean(quote.getState())
+					.toString());
 		Dimension size = getSize();
 		ipmsg.setPref("dlgSizeX", Integer.toString(size.width));
 		ipmsg.setPref("dlgSizeY", Integer.toString(size.height));

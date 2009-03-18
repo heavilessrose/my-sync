@@ -15,14 +15,14 @@ public abstract class IPMSend extends Thread {
 	protected IPMPack spack;
 	protected IPMAddress saddr;
 
-	public static void send(DatagramSocket argsock, IPMPack argpack
-		, IPMAddress argaddr) {
-/*		System.out.println("Send(" + argsock.getLocalPort()
-			+ "):" + argaddr.toString() + ":"
-			+ new String(argpack.getBytes()));*/
-		DatagramPacket dpack = new DatagramPacket(argpack.getBytes()
-			, argpack.getBytes().length, argaddr.getInetAddress()
-			, argaddr.getPort());
+	public static void send(DatagramSocket argsock, IPMPack argpack,
+			IPMAddress argaddr) {
+		/*
+		 * System.out.println("Send(" + argsock.getLocalPort() + "):" +
+		 * argaddr.toString() + ":" + new String(argpack.getBytes()));
+		 */
+		DatagramPacket dpack = new DatagramPacket(argpack.getBytes(), argpack
+				.getBytes().length, argaddr.getInetAddress(), argaddr.getPort());
 		try {
 			argsock.send(dpack);
 		} catch (IOException ex) {
@@ -30,10 +30,10 @@ public abstract class IPMSend extends Thread {
 		}
 	}
 
-	public IPMSend(DatagramSocket argsock,IPMPack argpack,IPMAddress argaddr) {
+	public IPMSend(DatagramSocket argsock, IPMPack argpack, IPMAddress argaddr) {
 		dsock = argsock;
 		spack = argpack;
 		saddr = argaddr;
-//		start();
+		//		start();
 	}
 }

@@ -23,8 +23,8 @@ import java.util.StringTokenizer;
 import java.util.ResourceBundle;
 
 public class MsgBox extends Dialog {
-	protected ResourceBundle rc
-		= ResourceBundle.getBundle("JP.digitune.gui.resources");
+	protected ResourceBundle rc = ResourceBundle
+			.getBundle("JP.digitune.gui.resources");
 	protected Panel regbutton = new Panel(new FlowLayout());
 	private Button ok;
 
@@ -63,8 +63,8 @@ public class MsgBox extends Dialog {
 		pack();
 		Dimension scsize = getToolkit().getScreenSize();
 		Dimension size = getSize();
-		setLocation(scsize.width / 2 - size.width / 2
-			, scsize.height / 2 - size.height / 2);
+		setLocation(scsize.width / 2 - size.width / 2, scsize.height / 2
+				- size.height / 2);
 		setVisible(true);
 	}
 }

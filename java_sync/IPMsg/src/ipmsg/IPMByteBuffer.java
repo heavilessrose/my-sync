@@ -9,18 +9,18 @@ import JP.digitune.util.ByteBuffer;
 
 public class IPMByteBuffer extends ByteBuffer {
 	private int eopindex = 0;
-	
+
 	public IPMByteBuffer(byte[] argbuf) {
 		super(argbuf);
 	}
-	
+
 	public IPMByteBuffer() {
 		super();
 	}
-	
+
 	public boolean eop() {
 		if (end > 3) {
-			for (int i = 2; i < end; ) {
+			for (int i = 2; i < end;) {
 				if (buf[i] == 0) {
 					if (buf[i - 1] == 0) {
 						if (buf[i - 2] == 0) {
@@ -39,7 +39,7 @@ public class IPMByteBuffer extends ByteBuffer {
 		}
 		return false;
 	}
-	
+
 	public byte[] getBytes() {
 		byte[] tmp = new byte[eopindex];
 		end -= (eopindex + 3);

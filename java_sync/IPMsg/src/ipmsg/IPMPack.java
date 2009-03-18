@@ -17,8 +17,8 @@ public class IPMPack {
 	private long version = 0, no = 0, command = 0;
 	private String user = null, host = null, extra = null, group = null;
 
-	public IPMPack(long argver, long argno, String arguser
-		, String arghost, long argcommand, String argextra, String arggroup) {
+	public IPMPack(long argver, long argno, String arguser, String arghost,
+			long argcommand, String argextra, String arggroup) {
 		version = argver;
 		no = argno;
 		user = arguser;
@@ -53,7 +53,8 @@ public class IPMPack {
 			try {
 				bb.append(group.getBytes("SJIS"));
 				bb.append(nullbyte);
-			} catch (UnsupportedEncodingException ex) {}
+			} catch (UnsupportedEncodingException ex) {
+			}
 		}
 		pack = bb.getBytes();
 	}
@@ -121,16 +122,14 @@ public class IPMPack {
 	}
 
 	public boolean compare(IPMPack argpack) {
-		if (user.equals(argpack.getUser())
-			&& host.equals(argpack.getHost())
-			&& no == argpack.getNo()
-			&& command == argpack.getCommand())
+		if (user.equals(argpack.getUser()) && host.equals(argpack.getHost())
+				&& no == argpack.getNo() && command == argpack.getCommand())
 			return true;
 		return false;
 	}
 
 	public String getKey() {
-		return user+":"+host+":"+no+":"+command;
+		return user + ":" + host + ":" + no + ":" + command;
 	}
 
 	public byte[] getBytes() {

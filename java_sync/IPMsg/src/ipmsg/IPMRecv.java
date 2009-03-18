@@ -60,15 +60,17 @@ public class IPMRecv extends Thread {
 			if (b)
 				continue;
 			IPMAddress tmpaddr = new IPMAddress(port, addr);
-/*			System.out.println("Recv(" + dsock.getLocalPort() + "):"
-				+ tmpaddr.toString() + ":" + new String(tmppack.getBytes()));*/
-			IPMComEvent tmpevent = new IPMComEvent(this, dsock.getLocalPort()
-				, tmppack, tmpaddr);
+			/*
+			 * System.out.println("Recv(" + dsock.getLocalPort() + "):" +
+			 * tmpaddr.toString() + ":" + new String(tmppack.getBytes()));
+			 */
+			IPMComEvent tmpevent = new IPMComEvent(this, dsock.getLocalPort(),
+					tmppack, tmpaddr);
 			synchronized (this) {
-				for (Enumeration enum = listeners.elements()
-					; enum.hasMoreElements(); ) {
-					IPMComListener listener
-						= (IPMComListener) enum.nextElement();
+				for (Enumeration enum = listeners.elements(); enum
+						.hasMoreElements();) {
+					IPMComListener listener = (IPMComListener) enum
+							.nextElement();
 					listener.receive(tmpevent);
 				}
 			}

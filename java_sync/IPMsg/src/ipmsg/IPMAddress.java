@@ -10,12 +10,12 @@ import java.net.InetAddress;
 public class IPMAddress {
 	int port;
 	InetAddress addr;
-	
+
 	public IPMAddress(int argport, InetAddress argaddr) {
 		port = argport;
 		addr = argaddr;
 	}
-	
+
 	public IPMAddress(byte[] argbuf) {
 		int sep = 0;
 		while (argbuf[sep] != ":".getBytes()[0] && sep < argbuf.length - 1)
@@ -37,15 +37,15 @@ public class IPMAddress {
 			port = 0;
 		}
 	}
-	
+
 	public int getPort() {
 		return port;
 	}
-	
+
 	public InetAddress getInetAddress() {
 		return addr;
 	}
-	
+
 	public String toString() {
 		return addr.getHostAddress() + ":" + port;
 	}
