@@ -2,6 +2,7 @@ package winkCC.fs.finals;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
 
 import javax.microedition.io.Connector;
@@ -10,21 +11,77 @@ import javax.microedition.io.file.FileConnection;
 public class FileUtils {
 
 	/**
+	 * 关闭文件连接.
+	 * 
+	 * @param fc
+	 */
+	private void closeFc(FileConnection fc) {
+		try {
+			fc.close();
+			fc = null;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 新线程中创建目录.
+	 * 
+	 * @param path
+	 */
+	private void executeMkDirs(final String path) {
+		new Thread() {
+			public void run() {
+				mkDirs(path);
+			}
+		}.start();
+	}
+
+	/**
+	 * 新线程中创建文件.
+	 * 
+	 * @param path
+	 */
+	private void executeMkFile(final String path) {
+		new Thread() {
+			public void run() {
+				mkFile(path);
+			}
+		}.start();
+	}
+
+	/**
 	 * 新线程中创建文件或目录.
 	 * 
 	 * @param name
 	 * @param isDir
 	 */
-	public void executeCreateFile(final String name, final boolean isDir) {
-		new Thread(new Runnable() {
-
+	public void executeCreateFile(final String filePath) {
+		new Thread() {
 			public void run() {
-				if (isDir)
-					createDir(name);
-				else
-					createFile(name);
+				createFile(filePath);
 			}
-		}).start();
+		}.start();
+	}
+
+	/**
+	 * 创建文件或目录.
+	 * 
+	 * @param filePath
+	 */
+	private void createFile(String filePath) {
+		if (isDir(filePath)) {
+			mkDirs(filePath);
+		} else {
+			String parentDir = getParentPath(filePath);
+			if (!exists(parentDir)) { // 目录不存在,建立目录.
+				System.out.println("make dirs: " + parentDir);
+				mkDirs(parentDir);
+			}
+
+			System.out.println("start create file");
+			mkFile(filePath);
+		}
 	}
 
 	/**
@@ -32,39 +89,20 @@ public class FileUtils {
 	 * 
 	 * @param filePath
 	 */
-	public void createFile(String filePath) {
-		try {
-			FileConnection fc = (FileConnection) Connector.open("file:///"
-					+ filePath);
-			if (!fc.exists()) {
-				fc.create();
-			} else {
-				// 已存在
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * 创建目录.
-	 * 
-	 * @param dirPath
-	 */
-	public void createDir(String dirPath) {
-		if (dirPath.endsWith("/"))
+	private void mkFile(String filePath) {
+		if (!filePath.endsWith("/")) {
+			FileConnection fc = null;
 			try {
-				FileConnection fc = (FileConnection) Connector.open("file:///"
-						+ dirPath);
-				if (!fc.exists()) {
-					fc.mkdir();
-				} else {
-					// 已存在
-					return;
-				}
+				fc = (FileConnection) Connector.open("file:///" + filePath);
+				fc.create();
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				closeFc(fc);
 			}
+		} else {
+			// 
+		}
 	}
 
 	/**
@@ -85,43 +123,89 @@ public class FileUtils {
 	 * 将数据写入文件.
 	 * 
 	 * @param filePath
-	 *            完整路径及文件名
+	 *            完整路径及文件名,文件路径不应以"/"结尾.
 	 * @param data
-	 *            要写入的数据
+	 *            要写入的数据.
 	 */
-	public void writeToFile(String filePath, byte[] data) {
+	private void writeToFile(String filePath, byte[] data) {
 		if (!filePath.endsWith("/")) {
 			FileConnection fc = null;
 			DataOutputStream out = null;
 
-			String dir = null;
-			String fileName = null;
 			try {
-				fc = (FileConnection) Connector.open("file:///root1/");
-				if (!fc.exists())
-					fc.mkdir();
-				fc = (FileConnection) Connector.open("file:///root1/"
-						+ filePath + ".jpg");
-				if (!fc.exists())
-					fc.create();
+				if (!exists(filePath)) {
+					createFile(filePath);
+				}
+
+				fc = (FileConnection) Connector.open("file:///" + filePath);
 
 				out = fc.openDataOutputStream();
 				out.write(data);
 				out.flush();
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			} finally {
 				try {
 					out.close();
-					fc.close();
+					closeFc(fc);
 				} catch (IOException e) {
 					System.out.println("writeToFile: exception on close");
 					e.printStackTrace();
 				}
 			}
 		} else {
-			// 路径不应以"/"结尾
+			// 文件路径不应以"/"结尾.
 		}
+	}
+
+	public void executeReadFile(final String filePath, final byte[] buffer) {
+		new Thread(new Runnable() {
+			public void run() {
+				readFile(filePath, buffer);
+
+				System.out.println(toHex(buffer));
+			}
+		}).start();
+	}
+
+	/**
+	 * 将文件数据读入byte[] buffer.
+	 * 
+	 * @param fileName
+	 *            完整路径.
+	 * @param buffer
+	 * @return
+	 */
+	private void readFile(String fileName, byte[] buffer) {
+		if (!fileName.endsWith("/")) {
+			FileConnection fc = null;
+			InputStream in = null;
+			try {
+				fc = (FileConnection) Connector.open("file:///" + fileName);
+				in = fc.openInputStream();
+				in.read(buffer);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * 二进制到16进制
+	 * 
+	 * @param data
+	 * @return
+	 */
+	final public String toHex(byte[] data) {
+		StringBuffer buf = new StringBuffer();
+		for (int i = 0; i < data.length; i++) {
+			int intData = (int) data[i] & 0xFF;
+			if (intData < 0x10)
+				buf.append("0");
+			buf.append(Integer.toHexString(intData));
+			buf.append(' ');
+		}
+		return (buf.toString());
 	}
 
 	/**
@@ -137,13 +221,19 @@ public class FileUtils {
 	 */
 	public Enumeration listFiles(String dirPath) {
 		Enumeration files = null;
-		try {
-			FileConnection fc = (FileConnection) Connector.open("file:///"
-					+ dirPath);
-			files = fc.list();
-		} catch (IOException e) {
-			//if invoked on a file, the directory does not exist, the directory is not accessible, or an I/O error occurs.
-			e.printStackTrace();
+		if (dirPath.endsWith("/")) {
+			if (exists(dirPath)) {
+				try {
+					FileConnection fc = (FileConnection) Connector
+							.open("file:///" + dirPath);
+					files = fc.list();
+				} catch (IOException e) {
+					// 不存在, 无法访问, 或IO错误.
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("dir does not exist");
+			}
 		}
 		return files;
 	}
@@ -169,7 +259,6 @@ public class FileUtils {
 					+ dirPath);
 			files = fc.list(wildcard, showHidden);
 		} catch (IOException e) {
-			//if invoked on a file, the directory does not exist, the directory is not accessible, or an I/O error occurs.
 			e.printStackTrace();
 		}
 		return files;
@@ -178,35 +267,44 @@ public class FileUtils {
 	/**
 	 * 判断是否为文件夹.
 	 * 
-	 * @param name
+	 * @param path
 	 *            文件完整路径及名字.
 	 * @return
 	 */
-	public boolean isDir(String name) {
-		boolean isDir = false;
+	public boolean isDir(String path) {
 		FileConnection fc = null;
 		try {
-			fc = (FileConnection) Connector.open("file:///" + name);
-			isDir = fc.isDirectory();
+			fc = (FileConnection) Connector.open("file:///" + path);
+			if (fc.exists()) {
+				return fc.isDirectory();
+			} else {
+				if (path.endsWith("/"))
+					return true;
+				return false;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
-			try {
-				fc.close();
-				fc = null;
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			closeFc(fc);
 		}
-		return isDir;
+	}
+
+	public void executeDelete(final String filePath) {
+		new Thread(new Runnable() {
+
+			public void run() {
+				delete(filePath);
+			}
+		}).start();
 	}
 
 	/**
-	 * 删除文件.
+	 * 删除文件或文件夹.
 	 * 
 	 * @param name
 	 */
-	public void delete(String name) {
+	private void delete(String name) {
 		try {
 			FileConnection fc = (FileConnection) Connector.open("file:///"
 					+ name);
@@ -217,15 +315,15 @@ public class FileUtils {
 	}
 
 	/**
-	 * 重命名.
+	 * 重命名文件或文件夹.
 	 * 
-	 * @param name
+	 * @param filePath
 	 * @param newName
 	 */
-	public void rename(String name, String newName) {
+	public void rename(String filePath, String newName) {
 		try {
 			FileConnection fc = (FileConnection) Connector.open("file:///"
-					+ name);
+					+ filePath);
 			fc.rename(newName);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -258,26 +356,58 @@ public class FileUtils {
 				pathIndex = i + 1;
 			}
 		}
+		if (!pathName.endsWith("/")) {
+			parentPathIndex = pathIndex;
+		}
+
 		parentPath = pathName.substring(0, parentPathIndex);
 		path = pathName.substring(0, pathIndex);
 		fileName = pathName.substring(pathIndex);
+
+		System.out.println("parentPath: " + parentPath);
+		System.out.println("path: " + path);
+		System.out.println("fileName: " + fileName);
 	}
 
+	/**
+	 * 得到路径.
+	 * 
+	 * @param pathName
+	 * @return
+	 */
 	private String getPathString(String pathName) {
 		parsePath(pathName);
 		return path;
 	}
 
+	/**
+	 * 分解路径得到文件名.
+	 * 
+	 * @param pathName
+	 * @return
+	 */
 	private String getFileNameString(String pathName) {
 		parsePath(pathName);
 		return fileName;
 	}
 
+	/**
+	 * 得到父文件夹的完整路径.
+	 * 
+	 * @param dirpath
+	 * @return
+	 */
 	private String getParentPath(String dirpath) {
 		parsePath(dirpath);
 		return parentPath;
 	}
 
+	/**
+	 * 判断文件或文件夹是否存在.
+	 * 
+	 * @param dirPath
+	 * @return
+	 */
 	private boolean exists(String dirPath) {
 		FileConnection fc = null;
 		try {
@@ -290,44 +420,40 @@ public class FileUtils {
 	}
 
 	/**
-	 * 创建目录.
+	 * 创建单个文件夹.
 	 * 
 	 * @param dirPath
-	 * @return
+	 *            文件夹结尾应包含"/", 如:"e:/11/"
+	 * @return 失败返回false, 创建成功返回true.
 	 */
-	public boolean mkDir(String dirPath) {
+	private boolean mkDir(String dirPath) {
 		FileConnection fc = null;
 		try {
 			fc = (FileConnection) Connector.open("file:///" + dirPath);
-			if (exists(dirPath)) {
-				return true;
-			} else {
-				fc.mkdir();
-				if (exists(dirPath)) {
-					return true;
-				} else
-					return false;
-			}
+			fc.mkdir();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//			e.printStackTrace();
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * 递归的创建目录.
 	 * 
 	 * @param dirPath
-	 * @return 已存在返回false, 创建成功返回true.
+	 *            文件夹结尾应包含"/", 如:"e:/11/22/33/"
+	 * @return 失败返回false, 创建成功返回true.
 	 */
-	public boolean mkDirs(String dirPath) {
+	private boolean mkDirs(String dirPath) {
 		if (exists(dirPath))
-			return false;
-		if (mkDir(dirPath)) {
 			return true;
-		}
+		if (mkDir(dirPath))
+			return true;
 
 		String parentPath = getParentPath(dirPath);
-		return mkDirs(parentPath);
+		mkDirs(parentPath);
+		System.out.println("mk dirs complete");
+		return mkDir(dirPath);
 	}
 }
