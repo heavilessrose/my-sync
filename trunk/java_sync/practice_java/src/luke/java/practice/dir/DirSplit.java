@@ -27,6 +27,21 @@ public class DirSplit {
 		return parentPath;
 	}
 
+	public void test(int a) {
+		//		int i = 1;
+		//		try {
+		//			i = 2;
+		//			throw new Exception();
+		//		} catch (Exception e) {
+		//			i = 3;
+		//			i++;
+		//			e.printStackTrace();
+		//			return i;
+		//		}
+		/////////////
+		a = 1;
+	}
+
 	public static void main(String[] args) {
 		DirSplit ss = new DirSplit();
 		ss.parsePath("c:/local_repo/j2me/jsrs/mmapi/sr/main/java/");
@@ -34,5 +49,9 @@ public class DirSplit {
 		System.out.println("path: " + ss.path);
 		System.out.println("fileName: " + ss.fileName);
 		System.out.println("parentPath: " + ss.parentPath);
+
+		int a = 0;
+		ss.test(a);
+		System.out.println(a);
 	}
 }
