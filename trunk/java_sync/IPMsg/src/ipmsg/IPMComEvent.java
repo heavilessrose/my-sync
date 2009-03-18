@@ -13,8 +13,8 @@ public class IPMComEvent extends EventObject {
 	protected IPMPack pack = null;
 	protected IPMAddress addr = null;
 
-	public IPMComEvent(Object argsrc, int argport, IPMPack argpack
-		, IPMAddress argaddr) {
+	public IPMComEvent(Object argsrc, int argport, IPMPack argpack,
+			IPMAddress argaddr) {
 		super(argsrc);
 		port = argport;
 		pack = argpack;

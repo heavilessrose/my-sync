@@ -8,5 +8,5 @@ package ipmsg;
 import java.util.EventListener;
 
 public interface IPMListener extends EventListener {
-    public void eventOccured(IPMEvent ev);
+	public void eventOccured(IPMEvent ev);
 }

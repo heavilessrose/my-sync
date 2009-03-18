@@ -9,8 +9,7 @@ import ipmsg.IPMPack;
 
 import JP.digitune.util.MessageDigester;
 
-import java.awt.*;
-//import jp.kyasu.awt.*;
+import java.awt.*; //import jp.kyasu.awt.*;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.FileDialog;
@@ -31,13 +30,13 @@ import java.util.MissingResourceException;
 
 public class ConfDlg extends Dialog {
 	IPMsg ipmsg;
-	
+
 	public ConfDlg(Frame parent, IPMsg argipm) {
 		super(parent, true);
 		ipmsg = argipm;
 		createWindow(parent);
 	}
-	
+
 	void createWindow(final Frame parent) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		setLayout(gridBagLayout);
@@ -53,7 +52,8 @@ public class ConfDlg extends Dialog {
 		final TextField textField1 = new TextField();
 		try {
 			textField1.setText(Cp932.toCp932(ipmsg.getPref("nickName")));
-		} catch (MissingResourceException ex) {}
+		} catch (MissingResourceException ex) {
+		}
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 0;
@@ -75,7 +75,8 @@ public class ConfDlg extends Dialog {
 		final TextField textField2 = new TextField(12);
 		try {
 			textField2.setText(Cp932.toCp932(ipmsg.getPref("groupName")));
-		} catch (MissingResourceException ex) {}
+		} catch (MissingResourceException ex) {
+		}
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 1;
@@ -91,7 +92,7 @@ public class ConfDlg extends Dialog {
 			IPMComEvent tmpevent = (IPMComEvent) members.nextElement();
 			IPMPack tmppack = tmpevent.getPack();
 			if (tmppack.getGroup() != null
-				&& groupcache.get(tmppack.getGroup()) == null) {
+					&& groupcache.get(tmppack.getGroup()) == null) {
 				choice1.addItem(Cp932.toCp932(tmppack.getGroup()));
 				groupcache.put(tmppack.getGroup(), tmppack.getGroup());
 			}
@@ -121,7 +122,8 @@ public class ConfDlg extends Dialog {
 		final TextField textField3 = new TextField();
 		try {
 			textField3.setText(Cp932.toCp932(ipmsg.getPref("absenceMsg")));
-		} catch (MissingResourceException ex) {}
+		} catch (MissingResourceException ex) {
+		}
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 2;
@@ -131,8 +133,8 @@ public class ConfDlg extends Dialog {
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gridBagLayout.setConstraints(textField3, gbc);
 		add(textField3);
-		Label label4 = new Label(ipmsg.getPref("setbroadcastLabel")
-			, Label.RIGHT);
+		Label label4 = new Label(ipmsg.getPref("setbroadcastLabel"),
+				Label.RIGHT);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 3;
@@ -152,11 +154,12 @@ public class ConfDlg extends Dialog {
 		add(textField4);
 		final List list1 = new List(0, false);
 		try {
-			StringTokenizer st1
-				= new StringTokenizer(ipmsg.getPref("broadcastAddr"), ",");
+			StringTokenizer st1 = new StringTokenizer(ipmsg
+					.getPref("broadcastAddr"), ",");
 			while (st1.hasMoreTokens())
 				list1.addItem(st1.nextToken());
-		} catch (MissingResourceException ex) {}
+		} catch (MissingResourceException ex) {
+		}
 		gbc = new GridBagConstraints();
 		gbc.gridx = 2;
 		gbc.gridy = 3;
@@ -232,8 +235,8 @@ public class ConfDlg extends Dialog {
 		final TextField textField7 = new TextField();
 		textField7.setEchoChar('*');
 		panel1.add(textField7);
-		Label label6 = new Label(ipmsg.getPref("setLogFilenameLabel")
-			, Label.RIGHT);
+		Label label6 = new Label(ipmsg.getPref("setLogFilenameLabel"),
+				Label.RIGHT);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 7;
@@ -245,7 +248,8 @@ public class ConfDlg extends Dialog {
 		final TextField textField8 = new TextField();
 		try {
 			textField8.setText(ipmsg.getPref("logFilename"));
-		} catch (MissingResourceException ex) {}
+		} catch (MissingResourceException ex) {
+		}
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 7;
@@ -262,7 +266,7 @@ public class ConfDlg extends Dialog {
 				FileDialog fd = new FileDialog(parent);
 				fd.setVisible(true);
 				if (fd.getFile() != null)
-					textField8.setText(fd.getDirectory()+fd.getFile());
+					textField8.setText(fd.getDirectory() + fd.getFile());
 			}
 		});
 		gbc = new GridBagConstraints();
@@ -290,25 +294,26 @@ public class ConfDlg extends Dialog {
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				if (!textField1.getText().equals(""))
-					ipmsg.setPref("nickName"
-						, Cp932.toJIS(textField1.getText()));
+					ipmsg
+							.setPref("nickName", Cp932.toJIS(textField1
+									.getText()));
 				else
 					ipmsg.setPref("nickName", "");
 				if (!textField2.getText().equals(""))
-					ipmsg.setPref("groupName"
-						, Cp932.toJIS(textField2.getText()));
+					ipmsg.setPref("groupName", Cp932
+							.toJIS(textField2.getText()));
 				else
 					ipmsg.setPref("groupName", "");
 				if (!textField3.getText().equals(""))
-					ipmsg.setPref("absenceMsg"
-						, Cp932.toJIS(textField3.getText()));
+					ipmsg.setPref("absenceMsg", Cp932.toJIS(textField3
+							.getText()));
 				else
 					ipmsg.setPref("absenceMsg", "");
 				if (list1.getItemCount() != 0) {
 					StringBuffer strbuf = new StringBuffer();
 					strbuf.append(list1.getItem(0));
 					for (int i = 1; i < list1.getItemCount(); i++)
-						strbuf.append(","+list1.getItem(i));
+						strbuf.append("," + list1.getItem(i));
 					ipmsg.setPref("broadcastAddr", new String(strbuf));
 				} else
 					ipmsg.setPref("broadcastAddr", "");
@@ -316,20 +321,19 @@ public class ConfDlg extends Dialog {
 					String tmppass = ipmsg.getPref("password");
 					if (textField5.getText() != null)
 						if (MessageDigester.getMD5(textField5.getText())
-						.equals(tmppass))
+								.equals(tmppass))
 							if (textField6.getText() != null
-								&& textField7.getText() != null)
-								if (textField6.getText()
-									.equals(textField7.getText()))
-									ipmsg.setPref("password"
-										, MessageDigester.getMD5(
-										textField6.getText()));
+									&& textField7.getText() != null)
+								if (textField6.getText().equals(
+										textField7.getText()))
+									ipmsg.setPref("password", MessageDigester
+											.getMD5(textField6.getText()));
 				} catch (MissingResourceException ex) {
 					if (textField6.getText() != null
-						&& textField7.getText() != null)
+							&& textField7.getText() != null)
 						if (textField6.getText().equals(textField7.getText()))
-							ipmsg.setPref("password"
-								,MessageDigester.getMD5(textField6.getText()));
+							ipmsg.setPref("password", MessageDigester
+									.getMD5(textField6.getText()));
 				}
 				if (!textField8.getText().equals(""))
 					ipmsg.setPref("logFilename", textField8.getText());
@@ -353,8 +357,8 @@ public class ConfDlg extends Dialog {
 		setResizable(false);
 		Dimension sc = getToolkit().getScreenSize();
 		Dimension sz = getSize();
-		setLocation(sc.width/2-sz.width/2, sc.height/2-sz.height/2);
-		
+		setLocation(sc.width / 2 - sz.width / 2, sc.height / 2 - sz.height / 2);
+
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {
 				dispose();

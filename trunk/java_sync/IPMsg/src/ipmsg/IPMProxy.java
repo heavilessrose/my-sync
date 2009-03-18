@@ -26,7 +26,7 @@ import java.util.Random;
 public class IPMProxy implements IPMComListener {
 	private static final long KEEPALIVE_INTERVAL = 30000;
 	public static final int PROXY_PORT = 2425;
-	
+
 	IPMsg ipmsg;
 	boolean active = false;
 	boolean broadcast_all = false;
@@ -37,12 +37,12 @@ public class IPMProxy implements IPMComListener {
 	Hashtable dsocks = new Hashtable();
 	Hashtable IPtoPORT = new Hashtable();
 	Hashtable PORTtoIP = new Hashtable();
-	
+
 	class Accept extends Thread {
 		public Accept() {
 			this.start();
 		}
-		
+
 		public void run() {
 			ServerSocket ss = null;
 			try {
@@ -52,27 +52,28 @@ public class IPMProxy implements IPMComListener {
 					connect(sock);
 					ipmsg.refreshList();
 				}
-			} catch (IOException ex) {}
+			} catch (IOException ex) {
+			}
 			try {
 				if (ss != null)
 					ss.close();
-			} catch (IOException ex) {}
+			} catch (IOException ex) {
+			}
 		}
 	}
-	
+
 	class Listen extends Thread {
 		private DataInputStream din;
-		
+
 		public Listen(DataInputStream argin) {
 			din = argin;
 			this.start();
 		}
-		
+
 		public void run() {
 			byte[] buf = new byte[8192];
 			IPMByteBuffer ipmbb = new IPMByteBuffer();
-			outer:
-			while (!isInterrupted()) {
+			outer: while (!isInterrupted()) {
 				while (!ipmbb.eop()) {
 					int count = 0;
 					try {
@@ -92,7 +93,8 @@ public class IPMProxy implements IPMComListener {
 			}
 			try {
 				din.close();
-			} catch (IOException ex) {}
+			} catch (IOException ex) {
+			}
 		}
 	}
 
@@ -100,6 +102,7 @@ public class IPMProxy implements IPMComListener {
 		public KeepAlive() {
 			this.start();
 		}
+
 		public void run() {
 			try {
 				while (!isInterrupted()) {
@@ -108,7 +111,7 @@ public class IPMProxy implements IPMComListener {
 						try {
 							if (dout != null) {
 								synchronized (dout) {
-									dout.write(new byte[]{0, 0, 0});
+									dout.write(new byte[] { 0, 0, 0 });
 									dout.flush();
 								}
 								break;
@@ -117,30 +120,30 @@ public class IPMProxy implements IPMComListener {
 							try {
 								if (dout != null)
 									dout.close();
-							} catch (IOException exx) {}
+							} catch (IOException exx) {
+							}
 							dout = null;
 						}
 						connectProxy();
 					}
 				}
-			} catch (Throwable ex) {}
+			} catch (Throwable ex) {
+			}
 		}
 	}
 
 	void connect(Socket sock) throws IOException {
-		DataOutputStream tmpdout
-			= new DataOutputStream(sock.getOutputStream());
+		DataOutputStream tmpdout = new DataOutputStream(sock.getOutputStream());
 		douts.put(tmpdout, tmpdout);
-		DataInputStream tmpdin
-			= new DataInputStream(sock.getInputStream());
+		DataInputStream tmpdin = new DataInputStream(sock.getInputStream());
 		new Listen(tmpdin);
 	}
-	
+
 	synchronized void accept(IPMProxyEvent ipmpe) {
 		DatagramSocket dsock;
 		if (IPtoPORT.containsKey(ipmpe.getFromIPMAddress().toString())) {
-			dsock = (DatagramSocket) dsocks.get(
-				IPtoPORT.get(ipmpe.getFromIPMAddress().toString()));
+			dsock = (DatagramSocket) dsocks.get(IPtoPORT.get(ipmpe
+					.getFromIPMAddress().toString()));
 		} else {
 			int port = 0;
 			Random rand = new Random(System.currentTimeMillis());
@@ -156,10 +159,10 @@ public class IPMProxy implements IPMComListener {
 				}
 				break;
 			}
-			IPtoPORT.put(ipmpe.getFromIPMAddress().toString()
-				, new Integer(port));
-			PORTtoIP.put(new Integer(port)
-				, ipmpe.getFromIPMAddress().toString());
+			IPtoPORT.put(ipmpe.getFromIPMAddress().toString(),
+					new Integer(port));
+			PORTtoIP.put(new Integer(port), ipmpe.getFromIPMAddress()
+					.toString());
 			dsocks.put(new Integer(port), dsock);
 			IPMRecv tmprecv = new IPMRecv(dsock);
 			tmprecv.addIPMComListener(this);
@@ -167,22 +170,20 @@ public class IPMProxy implements IPMComListener {
 		}
 		try {
 			if (ipmpe.getToIPMAddress().getInetAddress().equals(
-				InetAddress.getByName("255.255.255.255")) && broadcast_all) {
+					InetAddress.getByName("255.255.255.255"))
+					&& broadcast_all) {
 				IPMAddress[] ipma = ipmsg.getBroadcastAddr();
 				for (int i = 0; i < ipma.length; i++) {
-					DatagramPacket dp = new DatagramPacket(
-						ipmpe.getPack().getBytes(),
-						ipmpe.getPack().getBytes().length,
-						ipma[i].getInetAddress(),
-						ipma[i].getPort());
+					DatagramPacket dp = new DatagramPacket(ipmpe.getPack()
+							.getBytes(), ipmpe.getPack().getBytes().length,
+							ipma[i].getInetAddress(), ipma[i].getPort());
 					dsock.send(dp);
 				}
 			} else {
-				DatagramPacket dp = new DatagramPacket(
-					ipmpe.getPack().getBytes(),
-					ipmpe.getPack().getBytes().length,
-					ipmpe.getToIPMAddress().getInetAddress(),
-					ipmpe.getToIPMAddress().getPort());
+				DatagramPacket dp = new DatagramPacket(ipmpe.getPack()
+						.getBytes(), ipmpe.getPack().getBytes().length, ipmpe
+						.getToIPMAddress().getInetAddress(), ipmpe
+						.getToIPMAddress().getPort());
 				dsock.send(dp);
 			}
 		} catch (IOException ex) {
@@ -198,7 +199,7 @@ public class IPMProxy implements IPMComListener {
 		DataInputStream tmpdin = new DataInputStream(sock.getInputStream());
 		new Listen(tmpdin);
 	}
-	
+
 	synchronized void write(byte[] buf) {
 		boolean done = false;
 		while (dout != null && !done) {
@@ -210,7 +211,8 @@ public class IPMProxy implements IPMComListener {
 				} catch (IOException ex) {
 					try {
 						dout.close();
-					} catch (IOException exx) {}
+					} catch (IOException exx) {
+					}
 					dout = null;
 				}
 			}
@@ -231,12 +233,13 @@ public class IPMProxy implements IPMComListener {
 			} catch (IOException ex) {
 				try {
 					tmpdout.close();
-				} catch (IOException exx) {}
+				} catch (IOException exx) {
+				}
 				douts.remove(tmpdout);
 			}
 		}
 	}
-	
+
 	public IPMProxy(IPMsg argipmsg, InetAddress argproxy, boolean argball) {
 		ipmsg = argipmsg;
 		broadcast_all = argball;
@@ -249,34 +252,37 @@ public class IPMProxy implements IPMComListener {
 			proxyaddr = argproxy;
 			try {
 				connectProxy();
-			} catch (Exception ex) {}
+			} catch (Exception ex) {
+			}
 			new KeepAlive();
 		}
 	}
-	
+
 	public IPMProxy(IPMsg argipmsg) {
 		this(argipmsg, null, false);
 	}
-	
+
 	public void addBroadcastPort(int port) {
-		PORTtoIP.put(new Integer(port), "255.255.255.255:"+port);
+		PORTtoIP.put(new Integer(port), "255.255.255.255:" + port);
 	}
-	
+
 	public void receive(IPMComEvent ipme) {
 		try {
-			if (ipme.getIPMAddress().getInetAddress()
-				.equals(InetAddress.getLocalHost())	&& PORTtoIP
-				.get(new Integer(ipme.getIPMAddress().getPort())) != null)
+			if (ipme.getIPMAddress().getInetAddress().equals(
+					InetAddress.getLocalHost())
+					&& PORTtoIP
+							.get(new Integer(ipme.getIPMAddress().getPort())) != null)
 				return;
-		} catch (UnknownHostException ex) {}
+		} catch (UnknownHostException ex) {
+		}
 		if (IPtoPORT.get(ipme.getIPMAddress().toString()) != null)
 			return;
 		ByteBuffer bb = new ByteBuffer();
 		String prefix = ipme.getIPMAddress().toString() + ":"
-			+ (String) PORTtoIP.get(new Integer(ipme.getLocalPort())) + ":";
+				+ (String) PORTtoIP.get(new Integer(ipme.getLocalPort())) + ":";
 		bb.append(prefix.getBytes());
 		bb.append(ipme.getPack().getBytes());
-		bb.append(new byte[]{0, 0, 0});
+		bb.append(new byte[] { 0, 0, 0 });
 		write(bb.getBytes());
 	}
 }

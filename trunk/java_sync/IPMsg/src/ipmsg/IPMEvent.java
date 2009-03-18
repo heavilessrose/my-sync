@@ -19,16 +19,16 @@ public class IPMEvent extends IPMComEvent {
 	int id = 0;
 	Date now;
 
-	public IPMEvent(Object argsrc, int argid, Date argnow, int argport
-		, IPMPack argpack, IPMAddress argaddr) {
+	public IPMEvent(Object argsrc, int argid, Date argnow, int argport,
+			IPMPack argpack, IPMAddress argaddr) {
 		super(argsrc, argport, argpack, argaddr);
 		id = argid;
 		now = argnow;
 	}
 
 	public IPMEvent(Object argsrc, int argid, Date argnow, IPMComEvent argce) {
-		this(argsrc, argid, argnow, argce.getLocalPort(), argce.getPack()
-			, argce.getIPMAddress());
+		this(argsrc, argid, argnow, argce.getLocalPort(), argce.getPack(),
+				argce.getIPMAddress());
 	}
 
 	public int getID() {

@@ -22,8 +22,7 @@ import java.awt.Button;
 import java.awt.List;
 import java.awt.Checkbox;
 import java.awt.Choice;
-import java.awt.Panel;
-//import jp.kyasu.awt.Frame;
+import java.awt.Panel; //import jp.kyasu.awt.Frame;
 //import jp.kyasu.awt.Button;
 //import jp.kyasu.awt.List;
 //import jp.kyasu.awt.Checkbox;
@@ -47,16 +46,16 @@ import java.util.MissingResourceException;
 
 public class MainWindow extends Frame {
 	public IPMsg ipmsg;
-	
+
 	private Button send, refresh, conf, exit;
 	private List memberlist;
 	private Checkbox absence, broadcast;
 	private Choice groups;
-	
+
 	private Hashtable NAMEtoINFO = new Hashtable();
 	private Hashtable ADDRtoINFO = new Hashtable();
 	private boolean refreshing = false, received = false;
-	
+
 	public MainWindow() {
 		ipmsg = new IPMsg();
 		ipmsg.addIPMListener(new IPMListener() {
@@ -67,7 +66,7 @@ public class MainWindow extends Frame {
 		createWindow();
 		ipmsg.entry();
 	}
-	
+
 	void createWindow() {
 		setVisible(false);
 		setTitle(ipmsg.getPref("appName"));
@@ -76,6 +75,7 @@ public class MainWindow extends Frame {
 			public void windowClosing(WindowEvent we) {
 				exitAction();
 			}
+
 			public void windowClosed(WindowEvent we) {
 				System.exit(0);
 			}
@@ -173,11 +173,11 @@ public class MainWindow extends Frame {
 		p2.add("East", p4);
 		absence = new Checkbox(ipmsg.getPref("absenceLabel"));
 		absence.setState(new Boolean(ipmsg.getPref("absenceState"))
-			.booleanValue());
+				.booleanValue());
 		absence.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ie) {
-				ipmsg.setPref("absenceState"
-					, new Boolean(absence.getState()).toString());
+				ipmsg.setPref("absenceState", new Boolean(absence.getState())
+						.toString());
 				ipmsg.absenceStateChanged();
 			}
 		});
@@ -196,12 +196,13 @@ public class MainWindow extends Frame {
 		} catch (MissingResourceException ex) {
 			Dimension sc = getToolkit().getScreenSize();
 			Dimension sz = getSize();
-			setLocation(sc.width/2-sz.width/2, sc.height/2-sz.height/2);
+			setLocation(sc.width / 2 - sz.width / 2, sc.height / 2 - sz.height
+					/ 2);
 		}
 		setIconImage(getToolkit().getImage(
-			getClass().getResource("images/ipmsg.gif")));
+				getClass().getResource("images/ipmsg.gif")));
 	}
-	
+
 	synchronized void sortKeyChanged(String ckey) {
 		String tmpkey = ipmsg.getPref("sortKey");
 		tmpkey = StringReplacer.replaceString(tmpkey, ckey, "");
@@ -212,11 +213,11 @@ public class MainWindow extends Frame {
 			new RefreshList().start();
 		}
 	}
-	
+
 	void sendAction() {
 		IPMComEvent[] members;
 		if (broadcast.getState()
-			&& groups.getSelectedItem().equals(ipmsg.getPref("allName")))
+				&& groups.getSelectedItem().equals(ipmsg.getPref("allName")))
 			members = null;
 		else if (broadcast.getState()) {
 			String[] strmembers = memberlist.getItems();
@@ -234,16 +235,16 @@ public class MainWindow extends Frame {
 		SendDlg sd = new SendDlg(this, ipmsg, members);
 		sd.setVisible(true);
 	}
-	
+
 	void refreshAction() {
 		ipmsg.refreshList();
 	}
-	
+
 	void confAction() {
 		ConfDlg cd = new ConfDlg(this, ipmsg);
 		cd.setVisible(true);
 	}
-	
+
 	void exitAction() {
 		Dimension size = getSize();
 		ipmsg.setPref("mainSizeX", Integer.toString(size.width));
@@ -254,7 +255,7 @@ public class MainWindow extends Frame {
 		ipmsg.exit();
 		dispose();
 	}
-	
+
 	String makeSortKey(IPMComEvent ipmce) {
 		String tmpkey = ipmsg.getPref("sortKey");
 		StringBuffer strbuf = new StringBuffer();
@@ -280,7 +281,7 @@ public class MainWindow extends Frame {
 			}
 		return new String(strbuf);
 	}
-	
+
 	class RefreshList extends Thread {
 		public void run() {
 			String tmpgroup = Cp932.toJIS(groups.getSelectedItem());
@@ -288,7 +289,8 @@ public class MainWindow extends Frame {
 				received = false;
 				try {
 					sleep(500);
-				} catch (InterruptedException ex) {}
+				} catch (InterruptedException ex) {
+				}
 				NAMEtoINFO = new Hashtable();
 				ADDRtoINFO = new Hashtable();
 				Hashtable groupcache = new Hashtable();
@@ -306,7 +308,7 @@ public class MainWindow extends Frame {
 					IPMComEvent tmpevent = (IPMComEvent) members.nextElement();
 					IPMPack tmppack = tmpevent.getPack();
 					if (tmppack.getGroup() != null
-						&& groupcache.get(tmppack.getGroup()) == null) {
+							&& groupcache.get(tmppack.getGroup()) == null) {
 						groups.addItem(Cp932.toCp932(tmppack.getGroup()));
 						groupcache.put(tmppack.getGroup(), tmppack.getGroup());
 					}
@@ -318,8 +320,8 @@ public class MainWindow extends Frame {
 					String tmpstr = Cp932.toCp932(ipmsg.makeListStr(tmppack));
 					memberlist.add(tmpstr);
 					NAMEtoINFO.put(tmpstr, tmpevent);
-					ADDRtoINFO.put(tmpevent.getIPMAddress().toString()
-						, tmpevent);
+					ADDRtoINFO.put(tmpevent.getIPMAddress().toString(),
+							tmpevent);
 				}
 				if (memberlist.getItemCount() == 0) {
 					tmpgroup = ipmsg.getPref("allName");
@@ -330,7 +332,7 @@ public class MainWindow extends Frame {
 			refreshing = false;
 		}
 	}
-	
+
 	synchronized void processEvent(IPMEvent ipme) {
 		switch (ipme.getID()) {
 		case IPMEvent.UPDATELIST_EVENT:
@@ -347,16 +349,15 @@ public class MainWindow extends Frame {
 			}
 			ipmsg.incReceiveCount();
 			getToolkit().beep();
-			RecvDlg rd = new RecvDlg(this, ipmsg
-				, (IPMComEvent) ADDRtoINFO.get(ipme.getIPMAddress().toString())
-				, ipme);
+			RecvDlg rd = new RecvDlg(this, ipmsg, (IPMComEvent) ADDRtoINFO
+					.get(ipme.getIPMAddress().toString()), ipme);
 			rd.setVisible(true);
 			break;
 		case IPMEvent.READMSG_EVENT:
 			getToolkit().beep();
 			String tmpname = "";
-			IPMComEvent tmpipmce
-				= (IPMComEvent)ADDRtoINFO.get(ipme.getIPMAddress().toString());
+			IPMComEvent tmpipmce = (IPMComEvent) ADDRtoINFO.get(ipme
+					.getIPMAddress().toString());
 			IPMPack tmppack;
 			if (tmpipmce != null) {
 				tmppack = tmpipmce.getPack();
@@ -366,15 +367,15 @@ public class MainWindow extends Frame {
 			StringBuffer strbuf = new StringBuffer();
 			strbuf.append(ipmsg.getPref("readMsg") + "\n");
 			strbuf.append(ipmsg.makeDateStr(ipme.getDate()));
-			MsgBox mb = new MsgBox(this, Cp932.toCp932(tmpname)
-				, Cp932.toCp932(new String(strbuf)), false);
+			MsgBox mb = new MsgBox(this, Cp932.toCp932(tmpname), Cp932
+					.toCp932(new String(strbuf)), false);
 			mb.setVisible(true);
 			break;
 		case IPMEvent.DELETEMSG_EVENT:
 			getToolkit().beep();
 			tmpname = "";
-			tmpipmce = (IPMComEvent)
-				ADDRtoINFO.get(ipme.getIPMAddress().toString());
+			tmpipmce = (IPMComEvent) ADDRtoINFO.get(ipme.getIPMAddress()
+					.toString());
 			if (tmpipmce != null) {
 				tmppack = tmpipmce.getPack();
 				tmpname = ipmsg.makeListStr(tmppack);
@@ -383,13 +384,13 @@ public class MainWindow extends Frame {
 			strbuf = new StringBuffer();
 			strbuf.append(ipmsg.getPref("deleteMsg") + "\n");
 			strbuf.append(ipmsg.makeDateStr(ipme.getDate()));
-			mb = new MsgBox(this, Cp932.toCp932(tmpname)
-				, Cp932.toCp932(new String(strbuf)), false);
+			mb = new MsgBox(this, Cp932.toCp932(tmpname), Cp932
+					.toCp932(new String(strbuf)), false);
 			mb.setVisible(true);
 			break;
 		case IPMEvent.CANTSENDMSG_EVENT:
-			RetryDlg retry = new RetryDlg(this, ipmsg.getPref("appName")
-				, ipmsg.getPref("retryMsg"), ipmsg, ipme);
+			RetryDlg retry = new RetryDlg(this, ipmsg.getPref("appName"), ipmsg
+					.getPref("retryMsg"), ipmsg, ipme);
 			retry.setVisible(true);
 			break;
 		}

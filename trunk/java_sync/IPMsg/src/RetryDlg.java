@@ -13,8 +13,7 @@ import java.awt.Frame;
 import java.awt.Dialog;
 import java.awt.Label;
 import java.awt.Button;
-import java.awt.Panel;
-//import jp.kyasu.awt.Frame;
+import java.awt.Panel; //import jp.kyasu.awt.Frame;
 //import jp.kyasu.awt.Dialog;
 //import jp.kyasu.awt.Label;
 //import jp.kyasu.awt.Button;
@@ -30,12 +29,12 @@ import java.util.ResourceBundle;
 public class RetryDlg extends MsgBox {
 	private Label label1;
 	private Button yes, no;
-	
+
 	private IPMsg ipmsg;
 	private IPMEvent ipme;
 
-	public RetryDlg(Frame parent, String title, String msg
-		, IPMsg aipmsg, IPMEvent aipme) {
+	public RetryDlg(Frame parent, String title, String msg, IPMsg aipmsg,
+			IPMEvent aipme) {
 		super(parent, title, msg, false);
 		ipmsg = aipmsg;
 		ipme = aipme;

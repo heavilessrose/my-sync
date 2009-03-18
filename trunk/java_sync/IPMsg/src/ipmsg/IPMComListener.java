@@ -9,5 +9,5 @@ import java.util.EventListener;
 
 public interface IPMComListener extends EventListener {
 
-    public abstract void receive(IPMComEvent ev);
+	public abstract void receive(IPMComEvent ev);
 }
