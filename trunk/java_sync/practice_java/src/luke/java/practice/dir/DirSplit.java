@@ -27,7 +27,7 @@ public class DirSplit {
 		return parentPath;
 	}
 
-	public void test(int a) {
+	public void test(String a) {
 		//		int i = 1;
 		//		try {
 		//			i = 2;
@@ -39,7 +39,7 @@ public class DirSplit {
 		//			return i;
 		//		}
 		/////////////
-		a = 1;
+		a = "1";
 	}
 
 	public static void main(String[] args) {
@@ -50,7 +50,7 @@ public class DirSplit {
 		System.out.println("fileName: " + ss.fileName);
 		System.out.println("parentPath: " + ss.parentPath);
 
-		int a = 0;
+		String a = "0";
 		ss.test(a);
 		System.out.println(a);
 	}
