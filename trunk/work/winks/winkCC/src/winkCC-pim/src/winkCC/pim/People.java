@@ -40,6 +40,14 @@ public class People {
 		return _numbers;
 	}
 
+	public String getNumber(String attr) {
+		String num = null;
+		if ((!_numbers.isEmpty()) && _numbers.containsKey(attr)) {
+			num = (String) _numbers.get(attr);
+		}
+		return num;
+	}
+
 	public void setWPath(String path) {
 		_w_path = path;
 	}
@@ -57,7 +65,7 @@ public class People {
 		_filter = filter;
 	}
 
-	//////////////////
+	//////////////////debug
 	public String toString() {
 		return "name: " + getName() + "\n" + "numbers: " + getNumberString();
 	}
@@ -67,7 +75,8 @@ public class People {
 		Enumeration keys = getNumbers().keys();
 		Enumeration values = getNumbers().elements();
 		for (; values.hasMoreElements();) {
-			sb = sb.append((String) keys.nextElement() + values.nextElement());
+			sb = sb.append((String) keys.nextElement() + ":"
+					+ values.nextElement() + "\n");
 		}
 		return sb.toString();
 	}

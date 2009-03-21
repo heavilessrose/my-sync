@@ -10,27 +10,23 @@ import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.TextField;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
-import javax.wireless.messaging.MessageConnection;
 
 public class Test extends MIDlet implements CommandListener {
 	Display display = null;
 	Form form = null;
 	final Command test = new Command("test", Command.OK, 1);
+	final Command showPeople = new Command("showPeople", Command.OK, 1);
 	final Command showContacts = new Command("showContacts", Command.BACK, 2);
 	final Command exit = new Command("Exit", Command.EXIT, 3);
 
-	TextField numField = new TextField("电话", "15801630382", 100,
-			TextField.PHONENUMBER);
-	TextField contentField = new TextField("内容", "test123测试", 100,
-			TextField.ANY);
-
-	String address = "sms://15801630382:5050";
-	String smsMonitorPort = "5050";
-	MessageConnection mc = null;
+	TextField name = new TextField("name", "De Cc", 100, TextField.ANY);
+	TextField attr = new TextField("attr", "mobile", 100, TextField.ANY);
+	TextField num = new TextField("电话", "", 100, TextField.PHONENUMBER);
+	TextField wpath = new TextField("wpath", "", 100, TextField.ANY);
 
 	public Test() {
 		display = Display.getDisplay(this);
-		form = new Form("sms test");
+		form = new Form("pim test");
 	}
 
 	/*
@@ -61,10 +57,13 @@ public class Test extends MIDlet implements CommandListener {
 	//	@Override
 	protected void startApp() throws MIDletStateChangeException {
 		form.addCommand(test);
+		form.addCommand(showPeople);
 		form.addCommand(showContacts);
 		form.addCommand(exit);
-		form.append(numField);
-		form.append(contentField);
+		form.append(name);
+		form.append(attr);
+		form.append(num);
+		form.append(wpath);
 		form.setCommandListener(this);
 		display.setCurrent(form);
 	}
@@ -79,15 +78,26 @@ public class Test extends MIDlet implements CommandListener {
 				}
 			}.start();
 		} else if (cmd == showContacts) {
-			
+
 			new Thread() {
+				People people = null;
+
 				public void run() {
 					for (Enumeration peoples = util.getAllPeople().elements(); peoples
-							.hasMoreElements();)
-						peoples.nextElement().toString();
+							.hasMoreElements();) {
+						people = (People) peoples.nextElement();
+						form.append(people.toString());
+					}
 				}
 			}.start();
 
+		} else if (cmd == showPeople) {
+			People people = util.getPeople(name.getString());
+			String nums = util.getNumber(people, attr.getString());
+			num.setString(nums);
+
+			String path = people.getWPath();
+			wpath.setString(path);
 		} else if (cmd == exit) {
 			try {
 				destroyApp(true);
