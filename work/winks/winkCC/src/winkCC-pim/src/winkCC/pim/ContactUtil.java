@@ -25,6 +25,13 @@ public class ContactUtil {
 	 */
 	Hashtable allPeople = new Hashtable();
 
+	private static final int ATTR_MOBILE = 144;
+
+	//	private static final int ATTR_HOME = 8;
+	//	private static final int ATTR_WORK = 512;
+	//	private static final int ATTR_FAX = 4;
+	//	private static final int ATTR_OTHER = 32;
+
 	/**
 	 * 测试
 	 */
@@ -247,23 +254,65 @@ public class ContactUtil {
 		Hashtable numbers = null;
 		if (contact.getPIMList().isSupportedField(Contact.TEL)) {
 			numbers = new Hashtable();
-			String mobile = contact.getString(Contact.TEL, 0);
-			String home = contact.getString(Contact.TEL, Contact.ATTR_HOME);
-			String work = contact.getString(Contact.TEL, Contact.ATTR_WORK);
-			String other = contact.getString(Contact.TEL, Contact.ATTR_OTHER);
-			String fax = contact.getString(Contact.TEL, Contact.ATTR_FAX);
-			if (mobile != null && !mobile.equals(""))
-				numbers.put("mobile", mobile);
-//			if (home != null && !home.equals(""))
-//				numbers.put("home", home);
-//			if (work != null && !work.equals(""))
-//				numbers.put("work", work);
-//			if (other != null && !other.equals(""))
-//				numbers.put("other", other);
-//			if (fax != null && !fax.equals(""))
-//				numbers.put("fax", fax);
+			int count = contact.countValues(Contact.TEL);
+			for (int i = 0; i < count; i++) {
+				String num = contact.getString(Contact.TEL, i);
+				//				numbers.put("" + i, num);
+
+				int attr = contact.getAttributes(Contact.TEL, i);
+				if (attr == ATTR_MOBILE) {
+					numbers.put("mobile", num);
+				} else if (attr == Contact.ATTR_HOME) {
+					numbers.put("home", num);
+				} else if (attr == Contact.ATTR_WORK) {
+					numbers.put("work", num);
+				} else if (attr == Contact.ATTR_FAX) {
+					numbers.put("fax", num);
+				} else if (attr == Contact.ATTR_OTHER) {
+					numbers.put("other", num);
+				} else {// 非以上分类
+					numbers.put("" + attr, num);
+				}
+
+				//////debug
+				//				System.out.println(i + ">> " + attr + " >> " + num);
+			}
+
+			//			String mobile = contact.getString(Contact.TEL, 0);
+			//			String home = contact.getString(Contact.TEL, Contact.ATTR_HOME);
+			//			String work = contact.getString(Contact.TEL, Contact.ATTR_WORK);
+			//			String other = contact.getString(Contact.TEL, Contact.ATTR_OTHER);
+			//			String fax = contact.getString(Contact.TEL, Contact.ATTR_FAX);
+			//			if (mobile != null && !mobile.equals(""))
+			//				numbers.put("mobile", mobile);
+			//			if (home != null && !home.equals(""))
+			//				numbers.put("home", home);
+			//			if (work != null && !work.equals(""))
+			//				numbers.put("work", work);
+			//			if (other != null && !other.equals(""))
+			//				numbers.put("other", other);
+			//			if (fax != null && !fax.equals(""))
+			//				numbers.put("fax", fax);
 		}
 		return numbers;
+	}
+
+	public String getNumber(People people, String attr) {
+		return people.getNumber(attr);
+	}
+
+	/**
+	 * 根据姓名得到People对象.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public People getPeople(String name) {
+		People people = null;
+		if (getAllPeople().containsKey(name)) {
+			people = (People) allPeople.get(name);
+		}
+		return people;
 	}
 
 	//	/**
@@ -305,18 +354,31 @@ public class ContactUtil {
 	//		}
 	//	}
 
+	/**
+	 * 得到联系人的大头贴地址字符串.
+	 * @param contact
+	 */
 	private String getWPath(Contact contact) {
 		String wpath = null;
 		if (contact.getPIMList().isSupportedField(Contact.PHOTO_URL)) {
-			wpath = contact.getString(Contact.PHOTO_URL, 0);
+			int count = contact.countValues(Contact.PHOTO_URL);
+			if (count > 0)
+				for (int i = 0; i < count; i++) {
+					wpath = contact.getString(Contact.PHOTO_URL, 0);
+				}
 		}
+		if (wpath == null || wpath == "")
+			wpath = "";
 		return wpath;
 	}
 
 	/**
-	 * 得到联系人
+	 * 得到手机话簿中所有联系人.
 	 */
 	public Hashtable getAllPeople() {
+		if (allPeople != null && allPeople.size() > 0) {
+			return allPeople;
+		}
 		synchronized (ContactUtil.this) {
 			try {
 				// 清空items
