@@ -10,8 +10,11 @@ public class People {
 	private Hashtable _numbers = null;
 	// 主要电话号码
 	private String _primaryNum = null;
-	// 彩像路径
+	// 大头贴地址
 	private String _w_path = null;
+	// 是否为该用户更新彩像
+	private boolean isChosen = true;
+
 	private NumberFilter _filter = null;
 
 	public People(String name, Hashtable num) {
@@ -40,6 +43,13 @@ public class People {
 		return _numbers;
 	}
 
+	/**
+	 * 得到指定类别的电话号码.
+	 * 
+	 * @param attr
+	 *            类别: mobile, home, work, fax, other.
+	 * @return 如果指定类别的号码不存在,则返回null.
+	 */
 	public String getNumber(String attr) {
 		String num = null;
 		if ((!_numbers.isEmpty()) && _numbers.containsKey(attr)) {
@@ -52,6 +62,11 @@ public class People {
 		_w_path = path;
 	}
 
+	/**
+	 * 得到大头贴地址.
+	 * 
+	 * @return
+	 */
 	public String getWPath() {
 		return _w_path;
 	}
@@ -63,6 +78,13 @@ public class People {
 
 	public void setFilter(NumberFilter filter) {
 		_filter = filter;
+	}
+
+	/**
+	 * 提交联系人, 更新people对象到电话簿.
+	 */
+	public void submit() {
+
 	}
 
 	//////////////////debug
