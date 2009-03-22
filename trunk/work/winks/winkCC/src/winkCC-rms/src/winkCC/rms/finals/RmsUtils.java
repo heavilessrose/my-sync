@@ -10,7 +10,10 @@ import javax.microedition.rms.RecordStoreNotOpenException;
 public class RmsUtils {
 	protected static RecordStore _rs = null;
 
-	private static final String RS_NAME = "winksCC2";
+	/**
+	 * Record storeÃû×Ö.
+	 */
+	public static final String RS_NAME = "winksCC2";
 	/** boolean flag true identifier */
 	private static final byte[] TRUE = { (byte) 1 };
 
