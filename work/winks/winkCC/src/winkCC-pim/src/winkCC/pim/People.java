@@ -7,7 +7,7 @@ public class People {
 	// 联系人名字
 	private String _name = null;
 	// 电话号码
-	private Hashtable _numbers = null;
+	private Hashtable _allNumbers = null;
 	// 主要电话号码
 	private String _primaryNum = null;
 	// 大头贴地址
@@ -19,7 +19,7 @@ public class People {
 
 	public People(String name, Hashtable num) {
 		_name = name;
-		_numbers = num;
+		_allNumbers = num;
 	}
 
 	public People(String name, Hashtable num, String w_path) {
@@ -27,20 +27,36 @@ public class People {
 		_w_path = w_path;
 	}
 
+	/**
+	 * 为该联系人设定名字.
+	 * @param name
+	 */
 	public void setName(String name) {
 		_name = name;
 	}
 
+	/**
+	 * 得到该联系人名字.
+	 * @return
+	 */
 	public String getName() {
 		return _name;
 	}
 
-	public void setNumbers(Hashtable num) {
-		_numbers = num;
+	/**
+	 * 设置该联系人的所有电话号码.
+	 * @param numTable 包含所有联系人号码的hashtable
+	 */
+	public void setAllNumber(Hashtable numTable) {
+		_allNumbers = numTable;
 	}
 
-	public Hashtable getNumbers() {
-		return _numbers;
+	/**
+	 * 得到该联系人的所有电话.
+	 * @return 返回包含所有类别电话的hashtable: 如mobile:1580000
+	 */
+	public Hashtable getAllNumber() {
+		return _allNumbers;
 	}
 
 	/**
@@ -52,18 +68,22 @@ public class People {
 	 */
 	public String getNumber(String attr) {
 		String num = null;
-		if ((!_numbers.isEmpty()) && _numbers.containsKey(attr)) {
-			num = (String) _numbers.get(attr);
+		if ((!_allNumbers.isEmpty()) && _allNumbers.containsKey(attr)) {
+			num = (String) _allNumbers.get(attr);
 		}
 		return num;
 	}
 
+	/**
+	 * 设置该联系人的大头贴地址.
+	 * @param path 大头贴地址
+	 */
 	public void setWPath(String path) {
 		_w_path = path;
 	}
 
 	/**
-	 * 得到大头贴地址.
+	 * 得到该联系人大头贴地址.
 	 * 
 	 * @return
 	 */
@@ -71,8 +91,13 @@ public class People {
 		return _w_path;
 	}
 
+	/**
+	 * 得到与业务相关的一个电话号码.
+	 * @param filter
+	 * @return
+	 */
 	public String getPrimaryNum(NumberFilter filter) {
-		filter.filter(_numbers);
+		filter.filter(_allNumbers);
 		return _primaryNum;
 	}
 
@@ -94,8 +119,8 @@ public class People {
 
 	private String getNumberString() {
 		StringBuffer sb = new StringBuffer();
-		Enumeration keys = getNumbers().keys();
-		Enumeration values = getNumbers().elements();
+		Enumeration keys = getAllNumber().keys();
+		Enumeration values = getAllNumber().elements();
 		for (; values.hasMoreElements();) {
 			sb = sb.append((String) keys.nextElement() + ":"
 					+ values.nextElement() + "\n");

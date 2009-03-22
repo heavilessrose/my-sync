@@ -108,6 +108,7 @@ public class FileUtils {
 	/**
 	 * 新线程中写文件.
 	 * 
+	 * @param fileName
 	 * @param data
 	 */
 	public void executeWriteFile(final String fileName, final byte[] data) {
@@ -158,6 +159,14 @@ public class FileUtils {
 		}
 	}
 
+	/**
+	 * 新线程中读取文件到指定buffer.
+	 * 
+	 * @param filePath
+	 *            文件完整路径.
+	 * @param buffer
+	 *            将文件读入该buffer.
+	 */
 	public void executeReadFile(final String filePath, final byte[] buffer) {
 		new Thread(new Runnable() {
 			public void run() {
@@ -191,7 +200,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * 二进制到16进制
+	 * 二进制到16进制.
 	 * 
 	 * @param data
 	 * @return
@@ -212,6 +221,7 @@ public class FileUtils {
 	 * 列出文件夹中的所有文件.
 	 * 
 	 * @param dirPath
+	 *            文件夹完整路径.
 	 * @return An Enumeration of strings, denoting the files and directories in
 	 *         the directory.The string returned contain only the file or
 	 *         directory name and does not contain any path prefix.The
@@ -290,6 +300,12 @@ public class FileUtils {
 		}
 	}
 
+	/**
+	 * 新线程中删除指定文件.
+	 * 
+	 * @param filePath
+	 *            文件路径.
+	 */
 	public void executeDelete(final String filePath) {
 		new Thread(new Runnable() {
 
@@ -318,7 +334,9 @@ public class FileUtils {
 	 * 重命名文件或文件夹.
 	 * 
 	 * @param filePath
+	 *            文件夹或文件完整路径.
 	 * @param newName
+	 *            新文件名.
 	 */
 	public void rename(String filePath, String newName) {
 		try {
@@ -342,6 +360,7 @@ public class FileUtils {
 	 * 分解文件路径.
 	 * 
 	 * @param pathName
+	 *            文件或文件夹完整路径.
 	 */
 	private void parsePath(String pathName) {
 
@@ -453,7 +472,6 @@ public class FileUtils {
 
 		String parentPath = getParentPath(dirPath);
 		mkDirs(parentPath);
-		System.out.println("mk dirs complete");
 		return mkDir(dirPath);
 	}
 }
