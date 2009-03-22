@@ -25,12 +25,14 @@ public class ContactUtil {
 	 */
 	Hashtable allPeople = new Hashtable();
 
-	private static final int ATTR_MOBILE = 144;
-
-	//	private static final int ATTR_HOME = 8;
-	//	private static final int ATTR_WORK = 512;
-	//	private static final int ATTR_FAX = 4;
-	//	private static final int ATTR_OTHER = 32;
+	/*
+	 * 
+	 */
+	private static final int ATTR_DEFAULT_MOBILE = 144;
+	private static final int ATTR_DEFAULT_HOME = 136;
+	private static final int ATTR_DEFAULT_WORK = 640;
+	private static final int ATTR_DEFAULT_FAX = 132;
+	private static final int ATTR_DEFAULT_OTHER = 160;
 
 	/**
 	 * 测试
@@ -250,55 +252,123 @@ public class ContactUtil {
 	 * @param contact
 	 * @return
 	 */
-	private Hashtable getNumbers(Contact contact) {
+	private Hashtable getAllNumber(Contact contact) {
 		Hashtable numbers = null;
 		if (contact.getPIMList().isSupportedField(Contact.TEL)) {
 			numbers = new Hashtable();
 			int count = contact.countValues(Contact.TEL);
+			String num = null;
+			int attr = 0;
 			for (int i = 0; i < count; i++) {
-				String num = contact.getString(Contact.TEL, i);
-				//				numbers.put("" + i, num);
-
-				int attr = contact.getAttributes(Contact.TEL, i);
-				if (attr == ATTR_MOBILE) {
+				num = contact.getString(Contact.TEL, i);
+				attr = contact.getAttributes(Contact.TEL, i);
+				if (attr == Contact.ATTR_MOBILE || attr == ATTR_DEFAULT_MOBILE) {
 					numbers.put("mobile", num);
-				} else if (attr == Contact.ATTR_HOME) {
+				}
+				if (attr == Contact.ATTR_HOME || attr == ATTR_DEFAULT_HOME) {
 					numbers.put("home", num);
-				} else if (attr == Contact.ATTR_WORK) {
+				}
+				if (attr == Contact.ATTR_WORK || attr == ATTR_DEFAULT_WORK) {
 					numbers.put("work", num);
-				} else if (attr == Contact.ATTR_FAX) {
+				}
+				if (attr == Contact.ATTR_FAX || attr == ATTR_DEFAULT_FAX) {
 					numbers.put("fax", num);
-				} else if (attr == Contact.ATTR_OTHER) {
+				}
+				if (attr == Contact.ATTR_OTHER || attr == ATTR_DEFAULT_OTHER) {
 					numbers.put("other", num);
-				} else {// 非以上分类
-					numbers.put("" + attr, num);
 				}
 
 				//////debug
 				//				System.out.println(i + ">> " + attr + " >> " + num);
 			}
-
-			//			String mobile = contact.getString(Contact.TEL, 0);
-			//			String home = contact.getString(Contact.TEL, Contact.ATTR_HOME);
-			//			String work = contact.getString(Contact.TEL, Contact.ATTR_WORK);
-			//			String other = contact.getString(Contact.TEL, Contact.ATTR_OTHER);
-			//			String fax = contact.getString(Contact.TEL, Contact.ATTR_FAX);
-			//			if (mobile != null && !mobile.equals(""))
-			//				numbers.put("mobile", mobile);
-			//			if (home != null && !home.equals(""))
-			//				numbers.put("home", home);
-			//			if (work != null && !work.equals(""))
-			//				numbers.put("work", work);
-			//			if (other != null && !other.equals(""))
-			//				numbers.put("other", other);
-			//			if (fax != null && !fax.equals(""))
-			//				numbers.put("fax", fax);
 		}
 		return numbers;
 	}
 
+	/**
+	 * 得到指定联系人的指定电话号码.
+	 * 
+	 * @param people
+	 *            指定联系人.
+	 * @param attr
+	 *            指定电话号码,如: mobile, home, work, fax, other.
+	 * @return
+	 */
 	public String getNumber(People people, String attr) {
 		return people.getNumber(attr);
+	}
+
+	/**
+	 * 
+	 * @param name
+	 * @param attr
+	 * @return
+	 */
+	public String getNumber(String name, String attr) {
+		return getNumber(getPeople(name), attr);
+	}
+
+	/**
+	 * 得到指定联系人的大头贴地址.
+	 * 
+	 * @param people
+	 * @return
+	 */
+	public String getWPath(People people) {
+		return people.getWPath();
+	}
+
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public String getWPath(String name) {
+		return getWPath(getPeople(name));
+	}
+
+	public void setWPath(String name, String wpath) {
+
+		contactLists = getContactList();
+		for (int i = 0; i < contactLists.length; i++) {
+			// 遍历所有通讯录, 得到所有联系人
+			try {
+				for (Enumeration items = contactLists[i].items(); items
+						.hasMoreElements();) {
+					Contact item = (Contact) items.nextElement();
+
+					String showName = getDisplayName(item);
+					if (showName.equals(name)) {
+						if (contactLists[i].isSupportedField(Contact.PHOTO_URL)) {
+							try {
+								item.addString(Contact.PHOTO_URL,
+										Contact.ATTR_NONE, wpath);
+							} catch (Exception e) {
+								//								e.printStackTrace();
+								item.setString(Contact.PHOTO_URL, 0,
+										Contact.ATTR_NONE, wpath);
+							}
+						}
+						try {
+							item.commit();
+						} catch (PIMException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			} catch (PIMException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		People people = getPeople(name);
+		people.setWPath(wpath);
+		// 更新 allPeople
+		if (allPeople.size() <= 0)
+			getAllPeople();
+		allPeople.remove(name);
+		allPeople.put(name, people);
 	}
 
 	/**
@@ -356,6 +426,7 @@ public class ContactUtil {
 
 	/**
 	 * 得到联系人的大头贴地址字符串.
+	 * 
 	 * @param contact
 	 */
 	private String getWPath(Contact contact) {
@@ -386,7 +457,7 @@ public class ContactUtil {
 					allPeople.clear();
 
 				String showName = null;
-				Hashtable numbers = new Hashtable();
+				Hashtable allNumber = new Hashtable();
 				String wPath = null;
 				contactLists = getContactList();
 				for (int i = 0; i < contactLists.length; i++) {
@@ -396,14 +467,15 @@ public class ContactUtil {
 						Contact item = (Contact) items.nextElement();
 
 						showName = getDisplayName(item);
-						numbers = getNumbers(item);
+						allNumber = getAllNumber(item);
 						wPath = getWPath(item);
 						if (showName == null) {
 							showName = "<Incomplete data>";
 						}
-						allPeople.put(showName, new People(showName, numbers,
+						allPeople.put(showName, new People(showName, allNumber,
 								wPath));
 					}
+					System.out.println("contact count: " + allPeople.size());
 				}
 			} catch (PIMException e) {
 			}

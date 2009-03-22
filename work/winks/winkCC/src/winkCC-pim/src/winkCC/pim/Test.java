@@ -16,10 +16,12 @@ public class Test extends MIDlet implements CommandListener {
 	Form form = null;
 	final Command test = new Command("test", Command.OK, 1);
 	final Command showPeople = new Command("showPeople", Command.OK, 1);
-	final Command showContacts = new Command("showContacts", Command.BACK, 2);
+	final Command showContacts = new Command("showContacts", Command.OK, 2);
+	final Command refresh = new Command("refresh", Command.OK, 2);
+	final Command setWpath = new Command("setWpath", Command.OK, 2);
 	final Command exit = new Command("Exit", Command.EXIT, 3);
 
-	TextField name = new TextField("name", "De Cc", 100, TextField.ANY);
+	TextField name = new TextField("name", "王映华", 100, TextField.ANY);
 	TextField attr = new TextField("attr", "mobile", 100, TextField.ANY);
 	TextField num = new TextField("电话", "", 100, TextField.PHONENUMBER);
 	TextField wpath = new TextField("wpath", "", 100, TextField.ANY);
@@ -59,6 +61,8 @@ public class Test extends MIDlet implements CommandListener {
 		form.addCommand(test);
 		form.addCommand(showPeople);
 		form.addCommand(showContacts);
+		form.addCommand(refresh);
+		form.addCommand(setWpath);
 		form.addCommand(exit);
 		form.append(name);
 		form.append(attr);
@@ -78,7 +82,6 @@ public class Test extends MIDlet implements CommandListener {
 				}
 			}.start();
 		} else if (cmd == showContacts) {
-
 			new Thread() {
 				People people = null;
 
@@ -92,12 +95,31 @@ public class Test extends MIDlet implements CommandListener {
 			}.start();
 
 		} else if (cmd == showPeople) {
-			People people = util.getPeople(name.getString());
-			String nums = util.getNumber(people, attr.getString());
-			num.setString(nums);
+			new Thread() {
+				public void run() {
+					People people = util.getPeople(name.getString());
+					String nums = util.getNumber(people, attr.getString());
+					System.out.println(people.toString());
+					num.setString(nums);
 
-			String path = people.getWPath();
-			wpath.setString(path);
+					String path = util.getWPath(people);
+					wpath.setString(path);
+				}
+			}.start();
+		} else if (cmd == refresh) {
+			form.deleteAll();
+			form.append(name);
+			form.append(attr);
+			num.setString("");
+			form.append(num);
+			wpath.setString("");
+			form.append(wpath);
+		} else if (cmd == setWpath) {
+			new Thread() {
+				public void run() {
+					util.setWPath(name.getString(), wpath.getString());
+				}
+			}.start();
 		} else if (cmd == exit) {
 			try {
 				destroyApp(true);
