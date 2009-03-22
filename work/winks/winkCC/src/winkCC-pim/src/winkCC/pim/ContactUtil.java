@@ -129,7 +129,7 @@ public class ContactUtil {
 		if (contacts.isSupportedField(Contact.EMAIL)) {
 			System.out.println("support EMAIL");
 			contact.addString(Contact.EMAIL, Contact.ATTR_HOME
-					| Contact.ATTR_PREFERRED, "jqpublic@xyz.dom1.com");
+					| Contact.ATTR_PREFERRED, "hit456@gmail.com");
 		}
 		try {
 			contact.commit();
