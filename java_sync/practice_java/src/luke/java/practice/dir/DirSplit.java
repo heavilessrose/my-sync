@@ -43,15 +43,26 @@ public class DirSplit {
 	}
 
 	public static void main(String[] args) {
-		DirSplit ss = new DirSplit();
-		ss.parsePath("c:/local_repo/j2me/jsrs/mmapi/sr/main/java/");
+		//		DirSplit ss = new DirSplit();
+		//		ss.parsePath("c:/local_repo/j2me/jsrs/mmapi/sr/main/java/");
+		//
+		//		System.out.println("path: " + ss.path);
+		//		System.out.println("fileName: " + ss.fileName);
+		//		System.out.println("parentPath: " + ss.parentPath);
+		//
+		//		String a = "0";
+		//		ss.test(a);
+		//		System.out.println(a);
 
-		System.out.println("path: " + ss.path);
-		System.out.println("fileName: " + ss.fileName);
-		System.out.println("parentPath: " + ss.parentPath);
-
-		String a = "0";
-		ss.test(a);
-		System.out.println(a);
+		System.out.println(new Integer(100).toBinaryString(16 | 128) + ", "
+				+ (16 | 128)); // 10000100
+		System.out.println(new Integer(100).toBinaryString(8 | 128) + ", "
+				+ (8 | 128));
+		System.out.println(new Integer(100).toBinaryString(512 | 128) + ", "
+				+ (512 | 128));
+		System.out.println(new Integer(100).toBinaryString(4 | 128) + ", "
+				+ (4 | 128));
+		System.out.println(new Integer(100).toBinaryString(32 | 128) + ", "
+				+ (32 | 128));
 	}
 }
