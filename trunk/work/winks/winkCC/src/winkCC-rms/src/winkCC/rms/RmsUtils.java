@@ -106,7 +106,7 @@ public class RmsUtils {
 	}
 
 	/**
-	 * 将int写入指定key.
+	 * 将int写入key.
 	 * 
 	 * @param key
 	 * @param i
@@ -120,6 +120,12 @@ public class RmsUtils {
 		writeBytes(key, intData);
 	}
 
+	/**
+	 * 得到key对应的int值.
+	 * 
+	 * @param key
+	 * @return
+	 */
 	public int getInt(int key) {
 		byte[] b = getBytes(key);
 		if (b == null || b.length != 4) {
@@ -132,7 +138,7 @@ public class RmsUtils {
 	}
 
 	/**
-	 * 将String写入指定key.
+	 * 将String写入key.
 	 * 
 	 * @param key
 	 * @param str
@@ -142,12 +148,18 @@ public class RmsUtils {
 			writeBytes(key, str.getBytes());
 	}
 
+	/**
+	 * 得到key对应的String值.
+	 * 
+	 * @param key
+	 * @return
+	 */
 	public String getString(int key) {
 		return new String(getBytes(key));
 	}
 
 	/**
-	 * 将long写入指定key.
+	 * 将long写入key.
 	 * 
 	 * @param key
 	 * @param l
@@ -166,6 +178,7 @@ public class RmsUtils {
 	}
 
 	/**
+	 * 得到key的long值.
 	 * 
 	 * @param key
 	 * @return
@@ -184,7 +197,7 @@ public class RmsUtils {
 	}
 
 	/**
-	 * 将char[]写入指定key.
+	 * 将char[]写入key.
 	 * 
 	 * @param key
 	 * @param txt
@@ -225,7 +238,7 @@ public class RmsUtils {
 	}
 
 	/**
-	 * 将short写入指定key.
+	 * 将short写入key.
 	 * 
 	 * @param key
 	 * @param s
@@ -238,7 +251,7 @@ public class RmsUtils {
 	}
 
 	/**
-	 * 读取指定key的short值.
+	 * 读取key的short值.
 	 * 
 	 * @param key
 	 * @return
@@ -255,7 +268,7 @@ public class RmsUtils {
 	}
 
 	/**
-	 * 将boolean写入指定key.
+	 * 将boolean写入key.
 	 * 
 	 * @param key
 	 * @param b
@@ -265,7 +278,7 @@ public class RmsUtils {
 	}
 
 	/**
-	 * 得到boolean值.
+	 * 得到key的boolean值.
 	 * 
 	 * @param key
 	 * @return
