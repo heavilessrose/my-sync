@@ -53,8 +53,8 @@ public class FileUtils {
 	/**
 	 * 新线程中创建文件或目录.
 	 * 
-	 * @param name
-	 * @param isDir
+	 * @param filePath
+	 *            文件完整路径.
 	 */
 	public void executeCreateFile(final String filePath) {
 		new Thread() {
@@ -181,9 +181,8 @@ public class FileUtils {
 	 * 将文件数据读入byte[] buffer.
 	 * 
 	 * @param fileName
-	 *            完整路径.
+	 *            文件完整路径.
 	 * @param buffer
-	 * @return
 	 */
 	private void readFile(String fileName, byte[] buffer) {
 		if (!fileName.endsWith("/")) {
@@ -203,7 +202,8 @@ public class FileUtils {
 	 * 二进制到16进制.
 	 * 
 	 * @param data
-	 * @return
+	 *            字节数组.
+	 * @return 二进制的16进制String.
 	 */
 	final public String toHex(byte[] data) {
 		StringBuffer buf = new StringBuffer();
@@ -252,14 +252,15 @@ public class FileUtils {
 	 * 列出文件夹中的文件.
 	 * 
 	 * @param dirPath
+	 *            文件夹的完整路径.
 	 * @param wildcard
-	 *            An Enumeration of strings, denoting the files and directories
-	 *            in the directory matching the filter.The Enumeration has zero
-	 *            length if the directory is empty or no files and/or
-	 *            directories are found matching the given filter.
+	 *            通配符.
 	 * @param showHidden
 	 *            是否显示隐藏文件.
-	 * @return
+	 * @return String枚举. An Enumeration of strings, denoting the files and
+	 *         directories in the directory matching the filter.The Enumeration
+	 *         has zero length if the directory is empty or no files and/or
+	 *         directories are found matching the given filter.
 	 */
 	public Enumeration listFiles(String dirPath, String wildcard,
 			boolean showHidden) {
@@ -279,7 +280,7 @@ public class FileUtils {
 	 * 
 	 * @param path
 	 *            文件完整路径及名字.
-	 * @return
+	 * @return true: 是文件夹. false: 非文件夹.
 	 */
 	public boolean isDir(String path) {
 		FileConnection fc = null;
@@ -392,7 +393,7 @@ public class FileUtils {
 	 * 得到路径.
 	 * 
 	 * @param pathName
-	 * @return
+	 * @return 路径
 	 */
 	private String getPathString(String pathName) {
 		parsePath(pathName);
@@ -403,7 +404,8 @@ public class FileUtils {
 	 * 分解路径得到文件名.
 	 * 
 	 * @param pathName
-	 * @return
+	 *            包括文件名的完整路径.
+	 * @return 文件名.
 	 */
 	private String getFileNameString(String pathName) {
 		parsePath(pathName);
@@ -414,7 +416,8 @@ public class FileUtils {
 	 * 得到父文件夹的完整路径.
 	 * 
 	 * @param dirpath
-	 * @return
+	 *            文件或文件夹路径, 文件夹路径应以"/" 结束.
+	 * @return String 返回文件或文件夹的上一层完整路径.
 	 */
 	private String getParentPath(String dirpath) {
 		parsePath(dirpath);
@@ -425,7 +428,7 @@ public class FileUtils {
 	 * 判断文件或文件夹是否存在.
 	 * 
 	 * @param dirPath
-	 * @return
+	 * @return true or false
 	 */
 	private boolean exists(String dirPath) {
 		FileConnection fc = null;

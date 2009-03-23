@@ -3,16 +3,32 @@ package winkCC.pim;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+/**
+ * 联系人封装
+ * 
+ * @author WangYinghua
+ * 
+ */
 public class People {
-	// 联系人名字
+	/**
+	 * 联系人名字
+	 */
 	private String _name = null;
-	// 电话号码
+	/**
+	 * 联系人电话号码
+	 */
 	private Hashtable _allNumbers = null;
-	// 主要电话号码
+	/**
+	 * 主要电话号码
+	 */
 	private String _primaryNum = null;
-	// 大头贴地址
+	/**
+	 * 大头贴地址
+	 */
 	private String _w_path = null;
-	// 是否为该用户更新彩像
+	/**
+	 * 是否为该用户更新彩像
+	 */
 	private boolean isChosen = true;
 
 	private NumberFilter _filter = null;
@@ -29,6 +45,7 @@ public class People {
 
 	/**
 	 * 为该联系人设定名字.
+	 * 
 	 * @param name
 	 */
 	public void setName(String name) {
@@ -37,7 +54,8 @@ public class People {
 
 	/**
 	 * 得到该联系人名字.
-	 * @return
+	 * 
+	 * @return 联系人名字.
 	 */
 	public String getName() {
 		return _name;
@@ -45,7 +63,9 @@ public class People {
 
 	/**
 	 * 设置该联系人的所有电话号码.
-	 * @param numTable 包含所有联系人号码的hashtable
+	 * 
+	 * @param numTable
+	 *            包含所有联系人号码的hashtable
 	 */
 	public void setAllNumber(Hashtable numTable) {
 		_allNumbers = numTable;
@@ -53,6 +73,7 @@ public class People {
 
 	/**
 	 * 得到该联系人的所有电话.
+	 * 
 	 * @return 返回包含所有类别电话的hashtable: 如mobile:1580000
 	 */
 	public Hashtable getAllNumber() {
@@ -76,7 +97,9 @@ public class People {
 
 	/**
 	 * 设置该联系人的大头贴地址.
-	 * @param path 大头贴地址
+	 * 
+	 * @param path
+	 *            大头贴地址
 	 */
 	public void setWPath(String path) {
 		_w_path = path;
@@ -85,7 +108,7 @@ public class People {
 	/**
 	 * 得到该联系人大头贴地址.
 	 * 
-	 * @return
+	 * @return 联系人大头贴地址.
 	 */
 	public String getWPath() {
 		return _w_path;
@@ -93,8 +116,9 @@ public class People {
 
 	/**
 	 * 得到与业务相关的一个电话号码.
+	 * 
 	 * @param filter
-	 * @return
+	 * @return 得到主要号码.
 	 */
 	public String getPrimaryNum(NumberFilter filter) {
 		filter.filter(_allNumbers);

@@ -54,7 +54,7 @@ public class SmsMessage {
 	 * @param connUrl
 	 *            可以是client或server
 	 * @param messageListener
-	 *            是否收到短信的监听器
+	 *            监听器,监听是否受到短信
 	 * @return
 	 */
 	final public MessageConnection newMessageConnection(String connUrl,
