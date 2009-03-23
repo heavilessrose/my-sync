@@ -1,7 +1,9 @@
 /**
  * 
  */
-package winkCC.rms;
+package winkCC.rms.other;
+
+import java.io.UnsupportedEncodingException;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
@@ -11,8 +13,12 @@ import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.TextField;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
+import javax.microedition.rms.InvalidRecordIDException;
+import javax.microedition.rms.RecordEnumeration;
 import javax.microedition.rms.RecordListener;
 import javax.microedition.rms.RecordStore;
+import javax.microedition.rms.RecordStoreException;
+import javax.microedition.rms.RecordStoreNotOpenException;
 
 import winkCC.log.ILog;
 import winkCC.log.LogFactory;
@@ -30,16 +36,16 @@ public class RMStest extends MIDlet implements RecordListener, CommandListener {
 	final Command modify = new Command("Modify", Command.OK, 1);
 	final Command exit = new Command("Exit", Command.EXIT, 3);
 
+	TextField nameField = new TextField("名字", "abc", 100, TextField.ANY);
 	TextField dataField = new TextField("内容", "ABC", 100, TextField.ANY);
 
-	RmsUtils rms = new RmsUtils();
+	RmsUtil rms = new RmsUtil(this);
 	RecordStore rs = null;
-	RMSAnalyzer analyzer;
 
 	public RMStest() {
 		display = Display.getDisplay(this);
 		form = new Form("RMS test");
-		//		rs = rms.openRs("wink_RMS_test");
+		rs = rms.openRs("wink_RMS_test");
 	}
 
 	/*
@@ -70,42 +76,68 @@ public class RMStest extends MIDlet implements RecordListener, CommandListener {
 		form.addCommand(read);
 		form.addCommand(modify);
 		form.addCommand(exit);
+		form.append(nameField);
 		form.append(dataField);
 		form.setCommandListener(this);
 		display.setCurrent(form);
-
-		// init rms
-		if (RecordStore.listRecordStores() == null
-				|| RecordStore.listRecordStores().length <= 0)
-			for (int i = 0; i < 8; i++)
-				rms.add();
-		analyzer = new RMSAnalyzer();
 	}
 
 	public void commandAction(Command cmd, Displayable disp) {
+		Record record = new Record();
 		if (cmd == save) {
-			rms.writeString(1, dataField.getString());
-			rms.writeBoolean(2, true);
-			rms.writeChars(3, new char[] { 'a', 'b', 'c' });
-			rms.writeInt(4, 456);
-			rms.writeLong(5, 456L);
-			rms.writeShort(6, (short) 456);
+			record.setName(nameField.getString());
+			record.setData(dataField.getString().getBytes());
+			rms.addRecord(rs, record);
 
+			RMSAnalyzer analyzer = new RMSAnalyzer();
 			analyzer.analyzeAllRecordStores();
 		} else if (cmd == read) {
 			form.deleteAll();
-			dataField.setString(rms.getString(1));
+			form.append(nameField);
 			form.append(dataField);
 
-			form.append("1: " + rms.getString(1) + "\n");
-			form.append("2: " + rms.getBoolean(2) + "\n");
-			form.append("3: " + new String(rms.getChars(3)) + "\n");
-			form.append("4: " + rms.getInt(4) + "\n");
-			form.append("5: " + rms.getLong(5) + "\n");
-			form.append("6: " + rms.getShort(6) + "\n");
-			analyzer.analyzeAllRecordStores();
-		} else if (cmd == exit) {
-			rms.close();
+			rs = rms.openRs("wink_RMS_test");
+			// recordStore中的所有记录
+			RecordEnumeration enum;
+			try {
+				enum = rs.enumerateRecords(null, null, false);
+
+				//				// 向前遍历
+				//				while (enum.hasPreviousElement()) {
+				//					int recordId = enum.previousRecordId();
+				//					// rs.getRecord(id);
+				//					record = rms.getRecord(rs, recordId);
+				//					// TODO 对此记录做工作
+				//					log.info("name = " + record.getName());
+				//					log.info("data = " + new String(record.getData()));
+				//				}
+				// 向后遍历
+				while (enum.hasNextElement()) {
+					int recordId = enum.nextRecordId();
+					record = rms.getRecord(rs, recordId);
+					String name = record.getName();
+					String data;
+//					try {
+						data = new String(record.getData()/*, "UTF-8"*/);
+						log.info("name = " + name);
+						log.info("data = " + data);
+						form.append(rs.getName() + "_" + recordId + "_" + name
+								+ ": " + data);
+//					} catch (UnsupportedEncodingException e) {
+//						e.printStackTrace();
+//					}
+				}
+			} catch (RecordStoreNotOpenException e) {
+				e.printStackTrace();
+			} catch (InvalidRecordIDException e) {
+				e.printStackTrace();
+			}
+		}else if(cmd == modify){
+			rs = rms.openRs("wink_RMS_test");
+			rms.modify(rs, 1, "qqqqqq".getBytes());
+		}
+		else if (cmd == exit) {
+			rms.closeRs(rs);
 			try {
 				destroyApp(true);
 			} catch (MIDletStateChangeException e) {
