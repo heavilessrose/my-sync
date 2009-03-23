@@ -224,7 +224,7 @@ public class SmsMessage {
 	Item[] receives = null;
 	Object mutex = new Object();
 
-	Item[] getReceives() {
+	public Item[] getReceives() {
 		synchronized (mutex) {
 			return receives;
 		}

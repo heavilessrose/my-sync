@@ -1,7 +1,6 @@
 /**
  * 
  */
-package winkCC.rms;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
@@ -16,6 +15,8 @@ import javax.microedition.rms.RecordStore;
 
 import winkCC.log.ILog;
 import winkCC.log.LogFactory;
+import winkCC.rms.RMSAnalyzer;
+import winkCC.rms.RmsUtils;
 
 /**
  * @author WangYinghua

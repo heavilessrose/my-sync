@@ -1,5 +1,3 @@
-package winkCC.pim;
-
 import java.util.Enumeration;
 
 import javax.microedition.lcdui.Command;
@@ -11,7 +9,10 @@ import javax.microedition.lcdui.TextField;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
-public class Test extends MIDlet implements CommandListener {
+import winkCC.pim.ContactUtil;
+import winkCC.pim.People;
+
+public class PimTest extends MIDlet implements CommandListener {
 	Display display = null;
 	Form form = null;
 	final Command test = new Command("test", Command.OK, 1);
@@ -26,7 +27,7 @@ public class Test extends MIDlet implements CommandListener {
 	TextField num = new TextField("µç»°", "", 100, TextField.PHONENUMBER);
 	TextField wpath = new TextField("wpath", "", 100, TextField.ANY);
 
-	public Test() {
+	public PimTest() {
 		display = Display.getDisplay(this);
 		form = new Form("pim test");
 	}
