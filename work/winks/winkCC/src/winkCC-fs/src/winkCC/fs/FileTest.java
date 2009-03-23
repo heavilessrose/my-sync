@@ -82,15 +82,15 @@ public class FileTest extends MIDlet implements CommandListener {
 			fileUtils.executeCreateFile("e:/ii/");
 			fileUtils.executeCreateFile("e:/ii2/");
 		} else if (cmd == write) {
-			fileUtils.executeWriteFile("root1/dada/xx.txt", new byte[] { 1, 2,
+			fileUtils.executeWriteFile("e:/dada/xx.txt", new byte[] { 1, 2,
 					3, 4, 5, 6, 7, 8, 9 });
 		} else if (cmd == read) {
 			byte[] buffer = new byte[9];
-			fileUtils.executeReadFile("root1/dada/xx.txt", buffer);
+			fileUtils.executeReadFile("e:/dada/xx.txt", buffer);
 		} else if (cmd == list) {
 			new Thread() {
 				public void run() {
-					Enumeration files = fileUtils.listFiles("root1/dada/",
+					Enumeration files = fileUtils.listFiles("e:/dada/",
 							"*.txt", true);
 					while (files.hasMoreElements()) {
 						System.out.println(files.nextElement());
@@ -104,7 +104,7 @@ public class FileTest extends MIDlet implements CommandListener {
 		} else if (cmd == rename) {
 			new Thread() {
 				public void run() {
-					fileUtils.rename("root1/dada/xx.txt", "sss.yy");
+					fileUtils.rename("e:/dada/xx.txt", "sss.yy");
 				}
 			}.start();
 		} else if (cmd == exit) {

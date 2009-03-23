@@ -28,11 +28,11 @@ public class ContactUtil {
 	/*
 	 * 所爱平台对于拥有多个号码的联系人, 有default number这个属性(原属性与128取与).
 	 */
-	private static final int ATTR_DEFAULT_MOBILE = /* 144 */Contact.ATTR_MOBILE | 128;
-	private static final int ATTR_DEFAULT_HOME = /* 136 */Contact.ATTR_HOME | 128;
-	private static final int ATTR_DEFAULT_WORK = /* 640 */Contact.ATTR_WORK | 128;
-	private static final int ATTR_DEFAULT_FAX = /* 132 */Contact.ATTR_FAX | 128;
-	private static final int ATTR_DEFAULT_OTHER = /* 160 */Contact.ATTR_OTHER | 128;
+	private static final int ATTR_DEFAULT_MOBILE = Contact.ATTR_MOBILE | 128;
+	private static final int ATTR_DEFAULT_HOME = Contact.ATTR_HOME | 128;
+	private static final int ATTR_DEFAULT_WORK = Contact.ATTR_WORK | 128;
+	private static final int ATTR_DEFAULT_FAX = Contact.ATTR_FAX | 128;
+	private static final int ATTR_DEFAULT_OTHER = Contact.ATTR_OTHER | 128;
 
 	/**
 	 * 测试联系人字段支持情况.
@@ -192,7 +192,8 @@ public class ContactUtil {
 	}
 
 	/**
-	 * 整理名字字段的显示值. 默认使用Contact.FORMATTED_NAME, 如果此字段不存在则给联系人建立该字段: Contact.NAME_GIVEN + " " + Contact.NAME_FAMILY
+	 * 整理名字字段的显示值. 默认使用Contact.FORMATTED_NAME, 如果此字段不存在则给联系人建立该字段:
+	 * Contact.NAME_GIVEN + " " + Contact.NAME_FAMILY
 	 * 
 	 * @param contact
 	 */
@@ -300,8 +301,11 @@ public class ContactUtil {
 
 	/**
 	 * 根据指定名字取得该联系人 指定类别的电话号码.
-	 * @param name 联系人名字
-	 * @param attr 要得到的电话类别
+	 * 
+	 * @param name
+	 *            联系人名字
+	 * @param attr
+	 *            要得到的电话类别
 	 * @return
 	 */
 	public String getNumber(String name, String attr) {
@@ -320,6 +324,7 @@ public class ContactUtil {
 
 	/**
 	 * 根据联系人名字得到该联系人的大头贴地址.
+	 * 
 	 * @param name
 	 * @return
 	 */
@@ -329,6 +334,7 @@ public class ContactUtil {
 
 	/**
 	 * 设定指定联系人的大头贴地址.
+	 * 
 	 * @param name
 	 * @param wpath
 	 */
@@ -374,6 +380,8 @@ public class ContactUtil {
 			getAllPeople();
 		allPeople.remove(name);
 		allPeople.put(name, people);
+
+		System.out.println("set wpath success");
 	}
 
 	/**
@@ -450,6 +458,7 @@ public class ContactUtil {
 
 	/**
 	 * 得到手机话簿中所有联系人.
+	 * 
 	 * @return 包含所有联系人people对象的Hashtable
 	 */
 	public Hashtable getAllPeople() {
