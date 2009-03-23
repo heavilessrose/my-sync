@@ -47,7 +47,6 @@ public class SmsTest extends MIDlet implements CommandListener,
 	public SmsTest() {
 		display = Display.getDisplay(this);
 		form = new Form("sms test");
-		sms.init(destNumber, smsMonitorPort, this);
 	}
 
 	/*
@@ -87,13 +86,10 @@ public class SmsTest extends MIDlet implements CommandListener,
 	}
 
 	public void commandAction(Command cmd, Displayable disp) {
-		System.out.println("cmd = " + cmd.toString());
 		if (cmd == send) {
 			String destNum = numField.getString();
-			String address = null;
-			if (destNum != null && !destNum.equals(""))
-				address = SmsMessage.createScheme(destNum, "5050");
-			sms.sendTextMessage(contentField.getString(), address);
+			sms.init(destNum, smsMonitorPort, this);
+			sms.sendTextMessage(contentField.getString());
 		} else if (cmd == back) {
 			display.setCurrent(form);
 		} else if (cmd == exit) {

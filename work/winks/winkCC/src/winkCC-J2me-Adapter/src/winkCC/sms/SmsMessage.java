@@ -64,15 +64,12 @@ public class SmsMessage {
 	 */
 	public static String createScheme(String destNumber, String monitorPort) {
 		// 服务器模式
-		if ((destNumber == null || destNumber.equals(""))
-				&& (monitorPort != null && !monitorPort.equals("")))
+		if ((monitorPort != null && !monitorPort.equals("")))
 			return "sms://:" + monitorPort;
-
 		// 客户端模式
-		if ((destNumber != null && !destNumber.equals("")))
-			return "sms://" + destNumber/* + ":" + monitorPort */; // 客户端模式可以不要监听端口参数??
-
-		// 混合模式
+		if ((destNumber != null && !destNumber.equals(""))) {
+			return "sms://" + destNumber + ":" + monitorPort; // 客户端模式可以不要监听端口参数??
+		}
 		return "sms://" + destNumber + ":" + monitorPort;
 	}
 
@@ -88,8 +85,24 @@ public class SmsMessage {
 			SmsMessageListener listener) {
 		_destNumber = destNumber;
 		_monitorPort = monitorPort;
-		mc = newMessageConnection(createScheme(destNumber, monitorPort),
-				listener);
+		String url = createScheme(destNumber, monitorPort);
+		System.out.println("init: " + url);
+		mc = newMessageConnection(url);
+		if (listener != null)
+			setListener(listener);
+	}
+
+	/**
+	 * 
+	 * @param listener
+	 */
+	private void setListener(SmsMessageListener listener) {
+		try {
+			mc.setMessageListener(listener);
+		} catch (IOException e) {
+			log.debug("setMessageListener " + listener + " error");
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -128,19 +141,12 @@ public class SmsMessage {
 	 *            监听器,监听是否受到短信
 	 * @return
 	 */
-	final private MessageConnection newMessageConnection(String connUrl,
-			MessageListener messageListener) {
+	final private MessageConnection newMessageConnection(String connUrl) {
 		MessageConnection mc = null;
 		try {
 			mc = (MessageConnection) Connector.open(connUrl);
 		} catch (IOException e) {
 			log.debug("open " + connUrl + " error");
-			e.printStackTrace();
-		}
-		try {
-			mc.setMessageListener(messageListener);
-		} catch (IOException e) {
-			log.debug("setMessageListener " + messageListener + " error");
 			e.printStackTrace();
 		}
 		return mc;
@@ -153,12 +159,22 @@ public class SmsMessage {
 	 * @param msg
 	 * @param url
 	 */
-	final private void sendMessage(final Message msg, final String url)
+	final private void sendMessage(final Message msg, final String destNum,
+			final String monitorPort)
 	/* throws IllegalArgumentException, SecurityException */{
 		Thread th = new Thread() {
 			public void run() {
-				if (url != null)
-					msg.setAddress(url);
+				if (destNum != null) {
+					String url = "sms://" + destNum;
+					if (monitorPort != null) {
+						msg.setAddress(url + ":" + monitorPort);
+						System.out.println("sendMessage: " + url + ":"
+								+ monitorPort);
+					} else {
+						msg.setAddress(url);
+						System.out.println(url);
+					}
+				}
 				int segcount = mc.numberOfSegments(msg);
 				if (segcount == 0) {
 					log.debug(SEGCOUNT);
@@ -186,11 +202,11 @@ public class SmsMessage {
 	 * @param url
 	 *            对方号码
 	 */
-	final public void sendTextMessage(String msg, String url) {
+	final public void sendTextMessage(String msg) {
 		TextMessage tmsg = null;
 		tmsg = (TextMessage) mc.newMessage(MessageConnection.TEXT_MESSAGE);
 		tmsg.setPayloadText(msg);
-		sendMessage(tmsg, url);
+		sendMessage(tmsg, _destNumber, _monitorPort);
 	}
 
 	/**
@@ -201,11 +217,11 @@ public class SmsMessage {
 	 * @param url
 	 *            对方号码
 	 */
-	final public void sendBinaryMessage(byte[] msg, String url) {
+	final public void sendBinaryMessage(byte[] msg) {
 		BinaryMessage bmsg;
 		bmsg = (BinaryMessage) mc.newMessage(MessageConnection.BINARY_MESSAGE);
 		bmsg.setPayloadData(msg);
-		sendMessage(bmsg, url);
+		sendMessage(bmsg, _destNumber, _monitorPort);
 	}
 
 	////////////////////////接收及处理短信

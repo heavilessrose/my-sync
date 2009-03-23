@@ -1,6 +1,5 @@
 package winkCC.sms;
 
-import javax.wireless.messaging.MessageConnection;
 import javax.wireless.messaging.MessageListener;
 
 /**
@@ -9,5 +8,4 @@ import javax.wireless.messaging.MessageListener;
  * 
  */
 public interface SmsMessageListener extends MessageListener {
-	void notifyIncomingMessage(MessageConnection conn);
 }
