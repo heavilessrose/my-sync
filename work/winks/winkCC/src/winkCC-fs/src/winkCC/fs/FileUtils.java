@@ -1,4 +1,4 @@
-package winkCC.fs.finals;
+package winkCC.fs;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
