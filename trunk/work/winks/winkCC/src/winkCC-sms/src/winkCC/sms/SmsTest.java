@@ -13,7 +13,6 @@ import javax.microedition.lcdui.TextField;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 import javax.wireless.messaging.MessageConnection;
-import javax.wireless.messaging.MessageListener;
 
 /**
  * ∂Ã–≈ƒ£øÈ≤‚ ‘.
@@ -25,7 +24,8 @@ import javax.wireless.messaging.MessageListener;
  * @author WangYinghua
  * 
  */
-public class SmsTest extends MIDlet implements CommandListener, MessageListener {
+public class SmsTest extends MIDlet implements CommandListener,
+		SmsMessageListener {
 	Display display = null;
 	Form form = null;
 	final Command send = new Command("Send", Command.OK, 1);
@@ -37,7 +37,7 @@ public class SmsTest extends MIDlet implements CommandListener, MessageListener 
 	TextField contentField = new TextField("ƒ⁄»›", "test123≤‚ ‘", 100,
 			TextField.ANY);
 
-	String address = "sms://15801630382:5050";
+	String destNumber = "15801630382";
 	String smsMonitorPort = "5050";
 	MessageConnection mc = null;
 	SmsMessage sms = SmsMessage.getInstance();
@@ -45,7 +45,7 @@ public class SmsTest extends MIDlet implements CommandListener, MessageListener 
 	public SmsTest() {
 		display = Display.getDisplay(this);
 		form = new Form("sms test");
-		mc = sms.newMessageConnection("sms://:" + smsMonitorPort, this);
+		sms.init(destNumber, smsMonitorPort, this);
 	}
 
 	/*
@@ -88,9 +88,10 @@ public class SmsTest extends MIDlet implements CommandListener, MessageListener 
 		System.out.println("cmd = " + cmd.toString());
 		if (cmd == send) {
 			String destNum = numField.getString();
+			String address = null;
 			if (destNum != null && !destNum.equals(""))
-				address = "sms://" + destNum + ":5050";
-			sms.sendTextMessage(mc, contentField.getString(), address);
+				address = SmsMessage.createScheme(destNum, "5050");
+			sms.sendTextMessage(contentField.getString(), address);
 		} else if (cmd == back) {
 			display.setCurrent(form);
 		} else if (cmd == exit) {
@@ -105,11 +106,9 @@ public class SmsTest extends MIDlet implements CommandListener, MessageListener 
 	}
 
 	public void disposeSms() {
-		sms.closeConnection(mc);
+		SmsMessage.close();
 		if (sms != null)
 			sms = null;
-		if (mc != null)
-			mc = null;
 	}
 
 	public void notifyIncomingMessage(MessageConnection mc) {

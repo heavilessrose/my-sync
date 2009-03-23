@@ -26,7 +26,8 @@ import winkCC.log.ILog;
 import winkCC.log.LogFactory;
 
 /**
- * 短信模块
+ * 短信模块.<br>
+ * 只提供一个MessageConnection.
  * 
  * @author WangYinghua
  * 
@@ -34,6 +35,10 @@ import winkCC.log.LogFactory;
 public class SmsMessage {
 	private static ILog log = LogFactory.getLog("SmsMessage");
 	private static SmsMessage instance = null;
+
+	private static MessageConnection mc = null;
+	private String _destNumber = "15801630382";
+	private String _monitorPort = "65000";
 
 	public static final String SEGCOUNT = "segment can't be zero";
 
@@ -49,20 +54,82 @@ public class SmsMessage {
 	}
 
 	/**
+	 * 创建短信连接的scheme.
+	 * 
+	 * @param destNumber
+	 *            目标号码. 如果使用服务器模式, 则传null即可. 客户端模式直接传入目标电话号码.
+	 * @param monitorPort
+	 *            短信监听端口. 如果使用服务器模式, 必须提供监听端口以监听发送到此端口上的短信. 使用客户端模式是否不用再提供端口参数?
+	 * @return
+	 */
+	public static String createScheme(String destNumber, String monitorPort) {
+		// 服务器模式
+		if ((destNumber == null || destNumber.equals(""))
+				&& (monitorPort != null && !monitorPort.equals("")))
+			return "sms://:" + monitorPort;
+
+		// 客户端模式
+		if ((destNumber != null && !destNumber.equals("")))
+			return "sms://" + destNumber/* + ":" + monitorPort */; // 客户端模式可以不要监听端口参数??
+
+		// 混合模式
+		return "sms://" + destNumber + ":" + monitorPort;
+	}
+
+	/**
+	 * 使用前首先需要初始化.
+	 * 
+	 * @param destNumber
+	 *            目标手机号.
+	 * @param monitorPort
+	 *            监听端口.
+	 */
+	public void init(String destNumber, String monitorPort,
+			SmsMessageListener listener) {
+		_destNumber = destNumber;
+		_monitorPort = monitorPort;
+		mc = newMessageConnection(createScheme(destNumber, monitorPort),
+				listener);
+	}
+
+	/**
+	 * 关闭连接
+	 * 
+	 * @param mc
+	 */
+	static final public void close() {
+		try {
+			if (mc != null) {
+				// 注销监听器
+				mc.setMessageListener(null);
+				mc.close();
+				mc = null;
+			}
+		} catch (IOException ioe) {
+		}
+	}
+
+	/**
 	 * 新建一个MessageConnection
 	 * 
 	 * @param connUrl
-	 *            可以是client或server
+	 *            <p>
+	 *            可以是client mode或server mode. <br>
+	 *            client模式时, 只能发送消息并且需要提供目标地址即对方手机号.<br>
+	 *            client: sms://+15121234567:5000. <br>
+	 *            </p>
+	 *            <p>
+	 *            server模式时, 可以发送和接收短信. 需提供监听端口.<br>
+	 *            如果端口已被占用则 Connector.open() 抛出 IOException.
+	 *            Java应用可以使用任何非保留端口(0-49151 为保留端口), 出于安全性考虑平台可能并不允许使用所有的非保留端口.<br>
+	 *            server: sms://:5000.
+	 *            </p>
 	 * @param messageListener
 	 *            监听器,监听是否受到短信
 	 * @return
 	 */
-	final public MessageConnection newMessageConnection(String connUrl,
-			MessageListener messageListener)
-	/*
-	 * throws ConnectionNotFoundException, IOException,
-	 * IllegalArgumentException, SecurityException
-	 */{
+	final private MessageConnection newMessageConnection(String connUrl,
+			MessageListener messageListener) {
 		MessageConnection mc = null;
 		try {
 			mc = (MessageConnection) Connector.open(connUrl);
@@ -80,25 +147,13 @@ public class SmsMessage {
 	}
 
 	/**
-	 * 关闭连接
+	 * 发送短信
 	 * 
-	 * @param connection
+	 * @param mc
+	 * @param msg
+	 * @param url
 	 */
-	static final public void closeConnection(MessageConnection connection) {
-		try {
-			if (connection != null) {
-				// deregister the msg listener
-				connection.setMessageListener(null);
-				connection.close();
-				connection = null;
-			}
-		} catch (IOException ioe) {
-		}
-	}
-
-	///////////////// 发送短信
-	final private void sendMessage(final MessageConnection mc,
-			final Message msg, final String url)
+	final private void sendMessage(final Message msg, final String url)
 	/* throws IllegalArgumentException, SecurityException */{
 		Thread th = new Thread() {
 			public void run() {
@@ -106,7 +161,6 @@ public class SmsMessage {
 					msg.setAddress(url);
 				int segcount = mc.numberOfSegments(msg);
 				if (segcount == 0) {
-					// alertUser(UiConstants.TXT_SEGCOUNT);
 					log.debug(SEGCOUNT);
 				} else {
 					try {
@@ -122,11 +176,6 @@ public class SmsMessage {
 		th.start();
 	}
 
-	final private void sendTextMessage(MessageConnection mc, TextMessage msg,
-			String url) {
-		sendMessage(mc, msg, url);
-	}
-
 	/**
 	 * 发送字符短信
 	 * 
@@ -137,17 +186,11 @@ public class SmsMessage {
 	 * @param url
 	 *            对方号码
 	 */
-	final public void sendTextMessage(MessageConnection mc, String msg,
-			String url) {
+	final public void sendTextMessage(String msg, String url) {
 		TextMessage tmsg = null;
 		tmsg = (TextMessage) mc.newMessage(MessageConnection.TEXT_MESSAGE);
 		tmsg.setPayloadText(msg);
-		sendTextMessage(mc, tmsg, url);
-	}
-
-	final private void sendBinaryMessage(MessageConnection mc,
-			BinaryMessage msg, String url) {
-		sendMessage(mc, msg, url);
+		sendMessage(tmsg, url);
 	}
 
 	/**
@@ -158,12 +201,11 @@ public class SmsMessage {
 	 * @param url
 	 *            对方号码
 	 */
-	final public void sendBinaryMessage(MessageConnection mc, byte[] msg,
-			String url) {
+	final public void sendBinaryMessage(byte[] msg, String url) {
 		BinaryMessage bmsg;
 		bmsg = (BinaryMessage) mc.newMessage(MessageConnection.BINARY_MESSAGE);
 		bmsg.setPayloadData(msg);
-		sendMessage(mc, bmsg, url);
+		sendMessage(bmsg, url);
 	}
 
 	////////////////////////接收及处理短信
@@ -190,8 +232,6 @@ public class SmsMessage {
 
 	/**
 	 * 接收,读取,处理短信
-	 * 
-	 * @param mc
 	 */
 	public void readMessage(MessageConnection mc) {
 		try {
@@ -277,11 +317,11 @@ public class SmsMessage {
 	public final static String MIMETYPE_APPLICATION_OCTET_STREAM = "application/octet-stream";
 
 	/**
-	 * Process MultipartMessage
+	 * 处理收到的彩信.
 	 * 
 	 * @param mpmsg
-	 *            is the MultipartMessageto process
-	 * @return array of javax.microedition.lcdui.Item
+	 *            处理的彩信
+	 * @return Item[]
 	 */
 	public Item[] processMultipartMessage(MultipartMessage mpmsg) {
 
@@ -378,9 +418,13 @@ public class SmsMessage {
 		return messageItems;
 	}
 
-	///////////////push
+	///// push
 	/**
-	 * 动态注册push启动
+	 * 动态注册push启动.
+	 * 
+	 * @param url
+	 * @param midlet
+	 * @param filter
 	 */
 	public void dynamicRegisterSmsMonitor(String url, String midlet,
 			String filter) {
@@ -394,15 +438,13 @@ public class SmsMessage {
 	}
 
 	/**
-	 * 注销push
+	 * 注销push监听.
 	 * 
 	 * @param url
 	 */
 	public void unregisterSmsMonitor(String url) {
-		boolean status = false;
 		try {
-			// 成功返回true, 否则返回false
-			status = PushRegistry.unregisterConnection(url);
+			PushRegistry.unregisterConnection(url);
 		} catch (SecurityException e) {
 			log.debug("unregister not success", e);
 		}
