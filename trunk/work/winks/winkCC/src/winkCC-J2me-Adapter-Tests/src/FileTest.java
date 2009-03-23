@@ -1,7 +1,6 @@
 /**
  * 
  */
-package winkCC.fs;
 
 import java.util.Enumeration;
 
@@ -13,6 +12,8 @@ import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.TextField;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
+
+import winkCC.fs.FileUtils;
 
 public class FileTest extends MIDlet implements CommandListener {
 	Display display = null;
@@ -82,8 +83,8 @@ public class FileTest extends MIDlet implements CommandListener {
 			fileUtils.executeCreateFile("e:/ii/");
 			fileUtils.executeCreateFile("e:/ii2/");
 		} else if (cmd == write) {
-			fileUtils.executeWriteFile("e:/dada/xx.txt", new byte[] { 1, 2,
-					3, 4, 5, 6, 7, 8, 9 });
+			fileUtils.executeWriteFile("e:/dada/xx.txt", new byte[] { 1, 2, 3,
+					4, 5, 6, 7, 8, 9 });
 		} else if (cmd == read) {
 			byte[] buffer = new byte[9];
 			fileUtils.executeReadFile("e:/dada/xx.txt", buffer);

@@ -1,7 +1,6 @@
 /**
  * 
  */
-package winkCC.sms;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
@@ -13,6 +12,9 @@ import javax.microedition.lcdui.TextField;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 import javax.wireless.messaging.MessageConnection;
+
+import winkCC.sms.SmsMessage;
+import winkCC.sms.SmsMessageListener;
 
 /**
  * ¶ÌÐÅÄ£¿é²âÊÔ.
