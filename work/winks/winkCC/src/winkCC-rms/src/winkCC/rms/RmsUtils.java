@@ -124,7 +124,7 @@ public class RmsUtils {
 	 * 得到key对应的int值.
 	 * 
 	 * @param key
-	 * @return
+	 * @return int
 	 */
 	public int getInt(int key) {
 		byte[] b = getBytes(key);
@@ -152,7 +152,7 @@ public class RmsUtils {
 	 * 得到key对应的String值.
 	 * 
 	 * @param key
-	 * @return
+	 * @return String
 	 */
 	public String getString(int key) {
 		return new String(getBytes(key));
@@ -181,7 +181,7 @@ public class RmsUtils {
 	 * 得到key的long值.
 	 * 
 	 * @param key
-	 * @return
+	 * @return long
 	 */
 	public long getLong(int key) {
 		byte[] b = getBytes(key);
@@ -218,7 +218,7 @@ public class RmsUtils {
 	 * 从指定key中读取char数组.
 	 * 
 	 * @param key
-	 * @return
+	 * @return char[]
 	 */
 	public char[] getChars(int key) {
 		byte[] b = getBytes(key);
@@ -254,7 +254,7 @@ public class RmsUtils {
 	 * 读取key的short值.
 	 * 
 	 * @param key
-	 * @return
+	 * @return short
 	 */
 	public short getShort(int key) {
 		byte[] b = null;
@@ -281,7 +281,7 @@ public class RmsUtils {
 	 * 得到key的boolean值.
 	 * 
 	 * @param key
-	 * @return
+	 * @return boolean
 	 */
 	public boolean getBoolean(int key) {
 		byte[] b = getBytes(key);

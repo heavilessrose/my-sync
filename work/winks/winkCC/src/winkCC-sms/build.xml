@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="private" author="true" classpath="D:\env\WTK2.5.2\lib\j2me-ws.jar;D:\env\WTK2.5.2\lib\jsr082.jar;D:\env\WTK2.5.2\lib\jsr229.jar;D:\env\WTK2.5.2\lib\satsa-pki.jar;D:\env\WTK2.5.2\lib\jsr234.jar;D:\env\WTK2.5.2\lib\jsr238.jar;D:\env\WTK2.5.2\lib\cldcapi11.jar;D:\env\WTK2.5.2\lib\jsr239.jar;D:\env\WTK2.5.2\lib\wma20.jar;D:\env\WTK2.5.2\lib\jsr184.jar;D:\env\WTK2.5.2\lib\jsr180.jar;D:\env\WTK2.5.2\lib\jsr179.jar;D:\env\WTK2.5.2\lib\j2me-xmlrpc.jar;D:\env\WTK2.5.2\lib\jsr226.jar;D:\env\WTK2.5.2\lib\satsa-jcrmi.jar;D:\env\WTK2.5.2\lib\satsa-crypto.jar;D:\env\WTK2.5.2\lib\satsa-apdu.jar;D:\env\WTK2.5.2\lib\jsr211.jar;D:\env\WTK2.5.2\lib\jsr75.jar;D:\env\WTK2.5.2\lib\mmapi.jar;D:\env\WTK2.5.2\lib\midpapi21.jar" destdir="doc" doctitle="索爱J2me_JP7_短信SMS" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="winkCC.sms,winkCC.log" source="1.4" sourcepath="E:\my-sync\work\winks\winkCC\src\winkCC-log\src;res;src" splitindex="true" use="true" version="true"/>
+    </target>
+</project>

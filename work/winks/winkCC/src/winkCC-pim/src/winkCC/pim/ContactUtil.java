@@ -146,7 +146,7 @@ public class ContactUtil {
 	/**
 	 * 打开通讯录.
 	 * 
-	 * @return
+	 * @return ContactList[] 手机所有通讯录数组.
 	 */
 	private ContactList[] getContactList() {
 		if (contactLists != null) {
@@ -173,7 +173,9 @@ public class ContactUtil {
 	 * 得到联系人的显示姓名
 	 * 
 	 * @param contact
-	 * @return
+	 *            联系人.
+	 * @return showName 联系人的名字.
+	 * @see winkCC.pim.ContactUtil#fixDisplayName(Contact)
 	 */
 	private String getDisplayName(Contact contact) {
 		fixDisplayName(contact);
@@ -251,7 +253,7 @@ public class ContactUtil {
 	 * 得到一个联系人的所有号码.
 	 * 
 	 * @param contact
-	 * @return
+	 * @return 包含联系人所有号码的Hashtable, 如:mobile:1580000
 	 */
 	private Hashtable getAllNumber(Contact contact) {
 		Hashtable numbers = null;
@@ -293,7 +295,7 @@ public class ContactUtil {
 	 *            指定联系人.
 	 * @param attr
 	 *            指定电话号码,如: mobile, home, work, fax, other.
-	 * @return
+	 * @return 联系人号码string
 	 */
 	public String getNumber(People people, String attr) {
 		return people.getNumber(attr);
@@ -306,7 +308,7 @@ public class ContactUtil {
 	 *            联系人名字
 	 * @param attr
 	 *            要得到的电话类别
-	 * @return
+	 * @return 联系人号码String
 	 */
 	public String getNumber(String name, String attr) {
 		return getNumber(getPeople(name), attr);
@@ -316,7 +318,7 @@ public class ContactUtil {
 	 * 得到指定联系人的大头贴地址.
 	 * 
 	 * @param people
-	 * @return
+	 * @return 联系人大头贴地址String.
 	 */
 	public String getWPath(People people) {
 		return people.getWPath();
@@ -326,7 +328,7 @@ public class ContactUtil {
 	 * 根据联系人名字得到该联系人的大头贴地址.
 	 * 
 	 * @param name
-	 * @return
+	 * @return 联系人大头贴String.
 	 */
 	public String getWPath(String name) {
 		return getWPath(getPeople(name));
@@ -388,7 +390,7 @@ public class ContactUtil {
 	 * 根据名字得到People对象.
 	 * 
 	 * @param name
-	 * @return
+	 * @return 联系人People对象
 	 */
 	public People getPeople(String name) {
 		People people = null;
