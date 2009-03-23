@@ -1,4 +1,4 @@
-package winkCC.rms;
+package winkCC.rms.finals;
 
 import java.io.*;
 import javax.microedition.rms.*;
