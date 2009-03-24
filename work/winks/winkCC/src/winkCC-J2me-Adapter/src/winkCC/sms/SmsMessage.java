@@ -79,7 +79,7 @@ public class SmsMessage {
 	/**
 	 * 此对象为单例.
 	 * 
-	 * @return
+	 * @return SmsMessage单例对象.
 	 */
 	public static SmsMessage getInstance() {
 		if (instance == null) {
@@ -96,7 +96,7 @@ public class SmsMessage {
 	 *            目标号码.
 	 * @param destPort
 	 *            目标端口. 可为空, 则发送普通短信.
-	 * @return
+	 * @return client mode scheme
 	 */
 	private String createClientScheme(String destNumber, String destPort) {
 		String scheme = null;
@@ -348,7 +348,7 @@ public class SmsMessage {
 	 * 接收到短信后的处理
 	 * 
 	 * @param msg
-	 * @return
+	 * @return 短信内容
 	 */
 	private Item[] processMessage(Message msg) {
 		Item[] items = null;
