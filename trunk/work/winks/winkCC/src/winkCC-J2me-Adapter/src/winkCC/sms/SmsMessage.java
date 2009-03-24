@@ -1,6 +1,3 @@
-/**
- * 短信目的地址可包含:端口
- */
 package winkCC.sms;
 
 import java.io.IOException;
@@ -17,7 +14,6 @@ import javax.microedition.lcdui.StringItem;
 import javax.wireless.messaging.BinaryMessage;
 import javax.wireless.messaging.Message;
 import javax.wireless.messaging.MessageConnection;
-import javax.wireless.messaging.MessageListener;
 import javax.wireless.messaging.MessagePart;
 import javax.wireless.messaging.MultipartMessage;
 import javax.wireless.messaging.TextMessage;
@@ -27,7 +23,7 @@ import winkCC.log.LogFactory;
 
 /**
  * 短信模块.<br>
- * 只提供一个MessageConnection.
+ * 为发送与监听分别提供一个MessageConnection. 从而可以实现发送和监听不必使用相同的端口.
  * 
  * @author WangYinghua
  * 
@@ -36,10 +32,15 @@ public class SmsMessage {
 	private static ILog log = LogFactory.getLog("SmsMessage");
 	private static SmsMessage instance = null;
 
+	/** client mode MessageConnection, 只用来发送短信 */
 	private static MessageConnection clientMessageConnection = null;
+	/** server mode MessageConnection, 只用来监听收到的短信 */
 	private static MessageConnection serverMessageConnection = null;
+	/** 短信发送的目的地号码 */
 	private String _destNumber = null;
+	/** 短信发送的目的端口 */
 	private String _destPort = null;
+	/** 监听的端口 */
 	private String _monitorPort = null;
 
 	public static final String SEGCOUNT = "segment can't be zero";
@@ -48,6 +49,38 @@ public class SmsMessage {
 
 	}
 
+	/**
+	 * 取得目的地号码
+	 * 
+	 * @return _destNumber
+	 */
+	public String getDestNum() {
+		return _destNumber;
+	}
+
+	/**
+	 * 取得发送端口
+	 * 
+	 * @return _destPort
+	 */
+	public String getDestPort() {
+		return _destPort;
+	}
+
+	/**
+	 * 取得监听端口
+	 * 
+	 * @return _monitorPort
+	 */
+	public String getMonitorPort() {
+		return _monitorPort;
+	}
+
+	/**
+	 * 此对象为单例.
+	 * 
+	 * @return
+	 */
 	public static SmsMessage getInstance() {
 		if (instance == null) {
 			instance = new SmsMessage();
@@ -238,6 +271,7 @@ public class SmsMessage {
 	 * @param monitorPort
 	 */
 	final public void monitor(SmsMessageListener listener, String monitorPort) {
+		_monitorPort = monitorPort;
 		if (serverMessageConnection == null) {
 			String url = createServerScheme(monitorPort);
 			serverMessageConnection = newMessageConnection(url);
