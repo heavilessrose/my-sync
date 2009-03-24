@@ -40,8 +40,8 @@ public class SmsTest extends MIDlet implements CommandListener,
 			TextField.ANY);
 
 	String destNumber = "15801630382";
-	String smsMonitorPort = "5050";
-	MessageConnection mc = null;
+	String destPort = "5555";
+	String smsMonitorPort = "5555";
 	SmsMessage sms = SmsMessage.getInstance();
 
 	public SmsTest() {
@@ -88,8 +88,8 @@ public class SmsTest extends MIDlet implements CommandListener,
 	public void commandAction(Command cmd, Displayable disp) {
 		if (cmd == send) {
 			String destNum = numField.getString();
-			sms.init(destNum, smsMonitorPort, this);
-			sms.sendTextMessage(contentField.getString());
+			sms.sendTextMessage(contentField.getString(), destNum, destPort);
+			sms.monitor(this, smsMonitorPort);
 		} else if (cmd == back) {
 			display.setCurrent(form);
 		} else if (cmd == exit) {

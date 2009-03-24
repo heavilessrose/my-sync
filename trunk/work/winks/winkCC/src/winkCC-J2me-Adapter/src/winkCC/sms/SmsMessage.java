@@ -36,9 +36,11 @@ public class SmsMessage {
 	private static ILog log = LogFactory.getLog("SmsMessage");
 	private static SmsMessage instance = null;
 
-	private static MessageConnection mc = null;
-	private String _destNumber = "15801630382";
-	private String _monitorPort = "65000";
+	private static MessageConnection clientMessageConnection = null;
+	private static MessageConnection serverMessageConnection = null;
+	private String _destNumber = null;
+	private String _destPort = null;
+	private String _monitorPort = null;
 
 	public static final String SEGCOUNT = "segment can't be zero";
 
@@ -54,51 +56,68 @@ public class SmsMessage {
 	}
 
 	/**
-	 * 创建短信连接的scheme.
+	 * 创建client mode短信连接的scheme.<br>
+	 * 此连接只允许发送短信.
 	 * 
 	 * @param destNumber
-	 *            目标号码. 如果使用服务器模式, 则传null即可. 客户端模式直接传入目标电话号码.
-	 * @param monitorPort
-	 *            短信监听端口. 如果使用服务器模式, 必须提供监听端口以监听发送到此端口上的短信. 使用客户端模式是否不用再提供端口参数?
+	 *            目标号码.
+	 * @param destPort
+	 *            目标端口. 可为空, 则发送普通短信.
 	 * @return
 	 */
-	public static String createScheme(String destNumber, String monitorPort) {
-		// 服务器模式
-		if ((monitorPort != null && !monitorPort.equals("")))
-			return "sms://:" + monitorPort;
-		// 客户端模式
-		if ((destNumber != null && !destNumber.equals(""))) {
-			return "sms://" + destNumber + ":" + monitorPort; // 客户端模式可以不要监听端口参数??
-		}
-		return "sms://" + destNumber + ":" + monitorPort;
+	private String createClientScheme(String destNumber, String destPort) {
+		String scheme = null;
+		if (destNumber != null && !destNumber.equals(""))
+			scheme = "sms://" + destNumber;
+		else
+			return null;
+		if (destPort != null && !destPort.equals(""))
+			scheme += ":" + destPort;
+		System.out.println("client: " + scheme);
+		return scheme;
 	}
 
 	/**
-	 * 使用前首先需要初始化.
+	 * 创建server mode的连接scheme.
+	 * 
+	 * @param monitorPort
+	 *            短信监听端口.
+	 * @return server scheme.
+	 */
+	private String createServerScheme(String monitorPort) {
+		String scheme = null;
+		if ((monitorPort != null && !monitorPort.equals(""))) {
+			scheme = "sms://:" + monitorPort;
+			System.out.println("server: " + scheme);
+			return scheme;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * 发送短信初始化.
 	 * 
 	 * @param destNumber
 	 *            目标手机号.
-	 * @param monitorPort
+	 * @param destPort
 	 *            监听端口.
 	 */
-	public void init(String destNumber, String monitorPort,
-			SmsMessageListener listener) {
+	private void sendInit(String destNumber, String destPort) {
 		_destNumber = destNumber;
-		_monitorPort = monitorPort;
-		String url = createScheme(destNumber, monitorPort);
-		System.out.println("init: " + url);
-		mc = newMessageConnection(url);
-		if (listener != null)
-			setListener(listener);
+		_destPort = destPort;
+		String url = createClientScheme(destNumber, destPort);
+		clientMessageConnection = newMessageConnection(url);
 	}
 
 	/**
+	 * 设定监听器.
 	 * 
 	 * @param listener
 	 */
 	private void setListener(SmsMessageListener listener) {
 		try {
-			mc.setMessageListener(listener);
+			serverMessageConnection.setMessageListener(listener);
 		} catch (IOException e) {
 			log.debug("setMessageListener " + listener + " error");
 			e.printStackTrace();
@@ -106,17 +125,22 @@ public class SmsMessage {
 	}
 
 	/**
-	 * 关闭连接
-	 * 
-	 * @param mc
+	 * 关闭连接.<br>
+	 * 短信操作完成后必须关闭短信连接.
 	 */
 	static final public void close() {
 		try {
-			if (mc != null) {
+			if (serverMessageConnection != null) {
 				// 注销监听器
-				mc.setMessageListener(null);
-				mc.close();
-				mc = null;
+				serverMessageConnection.setMessageListener(null);
+				serverMessageConnection.close();
+				serverMessageConnection = null;
+			}
+			if (clientMessageConnection != null) {
+				// 注销监听器(client mode 不会有监听)
+				clientMessageConnection.setMessageListener(null);
+				clientMessageConnection.close();
+				clientMessageConnection = null;
 			}
 		} catch (IOException ioe) {
 		}
@@ -128,7 +152,7 @@ public class SmsMessage {
 	 * @param connUrl
 	 *            <p>
 	 *            可以是client mode或server mode. <br>
-	 *            client模式时, 只能发送消息并且需要提供目标地址即对方手机号.<br>
+	 *            client模式时, 只能发送消息,并且需要提供目标地址即对方手机号.<br>
 	 *            client: sms://+15121234567:5000. <br>
 	 *            </p>
 	 *            <p>
@@ -137,9 +161,7 @@ public class SmsMessage {
 	 *            Java应用可以使用任何非保留端口(0-49151 为保留端口), 出于安全性考虑平台可能并不允许使用所有的非保留端口.<br>
 	 *            server: sms://:5000.
 	 *            </p>
-	 * @param messageListener
-	 *            监听器,监听是否受到短信
-	 * @return
+	 * @return MessageConnection
 	 */
 	final private MessageConnection newMessageConnection(String connUrl) {
 		MessageConnection mc = null;
@@ -155,32 +177,32 @@ public class SmsMessage {
 	/**
 	 * 发送短信
 	 * 
-	 * @param mc
 	 * @param msg
-	 * @param url
+	 * @param destNum
+	 * @param destPort
 	 */
 	final private void sendMessage(final Message msg, final String destNum,
-			final String monitorPort)
+			final String destPort)
 	/* throws IllegalArgumentException, SecurityException */{
 		Thread th = new Thread() {
 			public void run() {
 				if (destNum != null) {
 					String url = "sms://" + destNum;
-					if (monitorPort != null) {
-						msg.setAddress(url + ":" + monitorPort);
+					if (destPort != null) {
+						msg.setAddress(url + ":" + destPort);
 						System.out.println("sendMessage: " + url + ":"
-								+ monitorPort);
+								+ destPort);
 					} else {
 						msg.setAddress(url);
 						System.out.println(url);
 					}
 				}
-				int segcount = mc.numberOfSegments(msg);
+				int segcount = clientMessageConnection.numberOfSegments(msg);
 				if (segcount == 0) {
 					log.debug(SEGCOUNT);
 				} else {
 					try {
-						mc.send(msg);
+						clientMessageConnection.send(msg);
 					} catch (InterruptedIOException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
@@ -195,33 +217,50 @@ public class SmsMessage {
 	/**
 	 * 发送字符短信
 	 * 
-	 * @param mc
-	 *            messageConnection
 	 * @param msg
-	 *            短信内容
-	 * @param url
-	 *            对方号码
+	 * @param desNum
+	 * @param destPort
 	 */
-	final public void sendTextMessage(String msg) {
+	final public void sendTextMessage(String msg, String desNum, String destPort) {
+		if (clientMessageConnection == null)
+			sendInit(desNum, destPort);
 		TextMessage tmsg = null;
-		tmsg = (TextMessage) mc.newMessage(MessageConnection.TEXT_MESSAGE);
+		tmsg = (TextMessage) clientMessageConnection
+				.newMessage(MessageConnection.TEXT_MESSAGE);
 		tmsg.setPayloadText(msg);
-		sendMessage(tmsg, _destNumber, _monitorPort);
+		sendMessage(tmsg, _destNumber, _destPort);
+	}
+
+	/**
+	 * 设置短信监听器及监听端口.
+	 * 
+	 * @param listener
+	 * @param monitorPort
+	 */
+	final public void monitor(SmsMessageListener listener, String monitorPort) {
+		if (serverMessageConnection == null) {
+			String url = createServerScheme(monitorPort);
+			serverMessageConnection = newMessageConnection(url);
+		}
+		setListener(listener);
 	}
 
 	/**
 	 * 发送二进制短信
 	 * 
-	 * @param mc
 	 * @param msg
-	 * @param url
-	 *            对方号码
+	 * @param desNum
+	 * @param destPort
 	 */
-	final public void sendBinaryMessage(byte[] msg) {
+	final public void sendBinaryMessage(byte[] msg, String desNum,
+			String destPort) {
+		if (clientMessageConnection == null)
+			sendInit(desNum, destPort);
 		BinaryMessage bmsg;
-		bmsg = (BinaryMessage) mc.newMessage(MessageConnection.BINARY_MESSAGE);
+		bmsg = (BinaryMessage) clientMessageConnection
+				.newMessage(MessageConnection.BINARY_MESSAGE);
 		bmsg.setPayloadData(msg);
-		sendMessage(bmsg, _destNumber, _monitorPort);
+		sendMessage(bmsg, _destNumber, _destPort);
 	}
 
 	////////////////////////接收及处理短信
@@ -240,6 +279,11 @@ public class SmsMessage {
 	Item[] receives = null;
 	Object mutex = new Object();
 
+	/**
+	 * 返回收到的短信内容.
+	 * 
+	 * @return 包含内容的Item[]
+	 */
 	public Item[] getReceives() {
 		synchronized (mutex) {
 			return receives;
@@ -247,7 +291,10 @@ public class SmsMessage {
 	}
 
 	/**
-	 * 接收,读取,处理短信
+	 * 异步的通过MessageConnection读取短信,并开始处理短信.
+	 * 
+	 * @param mc
+	 *            通过短信监听器得到的MessageConnection.
 	 */
 	public void readMessage(MessageConnection mc) {
 		try {
@@ -323,6 +370,7 @@ public class SmsMessage {
 		return (buf.toString());
 	}
 
+	//////////// 彩信
 	// MIME Types
 	public final static String MIMETYPE_TEXT_PLAIN = "text/plain";
 	public final static String MIMETYPE_TEXT_XML = "text/xml";
@@ -339,7 +387,7 @@ public class SmsMessage {
 	 *            处理的彩信
 	 * @return Item[]
 	 */
-	public Item[] processMultipartMessage(MultipartMessage mpmsg) {
+	private Item[] processMultipartMessage(MultipartMessage mpmsg) {
 
 		// Get the Multipart message headers from the access methods:
 		//  X-Mms-From, X-Mms-To, X-Mms-CC, X-Mms-BCC, X-Mms-Subject
