@@ -15,6 +15,11 @@ public interface IHttpListener {
 	public void onProgress(int progress);
 
 	/**
+	 * 联网结束.
+	 */
+	public void onFinish(byte[] data, int size);
+
+	/**
 	 * 发生错误.
 	 */
 	public void onError();
