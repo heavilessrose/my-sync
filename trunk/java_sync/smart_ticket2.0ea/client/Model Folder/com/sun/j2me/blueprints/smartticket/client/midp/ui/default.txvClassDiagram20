@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V1hexuhflj587hn-pn5vmt">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.MySettingsUI">
+			<property name="bounds" value="2124,203,181,146"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.MySettingsUI:uiController">
+				<property name="sourceAnchor" value="2189,354"/>
+				<property name="targetAnchor" value="1347,612"/>
+				<property name="bendpoints" value="2189,430"/>
+				<property name="smooth_bendpoints" value="2189,430"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ChangePasswordUI">
+			<property name="bounds" value="1494,1065,200,242"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ChangePasswordUI:uiController">
+				<property name="sourceAnchor" value="1499,1150"/>
+				<property name="targetAnchor" value="1379,1150"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.SeatingPlanUI">
+			<property name="bounds" value="875,1835,200,230"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.SeatingPlanUI:uiController">
+				<property name="sourceAnchor" value="946,1840"/>
+				<property name="targetAnchor" value="1199,1770"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.SeatingPlanUI:seatingPlanItem">
+				<property name="sourceAnchor" value="1066,2070"/>
+				<property name="targetAnchor" value="1066,2130"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController">
+			<property name="bounds" value="1174,607,200,1158"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:accountInfoUI">
+				<property name="sourceAnchor" value="1326,1770"/>
+				<property name="targetAnchor" value="1346,2262"/>
+				<property name="bendpoints" value="1346,1955"/>
+				<property name="smooth_bendpoints" value="1346,1955"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:defaultsUI">
+				<property name="sourceAnchor" value="1251,612"/>
+				<property name="targetAnchor" value="932,450"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:confirmTicketUI">
+				<property name="sourceAnchor" value="1219,612"/>
+				<property name="targetAnchor" value="509,426"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:accountSetupUI">
+				<property name="sourceAnchor" value="1291,612"/>
+				<property name="targetAnchor" value="1348,420"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:progressObserverUI">
+				<property name="sourceAnchor" value="1331,612"/>
+				<property name="targetAnchor" value="1988,434"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:purchaseTicketsUI">
+				<property name="sourceAnchor" value="1352,1770"/>
+				<property name="targetAnchor" value="1556,2262"/>
+				<property name="bendpoints" value="1556,1955"/>
+				<property name="smooth_bendpoints" value="1556,1955"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:signOnUI">
+				<property name="sourceAnchor" value="1229,1770"/>
+				<property name="targetAnchor" value="1229,1858"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:purchaseCompleteUI">
+				<property name="sourceAnchor" value="1275,612"/>
+				<property name="targetAnchor" value="1237,396"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:manageTheaterSchedulesUI">
+				<property name="sourceAnchor" value="1235,612"/>
+				<property name="targetAnchor" value="715,378"/>
+				<property name="bendpoints" value="715,405"/>
+				<property name="smooth_bendpoints" value="715,405"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:billingInfoUI">
+				<property name="sourceAnchor" value="1203,612"/>
+				<property name="targetAnchor" value="296,438"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:syncMovieRatingsUI">
+				<property name="sourceAnchor" value="1195,612"/>
+				<property name="targetAnchor" value="143,366"/>
+				<property name="bendpoints" value="143,437"/>
+				<property name="smooth_bendpoints" value="143,437"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:chooseMovieUI">
+				<property name="sourceAnchor" value="1371,612"/>
+				<property name="targetAnchor" value="2463,552"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:seatingPlanUI">
+				<property name="sourceAnchor" value="1219,1770"/>
+				<property name="targetAnchor" value="1013,1840"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:mySettingsUI">
+				<property name="sourceAnchor" value="1355,612"/>
+				<property name="targetAnchor" value="2249,354"/>
+				<property name="bendpoints" value="2249,417"/>
+				<property name="smooth_bendpoints" value="2249,417"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:rateMyMoviesUI">
+				<property name="sourceAnchor" value="1307,612"/>
+				<property name="targetAnchor" value="1640,426"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:changePasswordUI">
+				<property name="sourceAnchor" value="1379,1231"/>
+				<property name="targetAnchor" value="1499,1231"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIController:mainMenuUI">
+				<property name="sourceAnchor" value="1323,612"/>
+				<property name="targetAnchor" value="1847,354"/>
+				<property name="bendpoints" value="1847,379"/>
+				<property name="smooth_bendpoints" value="1847,379"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ProgressObserverUI">
+			<property name="bounds" value="1923,123,181,306"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ProgressObserverUI:uiController">
+				<property name="sourceAnchor" value="2048,434"/>
+				<property name="targetAnchor" value="1339,612"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ConfirmTicketUI">
+			<property name="bounds" value="444,131,181,290"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ConfirmTicketUI:uiController">
+				<property name="sourceAnchor" value="569,426"/>
+				<property name="targetAnchor" value="1227,612"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ChooseMovieUI">
+			<property name="bounds" value="2325,5,200,542"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ChooseMovieUI:uiController">
+				<property name="sourceAnchor" value="2396,552"/>
+				<property name="targetAnchor" value="1363,612"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.RateMyMoviesUI">
+			<property name="bounds" value="1502,131,200,290"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.RateMyMoviesUI:uiController">
+				<property name="sourceAnchor" value="1573,426"/>
+				<property name="targetAnchor" value="1299,612"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.PurchaseTicketsUI">
+			<property name="bounds" value="1471,2257,181,278"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.PurchaseTicketsUI:uiController">
+				<property name="sourceAnchor" value="1576,2262"/>
+				<property name="targetAnchor" value="1365,1770"/>
+				<property name="bendpoints" value="1576,1955"/>
+				<property name="smooth_bendpoints" value="1576,1955"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.AccountInfoUI">
+			<property name="bounds" value="1252,2257,199,278"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.AccountInfoUI:uiController">
+				<property name="sourceAnchor" value="1366,2262"/>
+				<property name="targetAnchor" value="1339,1770"/>
+				<property name="bendpoints" value="1366,1955"/>
+				<property name="smooth_bendpoints" value="1366,1955"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.MainMenuUI">
+			<property name="bounds" value="1722,203,181,146"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.MainMenuUI:uiController">
+				<property name="sourceAnchor" value="1787,354"/>
+				<property name="targetAnchor" value="1315,612"/>
+				<property name="bendpoints" value="1787,407"/>
+				<property name="smooth_bendpoints" value="1787,407"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.BillingInfoUI">
+			<property name="bounds" value="225,119,199,314"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.BillingInfoUI:uiController">
+				<property name="sourceAnchor" value="362,438"/>
+				<property name="targetAnchor" value="1211,612"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.SeatingPlanCustomItem">
+			<property name="bounds" value="1051,2125,181,542"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.SeatingPlanCustomItem:uiController">
+				<property name="sourceAnchor" value="1151,2130"/>
+				<property name="targetAnchor" value="1313,1770"/>
+				<property name="bendpoints" value="1313,2059"/>
+				<property name="smooth_bendpoints" value="1313,2059"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.UIConstants">
+			<property name="bounds" value="2545,5,200,2114"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.AccountSetupUI">
+			<property name="bounds" value="1282,137,200,278"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.AccountSetupUI:uiController">
+				<property name="sourceAnchor" value="1317,420"/>
+				<property name="targetAnchor" value="1283,612"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.PurchaseCompleteUI">
+			<property name="bounds" value="1081,161,181,230"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.PurchaseCompleteUI:uiController">
+				<property name="sourceAnchor" value="1208,396"/>
+				<property name="targetAnchor" value="1267,612"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ManageTheaterSchedulesUI">
+			<property name="bounds" value="645,179,196,194"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.ManageTheaterSchedulesUI:uiController">
+				<property name="sourceAnchor" value="780,378"/>
+				<property name="targetAnchor" value="1243,612"/>
+				<property name="bendpoints" value="780,432"/>
+				<property name="smooth_bendpoints" value="780,432"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.SignOnUI">
+			<property name="bounds" value="1095,1853,193,194"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.SignOnUI:uiController">
+				<property name="sourceAnchor" value="1239,1858"/>
+				<property name="targetAnchor" value="1239,1770"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.SyncMovieRatingsUI">
+			<property name="bounds" value="5,191,200,170"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.SyncMovieRatingsUI:uiController">
+				<property name="sourceAnchor" value="76,366"/>
+				<property name="targetAnchor" value="1187,612"/>
+				<property name="bendpoints" value="76,425"/>
+				<property name="smooth_bendpoints" value="76,425"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.DefaultsUI">
+			<property name="bounds" value="861,107,200,338"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.ui.DefaultsUI:uiController">
+				<property name="sourceAnchor" value="999,450"/>
+				<property name="targetAnchor" value="1259,612"/>
+			</reference>
+		</reference>
+	</view>
+</nodeSet>
