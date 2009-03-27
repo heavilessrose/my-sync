@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V1hexuhflj5873b73j29m">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RMSCacheHandler">
+			<property name="bounds" value="714,761,200,234"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_gnt:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RMSCacheHandler:RemoteModelRequestHandler">
+				<property name="sourceAnchor" value="819,766"/>
+				<property name="targetAnchor" value="618,526"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RMSCacheHandler:rmsAdapter">
+				<property name="sourceAnchor" value="819,1000"/>
+				<property name="targetAnchor" value="1035,1184"/>
+				<property name="bendpoints" value="819,1015"/>
+				<property name="smooth_bendpoints" value="819,1015"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.SynchronizationAgent">
+			<property name="bounds" value="1494,799,200,158"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.SynchronizationAgent:localModel">
+				<property name="sourceAnchor" value="1499,883"/>
+				<property name="targetAnchor" value="1419,883"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.LocalModel">
+			<property name="bounds" value="1214,689,200,378"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.LocalModel:preferences">
+				<property name="sourceAnchor" value="1219,1032"/>
+				<property name="targetAnchor" value="430,1062"/>
+				<property name="bendpoints" value="1180,1124,958,1124"/>
+				<property name="smooth_bendpoints" value="1180,1124,958,1124"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.LocalModel:rmsAdapter">
+				<property name="sourceAnchor" value="1319,1072"/>
+				<property name="targetAnchor" value="1102,1184"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RMSAdapter">
+			<property name="bounds" value="964,1179,200,502"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RemoteModelRequestHandler">
+			<property name="bounds" value="481,71,200,450"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RemoteModelRequestHandler:preferences">
+				<property name="sourceAnchor" value="552,526"/>
+				<property name="targetAnchor" value="330,664"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RemoteModelRequestHandler:nextHandler">
+				<property name="sourceAnchor" value="686,520"/>
+				<property name="targetAnchor" value="682,526"/>
+				<property name="bendpoints" value="717,520,717,557,682,557"/>
+				<property name="smooth_bendpoints" value="717,520,717,557,682,557"/>
+			</reference>
+			<reference referencedUin="jdt:l_impl:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RemoteModelRequestHandler:RequestHandler">
+				<property name="sourceAnchor" value="585,526"/>
+				<property name="targetAnchor" value="585,834"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.HTTPCommunicationHandler">
+			<property name="bounds" value="5,683,200,390"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_gnt:src:com.sun.j2me.blueprints.smartticket.client.midp.model.HTTPCommunicationHandler:RemoteModelRequestHandler">
+				<property name="sourceAnchor" value="110,688"/>
+				<property name="targetAnchor" value="519,526"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RemoteModelProxy">
+			<property name="bounds" value="964,647,200,462"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RemoteModelProxy:requestHandlerChain">
+				<property name="sourceAnchor" value="1035,652"/>
+				<property name="targetAnchor" value="652,526"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RemoteModelProxy:preferences">
+				<property name="sourceAnchor" value="969,1041"/>
+				<property name="targetAnchor" value="430,1041"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.IndexEntry">
+			<property name="bounds" value="1444,5,181,414"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.Preferences">
+			<property name="bounds" value="225,659,200,438"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.ModelFacade">
+			<property name="bounds" value="1224,5,200,582"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.ModelFacade:syncAgent">
+				<property name="sourceAnchor" value="1376,592"/>
+				<property name="targetAnchor" value="1599,804"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.ModelFacade:remoteModel">
+				<property name="sourceAnchor" value="1276,592"/>
+				<property name="targetAnchor" value="1102,652"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:com.sun.j2me.blueprints.smartticket.client.midp.model.ModelFacade:localModel">
+				<property name="sourceAnchor" value="1324,592"/>
+				<property name="targetAnchor" value="1324,694"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.ErrorMessageCodes">
+			<property name="bounds" value="1483,465,200,194"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:com.sun.j2me.blueprints.smartticket.client.midp.model.RequestHandler">
+			<property name="bounds" value="495,829,199,97"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+	</view>
+</nodeSet>
