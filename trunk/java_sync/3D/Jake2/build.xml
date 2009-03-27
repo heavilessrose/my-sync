@@ -1,0 +1,296 @@
+<!-- Buildfile -->
+<project name="jake2" default="usage" basedir=".">
+
+	<taskdef name="izpack" classpath="lib/izpack/standalone-compiler.jar"
+         classname="com.izforge.izpack.ant.IzPackTask"/>
+         
+	<!-- properties -->
+	<property name="version" value="0.9.5"/> 
+	<property name="src" location="src"/>
+	<property name="patch" location="patch"/>
+	<property name="test" location="test"/>
+	<property name="build" location="build"/>
+	<property name="dist" location="dist"/>
+
+	<!-- different classpaths -->
+	<path id="build.class.path">
+		<pathelement location="lib/jogl/jogl.jar"/>
+		<pathelement location="lib/joal/linux/joal.jar"/>
+		<pathelement location="lib/lwjgl/lwjgl.jar"/>
+		<pathelement location="lib/lwjgl/lwjgl_util.jar"/>
+	</path>
+	
+	<!-- usage -->
+	<target name="usage">
+		<echo message="command line arguments for build.sh or build.bat"/>
+		<echo message=""/>
+		<echo message="installer    build installer"/>
+		<echo message="bindist      build .tar.gz and .zip binary distribution"/>
+		<echo message="srcdist      build only source distribution"/>
+		<echo message="all          build everything"/>
+		<echo message="clean        delete classfiles keep distribution files"/>
+		<echo message="distclean    delete all generated files"/>
+		<echo message="jar          build only dist/lib/jake2.jar"/>
+		<echo message=""/>
+	</target>
+
+	<!-- initialize directories -->
+	<target name="init">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${dist}/lib"/>
+	</target>
+
+	<!-- compile -->
+	<target name="compile" depends="init">
+		<javac destdir="${build}" optimize="off" debug="on" source="1.4">
+			<src path="${src}"/>
+			<include name="jake2/**"/>
+			<classpath refid="build.class.path"/>
+		</javac>
+	</target>
+	
+	<!-- copy resources -->
+	<target name="copyres" depends="init">
+		<copy todir="${build}">
+			<fileset dir="resources">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<!-- copy files -->
+	<target name="copy">
+		<copy todir="${dist}/lib">
+			<fileset dir="lib/jogl">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="lib/lwjgl">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="${dist}/lib/linux">
+			<fileset dir="lib/jogl/linux">
+				<include name="*"/>
+			</fileset>
+			<fileset dir="lib/joal/linux">
+				<include name="*"/>
+			</fileset>			
+		</copy>
+		<copy todir="${dist}/lib/linux/lwjgl">
+			<fileset dir="lib/lwjgl/linux">
+				<include name="*"/>
+			</fileset>				
+		</copy>
+		<copy todir="${dist}/lib/windows">
+			<fileset dir="lib/jogl/windows">
+				<include name="*"/>
+			</fileset>
+			<fileset dir="lib/joal/windows">
+				<include name="*"/>
+			</fileset>
+			<fileset dir="lib/lwjgl/windows">
+				<include name="*"/>
+			</fileset>			
+		</copy>
+		<copy todir="${dist}/lib/osx">
+			<fileset dir="lib/jogl/osx">
+				<include name="*"/>
+			</fileset>			
+			<fileset dir="lib/joal/osx">
+				<include name="*"/>
+			</fileset>
+			<fileset dir="lib/lwjgl/osx">
+				<include name="*"/>
+			</fileset>	
+		</copy>
+		<copy todir="${dist}">
+			<fileset dir="scripts">
+				<include name="Jake2*"/>
+			</fileset>
+			<fileset dir=".">
+				<include name="ChangeLog"/>
+				<include name="LICENSE"/>
+				<include name="README"/>
+				<include name="readme.id"/>
+			</fileset>
+		</copy>
+		<chmod perm="755">
+			<fileset dir="${dist}">
+				<include name="*.sh"/>
+			</fileset>
+		</chmod>
+		<fixcrlf srcdir="${dist}"
+			eol="crlf"
+			includes="*.bat"
+		/>
+		<fixcrlf srcdir="${dist}"
+			eol="lf"
+			includes="*.sh"
+		/> 		
+	</target>
+		
+	<!-- jar -->
+	<target name="jar" depends="compile,copyres">
+		<jar destfile="${dist}/lib/jake2.jar" basedir="${build}">
+			<include name="jake2/**"/>
+			<include name="*.png"/>
+			<include name="mirrors"/>
+		</jar>
+		<property name="classes" value="${java.home}/lib/rt.jar"/>
+        <condition property="classes" value="${java.home}/../Classes/classes.jar">
+            <os name="Mac OS X"/>
+        </condition> 		
+	</target>
+				
+	<!-- everything -->
+	<target name="all" depends="installer,bindist,srcdist">
+	</target>
+
+	<!-- dist -->
+	<target name="dist" depends="jar,copy">
+	</target>
+		
+	<!-- binary distribution -->
+	<target name="bindist" depends="dist">
+		<tar destfile="jake2-${version}.tar.gz" compression="gzip">
+			<tarfileset dir="${dist}" prefix="Jake2" mode="755">
+				<include name="*.sh"/>
+			</tarfileset>
+			<tarfileset dir="${dist}" prefix="Jake2">
+				<include name="**"/>
+				<exclude name="*.sh"/>
+			</tarfileset>
+		</tar>
+		<zip destfile="jake2-${version}.zip">
+			<zipfileset dir="${dist}" prefix="Jake2">
+				<include name="**"/>
+			</zipfileset>
+		</zip>
+	</target>
+	
+	<!-- source distribution -->
+	<target name="srcdist">
+		<tar destfile="jake2src-${version}.tar.gz" compression="gzip">
+			<tarfileset dir="." prefix="Jake2" mode="755">
+				<include name="scripts/*.*"/>
+				<include name="build.sh"/>
+			</tarfileset>
+			<tarfileset dir="." prefix="Jake2">
+				<include name="src/jake2/**"/>
+				<include name="patch/**"/>
+				<include name="resources/**"/>
+				<include name="lib/**"/>
+				<include name="build.xml"/>
+				<include name="build.bat"/>
+				<include name="ChangeLog"/>
+				<include name="LICENSE"/>
+				<include name="README*"/>
+				<include name="install.xml"/>
+				<include name="readme.id"/>
+				<include name="Jake2_Eclipse_Setup.txt"/>
+			</tarfileset>
+		</tar>
+		<zip destfile="jake2src-${version}.zip">
+			<zipfileset dir="." prefix="Jake2">
+				<include name="src/jake2/**"/>
+				<include name="patch/**"/>
+				<include name="resources/**"/>				
+				<include name="scripts/*.*"/>
+				<include name="lib/**"/>
+				<include name="build.xml"/>
+				<include name="build.sh"/>
+				<include name="build.bat"/>
+				<include name="ChangeLog"/>
+				<include name="LICENSE"/>
+				<include name="README*"/>
+				<include name="install.xml"/>
+				<include name="readme.id"/>
+				<include name="Jake2_Eclipse_Setup.txt"/>
+			</zipfileset>
+		</zip>
+	</target>
+	
+	<!-- standalone installer -->
+	<target name="installer" depends="dist">
+		<izpack input="${basedir}/install.xml"
+        	output="${basedir}/Jake2-${version}-install.jar"
+        	installerType="standard"
+        	basedir="${dist}"
+        	izPackDir="${basedir}/lib/izpack"/>
+	</target>
+	
+	<!-- webstart -->
+	<target name="webstart" depends="dist,patch">
+		<mkdir dir="webstart/lib"/>
+		<copy todir="webstart/lib">
+			<fileset dir="${dist}/lib">
+				<include name="**/*.jar"/>
+				<exclude name="jogl.jar"/>
+			</fileset>
+			<fileset dir=".">
+				<include name="patch.jar"/>
+			</fileset>
+		</copy>
+
+		<jar destfile="webstart/lib/linux/joal-native.jar" basedir="${dist}/lib/linux">
+			<include name="libjoal.so"/>
+		</jar>
+		<jar destfile="webstart/lib/linux/lwjgl-native.jar" basedir="${dist}/lib/linux/lwjgl">
+			<include name="*.so"/>
+		</jar>
+		<jar destfile="webstart/lib/linux/openal.jar" basedir="${dist}/lib/linux">
+			<include name="libopenal.so"/>
+		</jar>
+		<jar destfile="webstart/lib/osx/joal-native.jar" basedir="${dist}/lib/osx">
+			<include name="libjoal.jnilib"/>
+		</jar>
+		<jar destfile="webstart/lib/osx/lwjgl-native.jar" basedir="${dist}/lib/osx">
+			<include name="liblwjgl.jnilib"/>
+			<include name="openal.dylib"/>
+		</jar>
+		<jar destfile="webstart/lib/windows/joal-native.jar" basedir="${dist}/lib/windows">
+			<include name="joal.dll"/>
+			<include name="OpenAL32.dll"/>
+		</jar>
+		<jar destfile="webstart/lib/windows/lwjgl-native.jar" basedir="${dist}/lib/windows">
+			<include name="lwjgl.dll"/>
+			<include name="lwjglaudio.dll"/>
+		</jar>
+		<signjar keystore="${user.home}/bytonic" alias="bytonic" storepass="${bytonic.pass}">
+			<fileset dir="webstart/lib">
+				<include name="**/*.jar"/>
+			</fileset>
+		</signjar>
+	</target>
+	
+	<!-- clean -->
+	<target name="clean">
+		<delete dir="${build}"/>
+	</target>
+	
+	<!-- distclean -->
+	<target name="distclean" depends="clean">
+		<delete dir="${dist}"/>
+		<delete dir="webstart/lib"/>
+		<delete>
+			<fileset dir=".">
+				<include name="*.tar.gz"/>
+				<include name="*.zip"/>
+				<include name="*.map"/>
+				<include name="*.jar"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<!-- patch -->
+	<target name="patch">
+		<javac destdir="${build}" optimize="on" debug="off" source="1.4">
+			<src path="${patch}"/>
+			<include name="**"/>
+			<classpath refid="build.class.path"/>
+		</javac>
+			<jar destfile="patch.jar" basedir="${build}">
+			<include name="net/**"/>
+		</jar>
+	</target>
+</project>

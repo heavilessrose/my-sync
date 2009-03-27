@@ -1,0 +1,53 @@
+0.9.5 2006-05-08
+
+	- quake video (cinematics) support including sound streaming  
+	- save games are from now on build compatible  
+	- support for arbitrary sound sample rates  
+	- dedicated server mode
+	- lots of bugfixes
+
+0.9.4 2005-05-26
+
+	- multiplayer client and server functionality
+	- Mac OS X support
+	- webstart version
+	- experimental lwjgl driver
+	- standalone installer
+	- online installation of Quake2 demo data files
+	- mouse wheel support
+	- very fast screenshot function
+	- memory footprint reduced
+	- bugfixes
+	
+0.9.3 2004-09-09
+
+	- savegames
+	- command line completion in console
+	- better fullscreen vidmode selection
+	- memory footprint reduced
+	- improved performance
+	- bugfixes
+	
+0.9.2 2004-06-28
+
+	- joal sound
+	- new "fastjogl" OpenGL renderer for improved performance
+	- fullscreen support on windows
+	- bugfixes
+
+0.9.1 2004-05-04
+
+	- use a newer jogl build that works with windows2000
+	- minor cleanups
+	
+0.9.0 2004-04-28
+
+	- initial release
+	- what works so far:
+		- local single player games
+		- demos (at least we have the coolest Java benchmark out there)
+		- console and menus 90%
+	- todo until 1.0:
+		- sound support
+		- save games / load games
+		- network games
