@@ -9,6 +9,10 @@ import javax.microedition.io.Connector;
 import javax.microedition.io.file.FileConnection;
 
 public class FileUtils {
+	/**
+	 * sd卡根目录
+	 */
+	public static final String sdCardRoot = "e:/";
 
 	/**
 	 * 关闭文件连接.
@@ -430,7 +434,7 @@ public class FileUtils {
 	 * @param dirPath
 	 * @return true or false
 	 */
-	private boolean exists(String dirPath) {
+	public boolean exists(String dirPath) {
 		FileConnection fc = null;
 		try {
 			fc = (FileConnection) Connector.open("file:///" + dirPath);
@@ -439,6 +443,17 @@ public class FileUtils {
 		}
 
 		return fc.exists();
+	}
+
+	/**
+	 * 判断sdCard 是否存在. 根据sd卡根目录url做判断.<br>
+	 * 
+	 * @see winkCC.fs.FileUtils#sdCardRoot
+	 * 
+	 * @return
+	 */
+	public boolean sdCardExists() {
+		return exists("file:///" + sdCardRoot);
 	}
 
 	/**
