@@ -18,7 +18,7 @@ import winkCC.fs.FileUtils;
 public class FileTest extends MIDlet implements CommandListener {
 	Display display = null;
 	Form form = null;
-	final Command mkdirs = new Command("mkdirs", Command.OK, 1);
+	final Command mkdirs = new Command("mkdirs & sdCard", Command.OK, 1);
 	final Command makeDir = new Command("makeDir", Command.OK, 1);
 	final Command write = new Command("write", Command.OK, 1);
 	final Command read = new Command("read", Command.OK, 1);
@@ -78,7 +78,7 @@ public class FileTest extends MIDlet implements CommandListener {
 	public void commandAction(Command cmd, Displayable disp) {
 		if (cmd == mkdirs) {
 			fileUtils.executeCreateFile("e:/d1d/d2d/dii/sss/");
-
+			form.append("sdCard exist: " + fileUtils.exists("e:/"));
 		} else if (cmd == makeDir) {
 			fileUtils.executeCreateFile("e:/ii/");
 			fileUtils.executeCreateFile("e:/ii2/");
