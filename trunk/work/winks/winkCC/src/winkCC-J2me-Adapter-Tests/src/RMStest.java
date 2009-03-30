@@ -16,7 +16,7 @@ import javax.microedition.rms.RecordStore;
 import winkCC.log.ILog;
 import winkCC.log.LogFactory;
 import winkCC.rms.RMSAnalyzer;
-import winkCC.rms.RmsUtils;
+import winkCC.rms.DbUtils;
 
 /**
  * @author WangYinghua
@@ -33,7 +33,7 @@ public class RMStest extends MIDlet implements RecordListener, CommandListener {
 
 	TextField dataField = new TextField("ÄÚÈÝ", "ABC", 100, TextField.ANY);
 
-	RmsUtils rms = new RmsUtils();
+	DbUtils rms = new DbUtils();
 	RecordStore rs = null;
 	RMSAnalyzer analyzer;
 
