@@ -7,7 +7,7 @@ import javax.microedition.rms.RecordStoreFullException;
 import javax.microedition.rms.RecordStoreNotFoundException;
 import javax.microedition.rms.RecordStoreNotOpenException;
 
-public class RmsUtils {
+public class DbUtils {
 	protected static RecordStore _rs = null;
 
 	/**
