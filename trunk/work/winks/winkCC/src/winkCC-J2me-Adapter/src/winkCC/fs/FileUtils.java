@@ -7,6 +7,7 @@ import java.util.Enumeration;
 
 import javax.microedition.io.Connector;
 import javax.microedition.io.file.FileConnection;
+import javax.microedition.io.file.FileSystemRegistry;
 
 public class FileUtils {
 	/**
@@ -491,5 +492,15 @@ public class FileUtils {
 		String parentPath = getParentPath(dirPath);
 		mkDirs(parentPath);
 		return mkDir(dirPath);
+	}
+
+	/**
+	 * 列出设备上现在mounted的所有文件系统.
+	 * 
+	 * @return the currently mounted root file systems on a device as String
+	 *         objects in an Enumeration. w580 will list c:/ e:/
+	 */
+	public static Enumeration listRoots() {
+		return FileSystemRegistry.listRoots();
 	}
 }
