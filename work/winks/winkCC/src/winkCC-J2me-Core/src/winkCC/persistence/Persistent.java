@@ -27,7 +27,7 @@ public class Persistent {
 	}
 
 	/**
-	 * 初始化.
+	 * 初始化. 载入彩像电话簿及利用彩像电话簿完成数据完整性检查等.
 	 */
 	public void init() {
 	}
@@ -93,7 +93,7 @@ public class Persistent {
 	}
 
 	/**
-	 * 载入彩像联系人.
+	 * 载入彩像电话簿.
 	 */
 	public void loadCCContacts() {
 
