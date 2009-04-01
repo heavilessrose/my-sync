@@ -79,6 +79,12 @@ public class FileTest extends MIDlet implements CommandListener {
 		if (cmd == mkdirs) {
 			fileUtils.executeCreateFile("e:/d1d/d2d/dii/sss/");
 			form.append("sdCard exist: " + fileUtils.exists("e:/"));
+
+			Enumeration roots = FileUtils.listRoots();
+
+			while (roots.hasMoreElements()) {
+				System.out.println(roots.nextElement());
+			}
 		} else if (cmd == makeDir) {
 			fileUtils.executeCreateFile("e:/ii/");
 			fileUtils.executeCreateFile("e:/ii2/");
