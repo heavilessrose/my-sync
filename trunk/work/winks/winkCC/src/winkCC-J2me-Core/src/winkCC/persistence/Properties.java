@@ -1,17 +1,39 @@
 package winkCC.persistence;
 
+/**
+ * 系统设置与国际化.
+ * 
+ * @author WangYinghua
+ * 
+ */
 public class Properties {
+	/**
+	 * 彩像文件保存路径, 默认为SD卡winks_cc目录下.
+	 */
+	public String CC_PATH = "e:/winks_cc/";
+	/**
+	 * 彩像联系人文件cc_contacts.xml.
+	 */
+	public String CC_CONTACTS_FILE = "c:/winks_property/cc_contacts.xml";
 
-	public String confServer;
-	public String commServer;
-	public String ccServer;
-	public String smsAddr;
-	public String smsPort;
-	public String imsi;
-	public String uid;
-	public String version;
-	public String step;
-	public String ccPath;
+	/**
+	 * 设置保存彩像的路径.
+	 * 
+	 * @param path
+	 */
+	public void setCCPath(String path) {
+		CC_PATH = path;
+	}
+
+	public String _confServer;
+	public String _commServer;
+	public String _ccServer;
+	public String _smsAddr;
+	public String _smsPort;
+	public String _imsi;
+	public String _uid;
+	public String _version;
+	public String _step;
 
 	//-------------用户状态
 	public static byte _userState = 0;
@@ -37,6 +59,17 @@ public class Properties {
 	/** 订阅者 */
 	public static final byte SUB_STATE_SUBSCRIBER = 4;
 
+	//--------------------------
+	/** 手机当前语言设定 */
+	public static String local = "zh-cn";
+
+	/**
+	 * 模块初始化. 软件启动时载入软件设置, 和国际化设置.
+	 */
+	public void init() {
+
+	}
+
 	/**
 	 * 设定配置项
 	 * 
@@ -60,19 +93,49 @@ public class Properties {
 		return null;
 	}
 
+	/**
+	 * 设置用户状态.
+	 * 
+	 * @param userState
+	 */
 	public static void setUserState(byte userState) {
 		_userState = userState;
 	}
 
-	public static byte getUserState(byte userState) {
+	/**
+	 * 获取用户状态.
+	 * 
+	 * @param userState
+	 * @return
+	 */
+	public static byte getUserState() {
 		return _userState;
 	}
 
+	/**
+	 * 获取用户订阅状态.
+	 * 
+	 * @return
+	 */
 	public static byte getSubscribeState() {
 		return _subscribeState;
 	}
 
+	/**
+	 * 设置用户订阅状态.
+	 * 
+	 * @param subscribeState
+	 */
 	public static void setSubscribeState(byte subscribeState) {
 		_subscribeState = subscribeState;
 	}
+
+	//---------------------------------------------
+	/**
+	 * 根据locale载入相应语言.
+	 */
+	public static void loadLanguage() {
+
+	}
+
 }
