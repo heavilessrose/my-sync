@@ -81,13 +81,15 @@ public class Tools extends MIDlet implements CommandListener {
 
 	public void test() {
 
-		System.out.println(System.getProperty("microedition.profiles"));
-		System.out.println(System.getProperty("microedition.configuration"));
-		System.out.println(System.getProperty("microedition.locale"));
-		System.out.println(System.getProperty("microedition.encoding"));
-		System.out.println(System.getProperty("microedition.plarform"));
-		System.out.println(System
-				.getProperty("com.sonyericsson.sim.subscribernumber"));
+		form.append(System.getProperty("microedition.profiles"));
+		form.append(System.getProperty("microedition.configuration"));
+		form.append("locale: "
+				+ System.getProperty("microedition.locale"));
+		form.append("encoding: "
+				+ System.getProperty("microedition.encoding"));
+		form.append(System.getProperty("microedition.platform"));
+		form.append("imsi: "
+				+ System.getProperty("com.sonyericsson.sim.subscribernumber"));
 	}
 
 	public void commandAction(Command cmd, Displayable disp) {

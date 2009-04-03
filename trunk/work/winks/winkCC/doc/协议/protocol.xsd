@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by noname (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="result" type="ResultType">
+		<xs:annotation>
+			<xs:documentation>返回结果</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="guid" type="GuidType">
+		<xs:annotation>
+			<xs:documentation>全局唯一标识</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="user">
+		<xs:annotation>
+			<xs:documentation>用户信息</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="imsi">
+					<xs:annotation>
+						<xs:documentation>International Mobile Subscriber Identity</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:length value="15"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="guid" type="GuidType">
+					<xs:annotation>
+						<xs:documentation>全局唯一标识</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="serviceConfig" type="ServiceConfigType">
+		<xs:annotation>
+			<xs:documentation>彩像服务器配置信息</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="userServiceStatus">
+		<xs:annotation>
+			<xs:documentation>用户的服务状态信息</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="needAuth">
+					<xs:annotation>
+						<xs:documentation>用户需要鉴权</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="authMethod">
+								<xs:annotation>
+									<xs:documentation>鉴权方法：sms - 短信方式</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="sms"/>
+										<xs:enumeration value="pwd"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:sequence>
+					<xs:element name="uid" type="xs:token">
+						<xs:annotation>
+							<xs:documentation>用户标识</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="services" type="ServicesType">
+						<xs:annotation>
+							<xs:documentation>用户已开通的服务</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="services" type="ServicesType">
+		<xs:annotation>
+			<xs:documentation>服务状态</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="phoneBook" type="PhoneBookType">
+		<xs:annotation>
+			<xs:documentation>电话本</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="empty" type="EmptyType">
+		<xs:annotation>
+			<xs:documentation>空值</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="diy">
+		<xs:annotation>
+			<xs:documentation>diy彩像</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>彩像名称</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ext" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>文件扩展名</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="attachName" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>是以multi-part方式上传时的附件文件名</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="winksScript" type="WinksScriptType">
+		<xs:annotation>
+			<xs:documentation>彩像定制</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="winksScriptList">
+		<xs:annotation>
+			<xs:documentation>彩像定制列表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ws" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="WinksScriptType">
+								<xs:sequence>
+									<xs:element name="wsid" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>彩像定制标识</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="shared" type="SharedType">
+		<xs:annotation>
+			<xs:documentation>共享信息</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="winksShow">
+		<xs:annotation>
+			<xs:documentation>彩像展示信息</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="wid" type="WinksIdType">
+					<xs:annotation>
+						<xs:documentation>彩像标识</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="media" type="WinksFileType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>媒体文件</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="thumbnail" type="WinksFileType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>彩像缩略图</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="greeting" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>问候语</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence minOccurs="0">
+					<xs:element name="status">
+						<xs:annotation>
+							<xs:documentation>我的状态（情景模式）</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="normal"/>
+								<xs:enumeration value="meeting"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="statusText" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>状态语</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="100"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="vcard" type="VcardType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>名片信息</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="softwarePackage">
+		<xs:annotation>
+			<xs:documentation>终端软件包信息</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:token">
+					<xs:annotation>
+						<xs:documentation>软件包名称</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="version">
+					<xs:annotation>
+						<xs:documentation>软件包版本</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="\p{N}\.\p{N}\.\p{N}"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="file" type="xs:anyURI" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>软件包文件的URL位置</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="optional" type="xs:boolean" default="true">
+					<xs:annotation>
+						<xs:documentation>是否为可选更新</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="description" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>软件版本发行说明</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="userWinks" type="UserWinksType">
+		<xs:annotation>
+			<xs:documentation>用户彩像信息</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="userWinksList">
+		<xs:annotation>
+			<xs:documentation>用户彩像列表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="uw" type="UserWinksType" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ResultType">
+		<xs:annotation>
+			<xs:documentation>异常返回结果类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>返回码。code为0时表示操作执行成功。</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="text" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>操作执行失败时的文本描述信息</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="greeting" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>操作执行成功时返回的提示信息</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="debug" type="xs:anyType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>调试信息</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="EmptyType">
+		<xs:annotation>
+			<xs:documentation>空类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="WinksScriptType">
+		<xs:annotation>
+			<xs:documentation>彩像定制信息类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sid" type="xs:token" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>定制编号</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wid" type="WinksIdType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>彩像标识列表</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="p" type="xs:string" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>电话号码列表</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="all" type="EmptyType">
+					<xs:annotation>
+						<xs:documentation>全部</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="greeting" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>问候语</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServicesType">
+		<xs:annotation>
+			<xs:documentation>服务类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="subscription" type="SubscriptionModeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>服务订阅模式
+none	无订阅用户
+limited	受限用户
+subscriber	订阅者</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="diy" type="ServiceStatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DIY功能</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vcard" type="ServiceStatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>随电名片功能</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="activity" type="ServiceStatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>用户场景模式</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vcash" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>点卡计数</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SubscriptionModeType">
+		<xs:annotation>
+			<xs:documentation>服务订阅模式类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="limited"/>
+			<xs:enumeration value="trial"/>
+			<xs:enumeration value="adware"/>
+			<xs:enumeration value="subscriber"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ServiceStatusType">
+		<xs:annotation>
+			<xs:documentation>服务订阅状态类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="on"/>
+			<xs:enumeration value="off"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="VcardType">
+		<xs:annotation>
+			<xs:documentation>用户名片类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>姓名</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mobile" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>真实号码</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="corporation" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>公司</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="title" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>职位</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phone" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>电话</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="email" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>电子邮件</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fax" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>传真</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="address" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>地址</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WinksFileType">
+		<xs:annotation>
+			<xs:documentation>彩像媒体文件类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="url" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>媒体文件的资源位置</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="w" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>宽度</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="h" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>高度</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="UserIdType">
+		<xs:annotation>
+			<xs:documentation>用户标识类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WinksIdType">
+		<xs:annotation>
+			<xs:documentation>彩像标识类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="UserWinksType">
+		<xs:annotation>
+			<xs:documentation>用户彩像类型</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="WinksType">
+				<xs:sequence>
+					<xs:element name="state">
+						<xs:annotation>
+							<xs:documentation>彩像状态：unrelated - 与用户无关的彩像；usable - 可以直接使用的彩像；expired - 过期彩像</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:token">
+								<xs:enumeration value="unrelated"/>
+								<xs:enumeration value="usable"/>
+								<xs:enumeration value="expired"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="expire" type="xs:dateTime" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>彩像过期时间</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="purchaseOrder" type="PurchaseOrderType">
+		<xs:annotation>
+			<xs:documentation>购买订单</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="WinksType">
+		<xs:annotation>
+			<xs:documentation>彩像类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wid" type="WinksIdType">
+				<xs:annotation>
+					<xs:documentation>彩像标识</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>彩像名称</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="diy" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>用户上传彩像标志</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="censor" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>彩像审核状态</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="passed"/>
+						<xs:enumeration value="waiting"/>
+						<xs:enumeration value="rejected"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="duration" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>单位计费时长</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="price" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>彩像价格</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceConfigType">
+		<xs:annotation>
+			<xs:documentation>服务配置类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="address">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="winks" type="xs:anyURI">
+							<xs:annotation>
+								<xs:documentation>彩像业务服务器的URL基地址</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="media" type="xs:anyURI">
+							<xs:annotation>
+								<xs:documentation>媒体服务器的URL基地址</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="store">
+							<xs:annotation>
+								<xs:documentation>彩像商城URL</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="sms" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>短信特服号码</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="push" type="xs:int">
+							<xs:annotation>
+								<xs:documentation>终端push接收端口</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="config">
+				<xs:annotation>
+					<xs:documentation>服务配置</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="subscription" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>服务订阅模式</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="limited" type="xs:anyType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>受限用户选项</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="trial" type="xs:anyType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>试用者选项</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="adware" type="xs:anyType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>接受广告用户选项</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="subscriber" type="xs:anyType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>付费用户选项</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="diy" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>可以DIY彩像，有此字段是表示打开此功能，值为此功能是否需要订阅</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="vcard" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>使用来电名片，有此字段是表示打开此功能，值为此功能是否需要订阅</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="activity" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>用户场景模式，有此字段是表示打开此功能，值为此功能是否需要订阅</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="vcash" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>使用点卡，有此字段是表示打开此功能，值为此功能是否需要订阅</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="GuidType">
+		<xs:annotation>
+			<xs:documentation>全局唯一标识类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
+	<xs:complexType name="SharedType">
+		<xs:annotation>
+			<xs:documentation>共享信息类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:element name="state">
+					<xs:annotation>
+						<xs:documentation>我的状态（情景模式）</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="normal"/>
+							<xs:enumeration value="meeting"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="stateText" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>状态语</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="100"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			<xs:element name="activity" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>用户当前活动</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>其他人看到的名称</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>其他人看到的消息</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="showWinks" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>是否显示彩像</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="showVcard" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>是否显示随电名片</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="vcard" type="VcardType">
+		<xs:annotation>
+			<xs:documentation>用户名片</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="messageList" type="MessageListType">
+		<xs:annotation>
+			<xs:documentation>消息列表</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="MessageListType">
+		<xs:annotation>
+			<xs:documentation>消息列表类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mi" type="MessageType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>消息项</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PhoneBookType">
+		<xs:annotation>
+			<xs:documentation>电话本类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pbi" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>电话本条目</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="n" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>姓名</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="p" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>电话号码</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MessageType">
+		<xs:annotation>
+			<xs:documentation>消息类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mid">
+				<xs:annotation>
+					<xs:documentation>消息标识</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="serviceConfig" type="ServiceConfigType">
+					<xs:annotation>
+						<xs:documentation>服务配置</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="clientConfig" type="xs:anyType">
+					<xs:annotation>
+						<xs:documentation>终端配置</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PurchaseOrderType">
+		<xs:annotation>
+			<xs:documentation>订单类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>Line items</xs:documentation>
+				</xs:annotation>
+				<xs:element name="winks" type="WinksLineItemType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:element name="amount">
+				<xs:annotation>
+					<xs:documentation>总金额</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LineItemType">
+		<xs:annotation>
+			<xs:documentation>订单项类型</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="winks" type="WinksLineItemType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="BaseLineItemType">
+		<xs:annotation>
+			<xs:documentation>订单项类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="count" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation>数量</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="price" type="xs:decimal">
+				<xs:annotation>
+					<xs:documentation>单价</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amount" type="xs:decimal">
+				<xs:annotation>
+					<xs:documentation>总金额</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BaseServiceLineItemType">
+		<xs:annotation>
+			<xs:documentation>订单项类型</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BaseLineItemType">
+				<xs:sequence>
+					<xs:element name="duration">
+						<xs:annotation>
+							<xs:documentation>总服务时长</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="winksPO" type="WinksLineItemType">
+		<xs:annotation>
+			<xs:documentation>彩像购买订单</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="WinksLineItemType">
+		<xs:annotation>
+			<xs:documentation>彩像购买订单类型</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BaseServiceLineItemType">
+				<xs:sequence>
+					<xs:element name="wid" type="WinksIdType">
+						<xs:annotation>
+							<xs:documentation>彩像标识</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="auth" type="AuthType">
+		<xs:annotation>
+			<xs:documentation>鉴权</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AuthType">
+		<xs:annotation>
+			<xs:documentation>鉴权类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="token" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>初始令牌 - 终端软件生成的初始令牌，内容要求是具有密钥级别的至少128 bits的随机数进行base64url（参见RFC 4648）编码的串，例：
+TVRJek5ETXlOREl6TVRNeU5ETXlOVEV6TWpRek1qUXhNak0wTXpJeE16SXhORFF6TWpNek1qRTBN
+base64url（参见RFC 4648）使用下面两条规则修改标准base64编码：
+1）末尾不加 ’=’ 填充；
+2）将标准base 64中的 ‘+’ 和 ‘/’ 分别替换为 ‘-’ 和 ‘_’</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
