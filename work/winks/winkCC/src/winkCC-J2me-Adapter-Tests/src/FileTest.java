@@ -4,6 +4,7 @@
 
 import java.util.Enumeration;
 
+import javax.microedition.io.ConnectionNotFoundException;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Display;
@@ -27,6 +28,7 @@ public class FileTest extends MIDlet implements CommandListener {
 	final Command delete = new Command("delete", Command.OK, 1);
 	final Command rename = new Command("rename", Command.OK, 1);
 	final Command exit = new Command("Exit", Command.EXIT, 3);
+	final Command upgrade = new Command("upgrade", Command.OK, 1);
 
 	TextField dataField = new TextField("ÄÚÈÝ", "ABC", 100, TextField.ANY);
 
@@ -43,7 +45,7 @@ public class FileTest extends MIDlet implements CommandListener {
 	 * @see javax.microedition.midlet.MIDlet#destroyApp(boolean)
 	 */
 	protected void destroyApp(boolean arg0) throws MIDletStateChangeException {
-
+		System.out.println("destroyApp");
 	}
 
 	/*
@@ -52,7 +54,7 @@ public class FileTest extends MIDlet implements CommandListener {
 	 * @see javax.microedition.midlet.MIDlet#pauseApp()
 	 */
 	protected void pauseApp() {
-
+		System.out.println("pauseApp");
 	}
 
 	/*
@@ -61,6 +63,7 @@ public class FileTest extends MIDlet implements CommandListener {
 	 * @see javax.microedition.midlet.MIDlet#startApp()
 	 */
 	protected void startApp() throws MIDletStateChangeException {
+		System.out.println("startApp");
 		form.addCommand(mkdirs);
 		form.addCommand(makeDir);
 		form.addCommand(write);
@@ -70,9 +73,10 @@ public class FileTest extends MIDlet implements CommandListener {
 		form.addCommand(delete);
 		form.addCommand(rename);
 		form.addCommand(exit);
+		form.addCommand(upgrade);
 		//		form.append(dataField);
 		form.setCommandListener(this);
-		display.setCurrent(form);
+		display.setCurrent(null);
 	}
 
 	public void commandAction(Command cmd, Displayable disp) {
@@ -122,6 +126,13 @@ public class FileTest extends MIDlet implements CommandListener {
 				e.printStackTrace();
 			}
 			notifyDestroyed();
+		} else if (cmd == upgrade) {
+			try {
+				this.platformRequest("http://wap.sina.com");
+				this.notifyDestroyed();
+			} catch (ConnectionNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

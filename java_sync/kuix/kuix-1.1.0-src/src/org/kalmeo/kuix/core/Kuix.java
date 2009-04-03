@@ -1897,7 +1897,7 @@ public final class Kuix {
 
 		InputStream inputStream = null;
 		// Use frameHandler.getClass() because of a Object.class bug
-		Class clazz = frameHandler.getClass();
+		Class clazz = registeredStyles.getClass();
 		try {
 
 			// Construct messageBundle
