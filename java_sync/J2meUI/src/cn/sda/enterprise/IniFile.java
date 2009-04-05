@@ -10,12 +10,12 @@ import javax.microedition.rms.RecordStore;
  * 
  * @author Administrator
  */
-public class SDAIniFile {
+public class IniFile {
 
 	private RecordStore rs;
 	private Hashtable IniConfigList;
 
-	public SDAIniFile() {
+	public IniFile() {
 		internalSDAIniFile();
 	}
 

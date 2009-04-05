@@ -550,7 +550,7 @@ public class SDAGrid extends SDABaseControl {
                             case Column.ftCount: {
                                 //行数统计
                                 if (!ct.footDisplayFormat.equals("")) {
-                                    ct.footValue = SDATools.formatFloat(ct.footDisplayFormat, DataSet.getRecordCount());
+                                    ct.footValue = Tools.formatFloat(ct.footDisplayFormat, DataSet.getRecordCount());
                                 } else {
                                     ct.footValue = String.valueOf(DataSet.getRecordCount());
                                 }
@@ -563,7 +563,7 @@ public class SDAGrid extends SDABaseControl {
                             case Column.ftFieldValue: {
                                 //显示当前行的内容
                                 if (!ct.footDisplayFormat.equals("")) {
-                                    ct.footValue = SDATools.formatFloat(ct.footDisplayFormat, Double.parseDouble(DataSet.getRow().getValueByFieldName(ct.FieldName)));
+                                    ct.footValue = Tools.formatFloat(ct.footDisplayFormat, Double.parseDouble(DataSet.getRow().getValueByFieldName(ct.FieldName)));
                                 } else {
                                     ct.footValue = DataSet.getRow().getValueByFieldName(ct.FieldName);
                                 }
@@ -582,7 +582,7 @@ public class SDAGrid extends SDABaseControl {
                                 }
                                 if (!ct.footDisplayFormat.equals("")) {
                                     if (DataSet.getRecordCount() > 0) {
-                                        ct.footValue = SDATools.formatFloat(ct.footDisplayFormat, avg / DataSet.getRecordCount());
+                                        ct.footValue = Tools.formatFloat(ct.footDisplayFormat, avg / DataSet.getRecordCount());
                                     } else {
                                         ct.footValue = "";
                                     }
@@ -603,7 +603,7 @@ public class SDAGrid extends SDABaseControl {
                                     sum += Double.parseDouble(st);
                                 }
                                 if (!ct.footDisplayFormat.equals("")) {
-                                    ct.footValue = SDATools.formatFloat(ct.footDisplayFormat, sum);
+                                    ct.footValue = Tools.formatFloat(ct.footDisplayFormat, sum);
                                 } else {
                                     ct.footValue = String.valueOf(sum);
                                 }
@@ -668,7 +668,7 @@ public class SDAGrid extends SDABaseControl {
                             if (drawstr.equals("")) {
                                 drawstr = "0";
                             }
-                            drawstr = SDATools.formatFloat(ct.DisplayFormat, Double.parseDouble(drawstr));
+                            drawstr = Tools.formatFloat(ct.DisplayFormat, Double.parseDouble(drawstr));
                         }
                         cell.fieldValue = drawstr;
                         cell.fieldName = ct.FieldName;
