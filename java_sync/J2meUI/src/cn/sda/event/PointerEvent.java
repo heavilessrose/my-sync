@@ -1,6 +1,6 @@
 package cn.sda.event;
 
-import cn.sda.ui.SDABaseControl;
+import cn.sda.ui.BaseControl;
 
 /**
  * <p>Title: </p>
@@ -15,5 +15,5 @@ import cn.sda.ui.SDABaseControl;
  * @version 1.0
  */
 abstract public class PointerEvent {
-    abstract public void Event(SDABaseControl ctrl,int x,int y);
+    abstract public void Event(BaseControl ctrl,int x,int y);
 }

@@ -1,6 +1,6 @@
 package cn.sda.event;
 
-import cn.sda.ui.SDABaseControl;
+import cn.sda.ui.BaseControl;
 
 /**
  * <p>
@@ -23,5 +23,5 @@ import cn.sda.ui.SDABaseControl;
  * @version 1.0
  */
 abstract public class KeybordEvent {
-	abstract public void Event(SDABaseControl ctrl, int keyCode);
+	abstract public void Event(BaseControl ctrl, int keyCode);
 }

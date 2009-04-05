@@ -15,5 +15,5 @@ import cn.sda.ui.*;
  * @version 1.0
  */
 abstract public class NotifyEvent {
-    abstract public void Event(SDABaseControl ctrl);
+    abstract public void Event(BaseControl ctrl);
 }
