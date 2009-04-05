@@ -1,6 +1,6 @@
 package cn.sda.event;
 
-import cn.sda.ui.SDAGrid.Cell;
+import cn.sda.ui.GridUI.Cell;
 
 /**
  * 

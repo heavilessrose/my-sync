@@ -1,6 +1,6 @@
 package cn.sda.event;
 
-import cn.sda.ui.SDAMenuItem;
+import cn.sda.ui.MenuItemUI;
 
 /**
  * <p>Title: </p>
@@ -15,5 +15,5 @@ import cn.sda.ui.SDAMenuItem;
  * @version 1.0
  */
 abstract public class PopMenuOnClickEvent {
-    abstract public void Event(SDAMenuItem item,String itemName,String itemCaption);
+    abstract public void Event(MenuItemUI item,String itemName,String itemCaption);
 }

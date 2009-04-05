@@ -1,51 +1,51 @@
 package cn.sda.demo;
 
 import cn.sda.event.MainMenuOnButtonEvent;
-import cn.sda.ui.SDABaseControl;
-import cn.sda.ui.SDABevel;
-import cn.sda.ui.SDAButton;
-import cn.sda.ui.SDAConsts;
-import cn.sda.ui.SDAEdit;
-import cn.sda.ui.SDAForm;
-import cn.sda.ui.SDAInputPanel;
-import cn.sda.ui.SDALabel;
-import cn.sda.ui.SDAMainMenu;
-import cn.sda.ui.SDAPopMenu;
+import cn.sda.ui.BaseControl;
+import cn.sda.ui.Bevel;
+import cn.sda.ui.ButtonUI;
+import cn.sda.ui.ConstsUI;
+import cn.sda.ui.EditUI;
+import cn.sda.ui.FormUI;
+import cn.sda.ui.InputPanel;
+import cn.sda.ui.LabelUI;
+import cn.sda.ui.MainMenuUI;
+import cn.sda.ui.PopMenuUI;
 
 /**
  *
  * @author Administrator
  */
-public class LoginForm extends SDAForm {
+public class LoginForm extends FormUI {
 
-    private SDABevel panel=new SDABevel();
-    private SDALabel userNameLabel = new SDALabel();
-    private SDALabel userPassLabel = new SDALabel();
-    private SDAEdit userNameEdit = new SDAEdit();
-    private SDAEdit userPassEdit = new SDAEdit();
-    private SDAMainMenu mainMenu=new SDAMainMenu();
-    private SDAButton OkBtn=new SDAButton();
-    private SDAButton ExitBtn=new SDAButton();
+    private Bevel panel=new Bevel();
+    private LabelUI userNameLabel = new LabelUI();
+    private LabelUI userPassLabel = new LabelUI();
+    private EditUI userNameEdit = new EditUI();
+    private EditUI userPassEdit = new EditUI();
+    private MainMenuUI mainMenu=new MainMenuUI();
+    private ButtonUI OkBtn=new ButtonUI();
+    private ButtonUI ExitBtn=new ButtonUI();
 
     public LoginForm(String caption) {
         super(caption);
-        panel.setDock(SDAConsts.dsFill);
-        panel.setBackColor(SDAConsts.clWhite);
+        panel.setDock(ConstsUI.dsFill);
+        panel.setBackColor(ConstsUI.clWhite);
         panel.setCtl3d(false);
-        panel.setShape(SDABevel.bsSpacer);
+        panel.setShape(Bevel.bsSpacer);
         AddControl(panel);
         
         userNameLabel.setAutoSize(true);
         userPassLabel.setAutoSize(true);
-        userNameLabel.setBackColor(SDAConsts.clWhite);
-        userPassLabel.setBackColor(SDAConsts.clWhite);
+        userNameLabel.setBackColor(ConstsUI.clWhite);
+        userPassLabel.setBackColor(ConstsUI.clWhite);
         userNameEdit.setWidth(140);
         userPassEdit.setWidth(140);
         userPassEdit.setPasswordChar('*');
         userNameLabel.setText("用户名称");
         userPassLabel.setText("用户密码");        
-        userNameEdit.setImeType(SDAInputPanel.imLowerCase);
-        userPassEdit.setImeType(SDAInputPanel.imDigit);
+        userNameEdit.setImeType(InputPanel.imLowerCase);
+        userPassEdit.setImeType(InputPanel.imDigit);
         //主菜单
         this.mainMenu.setBackImage(((MIDlet1)Application).image3);
         this.mainMenu.setLeftMenuName("输入法");
@@ -53,10 +53,10 @@ public class LoginForm extends SDAForm {
         this.mainMenu.setLeftMemu(this.mainMenu.getInputMemu());
         this.mainMenu.setOnMainMenuButtonEvent(new MainMenuOnButtonEvent() {
 
-            public void Event(SDAPopMenu memu, String MenuButtonCaption) {
+            public void Event(PopMenuUI memu, String MenuButtonCaption) {
                 if(MenuButtonCaption.equals("登录")){
                     if(userNameEdit.getText().length()==0||userPassEdit.getText().length()==0){
-                        Application.MessageBox("警告", "帐号或者密码不能够为空！", SDAConsts.MB_OK);
+                        Application.MessageBox("警告", "帐号或者密码不能够为空！", ConstsUI.MB_OK);
                     }else{
                         Close();
                     }
@@ -75,19 +75,19 @@ public class LoginForm extends SDAForm {
         panel.AddControl(OkBtn);
         panel.AddControl(ExitBtn);
         //布局
-        panel.setAlignment(userNameLabel, userNameEdit, SDAConsts.amhSpaceEqually, 2);
-        panel.setAlignment(userNameLabel, userNameEdit, SDAConsts.amvTop, 0);
-        panel.setAlignment(userNameLabel, userPassLabel, SDAConsts.amvSpaceEqually, 6);
-        panel.setAlignment(userNameLabel, userPassLabel, SDAConsts.amhleft, 0);
-        panel.setAlignment(userPassLabel, userPassEdit, SDAConsts.amhSpaceEqually, 2);
-        panel.setAlignment(userPassLabel, userPassEdit, SDAConsts.amvTop, 0);
-        panel.setAlignment(userPassEdit, new SDABaseControl[]{OkBtn,ExitBtn}, SDAConsts.amvSpaceEqually, 6);
-        panel.setAlignment(userPassEdit, OkBtn, SDAConsts.amhleft, 0);
-        panel.setAlignment(OkBtn, ExitBtn, SDAConsts.amhSpaceEqually, 6);
-        panel.setAlignment(OkBtn, ExitBtn, SDAConsts.amvTop, 0);
-        panel.setAlignment(panel, new SDABaseControl[]{userNameEdit,userNameLabel,userPassEdit,userPassLabel,OkBtn,ExitBtn}, 
-                SDAConsts.amhInCenter, 0);
-        panel.setAlignment(panel, new SDABaseControl[]{userNameEdit,userNameLabel,userPassEdit,userPassLabel,OkBtn,ExitBtn}, 
-                SDAConsts.amvInCenter, 0);
+        panel.setAlignment(userNameLabel, userNameEdit, ConstsUI.amhSpaceEqually, 2);
+        panel.setAlignment(userNameLabel, userNameEdit, ConstsUI.amvTop, 0);
+        panel.setAlignment(userNameLabel, userPassLabel, ConstsUI.amvSpaceEqually, 6);
+        panel.setAlignment(userNameLabel, userPassLabel, ConstsUI.amhleft, 0);
+        panel.setAlignment(userPassLabel, userPassEdit, ConstsUI.amhSpaceEqually, 2);
+        panel.setAlignment(userPassLabel, userPassEdit, ConstsUI.amvTop, 0);
+        panel.setAlignment(userPassEdit, new BaseControl[]{OkBtn,ExitBtn}, ConstsUI.amvSpaceEqually, 6);
+        panel.setAlignment(userPassEdit, OkBtn, ConstsUI.amhleft, 0);
+        panel.setAlignment(OkBtn, ExitBtn, ConstsUI.amhSpaceEqually, 6);
+        panel.setAlignment(OkBtn, ExitBtn, ConstsUI.amvTop, 0);
+        panel.setAlignment(panel, new BaseControl[]{userNameEdit,userNameLabel,userPassEdit,userPassLabel,OkBtn,ExitBtn}, 
+                ConstsUI.amhInCenter, 0);
+        panel.setAlignment(panel, new BaseControl[]{userNameEdit,userNameLabel,userPassEdit,userPassLabel,OkBtn,ExitBtn}, 
+                ConstsUI.amvInCenter, 0);
     }
 }

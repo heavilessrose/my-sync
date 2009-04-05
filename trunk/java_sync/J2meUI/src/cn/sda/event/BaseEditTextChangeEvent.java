@@ -1,11 +1,11 @@
 package cn.sda.event;
 
-import cn.sda.ui.SDABaseEdit;
+import cn.sda.ui.BaseEdit;
 
 /**
  * 
  * @author Administrator
  */
 abstract public class BaseEditTextChangeEvent {
-	abstract public void Event(SDABaseEdit edit);
+	abstract public void Event(BaseEdit edit);
 }

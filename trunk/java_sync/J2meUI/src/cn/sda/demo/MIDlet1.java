@@ -8,11 +8,11 @@ import cn.sda.ui.*;
  * @author not attributable
  * @version 1.0
  */
-public class MIDlet1 extends SDAApplication {
+public class MIDlet1 extends MainApp {
     public MainForm mainform;
     public LoginForm loginForm;
     //图片
-    SDAImageList imageList=new SDAImageList();
+    ImageListUI imageList=new ImageListUI();
     public Image image1=null;
     public Image image2=null;
     public Image image3=null;
