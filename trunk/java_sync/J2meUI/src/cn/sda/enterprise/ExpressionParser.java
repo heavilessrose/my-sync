@@ -10,7 +10,7 @@ import java.util.Vector;
  * @VarsList Hashtable -变量列表，计算的时候从中获取变量值
  * @Expression StringBuffer -表达式
  */
-public class SDAExpression {
+public class ExpressionParser {
 
 	public Hashtable VarsList;
 	private String Expression;
@@ -31,7 +31,7 @@ public class SDAExpression {
 			"Unbalanced Parentheses", "No Expression Present",
 			"Division by Zero" };
 
-	public SDAExpression() {
+	public ExpressionParser() {
 		internalSDAExpression();
 	}
 

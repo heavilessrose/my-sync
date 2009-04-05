@@ -8,7 +8,7 @@ import java.util.Vector;
  * 
  * @author Administrator
  */
-public class SDATools {
+public class Tools {
 
 	public static String getNowTime() {
 		return internalGetNowTime();

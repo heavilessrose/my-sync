@@ -47,7 +47,7 @@ public class SDADataSet {
 	// 数据集合指针位置
 	public int RecNo = -1;
 	// 表达式计算器
-	private SDAExpression exp;
+	private ExpressionParser exp;
 	// 记录merge
 	private boolean recChangeLog = false;
 	// 是否打开自动ID计算
@@ -467,7 +467,7 @@ public class SDADataSet {
 		Fields = new Vector();
 		Rows = new Vector();
 		allRows = new Vector();
-		exp = new SDAExpression();
+		exp = new ExpressionParser();
 		recChangeLog = false;
 		deltaFields = new Vector();
 		deltaRows = new Vector();
