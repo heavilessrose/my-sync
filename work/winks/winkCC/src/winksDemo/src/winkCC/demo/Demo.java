@@ -1,9 +1,13 @@
 package winkCC.demo;
 
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.microedition.io.ConnectionNotFoundException;
+import javax.microedition.io.PushRegistry;
 import javax.microedition.lcdui.Display;
+import javax.microedition.lcdui.Form;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
@@ -16,29 +20,37 @@ public class Demo extends MIDlet {
 	private Timer timer;
 	private TimerTask task;
 
+	Form form = new Form("test");
+
 	public Demo() {
 		System.out.println("Constructor executed");
 
+		display = Display.getDisplay(this);
 		String interval = getAppProperty("Timer-Interval");
 		timerInterval = Integer.parseInt(interval);
 		System.out.println("Timer interval is " + interval);
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
+		display.setCurrent(form);
+
 		// In all cases, start a background thread.
 		synchronized (this) {
 			if (thread == null) {
 				thread = new Thread() {
 					public void run() {
 						System.out.println("Thread running");
+						form.append("Thread running");
 						while (thread == this) {
 							try {
-								Thread.sleep(500);
+								Thread.sleep(1500);
 								System.out.println("Thread still active");
+								form.append("Thread still active");
 							} catch (InterruptedException ex) {
 							}
 						}
 						System.out.println("Thread terminating");
+						form.append("Thread terminating");
 					}
 				};
 			}
@@ -47,14 +59,17 @@ public class Demo extends MIDlet {
 			firstStarted = true;
 			thread.start();
 			System.out.println("startApp called for the first time");
+			form.append("startApp called for the first time");
 			startTimer();
 		} else {
 			System.out.println("startApp called following pause");
+			form.append("startApp called following pause");
 		}
 	}
 
 	protected void pauseApp() {
 		System.out.println("pauseApp called.");
+		form.append("pauseApp called.");
 		// synchronized (this) {
 		// if (thread != null) {
 		// thread = null;
@@ -66,16 +81,29 @@ public class Demo extends MIDlet {
 			throws MIDletStateChangeException {
 		System.out.println("destroyApp called - unconditional = "
 				+ unconditional);
+		form.append("destroyApp called - unconditional = ");
 		if (thread != null) {
 			Thread bgThread = thread;
 			thread = null; // Signal thread to die
 			try {
 				bgThread.join();
 				System.err.println("thread is die");
+				form.append("thread is die");
 			} catch (InterruptedException ex) {
 			}
 		}
 		stopTimer();
+
+		// 定时启动
+		try {
+			register();
+		} catch (ConnectionNotFoundException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void startTimer() {
@@ -86,7 +114,8 @@ public class Demo extends MIDlet {
 			public void run() {
 				// Pause or resume the MIDlet.
 				System.out.println("Timer scheduled");
-				if (count++ == 4) {
+				form.append("Timer scheduled");
+				if (count++ == 2) {
 					// Terminate the MIDlet
 					// try {
 					// MidpAppTest.this.destroyApp(true);
@@ -99,11 +128,13 @@ public class Demo extends MIDlet {
 				}
 				if (isPaused) {
 					System.out.println(">> Resuming 恢复MIDlet");
+					form.append(">> Resuming 恢复MIDlet");
 					// MidpAppTest.this.resumeRequest();
 					resume();
 					isPaused = false;
 				} else {
 					System.out.println(">> Pausing 暂停MIDlet");
+					form.append(">> Pausing 暂停MIDlet");
 					isPaused = true;
 					// MidpAppTest.this.pauseApp();
 					// MidpAppTest.this.notifyPaused();
@@ -120,24 +151,20 @@ public class Demo extends MIDlet {
 	private void stopTimer() {
 		if (timer != null) {
 			System.out.println("Stopping the timer");
+			form.append("Stopping the timer");
 			timer.cancel();
 		}
 	}
 
 	/**
-	 * 主动退出程序. 禁止在destroyApp()中调用
+	 * 主动退出程序.
 	 */
 	public final void exit() {
 		try {
 			display = null;
-			// 释放资源.
 			destroyApp(false);
-			// 通知JAM销毁MIDlet, JAM不会调用destroyApp(),所以在这个方法前一般应主动调用destroyApp().
-			// 如果MIDlet要资源终止则调用此方法是唯一的方式.
 			notifyDestroyed();
 		} catch (MIDletStateChangeException e) {
-			// MIDlet并不希望关闭, 此时可能还有需要保存的数据等工作.
-			System.out.println("MIDlet并不希望关闭, 此时可能还有需要保存的数据等工作.");
 		}
 	}
 
@@ -157,5 +184,21 @@ public class Demo extends MIDlet {
 	public final void resume() {
 		// 通知JAM,MIDlet希望从Paused state转到Active state.
 		resumeRequest();
+	}
+
+	// ///////////////////
+	int deltaTime = 10 * 1000;// 1分钟
+
+	// int waitTime =
+
+	// 注册定时启动
+	void register(/* String waitTime */) throws ClassNotFoundException,
+			ConnectionNotFoundException, SecurityException {
+		String className = this.getClass().getName();
+		// 当前时间
+		Date alarm = new Date();
+		long t = PushRegistry.registerAlarm(className, alarm.getTime()
+				+ deltaTime);
+
 	}
 }
