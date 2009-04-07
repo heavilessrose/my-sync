@@ -11,11 +11,13 @@ public class WinksConstants {
 	public static final String VERSION = "1.1.0";
 
 	public static final String DEFAULT_IMG_RES_FOLDER = "/img/";
-	public static final String DEFAULT_I18N_RES_FOLDER = "/i18n/";
-	public static final String DEFAULT_I18N_MESSAGES_BUNDLE = DEFAULT_I18N_RES_FOLDER
+	public static final String DEFAULT_PROPERTY_RES_FOLDER = "/properties/";
+	public static final String DEFAULT_PROPERTY_MESSAGES_BUNDLE = DEFAULT_PROPERTY_RES_FOLDER
+			+ "settings.properties";
+	public static final String DEFAULT_I18N_MESSAGES_BUNDLE = DEFAULT_PROPERTY_RES_FOLDER
 			+ "messages.properties";
 
-	//=================== 默认 i18n keys
+	// =================== 默认 i18n keys
 	public static final String SELECT_I18N_KEY = "SELECT";
 	public static final String PLEASE_SELECT_I18N_KEY = "PLEASE_SELECT";
 	public static final String VALIDATE_I18N_KEY = "VALIDATE";
@@ -26,10 +28,10 @@ public class WinksConstants {
 	public static final String SOFT_LEFT_I18N_KEY = "SOFT_LEFT";
 	public static final String SOFT_RIGHT_I18N_KEY = "SOFT_RIGHT";
 
-	//====================平台
+	// ====================平台
 	public static final String PLATFORM_SONY_ERICSSON = "sonyericsson";
 
-	//====================内部按键
+	// ====================内部按键
 	public static final int WINKS_KEY_UP = 1 << 0;
 	public static final int WINKS_KEY_DOWN = 1 << 1;
 	public static final int WINKS_KEY_LEFT = 1 << 2;

@@ -11,17 +11,17 @@ import java.util.Hashtable;
 public class WinksBook {
 
 	/**
-	 * 内存中缓存的彩像电话簿. key: name, value: CcPeople对象.
+	 * 内存中缓存的彩像电话簿. key: name, value: WinksContacts对象.
 	 */
-	private Hashtable _allCcPeoples = new Hashtable();
+	private Hashtable _allWinksContacts = new Hashtable();
 
 	/**
 	 * 获取彩像电话簿中所有联系人.
 	 * 
 	 * @return
 	 */
-	public Hashtable getAllCcPeoples() {
-		return _allCcPeoples;
+	public Hashtable getAllWinksContacts() {
+		return _allWinksContacts;
 	}
 
 	/**
