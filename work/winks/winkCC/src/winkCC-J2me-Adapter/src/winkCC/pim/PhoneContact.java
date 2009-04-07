@@ -129,7 +129,7 @@ public class PhoneContact {
 	 * 
 	 * @return 联系人大头贴地址.
 	 */
-	public String getWPath() {
+	public String getPicPath() {
 		return _w_path;
 	}
 
