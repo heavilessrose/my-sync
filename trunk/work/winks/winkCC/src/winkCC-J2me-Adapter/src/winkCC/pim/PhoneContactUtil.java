@@ -16,16 +16,16 @@ import javax.microedition.pim.PIMItem;
  * @author WangYinghua
  * 
  */
-public class ContactUtil {
+public class PhoneContactUtil {
 
 	/**
 	 * 所有通讯录, 可能有一个或多个通讯录.
 	 */
-	ContactList[] contactLists = null;
+	static ContactList[] contactLists = null;
 	/**
 	 * 所有联系人
 	 */
-	Hashtable allContacts = new Hashtable();
+	static Hashtable allContacts = new Hashtable();
 
 	/*
 	 * 所爱平台对于拥有多个号码的联系人, 有default number这个属性(原属性与128取与).
@@ -150,7 +150,7 @@ public class ContactUtil {
 	 * 
 	 * @return ContactList[] 手机所有通讯录数组.
 	 */
-	private ContactList[] getPhoneBooks() {
+	private static ContactList[] getPhoneBooks() {
 		if (contactLists != null) {
 			return contactLists;
 		} else {
@@ -177,9 +177,9 @@ public class ContactUtil {
 	 * @param contact
 	 *            联系人.
 	 * @return showName 联系人的名字.
-	 * @see winkCC.pim.ContactUtil#fixDisplayName(Contact)
+	 * @see winkCC.pim.PhoneContactUtil#fixDisplayName(Contact)
 	 */
-	private String getDisplayName(Contact contact) {
+	private static String getDisplayName(Contact contact) {
 		fixDisplayName(contact);
 
 		String showName = null;
@@ -202,7 +202,7 @@ public class ContactUtil {
 	 * 
 	 * @param contact
 	 */
-	private void fixDisplayName(Contact contact) {
+	private static void fixDisplayName(Contact contact) {
 
 		// FORMATTED_NAME字段是否已经定义
 		boolean defined = false;
@@ -258,7 +258,7 @@ public class ContactUtil {
 	 * @param contact
 	 * @return 包含联系人所有号码的Hashtable, 如:mobile:1580000
 	 */
-	private Hashtable getAllNumbers(Contact contact) {
+	private static Hashtable getAllNumbers(Contact contact) {
 		Hashtable numbers = null;
 		if (contact.getPIMList().isSupportedField(Contact.TEL)) {
 			numbers = new Hashtable();
@@ -300,7 +300,7 @@ public class ContactUtil {
 	 *            指定电话号码,如: mobile, home, work, fax, other.
 	 * @return 联系人号码string
 	 */
-	public String getNumber(PhoneContact people, String attr) {
+	public static String getNumber(PhoneContact people, String attr) {
 		return people.getNumber(attr);
 	}
 
@@ -313,18 +313,18 @@ public class ContactUtil {
 	 *            要得到的电话类别
 	 * @return 联系人号码String
 	 */
-	public String getNumber(String name, String attr) {
+	public static String getNumber(String name, String attr) {
 		return getNumber(getPhoneContact(name), attr);
 	}
 
 	/**
 	 * 得到指定联系人的大头贴地址.
 	 * 
-	 * @param people
+	 * @param contact
 	 * @return 联系人大头贴地址String.
 	 */
-	public String getWPath(PhoneContact people) {
-		return people.getWPath();
+	public static String getPicPath(PhoneContact contact) {
+		return contact.getPicPath();
 	}
 
 	/**
@@ -333,17 +333,17 @@ public class ContactUtil {
 	 * @param name
 	 * @return 联系人大头贴String.
 	 */
-	public String getWPath(String name) {
-		return getWPath(getPhoneContact(name));
+	public static String getPicPath(String name) {
+		return getPicPath(getPhoneContact(name));
 	}
 
 	/**
 	 * 设定指定联系人的大头贴地址.
 	 * 
 	 * @param name
-	 * @param wpath
+	 * @param path
 	 */
-	public void setWPath(String name, String wpath) {
+	public static void setPicPath(String name, String path) {
 
 		contactLists = getPhoneBooks();
 		for (int i = 0; i < contactLists.length; i++) {
@@ -358,11 +358,11 @@ public class ContactUtil {
 						if (contactLists[i].isSupportedField(Contact.PHOTO_URL)) {
 							try {
 								item.addString(Contact.PHOTO_URL,
-										Contact.ATTR_NONE, wpath);
+										Contact.ATTR_NONE, path);
 							} catch (Exception e) {
 								//								e.printStackTrace();
 								item.setString(Contact.PHOTO_URL, 0,
-										Contact.ATTR_NONE, wpath);
+										Contact.ATTR_NONE, path);
 							}
 						}
 						try {
@@ -379,7 +379,7 @@ public class ContactUtil {
 		}
 
 		PhoneContact phonecontact = getPhoneContact(name);
-		phonecontact.setWPath(wpath);
+		phonecontact.setWPath(path);
 		// 更新 allPeople
 		if (allContacts.size() <= 0)
 			getAllPhoneContacts();
@@ -395,7 +395,7 @@ public class ContactUtil {
 	 * @param name
 	 * @return 联系人People对象
 	 */
-	public PhoneContact getPhoneContact(String name) {
+	public static PhoneContact getPhoneContact(String name) {
 		PhoneContact phoneContact = null;
 		if (getAllPhoneContacts().containsKey(name)) {
 			phoneContact = (PhoneContact) allContacts.get(name);
@@ -447,7 +447,7 @@ public class ContactUtil {
 	 * 
 	 * @param contact
 	 */
-	private String getPicPath(Contact contact) {
+	private static String getPicPath(Contact contact) {
 		String path = null;
 		if (contact.getPIMList().isSupportedField(Contact.PHOTO_URL)) {
 			int count = contact.countValues(Contact.PHOTO_URL);
@@ -466,40 +466,40 @@ public class ContactUtil {
 	 * 
 	 * @return 包含所有PhoneContact对象的Hashtable
 	 */
-	public Hashtable getAllPhoneContacts() {
+	public static Hashtable getAllPhoneContacts() {
 		if (allContacts != null && allContacts.size() > 0) {
 			return allContacts;
 		}
-		synchronized (ContactUtil.this) {
-			try {
-				// 清空items
-				if (!allContacts.isEmpty())
-					allContacts.clear();
+		//		synchronized (PhoneContactUtil.this) {
+		try {
+			// 清空items
+			if (!allContacts.isEmpty())
+				allContacts.clear();
 
-				String showName = null;
-				Hashtable allNumber = new Hashtable();
-				String wPath = null;
-				contactLists = getPhoneBooks();
-				for (int i = 0; i < contactLists.length; i++) {
-					// 遍历所有通讯录, 得到所有联系人
-					for (Enumeration items = contactLists[i].items(); items
-							.hasMoreElements();) {
-						Contact item = (Contact) items.nextElement();
+			String showName = null;
+			Hashtable allNumber = new Hashtable();
+			String wPath = null;
+			contactLists = getPhoneBooks();
+			for (int i = 0; i < contactLists.length; i++) {
+				// 遍历所有通讯录, 得到所有联系人
+				for (Enumeration items = contactLists[i].items(); items
+						.hasMoreElements();) {
+					Contact item = (Contact) items.nextElement();
 
-						showName = getDisplayName(item);
-						allNumber = getAllNumbers(item);
-						wPath = getPicPath(item);
-						if (showName == null) {
-							showName = "<Incomplete data>";
-						}
-						allContacts.put(showName, new PhoneContact(showName,
-								allNumber, wPath));
+					showName = getDisplayName(item);
+					allNumber = getAllNumbers(item);
+					wPath = getPicPath(item);
+					if (showName == null) {
+						showName = "<Incomplete data>";
 					}
-					System.out.println("contact count: " + allContacts.size());
+					allContacts.put(showName, new PhoneContact(showName,
+							allNumber, wPath));
 				}
-			} catch (PIMException e) {
+				System.out.println("contact count: " + allContacts.size());
 			}
+		} catch (PIMException e) {
 		}
+		//		}
 		return allContacts;
 	}
 }
