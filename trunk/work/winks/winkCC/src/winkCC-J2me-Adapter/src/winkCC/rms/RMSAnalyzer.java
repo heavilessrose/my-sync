@@ -17,7 +17,7 @@ public class RMSAnalyzer {
 		void logStart(RecordStore rs);
 	}
 
-	private Logger logger;
+	private static Logger logger;
 
 	public RMSAnalyzer() {
 		this(null);
@@ -27,7 +27,7 @@ public class RMSAnalyzer {
 		this.logger = (logger != null) ? logger : new SystemLogger();
 	}
 
-	public void analyzeAllRecordStores() {
+	public static void analyzeAllRecordStores() {
 		String[] names = RecordStore.listRecordStores();
 
 		for (int i = 0; names != null && i < names.length; ++i) {
@@ -35,7 +35,7 @@ public class RMSAnalyzer {
 		}
 	}
 
-	public void analyzeRs(String rsName) {
+	public static void analyzeRs(String rsName) {
 		RecordStore rs = null;
 
 		try {
@@ -51,7 +51,7 @@ public class RMSAnalyzer {
 		}
 	}
 
-	public synchronized void analyzeRs(RecordStore rs) {
+	public static synchronized void analyzeRs(RecordStore rs) {
 		try {
 			logger.logStart(rs);
 
