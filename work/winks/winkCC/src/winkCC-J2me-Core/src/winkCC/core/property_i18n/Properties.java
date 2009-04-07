@@ -9,7 +9,7 @@ import java.util.Hashtable;
 import winkCC.core.WinksConstants;
 
 /**
- * 系统设置与国际化.
+ * 属性对。
  * 
  * @author WangYinghua
  * 
@@ -43,7 +43,7 @@ public class Properties {
 	public String _version;
 	public String _step;
 
-	//-------------用户状态
+	// -------------用户状态
 	public static byte _userState = 0;
 	/** 未激活 */
 	public static final byte USR_STATE_NONACTIVED = 0;
@@ -56,7 +56,7 @@ public class Properties {
 	/** 禁用 */
 	public static final byte USR_STATE_FORBIDEN = 4;
 
-	//-------------订阅状态
+	// -------------订阅状态
 	public static byte _subscribeState = 0;
 	/** 受限 */
 	public static final byte SUB_STATE_LIMITED = 1;
@@ -67,7 +67,7 @@ public class Properties {
 	/** 订阅者 */
 	public static final byte SUB_STATE_SUBSCRIBER = 4;
 
-	//--------------------------
+	// --------------------------
 
 	/**
 	 * 模块初始化. 软件启动时载入软件设置, 和国际化设置.
@@ -136,11 +136,9 @@ public class Properties {
 		_subscribeState = subscribeState;
 	}
 
-	//---------------------------------------------
-	/** 手机当前语言相关设定 */
-	public static String _locale = "zh-CN";
-	public static String _encoding = "ISO-8859-1";
-	private static Hashtable _messageTable = null;
+	// ---------------------------------------------
+	/** 属性对 */
+	public static Hashtable _propertyTable = null;
 
 	// key和value的分隔符
 	private static final String KEY_VALUE_SEPARATORS = "=: \t\r\n\f";
@@ -152,94 +150,50 @@ public class Properties {
 	private static final String WHITESPACE_CHARS = " \t\r\n\f";
 
 	/**
-	 * 获得locale 或默认locale zh-CN.
-	 * 
-	 * @return
-	 */
-	public static String getLocale() {
-		try {
-			_locale = System.getProperty("microedition.locale");
-		} catch (Exception e) {
-		}
-		return _locale;
-	}
-
-	/**
-	 * 初始化国际化
+	 * 初始化国际化property.
 	 * 
 	 * @param messageBundle
-	 *            国际化文件.
+	 *            property文件.
 	 * @param locale
 	 * @return
 	 */
-	public static boolean initI18nSupport(String messageBundle, String locale) {
+	public static boolean initProperty(String messageBundle, String locale) {
 
-		_messageTable = new Hashtable();
+		_propertyTable = new Hashtable();
 
-		// 保存locale
-		_locale = locale;
+		loadPropertyBundle(WinksConstants.DEFAULT_PROPERTY_MESSAGES_BUNDLE);
+		loadPropertyBundle(messageBundle);
 
-		loadI18nBundle(WinksConstants.DEFAULT_I18N_MESSAGES_BUNDLE);
-		loadI18nBundle(messageBundle);
-
-		return _messageTable != null;
+		return _propertyTable != null;
 	}
 
 	/**
-	 * 载入国际化.
+	 * 载入属性
 	 * 
-	 * @param messageBundle
-	 *            国际化文件的路径(支持绝对路径或只给出文件名).
-	 * @return 读取国际化文件是否成功.
+	 * @param propertyBundle
+	 * @return
 	 */
-	public static boolean loadI18nBundle(String messageBundle) {
-
+	public static boolean loadPropertyBundle(String propertyBundle) {
 		// 相对路径
-		if (messageBundle != null && !messageBundle.startsWith("/")) {
-			messageBundle = new StringBuffer(
-					WinksConstants.DEFAULT_I18N_RES_FOLDER).append(
-					messageBundle).toString();
+		if (propertyBundle != null && !propertyBundle.startsWith("/")) {
+			propertyBundle = new StringBuffer(
+					WinksConstants.DEFAULT_PROPERTY_RES_FOLDER).append(
+					propertyBundle).toString();
 		}
 
 		InputStream inputStream = null;
-		Class clazz = _locale.getClass();
-		try {
 
-			// Construct messageBundle
-			if ((_locale != null) && (_locale.length() > 1)) {
-				int lastIndex = messageBundle.lastIndexOf('.');
-				String prefix = messageBundle.substring(0, lastIndex);
-				String suffix = messageBundle.substring(lastIndex);
-				// replace '-' with '_', some phones returns locales with
-				// '-' instead of '_'. For example Nokia or Motorola
-				_locale = _locale.replace('-', '_');
-				inputStream = clazz
-						.getResourceAsStream(new StringBuffer(prefix).append(
-								'.').append(_locale).append(suffix).toString());
-				if (inputStream == null) {
-					// 没找到资源则 取代zh_CN尝试zh
-					_locale = _locale.substring(0, 2);
-					inputStream = clazz.getResourceAsStream(new StringBuffer(
-							prefix).append('.').append(_locale).append(suffix)
-							.toString());
-				}
+		Class clazz = _propertyTable.getClass();
+		inputStream = clazz.getResourceAsStream(propertyBundle);
+		if (inputStream != null) {
+			try {
+				Properties.loadProperty(inputStream);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			if (inputStream == null) {
-				// if not found or locale is not set, try default locale
-				inputStream = clazz.getResourceAsStream(messageBundle);
-			}
-			if (inputStream != null) {
-				// load messages to messageTable hashtable
-				loadMessages(inputStream);
-			}
-		} catch (UTFDataFormatException e) {
-			System.err
-					.println("I18N Error : *.properties files need to be UTF-8 encoded");
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
-		return _messageTable != null;
+		return _propertyTable != null;
 	}
 
 	/**
@@ -248,15 +202,15 @@ public class Properties {
 	 * @param inStream
 	 * @throws Exception
 	 */
-	private static synchronized void loadMessages(InputStream inStream)
-			throws Exception {
+	public static synchronized Hashtable /* void */loadProperty(
+			InputStream inStream) throws Exception {
 
 		InputStreamReader inputStream = new InputStreamReader(inStream, "UTF-8");
 		while (true) {
-			// Get next line
+			// get next line
 			String line = readLine(inputStream);
 			if (line == null)
-				return;
+				return _propertyTable;
 
 			if (line.length() > 0) {
 
@@ -269,7 +223,7 @@ public class Properties {
 					}
 				}
 
-				// Blank lines are ignored
+				// 忽略空行
 				if (keyStart == len) {
 					continue;
 				}
@@ -338,7 +292,7 @@ public class Properties {
 					// Convert then store key and value
 					key = convertString(key);
 					value = convertString(value);
-					_messageTable.put(key, value);
+					_propertyTable.put(key, value);
 				}
 			}
 		}

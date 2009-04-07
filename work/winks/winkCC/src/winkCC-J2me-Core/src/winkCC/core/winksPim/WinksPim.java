@@ -32,12 +32,4 @@ public class WinksPim {
 		return pair;
 	}
 
-	/**
-	 * 取彩像电话簿中联系人.
-	 * 
-	 * @return
-	 */
-	public WinksContact[] getWinksContacts() {
-
-	}
 }
