@@ -777,7 +777,7 @@ subscriber	订阅者</xs:documentation>
 						<xs:documentation>服务配置</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="clientConfig" type="xs:anyType">
+				<xs:element name="userConfig" type="UserConfigType">
 					<xs:annotation>
 						<xs:documentation>终端配置</xs:documentation>
 					</xs:annotation>
@@ -887,6 +887,92 @@ TVRJek5ETXlOREl6TVRNeU5ETXlOVEV6TWpRek1qUXhNak0wTXpJeE16SXhORFF6TWpNek1qRTBN
 base64url（参见RFC 4648）使用下面两条规则修改标准base64编码：
 1）末尾不加 ’=’ 填充；
 2）将标准base 64中的 ‘+’ 和 ‘/’ 分别替换为 ‘-’ 和 ‘_’</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConfigItemType">
+		<xs:annotation>
+			<xs:documentation>客户端配置项类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="k" type="xs:token">
+				<xs:annotation>
+					<xs:documentation>键</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="v" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>值</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="userConfig" type="UserConfigType">
+		<xs:annotation>
+			<xs:documentation>用户配置信息</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="UserConfigType">
+		<xs:annotation>
+			<xs:documentation>用户配置信息类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="i" type="ConfigItemType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>用户配置项</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="confimMessage" type="ConfimMessageType">
+		<xs:annotation>
+			<xs:documentation>确认通知消息</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ConfimMessageType">
+		<xs:annotation>
+			<xs:documentation>确认通知消息类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mid" type="MessageIdType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>消息项标识。下面列举特殊消息标识：
+1 服务配置
+2 用户配置</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="MessageIdType">
+		<xs:annotation>
+			<xs:documentation>消息标识</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:element name="stat" type="StatType">
+		<xs:annotation>
+			<xs:documentation>用户统计信息</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="StatType">
+		<xs:annotation>
+			<xs:documentation>用户统计信息类型</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>统计开始时间</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>统计截至时间</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="content" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>csv格式的统计内容</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
