@@ -1,4 +1,4 @@
-package winkCC.persistence;
+package winkCC.core.winksPim;
 
 /**
  * 彩像电话本中的联系人.<br>
@@ -7,7 +7,7 @@ package winkCC.persistence;
  * @author WangYinghua
  * 
  */
-public class CcPeople {
+public class WinksContact {
 
 	/**
 	 * 名字

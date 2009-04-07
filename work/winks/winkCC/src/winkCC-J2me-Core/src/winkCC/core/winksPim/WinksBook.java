@@ -1,4 +1,4 @@
-package winkCC.persistence;
+package winkCC.core.winksPim;
 
 import java.util.Hashtable;
 
@@ -8,7 +8,7 @@ import java.util.Hashtable;
  * @author WangYinghua
  * 
  */
-public class CcBook {
+public class WinksBook {
 
 	/**
 	 * 内存中缓存的彩像电话簿. key: name, value: CcPeople对象.
@@ -31,7 +31,7 @@ public class CcBook {
 	 *            电话号码.
 	 * @return
 	 */
-	public CcPeople getCcPeople(String no) {
+	public WinksContact getCcPeople(String no) {
 		return null;
 	}
 
@@ -54,7 +54,7 @@ public class CcBook {
 	 *            彩像电话簿中的联系人.
 	 * @return
 	 */
-	private boolean verifyCcPeople(CcPeople people) {
+	private boolean verifyCcPeople(WinksContact people) {
 		return false;
 	}
 
@@ -80,7 +80,7 @@ public class CcBook {
 	 * 
 	 * @param people
 	 */
-	public void addCcPeople(CcPeople people) {
+	public void addCcPeople(WinksContact people) {
 
 	}
 
@@ -88,7 +88,7 @@ public class CcBook {
 	 * 删除彩像电话簿中一个联系人.<br>
 	 * 实际上只是加入到缓存中并未立即更改彩像电话簿文件. 应在适当的时候将更改写入文件.
 	 */
-	public void deleteCcPeople(CcPeople people) {
+	public void deleteCcPeople(WinksContact people) {
 
 	}
 
