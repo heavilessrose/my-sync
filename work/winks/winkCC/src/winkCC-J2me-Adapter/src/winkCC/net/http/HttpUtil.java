@@ -14,13 +14,13 @@ import javax.microedition.io.HttpConnection;
  */
 public class HttpUtil {
 	/** 可读写的Http连接 */
-	private HttpConnection _conn;
-	private OutputStream _streamOut;
-	private InputStream _streamIn;
+	private static HttpConnection _conn;
+	private static OutputStream _streamOut;
+	private static InputStream _streamIn;
 
-	private boolean _cmwap = false;
+	private static boolean _cmwap = false;
 
-	private boolean isRun = true;
+	private static boolean isRun = true;
 
 	/** 默认缓冲区大小 */
 	private static int BUFFER_LENGTH = 50 * 1024; // 50k
@@ -37,7 +37,7 @@ public class HttpUtil {
 	 * @throws IOException
 	 *             建立连接, 打开输入输出流时
 	 */
-	public void init(String url, boolean cmwap) throws IOException {
+	public static void init(String url, boolean cmwap) throws IOException {
 		close();
 		_cmwap = cmwap;
 		if (url.indexOf("://") == -1) {
@@ -139,12 +139,45 @@ public class HttpUtil {
 		return buffer;
 	}
 
+	public static byte[] get() throws IOException {
+
+		int index = 0;
+		int responseCode = _conn.getResponseCode();
+		System.out.println("responseCode: " + responseCode);
+		_streamIn = _conn.openInputStream();
+		byte[] buffer = null;
+		int size = (int) _conn.getLength();
+		if (size != (-1)) {// 响应大小已知，确定缓冲区大小
+			buffer = new byte[size];
+		} else {// 响应大小未知，设定一个固定大小的缓冲区
+			buffer = new byte[BUFFER_LENGTH];
+		}
+		while (isRun) {
+			// 分段的接收服务器响应的数据, 如果使用固定缓冲区, 超出缓冲区的字节被丢弃.
+			int tmpLen = 0;
+			if (size != -1) {
+				tmpLen = size - index;
+			} else {
+				tmpLen = BUFFER_LENGTH - index;
+			}
+			if (tmpLen <= 0)
+				break;
+			tmpLen = tmpLen > DATA_SEG ? DATA_SEG : tmpLen;
+			_streamIn.read(buffer, index, tmpLen);
+			index += tmpLen;
+
+			// System.out.println("rec: " + index);
+		}
+		System.out.println(new String(buffer));
+		return buffer;
+	}
+
 	/**
 	 * 结束时必须调用.关闭连接, 输入输出流, 注销监听.
 	 * 
 	 * @throws IOException
 	 */
-	public void close() throws IOException {
+	public static void close() throws IOException {
 
 		if (_streamOut != null) {
 			_streamOut.close();
@@ -160,6 +193,9 @@ public class HttpUtil {
 		}
 	}
 
+	/**
+	 * 停止联网操作.
+	 */
 	public void cancel() {
 		isRun = false;
 	}

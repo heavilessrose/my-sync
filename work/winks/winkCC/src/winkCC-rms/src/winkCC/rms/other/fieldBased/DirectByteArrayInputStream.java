@@ -2,9 +2,8 @@ package winkCC.rms.other.fieldBased;
 
 import java.io.*;
 
-// A version of ByteArrayInputStream that lets you
-// replace the underlying byte array.
-
+// A version of ByteArrayInputStream that lets you replace the underlying byte array.
+// 扩展ByteArrayInputStream, 提供替换下层字节数组的能力.
 public class DirectByteArrayInputStream extends ByteArrayInputStream {
 
 	public DirectByteArrayInputStream(byte buf[]) {
@@ -16,6 +15,7 @@ public class DirectByteArrayInputStream extends ByteArrayInputStream {
 	}
 
 	// Resets the array the stream reads from
+	// 重置流的底层缓冲区数组.
 	public synchronized void resetByteArray(byte[] buf) {
 		this.buf = buf;
 		this.pos = 0;
@@ -24,6 +24,7 @@ public class DirectByteArrayInputStream extends ByteArrayInputStream {
 	}
 
 	// Resets the array the stream reads from
+	// 重置流的底层缓冲区数组.
 	public synchronized void resetByteArray(byte[] buf, int offset, int length) {
 		this.buf = buf;
 		this.pos = offset;

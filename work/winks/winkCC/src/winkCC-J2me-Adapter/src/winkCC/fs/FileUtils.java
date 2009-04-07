@@ -20,7 +20,7 @@ public class FileUtils {
 	 * 
 	 * @param fc
 	 */
-	private void closeFc(FileConnection fc) {
+	private static void closeFc(FileConnection fc) {
 		try {
 			fc.close();
 			fc = null;
@@ -34,7 +34,7 @@ public class FileUtils {
 	 * 
 	 * @param path
 	 */
-	private void executeMkDirs(final String path) {
+	private static void executeMkDirs(final String path) {
 		new Thread() {
 			public void run() {
 				mkDirs(path);
@@ -47,7 +47,7 @@ public class FileUtils {
 	 * 
 	 * @param path
 	 */
-	private void executeMkFile(final String path) {
+	private static void executeMkFile(final String path) {
 		new Thread() {
 			public void run() {
 				mkFile(path);
@@ -61,7 +61,7 @@ public class FileUtils {
 	 * @param filePath
 	 *            文件完整路径.
 	 */
-	public void executeCreateFile(final String filePath) {
+	public static void executeCreateFile(final String filePath) {
 		new Thread() {
 			public void run() {
 				createFile(filePath);
@@ -74,7 +74,7 @@ public class FileUtils {
 	 * 
 	 * @param filePath
 	 */
-	private void createFile(String filePath) {
+	private static void createFile(String filePath) {
 		if (isDir(filePath)) {
 			mkDirs(filePath);
 		} else {
@@ -94,7 +94,7 @@ public class FileUtils {
 	 * 
 	 * @param filePath
 	 */
-	private void mkFile(String filePath) {
+	private static void mkFile(String filePath) {
 		if (!filePath.endsWith("/")) {
 			FileConnection fc = null;
 			try {
@@ -116,7 +116,7 @@ public class FileUtils {
 	 * @param fileName
 	 * @param data
 	 */
-	public void executeWriteFile(final String fileName, final byte[] data) {
+	public static void executeWriteFile(final String fileName, final byte[] data) {
 		new Thread(new Runnable() {
 
 			public void run() {
@@ -133,7 +133,7 @@ public class FileUtils {
 	 * @param data
 	 *            要写入的数据.
 	 */
-	private void writeToFile(String filePath, byte[] data) {
+	public static void writeToFile(String filePath, byte[] data) {
 		if (!filePath.endsWith("/")) {
 			FileConnection fc = null;
 			DataOutputStream out = null;
@@ -172,7 +172,8 @@ public class FileUtils {
 	 * @param buffer
 	 *            将文件读入该buffer.
 	 */
-	public void executeReadFile(final String filePath, final byte[] buffer) {
+	public static void executeReadFile(final String filePath,
+			final byte[] buffer) {
 		new Thread(new Runnable() {
 			public void run() {
 				readFile(filePath, buffer);
@@ -189,7 +190,7 @@ public class FileUtils {
 	 *            文件完整路径.
 	 * @param buffer
 	 */
-	private void readFile(String fileName, byte[] buffer) {
+	private static void readFile(String fileName, byte[] buffer) {
 		if (!fileName.endsWith("/")) {
 			FileConnection fc = null;
 			InputStream in = null;
@@ -210,7 +211,7 @@ public class FileUtils {
 	 *            字节数组.
 	 * @return 二进制的16进制String.
 	 */
-	final public String toHex(byte[] data) {
+	final public static String toHex(byte[] data) {
 		StringBuffer buf = new StringBuffer();
 		for (int i = 0; i < data.length; i++) {
 			int intData = (int) data[i] & 0xFF;
@@ -234,7 +235,7 @@ public class FileUtils {
 	 *         files and directories in the directory are not included in the
 	 *         returned list.
 	 */
-	public Enumeration listFiles(String dirPath) {
+	public static Enumeration listFiles(String dirPath) {
 		Enumeration files = null;
 		if (dirPath.endsWith("/")) {
 			if (exists(dirPath)) {
@@ -267,7 +268,7 @@ public class FileUtils {
 	 *         has zero length if the directory is empty or no files and/or
 	 *         directories are found matching the given filter.
 	 */
-	public Enumeration listFiles(String dirPath, String wildcard,
+	public static Enumeration listFiles(String dirPath, String wildcard,
 			boolean showHidden) {
 		Enumeration files = null;
 		try {
@@ -287,7 +288,7 @@ public class FileUtils {
 	 *            文件完整路径及名字.
 	 * @return true: 是文件夹. false: 非文件夹.
 	 */
-	public boolean isDir(String path) {
+	public static boolean isDir(String path) {
 		FileConnection fc = null;
 		try {
 			fc = (FileConnection) Connector.open("file:///" + path);
@@ -312,7 +313,7 @@ public class FileUtils {
 	 * @param filePath
 	 *            文件路径.
 	 */
-	public void executeDelete(final String filePath) {
+	public static void executeDelete(final String filePath) {
 		new Thread(new Runnable() {
 
 			public void run() {
@@ -326,7 +327,7 @@ public class FileUtils {
 	 * 
 	 * @param name
 	 */
-	private void delete(String name) {
+	public static void delete(String name) {
 		try {
 			FileConnection fc = (FileConnection) Connector.open("file:///"
 					+ name);
@@ -344,7 +345,7 @@ public class FileUtils {
 	 * @param newName
 	 *            新文件名.
 	 */
-	public void rename(String filePath, String newName) {
+	public static void rename(String filePath, String newName) {
 		try {
 			FileConnection fc = (FileConnection) Connector.open("file:///"
 					+ filePath);
@@ -356,11 +357,11 @@ public class FileUtils {
 
 	///////////////////
 	// 解析后的文件路径
-	private String path = null;
+	private static String path = null;
 	// 解析后的文件名
-	private String fileName = null;
+	private static String fileName = null;
 	// 解析后的父目录
-	private String parentPath = null;
+	private static String parentPath = null;
 
 	/**
 	 * 分解文件路径.
@@ -368,7 +369,7 @@ public class FileUtils {
 	 * @param pathName
 	 *            文件或文件夹完整路径.
 	 */
-	private void parsePath(String pathName) {
+	private static void parsePath(String pathName) {
 
 		int pathIndex = 0;
 		int parentPathIndex = 0;
@@ -400,7 +401,7 @@ public class FileUtils {
 	 * @param pathName
 	 * @return 路径
 	 */
-	private String getPathString(String pathName) {
+	private static String getPathString(String pathName) {
 		parsePath(pathName);
 		return path;
 	}
@@ -412,7 +413,7 @@ public class FileUtils {
 	 *            包括文件名的完整路径.
 	 * @return 文件名.
 	 */
-	private String getFileNameString(String pathName) {
+	private static String getFileNameString(String pathName) {
 		parsePath(pathName);
 		return fileName;
 	}
@@ -424,7 +425,7 @@ public class FileUtils {
 	 *            文件或文件夹路径, 文件夹路径应以"/" 结束.
 	 * @return String 返回文件或文件夹的上一层完整路径.
 	 */
-	private String getParentPath(String dirpath) {
+	private static String getParentPath(String dirpath) {
 		parsePath(dirpath);
 		return parentPath;
 	}
@@ -435,7 +436,7 @@ public class FileUtils {
 	 * @param dirPath
 	 * @return true or false
 	 */
-	public boolean exists(String dirPath) {
+	public static boolean exists(String dirPath) {
 		FileConnection fc = null;
 		try {
 			fc = (FileConnection) Connector.open("file:///" + dirPath);
@@ -453,7 +454,7 @@ public class FileUtils {
 	 * 
 	 * @return
 	 */
-	public boolean sdCardExists() {
+	public static boolean sdCardExists() {
 		return exists("file:///" + sdCardRoot);
 	}
 
@@ -464,7 +465,7 @@ public class FileUtils {
 	 *            文件夹结尾应包含"/", 如:"e:/11/"
 	 * @return 失败返回false, 创建成功返回true.
 	 */
-	private boolean mkDir(String dirPath) {
+	private static boolean mkDir(String dirPath) {
 		FileConnection fc = null;
 		try {
 			fc = (FileConnection) Connector.open("file:///" + dirPath);
@@ -483,7 +484,7 @@ public class FileUtils {
 	 *            文件夹结尾应包含"/", 如:"e:/11/22/33/"
 	 * @return 失败返回false, 创建成功返回true.
 	 */
-	private boolean mkDirs(String dirPath) {
+	private static boolean mkDirs(String dirPath) {
 		if (exists(dirPath))
 			return true;
 		if (mkDir(dirPath))

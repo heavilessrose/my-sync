@@ -6,9 +6,6 @@ import javax.microedition.lcdui.*;
 import javax.microedition.midlet.*;
 import javax.microedition.rms.*;
 
-// A simple MIDlet for testing RMS mappings
-// done using the FieldBasedStore class.
-
 public class RMSMappings extends MIDlet implements CommandListener {
 
 	private Display display;

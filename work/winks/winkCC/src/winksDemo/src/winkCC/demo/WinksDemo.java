@@ -25,21 +25,39 @@ public class WinksDemo extends MIDlet {
 
 	public WinksDemo() {
 		display = Display.getDisplay(this);
+		//		init();
 	}
 
-	private void init() {
+	int deltaTime = 300 * 1000;
+	/**
+	 * 下次启动的时间
+	 */
+	long nextScheduledTime = 0;
 
-		register();
-		register();
+	private void init() {
 		DbUtils.init("rs_winksDemo");
-		DbUtils.add(Constants.NEXT_SCHEDULED_TIME);
-		DbUtils.writeLong(Constants.NEXT_SCHEDULED_TIME, nextScheduledTime);
-		RMSAnalyzer.analyzeAllRecordStores();
+		int id = DbUtils.add();
+		form.append(id + "");
+		if (DbUtils.existsRecord(Constants.RMS_NEXT_SCHEDULED_TIME)) {
+
+			register();
+			form.append("first: " + nextScheduledTime);
+
+			register();
+			form.append("write to rms: " + nextScheduledTime);
+			DbUtils.writeLong(Constants.RMS_NEXT_SCHEDULED_TIME,
+					nextScheduledTime);
+			RMSAnalyzer.analyzeAllRecordStores();
+		}
+
+		nextScheduledTime = DbUtils.getLong(Constants.RMS_NEXT_SCHEDULED_TIME);
+		form.append("rms: " + nextScheduledTime);
+
 	}
 
 	protected void destroyApp(boolean unconditional)
 			throws MIDletStateChangeException {
-		// register();
+		register();
 		notifyDestroyed();
 	}
 
@@ -48,34 +66,38 @@ public class WinksDemo extends MIDlet {
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
-		long now = System.currentTimeMillis();
-		System.out.println("now: " + now);
-		System.out.println("next: " + nextScheduledTime);
-		System.out.println("cha: " + (nextScheduledTime - now));
-		if (FileUtils.exists("e:/tests/a1.txt"))
-			FileUtils.delete("e:/tests/a1.txt");
+		//		long now = System.currentTimeMillis();
+		//		System.out.println("now: " + now);
+		//		System.out.println("next: " + nextScheduledTime);
+		//		System.out.println("cha: " + (nextScheduledTime - now));
+		//		if (FileUtils.exists("e:/tests/a1.txt"))
+		//			FileUtils.delete("e:/tests/a1.txt");
 		if (isTimerUp) {
+			display.setCurrent(null);
+			display = null;
+			form = null;
+
 			new Thread() {
 				public void run() {
 					work();
 				}
 			}.start();
 		} else {
+
 			display.setCurrent(form);
-			new Thread() {
-				public void run() {
-					work();
-				}
-			}.start();
+			//			new Thread() {
+			//				public void run() {
+			//					work();
+			//				}
+			//			}.start();
+
+			display.flashBacklight(1000);
+			display.vibrate(1000);
+			startTimer();
 		}
 	}
 
 	// ///////////////////
-	int deltaTime = 30 * 1000;
-	/**
-	 * 下次启动的时间
-	 */
-	long nextScheduledTime = 0;
 
 	// int waitTime =
 
@@ -91,8 +113,8 @@ public class WinksDemo extends MIDlet {
 			nextScheduledTime = PushRegistry.registerAlarm(className, alarm
 					.getTime()
 					+ deltaTime);
-			System.out.println(nextScheduledTime);
-			form.append("" + nextScheduledTime);
+		} catch (SecurityException e) {
+			notifyDestroyed();
 		} catch (ConnectionNotFoundException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -102,16 +124,15 @@ public class WinksDemo extends MIDlet {
 	}
 
 	void work() {
-		HttpUtil net = new HttpUtil();
 		try {
-			net.init("www.google.com", false);
-			byte[] data = net.get();
-			net.close();
+			HttpUtil.init("www.google.com", false);
+			byte[] data = HttpUtil.get();
+			HttpUtil.close();
 			form.append(new String(data));
 
 			FileUtils.writeToFile("e:/tests/a1.txt", data);
 
-			// exit();
+			exit();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -129,27 +150,45 @@ public class WinksDemo extends MIDlet {
 	// //////////////
 	Timer timer = new Timer();
 	private TimerTask task;
+	int i = 0;
 
 	private void startTimer() {
-		final Date date = new Date();
 		task = new TimerTask() {
 			public void run() {
-				long cur = date.getTime();
-				System.out.println(cur);
-				if (nextScheduledTime == cur) {
-					register();
+				if (i > 10) {
+					stopTimer();
+
+					form.append("程序即将退出, 10秒后重新启动");
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					exit();
 				}
+				form.deleteAll();
+				String imei = System.getProperty("com.sonyericsson.imei");
+				String imsi = System
+						.getProperty("com.sonyericsson.sim.subscribernumber");
+				form.append("imei: " + imei);
+				form.append("imsi: " + imsi);
+				form.append("" + i++);
 			}
 		};
 
-		// timer.schedule(task, firstTime, period);
+		timer.schedule(task, 1000, 1000);
 	}
 
 	private void stopTimer() {
+		if (task != null) {
+			task.cancel();
+			task = null;
+		}
 		if (timer != null) {
 			// System.out.println("Stopping the timer");
 			// form.append("Stopping the timer");
 			timer.cancel();
+			timer = null;
 		}
 	}
 
