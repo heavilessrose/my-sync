@@ -4,12 +4,12 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 /**
- * 联系人封装
+ * 手机电话簿联系人封装
  * 
  * @author WangYinghua
  * 
  */
-public class People {
+public class PhoneContact {
 	/**
 	 * 联系人名字
 	 */
@@ -31,15 +31,34 @@ public class People {
 	 */
 	private boolean isChosen = true;
 
+	/** 绑定号码哪个电话号码的规则 */
 	private NumberFilter _filter = null;
 
-	public People(String name, Hashtable num) {
+	/**
+	 * 手机联系人封装构造方法.
+	 * 
+	 * @param name
+	 *            名字
+	 * @param nums
+	 *            所有电话号码
+	 */
+	public PhoneContact(String name, Hashtable nums) {
 		_name = name;
-		_allNumbers = num;
+		_allNumbers = nums;
 	}
 
-	public People(String name, Hashtable num, String w_path) {
-		this(name, num);
+	/**
+	 * 手机联系人封装构造方法.
+	 * 
+	 * @param name
+	 *            名字
+	 * @param nums
+	 *            所有电话号码
+	 * @param w_path
+	 *            大头贴地址
+	 */
+	public PhoneContact(String name, Hashtable nums, String w_path) {
+		this(name, nums);
 		_w_path = w_path;
 	}
 
@@ -64,11 +83,11 @@ public class People {
 	/**
 	 * 设置该联系人的所有电话号码.
 	 * 
-	 * @param numTable
+	 * @param nums
 	 *            包含所有联系人号码的hashtable
 	 */
-	public void setAllNumber(Hashtable numTable) {
-		_allNumbers = numTable;
+	public void setAllNumber(Hashtable nums) {
+		_allNumbers = nums;
 	}
 
 	/**
@@ -115,16 +134,21 @@ public class People {
 	}
 
 	/**
-	 * 得到与业务相关的一个电话号码.
+	 * 得到业务绑定的一个电话号码.
 	 * 
 	 * @param filter
-	 * @return 得到主要号码.
+	 * @return 得到绑定的电话号码.
 	 */
 	public String getPrimaryNum(NumberFilter filter) {
 		filter.filter(_allNumbers);
 		return _primaryNum;
 	}
 
+	/**
+	 * 设定该绑定哪个号码的规则过滤器.
+	 * 
+	 * @param filter
+	 */
 	public void setFilter(NumberFilter filter) {
 		_filter = filter;
 	}
@@ -137,6 +161,9 @@ public class People {
 	}
 
 	//////////////////debug
+	/**
+	 * debug时用于得到该联系人的打印信息.
+	 */
 	public String toString() {
 		return "name: " + getName() + "\n" + "numbers: " + getNumberString();
 	}

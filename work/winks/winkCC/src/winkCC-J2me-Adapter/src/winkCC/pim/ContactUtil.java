@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 package winkCC.pim;
 
 import java.util.Date;
@@ -14,6 +10,12 @@ import javax.microedition.pim.PIM;
 import javax.microedition.pim.PIMException;
 import javax.microedition.pim.PIMItem;
 
+/**
+ * 操作手机电话本的方法封装.
+ * 
+ * @author WangYinghua
+ * 
+ */
 public class ContactUtil {
 
 	/**
@@ -23,7 +25,7 @@ public class ContactUtil {
 	/**
 	 * 所有联系人
 	 */
-	Hashtable allPeople = new Hashtable();
+	Hashtable allContacts = new Hashtable();
 
 	/*
 	 * 所爱平台对于拥有多个号码的联系人, 有default number这个属性(原属性与128取与).
@@ -144,11 +146,11 @@ public class ContactUtil {
 	}
 
 	/**
-	 * 打开通讯录.
+	 * 得到手机中的所有通讯录.
 	 * 
 	 * @return ContactList[] 手机所有通讯录数组.
 	 */
-	private ContactList[] getContactList() {
+	private ContactList[] getPhoneBooks() {
 		if (contactLists != null) {
 			return contactLists;
 		} else {
@@ -194,8 +196,9 @@ public class ContactUtil {
 	}
 
 	/**
-	 * 整理名字字段的显示值. 默认使用Contact.FORMATTED_NAME, 如果此字段不存在则给联系人建立该字段:
-	 * Contact.NAME_GIVEN + " " + Contact.NAME_FAMILY
+	 * 整理名字字段的显示值. <br>
+	 * 默认使用Contact.FORMATTED_NAME, 如果此字段不存在则给联系人建立该字段: Contact.NAME_GIVEN + " "
+	 * + Contact.NAME_FAMILY
 	 * 
 	 * @param contact
 	 */
@@ -255,7 +258,7 @@ public class ContactUtil {
 	 * @param contact
 	 * @return 包含联系人所有号码的Hashtable, 如:mobile:1580000
 	 */
-	private Hashtable getAllNumber(Contact contact) {
+	private Hashtable getAllNumbers(Contact contact) {
 		Hashtable numbers = null;
 		if (contact.getPIMList().isSupportedField(Contact.TEL)) {
 			numbers = new Hashtable();
@@ -289,7 +292,7 @@ public class ContactUtil {
 	}
 
 	/**
-	 * 得到指定联系人的指定电话号码.
+	 * 得到指定联系人的指定属性的电话号码.
 	 * 
 	 * @param people
 	 *            指定联系人.
@@ -297,7 +300,7 @@ public class ContactUtil {
 	 *            指定电话号码,如: mobile, home, work, fax, other.
 	 * @return 联系人号码string
 	 */
-	public String getNumber(People people, String attr) {
+	public String getNumber(PhoneContact people, String attr) {
 		return people.getNumber(attr);
 	}
 
@@ -311,7 +314,7 @@ public class ContactUtil {
 	 * @return 联系人号码String
 	 */
 	public String getNumber(String name, String attr) {
-		return getNumber(getPeople(name), attr);
+		return getNumber(getPhoneContact(name), attr);
 	}
 
 	/**
@@ -320,7 +323,7 @@ public class ContactUtil {
 	 * @param people
 	 * @return 联系人大头贴地址String.
 	 */
-	public String getWPath(People people) {
+	public String getWPath(PhoneContact people) {
 		return people.getWPath();
 	}
 
@@ -331,7 +334,7 @@ public class ContactUtil {
 	 * @return 联系人大头贴String.
 	 */
 	public String getWPath(String name) {
-		return getWPath(getPeople(name));
+		return getWPath(getPhoneContact(name));
 	}
 
 	/**
@@ -342,7 +345,7 @@ public class ContactUtil {
 	 */
 	public void setWPath(String name, String wpath) {
 
-		contactLists = getContactList();
+		contactLists = getPhoneBooks();
 		for (int i = 0; i < contactLists.length; i++) {
 			// 遍历所有通讯录, 得到所有联系人
 			try {
@@ -375,29 +378,29 @@ public class ContactUtil {
 			}
 		}
 
-		People people = getPeople(name);
-		people.setWPath(wpath);
+		PhoneContact phonecontact = getPhoneContact(name);
+		phonecontact.setWPath(wpath);
 		// 更新 allPeople
-		if (allPeople.size() <= 0)
-			getAllPeople();
-		allPeople.remove(name);
-		allPeople.put(name, people);
+		if (allContacts.size() <= 0)
+			getAllPhoneContacts();
+		allContacts.remove(name);
+		allContacts.put(name, phonecontact);
 
 		System.out.println("set wpath success");
 	}
 
 	/**
-	 * 根据名字得到People对象.
+	 * 根据名字得到PhoneContact对象.
 	 * 
 	 * @param name
 	 * @return 联系人People对象
 	 */
-	public People getPeople(String name) {
-		People people = null;
-		if (getAllPeople().containsKey(name)) {
-			people = (People) allPeople.get(name);
+	public PhoneContact getPhoneContact(String name) {
+		PhoneContact phoneContact = null;
+		if (getAllPhoneContacts().containsKey(name)) {
+			phoneContact = (PhoneContact) allContacts.get(name);
 		}
-		return people;
+		return phoneContact;
 	}
 
 	//	/**
@@ -444,39 +447,39 @@ public class ContactUtil {
 	 * 
 	 * @param contact
 	 */
-	private String getWPath(Contact contact) {
-		String wpath = null;
+	private String getPicPath(Contact contact) {
+		String path = null;
 		if (contact.getPIMList().isSupportedField(Contact.PHOTO_URL)) {
 			int count = contact.countValues(Contact.PHOTO_URL);
 			if (count > 0)
 				for (int i = 0; i < count; i++) {
-					wpath = contact.getString(Contact.PHOTO_URL, 0);
+					path = contact.getString(Contact.PHOTO_URL, 0);
 				}
 		}
-		if (wpath == null || wpath == "")
-			wpath = "";
-		return wpath;
+		if (path == null || path == "")
+			path = "";
+		return path;
 	}
 
 	/**
 	 * 得到手机话簿中所有联系人.
 	 * 
-	 * @return 包含所有联系人people对象的Hashtable
+	 * @return 包含所有PhoneContact对象的Hashtable
 	 */
-	public Hashtable getAllPeople() {
-		if (allPeople != null && allPeople.size() > 0) {
-			return allPeople;
+	public Hashtable getAllPhoneContacts() {
+		if (allContacts != null && allContacts.size() > 0) {
+			return allContacts;
 		}
 		synchronized (ContactUtil.this) {
 			try {
 				// 清空items
-				if (!allPeople.isEmpty())
-					allPeople.clear();
+				if (!allContacts.isEmpty())
+					allContacts.clear();
 
 				String showName = null;
 				Hashtable allNumber = new Hashtable();
 				String wPath = null;
-				contactLists = getContactList();
+				contactLists = getPhoneBooks();
 				for (int i = 0; i < contactLists.length; i++) {
 					// 遍历所有通讯录, 得到所有联系人
 					for (Enumeration items = contactLists[i].items(); items
@@ -484,19 +487,19 @@ public class ContactUtil {
 						Contact item = (Contact) items.nextElement();
 
 						showName = getDisplayName(item);
-						allNumber = getAllNumber(item);
-						wPath = getWPath(item);
+						allNumber = getAllNumbers(item);
+						wPath = getPicPath(item);
 						if (showName == null) {
 							showName = "<Incomplete data>";
 						}
-						allPeople.put(showName, new People(showName, allNumber,
-								wPath));
+						allContacts.put(showName, new PhoneContact(showName,
+								allNumber, wPath));
 					}
-					System.out.println("contact count: " + allPeople.size());
+					System.out.println("contact count: " + allContacts.size());
 				}
 			} catch (PIMException e) {
 			}
 		}
-		return allPeople;
+		return allContacts;
 	}
 }
