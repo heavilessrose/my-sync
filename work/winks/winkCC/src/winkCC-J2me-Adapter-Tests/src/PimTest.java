@@ -10,7 +10,7 @@ import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
 import winkCC.pim.ContactUtil;
-import winkCC.pim.People;
+import winkCC.pim.PhoneContact;
 
 public class PimTest extends MIDlet implements CommandListener {
 	Display display = null;
@@ -84,12 +84,12 @@ public class PimTest extends MIDlet implements CommandListener {
 			}.start();
 		} else if (cmd == showContacts) {
 			new Thread() {
-				People people = null;
+				PhoneContact people = null;
 
 				public void run() {
-					for (Enumeration peoples = util.getAllPeople().elements(); peoples
+					for (Enumeration peoples = util.getAllPhoneContacts().elements(); peoples
 							.hasMoreElements();) {
-						people = (People) peoples.nextElement();
+						people = (PhoneContact) peoples.nextElement();
 						form.append(people.toString());
 					}
 				}
@@ -98,7 +98,7 @@ public class PimTest extends MIDlet implements CommandListener {
 		} else if (cmd == showPeople) {
 			new Thread() {
 				public void run() {
-					People people = util.getPeople(name.getString());
+					PhoneContact people = util.getPhoneContact(name.getString());
 					String nums = util.getNumber(people, attr.getString());
 					System.out.println(people.toString());
 					num.setString(nums);
