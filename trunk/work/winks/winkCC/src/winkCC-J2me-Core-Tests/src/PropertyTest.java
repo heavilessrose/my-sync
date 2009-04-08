@@ -89,7 +89,7 @@ public class PropertyTest extends MIDlet implements CommandListener {
 			form.append("smsAddr: " + dd.get("smsAddr"));
 		} else if (cmd == readI18N) {
 			I18n.initI18nProperty(WinksConstants.DEFAULT_I18N_MESSAGES_BUNDLE,
-					"zh-CN");
+					"zh-TW");
 			Hashtable dd = I18n._messageTable;
 			form.append("VALIDATE: " + dd.get("VALIDATE"));
 			form.append("CANCEL: " + dd.get("CANCEL"));
