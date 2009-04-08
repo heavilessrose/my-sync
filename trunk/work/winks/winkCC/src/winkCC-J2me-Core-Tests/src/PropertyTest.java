@@ -21,7 +21,7 @@ public class PropertyTest extends MIDlet implements CommandListener {
 	Form form = null;
 	final Command readSettings = new Command("readSettings", Command.OK, 1);
 	final Command readI18N = new Command("readI18N", Command.OK, 1);
-	final Command write = new Command("write", Command.OK, 1);
+	final Command clear = new Command("clear", Command.OK, 1);
 	final Command read = new Command("read", Command.OK, 1);
 	final Command list = new Command("list", Command.OK, 1);
 	final Command mkFile = new Command("mkFile", Command.OK, 1);
@@ -66,7 +66,7 @@ public class PropertyTest extends MIDlet implements CommandListener {
 		System.out.println("startApp");
 		form.addCommand(readSettings);
 		form.addCommand(readI18N);
-		form.addCommand(write);
+		form.addCommand(clear);
 		form.addCommand(read);
 		form.addCommand(list);
 		form.addCommand(mkFile);
@@ -81,21 +81,20 @@ public class PropertyTest extends MIDlet implements CommandListener {
 
 	public void commandAction(Command cmd, Displayable disp) {
 		if (cmd == readSettings) {
-			Properties
-					.loadPropertyBundle(WinksConstants.DEFAULT_PROPERTY_MESSAGES_BUNDLE);
-			Hashtable dd = Properties._propertyTable;
+			Hashtable dd = Properties
+					.initProperty(WinksConstants.DEFAULT_PROPERTY_MESSAGES_BUNDLE);
 			form.append("confServer: " + dd.get("confServer"));
 			form.append("commServer: " + dd.get("commServer"));
 			form.append("ccServer: " + dd.get("ccServer"));
 			form.append("smsAddr: " + dd.get("smsAddr"));
 		} else if (cmd == readI18N) {
 			I18n.initI18nProperty(WinksConstants.DEFAULT_I18N_MESSAGES_BUNDLE,
-					"locale");
+					"zh-CN");
 			Hashtable dd = I18n._messageTable;
 			form.append("VALIDATE: " + dd.get("VALIDATE"));
 			form.append("CANCEL: " + dd.get("CANCEL"));
-		} else if (cmd == write) {
-
+		} else if (cmd == clear) {
+			form.deleteAll();
 		} else if (cmd == read) {
 
 		} else if (cmd == list) {
