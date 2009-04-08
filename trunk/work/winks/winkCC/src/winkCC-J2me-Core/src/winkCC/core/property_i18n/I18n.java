@@ -2,6 +2,7 @@ package winkCC.core.property_i18n;
 
 import java.io.InputStream;
 import java.io.UTFDataFormatException;
+import java.io.UnsupportedEncodingException;
 import java.util.Hashtable;
 
 import winkCC.core.WinksConstants;
@@ -29,15 +30,23 @@ public class I18n {
 	}
 
 	/**
-	 * 初始化国际化property.
+	 * 初始化国际化property.<br>
+	 * 处理国际化只应调用此方法.
 	 * 
 	 * @param messageBundle
 	 *            property文件.
 	 * @param locale
-	 * @return
+	 *            locale需要提供相应的如messages.cn.properties的属性文件.
+	 * @return 包含读取到的国际化文件中的所有属性对的Hashtable. 出错返回null.
 	 */
-	public static boolean initI18nProperty(String messageBundle, String locale) {
+	public static Hashtable initI18nProperty(String messageBundle, String locale) {
 
+		if (_messageTable != null) {
+			if (!_messageTable.isEmpty())
+				_messageTable.clear();
+			if (_messageTable != null)
+				_messageTable = null;
+		}
 		_messageTable = new Hashtable();
 
 		// 保存locale
@@ -46,7 +55,10 @@ public class I18n {
 		loadI18nBundle(WinksConstants.DEFAULT_I18N_MESSAGES_BUNDLE);
 		loadI18nBundle(messageBundle);
 
-		return _messageTable != null;
+		if (_messageTable != null && !_messageTable.isEmpty())
+			return _messageTable;
+		else
+			return null;
 	}
 
 	/**
@@ -56,7 +68,7 @@ public class I18n {
 	 *            property文件的路径(支持绝对路径或只给出文件名).
 	 * @return 读取property文件是否成功.
 	 */
-	public static boolean loadI18nBundle(String messageBundle) {
+	private static boolean loadI18nBundle(String messageBundle) {
 		// 相对路径
 		if (messageBundle != null && !messageBundle.startsWith("/")) {
 			messageBundle = new StringBuffer(
@@ -65,16 +77,15 @@ public class I18n {
 		}
 
 		InputStream inputStream = null;
+		// 用于获取资源流.
 		Class clazz = _locale.getClass();
 		try {
-
-			// Construct messageBundle
 			if ((_locale != null) && (_locale.length() > 1)) {
 				int lastIndex = messageBundle.lastIndexOf('.');
 				String prefix = messageBundle.substring(0, lastIndex);
 				String suffix = messageBundle.substring(lastIndex);
-				// replace '-' with '_', some phones returns locales with
-				// '-' instead of '_'. For example Nokia or Motorola
+
+				// Nokia和Moto返回的locale使用"_", 所以统一把"-"替换为"_"
 				_locale = _locale.replace('-', '_');
 				inputStream = clazz
 						.getResourceAsStream(new StringBuffer(prefix).append(
@@ -92,12 +103,11 @@ public class I18n {
 				inputStream = clazz.getResourceAsStream(messageBundle);
 			}
 			if (inputStream != null) {
-				// load messages to messageTable hashtable
 				_messageTable = Properties.loadProperty(inputStream);
 			}
 		} catch (UTFDataFormatException e) {
 			System.err
-					.println("Property Error : *.properties files need to be UTF-8 encoded");
+					.println("I18N Error : *.properties files need to be UTF-8 encoded");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

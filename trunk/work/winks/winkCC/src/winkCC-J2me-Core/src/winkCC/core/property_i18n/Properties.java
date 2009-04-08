@@ -3,7 +3,6 @@ package winkCC.core.property_i18n;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UTFDataFormatException;
 import java.util.Hashtable;
 
 import winkCC.core.WinksConstants;
@@ -137,6 +136,7 @@ public class Properties {
 	}
 
 	// ---------------------------------------------
+	String res = "test";
 	/** 属性对 */
 	public static Hashtable _propertyTable = null;
 
@@ -150,25 +150,35 @@ public class Properties {
 	private static final String WHITESPACE_CHARS = " \t\r\n\f";
 
 	/**
-	 * 初始化国际化property.
+	 * 初始化property.<br>
+	 * 处理属性文件只应调用这个方法.
 	 * 
 	 * @param messageBundle
 	 *            property文件.
 	 * @param locale
 	 * @return
 	 */
-	public static boolean initProperty(String messageBundle, String locale) {
+	public static Hashtable initProperty(String messageBundle) {
 
+		if (_propertyTable != null) {
+			if (!_propertyTable.isEmpty())
+				_propertyTable.clear();
+			if (_propertyTable != null)
+				_propertyTable = null;
+		}
 		_propertyTable = new Hashtable();
 
 		loadPropertyBundle(WinksConstants.DEFAULT_PROPERTY_MESSAGES_BUNDLE);
 		loadPropertyBundle(messageBundle);
 
-		return _propertyTable != null;
+		if (_propertyTable != null && !_propertyTable.isEmpty())
+			return _propertyTable;
+		else
+			return null;
 	}
 
 	/**
-	 * 载入属性
+	 * 载入属性bundle.
 	 * 
 	 * @param propertyBundle
 	 * @return
@@ -183,7 +193,7 @@ public class Properties {
 
 		InputStream inputStream = null;
 
-		Class clazz = _propertyTable.getClass();
+		Class clazz = WHITESPACE_CHARS.getClass();
 		inputStream = clazz.getResourceAsStream(propertyBundle);
 		if (inputStream != null) {
 			try {
@@ -204,17 +214,16 @@ public class Properties {
 	 */
 	public static synchronized Hashtable /* void */loadProperty(
 			InputStream inStream) throws Exception {
-
 		InputStreamReader inputStream = new InputStreamReader(inStream, "UTF-8");
 		while (true) {
-			// get next line
+			// 去下一行
 			String line = readLine(inputStream);
 			if (line == null)
 				return _propertyTable;
 
 			if (line.length() > 0) {
 
-				// Find start of key
+				// key的起始位置
 				int len = line.length();
 				int keyStart;
 				for (keyStart = 0; keyStart < len; keyStart++) {
@@ -228,7 +237,7 @@ public class Properties {
 					continue;
 				}
 
-				// 递归找到一行所有数据
+				// 找到一行所有数据
 				char firstChar = line.charAt(keyStart);
 				if ((firstChar != '#') && (firstChar != '!')) {
 					while (continueLine(line)) {
@@ -237,7 +246,6 @@ public class Properties {
 							nextLine = "";
 						}
 						String loppedLine = line.substring(0, len - 1);
-						// Advance beyond whitespace on new line
 						int startIndex;
 						for (startIndex = 0; startIndex < nextLine.length(); startIndex++) {
 							if (WHITESPACE_CHARS.indexOf(nextLine
@@ -251,7 +259,7 @@ public class Properties {
 						len = line.length();
 					}
 
-					// Find separation between key and value
+					// 找到key与value之间的分隔符位置
 					int separatorIndex;
 					for (separatorIndex = keyStart; separatorIndex < len; separatorIndex++) {
 						char currentChar = line.charAt(separatorIndex);
@@ -262,7 +270,7 @@ public class Properties {
 						}
 					}
 
-					// Skip over whitespace after key if any
+					// 跳过key后的white space
 					int valueIndex;
 					for (valueIndex = separatorIndex; valueIndex < len; valueIndex++) {
 						if (WHITESPACE_CHARS.indexOf(line.charAt(valueIndex)) == -1) {
@@ -270,7 +278,7 @@ public class Properties {
 						}
 					}
 
-					// Skip over one non whitespace key value separators if any
+					// 跳过非white space分隔符
 					if (valueIndex < len) {
 						if (STRICT_KEY_VALUE_SEPARTORS.indexOf(line
 								.charAt(valueIndex)) != -1) {
@@ -278,7 +286,7 @@ public class Properties {
 						}
 					}
 
-					// Skip over white space after other separators if any
+					// 跳过分隔符后的white space
 					while (valueIndex < len) {
 						if (WHITESPACE_CHARS.indexOf(line.charAt(valueIndex)) == -1) {
 							break;
@@ -289,7 +297,6 @@ public class Properties {
 					String value = (separatorIndex < len) ? line.substring(
 							valueIndex, len) : "";
 
-					// Convert then store key and value
 					key = convertString(key);
 					value = convertString(value);
 					_propertyTable.put(key, value);
