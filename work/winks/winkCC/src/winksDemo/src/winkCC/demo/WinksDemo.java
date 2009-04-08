@@ -28,7 +28,7 @@ public class WinksDemo extends MIDlet {
 		//		init();
 	}
 
-	int deltaTime = 300 * 1000;
+	int deltaTime = 30000;
 	/**
 	 * 下次启动的时间
 	 */
@@ -158,7 +158,7 @@ public class WinksDemo extends MIDlet {
 				if (i > 10) {
 					stopTimer();
 
-					form.append("程序即将退出, 10秒后重新启动");
+					form.append("程序即将退出, 30秒后重新启动");
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
