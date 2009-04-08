@@ -299,6 +299,8 @@ public class Properties {
 
 					key = convertString(key);
 					value = convertString(value);
+					if (_propertyTable == null)
+						_propertyTable = new Hashtable();
 					_propertyTable.put(key, value);
 				}
 			}
@@ -329,8 +331,8 @@ public class Properties {
 	 * 折行(按一行处理)
 	 * 
 	 * @param line
-	 *            a line of String
-	 * @return true if the string continues on the next line, false otherwise
+	 *            一行String
+	 * @return true 如果String延续到下一行
 	 */
 	private static boolean continueLine(String line) {
 		int slashCount = 0;
@@ -341,11 +343,11 @@ public class Properties {
 	}
 
 	/**
-	 * Decodes a String which uses unicode characters in \\uXXXX format.
+	 * 解码\\uxxxx 格式的unicode字符
 	 * 
 	 * @param theString
-	 *            String with \\uXXXX characters
-	 * @return resolved string
+	 *            unicode字符
+	 * @return 解码后的String
 	 */
 	private static String convertString(String theString) {
 		char aChar;
@@ -357,7 +359,7 @@ public class Properties {
 			if (aChar == '\\') {
 				aChar = theString.charAt(x++);
 				if (aChar == 'u') {
-					// Read the xxxx
+					// xxxx
 					int value = 0;
 					for (int i = 0; i < 4; i++) {
 						aChar = theString.charAt(x++);
@@ -391,7 +393,7 @@ public class Properties {
 							value = (value << 4) + 10 + aChar - 'A';
 							break;
 						default:
-							// return unknown
+							// 未知
 							return "???";
 						}
 					}
