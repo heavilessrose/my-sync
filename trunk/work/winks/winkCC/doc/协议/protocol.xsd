@@ -233,7 +233,7 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="file" type="xs:anyURI" maxOccurs="unbounded">
+				<xs:element name="file" type="xs:anyURI">
 					<xs:annotation>
 						<xs:documentation>软件包文件的URL位置</xs:documentation>
 					</xs:annotation>
@@ -565,12 +565,7 @@ subscriber	订阅者</xs:documentation>
 					<xs:sequence>
 						<xs:element name="winks" type="xs:anyURI">
 							<xs:annotation>
-								<xs:documentation>彩像业务服务器的URL基地址</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="media" type="xs:anyURI">
-							<xs:annotation>
-								<xs:documentation>媒体服务器的URL基地址</xs:documentation>
+								<xs:documentation>彩像业务服务器的URL</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="store">
@@ -923,6 +918,7 @@ base64url（参见RFC 4648）使用下面两条规则修改标准base64编码：
 					<xs:documentation>用户配置项</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="proxy" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="confimMessage" type="ConfimMessageType">
