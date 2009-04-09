@@ -340,8 +340,8 @@ public class PhoneContactUtil {
 	/**
 	 * 设定指定联系人的大头贴地址.
 	 * 
-	 * @param name
-	 * @param path
+	 * @param name 联系人名字
+	 * @param path 大头贴地址String
 	 */
 	public static void setPicPath(String name, String path) {
 

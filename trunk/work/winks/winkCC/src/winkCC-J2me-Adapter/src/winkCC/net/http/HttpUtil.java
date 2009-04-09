@@ -31,7 +31,6 @@ public class HttpUtil {
 	 * 每次联网操作前须进行联网初始化.
 	 * 
 	 * @param url
-	 * @param listener
 	 * @param cmwap
 	 * 
 	 * @throws IOException
@@ -88,8 +87,6 @@ public class HttpUtil {
 	 * 
 	 * @param data
 	 *            发送的数据
-	 * @param receiveData
-	 *            收到的响应数据
 	 * @throws IOException
 	 */
 	public byte[] post(byte[] data) throws IOException {
