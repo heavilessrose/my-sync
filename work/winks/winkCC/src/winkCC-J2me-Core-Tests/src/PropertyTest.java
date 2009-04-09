@@ -13,8 +13,8 @@ import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
 import winkCC.core.WinksConstants;
-import winkCC.core.property_i18n.I18n;
-import winkCC.core.property_i18n.Properties;
+import winkCC.core.i18n.I18n;
+import winkCC.core.i18n.Properties;
 
 public class PropertyTest extends MIDlet implements CommandListener {
 	Display display = null;
