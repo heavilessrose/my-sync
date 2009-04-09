@@ -16,10 +16,8 @@ import java.util.Vector;
 
 public class XMLJ2MEService extends MIDlet implements CommandListener {
 
-	//Form Name
 	Form mainForm = new Form("SampleJ2MEXML");
 
-	//Location of xml file
 	static final String URL = "http://localhost:8080/examples/book.xml";
 	Vector bookVector = new Vector();
 

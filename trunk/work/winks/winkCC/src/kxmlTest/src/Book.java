@@ -5,7 +5,7 @@ public class Book {
 	private String author;
 	private String rating;
 	private String available;
-	
+
 	/**
 	 * @return
 	 */

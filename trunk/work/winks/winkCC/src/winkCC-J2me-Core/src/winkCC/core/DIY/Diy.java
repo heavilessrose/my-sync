@@ -12,26 +12,22 @@ public class Diy {
 	public static final int DIY_EVENT_SCRIPT_ERROR = 10 << 3;
 
 	/**
-	 * 调用http联网模块, 上传DIY彩像.(协议6.2.6)
+	 * 根据参数找到文件, 调用http联网模块, 上传彩像文件.(协议6.2.6)
 	 * 
 	 * @param uid
 	 * @param fileName
 	 *            彩像文件名.
-	 * @param FileData
-	 *            要上传的彩像文件数据.
 	 */
-	public static void uploadWinks(String uid, String fileName, byte[] FileData) {
+	public static void uploadWinks(String uid, String fileName) {
 		//		String url = POST /user/{uid}/winks/upload?fn={fileName}
 	}
 
 	/**
-	 * 调用http联网模块, 创建定制. 协议6.2.8
+	 * 组织为xml文件, 调用http联网模块, 创建定制. 协议6.2.8
 	 * 
 	 * @param uid
-	 * @param scriptData
-	 *            定制信息xml的二进制数据.
 	 */
-	public static void createWinksScript(String uid, byte[] scriptData) {
+	public static void createWinksScript(String uid) {
 		//		String url = POST /user/{uid}/script
 	}
 }
