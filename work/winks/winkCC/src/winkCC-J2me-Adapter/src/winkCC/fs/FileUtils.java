@@ -452,7 +452,7 @@ public class FileUtils {
 	 * 
 	 * @see winkCC.fs.FileUtils#sdCardRoot
 	 * 
-	 * @return
+	 * @return sd卡存在返回true, 否则返回false
 	 */
 	public static boolean sdCardExists() {
 		return exists("file:///" + sdCardRoot);
