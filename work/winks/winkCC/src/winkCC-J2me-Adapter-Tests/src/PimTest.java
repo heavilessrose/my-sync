@@ -9,8 +9,8 @@ import javax.microedition.lcdui.TextField;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
-import winkCC.pim.ContactUtil;
 import winkCC.pim.PhoneContact;
+import winkCC.pim.PhoneContactUtil;
 
 public class PimTest extends MIDlet implements CommandListener {
 	Display display = null;
@@ -37,7 +37,7 @@ public class PimTest extends MIDlet implements CommandListener {
 	 * 
 	 * @see javax.microedition.midlet.MIDlet#destroyApp(boolean)
 	 */
-	//	@Override
+	// @Override
 	protected void destroyApp(boolean arg0) throws MIDletStateChangeException {
 
 	}
@@ -47,7 +47,7 @@ public class PimTest extends MIDlet implements CommandListener {
 	 * 
 	 * @see javax.microedition.midlet.MIDlet#pauseApp()
 	 */
-	//	@Override
+	// @Override
 	protected void pauseApp() {
 
 	}
@@ -57,7 +57,7 @@ public class PimTest extends MIDlet implements CommandListener {
 	 * 
 	 * @see javax.microedition.midlet.MIDlet#startApp()
 	 */
-	//	@Override
+	// @Override
 	protected void startApp() throws MIDletStateChangeException {
 		form.addCommand(test);
 		form.addCommand(showPeople);
@@ -73,13 +73,11 @@ public class PimTest extends MIDlet implements CommandListener {
 		display.setCurrent(form);
 	}
 
-	ContactUtil util = new ContactUtil();
-
 	public void commandAction(Command cmd, Displayable disp) {
 		if (cmd == test) {
 			new Thread() {
 				public void run() {
-					ContactUtil.test();
+					PhoneContactUtil.test();
 				}
 			}.start();
 		} else if (cmd == showContacts) {
@@ -87,7 +85,8 @@ public class PimTest extends MIDlet implements CommandListener {
 				PhoneContact people = null;
 
 				public void run() {
-					for (Enumeration peoples = util.getAllPhoneContacts().elements(); peoples
+					for (Enumeration peoples = PhoneContactUtil
+							.getAllPhoneContacts().elements(); peoples
 							.hasMoreElements();) {
 						people = (PhoneContact) peoples.nextElement();
 						form.append(people.toString());
@@ -98,12 +97,14 @@ public class PimTest extends MIDlet implements CommandListener {
 		} else if (cmd == showPeople) {
 			new Thread() {
 				public void run() {
-					PhoneContact people = util.getPhoneContact(name.getString());
-					String nums = util.getNumber(people, attr.getString());
+					PhoneContact people = PhoneContactUtil.getPhoneContact(name
+							.getString());
+					String nums = PhoneContactUtil.getNumber(people, attr
+							.getString());
 					System.out.println(people.toString());
 					num.setString(nums);
 
-					String path = util.getWPath(people);
+					String path = PhoneContactUtil.getPicPath(people);
 					wpath.setString(path);
 				}
 			}.start();
@@ -118,7 +119,8 @@ public class PimTest extends MIDlet implements CommandListener {
 		} else if (cmd == setWpath) {
 			new Thread() {
 				public void run() {
-					util.setWPath(name.getString(), wpath.getString());
+					PhoneContactUtil.setPicPath(name.getString(), wpath
+							.getString());
 				}
 			}.start();
 		} else if (cmd == exit) {
