@@ -561,6 +561,9 @@ subscriber	订阅者</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="address">
+				<xs:annotation>
+					<xs:documentation>服务地址</xs:documentation>
+				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
 						<xs:element name="winks" type="xs:anyURI">
@@ -568,9 +571,9 @@ subscriber	订阅者</xs:documentation>
 								<xs:documentation>彩像业务服务器的URL</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="store">
+						<xs:element name="wap">
 							<xs:annotation>
-								<xs:documentation>彩像商城URL</xs:documentation>
+								<xs:documentation>彩像WAP网站URL</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="sms" type="xs:string">
@@ -578,9 +581,33 @@ subscriber	订阅者</xs:documentation>
 								<xs:documentation>短信特服号码</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="push" type="xs:int">
+						<xs:element name="push" type="xs:int" minOccurs="0">
 							<xs:annotation>
 								<xs:documentation>终端push接收端口</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="connection" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>终端接入点配置</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="proxy" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>代理服务器IP</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="proxyPort" type="xs:short" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>代理服务器端口</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="apn" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>网络接入点</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 					</xs:sequence>
@@ -912,14 +939,104 @@ base64url（参见RFC 4648）使用下面两条规则修改标准base64编码：
 		<xs:annotation>
 			<xs:documentation>用户配置信息类型</xs:documentation>
 		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="i" type="ConfigItemType" minOccurs="0" maxOccurs="unbounded">
+		<xs:all>
+			<xs:element name="proxy" type="xs:string" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>用户配置项</xs:documentation>
+					<xs:documentation>代理服务器IP</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="proxy" minOccurs="0"/>
-		</xs:sequence>
+			<xs:element name="proxyPort" type="xs:short" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>代理服务器端口</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="apn" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>网络接入点</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="durationAfterHangup" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>挂机后彩像展示时间（按秒计）</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="showWinks" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>展示设置
+true 展示彩像
+false 不展示彩像</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="showMode" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>通话设置，为下列值组合：
+0x01-通话前展示
+0x02-通话中展示
+0x04-通话后展示</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="roaming" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>漫游设置
+true 漫游时展示彩像
+false 漫游时不展示彩像</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="autorun" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>开机自启动设置
+true 开机自启动
+false 开机不自启动</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="updateAfterHangup" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>挂断电话后更新设置
+true 挂断后更新彩像内容
+false 挂断后不更新彩像内容</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="upgradeMode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>升级方式设置
+auto 自动升级
+manual 手动升级</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="auto"/>
+						<xs:enumeration value="manual"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="vcardOverwrite" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>随电名片更新方式设置
+auto 自动更新
+manual 手动更新</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="auto"/>
+						<xs:enumeration value="manual"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="connectInCall" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>电话事件是否联网获取彩像
+true 联网获取彩像
+false 不联网获取彩像</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="support3G" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>是否同时支持3G
+true 同时支持2.5G和3G模式
+false 只支持2.5G模式</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
 	</xs:complexType>
 	<xs:element name="confimMessage" type="ConfimMessageType">
 		<xs:annotation>
