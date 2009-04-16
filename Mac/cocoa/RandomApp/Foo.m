@@ -11,14 +11,14 @@
 
 @implementation Foo
 
--(void)awakeFromNib
+- (void)awakeFromNib
 {
 	NSCalendarDate *now;
 	now = [NSCalendarDate calendarDate];
 	[textField setObjectValue:now];
 }
 
--(IBAction)generate:(id)sender
+- (IBAction)generate:(id)sender
 {
 	int generated;
 	generated = (random() % 100) + 1;
@@ -28,7 +28,7 @@
 	[textField setIntValue:generated];
 }
 
--(IBAction)seed:(id)sender
+- (IBAction)seed:(id)sender
 {
 	srandom(time(NULL));
 	[textField setStringValue:@"Generator seeded"];
