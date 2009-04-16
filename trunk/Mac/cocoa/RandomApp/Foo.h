@@ -9,11 +9,32 @@
 #import <Cocoa/Cocoa.h>
 
 
+/*!
+    @class       Foo 
+    @superclass  NSObject { IBOutlet NSTextField *textField; }
+    @abstract    <#(brief description)#>
+    @discussion  <#(comprehensive description)#>
+*/
 @interface Foo : NSObject {
 	IBOutlet NSTextField *textField;
 }
 
--(IBAction)seed:(id)sender;
--(IBAction)generate:(id)sender;
+/*!
+    @method     seed:
+    @abstract   <#(brief description)#>
+    @discussion <#(comprehensive description)#>
+    @param      sender <#(description)#>
+    @result     <#(description)#>
+*/
+- (IBAction)seed:(id)sender;
+
+/*!
+    @method     generate:
+    @abstract   <#(brief description)#>
+    @discussion <#(comprehensive description)#>
+    @param      sender <#(description)#>
+    @result     <#(description)#>
+*/
+- (IBAction)generate:(id)sender;
 
 @end
