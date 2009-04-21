@@ -10,8 +10,8 @@
 
 
 /*!
-    @class       AppController 
-    @superclass  NSObject {
+    @class       AppController
+    @superclass  NSObject
     @abstract    两个按钮的target.
     @discussion  每个按钮都会触发一个不同的action方法
 */
