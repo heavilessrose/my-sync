@@ -58,7 +58,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 @synthesize window;
 @synthesize myViewController;
 
-
+// 运行启动入口
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	
 	// Set up the view controller
