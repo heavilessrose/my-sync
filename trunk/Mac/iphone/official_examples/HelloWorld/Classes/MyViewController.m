@@ -54,6 +54,17 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 @synthesize label;
 @synthesize string;
 
+- (id)init
+{
+	if(![super init])
+		return nil;
+	textField = [[UITextField alloc] init];
+	label = [[UILabel alloc] init];
+	
+	return self;
+}
+
+// 载入view完成执行此方法
 - (void)viewDidLoad {
     // When the user starts typing, show the clear button in the text field.
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;

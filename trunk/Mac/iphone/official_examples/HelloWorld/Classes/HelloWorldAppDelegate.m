@@ -61,14 +61,22 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 // 运行启动入口
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	
-	// Set up the view controller
-	MyViewController *aViewController = [[MyViewController alloc] initWithNibName:@"HelloWorld" bundle:[NSBundle mainBundle]];
-	self.myViewController = aViewController;
-	[aViewController release];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+//	// Set up the view controller
+//	MyViewController *aViewController = [[MyViewController alloc] initWithNibName:@"HelloWorld" bundle:[NSBundle mainBundle]];
+//	self.myViewController = aViewController;
+//	[aViewController release];
+//    
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+//	
+//	// Add the view controller's view as a subview of the window
+//	UIView *controllersView = [myViewController view];
+//	//NSLog(@"%@", controllersView);
+//	[window addSubview:controllersView];
+//	[window makeKeyAndVisible];
 	
-	// Add the view controller's view as a subview of the window
+//////////////
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+	myViewController = [[MyViewController alloc] init];
 	UIView *controllersView = [myViewController view];
 	[window addSubview:controllersView];
 	[window makeKeyAndVisible];
