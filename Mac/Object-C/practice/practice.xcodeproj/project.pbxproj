@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0466790FA010570084E05D /* PracticeController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B0466780FA010570084E05D /* PracticeController.rb */; };
 		1B443F010F9EF47E00C7202E /* PracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B443F000F9EF47E00C7202E /* PracticeController.m */; };
 		1B443F080F9EF84100C7202E /* PracticeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B443F070F9EF84100C7202E /* PracticeDelegate.m */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
@@ -19,6 +20,7 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1B0466780FA010570084E05D /* PracticeController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = PracticeController.rb; sourceTree = "<group>"; };
 		1B443EFF0F9EF47E00C7202E /* PracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeController.h; sourceTree = "<group>"; };
 		1B443F000F9EF47E00C7202E /* PracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeController.m; sourceTree = "<group>"; };
 		1B443F060F9EF84100C7202E /* PracticeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeDelegate.h; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				1B0466780FA010570084E05D /* PracticeController.rb */,
 			);
 			name = practice;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				1B0466790FA010570084E05D /* PracticeController.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
