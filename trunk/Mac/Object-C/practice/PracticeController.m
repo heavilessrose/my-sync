@@ -18,6 +18,7 @@
 	result = [[NSTextField alloc] init];
 	[inputField setDelegate:self];
 	
+	NSLog(@"%@", self);
 	return self;
 }
 
@@ -27,10 +28,17 @@
 	[super dealloc];
 }
 
+- (NSString *)description 
+{
+	return @"PracticeController";
+}
+
 
 ///// delegate
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	[result setStringValue:[inputField 
+	NSString *curInput = [inputField stringValue];
+	NSLog(@"%@", curInput);
+	[result setStringValue:curInput];
 }
 @end
