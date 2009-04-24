@@ -18,7 +18,7 @@
 	result = [[NSTextField alloc] init];
 	[inputField setDelegate:self];
 	
-	NSLog(@"%@", self);
+	NSLog(@"%@", inputField.delegate);
 	return self;
 }
 
