@@ -120,3 +120,9 @@ void printPointerArray(const char *str[], int count)
 		printf("%s \n", str[i]);
 	}
 }
+
+
+//////////// 文件
+
+
+
