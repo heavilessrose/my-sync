@@ -8,12 +8,13 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 
 void changeArray(int, int[]);
 void showArray(int, int[]);
 
 /////
-typedef struct Song{
+typedef struct song{
 	int lengthInSeconds;
 	int yearRecorded;
 } Song;
@@ -22,3 +23,8 @@ void display_song(Song theSong);
 /////
 
 void swap(int *, int *);
+
+/////
+int arrayPointerTest();
+void strSort(const char * [], int n);
+void printPointerArray(const char *str[], int count);
