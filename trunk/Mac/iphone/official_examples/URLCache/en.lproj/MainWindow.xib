@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.02">
+<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">512</int>
 		<string key="IBDocument.SystemVersion">9F33</string>
-		<string key="IBDocument.InterfaceBuilderVersion">672</string>
+		<string key="IBDocument.InterfaceBuilderVersion">677</string>
 		<string key="IBDocument.AppKitVersion">949.34</string>
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
@@ -13,6 +13,15 @@
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="502646470">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -265,11 +274,11 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="810871508"/>
-							<reference ref="201210839"/>
-							<reference ref="275079569"/>
-							<reference ref="815097332"/>
 							<reference ref="511084732"/>
+							<reference ref="201210839"/>
+							<reference ref="815097332"/>
 							<reference ref="825388481"/>
+							<reference ref="275079569"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -294,9 +303,9 @@
 						<reference key="object" ref="275079569"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="679425968"/>
 							<reference ref="518357670"/>
 							<reference ref="444715124"/>
+							<reference ref="679425968"/>
 						</object>
 						<reference key="parent" ref="178408328"/>
 					</object>
@@ -378,7 +387,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
-					<string>{{482, 318}, {320, 480}}</string>
+					<string>{{311, 321}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<integer value="0" id="8"/>
 					<reference ref="8"/>
@@ -425,11 +434,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>onClearCache:</string>
 							<string>onDisplayImage:</string>
-							<string>onUpdateImage:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>

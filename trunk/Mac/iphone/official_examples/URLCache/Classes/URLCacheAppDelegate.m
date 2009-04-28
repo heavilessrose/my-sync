@@ -88,10 +88,7 @@ const double URLCacheInterval = 86400.0;
 	 We don't need this cache, so we set it to zero when the application launches. */
 
     /* turn off the NSURLCache shared cache */
-    
-    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 
-                                                            diskCapacity:0 
-                                                                diskPath:nil];
+    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:nil];
     [NSURLCache setSharedURLCache:sharedCache];
     [sharedCache release];
     
@@ -99,7 +96,6 @@ const double URLCacheInterval = 86400.0;
 	[self initCache];
 	
     /* create and load the URL array using the strings stored in URLCache.plist */
-    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"URLCache" ofType:@"plist"];
     if (path) {
         NSArray *array = [[NSArray alloc] initWithContentsOfFile:path];
@@ -225,7 +221,7 @@ const double URLCacheInterval = 86400.0;
 	toolbarItem2.enabled = flag;
 }
 
-
+/* 初始化自己的cache */
 - (void) initCache
 {
 	/* create path to cache directory inside the application's Documents directory */
@@ -238,10 +234,7 @@ const double URLCacheInterval = 86400.0;
 	}
 		
 	/* create a new cache directory */
-	if (![[NSFileManager defaultManager] createDirectoryAtPath:dataPath 
-								   withIntermediateDirectories:NO
-													attributes:nil 
-														 error:&error]) {
+	if (![[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error]) {
 		URLCacheAlertWithError(error);
 		return;
 	}
@@ -249,7 +242,6 @@ const double URLCacheInterval = 86400.0;
 
 	
 /* removes every file in the cache directory */
-
 - (void) clearCache
 {
 	/* remove the cache directory and its contents */
