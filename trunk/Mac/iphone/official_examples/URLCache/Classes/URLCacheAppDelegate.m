@@ -51,6 +51,7 @@
 /* cache update interval in seconds */
 const double URLCacheInterval = 86400.0;
 
+// category 扩展NSObject
 @interface NSObject (PrivateMethods)
 
 - (void) initUI;
@@ -95,7 +96,7 @@ const double URLCacheInterval = 86400.0;
     /* prepare to use our own on-disk cache */
 	[self initCache];
 	
-    /* create and load the URL array using the strings stored in URLCache.plist */
+    /* 加载资源得到url。create and load the URL array using the strings stored in URLCache.plist */
     NSString *path = [[NSBundle mainBundle] pathForResource:@"URLCache" ofType:@"plist"];
     if (path) {
         NSArray *array = [[NSArray alloc] initWithContentsOfFile:path];
@@ -151,7 +152,6 @@ const double URLCacheInterval = 86400.0;
 #pragma mark IBAction methods
 
 /* Action method for the Display Image button. */
-
 - (IBAction) onDisplayImage:(id)sender
 {
 	[self initUI];
@@ -160,7 +160,6 @@ const double URLCacheInterval = 86400.0;
 
 
 /* Action method for the Clear Cache button. */
-
 - (IBAction) onClearCache:(id)sender
 {
 	NSString *message = NSLocalizedString (@"Do you really want to clear the cache?",
@@ -183,7 +182,6 @@ const double URLCacheInterval = 86400.0;
 #pragma mark Private methods
 
 /* initialize fields in the user interface */
-
 - (void) initUI
 {
 	imageView.image = nil;
@@ -194,7 +192,6 @@ const double URLCacheInterval = 86400.0;
 
 
 /* show the user that loading activity has started */
-
 - (void) startAnimation
 {
 	[self.activityIndicator startAnimating];
@@ -204,7 +201,6 @@ const double URLCacheInterval = 86400.0;
 
 
 /* show the user that loading activity has stopped */
-
 - (void) stopAnimation
 {
 	[self.activityIndicator stopAnimating];
@@ -214,7 +210,6 @@ const double URLCacheInterval = 86400.0;
 
 
 /* enable or disable all toolbar buttons */
-
 - (void) buttonsEnabled:(BOOL)flag
 {
 	toolbarItem1.enabled = flag;
@@ -284,11 +279,9 @@ const double URLCacheInterval = 86400.0;
 
 
 /* display new or existing cached image */
-
 - (void) displayImageWithURL:(NSURL *)theURL
 {
 	/* get the path to the cached image */
-	
 	[filePath release]; /* release previous instance */
 	NSString *fileName = [[theURL path] lastPathComponent];
 	filePath = [[dataPath stringByAppendingPathComponent:fileName] retain];
