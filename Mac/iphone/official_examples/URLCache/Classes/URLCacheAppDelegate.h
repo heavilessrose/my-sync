@@ -49,7 +49,7 @@
 #import	"URLCacheConnection.h"
 
 @interface URLCacheAppDelegate : NSObject <UIApplicationDelegate, URLCacheConnectionDelegate, UIAlertViewDelegate> {
-	NSString *dataPath;
+	NSString *dataPath; // 自己的cache路径
 	NSString *filePath;
 	NSDate *fileDate;
 	NSMutableArray *urlArray;
