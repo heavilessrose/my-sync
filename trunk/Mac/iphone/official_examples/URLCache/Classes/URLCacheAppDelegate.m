@@ -259,7 +259,6 @@ const double URLCacheInterval = 86400.0;
 
 
 /* get modification date of the current cached image */
-
 - (void) getFileModificationDate
 {
 	/* default date if file doesn't exist (not an error) */
@@ -310,7 +309,6 @@ const double URLCacheInterval = 86400.0;
 
 
 /* display existing cached image */
-
 - (void) displayCachedImage
 {
 	infoField.text = NSLocalizedString (@"The cached image is updated if 24 hours has elapsed since the last update and you press the Display Image button.", @"Information about updates.");
@@ -362,7 +360,6 @@ const double URLCacheInterval = 86400.0;
 	if ([[NSFileManager defaultManager] fileExistsAtPath:filePath] == YES) {
 		
 		/* apply the modified date policy */
-		
 		[self getFileModificationDate];
 		NSComparisonResult result = [theConnection.lastModified compare:fileDate];
 		if (result == NSOrderedDescending) {
@@ -389,7 +386,6 @@ const double URLCacheInterval = 86400.0;
 	}
 	
 	/* reset the file's modification date to indicate that the URL has been checked */
-	
 	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSDate date], NSFileModificationDate, nil];
 	if (![[NSFileManager defaultManager] setAttributes:dict ofItemAtPath:filePath error:&error]) {
 		URLCacheAlertWithError(error);

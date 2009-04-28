@@ -50,10 +50,10 @@
 
 @interface URLCacheAppDelegate : NSObject <UIApplicationDelegate, URLCacheConnectionDelegate, UIAlertViewDelegate> {
 	NSString *dataPath; // 自己的cache路径
-	NSString *filePath;
-	NSDate *fileDate;
-	NSMutableArray *urlArray;
-	NSError *error;
+	NSString *filePath; // path to the cached image
+	NSDate *fileDate; // cached image的文件最后修改时间
+	NSMutableArray *urlArray; // URLCache.plist文件中所有的url
+	NSError *error; // 指向所有的错误（始终指向最新的错误）
 	
 	IBOutlet UIWindow *window;
 	IBOutlet UIImageView *imageView;
