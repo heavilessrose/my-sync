@@ -59,7 +59,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 /* This method initiates the load request. The connection is asynchronous, 
  and we implement a set of delegate methods that act as callbacks during 
  the load. */
-
 - (id) initWithURL:(NSURL *)theURL delegate:(id<URLCacheConnectionDelegate>)theDelegate
 {
 	if (self = [super init]) {
@@ -69,7 +68,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 		/* Create the request. This application does not use a NSURLCache 
 		 disk or memory cache, so our cache policy is to satisfy the request
 		 by loading the data from its source. */
-		
 		NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL
 													cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
 												timeoutInterval:60];
@@ -112,12 +110,10 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	 enough information to create the NSURLResponse. It can be called
 	 multiple times, for example in the case of a redirect, so each time
 	 we reset the data. */
-	
     [self.receivedData setLength:0];
 	
 	/* Try to retrieve last modified date from HTTP header. If found, format  
 	 date so it matches format of cached image file modification date. */
-	
 	if ([response isKindOfClass:[NSHTTPURLResponse self]]) {
 		NSDictionary *headers = [(NSHTTPURLResponse *)response allHeaderFields];
 		NSString *modified = [headers objectForKey:@"Last-Modified"];

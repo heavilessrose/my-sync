@@ -51,7 +51,7 @@
 /* cache update interval in seconds */
 const double URLCacheInterval = 86400.0;
 
-// category 扩展NSObject
+// category方式扩展NSObject
 @interface NSObject (PrivateMethods)
 
 - (void) initUI;
@@ -179,7 +179,7 @@ const double URLCacheInterval = 86400.0;
  */
 
 #pragma mark -
-#pragma mark Private methods
+#pragma mark NSObject-PrivateMethods
 
 /* initialize fields in the user interface */
 - (void) initUI

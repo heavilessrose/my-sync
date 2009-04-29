@@ -52,7 +52,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 @interface URLCacheConnection : NSObject {
 	id <URLCacheConnectionDelegate> delegate;
 	NSMutableData *receivedData;
-	NSDate *lastModified;
+	NSDate *lastModified; // 最后更新时间
 }
 
 @property (nonatomic, assign) id delegate;
