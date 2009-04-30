@@ -9,6 +9,13 @@
 
 #include "Functions.h"
 
+void testVariables()
+{
+	printf("=================\n");
+	printf("short: %d\n int: %d\n char: %d\n",sizeof (short), sizeof (int), sizeof (char));
+	printf("=================\n");
+}
+
 // 测试参数传递， （普通变量为值传递， 数组为引用传递）
 void changeArray(int arrCount, int arr[])
 {

@@ -40,9 +40,18 @@
 //
 
 #include "Functions.h"
+// 条件编译
+#define SORT
+
+#define VARIABLE_TEST
 
 int main(int argc, const char *argv[])
 {
+	
+#ifdef VARIABLE_TEST
+	testVariables();
+#endif
+	
 	///// 参数传递测试
 //	int array[5];
 //	int i = 0;
@@ -75,7 +84,10 @@ int main(int argc, const char *argv[])
 	
 	//////字符串
 	char * testStrs[] = {"CCCCCC","BBB","AAAAAAAAAAAAAAAA"};
+	
+#ifdef SORT
 	strSort(testStrs, 3);
+#endif
 	printPointerArray(testStrs, 3);
 	
 	
