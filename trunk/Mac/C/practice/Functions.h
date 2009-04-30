@@ -10,6 +10,9 @@
 #include <stdio.h>
 #include <string.h>
 
+void testVariables();
+
+///
 void changeArray(int, int[]);
 void showArray(int, int[]);
 
