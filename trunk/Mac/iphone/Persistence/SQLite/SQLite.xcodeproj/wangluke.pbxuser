@@ -1,0 +1,81 @@
+// !$*UTF8*$!
+{
+	1BC4CDEE0FA9A5A3004A8B20 /* SQLite */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = SQLite;
+		sourceDirectories = (
+		);
+	};
+	1BC4CDF40FA9A5A7004A8B20 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	1BC4CDF50FA9A5A7004A8B20 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	1D6058900D05DD3D006BFB54 /* SQLite */ = {
+		activeExec = 0;
+		executables = (
+			1BC4CDEE0FA9A5A3004A8B20 /* SQLite */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 1BC4CDEE0FA9A5A3004A8B20 /* SQLite */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* SQLite */;
+		codeSenseManager = 1BC4CDF50FA9A5A7004A8B20 /* Code sense */;
+		executables = (
+			1BC4CDEE0FA9A5A3004A8B20 /* SQLite */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 262776247;
+			PBXWorkspaceStateSaveDate = 262776247;
+		};
+		sourceControlManager = 1BC4CDF40FA9A5A7004A8B20 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+}
