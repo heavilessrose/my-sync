@@ -7,6 +7,7 @@
 //
 
 #import "archiveViewController.h"
+#import "FourLines.h"
 
 @implementation archiveViewController
 
@@ -34,17 +35,23 @@
 // 退出时调用
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
-	NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+	//NSMutableArray *dataArray = [[NSMutableArray alloc] init];
 	
-	// TODO: 检查field中text是否为空的情况
-	[dataArray addObject:field1.text];
-	[dataArray addObject:field2.text];
-	[dataArray addObject:field3.text];
-	[dataArray addObject:field4.text];
+	FourLines *fourLines = [[FourLines alloc] init];
+	fourLines.field1 = field1.text;
+	fourLines.field2 = field2.text;
+	fourLines.field3 = field3.text;
+	fourLines.field4 = field4.text;
 	
-	// 将“序列化对象“序列化到属性列表文件
-	[dataArray writeToFile:[self dataFilePath] atomically:YES];
-	[dataArray release];
+	// 对数据对象进行编码归档
+	NSMutableData *data = [[NSMutableData alloc] init];
+	NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+	[archiver encodeObject:fourLines forKey:kDataKey];
+	[archiver finishEncoding];
+	[data writeToFile:[self dataFilePath] atomically:YES];
+	[fourLines release];
+	[archiver release];
+	[data release];
 }
 
 #pragma mark -
@@ -62,17 +69,20 @@
 	NSString *filepath = [self dataFilePath];
 	NSLog(filepath);
 	if([[NSFileManager defaultManager] fileExistsAtPath:filepath]){
-		NSArray *array = [[NSArray alloc] initWithContentsOfFile:filepath];
-		// FIXME: 应处理属性列表文件为空的情况
-		field1.text = [array objectAtIndex:0];
-		field2.text = [array objectAtIndex:1];
-		field3.text = [array objectAtIndex:2];
-		field4.text = [array objectAtIndex:3];
-		[array release];
-	}else {
-		[[NSFileManager defaultManager] createFileAtPath:filepath contents:nil attributes:nil];
+		// 对数据对象进行解码
+		NSData *data = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+		FourLines *fourLines = [unarchiver decodeObjectForKey:kDataKey];
+		[unarchiver finishDecoding];
+		
+		field1.text = fourLines.field1;
+		field2.text = fourLines.field2;
+		field3.text = fourLines.field3;
+		field4.text = fourLines.field4;
+		
+		[unarchiver release];
+		[data release];
 	}
-	
 	
 	// Returns the singleton application instance
 	UIApplication *app = [UIApplication sharedApplication];
