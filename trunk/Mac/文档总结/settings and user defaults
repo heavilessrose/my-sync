@@ -1,0 +1,11 @@
+为程序提供entry 来访问和保存preference。
+
+User Defaults属于settings。
+提供了NSUserDefaults来保持和读取key value形式的preference，且保存到文件系统。
+
+sdk 提供了设置用到的UI， 但是有些限制。 要立刻生效的preference可能不适用，需要提供自己的设置UI等。
+
+根据每个应用内部的settings bundle来显示设置界面。每个settings bundle有一个叫做Root.plist的property list，定义了root level preferences view（应用根据此文件构建settings view）。如果主设置界面包含subviews，则必须添加相应的property lists到settings bundle并且需要在Root.plist中为每个child view添加entry。
+
+property list 都有且仅有一个Dictinary类型的root node。
+虽然你可以在NSDictionary中适用任何对象作为key， 但是propery list的key只能是string，value可以是任何类型对象。
