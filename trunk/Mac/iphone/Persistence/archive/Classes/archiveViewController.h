@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define kFilename @"data.plist"
+#define kFilename @"archive" // 归档文件名
+#define kDataKey @"Data" // 对对象进行编码解码的键值
+
 @interface archiveViewController : UIViewController {
 	IBOutlet UITextField *field1;
 	IBOutlet UITextField *field2;
