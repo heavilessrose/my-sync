@@ -1,0 +1,166 @@
+// !$*UTF8*$!
+{
+	1BAC8DA80FAEF1F4007A5691 /* FileOP */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = FileOP;
+		sourceDirectories = (
+		);
+	};
+	1BAC8DB60FAEF207007A5691 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	1BAC8DB70FAEF207007A5691 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	1BAC8DCD0FAF00F0007A5691 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BAC8DCE0FAF00F0007A5691 /* OSTypes.h */;
+		name = "OSTypes.h: 44";
+		rLen = 0;
+		rLoc = 1653;
+		rType = 0;
+		vrLen = 1995;
+		vrLoc = 0;
+	};
+	1BAC8DCE0FAF00F0007A5691 /* OSTypes.h */ = {
+		isa = PBXFileReference;
+		name = OSTypes.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.2.sdk/usr/include/libkern/OSTypes.h;
+		sourceTree = "<absolute>";
+	};
+	1BAC8DCF0FAF00F0007A5691 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* FileOPAppDelegate.h */;
+		name = "FileOPAppDelegate.h: 17";
+		rLen = 0;
+		rLoc = 314;
+		rType = 0;
+		vrLen = 456;
+		vrLoc = 0;
+	};
+	1BAC8DD00FAF00F0007A5691 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BAC8DD10FAF00F0007A5691 /* MacTypes.h */;
+		rLen = 1;
+		rLoc = 263;
+		rType = 1;
+	};
+	1BAC8DD10FAF00F0007A5691 /* MacTypes.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = MacTypes.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.2.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/Headers/MacTypes.h;
+		sourceTree = "<absolute>";
+	};
+	1BAC8DD20FAF00F0007A5691 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* FileOPAppDelegate.h */;
+		name = "FileOPAppDelegate.h: 17";
+		rLen = 0;
+		rLoc = 314;
+		rType = 0;
+		vrLen = 456;
+		vrLoc = 0;
+	};
+	1BAC8DD30FAF00F0007A5691 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BAC8DD40FAF00F0007A5691 /* MacTypes.h */;
+		name = "MacTypes.h: 264";
+		rLen = 54;
+		rLoc = 9900;
+		rType = 0;
+		vrLen = 1604;
+		vrLoc = 9848;
+	};
+	1BAC8DD40FAF00F0007A5691 /* MacTypes.h */ = {
+		isa = PBXFileReference;
+		name = MacTypes.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.2.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/Headers/MacTypes.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1012, 16406}}";
+			sepNavSelRange = "{9900, 54}";
+			sepNavVisRange = "{9848, 1604}";
+		};
+	};
+	1D3623240D0F684500981E51 /* FileOPAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 604}}";
+			sepNavSelRange = "{314, 0}";
+			sepNavVisRange = "{0, 456}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* FileOP */ = {
+		activeExec = 0;
+		executables = (
+			1BAC8DA80FAEF1F4007A5691 /* FileOP */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 1BAC8DA80FAEF1F4007A5691 /* FileOP */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* FileOP */;
+		codeSenseManager = 1BAC8DB70FAEF207007A5691 /* Code sense */;
+		executables = (
+			1BAC8DA80FAEF1F4007A5691 /* FileOP */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					833,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 263123444;
+			PBXWorkspaceStateSaveDate = 263123444;
+		};
+		perUserProjectItems = {
+			1BAC8DCD0FAF00F0007A5691 /* PBXTextBookmark */ = 1BAC8DCD0FAF00F0007A5691 /* PBXTextBookmark */;
+			1BAC8DCF0FAF00F0007A5691 /* PBXTextBookmark */ = 1BAC8DCF0FAF00F0007A5691 /* PBXTextBookmark */;
+			1BAC8DD00FAF00F0007A5691 /* PBXTextBookmark */ = 1BAC8DD00FAF00F0007A5691 /* PBXTextBookmark */;
+			1BAC8DD20FAF00F0007A5691 /* PBXTextBookmark */ = 1BAC8DD20FAF00F0007A5691 /* PBXTextBookmark */;
+			1BAC8DD30FAF00F0007A5691 /* PBXTextBookmark */ = 1BAC8DD30FAF00F0007A5691 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 1BAC8DB60FAEF207007A5691 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+}

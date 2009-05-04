@@ -1,0 +1,14 @@
+About Bundles: http://developer.apple.com/iphone/library/documentation/CoreFoundation/Conceptual/CFBundles/Concepts/about.html#//apple_ref/doc/uid/20001114-CJBEJBHH
+
+
+Bundles provide an elegant solution to the problem of grouping related code and resources together. 
+
+A bundle is a hierarchical directory structure containing executable code and resources geared for a specific purpose. 
+
+Applications, frameworks, and plug-ins can all be implemented as bundles in Mac OS X, and in fact, bundles are the preferred delivery mechanism for all of these software types. 
+Developers can also use bundles for other purposes, including the implementation of custom document types.
+
+It is important to remember the distinction between what is a bundle and what is a package. 
+The term bundle indicates a directory with a specific hierarchical structure, whereas the term package indicates a directory that is treated as an opaque entity by the Finder. Most bundles (including applications and plug-ins) are also packages. Some bundles, such as frameworks, are not packages, however.
+
+The bundle organization makes it easier for the application to find its resources while making it harder for users to interfere with those resources. Because the Finder treats most bundles as opaque entities, it is difficult for casual users to move or delete the resources an application might need.
