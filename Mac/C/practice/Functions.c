@@ -12,7 +12,7 @@
 void testVariables()
 {
 	printf("=================\n");
-	printf("short: %d\n int: %d\n char: %d\n",sizeof (short), sizeof (int), sizeof (char));
+	printf(" short: %d\n int: %d\n char: %d\n long: %d\n unsigned int: %d\n unsigned char: %d\n",sizeof (short), sizeof (int), sizeof (char), sizeof(long), sizeof(unsigned int), sizeof(unsigned char));
 	printf("=================\n");
 }
 
