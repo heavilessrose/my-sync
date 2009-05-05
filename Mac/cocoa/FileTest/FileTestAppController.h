@@ -14,6 +14,6 @@
 	IBOutlet NSTextField *fileTypeCodeField;
 	IBOutlet NSButton *showFileType;
 }
-
+BOOL FileValid(NSString *fullFilePath);
 - (IBAction)HFSFileTypeTest:(id)sender;
 @end

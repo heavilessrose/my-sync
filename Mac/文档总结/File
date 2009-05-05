@@ -1,0 +1,13 @@
+HFS File Tyoes: 
+http://developer.apple.com/iphone/library/documentation/Cocoa/Conceptual/LowLevelFileMgmt/Concepts/HFSFileTypes.html#//apple_ref/doc/uid/20000779
+
+The NSFileManager class provides methods for setting and getting the attributes of documents, including HFS type and creator codes. 
+
+NSFileManager enables you to perform many generic file-system operations. 
+
+NSFileHandle objects provide an object-oriented wrapper for accessing open files or communications channels.
+
+You can use other Cocoa methods for reading from and writing to files—NSFileManager’s contentsAtPath: and NSData’s writeToFile:options:error: are but a couple of examples.
+More advantages:
+An NSFileHandle is an object that represents an open file or communications channel. It enables programs to read data from or write data to the represented file or channel. 
+
