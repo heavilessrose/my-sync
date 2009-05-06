@@ -6,6 +6,7 @@
 //  Copyright luke 2009. All rights reserved.
 //
 
+#include <stdio.h>
 #import "propertyListViewController.h"
 
 @implementation propertyListViewController
@@ -16,20 +17,28 @@
 @synthesize field4;
 @synthesize written;
 @synthesize saveButton;
+@synthesize copyButton;
 
 #pragma mark -
 #pragma mark propertyListViewController_方法实现
 
-// 返回保存文件的完整路径
-- (NSString *)dataFilePath
+// 返回Documents路径
+- (NSString *)appDocumentsDir
 {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
-	
-	//NSString *documentsDirectory = @"/var/root/";
-	NSString *fullpath = [documentsDirectory stringByAppendingPathComponent:kFilename];
-	[documentsDirectory release];
-	NSLog(fullpath);
+	//documentsDirectory = [[NSString alloc] initWithCString:getenv("HOME")];
+	//return [documentsDirectory autorelease];
+	return documentsDirectory;
+}
+
+// 返回保存文件的完整路径
+- (NSString *)dataFilePath
+{
+	//@"/var/root/"
+	//NSString *documentsDirectory = [[NSString alloc] initWithCString:getenv("HOME")];
+	NSString *fullpath = [[self appDocumentsDir] stringByAppendingPathComponent:kFilename];
+	NSLog(@"fullpath -----> %@", fullpath);
 	return fullpath;
 }
 
@@ -60,27 +69,83 @@
 	[dataArray addObject:field2.text];
 	[dataArray addObject:field3.text];
 	[dataArray addObject:field4.text];
+	
+	BOOL isSuccess = NO;
 	if([[NSFileManager defaultManager] fileExistsAtPath:[self dataFilePath]]){
 		// 将“序列化对象“序列化到属性列表文件
-		BOOL isSuccess = [dataArray writeToFile:[self dataFilePath] atomically:YES];
+		isSuccess = [dataArray writeToFile:[self dataFilePath] atomically:YES];
 	}else{
 		NSLog(@"file is not exists");
 	}
-	//if(isSuccess)
-//		[self setTip:@"Success"];
-//	else
-//		[self setTip:@"Fail"];
+	if(isSuccess)
+		[self setTip:@"Success"];
+	else
+		[self setTip:@"Fail"];
 	
 	[dataArray release];
 }
 
 #pragma mark -
 #pragma mark 测试
-- (void)copy:(NSString *)source dest:(NSString *)dest
+- (IBAction)copy:(id)sender
 {
-	NSData *reader = [NSData dataWithContentsOfFile:source];
-	[reader writeToFile:dest atomically:YES];
-	[reader release];
+	//NSData *reader = [NSData dataWithContentsOfFile:[self dataFilePath]];
+//	//NSString *dir = [[NSString alloc] initWithCString:getenv("HOME")];
+//	NSString *dest = [[self appDocumentsDir] stringByAppendingPathComponent:@"test.txt"];
+//	
+//	NSLog(@"dest -----> %@", dest);
+//	if(![[NSFileManager defaultManager] fileExistsAtPath:dest])
+//		[[NSFileManager defaultManager] createFileAtPath:dest contents:nil attributes:nil];
+//	
+//	[reader writeToFile:dest atomically:YES];
+//	
+//	////////////////写一个较大的文件
+//	NSMutableData *data1, *data2;
+//	NSString *firstString  = @"ABCD";
+//	NSString *secondString = @"EFGH";
+//	const char *utfFirstString = [firstString UTF8String];
+//	const char *utfSecondString = [secondString UTF8String];
+//	unsigned char *aBuffer;
+//	unsigned len;
+//	
+//	data1 = [NSMutableData dataWithBytes:utfFirstString length:strlen(utfFirstString)];
+//	data2 = [NSMutableData dataWithBytes:utfSecondString length:strlen(utfSecondString)];
+//	
+//	len = [data2 length];
+//	aBuffer = malloc(len);
+//	
+//	[data2 getBytes:aBuffer];
+//	for (int i = 0; i < 999999; i++) {
+//		[data1 appendBytes:aBuffer length:len];
+//	}
+//	
+//	[data1 writeToFile:dest atomically:YES];
+	
+	///////////// c
+	const char *aBuffer;
+	NSString *secondString = @"EFGH";
+	const char *utfSecondString = [secondString UTF8String];
+	NSMutableData *data2 = [NSMutableData dataWithBytes:utfSecondString length:strlen(utfSecondString)];
+	//unsigned len = [data2 length];
+//	aBuffer = malloc(len);
+	
+	const char *path = [[self dataFilePath] UTF8String];
+	const char *destPath = [[[self appDocumentsDir] stringByAppendingPathComponent:@"ttt.txt"] UTF8String];
+	FILE *fp = fopen(path, "rb");
+	unsigned fileLen = 0;
+	if(fp){
+		fseek(fp, 0L, SEEK_END);
+		fileLen = ftell(fp);
+		printf("%ld", fileLen);
+	}
+	
+	aBuffer = malloc(fileLen);
+	FILE *fpdest = fopen(destPath, "wb");
+	fread(aBuffer, 1, fileLen, fp);
+	fwrite(aBuffer, 1, fileLen, fpdest);
+	
+	fclose(fp);
+	fclose(fpdest);
 }
 
 - (void)write
@@ -101,7 +166,6 @@
 - (void)viewDidLoad
 {
 	NSString *filepath = [self dataFilePath];
-	NSLog(filepath);
 
 	if([[NSFileManager defaultManager] fileExistsAtPath:filepath]){
 		NSArray *array = [[NSArray alloc] initWithContentsOfFile:filepath];
