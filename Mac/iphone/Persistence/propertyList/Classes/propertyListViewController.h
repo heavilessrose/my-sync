@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #define kFilename @"data.plist"
+
+@class NSData;
+
 @interface propertyListViewController : UIViewController {
 	IBOutlet UITextField *field1;
 	IBOutlet UITextField *field2;
@@ -17,6 +20,7 @@
 	// 是否成功写入
 	IBOutlet UILabel *written;
 	IBOutlet UIButton *saveButton;
+	IBOutlet UIButton *copyButton;
 }
 - (void)setTip:(NSString *)isSuccess;
 
@@ -27,8 +31,10 @@
 @property (nonatomic, retain) UITextField *field4;
 
 @property (nonatomic, retain) UIButton *saveButton;
+@property (nonatomic, retain) UIButton *copyButton;
 @property (nonatomic, retain) UILabel *written;
 
+- (NSString *)appDocumentsDir;
 - (NSString *)dataFilePath;
 
 // 程序退出时调用此方法将数据保存到属性列表文件
@@ -37,7 +43,7 @@
 - (IBAction)save:(id)sender;
 
 //test
-- (void)copy:(NSString *)source dest:(NSString *)dest;
+- (IBAction)copy:(id)sender;
 - (void)write;
 @end
 
