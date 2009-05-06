@@ -14,6 +14,8 @@
 @synthesize field2;
 @synthesize field3;
 @synthesize field4;
+@synthesize written;
+@synthesize saveButton;
 
 #pragma mark -
 #pragma mark propertyListViewController_方法实现
@@ -23,9 +25,26 @@
 {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
-	return [documentsDirectory stringByAppendingPathComponent:kFilename];
+	
+	//NSString *documentsDirectory = @"/var/root/";
+	NSString *fullpath = [documentsDirectory stringByAppendingPathComponent:kFilename];
+	[documentsDirectory release];
+	NSLog(fullpath);
+	return fullpath;
 }
 
+- (void)setTip:(NSString *)isSuccess
+{
+//	NSString *tip = [[NSString alloc] initWithFormat:@"write to %@ : %@",[self dataFilePath]];
+	NSString *tip = [[NSString alloc] initWithFormat:@"write to %@ : %@",[self dataFilePath], isSuccess];
+	[written setText:tip];
+	[tip release];
+}
+
+- (IBAction)save:(id)sender
+{
+	[self applicationWillTerminate:nil];
+}
 
 #pragma mark -
 #pragma mark 通知方法。（此处非UIApplicationDelegate方法）
@@ -41,9 +60,17 @@
 	[dataArray addObject:field2.text];
 	[dataArray addObject:field3.text];
 	[dataArray addObject:field4.text];
-
-	// 将“序列化对象“序列化到属性列表文件
-	[dataArray writeToFile:[self dataFilePath] atomically:YES];
+	if([[NSFileManager defaultManager] fileExistsAtPath:[self dataFilePath]]){
+		// 将“序列化对象“序列化到属性列表文件
+		BOOL isSuccess = [dataArray writeToFile:[self dataFilePath] atomically:YES];
+	}else{
+		NSLog(@"file is not exists");
+	}
+	//if(isSuccess)
+//		[self setTip:@"Success"];
+//	else
+//		[self setTip:@"Fail"];
+	
 	[dataArray release];
 }
 
