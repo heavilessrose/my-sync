@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface FileOPUtils : NSObject {
-
+	
+	//NSDictionary *attributes;
 }
+
+//@property(retain) NSDictionary *attributes;
 
 #pragma mark -
 #pragma mark 实用方法
++ (FileOPUtils *)sharedInstance;
 // 得到保存文件的目录绝对路径
 + (NSString *)dataFileDirectory;
 // 得到要保存文件的完整路径

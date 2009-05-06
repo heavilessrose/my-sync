@@ -48,6 +48,20 @@
 }
 
 #pragma mark -
+#pragma mark 测试
+- (void)copy:(NSString *)source dest:(NSString *)dest
+{
+	NSData *reader = [NSData dataWithContentsOfFile:source];
+	[reader writeToFile:dest atomically:YES];
+	[reader release];
+}
+
+- (void)write
+{
+	
+}
+
+#pragma mark -
 #pragma mark UIViewControllerDelegate方法
 // Sent to the view controller when the application receives a memory warning.
 - (void)didReceiveMemoryWarning {
@@ -61,6 +75,7 @@
 {
 	NSString *filepath = [self dataFilePath];
 	NSLog(filepath);
+
 	if([[NSFileManager defaultManager] fileExistsAtPath:filepath]){
 		NSArray *array = [[NSArray alloc] initWithContentsOfFile:filepath];
 		// FIXME: 应处理属性列表文件为空的情况
@@ -78,6 +93,15 @@
 	UIApplication *app = [UIApplication sharedApplication];
 	// !!!: 订阅UIApplicationWillTerminateNotification通知。self是需要被通知的对象。selector为收到通知后要调用的方法。name为我们感兴趣的通知名称。app为The object whose notifications the observer wants to receive（发出通知的对象）
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:app];
+	
+	/////////////test
+	//NSString *home = [[NSString alloc] initWithCString:getenv("HOME")];
+//	NSString *file = @"test.txt";
+//	NSString *dest = [home stringByAppendingPathComponent:file];
+//	NSLog(@"path-----> %@", dest);
+//	[self copy:filepath dest:dest];
+	/////////////test~
+	
 	[super viewDidLoad];
 }
 
