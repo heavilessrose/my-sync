@@ -27,5 +27,9 @@
 // 程序退出时调用此方法将数据保存到属性列表文件
 // !!!: 并非UIApplicationDelegate 的委托方法 
 - (void)applicationWillTerminate:(NSNotification *)notification;
+
+//test
+- (void)copy:(NSString *)source dest:(NSString *)dest;
+- (void)write;
 @end
 
