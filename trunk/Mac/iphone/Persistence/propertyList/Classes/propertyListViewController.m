@@ -21,6 +21,20 @@
 
 #pragma mark -
 #pragma mark propertyListViewController_方法实现
+// 键盘Done事件处理
+- (IBAction)fieldsDoneEditing:(id)sender
+{
+	[sender resignFirstResponder];
+}
+
+// 点击背景关闭键盘
+- (IBAction)backgroundClicked:(id)sender
+{
+	[field1 resignFirstResponder];
+	[field2 resignFirstResponder];
+	[field3 resignFirstResponder];
+	[field4 resignFirstResponder];
+}
 
 // 返回Documents路径
 - (NSString *)appDocumentsDir
@@ -125,32 +139,99 @@
 	const char *aBuffer;
 	NSString *secondString = @"EFGH";
 	const char *utfSecondString = [secondString UTF8String];
-	NSMutableData *data2 = [NSMutableData dataWithBytes:utfSecondString length:strlen(utfSecondString)];
+	//NSMutableData *data2 = [NSMutableData dataWithBytes:utfSecondString length:strlen(utfSecondString)];
 	//unsigned len = [data2 length];
 //	aBuffer = malloc(len);
 	
 	const char *path = [[self dataFilePath] UTF8String];
-	const char *destPath = [[[self appDocumentsDir] stringByAppendingPathComponent:@"ttt.txt"] UTF8String];
+	//const char *destPath = [[[self appDocumentsDir] stringByAppendingPathComponent:@"ttt.txt"] UTF8String];
 	FILE *fp = fopen(path, "rb");
-	unsigned fileLen = 0;
-	if(fp){
-		fseek(fp, 0L, SEEK_END);
-		fileLen = ftell(fp);
-		printf("%ld", fileLen);
-	}
+	unsigned fileLen = [self fileLength:fp];
 	
 	aBuffer = malloc(fileLen);
-	FILE *fpdest = fopen(destPath, "wb");
+	//FILE *fpdest = fopen(destPath, "wb");
 	fread(aBuffer, 1, fileLen, fp);
-	fwrite(aBuffer, 1, fileLen, fpdest);
+	//fwrite(aBuffer, 1, fileLen, fpdest);
+	[self write:aBuffer toFile:@"ttt.txt"];
 	
 	fclose(fp);
+	//fclose(fpdest);
+}
+
+- (unsigned)fileLength:(FILE *)fp
+{
+	unsigned len = 0;
+	if(fp){
+		fseek(fp, 0L, SEEK_END);
+		len = ftell(fp);
+		fseek(fp, 0L, SEEK_SET);
+	}
+	return len;
+}
+
+- (void)write:(const char *)buffer toFile:(NSString *)fileName
+{
+	const char *destPath = [[[self appDocumentsDir] stringByAppendingPathComponent:fileName] UTF8String];
+	FILE *fpdest = fopen(destPath, "wb");
+	unsigned fileLen = strlen(buffer);
+	fwrite(buffer, 1, fileLen, fpdest);
 	fclose(fpdest);
 }
 
-- (void)write
+
+#pragma mark -
+#pragma mark 属性列表方法
+// property-list对象转换为NSData对象
+- (BOOL)writePlist:(id)plist toFile:(NSString *)fileName
 {
+    NSString *error;
+    NSData *pData = [NSPropertyListSerialization dataFromPropertyList:plist format:NSPropertyListBinaryFormat_v1_0 errorDescription:&error];
+    if (!pData) {
+        NSLog(@"%@", error);
+        return NO;
+    }
+    return ([self writeData:pData toFile:(NSString *)fileName]);
+}
+
+// 读取plist属性文件
+- (id)plistFromFile:(NSString *)fileName
+{
+    NSData *retData;
+    NSString *error;
+    id retPlist;
+    NSPropertyListFormat format;
 	
+    retData = [self dataFromFile:fileName];
+    if (!retData) {
+        NSLog(@"Data file not returned.");
+        return nil;
+    }
+    retPlist = [NSPropertyListSerialization propertyListFromData:retData  mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
+    if (!retPlist){
+        NSLog(@"Plist not returned, error: %@", error);
+    }
+    return retPlist;
+}
+
+// NSData对象写入文件
+- (BOOL)writeData:(NSData *)data toFile:(NSString *)fileName
+{
+	return [data writeToFile:fileName atomically:YES];
+}
+
+#pragma mark -
+#pragma mark archiver方法
+//???: An archiver converts an arbitrary collection of objects into a stream of bytes.
+//Archivers can convert arbitrary Objective-C objects, scalar types, arrays, structures, strings, and more.
+
+// 从documents目录读取文件， 返回NSData
+- (NSData *)dataFromFile:(NSString *)fileName
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
+    NSData *myData = [[[NSData alloc] initWithContentsOfFile:appFile] autorelease];
+    return myData;
 }
 
 #pragma mark -
