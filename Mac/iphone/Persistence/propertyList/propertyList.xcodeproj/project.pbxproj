@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1BBACDB90FB2C95400E8A004 /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBACDB80FB2C95400E8A004 /* Downloader.m */; };
+		1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A9A990FB2FAFD00D3F76F /* Alert.m */; };
+		1BBACDB90FB2C95400E8A004 /* URLCacheConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBACDB80FB2C95400E8A004 /* URLCacheConnection.m */; };
 		1D3623260D0F684500981E51 /* propertyListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* propertyListAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -19,8 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1BBACDB70FB2C95400E8A004 /* Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downloader.h; sourceTree = "<group>"; };
-		1BBACDB80FB2C95400E8A004 /* Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Downloader.m; sourceTree = "<group>"; };
+		1B5A9A980FB2FAFD00D3F76F /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
+		1B5A9A990FB2FAFD00D3F76F /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
+		1BBACDB70FB2C95400E8A004 /* URLCacheConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLCacheConnection.h; sourceTree = "<group>"; };
+		1BBACDB80FB2C95400E8A004 /* URLCacheConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLCacheConnection.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* propertyListAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = propertyListAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* propertyListAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = propertyListAppDelegate.m; sourceTree = "<group>"; };
@@ -57,8 +60,10 @@
 				1D3623250D0F684500981E51 /* propertyListAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* propertyListViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* propertyListViewController.m */,
-				1BBACDB70FB2C95400E8A004 /* Downloader.h */,
-				1BBACDB80FB2C95400E8A004 /* Downloader.m */,
+				1BBACDB70FB2C95400E8A004 /* URLCacheConnection.h */,
+				1BBACDB80FB2C95400E8A004 /* URLCacheConnection.m */,
+				1B5A9A980FB2FAFD00D3F76F /* Alert.h */,
+				1B5A9A990FB2FAFD00D3F76F /* Alert.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -169,7 +174,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* propertyListAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* propertyListViewController.m in Sources */,
-				1BBACDB90FB2C95400E8A004 /* Downloader.m in Sources */,
+				1BBACDB90FB2C95400E8A004 /* URLCacheConnection.m in Sources */,
+				1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +217,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = YES;
+				PREBINDING = NO;
 				PROVISIONING_PROFILE_ALLOWED = NO;
 				PROVISIONING_PROFILE_REQUIRED = NO;
 				SDKROOT = iphoneos2.2;
@@ -226,7 +232,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = YES;
+				PREBINDING = NO;
 				PROVISIONING_PROFILE_ALLOWED = NO;
 				PROVISIONING_PROFILE_REQUIRED = NO;
 				SDKROOT = iphoneos2.2;

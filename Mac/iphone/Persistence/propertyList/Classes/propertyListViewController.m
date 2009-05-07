@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #import "propertyListViewController.h"
+#import "Downloader.h"
 
 @implementation propertyListViewController
 
@@ -37,7 +38,7 @@
 }
 
 // 返回Documents路径
-- (NSString *)appDocumentsDir
++ (NSString *)appDocumentsDir
 {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -51,7 +52,7 @@
 {
 	//@"/var/root/"
 	//NSString *documentsDirectory = [[NSString alloc] initWithCString:getenv("HOME")];
-	NSString *fullpath = [[self appDocumentsDir] stringByAppendingPathComponent:kFilename];
+	NSString *fullpath = [[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:kFilename];
 	NSLog(@"fullpath -----> %@", fullpath);
 	return fullpath;
 }
@@ -67,6 +68,7 @@
 - (IBAction)save:(id)sender
 {
 	[self applicationWillTerminate:nil];
+	//[Downloader createConn];
 }
 
 #pragma mark -
@@ -171,7 +173,7 @@
 
 - (void)write:(const char *)buffer toFile:(NSString *)fileName
 {
-	const char *destPath = [[[self appDocumentsDir] stringByAppendingPathComponent:fileName] UTF8String];
+	const char *destPath = [[[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:fileName] UTF8String];
 	FILE *fpdest = fopen(destPath, "wb");
 	unsigned fileLen = strlen(buffer);
 	fwrite(buffer, 1, fileLen, fpdest);

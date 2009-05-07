@@ -34,7 +34,7 @@
 @property (nonatomic, retain) UIButton *copyButton;
 @property (nonatomic, retain) UILabel *written;
 
-- (NSString *)appDocumentsDir;
++ (NSString *)appDocumentsDir;
 - (NSString *)dataFilePath;
 
 // 程序退出时调用此方法将数据保存到属性列表文件
