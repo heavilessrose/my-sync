@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A9A990FB2FAFD00D3F76F /* Alert.m */; };
+		1B5A9AB30FB2FE6400D3F76F /* ImageShowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A9AB20FB2FE6400D3F76F /* ImageShowDelegate.m */; };
 		1BBACDB90FB2C95400E8A004 /* URLCacheConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBACDB80FB2C95400E8A004 /* URLCacheConnection.m */; };
 		1D3623260D0F684500981E51 /* propertyListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* propertyListAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -22,6 +23,8 @@
 /* Begin PBXFileReference section */
 		1B5A9A980FB2FAFD00D3F76F /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
 		1B5A9A990FB2FAFD00D3F76F /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
+		1B5A9AB10FB2FE6400D3F76F /* ImageShowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageShowDelegate.h; sourceTree = "<group>"; };
+		1B5A9AB20FB2FE6400D3F76F /* ImageShowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageShowDelegate.m; sourceTree = "<group>"; };
 		1BBACDB70FB2C95400E8A004 /* URLCacheConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLCacheConnection.h; sourceTree = "<group>"; };
 		1BBACDB80FB2C95400E8A004 /* URLCacheConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLCacheConnection.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +67,8 @@
 				1BBACDB80FB2C95400E8A004 /* URLCacheConnection.m */,
 				1B5A9A980FB2FAFD00D3F76F /* Alert.h */,
 				1B5A9A990FB2FAFD00D3F76F /* Alert.m */,
+				1B5A9AB10FB2FE6400D3F76F /* ImageShowDelegate.h */,
+				1B5A9AB20FB2FE6400D3F76F /* ImageShowDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				28D7ACF80DDB3853001CB0EB /* propertyListViewController.m in Sources */,
 				1BBACDB90FB2C95400E8A004 /* URLCacheConnection.m in Sources */,
 				1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */,
+				1B5A9AB30FB2FE6400D3F76F /* ImageShowDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
