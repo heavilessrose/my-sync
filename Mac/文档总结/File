@@ -1,3 +1,5 @@
+If your application creates large data files, or files that change frequently, you should consider storing them in the Application Home/Library/Caches directory and not in the <Application_Home>/Documents directory. Backing up large data files can slow down the backup process significantly. The same is true for files that change regularly (and therefore must be backed up frequently). Placing these files in the Caches directory prevents them from being backed up (in iPhone OS 2.2 and later) during every sync operation.
+
 HFS File Tyoes: 
 http://developer.apple.com/iphone/library/documentation/Cocoa/Conceptual/LowLevelFileMgmt/Concepts/HFSFileTypes.html#//apple_ref/doc/uid/20000779
 

@@ -41,9 +41,20 @@
 // !!!: 并非UIApplicationDelegate 的委托方法 
 - (void)applicationWillTerminate:(NSNotification *)notification;
 - (IBAction)save:(id)sender;
+// 键盘Done事件处理
+- (IBAction)fieldsDoneEditing:(id)sender;
+// 点击背景关闭键盘
+- (IBAction)backgroundClicked:(id)sender;
 
 //test
 - (IBAction)copy:(id)sender;
-- (void)write;
+// 文件字节数
+- (unsigned)fileLength:(FILE *)fp;
+- (void)write:(const char *)buffer toFile:(NSString *)fileName;
+
+- (BOOL)writePlist:(id)plist toFile:(NSString *)fileName;
+- (id)plistFromFile:(NSString *)fileName;
+- (BOOL)writeData:(NSData *)data toFile:(NSString *)fileName;
+- (NSData *)dataFromFile:(NSString *)fileName;
 @end
 
