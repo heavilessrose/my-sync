@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #import "propertyListViewController.h"
-#import "Downloader.h"
+
 
 @implementation propertyListViewController
 
@@ -19,7 +19,6 @@
 @synthesize written;
 @synthesize saveButton;
 @synthesize copyButton;
-
 #pragma mark -
 #pragma mark propertyListViewController_方法实现
 // 键盘Done事件处理
@@ -139,8 +138,8 @@
 	
 	///////////// c
 	const char *aBuffer;
-	NSString *secondString = @"EFGH";
-	const char *utfSecondString = [secondString UTF8String];
+	//NSString *secondString = @"EFGH";
+	//const char *utfSecondString = [secondString UTF8String];
 	//NSMutableData *data2 = [NSMutableData dataWithBytes:utfSecondString length:strlen(utfSecondString)];
 	//unsigned len = [data2 length];
 //	aBuffer = malloc(len);
@@ -186,10 +185,10 @@
 // property-list对象转换为NSData对象
 - (BOOL)writePlist:(id)plist toFile:(NSString *)fileName
 {
-    NSString *error;
-    NSData *pData = [NSPropertyListSerialization dataFromPropertyList:plist format:NSPropertyListBinaryFormat_v1_0 errorDescription:&error];
+    NSString *err;
+    NSData *pData = [NSPropertyListSerialization dataFromPropertyList:plist format:NSPropertyListBinaryFormat_v1_0 errorDescription:&err];
     if (!pData) {
-        NSLog(@"%@", error);
+        NSLog(@"%@", err);
         return NO;
     }
     return ([self writeData:pData toFile:(NSString *)fileName]);
@@ -199,7 +198,7 @@
 - (id)plistFromFile:(NSString *)fileName
 {
     NSData *retData;
-    NSString *error;
+    NSString *err;
     id retPlist;
     NSPropertyListFormat format;
 	
@@ -208,9 +207,9 @@
         NSLog(@"Data file not returned.");
         return nil;
     }
-    retPlist = [NSPropertyListSerialization propertyListFromData:retData  mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
+    retPlist = [NSPropertyListSerialization propertyListFromData:retData  mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&err];
     if (!retPlist){
-        NSLog(@"Plist not returned, error: %@", error);
+        NSLog(@"Plist not returned, error: %@", err);
     }
     return retPlist;
 }
@@ -297,4 +296,16 @@
     [super dealloc];
 }
 
+
+////////////////////////////////////////////////////////////
+
+- (IBAction) onDisplayImage:(id)sender
+{
+	
+}
+
+- (IBAction) onClearCache:(id)sender
+{
+	
+}
 @end
