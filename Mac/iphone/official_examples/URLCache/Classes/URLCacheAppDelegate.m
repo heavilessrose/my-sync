@@ -58,11 +58,11 @@ const double URLCacheInterval = 86400.0;
 - (void) startAnimation;
 - (void) stopAnimation;
 - (void) buttonsEnabled:(BOOL)flag;
-- (void) getFileModificationDate;
 - (void) displayImageWithURL:(NSURL *)theURL;
 - (void) displayCachedImage;
 - (void) initCache;
 - (void) clearCache;
+- (void) getFileModificationDate;
 
 @end
 

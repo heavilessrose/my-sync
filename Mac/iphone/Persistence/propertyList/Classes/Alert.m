@@ -9,14 +9,14 @@
 #import "Alert.h"
 
 
-void URLCacheAlertWithError(NSError *error)
+void alertWithError(NSError *error)
 {
     NSString *message = [NSString stringWithFormat:@"Error! %@ %@", [error localizedDescription], [error localizedFailureReason]];
-	URLCacheAlertWithMessage (message);
+	alertWithMessage (message);
 }
 
 
-void URLCacheAlertWithMessage(NSString *message)
+void alertWithMessage(NSString *message)
 {
 	/* open an alert with an OK button */
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"URLCache" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -25,7 +25,7 @@ void URLCacheAlertWithMessage(NSString *message)
 }
 
 
-void URLCacheAlertWithMessageAndDelegate(NSString *message, id delegate)
+void alertWithMessageAndDelegate(NSString *message, id delegate)
 {
 	/* open an alert with OK and Cancel buttons */
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"URLCache" message:message delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles: @"OK", nil];

@@ -7,18 +7,46 @@
 //
 
 #include <stdio.h>
+#import "Alert.h"
 #import "propertyListViewController.h"
 
+const double URLCacheInterval = 86400.0;
+//@interface NSObject(PrivateMethods)
+//
+//- (void) initImageView;
+//- (void) startAnimation;
+//- (void) stopAnimation;
+//- (void) buttonsEnabled:(BOOL)flag;
+//- (void) displayImageWithURL:(NSURL *)theURL;
+//- (void) displayCachedImage;
+//- (void) turnOffSharedCache;
+//- (void) initCache;
+//- (void) clearCache;
+//- (void) getFileModificationDate;
+//
+//@end
 
 @implementation propertyListViewController
 
 @synthesize field1;
 @synthesize field2;
-@synthesize field3;
-@synthesize field4;
 @synthesize written;
 @synthesize saveButton;
 @synthesize copyButton;
+/////
+@synthesize cacheDir;
+@synthesize cachedFilePath;
+@synthesize fileDate;
+@synthesize urlArray;
+
+@synthesize imageView;
+@synthesize activityIndicator;
+@synthesize display;
+@synthesize clear;
+@synthesize statusField;
+@synthesize dateField;
+@synthesize infoField;
+
 #pragma mark -
 #pragma mark propertyListViewController_方法实现
 // 键盘Done事件处理
@@ -31,10 +59,7 @@
 - (IBAction)backgroundClicked:(id)sender
 {
 	[field1 resignFirstResponder];
-	[field2 resignFirstResponder];
-	[field3 resignFirstResponder];
-	[field4 resignFirstResponder];
-}
+	[field2 resignFirstResponder];}
 
 // 返回Documents路径
 + (NSString *)appDocumentsDir
@@ -82,8 +107,6 @@
 	// TODO: 检查field中text是否为空的情况
 	[dataArray addObject:field1.text];
 	[dataArray addObject:field2.text];
-	[dataArray addObject:field3.text];
-	[dataArray addObject:field4.text];
 	
 	BOOL isSuccess = NO;
 	if([[NSFileManager defaultManager] fileExistsAtPath:[self dataFilePath]]){
@@ -247,6 +270,13 @@
 // Invoked when the view is finished loading.
 - (void)viewDidLoad
 {
+	
+	/* set initial state of network activity indicators */
+	[self stopAnimation];
+    
+	/* initialize the user interface */
+	[self initImageView];
+	
 	NSString *filepath = [self dataFilePath];
 
 	if([[NSFileManager defaultManager] fileExistsAtPath:filepath]){
@@ -254,8 +284,6 @@
 		// FIXME: 应处理属性列表文件为空的情况
 		field1.text = [array objectAtIndex:0];
 		field2.text = [array objectAtIndex:1];
-		field3.text = [array objectAtIndex:2];
-		field4.text = [array objectAtIndex:3];
 		[array release];
 	}else {
 		[[NSFileManager defaultManager] createFileAtPath:filepath contents:nil attributes:nil];
@@ -275,6 +303,10 @@
 //	[self copy:filepath dest:dest];
 	/////////////test~
 	
+	//////////////////////////////////////////////////////////////////////
+	[self turnOffSharedCache];
+	[self initCache];
+	[self loadUrlRes];
 	[super viewDidLoad];
 }
 
@@ -291,21 +323,287 @@
 	// !!!: 应释放所有资源
 	[field1 release];
 	[field2 release];
-	[field3 release];
-	[field4 release];
+	///
+	[cacheDir release];
+	[cachedFilePath release];
+	[fileDate release];
+	[urlArray release];
+	
+	[imageView release];
+	[activityIndicator release];
+	[statusField release];
+	[dateField release];
+	[infoField release];
+	[display release];
+	[clear release];
     [super dealloc];
 }
 
 
 ////////////////////////////////////////////////////////////
-
 - (IBAction) onDisplayImage:(id)sender
 {
-	
+	[self initImageView];
+	[self displayImageWithURL:[urlArray objectAtIndex:0]];
 }
 
 - (IBAction) onClearCache:(id)sender
 {
-	
+	NSString *message = NSLocalizedString (@"Do you really want to clear the cache?",
+										   @"Clear Cache alert message");
+    
+	alertWithMessageAndDelegate(message, self);
 }
+
+#pragma mark -
+#pragma mark NSObject-PrivateMethods 实现
+// 初始化ImageView
+- (void) initImageView
+{
+	imageView.image = nil;
+	statusField.text = @"";
+	dateField.text = @"";
+	infoField.text = @"";
+}
+
+
+/* show the user that loading activity has started */
+- (void) startAnimation
+{
+	[self.activityIndicator startAnimating];
+	UIApplication *application = [UIApplication sharedApplication];
+	application.networkActivityIndicatorVisible = YES;
+}
+
+
+/* show the user that loading activity has stopped */
+- (void) stopAnimation
+{
+	[self.activityIndicator stopAnimating];
+	UIApplication *application = [UIApplication sharedApplication];
+	application.networkActivityIndicatorVisible = NO;
+}
+
+
+/* enable or disable all toolbar buttons */
+- (void) buttonsEnabled:(BOOL)flag
+{
+	display.enabled = flag;
+	clear.enabled = flag;
+}
+
+/* 关闭共享的cache */
+- (void) turnOffSharedCache
+{
+	/* turn off the NSURLCache shared cache */
+    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:nil];
+    [NSURLCache setSharedURLCache:sharedCache];
+    [sharedCache release];
+}
+
+/* 初始化自己的cache */
+- (void) initCache
+{
+	/* create path to cache directory inside the application's Documents directory */
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    self.cacheDir = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"URLCache"];
+	
+	/* check for existence of cache directory */
+	if ([[NSFileManager defaultManager] fileExistsAtPath:self.cacheDir]) {
+		return;
+	}
+	
+	/* 新建cache目录 */
+	if (![[NSFileManager defaultManager] createDirectoryAtPath:self.cacheDir withIntermediateDirectories:NO attributes:nil error:&error]) {
+		alertWithError(error);
+		return;
+	}
+}
+
+
+/* removes every file in the cache directory */
+- (void) clearCache
+{
+	/* remove the cache directory and its contents */
+	if (![[NSFileManager defaultManager] removeItemAtPath:self.cacheDir error:&error]) {
+		alertWithError(error);
+		return;
+	}
+	
+	/* create a new cache directory */
+	if (![[NSFileManager defaultManager] createDirectoryAtPath:self.cacheDir 
+								   withIntermediateDirectories:NO
+													attributes:nil 
+														 error:&error]) {
+		alertWithError(error);
+		return;
+	}
+	
+	[self initImageView];
+}	
+
+
+/* display new or existing cached image */
+- (void) displayImageWithURL:(NSURL *)theURL
+{
+	/* get the path to the cached image */
+	[cachedFilePath release]; /* release previous instance */
+	NSString *fileName = [[theURL path] lastPathComponent];
+	cachedFilePath = [[self.cacheDir stringByAppendingPathComponent:fileName] retain];
+    
+	/* apply daily time interval policy */
+	
+	/* In this program, "update" means to check the last modified date 
+	 of the image to see if we need to load a new version. */
+	
+	[self getFileModificationDate];
+	/* get the elapsed time since last file update */
+	NSTimeInterval time = fabs([fileDate timeIntervalSinceNow]);
+	if (time > URLCacheInterval) {
+		/* file doesn't exist or hasn't been updated for at least one day */
+		[self initImageView];
+		[self buttonsEnabled:NO];
+		[self startAnimation];
+		(void) [[URLCacheConnection alloc] initWithURL:theURL delegate:self];
+	}
+	else {
+		statusField.text = NSLocalizedString (@"Previously cached image", 
+											  @"Image found in cache and updated in last 24 hours.");
+		[self displayCachedImage];
+	}
+}
+
+
+/* display existing cached image */
+- (void) displayCachedImage
+{
+	infoField.text = NSLocalizedString (@"The cached image is updated if 24 hours has elapsed since the last update and you press the Display Image button.", @"Information about updates.");
+	
+	/* retrieve file attributes */
+    
+	[self getFileModificationDate];
+    
+	/* format the file modification date for display in Updated field */
+	
+	/* for detailed information on Unicode date format patterns, see:
+	 <http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns> */
+	
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"EEE, MMM d, yyyy, h:mm a"];
+	/* another possible format: @"yyyy-MM-dd HH:mm:ss zzz" */
+	dateField.text = [@"Updated: " stringByAppendingString:[dateFormatter stringFromDate:fileDate]];
+	[dateFormatter release];
+	
+	/* display the file as an image */
+	
+	UIImage *theImage = [[UIImage alloc] initWithContentsOfFile:cachedFilePath];
+	if (theImage) {
+		imageView.image = theImage;
+		[theImage release];
+	}
+}
+
+
+
+/* get modification date of the current cached image */
+- (void) getFileModificationDate
+{
+	/* default date if file doesn't exist (not an error) */
+	fileDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFilePath]) {
+		/* retrieve file attributes */
+		NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:cachedFilePath error:&error];
+		if (attributes != nil) {
+			fileDate = [attributes fileModificationDate];
+		}
+		else {
+			alertWithError(error);
+		}
+	}
+}
+
+- (void)loadUrlRes
+{
+	/* 加载资源得到url。create and load the URL array using the strings stored in URLCache.plist */
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"URLCache" ofType:@"plist"];
+    if (path) {
+        NSArray *array = [[NSArray alloc] initWithContentsOfFile:path];
+        urlArray = [[NSMutableArray alloc] init];
+        for (NSString *element in array) {
+            [urlArray addObject:[NSURL URLWithString:element]];
+        }
+        [array release];
+    }
+}
+
+#pragma mark -
+#pragma mark URLCacheConnectionDelegate 实现
+
+- (void) connectionDidFail:(URLCacheConnection *)theConnection
+{	
+	[self stopAnimation];
+	[self buttonsEnabled:YES];
+	[theConnection release];
+}
+
+
+- (void) connectionDidFinish:(URLCacheConnection *)theConnection
+{	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFilePath] == YES) {
+		
+		/* apply the modified date policy */
+		[self getFileModificationDate];
+		NSComparisonResult result = [theConnection.lastModified compare:fileDate];
+		if (result == NSOrderedDescending) {
+			/* file is outdated, so remove it */
+			if (![[NSFileManager defaultManager] removeItemAtPath:cachedFilePath error:&error]) {
+				alertWithError(error);
+			}
+			
+		}
+	}
+	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFilePath] == NO) {
+		/* file doesn't exist, so create it */
+		[[NSFileManager defaultManager] createFileAtPath:cachedFilePath 
+												contents:theConnection.receivedData 
+											  attributes:nil];
+		
+		statusField.text = NSLocalizedString (@"Newly cached image", 
+											  @"Image not found in cache or new image available.");
+	}
+	else {
+		statusField.text = NSLocalizedString (@"Cached image is up to date",
+											  @"Image updated and no new image available.");
+	}
+	
+	/* reset the file's modification date to indicate that the URL has been checked */
+	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSDate date], NSFileModificationDate, nil];
+	if (![[NSFileManager defaultManager] setAttributes:dict ofItemAtPath:cachedFilePath error:&error]) {
+		alertWithError(error);
+	}
+	[dict release];
+	
+	[self stopAnimation];
+	[self buttonsEnabled:YES];
+	[self displayCachedImage];
+	
+	[theConnection release];
+}
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 0) {
+		/* the user clicked the Cancel button */
+        return;
+    }
+	
+	[self clearCache];
+}
+
+
 @end

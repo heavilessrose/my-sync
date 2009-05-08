@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-void URLCacheAlertWithError(NSError *error);
-void URLCacheAlertWithMessage(NSString *message);
-void URLCacheAlertWithMessageAndDelegate(NSString *message, id delegate);
+void alertWithError(NSError *error);
+void alertWithMessage(NSString *message);
+void alertWithMessageAndDelegate(NSString *message, id delegate);
