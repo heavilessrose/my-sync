@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Alert.h"
 
 #define kFilename @"data.plist"
 
 @class NSData;
+
 
 @interface propertyListViewController : UIViewController {
 	IBOutlet UITextField *field1;
@@ -22,6 +24,10 @@
 	IBOutlet UIButton *saveButton;
 	IBOutlet UIButton *copyButton;
 }
+
+- (IBAction) onDisplayImage:(id)sender;
+- (IBAction) onClearCache:(id)sender;
+
 - (void)setTip:(NSString *)isSuccess;
 
 // ???: retain or asign 该如何选择
