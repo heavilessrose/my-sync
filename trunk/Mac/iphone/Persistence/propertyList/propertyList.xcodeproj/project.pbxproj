@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A9A990FB2FAFD00D3F76F /* Alert.m */; };
+		1BBB25B70FB3F0C400B26386 /* URLCache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB25B60FB3F0C400B26386 /* URLCache.plist */; };
+		1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */; };
 		1D3623260D0F684500981E51 /* propertyListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* propertyListAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -21,6 +23,9 @@
 /* Begin PBXFileReference section */
 		1B5A9A980FB2FAFD00D3F76F /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
 		1B5A9A990FB2FAFD00D3F76F /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
+		1BBB25B60FB3F0C400B26386 /* URLCache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = URLCache.plist; sourceTree = "<group>"; };
+		1BBB25ED0FB3F4DE00B26386 /* URLCacheConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLCacheConnection.h; sourceTree = "<group>"; };
+		1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLCacheConnection.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* propertyListAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = propertyListAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* propertyListAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = propertyListAppDelegate.m; sourceTree = "<group>"; };
@@ -59,6 +64,8 @@
 				28D7ACF70DDB3853001CB0EB /* propertyListViewController.m */,
 				1B5A9A980FB2FAFD00D3F76F /* Alert.h */,
 				1B5A9A990FB2FAFD00D3F76F /* Alert.m */,
+				1BBB25ED0FB3F4DE00B26386 /* URLCacheConnection.h */,
+				1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -98,6 +105,7 @@
 				2899E5210DE3E06400AC0155 /* propertyListViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				1BBB25B60FB3F0C400B26386 /* URLCache.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -156,6 +164,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* propertyListViewController.xib in Resources */,
+				1BBB25B70FB3F0C400B26386 /* URLCache.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +179,7 @@
 				1D3623260D0F684500981E51 /* propertyListAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* propertyListViewController.m in Sources */,
 				1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */,
+				1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

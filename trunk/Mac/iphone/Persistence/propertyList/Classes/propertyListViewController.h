@@ -7,38 +7,59 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Alert.h"
+#import "URLCacheConnection.h"
 
 #define kFilename @"data.plist"
 
 @class NSData;
 
 
-@interface propertyListViewController : UIViewController {
+@interface propertyListViewController : UIViewController <URLCacheConnectionDelegate, UIAlertViewDelegate> {
 	IBOutlet UITextField *field1;
 	IBOutlet UITextField *field2;
-	IBOutlet UITextField *field3;
-	IBOutlet UITextField *field4;
 	// 是否成功写入
 	IBOutlet UILabel *written;
 	IBOutlet UIButton *saveButton;
 	IBOutlet UIButton *copyButton;
+	/////////////
+	NSString *cacheDir; // 自己的cache路径
+	NSString *cachedFilePath; // path to the cached image
+	NSDate *fileDate; // cached image的文件最后修改时间
+	NSMutableArray *urlArray; // URLCache.plist文件中所有的url
+	NSError *error; // 指向所有的错误（始终指向最新的错误）
+	
+	IBOutlet UIImageView *imageView;
+	IBOutlet UIActivityIndicatorView *activityIndicator;
+	IBOutlet UIButton *display;
+	IBOutlet UIButton *clear;
+	IBOutlet UILabel *statusField;
+	IBOutlet UILabel *dateField;
+	IBOutlet UILabel *infoField;
 }
-
-- (IBAction) onDisplayImage:(id)sender;
-- (IBAction) onClearCache:(id)sender;
 
 - (void)setTip:(NSString *)isSuccess;
 
 // ???: retain or asign 该如何选择
 @property (nonatomic, retain) UITextField *field1;
 @property (nonatomic, retain) UITextField *field2;
-@property (nonatomic, retain) UITextField *field3;
-@property (nonatomic, retain) UITextField *field4;
 
 @property (nonatomic, retain) UIButton *saveButton;
 @property (nonatomic, retain) UIButton *copyButton;
 @property (nonatomic, retain) UILabel *written;
+
+/////
+@property (nonatomic, copy) NSString *cacheDir;
+@property (nonatomic, copy) NSString *cachedFilePath;
+@property (nonatomic, retain) NSDate *fileDate;
+@property (nonatomic, retain) NSMutableArray *urlArray;
+
+@property (nonatomic, retain) UIImageView *imageView;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) UILabel *statusField;
+@property (nonatomic, retain) UILabel *dateField;
+@property (nonatomic, retain) UILabel *infoField;
+@property (nonatomic, retain) UIButton *display;
+@property (nonatomic, retain) UIButton *clear;
 
 + (NSString *)appDocumentsDir;
 - (NSString *)dataFilePath;
@@ -62,5 +83,23 @@
 - (id)plistFromFile:(NSString *)fileName;
 - (BOOL)writeData:(NSData *)data toFile:(NSString *)fileName;
 - (NSData *)dataFromFile:(NSString *)fileName;
+
+///////////////
+
+- (IBAction) onDisplayImage:(id)sender;
+- (IBAction) onClearCache:(id)sender;
+
+- (void) initImageView;
+- (void) startAnimation;
+- (void) stopAnimation;
+- (void) buttonsEnabled:(BOOL)flag;
+- (void) displayImageWithURL:(NSURL *)theURL;
+- (void) displayCachedImage;
+- (void) turnOffSharedCache;
+- (void) initCache;
+- (void) clearCache;
+- (void) getFileModificationDate;
+
+- (void)loadUrlRes;
 @end
 
