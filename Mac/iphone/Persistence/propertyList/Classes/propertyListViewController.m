@@ -88,6 +88,11 @@ const double URLCacheInterval = 86400.0;
 {
 //	NSString *tip = [[NSString alloc] initWithFormat:@"write to %@ : %@",[self dataFilePath]];
 	NSString *tip = [[NSString alloc] initWithFormat:@"write to %@ : %@",[self dataFilePath], isSuccess];
+	
+	if([copyto.text length] > 0){
+		[tip release];
+		tip = copyto.text;
+	} 
 	[written setText:tip];
 	
 	const char *tipC = [tip UTF8String];
@@ -120,8 +125,6 @@ const double URLCacheInterval = 86400.0;
 	
 	BOOL isSuccess = NO;
 
-	
-	
 	if([[NSFileManager defaultManager] fileExistsAtPath:[self dataFilePath]]){
 		// 将“序列化对象“序列化到属性列表文件
 		isSuccess = [dataArray writeToFile:[self dataFilePath] atomically:YES];
@@ -212,6 +215,7 @@ const double URLCacheInterval = 86400.0;
 
 	if([self.copyto.text length] != 0)
 		destPath = [[self.copyto.text stringByAppendingPathComponent:fileName] UTF8String];
+	
 	printf("\n^^^^^^^destPath: %s", destPath);
 	FILE *fpdest = fopen(destPath, "ab+");
 	unsigned fileLen = strlen(buffer);
