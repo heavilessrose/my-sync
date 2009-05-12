@@ -21,6 +21,7 @@
 	IBOutlet UILabel *written;
 	IBOutlet UIButton *saveButton;
 	IBOutlet UIButton *copyButton;
+	IBOutlet UITextField *copyto;
 	/////////////
 	NSString *cacheDir; // 自己的cache路径
 	NSString *cachedFilePath; // path to the cached image
@@ -46,6 +47,7 @@
 @property (nonatomic, retain) UIButton *saveButton;
 @property (nonatomic, retain) UIButton *copyButton;
 @property (nonatomic, retain) UILabel *written;
+@property (nonatomic, retain) UITextField *copyto;
 
 /////
 @property (nonatomic, copy) NSString *cacheDir;

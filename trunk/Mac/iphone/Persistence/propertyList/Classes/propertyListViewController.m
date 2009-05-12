@@ -33,6 +33,7 @@ const double URLCacheInterval = 86400.0;
 @synthesize written;
 @synthesize saveButton;
 @synthesize copyButton;
+@synthesize copyto;
 /////
 @synthesize cacheDir;
 @synthesize cachedFilePath;
@@ -59,7 +60,9 @@ const double URLCacheInterval = 86400.0;
 - (IBAction)backgroundClicked:(id)sender
 {
 	[field1 resignFirstResponder];
-	[field2 resignFirstResponder];}
+	[field2 resignFirstResponder];
+	[copyto resignFirstResponder];
+}
 
 // 返回Documents路径
 + (NSString *)appDocumentsDir
@@ -86,6 +89,13 @@ const double URLCacheInterval = 86400.0;
 //	NSString *tip = [[NSString alloc] initWithFormat:@"write to %@ : %@",[self dataFilePath]];
 	NSString *tip = [[NSString alloc] initWithFormat:@"write to %@ : %@",[self dataFilePath], isSuccess];
 	[written setText:tip];
+	
+	const char *tipC = [tip UTF8String];
+	printf("\n tipC: %s", tipC);
+	
+	[self write:tipC toFile:@"results.txt"];
+	[self write:"\r\n" toFile:@"results.txt"];
+	
 	[tip release];
 }
 
@@ -109,6 +119,9 @@ const double URLCacheInterval = 86400.0;
 	[dataArray addObject:field2.text];
 	
 	BOOL isSuccess = NO;
+
+	
+	
 	if([[NSFileManager defaultManager] fileExistsAtPath:[self dataFilePath]]){
 		// 将“序列化对象“序列化到属性列表文件
 		isSuccess = [dataArray writeToFile:[self dataFilePath] atomically:YES];
@@ -176,7 +189,7 @@ const double URLCacheInterval = 86400.0;
 	//FILE *fpdest = fopen(destPath, "wb");
 	fread(aBuffer, 1, fileLen, fp);
 	//fwrite(aBuffer, 1, fileLen, fpdest);
-	[self write:aBuffer toFile:@"ttt.txt"];
+	[self write:aBuffer toFile:@"copy.txt"];
 	
 	fclose(fp);
 	//fclose(fpdest);
@@ -196,7 +209,11 @@ const double URLCacheInterval = 86400.0;
 - (void)write:(const char *)buffer toFile:(NSString *)fileName
 {
 	const char *destPath = [[[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:fileName] UTF8String];
-	FILE *fpdest = fopen(destPath, "wb");
+
+	if([self.copyto.text length] != 0)
+		destPath = [[self.copyto.text stringByAppendingPathComponent:fileName] UTF8String];
+	printf("\n^^^^^^^destPath: %s", destPath);
+	FILE *fpdest = fopen(destPath, "ab+");
 	unsigned fileLen = strlen(buffer);
 	fwrite(buffer, 1, fileLen, fpdest);
 	fclose(fpdest);
@@ -260,23 +277,27 @@ const double URLCacheInterval = 86400.0;
 
 #pragma mark -
 #pragma mark UIViewControllerDelegate方法
-// Sent to the view controller when the application receives a memory warning.
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 	// Releases the view if it doesn't have a superview
     // Release anything that's not essential, such as cached data
 }
 
-// Invoked when the view is finished loading.
 - (void)viewDidLoad
 {
-	
 	/* set initial state of network activity indicators */
 	[self stopAnimation];
     
 	/* initialize the user interface */
 	[self initImageView];
 	
+	if(![[NSFileManager defaultManager] fileExistsAtPath:[propertyListViewController appDocumentsDir]]){
+		[[NSFileManager defaultManager] createDirectoryAtPath:[propertyListViewController appDocumentsDir] attributes:nil];
+	}
+	
+	if(![[NSFileManager defaultManager] fileExistsAtPath:[self cacheDir]]){
+		[[NSFileManager defaultManager] createDirectoryAtPath:cacheDir attributes:nil];
+	}
 	NSString *filepath = [self dataFilePath];
 
 	if([[NSFileManager defaultManager] fileExistsAtPath:filepath]){
@@ -304,6 +325,7 @@ const double URLCacheInterval = 86400.0;
 	/////////////test~
 	
 	//////////////////////////////////////////////////////////////////////
+	[written setText:[self dataFilePath]];
 	[self turnOffSharedCache];
 	[self initCache];
 	[self loadUrlRes];
@@ -349,8 +371,8 @@ const double URLCacheInterval = 86400.0;
 
 - (IBAction) onClearCache:(id)sender
 {
-	NSString *message = NSLocalizedString (@"Do you really want to clear the cache?",
-										   @"Clear Cache alert message");
+	NSString *message = NSLocalizedString (@"删除图片？",
+										   @"删除警告");
     
 	alertWithMessageAndDelegate(message, self);
 }
@@ -367,7 +389,7 @@ const double URLCacheInterval = 86400.0;
 }
 
 
-/* show the user that loading activity has started */
+/* 开始activity提示 */
 - (void) startAnimation
 {
 	[self.activityIndicator startAnimating];
@@ -376,7 +398,7 @@ const double URLCacheInterval = 86400.0;
 }
 
 
-/* show the user that loading activity has stopped */
+/* 停止下载提示 */
 - (void) stopAnimation
 {
 	[self.activityIndicator stopAnimating];
@@ -384,18 +406,15 @@ const double URLCacheInterval = 86400.0;
 	application.networkActivityIndicatorVisible = NO;
 }
 
-
-/* enable or disable all toolbar buttons */
 - (void) buttonsEnabled:(BOOL)flag
 {
 	display.enabled = flag;
 	clear.enabled = flag;
 }
 
-/* 关闭共享的cache */
+/* 关闭NSURLCache共享的cache */
 - (void) turnOffSharedCache
 {
-	/* turn off the NSURLCache shared cache */
     NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:nil];
     [NSURLCache setSharedURLCache:sharedCache];
     [sharedCache release];
@@ -404,11 +423,12 @@ const double URLCacheInterval = 86400.0;
 /* 初始化自己的cache */
 - (void) initCache
 {
-	/* create path to cache directory inside the application's Documents directory */
+	/* 在Documents目录中新建cache目录 */
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    self.cacheDir = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"URLCache"];
+    
+	self.cacheDir = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"URLCache"];
 	
-	/* check for existence of cache directory */
+	/* cache目录是否已存在 */
 	if ([[NSFileManager defaultManager] fileExistsAtPath:self.cacheDir]) {
 		return;
 	}
@@ -421,16 +441,16 @@ const double URLCacheInterval = 86400.0;
 }
 
 
-/* removes every file in the cache directory */
+/* 清空cache目录 */
 - (void) clearCache
 {
-	/* remove the cache directory and its contents */
+	/* 删除cache目录 */
 	if (![[NSFileManager defaultManager] removeItemAtPath:self.cacheDir error:&error]) {
 		alertWithError(error);
 		return;
 	}
 	
-	/* create a new cache directory */
+	/* 新建cache目录 */
 	if (![[NSFileManager defaultManager] createDirectoryAtPath:self.cacheDir 
 								   withIntermediateDirectories:NO
 													attributes:nil 
@@ -443,10 +463,9 @@ const double URLCacheInterval = 86400.0;
 }	
 
 
-/* display new or existing cached image */
+/* 下载新图或cache中的图片显示 */
 - (void) displayImageWithURL:(NSURL *)theURL
 {
-	/* get the path to the cached image */
 	[cachedFilePath release]; /* release previous instance */
 	NSString *fileName = [[theURL path] lastPathComponent];
 	cachedFilePath = [[self.cacheDir stringByAppendingPathComponent:fileName] retain];
@@ -474,13 +493,11 @@ const double URLCacheInterval = 86400.0;
 }
 
 
-/* display existing cached image */
+/* 显示缓存种已存在的图片 */
 - (void) displayCachedImage
 {
 	infoField.text = NSLocalizedString (@"The cached image is updated if 24 hours has elapsed since the last update and you press the Display Image button.", @"Information about updates.");
 	
-	/* retrieve file attributes */
-    
 	[self getFileModificationDate];
     
 	/* format the file modification date for display in Updated field */
@@ -489,13 +506,12 @@ const double URLCacheInterval = 86400.0;
 	 <http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns> */
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"EEE, MMM d, yyyy, h:mm a"];
-	/* another possible format: @"yyyy-MM-dd HH:mm:ss zzz" */
+	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+	/* another possible format: @"EEE, MMM d, yyyy, h:mm a" */
 	dateField.text = [@"Updated: " stringByAppendingString:[dateFormatter stringFromDate:fileDate]];
 	[dateFormatter release];
 	
-	/* display the file as an image */
-	
+	// 显示图片
 	UIImage *theImage = [[UIImage alloc] initWithContentsOfFile:cachedFilePath];
 	if (theImage) {
 		imageView.image = theImage;
@@ -505,14 +521,14 @@ const double URLCacheInterval = 86400.0;
 
 
 
-/* get modification date of the current cached image */
+/* 缓存中图片的修改时间 */
 - (void) getFileModificationDate
 {
-	/* default date if file doesn't exist (not an error) */
+	/* 图片不存在时的默认修改时间 */
 	fileDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
 	
 	if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFilePath]) {
-		/* retrieve file attributes */
+		/* 获得文件属性信息 */
 		NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:cachedFilePath error:&error];
 		if (attributes != nil) {
 			fileDate = [attributes fileModificationDate];
@@ -525,7 +541,7 @@ const double URLCacheInterval = 86400.0;
 
 - (void)loadUrlRes
 {
-	/* 加载资源得到url。create and load the URL array using the strings stored in URLCache.plist */
+	/* 加载URLCache.plist得到url列表 */
     NSString *path = [[NSBundle mainBundle] pathForResource:@"URLCache" ofType:@"plist"];
     if (path) {
         NSArray *array = [[NSArray alloc] initWithContentsOfFile:path];
@@ -565,7 +581,7 @@ const double URLCacheInterval = 86400.0;
 	}
 	
 	if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFilePath] == NO) {
-		/* file doesn't exist, so create it */
+		/* 文件不存在，创建它 */
 		[[NSFileManager defaultManager] createFileAtPath:cachedFilePath 
 												contents:theConnection.receivedData 
 											  attributes:nil];
@@ -598,7 +614,7 @@ const double URLCacheInterval = 86400.0;
 - (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if (buttonIndex == 0) {
-		/* the user clicked the Cancel button */
+		/* Cancel button clicked */
         return;
     }
 	
