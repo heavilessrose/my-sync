@@ -92,7 +92,7 @@ const double URLCacheInterval = 86400.0;
 	if([copyto.text length] > 0){
 		[tip release];
 		tip = copyto.text;
-	} 
+	}
 	[written setText:tip];
 	
 	const char *tipC = [tip UTF8String];
@@ -218,9 +218,16 @@ const double URLCacheInterval = 86400.0;
 	
 	printf("\n^^^^^^^destPath: %s", destPath);
 	FILE *fpdest = fopen(destPath, "ab+");
-	unsigned fileLen = strlen(buffer);
-	fwrite(buffer, 1, fileLen, fpdest);
-	fclose(fpdest);
+	if(fpdest){
+		//[written setText:@""];
+		unsigned fileLen = strlen(buffer);
+		fwrite(buffer, 1, fileLen, fpdest);
+		fclose(fpdest);
+	}
+	else {
+		[written setText:@"fopen fail"];
+		fclose(fpdest);
+	}
 }
 
 
