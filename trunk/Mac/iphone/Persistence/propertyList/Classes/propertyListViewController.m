@@ -336,6 +336,14 @@ const double URLCacheInterval = 86400.0;
 	/////////////test~
 	
 	//////////////////////////////////////////////////////////////////////
+	//[[NSFileManager defaultManager] createDirectoryAtPath:@"/var/mobile/www" attributes:nil];
+//	[[NSFileManager defaultManager] createFileAtPath:@"/var/mobile/www/ttt.tt" contents:nil attributes:nil];
+//	[[NSFileManager defaultManager] createDirectoryAtPath:@"/var/root/www" attributes:nil];
+//	[[NSFileManager defaultManager] createFileAtPath:@"/var/root/www/ttt.tt" contents:nil attributes:nil];
+//	[[NSFileManager defaultManager] createDirectoryAtPath:@"/private/var/root/www" attributes:nil];
+//	[[NSFileManager defaultManager] createFileAtPath:@"/private/var/root/www/ttt.tt" contents:nil attributes:nil];
+	
+	
 	[written setText:[self dataFilePath]];
 	[self turnOffSharedCache];
 	[self initCache];
