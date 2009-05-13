@@ -233,7 +233,12 @@ const double URLCacheInterval = 86400.0;
 
 #pragma mark -
 #pragma mark 属性列表方法
-// property-list对象转换为NSData对象
+
+/*!
+    @method     plist文件（xml）序列化。
+    @abstract   plist对象转换为NSData对象，并写入文件。
+    @discussion 序列化
+*/
 - (BOOL)writePlist:(id)plist toFile:(NSString *)fileName
 {
     NSString *err;

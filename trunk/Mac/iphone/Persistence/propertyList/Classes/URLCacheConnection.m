@@ -17,37 +17,25 @@
 @synthesize lastModified;
 
 
-/* This method initiates the load request. The connection is asynchronous, 
- and we implement a set of delegate methods that act as callbacks during 
- the load. */
+// 利用request初始化连接。异步方式，实现NSURLConnection的一些委托方法用于当不同事件发生是回调。
 - (id) initWithURL:(NSURL *)theURL delegate:(id<URLCacheConnectionDelegate>)theDelegate
 {
 	if (self = [super init]) {
 		
 		self.delegate = theDelegate;
-		
-		/* Create the request. This application does not use a NSURLCache 
-		 disk or memory cache, so our cache policy is to satisfy the request
-		 by loading the data from its source. */
 		NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL
 													cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
 												timeoutInterval:60];
-		
-		/* create the NSMutableData instance that will hold the received data */
-		receivedData = [[NSMutableData alloc] initWithLength:0];
-		
-		/* Create the connection with the request and start loading the
-		 data. The connection object is owned both by the creator and the
-		 loading system. */
-		
+
 		NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:theRequest 
 																	  delegate:self 
 															  startImmediately:YES];
 		if (connection == nil) {
-			/* inform the user that the connection failed */
-			NSString *message = NSLocalizedString (@"Unable to initiate request.", 
+			NSString *message = NSLocalizedString (@"无法初始化request.", 
 												   @"NSURLConnection initialization method failed.");
 			alertWithMessage(message);
+		} else {
+			receivedData = [[NSMutableData alloc] initWithLength:0];
 		}
 	}
 	

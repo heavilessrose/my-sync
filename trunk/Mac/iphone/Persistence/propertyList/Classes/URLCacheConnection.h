@@ -12,7 +12,7 @@
 
 @interface URLCacheConnection : NSObject {
 	id <URLCacheConnectionDelegate> delegate;
-	NSMutableData *receivedData;
+	NSMutableData *receivedData; // 服务器返回的数据
 	NSDate *lastModified; // 最后更新时间
 }
 
