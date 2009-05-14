@@ -18,6 +18,8 @@
 	IBOutlet UITextField *field1;
 	IBOutlet UITextField *field2;
 	// 是否成功写入
+	IBOutlet UILabel *home;
+	IBOutlet UILabel *doc;
 	IBOutlet UILabel *written;
 	IBOutlet UIButton *saveButton;
 	IBOutlet UIButton *copyButton;
@@ -36,11 +38,16 @@
 	IBOutlet UILabel *statusField;
 	IBOutlet UILabel *dateField;
 	IBOutlet UILabel *infoField;
+	
+	IBOutlet UIButton *cancel;
+	IBOutlet URLCacheConnection *conn;
 }
 
 - (void)setTip:(NSString *)isSuccess;
-
+- (NSString *) getDocumentsDir;
 // ???: retain or asign 该如何选择
+@property (nonatomic, retain) UILabel *home;
+@property (nonatomic, retain) UILabel *doc;
 @property (nonatomic, retain) UITextField *field1;
 @property (nonatomic, retain) UITextField *field2;
 
@@ -62,7 +69,9 @@
 @property (nonatomic, retain) UILabel *infoField;
 @property (nonatomic, retain) UIButton *display;
 @property (nonatomic, retain) UIButton *clear;
+@property (nonatomic, retain) UIButton *cancel;
 
+@property (nonatomic, retain) URLCacheConnection *conn;
 + (NSString *)appDocumentsDir;
 - (NSString *)dataFilePath;
 
@@ -87,7 +96,7 @@
 - (NSData *)dataFromFile:(NSString *)fileName;
 
 ///////////////
-
+- (IBAction) onCancel:(id)sender;
 - (IBAction) onDisplayImage:(id)sender;
 - (IBAction) onClearCache:(id)sender;
 

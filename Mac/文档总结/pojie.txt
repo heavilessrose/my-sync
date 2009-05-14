@@ -14,9 +14,8 @@ SignerIdentity = Apple iPhone OS Application Signing
 3. 上传到/Application 
 
 4. 修改权限 755 或 777
-
 5. ldid -S /Application/<appname>.app/<appname>
-
+// 2,4,5不必要, 2还有可能会出错
 6. killall SpringBoard
 
 ///////图标不显示
