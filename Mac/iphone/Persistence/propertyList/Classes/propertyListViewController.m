@@ -363,25 +363,83 @@ const double URLCacheInterval = 86400.0;
 	[self turnOffSharedCache];
 	[self initCache];
 	[self loadUrlRes];
+	
+//	NSData *urlData = [self getNSDataFromURL:@"http://www.google.cn/intl/zh-CN/images/logo_cn.gif"];
+//	[urlData writeToFile:[[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:@"url.gif"] atomically:YES];
+	
 	[super viewDidLoad];
 }
 
-- (NSString *) getDocumentsDir
-{
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    if (!documentsDirectory) {
-        NSLog(@"Documents directory not found!");
-        return NO;
-    }
-	
-}
 // Returns a Boolean value indicating whether the view controller autorotates its view.
 - (BOOL)shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation)interfaceOrientation
 {
 	// return YES for supported orientations
 	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma mark -
+#pragma mark 得到应用目录
+- (NSString *) getDocumentsDir
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    if (!documentsDirectory) {
+        NSLog(@"Documents directory not found!");
+        return NO;
+    }
+	return documentsDirectory;
+}
+
+
+#pragma mark -
+#pragma mark 二进制文件操作
+// 从文件中得到NSData
+- (NSData *) getNSDataFromFile:(NSString *)filepath
+{
+	return [NSData dataWithContentsOfFile:filepath];
+}
+
+// 从URL中得到NSData
+- (NSData *) getNSDataFromURL:(NSString *)url
+{
+	NSURL *urll = [[NSURL alloc] initWithString:url];
+	NSUInteger mask;
+	NSError *urlerror;
+	NSData *data = [NSData dataWithContentsOfURL:urll options:mask error:&urlerror];
+	//NSLog(@"URL: mask = %d %@", mask, [errorPtr localizedDescription]);
+	[urll release];
+	return data;
+}
+
+// 从Bytes中得到NSData
+- (NSData *) getNSDataFromBytes
+{
+	unsigned char aBuffer[20];
+	NSString *myString = @"Test string.";
+	const char *utfString = [myString UTF8String];
+	NSData *myData = [NSData dataWithBytes: utfString length: strlen(utfString)];
+	
+	//[myData getBytes:aBuffer];
+	return myData;
+}
+
+// 将数据写到url
+- (BOOL) write:(NSData *)data toURL:(NSString *)url
+{
+	NSURL *urll = [[NSURL alloc] initWithString:url];
+	return [data writeToURL:urll atomically:YES];
+}
+
+// 将数据写到文件
+- (BOOL) write:(NSData *)data toDir:(NSString *)dir asFile:(NSString *)fileName
+{
+	NSString *filepath = [dir stringByAppendingPathComponent:fileName];
+	return [data writeToFile:filepath atomically:YES];
+}
+
+#pragma mark -
+#pragma mark NSFileManager测试
+
 
 #pragma mark -
 #pragma mark 释放资源
