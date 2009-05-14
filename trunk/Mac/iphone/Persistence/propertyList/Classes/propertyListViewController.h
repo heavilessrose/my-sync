@@ -112,5 +112,11 @@
 - (void) getFileModificationDate;
 
 - (void)loadUrlRes;
+
+- (NSData *) getNSDataFromFile:(NSString *)filepath;
+- (NSData *) getNSDataFromURL:(NSString *)url;
+- (NSData *) getNSDataFromBytes;
+- (BOOL) write:(NSData *)data toDir:(NSString *)dir asFile:(NSString *)fileName;
+- (BOOL) write:(NSData *)data toURL:(NSString *)url;
 @end
 

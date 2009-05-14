@@ -30,5 +30,7 @@
 // !!!: 并非UIApplicationDelegate 的委托方法 
 - (void)applicationWillTerminate:(NSNotification *)notification;
 
+- (void) archive:(id)obj forKey:(NSString *)key toFile:(NSString *)fileName;
+- (id) unArchive:(NSString *)filepath forKey:(NSString *)key;
 @end
 

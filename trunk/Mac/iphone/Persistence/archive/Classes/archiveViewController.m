@@ -43,15 +43,39 @@
 	fourLines.field3 = field3.text;
 	fourLines.field4 = field4.text;
 	
-	// 对数据对象进行编码归档
+	[self archive:fourLines forKey:kDataKey toFile:[self dataFilePath]];
+	[fourLines release];
+}
+
+#pragma mark -
+#pragma mark archive归档方法
+// 对数据对象进行编码归档
+- (void) archive:(id)obj forKey:(NSString *)key toFile:(NSString *)fileName
+{
 	NSMutableData *data = [[NSMutableData alloc] init];
 	NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-	[archiver encodeObject:fourLines forKey:kDataKey];
+	[archiver encodeObject:obj forKey:key];
 	[archiver finishEncoding];
-	[data writeToFile:[self dataFilePath] atomically:YES];
-	[fourLines release];
+	[data writeToFile:fileName atomically:YES];
 	[archiver release];
 	[data release];
+}
+
+// 对归档进行解码
+- (id) unArchive:(NSString *)filepath forKey:(NSString *)key
+{
+	if([[NSFileManager defaultManager] fileExistsAtPath:filepath]){
+		// 对数据对象进行解码
+		NSData *data = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+		id<NSCoding> obj = [unarchiver decodeObjectForKey:key];
+		[unarchiver finishDecoding];
+		
+		[unarchiver release];
+		[data release];
+		return obj;
+	}
+	return nil;
 }
 
 #pragma mark -
@@ -68,21 +92,28 @@
 {
 	NSString *filepath = [self dataFilePath];
 	NSLog(filepath);
-	if([[NSFileManager defaultManager] fileExistsAtPath:filepath]){
-		// 对数据对象进行解码
-		NSData *data = [[NSMutableData alloc] initWithContentsOfFile:filepath];
-		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-		FourLines *fourLines = [unarchiver decodeObjectForKey:kDataKey];
-		[unarchiver finishDecoding];
-		
-		field1.text = fourLines.field1;
-		field2.text = fourLines.field2;
-		field3.text = fourLines.field3;
-		field4.text = fourLines.field4;
-		
-		[unarchiver release];
-		[data release];
-	}
+	FourLines *fourLines = (FourLines *) [self unArchive:filepath forKey:kDataKey];
+	field1.text = fourLines.field1;
+	field2.text = fourLines.field2;
+	field3.text = fourLines.field3;
+	field4.text = fourLines.field4;
+	
+	
+	//if([[NSFileManager defaultManager] fileExistsAtPath:filepath]){
+//		// 对数据对象进行解码
+//		NSData *data = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+//		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+//		FourLines *fourLines = [unarchiver decodeObjectForKey:kDataKey];
+//		[unarchiver finishDecoding];
+//		
+//		field1.text = fourLines.field1;
+//		field2.text = fourLines.field2;
+//		field3.text = fourLines.field3;
+//		field4.text = fourLines.field4;
+//		
+//		[unarchiver release];
+//		[data release];
+//	}
 	
 	// Returns the singleton application instance
 	UIApplication *app = [UIApplication sharedApplication];
