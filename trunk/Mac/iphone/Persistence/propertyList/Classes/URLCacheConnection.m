@@ -15,7 +15,19 @@
 @synthesize delegate;
 @synthesize receivedData;
 @synthesize lastModified;
+@synthesize conn;
 
+// 中止联网
+- (void) cancel
+{
+	NSLog(@"%d",[conn retainCount]);
+	if(self.conn != nil){
+		[self.conn cancel];
+		[self.conn release];
+	}else{
+		NSLog(@"conn is null");
+	}
+}
 
 // 利用request初始化连接。异步方式，实现NSURLConnection的一些委托方法用于当不同事件发生是回调。
 - (id) initWithURL:(NSURL *)theURL delegate:(id<URLCacheConnectionDelegate>)theDelegate
@@ -26,27 +38,31 @@
 		NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL
 													cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
 												timeoutInterval:60];
-
-		NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:theRequest 
+		
+		receivedData = [[NSMutableData alloc] initWithLength:0];
+		conn = [[NSURLConnection alloc] initWithRequest:theRequest 
 																	  delegate:self 
 															  startImmediately:YES];
-		if (connection == nil) {
+		if (conn == nil) {
 			NSString *message = NSLocalizedString (@"无法初始化request.", 
 												   @"NSURLConnection initialization method failed.");
 			alertWithMessage(message);
-		} else {
-			receivedData = [[NSMutableData alloc] initWithLength:0];
 		}
 	}
 	
 	return self;
 }
 
+- (NSString *) description
+{
+	return @"URLCacheConnection";
+}
 
 - (void)dealloc
 {
 	[receivedData release];
 	[lastModified release];
+//	[conn release];
 	[super dealloc];
 }
 

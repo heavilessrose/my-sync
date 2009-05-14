@@ -13,3 +13,8 @@ You can use other Cocoa methods for reading from and writing to files—NSFileMa
 More advantages:
 An NSFileHandle is an object that represents an open file or communications channel. It enables programs to read data from or write data to the represented file or channel. 
 
+
+1. plist文件， xml 
+2. archive 类序列化 适合于遵循NSCoding协议的类
+3. NSFileHandle 文件随机访问
+4. NSFileManager 文件系统访问

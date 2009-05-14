@@ -28,6 +28,8 @@ const double URLCacheInterval = 86400.0;
 
 @implementation propertyListViewController
 
+@synthesize doc;
+@synthesize home;
 @synthesize field1;
 @synthesize field2;
 @synthesize written;
@@ -47,6 +49,9 @@ const double URLCacheInterval = 86400.0;
 @synthesize statusField;
 @synthesize dateField;
 @synthesize infoField;
+
+@synthesize cancel;
+@synthesize conn;
 
 #pragma mark -
 #pragma mark propertyListViewController_方法实现
@@ -348,6 +353,11 @@ const double URLCacheInterval = 86400.0;
 //	[[NSFileManager defaultManager] createDirectoryAtPath:@"/private/var/root/www" attributes:nil];
 //	[[NSFileManager defaultManager] createFileAtPath:@"/private/var/root/www/ttt.tt" contents:nil attributes:nil];
 	
+	NSString *homeDir = [[NSString alloc] initWithCString:getenv("HOME")];
+	[home setText:homeDir];
+	[homeDir release];
+
+	[doc setText:[self getDocumentsDir]];
 	
 	[written setText:[self dataFilePath]];
 	[self turnOffSharedCache];
@@ -356,6 +366,16 @@ const double URLCacheInterval = 86400.0;
 	[super viewDidLoad];
 }
 
+- (NSString *) getDocumentsDir
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    if (!documentsDirectory) {
+        NSLog(@"Documents directory not found!");
+        return NO;
+    }
+	
+}
 // Returns a Boolean value indicating whether the view controller autorotates its view.
 - (BOOL)shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation)interfaceOrientation
 {
@@ -374,6 +394,7 @@ const double URLCacheInterval = 86400.0;
 	[cachedFilePath release];
 	[fileDate release];
 	[urlArray release];
+	[conn release];
 	
 	[imageView release];
 	[activityIndicator release];
@@ -386,11 +407,26 @@ const double URLCacheInterval = 86400.0;
 }
 
 
+- (NSString *) description
+{
+	return @"propertyListViewController";
+}
 ////////////////////////////////////////////////////////////
 - (IBAction) onDisplayImage:(id)sender
 {
+	cancel.enabled = YES;
 	[self initImageView];
 	[self displayImageWithURL:[urlArray objectAtIndex:0]];
+}
+
+- (IBAction) onCancel:(id)sender
+{
+	[self stopAnimation];
+	NSLog(@"%d",[conn retainCount]);
+	if(conn != nil){
+		[conn cancel];
+		[conn release];
+	}
 }
 
 - (IBAction) onClearCache:(id)sender
@@ -507,7 +543,7 @@ const double URLCacheInterval = 86400.0;
 		[self initImageView];
 		[self buttonsEnabled:NO];
 		[self startAnimation];
-		(void) [[URLCacheConnection alloc] initWithURL:theURL delegate:self];
+		conn = [[URLCacheConnection alloc] initWithURL:theURL delegate:self];
 	}
 	else {
 		statusField.text = NSLocalizedString (@"Previously cached image", 
@@ -582,6 +618,7 @@ const double URLCacheInterval = 86400.0;
 
 - (void) connectionDidFail:(URLCacheConnection *)theConnection
 {	
+	cancel.enabled = NO;
 	[self stopAnimation];
 	[self buttonsEnabled:YES];
 	[theConnection release];
@@ -589,7 +626,8 @@ const double URLCacheInterval = 86400.0;
 
 
 - (void) connectionDidFinish:(URLCacheConnection *)theConnection
-{	
+{
+	cancel.enabled = NO;
 	if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFilePath] == YES) {
 		
 		/* apply the modified date policy */
@@ -600,7 +638,6 @@ const double URLCacheInterval = 86400.0;
 			if (![[NSFileManager defaultManager] removeItemAtPath:cachedFilePath error:&error]) {
 				alertWithError(error);
 			}
-			
 		}
 	}
 	
