@@ -1,5 +1,21 @@
 // !$*UTF8*$!
 {
+	1B02F6B50FBD39FF0081EDA3 /* propertyListViewController.m:117 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 28D7ACF70DDB3853001CB0EB /* propertyListViewController.m */;
+		functionName = "-save:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 117;
+		modificationTime = 264059397.683856;
+		state = 2;
+	};
 	1B04D9220FA941BF00A973C5 /* propertyList */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -7,7 +23,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 0;
+		breakpointsEnabled = 1;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -45,19 +61,27 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	1B04D9320FA94B8E00A973C5 /* propertyListViewController.h */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.h;
-		name = propertyListViewController.h;
-		path = /Users/wangluke/Documents/Mac_/iphone/Persistence/propertyList/Classes/propertyListViewController.h;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {930, 2091}}";
-			sepNavSelRange = "{3732, 0}";
-			sepNavVisRange = "{2342, 1396}";
-		};
+	1B1B53CC0FBD5D310004DD3E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */;
+		name = "URLCacheConnection.m: 57";
+		rLen = 0;
+		rLoc = 1290;
+		rType = 0;
+		vrLen = 1215;
+		vrLoc = 374;
 	};
-	1B396A3E0FB94C6C00E91FFE /* propertyListViewController.m:125 */ = {
+	1B1B53D10FBD8DAD0004DD3E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */;
+		name = "URLCacheConnection.m: 57";
+		rLen = 0;
+		rLoc = 1290;
+		rType = 0;
+		vrLen = 1192;
+		vrLoc = 397;
+	};
+	1B396A3E0FB94C6C00E91FFE /* propertyListViewController.m:127 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -69,9 +93,9 @@
 		functionName = "-applicationWillTerminate:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 125;
+		lineNumber = 127;
 		location = propertyList;
-		modificationTime = 263978514.623171;
+		modificationTime = 264059331.745985;
 		state = 2;
 	};
 	1B396A470FB94CFA00E91FFE /* propertyListViewController.m:95 */ = {
@@ -88,10 +112,10 @@
 		ignoreCount = 0;
 		lineNumber = 95;
 		location = propertyList;
-		modificationTime = 263978514.6235;
+		modificationTime = 264059331.746342;
 		state = 2;
 	};
-	1B396A4C0FB94D5400E91FFE /* propertyListViewController.m:219 */ = {
+	1B396A4C0FB94D5400E91FFE /* propertyListViewController.m:221 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -103,9 +127,9 @@
 		functionName = "-write:toFile:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 219;
+		lineNumber = 221;
 		location = propertyList;
-		modificationTime = 263978514.623682;
+		modificationTime = 264059331.746574;
 		state = 2;
 	};
 	1B5A9A980FB2FAFD00D3F76F /* Alert.h */ = {
@@ -136,10 +160,10 @@
 		ignoreCount = 0;
 		lineNumber = 24;
 		location = propertyList;
-		modificationTime = 263978514.623893;
+		modificationTime = 264059331.7467589;
 		state = 2;
 	};
-	1B89A93E0FBACBD40056EB7A /* propertyListViewController.m:484 */ = {
+	1B89A93E0FBACBD40056EB7A /* propertyListViewController.m:487 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -151,90 +175,10 @@
 		functionName = "-onCancel:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 484;
+		lineNumber = 487;
 		location = propertyList;
-		modificationTime = 263978514.623932;
+		modificationTime = 264059331.746784;
 		state = 2;
-	};
-	1B89A9560FBACD520056EB7A /* propertyListViewController.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = propertyListViewController.m;
-		path = /Users/wangluke/Documents/Mac_/iphone/Persistence/propertyList/Classes/propertyListViewController.m;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1744, 12627}}";
-			sepNavSelRange = "{12683, 0}";
-			sepNavVisRange = "{12199, 1133}";
-		};
-	};
-	1BBAF17B0FBC042F003AFB2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B04D9320FA94B8E00A973C5 /* propertyListViewController.h */;
-		name = "propertyListViewController.h: 120";
-		rLen = 0;
-		rLoc = 3732;
-		rType = 0;
-		vrLen = 1396;
-		vrLoc = 2342;
-	};
-	1BBAF17C0FBC042F003AFB2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "warning: passing argument 1 of 'fread' discards qualifiers from pointer target type";
-		fRef = 1B89A9560FBACD520056EB7A /* propertyListViewController.m */;
-		rLen = 1;
-		rLoc = 197;
-		rType = 1;
-	};
-	1BBAF17D0FBC042F003AFB2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B89A9560FBACD520056EB7A /* propertyListViewController.m */;
-		name = "propertyListViewController.m: 432";
-		rLen = 79;
-		rLoc = 12862;
-		rType = 0;
-		vrLen = 1160;
-		vrLoc = 12044;
-	};
-	1BBAF17E0FBC042F003AFB2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B04D9320FA94B8E00A973C5 /* propertyListViewController.h */;
-		name = "propertyListViewController.h: 120";
-		rLen = 0;
-		rLoc = 3680;
-		rType = 0;
-		vrLen = 1344;
-		vrLoc = 2342;
-	};
-	1BBAF17F0FBC042F003AFB2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B89A9560FBACD520056EB7A /* propertyListViewController.m */;
-		name = "propertyListViewController.m: 426";
-		rLen = 51;
-		rLoc = 12696;
-		rType = 0;
-		vrLen = 1159;
-		vrLoc = 12045;
-	};
-	1BBAF1800FBC042F003AFB2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B04D9320FA94B8E00A973C5 /* propertyListViewController.h */;
-		name = "propertyListViewController.h: 120";
-		rLen = 0;
-		rLoc = 3732;
-		rType = 0;
-		vrLen = 1396;
-		vrLoc = 2342;
-	};
-	1BBAF1AC0FBC2EE3003AFB2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 28D7ACF70DDB3853001CB0EB /* propertyListViewController.m */;
-		name = "propertyListViewController.m: 425";
-		rLen = 0;
-		rLoc = 12683;
-		rType = 0;
-		vrLen = 1095;
-		vrLoc = 12199;
 	};
 	1BBB25B60FB3F0C400B26386 /* URLCache.plist */ = {
 		uiCtxt = {
@@ -250,9 +194,9 @@
 	};
 	1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1217, 2397}}";
-			sepNavSelRange = "{374, 0}";
-			sepNavVisRange = "{313, 137}";
+			sepNavIntBoundsRect = "{{0, 0}, {930, 2329}}";
+			sepNavSelRange = "{1290, 0}";
+			sepNavVisRange = "{397, 1192}";
 		};
 	};
 	1D3623240D0F684500981E51 /* propertyListAppDelegate.h */ = {
@@ -284,9 +228,9 @@
 	};
 	28D7ACF70DDB3853001CB0EB /* propertyListViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1744, 12623}}";
-			sepNavSelRange = "{12683, 0}";
-			sepNavVisRange = "{12199, 1095}";
+			sepNavIntBoundsRect = "{{0, 0}, {1744, 14421}}";
+			sepNavSelRange = "{24562, 0}";
+			sepNavVisRange = "{23369, 1199}";
 			sepNavWindowFrame = "{{-13, -66}, {1280, 908}}";
 		};
 	};
@@ -299,11 +243,12 @@
 			1D6058900D05DD3D006BFB54 /* propertyList */,
 		);
 		breakpoints = (
-			1B396A3E0FB94C6C00E91FFE /* propertyListViewController.m:125 */,
+			1B396A3E0FB94C6C00E91FFE /* propertyListViewController.m:127 */,
 			1B396A470FB94CFA00E91FFE /* propertyListViewController.m:95 */,
-			1B396A4C0FB94D5400E91FFE /* propertyListViewController.m:219 */,
+			1B396A4C0FB94D5400E91FFE /* propertyListViewController.m:221 */,
 			1B89A93C0FBACBCC0056EB7A /* URLCacheConnection.m:24 */,
-			1B89A93E0FBACBD40056EB7A /* propertyListViewController.m:484 */,
+			1B89A93E0FBACBD40056EB7A /* propertyListViewController.m:487 */,
+			1B02F6B50FBD39FF0081EDA3 /* propertyListViewController.m:117 */,
 		);
 		codeSenseManager = 1B04D92C0FA941DF00A973C5 /* Code sense */;
 		executables = (
@@ -359,7 +304,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					22,
 					300,
-					640,
+					639.58349609375,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXExecutablesDataSource_ActiveFlagID,
@@ -389,17 +334,12 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 263957817;
-			PBXWorkspaceStateSaveDate = 263957817;
+			PBXPerProjectTemplateStateSaveDate = 264067171;
+			PBXWorkspaceStateSaveDate = 264067171;
 		};
 		perUserProjectItems = {
-			1BBAF17B0FBC042F003AFB2A /* PBXTextBookmark */ = 1BBAF17B0FBC042F003AFB2A /* PBXTextBookmark */;
-			1BBAF17C0FBC042F003AFB2A /* PBXTextBookmark */ = 1BBAF17C0FBC042F003AFB2A /* PBXTextBookmark */;
-			1BBAF17D0FBC042F003AFB2A /* PBXTextBookmark */ = 1BBAF17D0FBC042F003AFB2A /* PBXTextBookmark */;
-			1BBAF17E0FBC042F003AFB2A /* PBXTextBookmark */ = 1BBAF17E0FBC042F003AFB2A /* PBXTextBookmark */;
-			1BBAF17F0FBC042F003AFB2A /* PBXTextBookmark */ = 1BBAF17F0FBC042F003AFB2A /* PBXTextBookmark */;
-			1BBAF1800FBC042F003AFB2A /* PBXTextBookmark */ = 1BBAF1800FBC042F003AFB2A /* PBXTextBookmark */;
-			1BBAF1AC0FBC2EE3003AFB2A /* PBXTextBookmark */ = 1BBAF1AC0FBC2EE3003AFB2A /* PBXTextBookmark */;
+			1B1B53CC0FBD5D310004DD3E /* PBXTextBookmark */ = 1B1B53CC0FBD5D310004DD3E /* PBXTextBookmark */;
+			1B1B53D10FBD8DAD0004DD3E /* PBXTextBookmark */ = 1B1B53D10FBD8DAD0004DD3E /* PBXTextBookmark */;
 		};
 		sourceControlManager = 1B04D92B0FA941DF00A973C5 /* Source Control */;
 		userBuildSettings = {

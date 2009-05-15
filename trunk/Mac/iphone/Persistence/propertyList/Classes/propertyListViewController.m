@@ -113,6 +113,8 @@ const double URLCacheInterval = 86400.0;
 {
 	[self applicationWillTerminate:nil];
 	//[Downloader createConn];
+	
+	//[self streamTests:[self dataFilePath]];
 }
 
 #pragma mark -
@@ -366,6 +368,7 @@ const double URLCacheInterval = 86400.0;
 	
 //	NSData *urlData = [self getNSDataFromURL:@"http://www.google.cn/intl/zh-CN/images/logo_cn.gif"];
 //	[urlData writeToFile:[[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:@"url.gif"] atomically:YES];
+	
 	
 	[super viewDidLoad];
 }
@@ -740,5 +743,129 @@ const double URLCacheInterval = 86400.0;
 	[self clearCache];
 }
 
+
+#pragma mark -
+#pragma mark 流测试
+
+void handleBytes(UInt8 *buf, CFIndex num)
+{
+	printf("handleBytes: %d", num);
+}
+
+// 从流中读取
+- (void) streamTests:(NSString *)fileURL
+{
+	// 从文件创建read stream
+	CFReadStreamRef myReadStream = CFReadStreamCreateWithFile(kCFAllocatorDefault, fileURL);
+	// 打开一个read stream
+	if (!CFReadStreamOpen(myReadStream)) {
+		CFStreamError myErr = CFReadStreamGetError(myReadStream);
+		// An error has occurred.
+        if (myErr.domain == kCFStreamErrorDomainPOSIX) {
+			// Interpret myErr.error as a UNIX errno.
+        } else if (myErr.domain == kCFStreamErrorDomainMacOSStatus) {
+			// Interpret myErr.error as a MacOS error code.
+            OSStatus macError = (OSStatus)myErr.error;
+			// Check other error domains.
+		}
+	}
+	
+	// 从流中读取
+	int kReadBufSize = 10;
+	CFIndex numBytesRead;
+	do {
+		UInt8 buf[kReadBufSize];
+		numBytesRead = CFReadStreamRead(myReadStream, buf, sizeof(buf));
+		if( numBytesRead > 0 ) {
+			handleBytes(buf, numBytesRead);
+		} else if( numBytesRead < 0 ) {
+			CFStreamError error = CFReadStreamGetError(myReadStream);
+			//reportError(error);
+		}
+	} while( numBytesRead > 0 );
+	
+	// 释放
+	CFReadStreamClose(myReadStream);
+	CFRelease(myReadStream);
+	myReadStream = NULL;
+}
+
+- (void) writeToStream
+{
+	CFWriteStreamRef myWriteStream = CFWriteStreamCreateWithFile(kCFAllocatorDefault, fileURL);
+	if (!CFWriteStreamOpen(myWriteStream)) {
+		CFStreamError myErr = CFWriteStreamGetError(myWriteStream);
+		// An error has occurred.
+		if (myErr.domain == kCFStreamErrorDomainPOSIX) {
+			// Interpret myErr.error as a UNIX errno.
+		} else if (myErr.domain == kCFStreamErrorDomainMacOSStatus) {
+			// Interpret myErr.error as a MacOS error code.
+			OSStatus macError = (OSStatus)myErr.error;
+			// Check other error domains.
+		}
+	}
+	UInt8 buf[] = "Hello, world";
+	UInt32 bufLen = strlen(buf);
+	
+	while (!done) {
+		CFTypeRef bytesWritten = CFWriteStreamWrite(myWriteStream, buf, strlen(buf));
+		if (bytesWritten < 0) {
+			CFStreamError error = CFWriteStreamGetError(myWriteStream);
+			reportError(error);
+		} else if (bytesWritten == 0) {
+			if (CFWriteStreamGetStatus(myWriteStream) == kCFStreamStatusAtEnd) {
+				done = TRUE;
+			}
+		} else if (bytesWritten != strlen(buf)) {
+			// Determine how much has been written and adjust the buffer
+			bufLen = bufLen - bytesWritten;
+			memmove(buf, buf + bytesWritten, bufLen);
+			
+			// Figure out what went wrong with the write stream
+			CFStreamError error = CFWriteStreamGetError(myWriteStream);
+			reportError(error);
+			
+		}
+	}
+	CFWriteStreamClose(myWriteStream);
+	CFRelease(myWriteStream);
+	myWriteStream = NULL;
+}
+
+//!!!: 避免阻塞的两种方式
+// poll: 向流中写之前先查询流的状态
+- (void) polling
+{
+	UInt8 buf[] = "Hello, world";
+	UInt32 bufLen = strlen(buf);
+	
+	while (!done) {
+		//CFReadStreamHasBytesAvailable
+		if (CFWriteStreamCanAcceptBytes(myWriteStream)) {
+			int bytesWritten = CFWriteStreamWrite(myWriteStream, buf, strlen(buf));
+			if (bytesWritten < 0) {
+				CFStreamError error = CFWriteStreamGetError(myWriteStream);
+				reportError(error);
+			} else if (bytesWritten == 0) {
+				if (CFWriteStreamGetStatus(myWriteStream) == kCFStreamStatusAtEnd)
+				{
+					done = TRUE;
+				}
+			} else if (bytesWritten != strlen(buf)) {
+				// Determine how much has been written and adjust the buffer
+				bufLen = bufLen - bytesWritten;
+				memmove(buf, buf + bytesWritten, bufLen);
+				
+				// Figure out what went wrong with the write stream
+				CFStreamError error = CFWriteStreamGetError(myWriteStream);
+				reportError(error);
+			}
+		} else {
+			// ...do something else while you wait...
+		}
+	}
+}
+
+// run loop: 在run loop中注册接受与流相关的事件，实现相应回调函数
 
 @end
