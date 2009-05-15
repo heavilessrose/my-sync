@@ -118,5 +118,8 @@
 - (NSData *) getNSDataFromBytes;
 - (BOOL) write:(NSData *)data toDir:(NSString *)dir asFile:(NSString *)fileName;
 - (BOOL) write:(NSData *)data toURL:(NSString *)url;
+
+/////////流
+- (void) streamTests:(NSString *)fileURL;
 @end
 
