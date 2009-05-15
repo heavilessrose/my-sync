@@ -1,0 +1,7 @@
+#import <TargetConditionals.h>
+
+#define __INVERT_CONTROL__						1
+
+#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+#endif

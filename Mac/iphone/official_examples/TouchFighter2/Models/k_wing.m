@@ -1,0 +1,433 @@
+/*
+
+===== IMPORTANT =====
+
+This is sample code demonstrating API, technology or techniques in development.
+Although this sample code has been reviewed for technical accuracy, it is not
+final. Apple is supplying this information to help you plan for the adoption of
+the technologies and programming interfaces described herein. This information
+is subject to change, and software implemented based on this sample code should
+be tested with final operating system software and final documentation. Newer
+versions of this sample code may be provided with future seeds of the API or
+technology. For information about updates to this and other developer
+documentation, view the New & Updated sidebars in subsequent documentation
+seeds.
+
+=====================
+
+File: k_wing.m
+Abstract: K-Wing model (main ship).
+
+Version: 2.0
+
+Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple Inc.
+("Apple") in consideration of your agreement to the following terms, and your
+use, installation, modification or redistribution of this Apple software
+constitutes acceptance of these terms.  If you do not agree with these terms,
+please do not use, install, modify or redistribute this Apple software.
+
+In consideration of your agreement to abide by the following terms, and subject
+to these terms, Apple grants you a personal, non-exclusive license, under
+Apple's copyrights in this original Apple software (the "Apple Software"), to
+use, reproduce, modify and redistribute the Apple Software, with or without
+modifications, in source and/or binary forms; provided that if you redistribute
+the Apple Software in its entirety and without modifications, you must retain
+this notice and the following text and disclaimers in all such redistributions
+of the Apple Software.
+Neither the name, trademarks, service marks or logos of Apple Inc. may be used
+to endorse or promote products derived from the Apple Software without specific
+prior written permission from Apple.  Except as expressly stated in this notice,
+no other rights or licenses, express or implied, are granted by Apple herein,
+including but not limited to any patent rights that may be infringed by your
+derivative works or by other works in which the Apple Software may be
+incorporated.
+
+The Apple Software is provided by Apple on an "AS IS" basis.  APPLE MAKES NO
+WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE IMPLIED
+WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE, REGARDING THE APPLE SOFTWARE OR ITS USE AND OPERATION ALONE OR IN
+COMBINATION WITH YOUR PRODUCTS.
+
+IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ARISING IN ANY WAY OUT OF THE USE, REPRODUCTION, MODIFICATION AND/OR
+DISTRIBUTION OF THE APPLE SOFTWARE, HOWEVER CAUSED AND WHETHER UNDER THEORY OF
+CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF
+APPLE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Copyright (C) 2008 Apple Inc. All Rights Reserved.
+
+*/
+#import "k_wing.h"
+#import "PhysicalObject.h"
+
+// Bounding box of geometry = (0,0,-17.4125) to (8.23173,1.32747,8.60024).
+void k_wing_body()
+{
+	static GLfloat VertexData[] = {
+		3.95764f, 0.641223f, -4.87734f, 3.95764f, 0.641223f, -4.87734f, 3.95764f, 0.641223f, -3.90762f, 
+		3.95764f, 0.641223f, -3.90762f, 3.95764f, 0.643367f, -4.87468f, 
+		3.95764f, 0.643367f, -4.87468f, 3.95764f, 0.643379f, -3.90611f, 
+		3.95764f, 0.643379f, -3.90611f, 3.95764f, 0.643380f, -4.87734f, 
+		3.95764f, 0.643380f, -4.87734f, 3.95764f, 0.666909f, -4.88639f, 
+		3.95764f, 0.666909f, -4.88639f, 3.95764f, 0.666909f, -4.87468f, 
+		3.95764f, 0.666909f, -4.87468f, 3.95764f, 0.669672f, -4.88801f, 
+		3.95764f, 0.669672f, -4.88801f, 3.95764f, 0.669672f, -4.32364f, 
+		3.95764f, 0.669672f, -4.32364f, 3.95764f, 0.673722f, -4.58586f, 
+		3.95764f, 0.673722f, -4.58586f, 3.95764f, 0.681289f, -4.52487f, 
+		3.95764f, 0.689248f, -4.44388f, 3.96370f, 0.641223f, -3.90762f, 
+		3.96370f, 0.641223f, -3.90762f, 3.96370f, 0.641223f, -3.90762f, 
+		3.96370f, 0.643379f, -3.90611f, 3.96370f, 0.643379f, -3.90611f, 
+		3.96370f, 0.643379f, -3.90611f, 3.97625f, 0.669672f, -4.55324f, 
+		3.97625f, 0.669672f, -4.55324f, 3.97625f, 0.669672f, -4.55324f, 
+		3.97625f, 0.669672f, -4.33303f, 3.97625f, 0.669672f, -4.33303f, 
+		3.97625f, 0.669672f, -4.33303f, 3.97625f, 0.669672f, -4.33303f, 
+		3.98697f, 0.680481f, -4.45108f, 3.99011f, 0.641223f, -4.33303f, 
+		3.99011f, 0.641223f, -4.33303f, 3.99398f, 0.643393f, -4.87468f, 
+		3.99398f, 0.643393f, -4.87468f, 3.99398f, 0.643393f, -4.87468f, 
+		3.99398f, 0.643406f, -4.87734f, 3.99398f, 0.643406f, -4.87734f, 
+		3.99398f, 0.643406f, -4.87734f, 3.99414f, 0.651469f, -4.87734f, 
+		3.99414f, 0.651469f, -4.87734f, 3.99414f, 0.651469f, -4.87734f, 
+		3.99414f, 0.651469f, -4.87468f, 3.99430f, 0.666909f, -4.88639f, 
+		3.99430f, 0.666909f, -4.88639f, 3.99430f, 0.666909f, -4.88639f, 
+		3.99430f, 0.666909f, -4.87468f, 3.99430f, 0.666909f, -4.87468f, 
+		3.99430f, 0.666909f, -4.87468f, 3.99702f, 0.641223f, -4.87734f, 
+		3.99702f, 0.641223f, -4.87734f, 3.99702f, 0.641223f, -4.87734f, 
+		3.99702f, 0.641223f, -4.87734f, 3.99702f, 0.641223f, -4.42928f, 
+		3.99702f, 0.641223f, -4.42928f, 3.99702f, 0.641223f, -4.42928f, 
+		3.99702f, 0.641223f, -4.42928f, 3.99702f, 0.641223f, -4.42928f, 
+		3.99702f, 0.651469f, -4.87734f, 3.99702f, 0.651469f, -4.87734f, 
+		3.99702f, 0.651469f, -4.87734f, 3.99702f, 0.651469f, -4.87734f, 
+		3.99702f, 0.651469f, -4.87734f, 3.99702f, 0.651469f, -4.42928f, 
+		3.99702f, 0.651469f, -4.42928f, 3.99702f, 0.651469f, -4.42928f, 
+		3.99702f, 0.651469f, -4.42928f, 3.99702f, 0.669672f, -4.88801f, 
+		3.99702f, 0.669672f, -4.88801f, 3.99702f, 0.669672f, -4.88801f, 
+		3.99702f, 0.669672f, -4.88801f, 3.99702f, 0.669672f, -4.42928f, 
+		3.99702f, 0.669672f, -4.42928f, 3.99702f, 0.669672f, -4.42928f, 
+		3.99702f, 0.669672f, -4.42928f, 4.00651f, 0.638217f, -4.88625f, 
+		4.00651f, 0.638217f, -4.88625f, 4.00651f, 0.638217f, -4.88625f, 
+		4.00839f, 0.638217f, -4.88544f, 4.00839f, 0.638217f, -4.88544f, 
+		4.00839f, 0.638217f, -4.88544f, 4.00839f, 0.638217f, -4.48737f, 
+		4.00839f, 0.638217f, -4.48737f, 4.00839f, 0.638217f, -4.48737f, 
+		4.00839f, 0.640788f, -4.88801f, 4.00839f, 0.640788f, -4.88801f, 
+		4.00839f, 0.640788f, -4.88801f, 4.00839f, 0.651469f, -4.88801f, 
+		4.00839f, 0.651469f, -4.88801f, 4.00839f, 0.651469f, -4.88801f, 
+		4.00839f, 0.651469f, -4.88801f, 4.00839f, 0.651469f, -4.48737f, 
+		4.00839f, 0.651469f, -4.48737f, 4.00839f, 0.651469f, -4.48737f, 
+		4.06823f, 0.638217f, -4.67632f, 4.06823f, 0.638217f, -4.67632f, 
+		4.06823f, 0.638217f, -4.67632f, 4.06823f, 0.648804f, -4.67632f, 
+		4.06823f, 0.648804f, -4.67632f, 4.06823f, 0.648804f, -4.67632f, 
+		4.06823f, 0.648804f, -4.67632f, 4.26203f, 0.640788f, -4.90611f, 
+		4.26203f, 0.640788f, -4.90611f, 4.26203f, 0.640788f, -4.90611f, 
+		4.26203f, 0.643359f, -4.90611f, 4.26203f, 0.643359f, -4.90611f, 
+		4.26203f, 0.643359f, -4.90611f, 4.26312f, 0.638217f, -4.90378f, 
+		4.26312f, 0.638217f, -4.90378f, 4.26312f, 0.638217f, -4.90378f, 
+		4.27409f, 0.638217f, -4.88047f, 4.27409f, 0.638217f, -4.88047f, 
+		4.27409f, 0.638217f, -4.88047f, 4.27409f, 0.643359f, -4.88047f, 
+		4.27409f, 0.643359f, -4.88047f, 4.27409f, 0.643359f, -4.88047f
+	};
+	static GLfloat NormalData[] = {
+		-2.00000e-006f, 0.000000f, 1.00000f, 0.000000f, -1.00000f, 0.000000f, 0.000000f, -1.00000f, 0.000000f, 
+		0.000000f, -0.574838f, 0.818267f, 0.000000f, 0.000000f, 1.00000f, 
+		0.000706000f, -0.999988f, -0.00482100f, 0.000000f, -0.574838f, 0.818267f, 
+		0.0237940f, 0.997762f, 0.0624880f, 0.000706000f, -0.999988f, -0.00482100f, 
+		-2.00000e-006f, 0.000000f, 1.00000f, 0.000000f, 1.00000f, 0.000000f, 
+		-4.00000e-006f, 0.505635f, 0.862748f, 0.000000f, 0.000000f, 1.00000f, 
+		0.000000f, 1.00000f, 0.000000f, -4.00000e-006f, 0.505635f, 0.862748f, 
+		0.0719040f, 0.997404f, -0.00399700f, 0.123955f, 0.987398f, 0.0983870f, 
+		0.123955f, 0.987398f, 0.0983870f, 0.0719040f, 0.997404f, -0.00399700f, 
+		0.396445f, 0.911073f, -0.113035f, 0.356165f, 0.927428f, -0.114121f, 
+		0.271364f, 0.962433f, 0.00916600f, 0.000000f, -1.00000f, 0.000000f, 
+		0.910569f, 0.409781f, 0.0542620f, 0.000000f, -0.574838f, 0.818267f, 
+		0.910569f, 0.409781f, 0.0542620f, 0.000000f, -0.574838f, 0.818267f, 
+		0.0237940f, 0.997762f, 0.0624880f, 0.0719040f, 0.997404f, -0.00399700f, 
+		0.548112f, 0.826244f, -0.129980f, 0.000000f, 1.00000f, 0.000000f, 
+		0.286720f, 0.951571f, 0.110928f, 0.977493f, 0.000000f, 0.210966f, 
+		0.903941f, 0.423520f, 0.0593370f, 0.286720f, 0.951571f, 0.110928f, 
+		0.524010f, 0.851712f, 0.000513000f, 0.000000f, -1.00000f, 0.000000f, 
+		0.903941f, 0.423520f, 0.0593370f, 0.000000f, 0.000000f, 1.00000f, 
+		0.000706000f, -0.999988f, -0.00482100f, 0.999820f, -0.0189470f, -5.00000e-005f, 
+		0.000706000f, -0.999988f, -0.00482100f, 0.999820f, -0.0189470f, -5.00000e-005f, 
+		-2.00000e-006f, 0.000000f, 1.00000f, 0.999889f, -0.0148680f, -2.50000e-005f, 
+		-4.00000e-006f, 0.505635f, 0.862748f, -2.00000e-006f, 0.000000f, 1.00000f, 
+		0.999889f, -0.0148680f, -2.50000e-005f, 0.000000f, 1.00000f, 0.000000f, 
+		0.999942f, -0.0107890f, 0.000000f, -4.00000e-006f, 0.505635f, 0.862748f, 
+		0.000000f, 0.000000f, 1.00000f, 0.000000f, 1.00000f, 0.000000f, 
+		0.999942f, -0.0107890f, 0.000000f, -2.00000e-006f, 0.000000f, 1.00000f, 
+		-0.128732f, -0.991679f, 0.000285000f, -0.684337f, 0.000000f, -0.729166f, 
+		-0.128732f, -0.991679f, 0.000285000f, 0.897080f, 0.437150f, 0.0643970f, 
+		-0.128732f, -0.991679f, 0.000285000f, 0.981387f, 0.000000f, 0.192038f, 
+		-0.128732f, -0.991679f, 0.000285000f, 0.977493f, 0.000000f, 0.210966f, 
+		-4.00000e-006f, 0.505635f, 0.862748f, -2.00000e-006f, 0.000000f, 1.00000f, 
+		0.000000f, 1.00000f, 0.000000f, -0.684337f, 0.000000f, -0.729166f, 
+		1.00000f, 0.000000f, 0.000000f, 0.981387f, 0.000000f, 0.192038f, 
+		0.000000f, 1.00000f, 0.000000f, 0.994358f, 0.000000f, 0.106081f, 
+		0.994358f, 0.000000f, 0.106081f, -4.00000e-006f, 0.505635f, 0.862748f, 
+		0.0719040f, 0.997404f, -0.00399700f, 0.707107f, 0.707107f, 0.000000f, 
+		0.707107f, 0.707107f, 0.000000f, 0.740773f, 0.671704f, -0.00836200f, 
+		0.888370f, 0.449240f, 0.0947740f, 0.888370f, 0.449240f, 0.0947740f, 
+		0.888370f, 0.449240f, 0.0947740f, 0.292717f, -0.676130f, -0.676140f, 
+		-0.684337f, 0.000000f, -0.729166f, -0.255321f, -0.966856f, 0.000565000f, 
+		0.000000f, -1.00000f, 0.000000f, 0.122498f, -0.695872f, -0.707642f, 
+		-0.128732f, -0.991679f, 0.000285000f, 0.953333f, 0.000000f, 0.301921f, 
+		0.981387f, 0.000000f, 0.192038f, -0.128732f, -0.991679f, 0.000285000f, 
+		0.122498f, -0.695872f, -0.707642f, -0.0711700f, 0.000000f, -0.997464f, 
+		-0.684337f, 0.000000f, -0.729166f, 0.0304520f, 0.999534f, 0.00199800f, 
+		-0.0711700f, 0.000000f, -0.997464f, 0.0222510f, 0.999752f, 0.000000f, 
+		-0.684337f, 0.000000f, -0.729166f, 0.953333f, 0.000000f, 0.301921f, 
+		0.981387f, 0.000000f, 0.192038f, 0.0222510f, 0.999752f, 0.000000f, 
+		0.704147f, 0.000000f, 0.710054f, 0.953333f, 0.000000f, 0.301921f, 
+		0.000000f, -1.00000f, 0.000000f, 0.0304520f, 0.999534f, 0.00199800f, 
+		0.704147f, 0.000000f, 0.710054f, 0.953333f, 0.000000f, 0.301921f, 
+		0.0444900f, 0.999010f, 0.000000f, -0.0514410f, -0.694489f, -0.717662f, 
+		-0.0711700f, 0.000000f, -0.997464f, 0.904919f, 5.00000e-006f, -0.425583f, 
+		0.0304520f, 0.999534f, 0.00199800f, -0.0711700f, 0.000000f, -0.997464f, 
+		0.904919f, 5.00000e-006f, -0.425583f, 0.000000f, -1.00000f, 0.000000f, 
+		-0.0514410f, -0.694489f, -0.717662f, 0.904919f, 5.00000e-006f, -0.425583f, 
+		0.704147f, 0.000000f, 0.710054f, 0.000000f, -1.00000f, 0.000000f, 
+		0.904919f, 5.00000e-006f, -0.425583f, 0.0304520f, 0.999534f, 0.00199800f, 
+		0.704147f, 0.000000f, 0.710054f, 0.904919f, 5.00000e-006f, -0.425583f
+	};
+	static GLfloat TexCoordData[] = {
+		0.616670f, 0.584026f, 0.00171300f, 0.0306440f, 0.00171300f, 0.996499f, 
+		0.00171300f, 0.996499f, 0.604778f, 0.353960f, 
+		0.603379f, 0.207449f, 0.00171300f, 0.998008f, 
+		0.770130f, 0.0108220f, 0.603379f, 0.219095f, 
+		0.616670f, 0.574583f, 0.604778f, 0.382029f, 
+		0.616670f, 0.471568f, 0.604778f, 0.250889f, 
+		0.604778f, 0.433294f, 0.616670f, 0.459470f, 
+		0.940000f, 0.992164f, 0.219382f, 0.445028f, 
+		0.770130f, 0.971132f, 0.940001f, 0.104370f, 
+		0.219382f, 0.982187f, 0.219382f, 0.857252f, 
+		0.219382f, 0.691343f, 0.00775100f, 0.996499f, 
+		0.754347f, 0.0162520f, 0.00775100f, 0.996499f, 
+		0.751136f, 0.0139960f, 0.00775100f, 0.998008f, 
+		0.784073f, 0.0108220f, 0.885320f, 0.00850400f, 
+		0.257504f, 0.915352f, 0.953171f, 0.289750f, 
+		0.257504f, 0.464273f, 0.711966f, 0.649990f, 
+		0.711966f, 0.649990f, 0.812932f, 0.992740f, 
+		0.279475f, 0.706098f, 0.0340570f, 0.572789f, 
+		0.754347f, 0.649990f, 0.445646f, 0.353848f, 
+		0.444247f, 0.207449f, 0.444247f, 0.179429f, 
+		0.444247f, 0.219095f, 0.444303f, 0.167783f, 
+		0.457539f, 0.574471f, 0.479607f, 0.167783f, 
+		0.456869f, 0.539168f, 0.456869f, 0.539168f, 
+		0.479607f, 0.179429f, 0.444247f, 0.382029f, 
+		0.547207f, 0.128164f, 0.456140f, 0.471568f, 
+		0.444247f, 0.250889f, 0.444247f, 0.433293f, 
+		0.547207f, 0.179429f, 0.444247f, 0.584025f, 
+		0.0409380f, 0.0306440f, 0.0629960f, 0.0285640f, 
+		0.104421f, 0.0568700f, 0.754347f, 0.793373f, 
+		0.0409380f, 0.476925f, 0.635148f, 0.802086f, 
+		0.104421f, 0.763306f, 0.754347f, 0.793373f, 
+		0.444247f, 0.539168f, 0.444247f, 0.539168f, 
+		0.338935f, 0.947574f, 0.0903390f, 0.0285640f, 
+		0.652006f, 0.0648720f, 0.652006f, 0.802086f, 
+		0.338935f, 0.273892f, 0.652006f, 0.802086f, 
+		0.739084f, 0.793373f, 0.444247f, 0.459470f, 
+		0.824285f, 0.992164f, 0.997651f, 1.00661f, 
+		0.681956f, 0.0473190f, 0.300055f, 0.661431f, 
+		0.997651f, 0.0243200f, 0.681956f, 0.802086f, 
+		0.711966f, 0.793373f, 0.119387f, 0.0428230f, 
+		0.0549710f, 0.0538990f, 0.119387f, 0.0428230f, 
+		0.122343f, 0.0441030f, 0.122343f, 0.0441030f, 
+		0.122343f, 0.0441030f, 0.630201f, 0.706506f, 
+		0.630201f, 0.706506f, 0.122343f, 0.671716f, 
+		0.122343f, 0.0400490f, 0.0618320f, 0.0589030f, 
+		0.0618320f, 0.0589030f, 0.356026f, 0.963615f, 
+		0.0903390f, 0.0589030f, 0.356026f, 0.963615f, 
+		0.0903390f, 0.0589030f, 0.652006f, 0.706506f, 
+		0.652006f, 0.706506f, 0.356026f, 0.361235f, 
+		0.630201f, 0.395625f, 0.630201f, 0.395625f, 
+		0.216689f, 0.373814f, 0.445998f, 0.645325f, 
+		0.647621f, 0.395625f, 0.647621f, 0.395625f, 
+		0.445998f, 0.645325f, 0.522240f, 0.0115160f, 
+		0.0618320f, 0.735837f, 0.634431f, 0.0175430f, 
+		0.737383f, 0.990825f, 0.0686950f, 0.735837f, 
+		0.638663f, 0.0175430f, 0.523965f, 0.0151840f, 
+		0.523965f, 0.0151840f, 0.630201f, 0.0213700f, 
+		0.630201f, 0.0597360f, 0.541255f, 0.0519480f, 
+		0.630201f, 0.0597360f, 0.755516f, 0.952268f, 
+		0.638663f, 0.0597360f, 0.638663f, 0.0597360f
+	};
+	static GLushort Indices[] = {
+		7, 27, 7, 34, 7, 17, 3, 24, 3, 26, 3, 6, 23, 33, 23, 25, 
+		37, 33, 37, 23, 32, 62, 32, 71, 32, 79, 70, 67, 70, 75, 70, 78, 
+		117, 114, 117, 108, 117, 111, 117, 120, 61, 57, 61, 82, 61, 85, 88, 85, 
+		101, 56, 66, 56, 95, 56, 91, 56, 81, 65, 69, 65, 98, 94, 98, 105, 
+		68, 60, 68, 87, 68, 97, 107, 90, 107, 93, 107, 110, 96, 86, 96, 100, 
+		96, 104, 77, 74, 77, 30, 84, 106, 84, 113, 89, 106, 89, 84, 89, 80, 
+		101, 83, 101, 112, 101, 116, 103, 99, 103, 115, 103, 119, 92, 102, 92, 118, 
+		92, 109, 20, 29, 20, 19, 29, 20, 29, 21, 35, 16, 35, 31, 35, 76, 
+		29, 2, 1, 2, 55, 2, 59, 2, 36, 2, 22, 15, 73, 15, 28, 15, 
+		18, 54, 64, 54, 46, 54, 43, 54, 9, 54, 0, 50, 45, 50, 63, 50, 
+		72, 50, 14, 50, 11, 58, 33, 58, 37, 44, 49, 44, 53, 44, 47, 42, 
+		47, 40, 48, 10, 48, 13, 48, 52, 8, 41, 8, 39, 8, 5, 4, 38, 
+		4, 51, 4, 12
+	};
+	
+	[GameObject setTexcoordPointer:TexCoordData size:2 type:GL_FLOAT];
+	[GameObject setNormalPointer:NormalData type:GL_FLOAT];
+	[GameObject setVertexPointer:VertexData size:3 type:GL_FLOAT];
+	[GameObject bindTexture2D:ShipTexture()];
+	
+	// Material attributes for surface 'lambert2SG'
+	SetMaterialParameters(32.0000f, 0.000000f, 0.000000f, 0.000000f, 1.00000f, 1.00000f, 1.00000f);
+	
+	// Set a new diffuse texture map
+
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[0]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[6]);
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, &Indices[12]);
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, &Indices[16]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[20]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[26]);
+	glDrawElements(GL_TRIANGLE_STRIP, 8, GL_UNSIGNED_SHORT, &Indices[32]);
+	glDrawElements(GL_TRIANGLE_STRIP, 9, GL_UNSIGNED_SHORT, &Indices[40]);
+	glDrawElements(GL_TRIANGLE_STRIP, 8, GL_UNSIGNED_SHORT, &Indices[49]);
+	glDrawElements(GL_TRIANGLE_STRIP, 7, GL_UNSIGNED_SHORT, &Indices[57]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[64]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[70]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[76]);
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, &Indices[82]);
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, &Indices[86]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[90]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[96]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[102]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[108]);
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, &Indices[114]);
+	glDrawElements(GL_TRIANGLE_STRIP, 11, GL_UNSIGNED_SHORT, &Indices[118]);
+	glDrawElements(GL_TRIANGLE_STRIP, 10, GL_UNSIGNED_SHORT, &Indices[129]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[139]);
+	glDrawElements(GL_TRIANGLE_STRIP, 10, GL_UNSIGNED_SHORT, &Indices[145]);
+	glDrawElements(GL_TRIANGLE_STRIP, 10, GL_UNSIGNED_SHORT, &Indices[155]);
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, &Indices[165]);
+	glDrawElements(GL_TRIANGLE_STRIP, 9, GL_UNSIGNED_SHORT, &Indices[169]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[178]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[184]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[190]);
+}	
+
+// Bounding box of geometry = (1.02444,0.344729,-17.4125) to (6.80708,4.73772,-5.00876).
+void k_wing_wing()
+{
+	static GLfloat VertexData[] = {
+		3.68266f, 2.36414f, -10.7106f, 3.68266f, 2.36414f, -10.7106f, 3.68266f, 2.36414f, -10.7106f, 
+		3.68266f, 2.36414f, -11.6503f, 3.68266f, 2.36414f, -11.6503f, 
+		3.68266f, 2.36414f, -11.6503f, 3.70135f, 2.37893f, -10.8324f, 
+		3.70135f, 2.37893f, -10.8324f, 3.70135f, 2.37893f, -10.8324f, 
+		3.70135f, 2.37893f, -11.6727f, 3.70135f, 2.37893f, -11.6727f, 
+		3.70135f, 2.37893f, -11.6727f, 3.70135f, 2.37893f, -11.6727f, 
+		4.14886f, 2.71138f, -11.6568f, 4.14886f, 2.71138f, -11.6568f, 
+		4.14886f, 2.71138f, -11.6568f, 4.12903f, 2.69568f, -11.7106f, 
+		4.12903f, 2.69568f, -11.7106f, 4.12903f, 2.69568f, -11.7106f, 
+		3.80246f, 2.45340f, -11.2287f, 3.80246f, 2.45340f, -11.2287f, 
+		3.80246f, 2.45340f, -11.2287f, 3.80246f, 2.45340f, -11.2287f, 
+		3.68405f, 2.40313f, -11.6675f, 3.68405f, 2.40313f, -11.6675f, 
+		3.68614f, 2.39815f, -11.6727f, 3.68614f, 2.39815f, -11.6727f, 
+		3.68614f, 2.39815f, -11.6727f, 3.68282f, 2.39773f, -11.6700f, 
+		3.68282f, 2.39773f, -11.6700f, 3.68282f, 2.39773f, -11.6700f, 
+		3.68285f, 2.40231f, -11.6673f, 3.68285f, 2.40231f, -11.6673f, 
+		4.12420f, 2.70542f, -11.7058f, 4.12420f, 2.70542f, -11.7058f, 
+		4.12420f, 2.70542f, -11.7058f, 4.12573f, 2.69985f, -11.7106f, 
+		4.12573f, 2.69985f, -11.7106f, 4.12573f, 2.69985f, -11.7106f, 
+		3.68285f, 2.40231f, -10.8378f, 3.68285f, 2.40231f, -10.8378f, 
+		3.68284f, 2.40073f, -10.8274f, 3.68284f, 2.40073f, -10.8274f, 
+		3.68614f, 2.39815f, -10.8324f, 3.78536f, 2.47196f, -11.2354f, 
+		3.78536f, 2.47196f, -11.2354f, 3.79023f, 2.46885f, -11.2287f, 
+		3.79023f, 2.46885f, -11.2287f, 4.14556f, 2.71554f, -11.6568f, 
+		4.14556f, 2.71554f, -11.6568f, 4.14556f, 2.71554f, -11.6568f, 
+		4.14049f, 2.71831f, -11.6616f, 4.14049f, 2.71831f, -11.6616f, 
+		4.14049f, 2.71831f, -11.6616f
+	};
+	static GLfloat NormalData[] = {
+		0.769573f, 0.608998f, 0.192038f, -0.999987f, 0.00500500f, 0.000000f, 0.620548f, -0.784168f, 0.000000f, 
+		-0.999987f, 0.00500500f, 0.000000f, -0.536635f, -0.424662f, -0.729167f, 
+		0.620548f, -0.784168f, 0.000000f, 0.747574f, 0.591588f, 0.301921f, 
+		0.769573f, 0.608998f, 0.192038f, 0.606870f, -0.794801f, 0.000000f, 
+		-0.0558090f, -0.0441640f, -0.997464f, 0.596324f, -0.802744f, 0.000511000f, 
+		-0.536635f, -0.424662f, -0.729167f, 0.606870f, -0.794801f, 0.000000f, 
+		0.552170f, 0.436957f, 0.710054f, 0.596324f, -0.802744f, 0.000511000f, 
+		0.709608f, 0.561547f, -0.425583f, -0.0558090f, -0.0441640f, -0.997464f, 
+		0.596324f, -0.802744f, 0.000511000f, 0.709608f, 0.561547f, -0.425583f, 
+		0.747574f, 0.591588f, 0.301921f, 0.552170f, 0.436957f, 0.710054f, 
+		0.596324f, -0.802744f, 0.000511000f, 0.593010f, -0.805195f, 0.000000f, 
+		-0.499801f, 0.489953f, -0.714244f, -0.565074f, 0.825040f, -0.000444000f, 
+		-0.499801f, 0.489953f, -0.714244f, -0.0558090f, -0.0441640f, -0.997464f, 
+		-0.536635f, -0.424662f, -0.729167f, -0.565570f, 0.441071f, -0.696841f, 
+		-0.999987f, 0.00500500f, 0.000000f, -0.536635f, -0.424662f, -0.729167f, 
+		-0.565570f, 0.441071f, -0.696841f, -0.882551f, 0.470216f, 0.000000f, 
+		-0.430526f, 0.535396f, -0.726635f, -0.568198f, 0.822891f, -0.000888000f, 
+		0.709608f, 0.561547f, -0.425583f, -0.430526f, 0.535396f, -0.726635f, 
+		-0.0558090f, -0.0441640f, -0.997464f, 0.709608f, 0.561547f, -0.425583f, 
+		0.565551f, 0.803227f, 0.187023f, -0.882551f, 0.470216f, 0.000000f, 
+		0.740790f, 0.654774f, 0.150001f, -0.999987f, 0.00500500f, 0.000000f, 
+		0.670448f, 0.708673f, 0.219734f, 0.189114f, 0.905326f, 0.380290f, 
+		-0.565074f, 0.825040f, -0.000444000f, 0.552170f, 0.436957f, 0.710054f, 
+		0.398144f, 0.838768f, 0.371417f, 0.552170f, 0.436957f, 0.710054f, 
+		-0.0342430f, 0.877689f, 0.478006f, 0.709608f, 0.561547f, -0.425583f, 
+		-0.0342430f, 0.877689f, 0.478006f, -0.568198f, 0.822891f, -0.000888000f, 
+		0.709608f, 0.561547f, -0.425583f
+	};
+	static GLfloat TexCoordData[] = {
+		0.844562f, 0.0158190f, 0.338751f, 0.274937f, 0.104411f, 0.761650f, 
+		0.338751f, 0.950358f, 0.697270f, 0.0191000f, 
+		0.104411f, 0.0573970f, 0.840413f, 0.120707f, 
+		0.840413f, 0.120707f, 0.122278f, 0.670343f, 
+		0.697740f, 0.0431420f, 0.122278f, 0.0406290f, 
+		0.697740f, 0.0431420f, 0.122278f, 0.0406290f, 
+		0.826979f, 0.831049f, 0.539895f, 0.0524910f, 
+		0.826979f, 0.831049f, 0.691062f, 0.579929f, 
+		0.520939f, 0.0121840f, 0.825148f, 0.877351f, 
+		0.830663f, 0.462015f, 0.830663f, 0.462015f, 
+		0.216332f, 0.373362f, 0.216332f, 0.373362f, 
+		0.727733f, 0.0440140f, 0.356925f, 0.962766f, 
+		0.722454f, 0.0426600f, 0.722454f, 0.0426600f, 
+		0.722454f, 0.0426600f, 0.724145f, 0.0397400f, 
+		0.353830f, 0.964509f, 0.724145f, 0.0397400f, 
+		0.727811f, 0.0425550f, 0.355887f, 0.962621f, 
+		0.701822f, 0.582001f, 0.739852f, 0.990265f, 
+		0.816163f, 0.872851f, 0.696420f, 0.579824f, 
+		0.696420f, 0.579824f, 0.820573f, 0.877170f, 
+		0.814561f, 0.124266f, 0.355887f, 0.366324f, 
+		0.815982f, 0.115370f, 0.355174f, 0.358862f, 
+		0.819315f, 0.119873f, 0.808770f, 0.466908f, 
+		0.444734f, 0.652128f, 0.813693f, 0.461344f, 
+		0.813693f, 0.461344f, 0.822405f, 0.830868f, 
+		0.822405f, 0.830868f, 0.822405f, 0.830868f, 
+		0.817667f, 0.834826f, 0.754782f, 0.958519f, 
+		0.817667f, 0.834826f
+	};
+	static GLushort Indices[] = {
+		15, 18, 15, 38, 15, 35, 15, 53, 15, 50, 2, 5, 2, 12, 8, 12, 
+		22, 4, 30, 4, 27, 4, 11, 3, 1, 3, 42, 3, 40, 32, 40, 24, 
+		45, 34, 45, 52, 3, 32, 3, 29, 0, 7, 0, 43, 41, 43, 39, 47, 
+		44, 49, 44, 51, 21, 10, 21, 17, 21, 14, 9, 26, 9, 37, 9, 16, 
+		48, 46, 48, 20, 48, 13, 47, 43, 47, 6, 47, 19, 25, 33, 25, 36, 
+		23, 33, 23, 25, 23, 28, 23, 31
+	};
+	
+	[GameObject setTexcoordPointer:TexCoordData size:2 type:GL_FLOAT];
+	[GameObject setNormalPointer:NormalData type:GL_FLOAT];
+	[GameObject setVertexPointer:VertexData size:3 type:GL_FLOAT];	
+	[GameObject bindTexture2D:ShipTexture()];
+	
+	// Material attributes for surface 'lambert2SG'
+	SetMaterialParameters(32.0000f, 0.000000f, 0.000000f, 0.000000f, 1.00000f, 1.00000f, 1.00000f);
+	
+		
+	glDrawElements(GL_TRIANGLE_STRIP, 10, GL_UNSIGNED_SHORT, &Indices[0]);
+	glDrawElements(GL_TRIANGLE_STRIP, 7, GL_UNSIGNED_SHORT, &Indices[10]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[17]);
+	glDrawElements(GL_TRIANGLE_STRIP, 13, GL_UNSIGNED_SHORT, &Indices[23]);
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, &Indices[36]);
+	glDrawElements(GL_TRIANGLE_STRIP, 12, GL_UNSIGNED_SHORT, &Indices[40]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[52]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[58]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[64]);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, &Indices[70]);
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, &Indices[76]);
+	glDrawElements(GL_TRIANGLE_STRIP, 8, GL_UNSIGNED_SHORT, &Indices[80]);
+}
+
