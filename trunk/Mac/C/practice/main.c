@@ -66,6 +66,10 @@ int main(int argc, const char *argv[])
 //	Song firstSong  = make_song (210, 2004);
 //	Song secondSong = make_song (256, 1992);
 	
+	// 结构体的另一种初始化方法
+	Song firstSong = {210, 2004};
+	display_song(firstSong);
+	
 //	Song thirdSong  = { 223, 1997 };
 //	display_song ( thirdSong );
 //	//////
