@@ -868,4 +868,103 @@ void handleBytes(UInt8 *buf, CFIndex num)
 
 // run loop: 在run loop中注册接受与流相关的事件，实现相应回调函数
 
+
+#pragma mark -
+#pragma mark CFNetwrok CFStream
+
+static void	ReadStreamClientCallBack( CFReadStreamRef stream, CFStreamEventType type, void *clientCallBackInfo ) 
+{
+	switch (type)
+	{
+		case kCFStreamEventEndEncountered:
+		{
+			CFReadStreamClose(stream);
+			break;
+		}
+		case kCFStreamEventErrorOccurred:
+			break;
+		case kCFStreamEventHasBytesAvailable:
+		{
+			UInt8 buffer[1024];
+			CFReadStreamRead(stream, buffer, 1024);
+			break;
+		}
+		case kCFStreamEventNone:
+			break;
+		case kCFStreamEventOpenCompleted:
+			break;
+	}
+}
+
+static void WriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEventType type, void *clientCallBackInfo ) 
+{
+	switch (type)
+	{
+		case kCFStreamEventEndEncountered:
+		{
+			CFWriteStreamClose(stream);
+			break;
+		}
+		case kCFStreamEventErrorOccurred:
+			break;
+		case kCFStreamEventCanAcceptBytes:
+		{
+			NSString *reqStr = [NSString stringWithFormat: @"ConReq"];
+			const UInt8 *rawstring = (const UInt8 *)[reqStr UTF8String];
+			CFWriteStreamWrite(stream, rawstring, strlen((char *)rawstring));
+		}
+		case kCFStreamEventNone:
+			break;
+		case kCFStreamEventOpenCompleted:
+			break;
+	}
+}
+
+- (IBAction)loginLogoutButtonPressed:(id)sender 
+{
+	[spinner startAnimating];
+	if (isLoggedIn) {
+		[loginLogoutButton setTitle:@"Login"];
+	} else {
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		NSString *iHostname = [defaults stringForKey:@"server"];
+		NSString *iPort = [defaults stringForKey:@"port"];
+		
+		CFReadStreamRef readStream;
+		CFWriteStreamRef writeStream;
+		
+		static const CFOptionFlags kReadNetworkEvents = 
+		kCFStreamEventEndEncountered |
+		kCFStreamEventErrorOccurred |
+		kCFStreamEventHasBytesAvailable |
+		kCFStreamEventOpenCompleted |
+		kCFStreamEventNone;
+		
+		static const CFOptionFlags kWriteNetworkEvents = 
+		kCFStreamEventEndEncountered |
+		kCFStreamEventErrorOccurred |
+		kCFStreamEventCanAcceptBytes |
+		kCFStreamEventOpenCompleted |
+		kCFStreamEventNone;
+		
+		CFStreamClientContext ctxt = {0,(void*)NULL,NULL,NULL,NULL};
+		CFHostRef hostRef = CFHostCreateWithName(kCFAllocatorDefault,(CFStringRef)iHostname);
+		
+		CFStreamCreatePairWithSocketToCFHost(kCFAllocatorDefault, hostRef, [iPort intValue],
+											 &readStream, &writeStream);
+		//CFSocketStreamPairSetSecurityProtocol(readStream, writeStream, kCFStreamSocketSecurityNone);
+		
+		CFReadStreamSetClient(readStream, kReadNetworkEvents, ReadStreamClientCallBack, &ctxt);
+		CFWriteStreamSetClient(writeStream, kWriteNetworkEvents, WriteStreamClientCallBack, &ctxt);
+		CFReadStreamScheduleWithRunLoop(readStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+		CFWriteStreamScheduleWithRunLoop(writeStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+		CFReadStreamOpen(readStream);
+		CFWriteStreamOpen(writeStream);
+		
+		[loginLogoutButton setTitle:@"Logout"];
+	}
+	isLoggedIn = !isLoggedIn;
+	[spinner stopAnimating];
+}
+
 @end
