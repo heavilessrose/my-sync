@@ -1,0 +1,22 @@
+http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html
+
+
+Run-loop 
+ A run loop is an event processing loop that you use to schedule work and coordinate the receipt of incoming events. The purpose of a run loop is to keep your thread busy when there is work to do and put your thread to sleep when there is none.
+run loop 是一个循环（实质上应该是一个线程），应用线程可进入并执行事件处理。在这个循环中使用run loop对象来运行事件处理代码。提供异步或同步的事件处理。
+
+事件源有两种：
+	Input sources：异步的方式传递事件。通常消息来自另一个线程或不同的应用。
+	Timer sources：同步的方式传递事件。在一个scheduled time或时间间隔时发生。
+run-loop也产生notifications。注册run-loop observers来接收这些通知来做其他的处理。
+
+
+Run-Loop Modes
+run loop mode是要监控的input souces和timers以及要通知的run loop observer的集合。
+每次运行run loop都需要直接或隐含的指定一个运行的mode。这样只有那些与这个mode相关的sources才会被监控和允许传递他们的事件。类似的只有与此mode相关的observer会被通知。
+
+使用run loop mode可以起到过滤掉不需要的source。
+
+已定义的modes：（mode可自定义）
+Dfault、Connection、Modal、Event tracking、Common modes。
+
