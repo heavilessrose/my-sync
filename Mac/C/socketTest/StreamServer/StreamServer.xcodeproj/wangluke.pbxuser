@@ -14,7 +14,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					341,
+					562,
 					20,
 					48.16259765625,
 					43,
@@ -34,8 +34,21 @@
 			PBXPerProjectTemplateStateSaveDate = 264418727;
 			PBXWorkspaceStateSaveDate = 264418727;
 		};
+		perUserProjectItems = {
+			1B3424CE0FC2BE2C00B23525 /* PBXTextBookmark */ = 1B3424CE0FC2BE2C00B23525 /* PBXTextBookmark */;
+			1B3424D00FC2BE2C00B23525 /* PBXTextBookmark */ = 1B3424D00FC2BE2C00B23525 /* PBXTextBookmark */;
+			1B3424D10FC2BE2C00B23525 /* PBXTextBookmark */ = 1B3424D10FC2BE2C00B23525 /* PBXTextBookmark */;
+			1B3424D30FC2BE2C00B23525 /* PBXTextBookmark */ = 1B3424D30FC2BE2C00B23525 /* PBXTextBookmark */;
+		};
 		sourceControlManager = 1B3424500FC2B5AE00B23525 /* Source Control */;
 		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {740, 2822}}";
+			sepNavSelRange = "{227, 0}";
+			sepNavVisRange = "{0, 603}";
 		};
 	};
 	1B34244A0FC2B5A700B23525 /* StreamServer */ = {
@@ -45,12 +58,13 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 1;
+		breakpointsEnabled = 0;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
 		debuggerPlugin = GDBDebugging;
 		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
 		enableDebugStr = 1;
 		environmentEntries = (
 		);
@@ -72,6 +86,58 @@
 	1B3424510FC2B5AE00B23525 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	1B3424CE0FC2BE2C00B23525 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1B3424CF0FC2BE2C00B23525 /* server.c */;
+		name = "server.c: 1";
+		rLen = 2858;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 613;
+		vrLoc = 0;
+	};
+	1B3424CF0FC2BE2C00B23525 /* server.c */ = {
+		isa = PBXFileReference;
+		name = server.c;
+		path = /Users/wangluke/Downloads/server.c;
+		sourceTree = "<absolute>";
+	};
+	1B3424D00FC2BE2C00B23525 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 8";
+		rLen = 0;
+		rLoc = 2907;
+		rType = 0;
+		vrLen = 137;
+		vrLoc = 0;
+	};
+	1B3424D10FC2BE2C00B23525 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1B3424D20FC2BE2C00B23525 /* server.c */;
+		name = "server.c: 1";
+		rLen = 2858;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 613;
+		vrLoc = 0;
+	};
+	1B3424D20FC2BE2C00B23525 /* server.c */ = {
+		isa = PBXFileReference;
+		name = server.c;
+		path = /Users/wangluke/Downloads/server.c;
+		sourceTree = "<absolute>";
+	};
+	1B3424D30FC2BE2C00B23525 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 13";
+		rLen = 0;
+		rLoc = 227;
+		rType = 0;
+		vrLen = 603;
+		vrLoc = 0;
 	};
 	8DD76FA90486AB0100D96B5E /* StreamServer */ = {
 		activeExec = 0;
