@@ -1,0 +1,107 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 1B34249E0FC2BC0600B23525 /* Talker */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* Talker */;
+		codeSenseManager = 1B3424AE0FC2BC0D00B23525 /* Code sense */;
+		executables = (
+			1B34249E0FC2BC0600B23525 /* Talker */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 264420358;
+			PBXWorkspaceStateSaveDate = 264420358;
+		};
+		perUserProjectItems = {
+			1B3424A80FC2BC0D00B23525 /* PBXBookmark */ = 1B3424A80FC2BC0D00B23525 /* PBXBookmark */;
+			1B3424B00FC2BC3100B23525 /* PBXTextBookmark */ = 1B3424B00FC2BC3100B23525 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 1B3424AD0FC2BC0D00B23525 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {604, 1343}}";
+			sepNavSelRange = "{459, 0}";
+			sepNavVisRange = "{147, 668}";
+		};
+	};
+	1B34249E0FC2BC0600B23525 /* Talker */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Talker;
+		sourceDirectories = (
+		);
+	};
+	1B3424A80FC2BC0D00B23525 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+	};
+	1B3424AD0FC2BC0D00B23525 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryName = Mac;
+		};
+	};
+	1B3424AE0FC2BC0D00B23525 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	1B3424B00FC2BC3100B23525 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 23";
+		rLen = 0;
+		rLoc = 459;
+		rType = 0;
+		vrLen = 668;
+		vrLoc = 147;
+	};
+	8DD76FA90486AB0100D96B5E /* Talker */ = {
+		activeExec = 0;
+		executables = (
+			1B34249E0FC2BC0600B23525 /* Talker */,
+		);
+	};
+}
