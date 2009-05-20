@@ -49,6 +49,7 @@ const double URLCacheInterval = 86400.0;
 @synthesize statusField;
 @synthesize dateField;
 @synthesize infoField;
+@synthesize download;
 
 @synthesize cancel;
 @synthesize conn;
@@ -790,81 +791,81 @@ void handleBytes(UInt8 *buf, CFIndex num)
 	myReadStream = NULL;
 }
 
-- (void) writeToStream
-{
-	CFWriteStreamRef myWriteStream = CFWriteStreamCreateWithFile(kCFAllocatorDefault, fileURL);
-	if (!CFWriteStreamOpen(myWriteStream)) {
-		CFStreamError myErr = CFWriteStreamGetError(myWriteStream);
-		// An error has occurred.
-		if (myErr.domain == kCFStreamErrorDomainPOSIX) {
-			// Interpret myErr.error as a UNIX errno.
-		} else if (myErr.domain == kCFStreamErrorDomainMacOSStatus) {
-			// Interpret myErr.error as a MacOS error code.
-			OSStatus macError = (OSStatus)myErr.error;
-			// Check other error domains.
-		}
-	}
-	UInt8 buf[] = "Hello, world";
-	UInt32 bufLen = strlen(buf);
-	
-	while (!done) {
-		CFTypeRef bytesWritten = CFWriteStreamWrite(myWriteStream, buf, strlen(buf));
-		if (bytesWritten < 0) {
-			CFStreamError error = CFWriteStreamGetError(myWriteStream);
-			reportError(error);
-		} else if (bytesWritten == 0) {
-			if (CFWriteStreamGetStatus(myWriteStream) == kCFStreamStatusAtEnd) {
-				done = TRUE;
-			}
-		} else if (bytesWritten != strlen(buf)) {
-			// Determine how much has been written and adjust the buffer
-			bufLen = bufLen - bytesWritten;
-			memmove(buf, buf + bytesWritten, bufLen);
-			
-			// Figure out what went wrong with the write stream
-			CFStreamError error = CFWriteStreamGetError(myWriteStream);
-			reportError(error);
-			
-		}
-	}
-	CFWriteStreamClose(myWriteStream);
-	CFRelease(myWriteStream);
-	myWriteStream = NULL;
-}
+//- (void) writeToStream
+//{
+//	CFWriteStreamRef myWriteStream = CFWriteStreamCreateWithFile(kCFAllocatorDefault, fileURL);
+//	if (!CFWriteStreamOpen(myWriteStream)) {
+//		CFStreamError myErr = CFWriteStreamGetError(myWriteStream);
+//		// An error has occurred.
+//		if (myErr.domain == kCFStreamErrorDomainPOSIX) {
+//			// Interpret myErr.error as a UNIX errno.
+//		} else if (myErr.domain == kCFStreamErrorDomainMacOSStatus) {
+//			// Interpret myErr.error as a MacOS error code.
+//			OSStatus macError = (OSStatus)myErr.error;
+//			// Check other error domains.
+//		}
+//	}
+//	UInt8 buf[] = "Hello, world";
+//	UInt32 bufLen = strlen(buf);
+//	
+//	while (!done) {
+//		CFTypeRef bytesWritten = CFWriteStreamWrite(myWriteStream, buf, strlen(buf));
+//		if (bytesWritten < 0) {
+//			CFStreamError error = CFWriteStreamGetError(myWriteStream);
+//			reportError(error);
+//		} else if (bytesWritten == 0) {
+//			if (CFWriteStreamGetStatus(myWriteStream) == kCFStreamStatusAtEnd) {
+//				done = TRUE;
+//			}
+//		} else if (bytesWritten != strlen(buf)) {
+//			// Determine how much has been written and adjust the buffer
+//			bufLen = bufLen - bytesWritten;
+//			memmove(buf, buf + bytesWritten, bufLen);
+//			
+//			// Figure out what went wrong with the write stream
+//			CFStreamError error = CFWriteStreamGetError(myWriteStream);
+//			reportError(error);
+//			
+//		}
+//	}
+//	CFWriteStreamClose(myWriteStream);
+//	CFRelease(myWriteStream);
+//	myWriteStream = NULL;
+//}
 
 //!!!: 避免阻塞的两种方式
 // poll: 向流中写之前先查询流的状态
-- (void) polling
-{
-	UInt8 buf[] = "Hello, world";
-	UInt32 bufLen = strlen(buf);
-	
-	while (!done) {
-		//CFReadStreamHasBytesAvailable
-		if (CFWriteStreamCanAcceptBytes(myWriteStream)) {
-			int bytesWritten = CFWriteStreamWrite(myWriteStream, buf, strlen(buf));
-			if (bytesWritten < 0) {
-				CFStreamError error = CFWriteStreamGetError(myWriteStream);
-				reportError(error);
-			} else if (bytesWritten == 0) {
-				if (CFWriteStreamGetStatus(myWriteStream) == kCFStreamStatusAtEnd)
-				{
-					done = TRUE;
-				}
-			} else if (bytesWritten != strlen(buf)) {
-				// Determine how much has been written and adjust the buffer
-				bufLen = bufLen - bytesWritten;
-				memmove(buf, buf + bytesWritten, bufLen);
-				
-				// Figure out what went wrong with the write stream
-				CFStreamError error = CFWriteStreamGetError(myWriteStream);
-				reportError(error);
-			}
-		} else {
-			// ...do something else while you wait...
-		}
-	}
-}
+//- (void) polling
+//{
+//	UInt8 buf[] = "Hello, world";
+//	UInt32 bufLen = strlen(buf);
+//	
+//	while (!done) {
+//		//CFReadStreamHasBytesAvailable
+//		if (CFWriteStreamCanAcceptBytes(myWriteStream)) {
+//			int bytesWritten = CFWriteStreamWrite(myWriteStream, buf, strlen(buf));
+//			if (bytesWritten < 0) {
+//				CFStreamError error = CFWriteStreamGetError(myWriteStream);
+//				reportError(error);
+//			} else if (bytesWritten == 0) {
+//				if (CFWriteStreamGetStatus(myWriteStream) == kCFStreamStatusAtEnd)
+//				{
+//					done = TRUE;
+//				}
+//			} else if (bytesWritten != strlen(buf)) {
+//				// Determine how much has been written and adjust the buffer
+//				bufLen = bufLen - bytesWritten;
+//				memmove(buf, buf + bytesWritten, bufLen);
+//				
+//				// Figure out what went wrong with the write stream
+//				CFStreamError error = CFWriteStreamGetError(myWriteStream);
+//				reportError(error);
+//			}
+//		} else {
+//			// ...do something else while you wait...
+//		}
+//	}
+//}
 
 // run loop: 在run loop中注册接受与流相关的事件，实现相应回调函数
 
@@ -920,51 +921,71 @@ static void WriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEventTyp
 	}
 }
 
-- (IBAction)loginLogoutButtonPressed:(id)sender 
+//- (IBAction)loginLogoutButtonPressed:(id)sender 
+//{
+//	[spinner startAnimating];
+//	if (isLoggedIn) {
+//		[loginLogoutButton setTitle:@"Login"];
+//	} else {
+//		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//		NSString *iHostname = [defaults stringForKey:@"server"];
+//		NSString *iPort = [defaults stringForKey:@"port"];
+//		
+//		CFReadStreamRef readStream;
+//		CFWriteStreamRef writeStream;
+//		
+//		static const CFOptionFlags kReadNetworkEvents = 
+//		kCFStreamEventEndEncountered |
+//		kCFStreamEventErrorOccurred |
+//		kCFStreamEventHasBytesAvailable |
+//		kCFStreamEventOpenCompleted |
+//		kCFStreamEventNone;
+//		
+//		static const CFOptionFlags kWriteNetworkEvents = 
+//		kCFStreamEventEndEncountered |
+//		kCFStreamEventErrorOccurred |
+//		kCFStreamEventCanAcceptBytes |
+//		kCFStreamEventOpenCompleted |
+//		kCFStreamEventNone;
+//		
+//		CFStreamClientContext ctxt = {0,(void*)NULL,NULL,NULL,NULL};
+//		CFHostRef hostRef = CFHostCreateWithName(kCFAllocatorDefault,(CFStringRef)iHostname);
+//		
+//		CFStreamCreatePairWithSocketToCFHost(kCFAllocatorDefault, hostRef, [iPort intValue],
+//											 &readStream, &writeStream);
+//		//CFSocketStreamPairSetSecurityProtocol(readStream, writeStream, kCFStreamSocketSecurityNone);
+//		
+//		CFReadStreamSetClient(readStream, kReadNetworkEvents, ReadStreamClientCallBack, &ctxt);
+//		CFWriteStreamSetClient(writeStream, kWriteNetworkEvents, WriteStreamClientCallBack, &ctxt);
+//		CFReadStreamScheduleWithRunLoop(readStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+//		CFWriteStreamScheduleWithRunLoop(writeStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+//		CFReadStreamOpen(readStream);
+//		CFWriteStreamOpen(writeStream);
+//		
+//		[loginLogoutButton setTitle:@"Logout"];
+//	}
+//	isLoggedIn = !isLoggedIn;
+//	[spinner stopAnimating];
+//}
+
+#pragma mark -
+#pragma mark httpClient
+- (IBAction) startDownload:(id)sender
 {
-	[spinner startAnimating];
-	if (isLoggedIn) {
-		[loginLogoutButton setTitle:@"Login"];
-	} else {
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		NSString *iHostname = [defaults stringForKey:@"server"];
-		NSString *iPort = [defaults stringForKey:@"port"];
-		
-		CFReadStreamRef readStream;
-		CFWriteStreamRef writeStream;
-		
-		static const CFOptionFlags kReadNetworkEvents = 
-		kCFStreamEventEndEncountered |
-		kCFStreamEventErrorOccurred |
-		kCFStreamEventHasBytesAvailable |
-		kCFStreamEventOpenCompleted |
-		kCFStreamEventNone;
-		
-		static const CFOptionFlags kWriteNetworkEvents = 
-		kCFStreamEventEndEncountered |
-		kCFStreamEventErrorOccurred |
-		kCFStreamEventCanAcceptBytes |
-		kCFStreamEventOpenCompleted |
-		kCFStreamEventNone;
-		
-		CFStreamClientContext ctxt = {0,(void*)NULL,NULL,NULL,NULL};
-		CFHostRef hostRef = CFHostCreateWithName(kCFAllocatorDefault,(CFStringRef)iHostname);
-		
-		CFStreamCreatePairWithSocketToCFHost(kCFAllocatorDefault, hostRef, [iPort intValue],
-											 &readStream, &writeStream);
-		//CFSocketStreamPairSetSecurityProtocol(readStream, writeStream, kCFStreamSocketSecurityNone);
-		
-		CFReadStreamSetClient(readStream, kReadNetworkEvents, ReadStreamClientCallBack, &ctxt);
-		CFWriteStreamSetClient(writeStream, kWriteNetworkEvents, WriteStreamClientCallBack, &ctxt);
-		CFReadStreamScheduleWithRunLoop(readStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-		CFWriteStreamScheduleWithRunLoop(writeStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-		CFReadStreamOpen(readStream);
-		CFWriteStreamOpen(writeStream);
-		
-		[loginLogoutButton setTitle:@"Logout"];
-	}
-	isLoggedIn = !isLoggedIn;
-	[spinner stopAnimating];
+	httpClient *client = [[httpClient alloc] init];
+	[client connectAndDown];
+	[client release];
 }
 
+- (void) didFinishDownload
+{
+	NSString *home = [[NSString alloc] initWithCString:getenv("HOME")];
+	UIImage *theImage = [[UIImage alloc] initWithContentsOfFile:[home stringByAppendingPathComponent:@"overview_hero1_20090303.png"];
+	if (theImage) {
+		imageView.image = theImage;
+		[theImage release];
+	}
+	
+	[home release];
+}
 @end

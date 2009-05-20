@@ -1,0 +1,181 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 1B3D2A740FC3B87800ED6450 /* httpDownloader */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* httpDownloader */;
+		codeSenseManager = 1B3D2A790FC3B89600ED6450 /* Code sense */;
+		executables = (
+			1B3D2A740FC3B87800ED6450 /* httpDownloader */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					833,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 264484984;
+			PBXWorkspaceStateSaveDate = 264484984;
+		};
+		perUserProjectItems = {
+			1B3D2BD30FC4214700ED6450 /* PBXTextBookmark */ = 1B3D2BD30FC4214700ED6450 /* PBXTextBookmark */;
+			1B3D2BD50FC4214700ED6450 /* PBXTextBookmark */ = 1B3D2BD50FC4214700ED6450 /* PBXTextBookmark */;
+			1B3D2BD70FC4214700ED6450 /* PBXTextBookmark */ = 1B3D2BD70FC4214700ED6450 /* PBXTextBookmark */;
+			1B3D2BD90FC4214700ED6450 /* PBXTextBookmark */ = 1B3D2BD90FC4214700ED6450 /* PBXTextBookmark */;
+			1B3D2BDA0FC4214700ED6450 /* PBXTextBookmark */ = 1B3D2BDA0FC4214700ED6450 /* PBXTextBookmark */;
+			1B3D2BDC0FC4214700ED6450 /* PBXTextBookmark */ = 1B3D2BDC0FC4214700ED6450 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 1B3D2A780FC3B89600ED6450 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 3876}}";
+			sepNavSelRange = "{0, 5594}";
+			sepNavVisRange = "{0, 773}";
+		};
+	};
+	1B3D2A740FC3B87800ED6450 /* httpDownloader */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = httpDownloader;
+		sourceDirectories = (
+		);
+	};
+	1B3D2A780FC3B89600ED6450 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryName = Mac;
+		};
+	};
+	1B3D2A790FC3B89600ED6450 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	1B3D2BD30FC4214700ED6450 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1B3D2BD40FC4214700ED6450 /* stdio.h */;
+		name = "stdio.h: 277";
+		rLen = 72;
+		rLoc = 10236;
+		rType = 0;
+		vrLen = 1884;
+		vrLoc = 9553;
+	};
+	1B3D2BD40FC4214700ED6450 /* stdio.h */ = {
+		isa = PBXFileReference;
+		name = stdio.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/stdio.h;
+		sourceTree = "<absolute>";
+	};
+	1B3D2BD50FC4214700ED6450 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1B3D2BD60FC4214700ED6450 /* netdb.h */;
+		name = "netdb.h: 122";
+		rLen = 71;
+		rLoc = 4986;
+		rType = 0;
+		vrLen = 1132;
+		vrLoc = 4258;
+	};
+	1B3D2BD60FC4214700ED6450 /* netdb.h */ = {
+		isa = PBXFileReference;
+		name = netdb.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/netdb.h;
+		sourceTree = "<absolute>";
+	};
+	1B3D2BD70FC4214700ED6450 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1B3D2BD80FC4214700ED6450 /* unistd.h */;
+		name = "unistd.h: 509";
+		rLen = 0;
+		rLoc = 17683;
+		rType = 0;
+		vrLen = 1251;
+		vrLoc = 17040;
+	};
+	1B3D2BD80FC4214700ED6450 /* unistd.h */ = {
+		isa = PBXFileReference;
+		name = unistd.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/unistd.h;
+		sourceTree = "<absolute>";
+	};
+	1B3D2BD90FC4214700ED6450 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 173";
+		rLen = 5;
+		rLoc = 4558;
+		rType = 0;
+		vrLen = 926;
+		vrLoc = 4022;
+	};
+	1B3D2BDA0FC4214700ED6450 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1B3D2BDB0FC4214700ED6450 /* unistd.h */;
+		name = "unistd.h: 509";
+		rLen = 0;
+		rLoc = 17683;
+		rType = 0;
+		vrLen = 1251;
+		vrLoc = 17040;
+	};
+	1B3D2BDB0FC4214700ED6450 /* unistd.h */ = {
+		isa = PBXFileReference;
+		name = unistd.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/unistd.h;
+		sourceTree = "<absolute>";
+	};
+	1B3D2BDC0FC4214700ED6450 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 1";
+		rLen = 5594;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 773;
+		vrLoc = 0;
+	};
+	8DD76FA90486AB0100D96B5E /* httpDownloader */ = {
+		activeExec = 0;
+		executables = (
+			1B3D2A740FC3B87800ED6450 /* httpDownloader */,
+		);
+	};
+}
