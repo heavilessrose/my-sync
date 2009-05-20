@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "URLCacheConnection.h"
+#import "httpClient.h"
 
 #define kFilename @"data.plist"
 
 @class NSData;
 
 
-@interface propertyListViewController : UIViewController <URLCacheConnectionDelegate, UIAlertViewDelegate> {
+@interface propertyListViewController : UIViewController <URLCacheConnectionDelegate, UIAlertViewDelegate, httpClientDelegate> {
 	IBOutlet UITextField *field1;
 	IBOutlet UITextField *field2;
 	// 是否成功写入
@@ -38,6 +39,7 @@
 	IBOutlet UILabel *statusField;
 	IBOutlet UILabel *dateField;
 	IBOutlet UILabel *infoField;
+	IBOutlet UIButton *download;
 	
 	IBOutlet UIButton *cancel;
 	IBOutlet URLCacheConnection *conn;
@@ -70,6 +72,7 @@
 @property (nonatomic, retain) UIButton *display;
 @property (nonatomic, retain) UIButton *clear;
 @property (nonatomic, retain) UIButton *cancel;
+@property (nonatomic, retain) UIButton *download;
 
 @property (nonatomic, retain) URLCacheConnection *conn;
 + (NSString *)appDocumentsDir;
@@ -119,6 +122,7 @@
 - (BOOL) write:(NSData *)data toDir:(NSString *)dir asFile:(NSString *)fileName;
 - (BOOL) write:(NSData *)data toURL:(NSString *)url;
 
+- (IBAction) startDownload:(id)sender;
 /////////流
 - (void) streamTests:(NSString *)fileURL;
 @end
