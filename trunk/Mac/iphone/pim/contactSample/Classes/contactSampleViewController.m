@@ -83,4 +83,29 @@
 {
     return NO;
 }
+
+
+- (void) addressBookFunction
+{
+	ABAddressBookRef addressBook;
+	CFErrorRef error = NULL;
+	BOOL wantToSaveChanges = YES;
+	
+	addressBook = ABAddressBookCreate();
+	
+	// work with address book
+	if (ABAddressBookHasUnsavedChanges(addressBook)) {
+		if (wantToSaveChanges) {
+			ABAddressBookSave(addressBook, &error);
+		} else {
+			ABAddressBookRevert(addressBook);
+		}
+	}
+	
+	if (error != NULL) {
+		// handle error
+	}
+	
+	CFRelease(addressBook);
+}
 @end
