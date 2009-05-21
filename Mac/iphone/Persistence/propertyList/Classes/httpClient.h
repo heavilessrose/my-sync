@@ -20,10 +20,14 @@
 #import <arpa/inet.h>
 #import <ctype.h>
 
+@protocol httpClientDelegate;
+
 @interface httpClient : NSObject {
-
+	id<httpClientDelegate> delegate;
 }
+@property (nonatomic, assign) id delegate;
 
+- (id) initWithDelegate:(id<httpClientDelegate>)theDelegate;
 - (void) setRequest;
 - (void) connectAndDown;
 - (void) getResponseHeader;

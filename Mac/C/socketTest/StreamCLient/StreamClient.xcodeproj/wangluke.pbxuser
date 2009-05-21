@@ -49,11 +49,9 @@
 			PBXWorkspaceStateSaveDate = 264477961;
 		};
 		perUserProjectItems = {
-			1B3424C70FC2BE2800B23525 = 1B3424C70FC2BE2800B23525 /* PBXTextBookmark */;
-			1B3424CA0FC2BE2800B23525 = 1B3424CA0FC2BE2800B23525 /* PBXTextBookmark */;
-			1B3424CB0FC2BE2800B23525 = 1B3424CB0FC2BE2800B23525 /* PBXTextBookmark */;
-			1B3424CD0FC2BE2800B23525 = 1B3424CD0FC2BE2800B23525 /* PBXTextBookmark */;
-			1B3424F30FC2CAA000B23525 = 1B3424F30FC2CAA000B23525 /* PBXTextBookmark */;
+			1B3424CA0FC2BE2800B23525 /* PBXTextBookmark */ = 1B3424CA0FC2BE2800B23525 /* PBXTextBookmark */;
+			1B3424F30FC2CAA000B23525 /* PBXTextBookmark */ = 1B3424F30FC2CAA000B23525 /* PBXTextBookmark */;
+			1B3D2BC00FC4214600ED6450 /* PBXTextBookmark */ = 1B3D2BC00FC4214600ED6450 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 1B3424750FC2B6BA00B23525 /* Source Control */;
 		userBuildSettings = {
@@ -62,8 +60,8 @@
 	08FB7796FE84155DC02AAC07 /* main.c */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {707, 1615}}";
-			sepNavSelRange = "{882, 0}";
-			sepNavVisRange = "{719, 795}";
+			sepNavSelRange = "{920, 0}";
+			sepNavVisRange = "{1464, 542}";
 		};
 	};
 	1B34246F0FC2B6B700B23525 /* StreamClient */ = {
@@ -102,23 +100,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	1B3424C70FC2BE2800B23525 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B3424C80FC2BE2800B23525 /* client.c */;
-		name = "client.c: 1";
-		rLen = 1938;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 335;
-		vrLoc = 393;
-	};
-	1B3424C80FC2BE2800B23525 /* client.c */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.c;
-		name = client.c;
-		path = /Users/wangluke/Downloads/client.c;
-		sourceTree = "<absolute>";
-	};
 	1B3424CA0FC2BE2800B23525 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
@@ -129,33 +110,6 @@
 		vrLen = 137;
 		vrLoc = 0;
 	};
-	1B3424CB0FC2BE2800B23525 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B3424CC0FC2BE2800B23525 /* client.c */;
-		name = "client.c: 1";
-		rLen = 1938;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 335;
-		vrLoc = 393;
-	};
-	1B3424CC0FC2BE2800B23525 /* client.c */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.c;
-		name = client.c;
-		path = /Users/wangluke/Downloads/client.c;
-		sourceTree = "<absolute>";
-	};
-	1B3424CD0FC2BE2800B23525 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
-		name = "main.c: 35";
-		rLen = 0;
-		rLoc = 718;
-		rType = 0;
-		vrLen = 796;
-		vrLoc = 595;
-	};
 	1B3424F30FC2CAA000B23525 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
@@ -165,6 +119,16 @@
 		rType = 0;
 		vrLen = 795;
 		vrLoc = 719;
+	};
+	1B3D2BC00FC4214600ED6450 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 46";
+		rLen = 0;
+		rLoc = 920;
+		rType = 0;
+		vrLen = 542;
+		vrLoc = 1464;
 	};
 	8DD76FA90486AB0100D96B5E /* StreamClient */ = {
 		activeExec = 0;

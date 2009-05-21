@@ -972,7 +972,7 @@ static void WriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEventTyp
 #pragma mark httpClient
 - (IBAction) startDownload:(id)sender
 {
-	httpClient *client = [[httpClient alloc] init];
+	httpClient *client = [[httpClient alloc] initWithDelegate:self];
 	[client connectAndDown];
 	[client release];
 }
@@ -980,7 +980,7 @@ static void WriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEventTyp
 - (void) didFinishDownload
 {
 	NSString *home = [[NSString alloc] initWithCString:getenv("HOME")];
-	UIImage *theImage = [[UIImage alloc] initWithContentsOfFile:[home stringByAppendingPathComponent:@"overview_hero1_20090303.png"];
+	UIImage *theImage = [[UIImage alloc] initWithContentsOfFile:[home stringByAppendingPathComponent:@"overview_hero1_20090303.png"]];
 	if (theImage) {
 		imageView.image = theImage;
 		[theImage release];

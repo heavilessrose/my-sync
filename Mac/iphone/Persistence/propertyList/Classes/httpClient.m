@@ -10,6 +10,14 @@
 
 
 @implementation httpClient
+@synthesize delegate;
+
+- (id) initWithDelegate:(id<httpClientDelegate>)theDelegate
+{
+	[self init];
+	self.delegate = theDelegate;
+	return self;
+}
 
 - (void) setRequest
 {
@@ -21,6 +29,8 @@
 	//http://l.yimg.com/a/i/ww/beta/y3.gif
 	//http://www.google.com/logos/missinglink.gif
 	[self download:@"http://www.apple.com.cn/macpro/images/overview_hero1_20090303.png"];
+	[self.delegate didFinishDownload];
+	
 }
 
 - (void) getResponseHeader
@@ -87,6 +97,14 @@ void GetHost(char * src, char * web, char * file, int * port) {
 		*port = 80;
 }
 
+static char home[1024];
+char* gethome()
+{
+	bzero(home, sizeof(home));
+	strcpy(home, getenv("HOME"));
+	return home;
+}
+
 #pragma mark -
 #pragma mark BSD Socket Method
 // 取得主机IP地址
@@ -108,6 +126,8 @@ struct hostent * getHost(NSString *name)
 	
 	return host;
 }
+
+
 
 - (int) download:(NSString *)url
 {
@@ -184,9 +204,10 @@ struct hostent * getHost(NSString *name)
 	printf("----request---------------\n");
 	printf("%s", request);// 准备request，将要发送给服务器
 	
-	//char *local_request = strcat(getenv("HOME"), strcat("/", "request.txt"));
-	//FILE *requestfp = fopen(local_request, "a");
-	//fwrite(request, 1, strlen(request), requestfp);
+	char *local_request = strcat(gethome(), "/request.txt");
+	FILE *requestfp = fopen(local_request, "a");
+	fwrite(request, 1, strlen(request), requestfp);
+	fclose(requestfp);
 	printf("-------------------------------\n");
 	
 	// 取得真实的文件名
@@ -206,11 +227,11 @@ struct hostent * getHost(NSString *name)
 		strcpy(local_file, host_file);
 	else 
 		strcpy(local_file, "index.html");
-	char home[1024];
-	strcpy(home,getenv("HOME"));
+//	char home[1024];
+//	strcpy(home,getenv("HOME"));
 	char tt[1024] = "/";
 	char local_file_path[1024];
-	strcpy(local_file_path,strcat(home, strcat(tt, local_file)));
+	strcpy(local_file_path,strcat(gethome(), strcat(tt, local_file)));
 	printf("local filename to write:%s\n\n", local_file);
 	
 	// 发送http request
@@ -226,9 +247,10 @@ struct hostent * getHost(NSString *name)
 	}
 	
 	fp = fopen(local_file_path, "a");
-	//printf("local_file = %s\n", local_file_path);
-	//char *local_responseHeader = strcat(getenv("HOME"), strcat("/", "responseHeader.txt"));
-	//FILE *responseHeader = fopen(local_responseHeader, "a");
+	
+		
+	char *local_responseHeader = strcat(gethome(), "/responseHeader.txt");
+	FILE *responseHeader = fopen(local_responseHeader, "a");
 	if(!fp) {
 		printf("create file error! %s\n", strerror(errno));
 		//return 0;
@@ -244,7 +266,7 @@ struct hostent * getHost(NSString *name)
 			else 
 				i = 0;
 			printf("%c", buffer[0]);//打印http头
-			//fwrite(buffer, 1, 1, responseHeader);
+			fwrite(buffer, 1, 1, responseHeader);
 		}
 		else {
 			fwrite(buffer, 1, 1, fp);//将正文数据写入文件
@@ -253,12 +275,12 @@ struct hostent * getHost(NSString *name)
 				fflush(fp); // 每1K时存盘一次
 		}
 	}
-//	fclose(responseHeader);
-//	fclose(fp);
+	fclose(responseHeader);
 	printf("----------------------------------\n");
 	fclose(fp);
 	// 结束通讯
 	close(sockfd);
 	//exit(0);
+	return 0;
 }
 @end
