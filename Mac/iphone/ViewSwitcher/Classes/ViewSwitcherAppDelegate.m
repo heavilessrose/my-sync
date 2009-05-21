@@ -7,21 +7,25 @@
 //
 
 #import "ViewSwitcherAppDelegate.h"
+#import "SwitchViewController.h"
 
 @implementation ViewSwitcherAppDelegate
 
 @synthesize window;
+@synthesize switchViewController;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
 
-    // Override point for customization after application launch
+    // 将根控制器的视图添加到应用程序的主窗口
+	[window addSubview:switchViewController.view];
     [window makeKeyAndVisible];
 }
 
 
 - (void)dealloc {
     [window release];
+	[switchViewController release];
     [super dealloc];
 }
 
