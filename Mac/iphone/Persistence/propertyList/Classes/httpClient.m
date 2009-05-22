@@ -53,7 +53,7 @@ char * Rstrchr(char * s, char x) {
 	return 0;
 }
 
-// 把字符串转换为全小写/
+// 把字符串转换为全小写
 void ToLowerCase(char * s) {
 	while(s && *s) {
 		*s=tolower(*s);
@@ -61,11 +61,11 @@ void ToLowerCase(char * s) {
 	}
 }
 
-// 从字符串src中解析出网站地址和端口，并得到用户要下载的文件
-void GetHost(char * src, char * web, char * file, int * port) {
+// 从字符串中解析出服务器地址和端口及要下载的文件
+void GetHost(char * src, char * host, char * file, int * port) {
 	char * pA;
 	char * pB;
-	memset(web, 0, sizeof(web));
+	memset(host, 0, sizeof(host));
 	memset(file, 0, sizeof(file));
 	*port = 0;
 	if(!(*src))
@@ -77,26 +77,27 @@ void GetHost(char * src, char * web, char * file, int * port) {
 		pA = src+strlen("https://");
 	pB = strchr(pA, '/');
 	if(pB) {
-		memcpy(web, pA, strlen(pA) - strlen(pB));
+		memcpy(host, pA, strlen(pA) - strlen(pB));
 		if(pB+1) {
 			memcpy(file, pB + 1, strlen(pB) - 1);
 			file[strlen(pB) - 1] = 0;
 		}
 	}else{
-		memcpy(web, pA, strlen(pA));
+		memcpy(host, pA, strlen(pA));
 	}
 	
 	if(pB) 
-		web[strlen(pA) - strlen(pB)] = 0;
+		host[strlen(pA) - strlen(pB)] = 0;
 	else 
-		web[strlen(pA)] = 0;
-	pA = strchr(web, ':');
+		host[strlen(pA)] = 0;
+	pA = strchr(host, ':');
 	if(pA) 
 		*port = atoi(pA + 1);
 	else 
 		*port = 80;
 }
 
+// 得到HOME目录
 static char home[1024];
 char* gethome()
 {
@@ -151,7 +152,8 @@ struct hostent * getHost(NSString *name)
 		NSLog(@"url can not be nil");
 		//exit(1);
 	}
-	//ToLowerCase(url_c);/*将参数转换为全小写*/
+	// 将参数转换为全小写
+	//ToLowerCase(url_c);
 	printf("lowercase url is: %s\n", url_c);
 	
 	GetHost(url_c, host_addr, host_file, &portnumber);/*分析网址、端口、文件名等*/
@@ -161,7 +163,7 @@ struct hostent * getHost(NSString *name)
 	printf("portnumber:%d\n", portnumber);
 	printf("----------------------------------\n\n");
 	
-	/*取得主机IP地址*/
+	// 取得主机IP地址
 	if((host=gethostbyname(host_addr))==NULL){
 		fprintf(stderr,"Gethostname error, %s\n", strerror(errno));
 		//exit(1);
@@ -174,7 +176,7 @@ struct hostent * getHost(NSString *name)
 	printf("host.h_addr = %s\n", host->h_addr);
 	printf("-------------------------------\n");
 	
-	/* 客户程序开始建立 sockfd描述符 */
+	// 客户程序开始建立 sockfd描述符
 	if((sockfd=socket(AF_INET,SOCK_STREAM,0))==-1)/*建立SOCKET连接*/
 	{
 		fprintf(stderr,"Socket Error:%s\a\n",strerror(errno));
