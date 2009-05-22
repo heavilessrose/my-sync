@@ -10,7 +10,7 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 
-@interface contactSampleViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate> {
+@interface contactSampleViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate, ABPersonViewControllerDelegate> {
     IBOutlet UILabel *firstName;
     IBOutlet UILabel *lastName;
     IBOutlet UILabel *fullName;
@@ -19,6 +19,13 @@
 @property (nonatomic, retain) UILabel *lastName;
 @property (nonatomic, retain) UILabel *fullName;
 
-- (IBAction)showPicker:(id)sender;
+- (IBAction) showPicker:(id)sender;
+- (void) displayContactInfo:(ABRecordRef)person;
+
+- (void) addressBookFunction;
+- (void) createPerson:(NSString *)fistname lastname:(NSString *)lastname;
+- (void) getName:(ABRecordRef)aRecord;
+- (void)modifyPhoneNums;
+
 @end
 
