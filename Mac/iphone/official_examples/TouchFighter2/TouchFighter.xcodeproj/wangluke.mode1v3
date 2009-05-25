@@ -233,6 +233,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -282,7 +284,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>31</integer>
+									<integer>32</integer>
 									<integer>12</integer>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -321,14 +323,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TCPConnection.m</string>
+								<string>TCPServer.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -336,11 +336,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TCPConnection.m</string>
+										<string>TCPServer.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1B1B53D00FBD8DAC0004DD3E</string>
+										<string>1B3A35E90FCA6ED400F5BED1</string>
 										<key>history</key>
 										<array>
 											<string>1B02F6430FBD06550081EDA3</string>
@@ -400,7 +400,9 @@
 											<string>1B02F83E0FBD49E90081EDA3</string>
 											<string>1B02F83F0FBD49E90081EDA3</string>
 											<string>1B02F8400FBD49E90081EDA3</string>
-											<string>1B1B53B70FBD4EE80004DD3E</string>
+											<string>1B3A35E30FCA6ED400F5BED1</string>
+											<string>1B3A35E40FCA6ED400F5BED1</string>
+											<string>1B3A35E50FCA6ED400F5BED1</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -460,6 +462,9 @@
 											<string>1B02F8430FBD49E90081EDA3</string>
 											<string>1B02F8440FBD49E90081EDA3</string>
 											<string>1B02F8460FBD49E90081EDA3</string>
+											<string>1B3A35E60FCA6ED400F5BED1</string>
+											<string>1B3A35E70FCA6ED400F5BED1</string>
+											<string>1B3A35E80FCA6ED400F5BED1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -517,9 +522,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>1B1B53B40FBD4EBC0004DD3E</string>
+				<string>1B3A35EA0FCA6ED400F5BED1</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>1B1B53B50FBD4EBC0004DD3E</string>
+				<string>1B3A35EB0FCA6ED400F5BED1</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -653,7 +658,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Users/wangluke/Documents/Mac_/iphone/official_examples/TouchFighter2/TouchFighter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
