@@ -1,0 +1,285 @@
+// !$*UTF8*$!
+{
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeArchitecture = i386;
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 938AECCF0CD22AD100E60BF9 /* Gliss */;
+		activeTarget = 8D1107260486CEB800E47090 /* Gliss */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* Gliss */,
+		);
+		codeSenseManager = 938AECDE0CD22AEE00E60BF9 /* Code sense */;
+		executables = (
+			938AECCF0CD22AD100E60BF9 /* Gliss */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					518,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 215100113;
+			PBXWorkspaceStateSaveDate = 215100113;
+		};
+		perUserProjectItems = {
+			938AED040CD2310900E60BF9 /* PBXTextBookmark */ = 938AED040CD2310900E60BF9 /* PBXTextBookmark */;
+			938AED090CD2310900E60BF9 /* PBXTextBookmark */ = 938AED090CD2310900E60BF9 /* PBXTextBookmark */;
+			938AED0B0CD2310900E60BF9 /* PBXTextBookmark */ = 938AED0B0CD2310900E60BF9 /* PBXTextBookmark */;
+			938AED0D0CD2310900E60BF9 /* PBXTextBookmark */ = 938AED0D0CD2310900E60BF9 /* PBXTextBookmark */;
+			938AED140CD2310900E60BF9 /* PBXTextBookmark */ = 938AED140CD2310900E60BF9 /* PBXTextBookmark */;
+			938AED550CD26D6400E60BF9 /* PBXTextBookmark */ = 938AED550CD26D6400E60BF9 /* PBXTextBookmark */;
+			938AED560CD26D6400E60BF9 /* PBXTextBookmark */ = 938AED560CD26D6400E60BF9 /* PBXTextBookmark */;
+			938AED570CD26D6400E60BF9 /* PBXTextBookmark */ = 938AED570CD26D6400E60BF9 /* PBXTextBookmark */;
+			938AED580CD26D6400E60BF9 /* PBXTextBookmark */ = 938AED580CD26D6400E60BF9 /* PBXTextBookmark */;
+			938AED590CD26D6400E60BF9 /* PBXTextBookmark */ = 938AED590CD26D6400E60BF9 /* PBXTextBookmark */;
+			938AED5A0CD26D6400E60BF9 /* PBXTextBookmark */ = 938AED5A0CD26D6400E60BF9 /* PBXTextBookmark */;
+			938AED960CD27FE100E60BF9 /* PBXTextBookmark */ = 938AED960CD27FE100E60BF9 /* PBXTextBookmark */;
+			938AED970CD27FE100E60BF9 /* PBXTextBookmark */ = 938AED970CD27FE100E60BF9 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 938AECDD0CD22AEE00E60BF9 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1107260486CEB800E47090 /* Gliss */ = {
+		activeExec = 0;
+		executables = (
+			938AECCF0CD22AD100E60BF9 /* Gliss */,
+		);
+	};
+	938AECCF0CD22AD100E60BF9 /* Gliss */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Gliss;
+		sourceDirectories = (
+		);
+	};
+	938AECDA0CD22AED00E60BF9 /* GlissView.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {751, 360}}";
+			sepNavSelRange = "{48, 12}";
+			sepNavVisRange = "{0, 192}";
+		};
+	};
+	938AECDB0CD22AEE00E60BF9 /* GlissView.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {696, 2546}}";
+			sepNavSelRange = "{2530, 80}";
+			sepNavVisRange = "{0, 646}";
+		};
+	};
+	938AECDD0CD22AEE00E60BF9 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	938AECDE0CD22AEE00E60BF9 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	938AED040CD2310900E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AED050CD2310900E60BF9 /* NSOpenGLView.h */;
+		name = "NSOpenGLView.h: 12";
+		rLen = 35;
+		rLoc = 200;
+		rType = 0;
+		vrLen = 690;
+		vrLoc = 0;
+	};
+	938AED050CD2310900E60BF9 /* NSOpenGLView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSOpenGLView.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/AppKit.framework/Versions/C/Headers/NSOpenGLView.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {751, 741}}";
+			sepNavSelRange = "{937, 13}";
+			sepNavVisRange = "{452, 512}";
+		};
+	};
+	938AED090CD2310900E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AECDA0CD22AED00E60BF9 /* GlissView.h */;
+		name = "GlissView.h: 6";
+		rLen = 0;
+		rLoc = 144;
+		rType = 0;
+		vrLen = 192;
+		vrLoc = 0;
+	};
+	938AED0B0CD2310900E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AECDA0CD22AED00E60BF9 /* GlissView.h */;
+		name = "GlissView.h: 6";
+		rLen = 0;
+		rLoc = 144;
+		rType = 0;
+		vrLen = 192;
+		vrLoc = 0;
+	};
+	938AED0D0CD2310900E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AECDA0CD22AED00E60BF9 /* GlissView.h */;
+		name = "GlissView.h: 6";
+		rLen = 0;
+		rLoc = 144;
+		rType = 0;
+		vrLen = 192;
+		vrLoc = 0;
+	};
+	938AED140CD2310900E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AED150CD2310900E60BF9 /* BetterGlissView.m */;
+		rLen = 0;
+		rLoc = 2147483647;
+		rType = 0;
+	};
+	938AED150CD2310900E60BF9 /* BetterGlissView.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = BetterGlissView.m;
+		path = /Users/aaron/Desktop/BetterGlissView.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {691, 2831}}";
+			sepNavSelRange = "{50, 3512}";
+			sepNavVisRange = "{3066, 496}";
+			sepNavWindowFrame = "{{38, 443}, {750, 558}}";
+		};
+	};
+	938AED470CD2345000E60BF9 /* NSOpenGL.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSOpenGL.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/AppKit.framework/Versions/C/Headers/NSOpenGL.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {760, 4408}}";
+			sepNavSelRange = "{1226, 89}";
+			sepNavVisRange = "{1219, 1670}";
+		};
+	};
+	938AED550CD26D6400E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AED470CD2345000E60BF9 /* NSOpenGL.h */;
+		name = "NSOpenGL.h: 56";
+		rLen = 20;
+		rLoc = 1761;
+		rType = 0;
+		vrLen = 2001;
+		vrLoc = 1079;
+	};
+	938AED560CD26D6400E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AECDA0CD22AED00E60BF9 /* GlissView.h */;
+		name = "GlissView.h: 6";
+		rLen = 0;
+		rLoc = 144;
+		rType = 0;
+		vrLen = 192;
+		vrLoc = 0;
+	};
+	938AED570CD26D6400E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AECDB0CD22AEE00E60BF9 /* GlissView.m */;
+		name = "GlissView.m: 27";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 837;
+		vrLoc = 348;
+	};
+	938AED580CD26D6400E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AECDB0CD22AEE00E60BF9 /* GlissView.m */;
+		name = "GlissView.m: 27";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 837;
+		vrLoc = 348;
+	};
+	938AED590CD26D6400E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AED470CD2345000E60BF9 /* NSOpenGL.h */;
+		name = "NSOpenGL.h: 56";
+		rLen = 20;
+		rLoc = 1761;
+		rType = 0;
+		vrLen = 2001;
+		vrLoc = 1079;
+	};
+	938AED5A0CD26D6400E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AECDA0CD22AED00E60BF9 /* GlissView.h */;
+		name = "GlissView.h: 6";
+		rLen = 0;
+		rLoc = 144;
+		rType = 0;
+		vrLen = 192;
+		vrLoc = 0;
+	};
+	938AED960CD27FE100E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AECDB0CD22AEE00E60BF9 /* GlissView.m */;
+		name = "GlissView.m: 104";
+		rLen = 80;
+		rLoc = 2530;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	938AED970CD27FE100E60BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 938AED980CD27FE100E60BF9 /* BetterGlissView.m */;
+		name = "BetterGlissView.m: 5";
+		rLen = 3512;
+		rLoc = 50;
+		rType = 0;
+		vrLen = 496;
+		vrLoc = 3066;
+	};
+	938AED980CD27FE100E60BF9 /* BetterGlissView.m */ = {
+		isa = PBXFileReference;
+		name = BetterGlissView.m;
+		path = /Users/aaron/Desktop/BetterGlissView.m;
+		sourceTree = "<absolute>";
+	};
+}

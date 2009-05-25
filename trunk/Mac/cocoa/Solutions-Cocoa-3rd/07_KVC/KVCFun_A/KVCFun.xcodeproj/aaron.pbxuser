@@ -1,0 +1,145 @@
+// !$*UTF8*$!
+{
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeArchitecture = i386;
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 936F19790C9885D600EF660C /* KVCFun */;
+		activeTarget = 8D1107260486CEB800E47090 /* KVCFun */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* KVCFun */,
+		);
+		codeSenseManager = 936F19850C9885F600EF660C /* Code sense */;
+		executables = (
+			936F19790C9885D600EF660C /* KVCFun */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					243,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 211322326;
+			PBXWorkspaceStateSaveDate = 211322326;
+		};
+		perUserProjectItems = {
+			936F19950C98879B00EF660C /* PBXTextBookmark */ = 936F19950C98879B00EF660C /* PBXTextBookmark */;
+			936F19970C98879B00EF660C /* PBXTextBookmark */ = 936F19970C98879B00EF660C /* PBXTextBookmark */;
+			936F19A00C98880C00EF660C /* PBXTextBookmark */ = 936F19A00C98880C00EF660C /* PBXTextBookmark */;
+			936F19B50C988C6300EF660C /* PBXTextBookmark */ = 936F19B50C988C6300EF660C /* PBXTextBookmark */;
+		};
+		sourceControlManager = 936F19840C9885F600EF660C /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1107260486CEB800E47090 /* KVCFun */ = {
+		activeExec = 0;
+		executables = (
+			936F19790C9885D600EF660C /* KVCFun */,
+		);
+	};
+	936F19790C9885D600EF660C /* KVCFun */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = KVCFun;
+		sourceDirectories = (
+		);
+	};
+	936F19840C9885F600EF660C /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	936F19850C9885F600EF660C /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	936F19860C98860800EF660C /* AppController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {601, 407}}";
+			sepNavSelRange = "{294, 0}";
+			sepNavVisRange = "{0, 301}";
+			sepNavWindowFrame = "{{15, 464}, {750, 558}}";
+		};
+	};
+	936F19870C98860800EF660C /* AppController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {472, 912}}";
+			sepNavSelRange = "{524, 0}";
+			sepNavVisRange = "{313, 300}";
+		};
+	};
+	936F19950C98879B00EF660C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 936F19860C98860800EF660C /* AppController.h */;
+		name = "AppController.h: 13";
+		rLen = 0;
+		rLoc = 217;
+		rType = 0;
+		vrLen = 226;
+		vrLoc = 0;
+	};
+	936F19970C98879B00EF660C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 936F19860C98860800EF660C /* AppController.h */;
+		name = "AppController.h: 13";
+		rLen = 0;
+		rLoc = 217;
+		rType = 0;
+		vrLen = 226;
+		vrLoc = 0;
+	};
+	936F19A00C98880C00EF660C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: 's' undeclared (first use in this function)";
+		fRef = 936F19870C98860800EF660C /* AppController.m */;
+		rLen = 1;
+		rLoc = 43;
+		rType = 1;
+	};
+	936F19B50C988C6300EF660C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 936F19870C98860800EF660C /* AppController.m */;
+		name = "AppController.m: 31";
+		rLen = 0;
+		rLoc = 524;
+		rType = 0;
+		vrLen = 300;
+		vrLoc = 313;
+	};
+}

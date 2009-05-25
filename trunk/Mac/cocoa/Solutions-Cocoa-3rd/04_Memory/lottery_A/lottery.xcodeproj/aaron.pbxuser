@@ -1,0 +1,163 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeArchitecture = i386;
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 9377F6140C982F4500396EDE /* lottery */;
+		activeTarget = 8DD76F960486AA7600D96B5E /* lottery */;
+		addToTargets = (
+			8DD76F960486AA7600D96B5E /* lottery */,
+		);
+		breakpoints = (
+		);
+		codeSenseManager = 9377F61A0C982F6500396EDE /* Code sense */;
+		executables = (
+			9377F6140C982F4500396EDE /* lottery */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					243,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					240,
+					60,
+					20,
+					48.16259765625,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 211472324;
+			PBXWorkspaceStateSaveDate = 211472324;
+		};
+		perUserProjectItems = {
+			93E97DAE0C9AD4C800FA2390 /* PBXBookmark */ = 93E97DAE0C9AD4C800FA2390 /* PBXBookmark */;
+			93E97DB00C9C547700FA2390 /* PBXTextBookmark */ = 93E97DB00C9C547700FA2390 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 9377F6190C982F6500396EDE /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* lottery.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {691, 728}}";
+			sepNavSelRange = "{684, 0}";
+			sepNavVisRange = "{312, 657}";
+			sepNavWindowFrame = "{{714, -4}, {750, 558}}";
+		};
+	};
+	32A70AAB03705E1F00C91783 /* lottery_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {752, 465}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 156}";
+		};
+	};
+	8DD76F960486AA7600D96B5E /* lottery */ = {
+		activeExec = 0;
+		executables = (
+			9377F6140C982F4500396EDE /* lottery */,
+		);
+	};
+	9377F6140C982F4500396EDE /* lottery */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = lottery;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	9377F6190C982F6500396EDE /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	9377F61A0C982F6500396EDE /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	9377F6400C983CAF00396EDE /* LotteryEntry.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {587, 437}}";
+			sepNavSelRange = "{324, 0}";
+			sepNavVisRange = "{22, 378}";
+			sepNavWindowFrame = "{{15, 464}, {750, 558}}";
+		};
+	};
+	9377F6410C983CAF00396EDE /* LotteryEntry.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {584, 924}}";
+			sepNavSelRange = "{200, 208}";
+			sepNavVisRange = "{169, 411}";
+			sepNavWindowFrame = "{{61, 272}, {750, 558}}";
+		};
+	};
+	93E97DAE0C9AD4C800FA2390 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 9377F6410C983CAF00396EDE /* LotteryEntry.m */;
+	};
+	93E97DB00C9C547700FA2390 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9377F6410C983CAF00396EDE /* LotteryEntry.m */;
+		name = "LotteryEntry.m: 14";
+		rLen = 208;
+		rLoc = 200;
+		rType = 0;
+		vrLen = 411;
+		vrLoc = 169;
+	};
+}
