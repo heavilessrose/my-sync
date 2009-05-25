@@ -233,6 +233,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -278,7 +280,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
+									<integer>5</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -316,14 +318,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>archiveViewController.m</string>
+								<string>archiveAppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -331,20 +331,20 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>archiveViewController.m</string>
+										<string>archiveAppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1BBAF13F0FBBEAA4003AFB2A</string>
+										<string>1B3A35B80FCA69B500F5BED1</string>
 										<key>history</key>
 										<array>
 											<string>1BC4CE090FA9B554004A8B20</string>
 											<string>1B56C5D40FAECED700B5D395</string>
 											<string>1B56C6AE0FAED6F600B5D395</string>
-											<string>1B56C6AF0FAED6F600B5D395</string>
+											<string>1B3A35B00FCA69B500F5BED1</string>
+											<string>1B3A35B10FCA69B500F5BED1</string>
+											<string>1B3A35B20FCA69B500F5BED1</string>
 											<string>1B56C6B00FAED6F600B5D395</string>
-											<string>1BBAF1300FBBE6A0003AFB2A</string>
-											<string>1BBAF1310FBBE6A0003AFB2A</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -354,15 +354,11 @@
 											<string>1B56C5D80FAECED700B5D395</string>
 											<string>1B56C5D90FAECED700B5D395</string>
 											<string>1BBAF1320FBBE6A0003AFB2A</string>
-											<string>1BBAF1330FBBE6A0003AFB2A</string>
-											<string>1BBAF1340FBBE6A0003AFB2A</string>
-											<string>1BBAF1350FBBE6A0003AFB2A</string>
-											<string>1BBAF1360FBBE6A0003AFB2A</string>
-											<string>1BBAF1370FBBE6A0003AFB2A</string>
-											<string>1BBAF1380FBBE6A0003AFB2A</string>
-											<string>1BBAF1390FBBE6A0003AFB2A</string>
-											<string>1BBAF13A0FBBE6A0003AFB2A</string>
-											<string>1BBAF13B0FBBE6A0003AFB2A</string>
+											<string>1B3A35B30FCA69B500F5BED1</string>
+											<string>1B3A35B40FCA69B500F5BED1</string>
+											<string>1B3A35B50FCA69B500F5BED1</string>
+											<string>1B3A35B60FCA69B500F5BED1</string>
+											<string>1B3A35B70FCA69B500F5BED1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -420,9 +416,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>1BBAF13D0FBBE6A0003AFB2A</string>
+				<string>1B3A35B90FCA69B500F5BED1</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>1BBAF13E0FBBE6A0003AFB2A</string>
+				<string>1B3A35BA0FCA69B500F5BED1</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -556,9 +552,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1BC4CE000FA9A987004A8B20</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/wangluke/Documents/Mac_/iphone/Persistence/archive/archive.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

@@ -22,6 +22,7 @@
     [super dealloc];
 }
 
+// 选取器
 - (IBAction)showPicker:(id)sender 
 {
 	// 显示联系人选择
@@ -29,6 +30,23 @@
     picker.peoplePickerDelegate = self;
     [self presentModalViewController:picker animated:YES];
     [picker release];
+}
+
+
+- (void)viewDidLoad
+{
+	// 注册接收电话本修改的通知
+	ABAddressBookRegisterExternalChangeCallback (addressBook,
+													  MyAddressBookExternalChangeCallback,
+													  NULL);
+}
+
+// 获得电话本修改通知后的处理函数
+void *MyAddressBookExternalChangeCallback (ABAddressBookRef addressBook,
+										   CFDictionaryRef info,
+										   void *context)
+{
+	
 }
 
 #pragma mark -
@@ -74,7 +92,8 @@
 //    [self dismissModalViewControllerAnimated:YES];
 	
 	[self displayContactInfo:person];
-    return NO;
+	// 返回yes 才能跳转屏幕
+    return YES;
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
@@ -97,21 +116,20 @@
 	
 	//[[self navigationController] popViewControllerAnimated:YES];
 	[[self navigationController] pushViewController: personController animated: YES];
-	//[personController release];
+	[personController release];
 }
 
 #pragma mark -
 #pragma mark ABPersonViewControllerDelegate
 
-- (BOOL)personViewController:(ABPersonViewController *)personViewController shouldPerformDefaultActionForPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+- (BOOL)personViewController:(ABPersonViewController *)personViewController 
+shouldPerformDefaultActionForPerson:(ABRecordRef)person 
+					property:(ABPropertyID)property 
+				  identifier:(ABMultiValueIdentifier)identifier
 {
-	// 显示选中联系人的信息
-//	ABPersonViewController *shower = [[ABPersonViewController alloc] init];
-//	shower.personViewDelegate = self;
-//	[self presentModalViewController:shower animated:YES];
-//  [shower release];
-	
-	return NO;
+
+	// 注意这个返回值
+	return YES;
 }
 
 //#pragma mark -
@@ -204,4 +222,7 @@
 //		CFRelease(phoneNumber);
 //	}
 //}
+
+
+
 @end
