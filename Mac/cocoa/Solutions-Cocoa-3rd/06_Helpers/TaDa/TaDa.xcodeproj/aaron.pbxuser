@@ -1,0 +1,100 @@
+// !$*UTF8*$!
+{
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeArchitecture = i386;
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 93DF72010D0DD1C40009FDDE /* TaDa */;
+		activeTarget = 8D1107260486CEB800E47090 /* TaDa */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* TaDa */,
+		);
+		codeSenseManager = 93DF72110D0DD1C80009FDDE /* Code sense */;
+		executables = (
+			93DF72010D0DD1C40009FDDE /* TaDa */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					243,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 219032933;
+			PBXWorkspaceStateSaveDate = 219032933;
+		};
+		sourceControlManager = 93DF72100D0DD1C80009FDDE /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1107260486CEB800E47090 /* TaDa */ = {
+		activeExec = 0;
+		executables = (
+			93DF72010D0DD1C40009FDDE /* TaDa */,
+		);
+	};
+	93DF72010D0DD1C40009FDDE /* TaDa */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = TaDa;
+		sourceDirectories = (
+		);
+	};
+	93DF72100D0DD1C80009FDDE /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	93DF72110D0DD1C80009FDDE /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	93DF72120D0DD2470009FDDE /* AppController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1052, 525}}";
+			sepNavSelRange = "{78, 11}";
+			sepNavVisRange = "{0, 218}";
+		};
+	};
+	93DF72130D0DD2470009FDDE /* AppController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1052, 609}}";
+			sepNavSelRange = "{449, 0}";
+			sepNavVisRange = "{35, 421}";
+		};
+	};
+}

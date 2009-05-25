@@ -1,0 +1,85 @@
+// !$*UTF8*$!
+{
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeArchitecture = i386;
+		activeBuildConfigurationName = Release;
+		activeExecutable = 936FA1AE0CC80882008CDE01 /* TypingTutor */;
+		activeTarget = 8D1107260486CEB800E47090 /* TypingTutor */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* TypingTutor */,
+		);
+		codeSenseManager = 936FA1BA0CC808A2008CDE01 /* Code sense */;
+		executables = (
+			936FA1AE0CC80882008CDE01 /* TypingTutor */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					243,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 214501194;
+			PBXWorkspaceStateSaveDate = 214501194;
+		};
+		sourceControlManager = 936FA1B90CC808A2008CDE01 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1107260486CEB800E47090 /* TypingTutor */ = {
+		activeExec = 0;
+		executables = (
+			936FA1AE0CC80882008CDE01 /* TypingTutor */,
+		);
+	};
+	936FA1AE0CC80882008CDE01 /* TypingTutor */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = TypingTutor;
+		sourceDirectories = (
+		);
+	};
+	936FA1B90CC808A2008CDE01 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	936FA1BA0CC808A2008CDE01 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+}
