@@ -1,0 +1,16 @@
+Although the kernel provides the basic implementation for threads, application-level threads are based on BSD threads and the POSIX threading API. This API provides the application-level support needed to create and manage threads. In addition, Mac OS X implements several higher-level technologies that provide a more streamlined or sophisticated interface to the basic POSIX threads API.
+
+ the thread runs in one of three main states: running, ready, or blocked. 
+ 
+名词术语：
+Operation Objects and operation queue：
+provide an easy way to add concurrency to your Cocoa applications without creating threads yourself. 
+
+Run Loops：
+A run loop is a piece of infrastructure used to manage events arriving asynchronously on a thread. A run loop is created for each thread automatically by the system, but that run loop must be configured before it can be used.
+The infrastructure provided by both Cocoa and Carbon，handles the configuration of the main thread’s run loop for you automatically. 
+A run loop works by monitoring one or more attached event sources.
+If no events are present and ready to be handled, the run loop puts the thread to sleep.
+Run loops make it possible to create long-lived threads, and to put those threads to sleep when there is nothing to do. 
+
+

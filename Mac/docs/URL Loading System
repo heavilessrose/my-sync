@@ -1,0 +1,29 @@
+URL Loading System
+	The most commonly used classes in the URL loading system allow an application to create a request for the content of a URL and download it from the source.
+
+功能分类：
+1. URL loading, 
+	NSURLResponse - NSHTTPURLResponse (two parts: metadata describing the contents and the URL content data. only the metadata for the response is stored in an NSURLResponse object. An NSCachedURLResponse instance is used to encapsulate an NSURLResponse, the URL content data, and any application-provided information.)
+	NSURLRequest - NSMutableURLRequest (A request for the contents of a URL. encapsulates a URL and any protocol-specific properties, in a protocol-independent manner.)
+	NSURLConnection, NSURLDownload (provide the interface to make a connection specified by an NSURLRequest object and download the contents.)
+	
+2. cache management, (The cache is queried by NSURLConnection or NSURLDownload according to the cache policy specified by the initiating NSURLRequest. Not all protocol implementations support response caching. Currently only http and https requests are cached, and https requests are never cached to disk.)
+	NSURLCache (provides methods to configure the cache size and its location on disk and method to manage the collection of NSCachedURLResponse objects that contain the cached responses.)
+	NSCacheURLRequest
+	NSCachedURLResponse (encapsulates the NSURLResponse and the URL content data. also provides a user info dictionary that can be used by an application to cache any custom data.)
+	
+3. authentication and credentials, 
+	NSURLProtectionSpace
+	NSURLCredentialStorage
+	NSURLCredential
+	NSURLAuthenticationChallenge
+	NSURLAuthenticationChallengeSender
+	
+4. cookie storage, 
+	NSHTTPCookieStorage
+	NSHTTPCookie
+	
+5. protocol support.
+	NSURLProtocol
+	NSURLProtocolClient
+	
