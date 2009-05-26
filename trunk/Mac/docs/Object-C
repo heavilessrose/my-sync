@@ -1,0 +1,8 @@
+Categories
+Categories give you a way to add methods to a class without having to make a subclass. 
+There are some limitations to categories. You cannot use a category to add any new instance variables to the class. Although a category method can override an existing method, it is not recommended that you do so, especially if you want to augment the current behavior. One reason for this caution is that the category method is part of the class’s interface, and so there is no way to send a message to super to get the behavior already defined by the class. If you need to change what an existing method of a class does, it is better to make a subclass of the class.
+You can define categories that add methods to the root class, NSObject. Such methods are available to all instances and class objects that are linked into your code.
+
+protocols
+There are two types of protocols: formal and informal.
+Informal protocols—the basis for the Cocoa delegation mechanism—are declared as categories on NSObject. 
