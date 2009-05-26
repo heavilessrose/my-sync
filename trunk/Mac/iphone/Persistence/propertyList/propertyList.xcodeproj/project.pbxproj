@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B3D2AB90FC3EE1A00ED6450 /* httpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D2AB80FC3EE1A00ED6450 /* httpClient.m */; };
 		1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A9A990FB2FAFD00D3F76F /* Alert.m */; };
+		1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7D2F290FCB999300B59364 /* Streams.m */; };
 		1BBB25B70FB3F0C400B26386 /* URLCache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB25B60FB3F0C400B26386 /* URLCache.plist */; };
 		1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */; };
 		1D3623260D0F684500981E51 /* propertyListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* propertyListAppDelegate.m */; };
@@ -26,6 +27,8 @@
 		1B3D2AB80FC3EE1A00ED6450 /* httpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = httpClient.m; sourceTree = "<group>"; };
 		1B5A9A980FB2FAFD00D3F76F /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
 		1B5A9A990FB2FAFD00D3F76F /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
+		1B7D2F280FCB999300B59364 /* Streams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Streams.h; sourceTree = "<group>"; };
+		1B7D2F290FCB999300B59364 /* Streams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Streams.m; sourceTree = "<group>"; };
 		1BBB25B60FB3F0C400B26386 /* URLCache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = URLCache.plist; sourceTree = "<group>"; };
 		1BBB25ED0FB3F4DE00B26386 /* URLCacheConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLCacheConnection.h; sourceTree = "<group>"; };
 		1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLCacheConnection.m; sourceTree = "<group>"; };
@@ -71,6 +74,8 @@
 				1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */,
 				1B3D2AB70FC3EE1A00ED6450 /* httpClient.h */,
 				1B3D2AB80FC3EE1A00ED6450 /* httpClient.m */,
+				1B7D2F280FCB999300B59364 /* Streams.h */,
+				1B7D2F290FCB999300B59364 /* Streams.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */,
 				1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */,
 				1B3D2AB90FC3EE1A00ED6450 /* httpClient.m in Sources */,
+				1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
