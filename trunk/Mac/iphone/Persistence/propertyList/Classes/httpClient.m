@@ -129,8 +129,7 @@ struct hostent * getHost(NSString *name)
 }
 
 
-
-- (int) download:(NSString *)url
+- (void) download:(NSString *)url
 {
 	int sockfd;
 	char buffer[1024];
@@ -283,6 +282,20 @@ struct hostent * getHost(NSString *name)
 	// 结束通讯
 	close(sockfd);
 	//exit(0);
-	return 0;
+	//return 0;
+}
+
+#pragma mark -
+#pragma mark operation object 在另一线程下载图片
+- (void)launchTaskWithData:(id)url
+{
+    NSInvocationOperation* theOp = [[NSInvocationOperation alloc] initWithTarget:self
+																		selector:@selector(download:) object:url];
+	
+	// Get the custom queue object from the app delegate.
+//    NSOperationQueue* myQueue = [[[UIApplication sharedApplication] delegate] myOperationQueue];
+//    [myQueue addOperation:theOp];
+    // Add the operation to the internal operation queue managed by the application delegate.
+    [[propertyListAppDelegate sharedOperationQueue] addOperation:theOp];
 }
 @end
