@@ -3,8 +3,24 @@ Although the kernel provides the basic implementation for threads, application-l
  the thread runs in one of three main states: running, ready, or blocked. 
  
 名词术语：
-Operation Objects and operation queue：
+Operation Objects：
+
 provide an easy way to add concurrency to your Cocoa applications without creating threads yourself. 
+适用于
+ Operation objects provide a way for you to encapsulate tasks into distinct objects. Each subclass of NSOperation that you create represents a unique type of task to be performed by your application. When you want to perform one of these tasks, simply create the appropriate operation object and either run it directly or add it to an operation queue.
+ The encapsulation provided by operation objects makes them a good way to manage your application’s independent tasks. 
+ Encasing the data and behavior for a given task inside a single object provides a clean demarcation between that task and the rest of your application. Having individual tasks inside objects also makes it easier to reuse those tasks in other code.
+
+About Operation Objects and Operation Queues
+
+Operation objects provide a flexible mechanism for encapsulating the code and data associated with a task.
+ Operation queue objects provide an advanced infrastructure for executing those operations in background threads. 
+ 依赖
+ Dependencies define the relationships between operation objects. You use dependencies in your application to enforce a specific execution order for your operations. When you add a dependency to an operation object, you prevent that operation object from starting until the dependent operation has finished. 
+ 运行环境
+ The default runtime environment for operations is a thread. If you run an operation from an operation queue, the NSOperationQueue object creates a new thread and runs the operation in it. If you run an operation directly, the operation runs in the current thread. Threads are not the only environment you can use in conjunction with operations, however. Through customization, it is possible to configure a custom environment.
+
+
 
 Run Loops：
 A run loop is a piece of infrastructure used to manage events arriving asynchronously on a thread. A run loop is created for each thread automatically by the system, but that run loop must be configured before it can be used.
