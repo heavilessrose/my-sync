@@ -287,15 +287,15 @@ struct hostent * getHost(NSString *name)
 
 #pragma mark -
 #pragma mark operation object 在另一线程下载图片
-- (void)launchTaskWithData:(id)url
-{
-    NSInvocationOperation* theOp = [[NSInvocationOperation alloc] initWithTarget:self
-																		selector:@selector(download:) object:url];
-	
-	// Get the custom queue object from the app delegate.
-//    NSOperationQueue* myQueue = [[[UIApplication sharedApplication] delegate] myOperationQueue];
-//    [myQueue addOperation:theOp];
-    // Add the operation to the internal operation queue managed by the application delegate.
-    [[propertyListAppDelegate sharedOperationQueue] addOperation:theOp];
-}
+//- (void)launchTaskWithData:(id)url
+//{
+//    NSInvocationOperation* theOp = [[NSInvocationOperation alloc] initWithTarget:self
+//																		selector:@selector(download:) object:url];
+//	
+//	// Get the custom queue object from the app delegate.
+////    NSOperationQueue* myQueue = [[[UIApplication sharedApplication] delegate] myOperationQueue];
+////    [myQueue addOperation:theOp];
+//    // Add the operation to the internal operation queue managed by the application delegate.
+//    [[propertyListAppDelegate sharedOperationQueue] addOperation:theOp];
+//}
 @end

@@ -43,7 +43,11 @@
 	
 	IBOutlet UIButton *cancel;
 	IBOutlet URLCacheConnection *conn;
+	
+	UIButton *sms;
 }
+@property (nonatomic, assign) UIButton *sms;
+- (IBAction) sendSMS:(id)sender;
 
 - (void)setTip:(NSString *)isSuccess;
 - (NSString *) getDocumentsDir;
