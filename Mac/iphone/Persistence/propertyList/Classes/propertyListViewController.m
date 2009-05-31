@@ -988,4 +988,14 @@ static void WriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEventTyp
 	
 	[home release];
 }
+
+#pragma mark -
+#pragma mark SMS
+
+- (IBAction) sendSMS:(id)sender
+{
+	NSURL *url = [[NSURL alloc] initWithString:@"sms:15812345678"];
+	[[UIApplication sharedApplication] openURL:url];
+	[url release];
+}
 @end
