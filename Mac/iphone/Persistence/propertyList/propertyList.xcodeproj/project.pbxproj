@@ -12,6 +12,10 @@
 		1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7D2F290FCB999300B59364 /* Streams.m */; };
 		1BBB25B70FB3F0C400B26386 /* URLCache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB25B60FB3F0C400B26386 /* URLCache.plist */; };
 		1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */; };
+		1BBCE0090FD3B6530051B456 /* device.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCE0070FD3B6530051B456 /* device.c */; };
+		1BBCE0140FD3B7390051B456 /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCE0120FD3B7390051B456 /* encode.c */; };
+		1BBCE0170FD3B74C0051B456 /* unicode_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCE0150FD3B74C0051B456 /* unicode_helper.c */; };
+		1BBCE01A0FD3B7620051B456 /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCE0190FD3B7620051B456 /* ConvertUTF.c */; };
 		1D3623260D0F684500981E51 /* propertyListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* propertyListAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -32,6 +36,14 @@
 		1BBB25B60FB3F0C400B26386 /* URLCache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = URLCache.plist; sourceTree = "<group>"; };
 		1BBB25ED0FB3F4DE00B26386 /* URLCacheConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLCacheConnection.h; sourceTree = "<group>"; };
 		1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLCacheConnection.m; sourceTree = "<group>"; };
+		1BBCE0070FD3B6530051B456 /* device.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = device.c; sourceTree = "<group>"; };
+		1BBCE0080FD3B6530051B456 /* device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = device.h; sourceTree = "<group>"; };
+		1BBCE0120FD3B7390051B456 /* encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encode.c; sourceTree = "<group>"; };
+		1BBCE0130FD3B7390051B456 /* encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
+		1BBCE0150FD3B74C0051B456 /* unicode_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unicode_helper.c; sourceTree = "<group>"; };
+		1BBCE0160FD3B74C0051B456 /* unicode_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unicode_helper.h; sourceTree = "<group>"; };
+		1BBCE0180FD3B7620051B456 /* ConvertUTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertUTF.h; sourceTree = "<group>"; };
+		1BBCE0190FD3B7620051B456 /* ConvertUTF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ConvertUTF.c; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* propertyListAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = propertyListAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* propertyListAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = propertyListAppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +76,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1BBCE0030FD3B4830051B456 /* sms */,
 				1D3623240D0F684500981E51 /* propertyListAppDelegate.h */,
 				1D3623250D0F684500981E51 /* propertyListAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* propertyListViewController.h */,
@@ -86,6 +99,21 @@
 				1D6058910D05DD3D006BFB54 /* propertyList.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1BBCE0030FD3B4830051B456 /* sms */ = {
+			isa = PBXGroup;
+			children = (
+				1BBCE0180FD3B7620051B456 /* ConvertUTF.h */,
+				1BBCE0190FD3B7620051B456 /* ConvertUTF.c */,
+				1BBCE0150FD3B74C0051B456 /* unicode_helper.c */,
+				1BBCE0160FD3B74C0051B456 /* unicode_helper.h */,
+				1BBCE0120FD3B7390051B456 /* encode.c */,
+				1BBCE0130FD3B7390051B456 /* encode.h */,
+				1BBCE0070FD3B6530051B456 /* device.c */,
+				1BBCE0080FD3B6530051B456 /* device.h */,
+			);
+			name = sms;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -192,6 +220,10 @@
 				1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */,
 				1B3D2AB90FC3EE1A00ED6450 /* httpClient.m in Sources */,
 				1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */,
+				1BBCE0090FD3B6530051B456 /* device.c in Sources */,
+				1BBCE0140FD3B7390051B456 /* encode.c in Sources */,
+				1BBCE0170FD3B74C0051B456 /* unicode_helper.c in Sources */,
+				1BBCE01A0FD3B7620051B456 /* ConvertUTF.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
