@@ -1,3 +1,6 @@
+AT命令参考：
+http://borland.mblogger.cn/shuixin13/posts/10087.aspx#_Toc86589144
+
 解决编译为Device时找不到IOKit的问题：
 copy the libIOKit.A.dylib(/usr/lib/libIOKit.A.dylib) from the iphone then include the library in your Target.
 参考：

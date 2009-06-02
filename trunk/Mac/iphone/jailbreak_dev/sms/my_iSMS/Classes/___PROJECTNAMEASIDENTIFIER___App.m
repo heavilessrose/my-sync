@@ -21,7 +21,7 @@
 	// Show window
 	[window makeKeyAndVisible];
 	// 发短信
-	[self sendMessage:@"test:测试" to:@"15801630382"];
+	[self sendMessage:@"test:测试test:测试test" to:@"15801630382"];
 }
 
 - (void)dealloc {
@@ -31,6 +31,11 @@
 }
 
 
+/*!
+    @method     发送短信
+    @abstract   sendMessage:msg to:对方电话号码
+    @discussion 
+*/
 -(BOOL)sendMessage:(NSString*) msg to:(NSString*)receiver
 {
 //#ifdef DEBUG
