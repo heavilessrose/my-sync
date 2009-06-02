@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>This template uses open toolchain headers provides a starting point for any application without Interface Builder.
+
+Requirements and Info:
+(1) No Interface Builder
+(2) Default use open toolchain headers
+(3) For pwned iPhone / iPod Touch with patched MobileInstallation
+(4) codesign certificate &quot;iPhone Pwned Developer&quot; installed in Mac
+(5) XCode SDK Info.plist Setting has removed Provisioning Profile requirement
+(6) Cannot build to Simulator</string>
+</dict>
+</plist>
