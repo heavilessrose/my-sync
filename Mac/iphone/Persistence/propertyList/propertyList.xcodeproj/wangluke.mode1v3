@@ -233,8 +233,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -285,6 +283,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>11</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -322,18 +321,26 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>&lt;No Editor&gt;</string>
+								<string>httpClient.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
+										<key>PBXProjectModuleLabel</key>
+										<string>httpClient.m</string>
+										<key>_historyCapacity</key>
+										<integer>0</integer>
+										<key>bookmark</key>
+										<string>1B0EBFE80FD688D9005B6613</string>
 										<key>history</key>
 										<array>
 											<string>1B3D2AE20FC4033600ED6450</string>
@@ -355,14 +362,10 @@
 											<string>1B9B11770FD269F3008A5396</string>
 											<string>1B9B11780FD269F3008A5396</string>
 											<string>1B9B11D60FD2794E008A5396</string>
-											<string>1B9B12950FD28D02008A5396</string>
 											<string>1BBCE00D0FD3B72A0051B456</string>
-											<string>1BBCE0220FD3B8CB0051B456</string>
-											<string>1BBCE0230FD3B8CB0051B456</string>
-											<string>1BBCE0340FD3CE5F0051B456</string>
-											<string>1BBCE0360FD3CE5F0051B456</string>
 											<string>1BBCE0370FD3CE5F0051B456</string>
 											<string>1BBCE0380FD3CE5F0051B456</string>
+											<string>1B9B12950FD28D02008A5396</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -380,10 +383,6 @@
 											<string>1B7D2F370FCBFD6F00B59364</string>
 											<string>1B9B11790FD269F3008A5396</string>
 											<string>1B9B11940FD26B8C008A5396</string>
-											<string>1BBCE0100FD3B72A0051B456</string>
-											<string>1BBCE0270FD3B8CB0051B456</string>
-											<string>1BBCE0280FD3B8CB0051B456</string>
-											<string>1BBCE0290FD3B8CB0051B456</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -441,9 +440,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>1BC0606F0FD4F80C003A2ECD</string>
+				<string>1B0EBFE90FD688D9005B6613</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>1BC060700FD4F80C003A2ECD</string>
+				<string>1B0EBFEA0FD688D9005B6613</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -577,8 +576,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1B04D9D10FA9924C00A973C5</string>
-		<string>/Users/wangluke/Documents/Mac_/iphone/Persistence/propertyList/propertyList.xcodeproj</string>
+		<string>/Users/wangluke/Documents/Mac/iphone/Persistence/propertyList/propertyList.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>1 131 1280 871 0 0 1280 1002 </string>

@@ -109,6 +109,7 @@ void HexDump(unsigned char *buf, int size) {
 }
 #endif
 
+// 发送at命令
 int SendCmd(int fd, void *buf, size_t size) {
 	DEBUGLOG(fprintf(LOG, "Sending:\n"));
 	DEBUGLOG(HexDump((unsigned char*)buf, size));
@@ -238,8 +239,8 @@ Boolean ResetConn(int fd, CALLBACK callback) {
 }
 
 int OpenConn(CALLBACK callback) {
+	// 打开串口设备
 	int fd = open("/dev/tty.debug", O_RDWR | 0x20000 | O_NOCTTY);
-
 	unsigned int handshake = TIOCM_DTR | TIOCM_RTS | TIOCM_CTS | TIOCM_DSR;
 
 	if (fd == -1) {
@@ -248,8 +249,6 @@ int OpenConn(CALLBACK callback) {
 	}
 
 	// save orig attrib
-
-
 	cfmakeraw(&gOriginalTTYAttrs);
 	gOriginalTTYAttrs.c_cc[VMIN] = 0;
 	gOriginalTTYAttrs.c_cc[VTIME] = 0;
@@ -284,6 +283,7 @@ int OpenConn(CALLBACK callback) {
 	}
 }
 
+// 发送短消息
 Boolean sendsms(int fd, char *atcmd, char *pdu) {
 	int numBytes, len, i;
 	char RespString[128];
@@ -320,6 +320,7 @@ Boolean sendsms(int fd, char *atcmd, char *pdu) {
 	return true;
 }
 
+// 得到短信中心号码
 char * getSMSCNumber(int fd) {
 	int numBytes, len;
 
@@ -341,7 +342,6 @@ char * getSMSCNumber(int fd) {
 	stripEndOK(strlen(readbuf));
 	//now in readbuf, like   +CSCA: "8613800519500",145
 	//next is striped  unused,got smsc number
-
 	pStart=readbuf;
 
 	do {
@@ -371,8 +371,8 @@ void NOOP_CALLBACK(int process) {
 #define MAX_PHONE_NUMBER_LENGTH 512
 #define MAX_SMS_LENGTH 8192
 
-int sendmessage(const char *aphone, const char *asms, char *code,
-		CALLBACK callback) {
+int sendmessage(const char *aphone, const char *asms, char *code, CALLBACK callback)
+{
 	char *_sms_text, *_receiver_number;
 	size_t _sms_text_len, _receiver_number_len;
 
@@ -409,10 +409,13 @@ int sendmessage(const char *aphone, const char *asms, char *code,
 		result = -1;
 		goto __EXIT__;
 	};
+	// 群发的号码数
 	phonecount=SplitePhoneNumber(_receiver_number);
+	// 
 	callback_step=80/(smscount*phonecount);
 
 	DEBUGLOG(printf("%d numbers, sms length %d\n", phonecount, smscount));
+	// 打开串口连接
 	fd=OpenConn(callback);
 	if (callback) {
 		callback(20);
@@ -422,10 +425,10 @@ int sendmessage(const char *aphone, const char *asms, char *code,
 		result = -1;
 		goto __EXIT__;
 	}
-
+	// 编码短信中心号码
 	encodingSMSC(getSMSCNumber(fd), esmsc);
 	if (code) {
-		//FIXME NOT thread safe!
+		//FIXME: NOT thread safe!
 		strcpy(code, getCountryCode());
 	}
 

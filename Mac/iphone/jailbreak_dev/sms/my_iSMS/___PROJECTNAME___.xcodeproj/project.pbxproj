@@ -35,7 +35,7 @@
 		1D3623240D0F684500981E51 /* ___PROJECTNAMEASIDENTIFIER___App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "___PROJECTNAMEASIDENTIFIER___App.h"; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* ___PROJECTNAMEASIDENTIFIER___App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "___PROJECTNAMEASIDENTIFIER___App.m"; sourceTree = "<group>"; };
 		1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* wkSMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = wkSMS.app; path = "___PROJECTNAME___.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* ___PROJECTNAME___.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "___PROJECTNAME___.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* ___PROJECTNAME____Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "___PROJECTNAME____Prefix.pch"; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* wkSMS.app */,
+				1D6058910D05DD3D006BFB54 /* ___PROJECTNAME___.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,7 +165,7 @@
 			);
 			name = wkSMS;
 			productName = "___PROJECTNAME___";
-			productReference = 1D6058910D05DD3D006BFB54 /* wkSMS.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* ___PROJECTNAME___.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
