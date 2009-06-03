@@ -7,7 +7,7 @@
 #include "unicode_helper.h"
 
 //#define DEBUG_ENABLED 1
-
+// 倒置
 char *InvertString(char *invertStr) {
 	int Len;
 	int i;
@@ -165,6 +165,7 @@ void getcode(char *phone, char *retcode) {
 	strcpy(retcode, code);
 }
 
+// 编码短信中心号码
 char * encodingSMSC(char *smsc, char *encodedsmsc) {
 	char buf[128], buf2[128];
 
@@ -196,7 +197,6 @@ char * encodingSMSC(char *smsc, char *encodedsmsc) {
 
 char * ProcessPhoneNumberWithCountryCode(char *buf) {
 	//目前实现的功能是 如果是中国大陆的用户，检查是不是“86”开头的，如果是，删除86
-
 	char tbuf[128];
 
 	char *p=buf;
@@ -243,6 +243,7 @@ void FreePhoneBuf() {
 	}
 }
 
+// 编码电话号码
 char * encodingPhone(int index, char *encodedphone) {
 	char buf[128], *pp, *pb, *phone;
 	int i, len;
@@ -278,6 +279,7 @@ char * encodingPhone(int index, char *encodedphone) {
 	sprintf(encodedphone, "%s", InvertString(buf));
 }
 
+// 短信分割数
 int CalcSMSSendCount(char *sms) {
 
 	memset(gUnicodeSMS, 0, sizeof(gUnicodeSMS));
@@ -324,6 +326,7 @@ char *encodingSMS(int index, char *encodedSMS,int msgCount,int msgIdx) {
 	return encodedSMS;
 }
 
+// 编码pdu
 char *encodingPDU(char *encodedsmsc, char * encodedphone, char *encodedsms, int msgCount, int msgIdx) {
 
 	memset(gPDU, 0, sizeof(gPDU));
@@ -331,21 +334,20 @@ char *encodingPDU(char *encodedsmsc, char * encodedphone, char *encodedsms, int 
 	//手机号码前加上字符串 xx 00 0D 91（xx:通常为11,如果msgCount > 1则为51. 00：固定，0D：手机号码的长度，不算＋号，十六进制表示，91：发送到国际为91，发送到国内为81）
 	// 即 phone = "11000D91" + phone 
 	//=> 11000D91683106423346F9
+	
 	//2、手机号码后加上 000800 和刚才的短信息内容，000800也写死就可以了 
 	// Shawn Note: here 00 08 00 means:
 	//   00:协议标识 (TP-PID), 是普通 GSM 类型，点到点方式
 	//   08:用户信息编码方式 (TP-DCS) , 7-bit 编码（ 08 ： UCS2 编码） 
 	//   00:有效期 (TP-VP), 短信的有效时间 
 	//3. 紧接着短信息长度 
-
 	//4. 添加报头，如果是多个短信息的话。
-	
 	//5. 内容
-	
 	//6. ctrl+z and cr
 	//即 phone = phone + "000800" + msg 
 	//即 11000D91683106423346F9 + 000800 + 0A5DE54F5C61095FEBFF01 
 	//=> phone = 11000D91683106423346F90008000A5DE54F5C61095FEBFF01 
+	
 	//3、phone 长度除以2，格式化成2位的十进制数
 	// 即 11000D91683106423346F90008000A5DE54F5C61095FEBFF01 => 50位 / 2 => 25 
 	//最后面加ctrl+z和回车
@@ -354,7 +356,7 @@ char *encodingPDU(char *encodedsmsc, char * encodedphone, char *encodedsms, int 
 		__buf[0] = '5';
 		__buf[1] = '1';
 	}else{
-		//TODO 处理需要feedback的情况，第5bit=1
+		//TODO: 处理需要feedback的情况，第5bit=1
 		if(false/*need feedback*/){
 			__buf[0] = '3';
 			__buf[1] = '1';			
