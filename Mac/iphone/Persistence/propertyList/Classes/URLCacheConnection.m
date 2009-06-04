@@ -44,7 +44,7 @@
 																	  delegate:self 
 															  startImmediately:YES];
 		if (conn == nil) {
-			NSString *message = NSLocalizedString (@"无法初始化request.", 
+			NSString *message = NSLocalizedString (@"can not init request.", 
 												   @"NSURLConnection initialization method failed.");
 			alertWithMessage(message);
 		}
