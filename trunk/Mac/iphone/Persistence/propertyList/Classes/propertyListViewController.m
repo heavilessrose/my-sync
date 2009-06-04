@@ -28,6 +28,8 @@ const double URLCacheInterval = 86400.0;
 
 @implementation propertyListViewController
 
+@synthesize localLable;
+
 @synthesize doc;
 @synthesize home;
 @synthesize field1;
@@ -309,6 +311,16 @@ const double URLCacheInterval = 86400.0;
 
 - (void)viewDidLoad
 {
+	// 国际化
+	/*
+	 */
+	NSLocale *locale = [NSLocale currentLocale];
+	NSString *displayLocalString = [locale displayNameForKey:NSLocaleIdentifier value:[locale localeIdentifier]];
+	NSLog(@"local: %@", displayLocalString);
+	
+	localLable.text = NSLocalizedString(@"hi", @"say hi to world");
+	
+	
 	/* set initial state of network activity indicators */
 	[self stopAnimation];
     
@@ -448,6 +460,7 @@ const double URLCacheInterval = 86400.0;
 #pragma mark -
 #pragma mark 释放资源
 - (void)dealloc {
+	[localLable release];
 	// !!!: 应释放所有资源
 	[field1 release];
 	[field2 release];
@@ -493,8 +506,8 @@ const double URLCacheInterval = 86400.0;
 
 - (IBAction) onClearCache:(id)sender
 {
-	NSString *message = NSLocalizedString (@"删除图片？",
-										   @"删除警告");
+	NSString *message = NSLocalizedString (@"delete image file？",
+										   @"delete alert");
     
 	alertWithMessageAndDelegate(message, self);
 }

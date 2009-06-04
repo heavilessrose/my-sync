@@ -16,6 +16,8 @@
 
 
 @interface propertyListViewController : UIViewController <URLCacheConnectionDelegate, UIAlertViewDelegate, httpClientDelegate> {
+	IBOutlet UILabel* localLable;
+	
 	IBOutlet UITextField *field1;
 	IBOutlet UITextField *field2;
 	// 是否成功写入
@@ -46,6 +48,7 @@
 	
 	UIButton *sms;
 }
+@property (nonatomic, retain) UILabel *localLable;
 @property (nonatomic, assign) UIButton *sms;
 - (IBAction) sendSMS:(id)sender;
 
