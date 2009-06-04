@@ -1,0 +1,23 @@
+UIWindow: the root container for all other views.
+继承自UIView，（NSWindow继承自NSResponder）
+IPhone应用一般只有一个window（表现为UIWindow的对象）。
+The application also uses the window to facilitate the delivery of events to your application.For example, the window object keeps track of its current first responder object and dispatches events to it when asked to do so by the UIApplication object.
+
+UIView
+views play a key role in both presenting your interface and responding to interactions with that interface. 
+This dual behavior means that views are the primary mechanism for interacting with the user in your application. 
+view hierarchy： a view may also manage one or more subviews. Each parent view is responsible for managing its direct subviews, by adjusting their position and size as needed and even responding to events that its subviews do not handle.
+view objects are the main way your application interacts with the user, they have a number of responsibilities. Here are just a few:
+Drawing and animation
+Layout and subview management
+Event handling
+views work closely with view controllers to manage several aspects of the views behavior.
+
+几类view： 
+Container, 
+Controls, 
+Display views, 
+Text and web views, 
+Alert views and action sheets, 
+Navigation views, 
+The window,

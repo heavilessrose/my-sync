@@ -1,0 +1,32 @@
+破解版IPhone 2.2.1 系统： 
+root用户密码 alpine
+
+破解后手机默认用户为mobile  /var/mobile
+
+//////////////
+1. user defination :
+PROVISIONING_PROFILE_ALLOWED = NO
+PROVISIONING_PROFILE_REQUIRED = NO
+
+2. info.plist:
+SignerIdentity = Apple iPhone OS Application Signing
+
+3. 上传到/Application 
+
+4. 修改权限 755 或 777
+5. ldid -S /Application/<appname>.app/<appname>
+// 2,4,5不必要, 2还有可能会出错
+6. killall SpringBoard
+
+///////图标不显示
+sftp://iPhone.local./private/var/mobile/Library/Cache 目录中删除 com.apple.mobile.installation.plist文件
+
+////////////////
+刷新完机器后，通过cydia安装了几个常用的软件
+openSSH :远程登陆的
+Mobile substrate :必须安装的，hook依赖于他的支持
+ldid：签名程序用的工具
+mobileterminal: 手机上的终端
+class-dump: 解析头文件用的
+
+另外，有一点注意，刚刷新完机器后，需要通过itunes安装一个免费应用，否则，自己上传的程序启不来，如果上传程序后不能显示图标，请删除掉/private/var/mobile/Library/Caches/com.apple.mobile.installation.plist文件，然后注销一下就可以了
