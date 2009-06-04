@@ -1,0 +1,43 @@
+文件操作 调研结果
+创建 删除 各目录的读写权限（官方与破解） 保存图片 显示图片
+
+联网操作调研结果 
+wifi， GPRS 
+
+电话本操作
+
+////////////
+调研持久化的三种方式： 属性列表，archiver，SQLite3。
+调研文件读写等操作。
+调研联网功能。
+学习IPhone开发。
+////////////////
+用于Image 流媒体的NSData category扩展类
+
+////////////////
+
+程序入口及出口
+标准C支持
+打包
+GPRS WIFI socket http Bonjour
+电话本
+浏览器调用
+调试方法
+Timer
+多线程
+后台运行
+push
+自动睡眠
+内存管理
+
+The Virtual Memory System
+
+To manage program memory, iPhone OS uses essentially the same virtual memory system found in Mac OS X. In iPhone OS, each program still has its own virtual address space, but (unlike Mac OS X) its usable virtual memory is constrained by the amount of physical memory available. This is because iPhone OS does not write volatile pages to disk when memory gets full. Instead, the virtual memory system frees up nonvolatile memory, as needed, to make sure the running application has the space it needs. It does this by removing memory pages that are not being used and that contain read-only contents, such as code pages. Such pages can always be loaded back into memory later if they are needed again.
+
+If memory continues to be constrained, the system may also send notifications to the running applications, asking them to free up additional memory. All applications should respond to this notification and do their part to help relieve the memory pressure. For information on how to handle such notifications in your application, see “Observing Low-Memory Warnings.”
+
+The Automatic Sleep Timer
+
+One way iPhone OS attempts to save power is through the automatic sleep timer. If the system does not detect touch events for an extended period of time, it dims the screen initially and eventually turns it off altogether. Although most developers should leave this timer on, game developers and developers whose applications do not use touch inputs can disable this timer to prevent the screen from dimming while their application is running. To disable the timer, set the idleTimerDisabled property of the shared UIApplication object to YES.
+
+Because it results in greater power consumption, disabling the sleep timer should be avoided at all costs. The only applications that should consider using it are mapping applications, games, or applications that do not rely on touch inputs but do need to display visual content on the device’s screen. Audio applications do not need to disable the timer because audio content continues to play even after the screen dims. If you do disable the timer, be sure to reenable it as soon as possible to give the system the option to conserve more power. For additional tips on how to save power in your application, see “Reducing Power Consumption.”

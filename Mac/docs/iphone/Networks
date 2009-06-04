@@ -1,0 +1,7 @@
+The main programming interface is the CFNetwork framework, which builds on top of BSD sockets and opaque types in the Core Foundation framework to communicate with network entities.
+
+You can also use the NSStream classes in the Foundation framework and the low-level BSD sockets found in the Core OS layer of the system.
+
+Using Wi-Fi
+If your application accesses the network using the Wi-Fi radios, you must notify the system of that fact by including the UIRequiresPersistentWiFi key in the application’s Info.plist file. 
+
