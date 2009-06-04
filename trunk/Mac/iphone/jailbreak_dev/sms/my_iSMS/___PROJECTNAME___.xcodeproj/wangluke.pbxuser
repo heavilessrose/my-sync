@@ -23,11 +23,6 @@
 		name = termios.h;
 		path = /Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/sys/termios.h;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {871, 6290}}";
-			sepNavSelRange = "{11543, 18}";
-			sepNavVisRange = "{10931, 846}";
-		};
 	};
 	1B0EBFCC0FD65C01005B6613 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -58,16 +53,6 @@
 		rType = 0;
 		vrLen = 846;
 		vrLoc = 10931;
-	};
-	1B0EBFDF0FD688D9005B6613 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1BC05F520FD4BCAB003A2ECD /* device.c */;
-		name = "device.c: 200";
-		rLen = 7;
-		rLoc = 4344;
-		rType = 0;
-		vrLen = 731;
-		vrLoc = 3992;
 	};
 	1B0EBFE00FD688D9005B6613 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -146,9 +131,9 @@
 	};
 	1BC05F520FD4BCAB003A2ECD /* device.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {720, 8160}}";
-			sepNavSelRange = "{6073, 9}";
-			sepNavVisRange = "{5908, 209}";
+			sepNavIntBoundsRect = "{{0, 0}, {871, 7701}}";
+			sepNavSelRange = "{10297, 0}";
+			sepNavVisRange = "{7654, 1015}";
 		};
 	};
 	1BC05F530FD4BCAB003A2ECD /* device.h */ = {
@@ -185,6 +170,16 @@
 			sepNavSelRange = "{160, 0}";
 			sepNavVisRange = "{0, 160}";
 		};
+	};
+	1BEEE4B30FD7CD7D00426E20 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC05F520FD4BCAB003A2ECD /* device.c */;
+		name = "device.c: 460";
+		rLen = 0;
+		rLoc = 10297;
+		rType = 0;
+		vrLen = 1015;
+		vrLoc = 7654;
 	};
 	1D3623240D0F684500981E51 /* ___PROJECTNAMEASIDENTIFIER___App.h */ = {
 		uiCtxt = {
@@ -271,6 +266,30 @@
 					PBXSymbolsDataSource_ReferenceNameID,
 				);
 			};
+			PBXConfiguration.PBXFileTableDataSource3.XCSCMDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					669,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_SCM_ColumnID,
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
 			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
@@ -293,16 +312,16 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 265687891;
-			PBXWorkspaceStateSaveDate = 265687891;
+			PBXPerProjectTemplateStateSaveDate = 265801067;
+			PBXWorkspaceStateSaveDate = 265801067;
 		};
 		perUserProjectItems = {
 			1B0EBFCC0FD65C01005B6613 /* PBXTextBookmark */ = 1B0EBFCC0FD65C01005B6613 /* PBXTextBookmark */;
 			1B0EBFCF0FD65C01005B6613 /* PBXTextBookmark */ = 1B0EBFCF0FD65C01005B6613 /* PBXTextBookmark */;
 			1B0EBFDE0FD688D9005B6613 /* PBXTextBookmark */ = 1B0EBFDE0FD688D9005B6613 /* PBXTextBookmark */;
-			1B0EBFDF0FD688D9005B6613 /* PBXTextBookmark */ = 1B0EBFDF0FD688D9005B6613 /* PBXTextBookmark */;
 			1B0EBFE00FD688D9005B6613 /* PBXTextBookmark */ = 1B0EBFE00FD688D9005B6613 /* PBXTextBookmark */;
 			1B0EBFE10FD688D9005B6613 /* PBXTextBookmark */ = 1B0EBFE10FD688D9005B6613 /* PBXTextBookmark */;
+			1BEEE4B30FD7CD7D00426E20 /* PBXTextBookmark */ = 1BEEE4B30FD7CD7D00426E20 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 1B16BB9D0FD267000097ED09 /* Source Control */;
 		userBookmarkGroup = 1B0EBF590FD61352005B6613 /* PBXBookmarkGroup */;
