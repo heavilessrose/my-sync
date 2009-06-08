@@ -68,13 +68,16 @@ int main(int argc, const char *argv[])
 //	display_song ( thirdSong );
 //	//////
 //	
-//	printf("\n");
-//	int x = 1, y = 2;
-//	int *p1 = &x;
-//	int *p2 = &y;
-//	swap(&x, &y);
-//	printf("x = %d, y = %d \n", x, y);
-//	printf("\n");
+	printf("\n");
+	int x = 1, y = 2;
+	int *p1;
+	p1= &x;
+	int *p2 = &y;
+	swap(&x, &y);
+	printf("x = %d, y = %d \n", x, y);
+	swap(p1, p2);
+	printf("x = %d, y = %d \n", x, y);
+	printf("\n");
 	
 	//////数组指针
 	//arrayPointerTest();
