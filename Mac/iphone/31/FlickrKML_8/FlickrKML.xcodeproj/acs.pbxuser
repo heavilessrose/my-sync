@@ -1,0 +1,160 @@
+// !$*UTF8*$!
+{
+	0875A2FE0E9BC5A20058E625 /* FlickrKML */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = FlickrKML;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+	};
+	0875A3080E9BC5C20058E625 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	0875A3090E9BC5C20058E625 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	088AEACD0E9D9A7400E908EF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A50DB2D0840083E9F9 /* MainView.m */;
+		name = "MainView.m: 7";
+		rLen = 0;
+		rLoc = 227;
+		rType = 0;
+		vrLen = 315;
+		vrLoc = 0;
+	};
+	088AEAD90E9D9C1100E908EF /* flickrKML.png */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 75}, {1602, 698}}";
+		};
+	};
+	088AEAF40E9D9FDB00E908EF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A50DB2D0840083E9F9 /* MainView.m */;
+		name = "MainView.m: 7";
+		rLen = 0;
+		rLoc = 227;
+		rType = 0;
+		vrLen = 315;
+		vrLoc = 0;
+	};
+	1D6058900D05DD3D006BFB54 /* FlickrKML */ = {
+		activeExec = 0;
+		executables = (
+			0875A2FE0E9BC5A20058E625 /* FlickrKML */,
+		);
+	};
+	289233A50DB2D0840083E9F9 /* MainView.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1244, 439}}";
+			sepNavSelRange = "{227, 0}";
+			sepNavVisRange = "{0, 315}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 0875A2FE0E9BC5A20058E625 /* FlickrKML */;
+		activeSDKPreference = iphoneos2.0;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* FlickrKML */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* FlickrKML */,
+		);
+		codeSenseManager = 0875A3090E9BC5C20058E625 /* Code sense */;
+		executables = (
+			0875A2FE0E9BC5A20058E625 /* FlickrKML */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					300,
+					723.20849609375,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXErrorsWarningsDataSource_TypeID,
+					PBXErrorsWarningsDataSource_MessageID,
+					PBXErrorsWarningsDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					833,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					793,
+					60,
+					20,
+					48.16259765625,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 245209936;
+			PBXWorkspaceStateSaveDate = 245209936;
+		};
+		perUserProjectItems = {
+			088AEACD0E9D9A7400E908EF /* PBXTextBookmark */ = 088AEACD0E9D9A7400E908EF /* PBXTextBookmark */;
+			088AEAF40E9D9FDB00E908EF /* PBXTextBookmark */ = 088AEAF40E9D9FDB00E908EF /* PBXTextBookmark */;
+		};
+		sourceControlManager = 0875A3080E9BC5C20058E625 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+}
