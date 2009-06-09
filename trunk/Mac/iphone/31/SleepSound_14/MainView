@@ -1,0 +1,118 @@
+//
+//  MainView.m
+//  Waterfall
+//
+//  Created by acs on 9/7/08.
+//  Copyright ACS Technologies 2008. All rights reserved.
+//
+
+#import "MainView.h"
+#import <QuartzCore/QuartzCore.h>
+
+@implementation MainView
+
+UIImageView *campFire;
+
+UIImage *clemsonFlag1;
+UIImage *clemsonFlag2;
+UIImage *clemsonFlag3;
+UIImage *clemsonFlag4;
+
+UIImage *currentImage;
+
+int tileIndex = 0;
+
+
+-(void)awakeFromNib {
+	
+	clemsonFlag1 = [UIImage imageNamed:@"clemsonFlag1.png"];
+	clemsonFlag2 = [UIImage imageNamed:@"clemsonFlag2.png"];
+	clemsonFlag3 = [UIImage imageNamed:@"clemsonFlag3.png"];
+	clemsonFlag4 = [UIImage imageNamed:@"clemsonFlag4.png"];
+	
+	currentImage = clemsonFlag1;
+
+	/*
+	campFire = [[UIImageView alloc] init];
+	
+	campFire.animationImages = [NSArray arrayWithObjects:	
+								waterfall1,
+								waterfall2,
+								waterfall3,
+								waterfall4, 
+								nil];
+	
+	campFire.animationDuration = 1.5;
+	campFire.animationRepeatCount = 0;
+	[campFire startAnimating];
+	
+	[self addSubview:campFire];
+	campFire.frame = CGRectMake(32, 32, 32, 32);
+	 */
+
+	[NSTimer scheduledTimerWithTimeInterval:(0.1) target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+}
+
+- (void)onTimer
+{
+	tileIndex += 1;
+	
+	if(currentImage == clemsonFlag1)
+		currentImage = clemsonFlag2;
+	else if (currentImage == clemsonFlag2)
+		currentImage = clemsonFlag3;
+	else if (currentImage == clemsonFlag3)
+		currentImage = clemsonFlag4;
+	else if (currentImage == clemsonFlag4)
+		currentImage = clemsonFlag1;
+	
+	[self setNeedsDisplay];
+}
+
+- (void)drawRect:(CGRect)rect {
+	
+	CGImageRef image = CGImageRetain(currentImage.CGImage);
+	
+	CGRect imageRect;
+	imageRect.origin = CGPointMake(tileIndex, tileIndex);
+	imageRect.size = CGSizeMake(46.0, 70.0);
+	
+	CGContextRef uiContext = UIGraphicsGetCurrentContext();
+	
+	CGContextClipToRect(uiContext, CGRectMake(0.0, 0.0, rect.size.width, rect.size.height));
+	
+	CGContextDrawTiledImage(uiContext, imageRect, image);
+	
+}
+
++ (UIImage *)captureView:(UIView *)view {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
+    UIGraphicsBeginImageContext(screenRect.size);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [[UIColor blackColor] set];
+    CGContextFillRect(ctx, screenRect);
+    
+    [view.layer renderInContext:ctx];
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+	
+    return newImage;
+}
+
+- (id)initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame:frame]) {
+		// Initialization code
+	}
+	return self;
+}
+
+- (void)dealloc {
+	[super dealloc];
+}
+
+
+@end

@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'Fireball' target in the 'Fireball' project
+//
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#endif

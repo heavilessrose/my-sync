@@ -1,0 +1,48 @@
+//
+//  MainViewController.m
+//  Fireball
+//
+//  Created by apple on 10/17/08.
+//  Copyright ACS Technologies 2008. All rights reserved.
+//
+
+#import "MainViewController.h"
+#import "MainView.h"
+
+@implementation MainViewController
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+		// Custom initialization
+	}
+	return self;
+}
+
+
+
+- (void)viewDidLoad {
+	fireBall = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fireball.png"]];
+	[self.view addSubview:fireBall];
+ }
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	// Return YES for supported orientations
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+	// Release anything that's not essential, such as cached data
+}
+
+
+- (void)dealloc {
+	[fireBall release];
+	[super dealloc];
+}
+
+
+@end

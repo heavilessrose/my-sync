@@ -1,0 +1,84 @@
+// !$*UTF8*$!
+{
+	18A18CB80EB127D4004E5585 /* PumpkinFace */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = PumpkinFace;
+		sourceDirectories = (
+		);
+	};
+	18A18CC40EB127F2004E5585 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	18A18CC50EB127F2004E5585 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	1D6058900D05DD3D006BFB54 /* PumpkinFace */ = {
+		activeExec = 0;
+		executables = (
+			18A18CB80EB127D4004E5585 /* PumpkinFace */,
+		);
+	};
+	289233A40DB2D0840083E9F9 /* MainView.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 272}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 199}";
+		};
+	};
+	289233A50DB2D0840083E9F9 /* MainView.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 476}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 261}";
+		};
+	};
+	289233A80DB2D0DB0083E9F9 /* MainViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 289}}";
+			sepNavSelRange = "{220, 56}";
+			sepNavVisRange = "{0, 280}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 18A18CB80EB127D4004E5585 /* PumpkinFace */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* PumpkinFace */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* PumpkinFace */,
+		);
+		codeSenseManager = 18A18CC50EB127F2004E5585 /* Code sense */;
+		executables = (
+			18A18CB80EB127D4004E5585 /* PumpkinFace */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 246491092;
+			PBXWorkspaceStateSaveDate = 246491092;
+		};
+		sourceControlManager = 18A18CC40EB127F2004E5585 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+}
