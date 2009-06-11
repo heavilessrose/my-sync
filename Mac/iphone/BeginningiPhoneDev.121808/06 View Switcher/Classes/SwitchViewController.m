@@ -21,6 +21,7 @@
 	[self.view insertSubview:blueController.view atIndex:0];
 	[blueController release];
 }
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
 		// Initialization code
@@ -39,32 +40,34 @@
 		[yellowController release];
 	}
 	
+	// 声明一个动画块并设置持续时间
 	[UIView beginAnimations:@"View Flip" context:nil];
 	[UIView setAnimationDuration:1.25];
+	// 设置动画曲线
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	
 	UIViewController *coming = nil;
 	UIViewController *going = nil;
-	UIViewAnimationTransition transition;
+	UIViewAnimationTransition transition;// 动画效果
 	
 	if (self.blueViewController.view.superview == nil) 
 	{	
 		coming = blueViewController;
 		going = yellowViewController;
-		transition = UIViewAnimationTransitionFlipFromLeft;
+		transition = UIViewAnimationTransitionCurlUp;
 	}
 	else
 	{
 		coming = yellowViewController;
 		going = blueViewController;
-		transition = UIViewAnimationTransitionFlipFromRight;
+		transition = UIViewAnimationTransitionCurlDown;
 	}
 	
 	[UIView setAnimationTransition: transition forView:self.view cache:YES];
 	[coming viewWillAppear:YES];
 	[going viewWillDisappear:YES];
 	[going.view removeFromSuperview];
-	[self.view insertSubview: coming.view atIndex:0];
+	[self.view insertSubview: coming.view atIndex:0];// 插到最前面
 	[going viewDidDisappear:YES];
 	[coming viewDidAppear:YES];
 	
