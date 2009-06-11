@@ -50,7 +50,6 @@
 		[picker reloadComponent:i];
 		if (numInRow >= 3)
 			win = YES;
-		
 	}
 	
 	button.hidden = YES;
@@ -78,8 +77,7 @@
 	UIImage *lemon = [UIImage imageNamed:@"lemon.png"];
 	UIImage *apple = [UIImage imageNamed:@"apple.png"];
 	
-	for (int i = 1; i <= 5; i++)
-	{
+	for (int i = 1; i <= 5; i++){
 		UIImageView *sevenView = [[UIImageView alloc] initWithImage:seven];
 		UIImageView *barView = [[UIImageView alloc] initWithImage:bar];
 		UIImageView *crownView = [[UIImageView alloc] initWithImage:crown];
@@ -100,8 +98,6 @@
 		[cherryView release];
 		[lemonView release];
 		[appleView release];
-	
-
 	}
 	
 	// Seed the random number generator

@@ -40,7 +40,7 @@
 }
 
 - (void)viewDidLoad {
-	
+	// 取得数据
 	NSBundle *bundle = [NSBundle mainBundle];
 	NSString *plistPath = [bundle pathForResource:@"statedictionary" ofType:@"plist"];
 	NSDictionary *dictionary = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
