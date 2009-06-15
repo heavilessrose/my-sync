@@ -10,6 +10,9 @@
 		1B6AD2CF0FE25ED40061627B /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B6AD2CE0FE25ED40061627B /* error.c */; };
 		8DD76FAC0486AB0100D96B5E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.c */; settings = {ATTRIBUTES = (); }; };
 		8DD76FB00486AB0100D96B5E /* apue2_luke.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6A0FF2C0290799A04C91782 /* apue2_luke.1 */; };
+		99BB7A500FE345D20002BB19 /* command.c in Sources */ = {isa = PBXBuildFile; fileRef = 99BB7A4F0FE345D20002BB19 /* command.c */; };
+		99BB7A5A0FE34C140002BB19 /* fork_sample.c in Sources */ = {isa = PBXBuildFile; fileRef = 99BB7A590FE34C140002BB19 /* fork_sample.c */; };
+		99BB7A7E0FE34CE10002BB19 /* www.c in Sources */ = {isa = PBXBuildFile; fileRef = 99BB7A7D0FE34CE10002BB19 /* www.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +33,10 @@
 		1B6AD2BD0FE259090061627B /* apue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apue.h; sourceTree = "<group>"; };
 		1B6AD2CE0FE25ED40061627B /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
 		8DD76FB20486AB0100D96B5E /* apue2_luke */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = apue2_luke; sourceTree = BUILT_PRODUCTS_DIR; };
+		99BB7A4F0FE345D20002BB19 /* command.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = command.c; sourceTree = "<group>"; };
+		99BB7A590FE34C140002BB19 /* fork_sample.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fork_sample.c; sourceTree = "<group>"; };
+		99BB7A7D0FE34CE10002BB19 /* www.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = www.c; sourceTree = "<group>"; };
+		99BB7A8C0FE350840002BB19 /* www.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = www.h; sourceTree = "<group>"; };
 		C6A0FF2C0290799A04C91782 /* apue2_luke.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = apue2_luke.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +66,7 @@
 			children = (
 				1B6AD2BE0FE2590D0061627B /* include */,
 				1B6AD2DC0FE25F8B0061627B /* 7 */,
+				99BB7A7B0FE34C7E0002BB19 /* 8.1 */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -92,8 +100,27 @@
 			isa = PBXGroup;
 			children = (
 				1B6AD2BA0FE258AE0061627B /* 7.2 */,
+				99BB7A510FE345D90002BB19 /* 7.4 */,
 			);
 			name = 7;
+			sourceTree = "<group>";
+		};
+		99BB7A510FE345D90002BB19 /* 7.4 */ = {
+			isa = PBXGroup;
+			children = (
+				99BB7A4F0FE345D20002BB19 /* command.c */,
+			);
+			name = 7.4;
+			sourceTree = "<group>";
+		};
+		99BB7A7B0FE34C7E0002BB19 /* 8.1 */ = {
+			isa = PBXGroup;
+			children = (
+				99BB7A590FE34C140002BB19 /* fork_sample.c */,
+				99BB7A7D0FE34CE10002BB19 /* www.c */,
+				99BB7A8C0FE350840002BB19 /* www.h */,
+			);
+			name = 8.1;
 			sourceTree = "<group>";
 		};
 		C6A0FF2B0290797F04C91782 /* Documentation */ = {
@@ -149,6 +176,9 @@
 			files = (
 				8DD76FAC0486AB0100D96B5E /* main.c in Sources */,
 				1B6AD2CF0FE25ED40061627B /* error.c in Sources */,
+				99BB7A500FE345D20002BB19 /* command.c in Sources */,
+				99BB7A5A0FE34C140002BB19 /* fork_sample.c in Sources */,
+				99BB7A7E0FE34CE10002BB19 /* www.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
