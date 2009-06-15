@@ -14,10 +14,26 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 
+#include <unistd.h>
+#include <sys/param.h>
+
 char* HOST = "www.163.com";
+
+// the name of the computer that your program is running on.
+void printLocalHostname(){
+	char hostname[MAXHOSTNAMELEN];
+	if(gethostname(hostname, MAXHOSTNAMELEN) < 0){
+		perror("gethostname");
+	}
+	printf("hostname: %s \n\n", hostname);
+}
 
 int main(int argc, char *argv[])
 {
+
+	printLocalHostname();
+	
+/////////////////////////////////////////////
     struct addrinfo hints, *res, *p;
     int status;
     char ipstr[INET6_ADDRSTRLEN];

@@ -1,0 +1,2 @@
+select() gives you the power to monitor several sockets at the same time. It'll tell you which ones are ready for reading, which are ready for writing, and which sockets have raised exceptions, if you really want to know that.
+The function monitors "sets" of file descriptors;
