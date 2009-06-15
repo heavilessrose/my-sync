@@ -45,30 +45,36 @@ int main(int argc, const char* argv[])
 	char s[INET6_ADDRSTRLEN];
 	int rv;
 	
-	memset(&hints, 0, sizeof hints);
-	hints.ai_family = AF_UNSPEC;
-	hints.ai_socktype = SOCK_STREAM;
-	hints.ai_flags = AI_PASSIVE; // use my IP
+	// 1.得到地址
+	// 地址过滤模版
+	memset(&hints, 0, sizeof hints); // make sure the struct is empty
+	hints.ai_family = AF_UNSPEC; // don't care IPv4 or IPv6
+	hints.ai_socktype = SOCK_STREAM; // TCP stream sockets
+	hints.ai_flags = AI_PASSIVE; // tells getaddrinfo() to assign the address of my local host to the socket structures.
 	
+	// 使用指定的ip的话注释掉hints.ai_flags = AI_PASSIVE; 然后rv = getaddrinfo(&host, PORT, &hints, &servinfo)
 	if ((rv = getaddrinfo(NULL, PORT, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		return 1;
 	}
 	
+	// servinfo will point to a linked list of struct addrinfos, each of which contains a struct sockaddr of some kind that we can use later
 	// loop through all the results and bind to the first we can
 	for(p = servinfo; p != NULL; p = p->ai_next) {
+		// 2.得到socket descriptor
 		if ((sockfd = socket(p->ai_family, p->ai_socktype,
 							 p->ai_protocol)) == -1) {
 			perror("server: socket");
 			continue;
 		}
 		
+		// 端口重用
 		if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes,
 					   sizeof(int)) == -1) {
 			perror("setsockopt");
 			exit(1);
 		}
-		
+		// 3.绑定sockfd 到ai_addr(ip地址和port)
 		if (bind(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
 			close(sockfd);
 			perror("server: bind");
@@ -84,7 +90,7 @@ int main(int argc, const char* argv[])
 	}
 	
 	freeaddrinfo(servinfo); // all done with this structure
-	
+	// 4.监听sockfd
 	if (listen(sockfd, BACKLOG) == -1) {
 		perror("listen");
 		exit(1);
@@ -97,11 +103,12 @@ int main(int argc, const char* argv[])
 		perror("sigaction");
 		exit(1);
 	}
-	
+
 	printf("server: waiting for connections...\n");
 	
 	while(1) {  // main accept() loop
 		sin_size = sizeof their_addr;
+		// 5.从backlog queue中取一个连入的连接(struct sockaddr *). 网络上使用struct sockaddr, 端点使用socket描述符(已经与ip和port绑定)。
 		new_fd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size);
 		if (new_fd == -1) {
 			perror("accept");
@@ -113,6 +120,7 @@ int main(int argc, const char* argv[])
 				  s, sizeof s);
 		printf("server: got connection from %s\n", s);
 		
+		// 6.处理连接并send response。
 		if (!fork()) { // this is the child process
 			close(sockfd); // child doesn't need the listener
 			if (send(new_fd, "Hello, world!", 13, 0) == -1)
