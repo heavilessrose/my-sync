@@ -47,12 +47,11 @@ int main(int argc, char *argv[])
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 	
-	// 取得服务信息
+	// 取得服务器地址信息（struct addrinfo）
 	if ((rv = getaddrinfo(/* argv[1] */ host, PORT, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		return 1;
 	}
-	
 	// loop through all the results and connect to the first we can
 	for(p = servinfo; p != NULL; p = p->ai_next) {
 		if ((sockfd = socket(p->ai_family, p->ai_socktype,
@@ -61,12 +60,13 @@ int main(int argc, char *argv[])
 			continue;
 		}
 		
+		// 使用addrinfo连接(实际上就是将sockfd连接到sockaddr_in)
 		if (connect(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
 			close(sockfd);
 			perror("client: connect"); // connect失败
 			continue;
 		}
-		
+
 		break;
 	}
 	
