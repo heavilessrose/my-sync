@@ -28,9 +28,10 @@
 {
 	//http://l.yimg.com/a/i/ww/beta/y3.gif
 	//http://www.google.com/logos/missinglink.gif
+	//http://www.apple.com.cn/macpro/images/overview_hero1_20090303.png
+
 	[self download:@"http://www.apple.com.cn/macpro/images/overview_hero1_20090303.png"];
 	[self.delegate didFinishDownload];
-	
 }
 
 - (void) getResponseHeader
@@ -298,4 +299,6 @@ struct hostent * getHost(NSString *name)
 //    // Add the operation to the internal operation queue managed by the application delegate.
 //    [[propertyListAppDelegate sharedOperationQueue] addOperation:theOp];
 //}
+
+
 @end

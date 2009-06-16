@@ -382,6 +382,8 @@ const double URLCacheInterval = 86400.0;
 //	NSData *urlData = [self getNSDataFromURL:@"http://www.google.cn/intl/zh-CN/images/logo_cn.gif"];
 //	[urlData writeToFile:[[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:@"url.gif"] atomically:YES];
 	
+	// 线程测试
+	LaunchThread();
 	
 	[super viewDidLoad];
 }
@@ -986,12 +988,16 @@ static void WriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEventTyp
 - (IBAction) startDownload:(id)sender
 {
 	httpClient *client = [[httpClient alloc] initWithDelegate:self];
-	[client connectAndDown];
+	// 在新线程中下载
+	[client performSelectorInBackground:@selector(connectAndDown) withObject:nil];
+	//[client connectAndDown];
+	[self startAnimation];
 	[client release];
 }
 
 - (void) didFinishDownload
 {
+	[self stopAnimation];
 	NSString *home = [[NSString alloc] initWithCString:getenv("HOME")];
 	UIImage *theImage = [[UIImage alloc] initWithContentsOfFile:[home stringByAppendingPathComponent:@"overview_hero1_20090303.png"]];
 	if (theImage) {
@@ -1010,5 +1016,56 @@ static void WriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEventTyp
 	NSURL *url = [[NSURL alloc] initWithString:@"sms:15812345678"];
 	[[UIApplication sharedApplication] openURL:url];
 	[url release];
+}
+
+#pragma mark -
+#pragma mark 线程
+// 得到HOME目录
+static char home[1024];
+static char* gethome()
+{
+	bzero(home, sizeof(home));
+	strcpy(home, getenv("HOME"));
+	return home;
+}
+
+// The thread entry point routine.
+void* PosixThreadMainRoutine(void* data)
+{
+	char *threadLogPath = strcat(gethome(), "/threadLog.txt");
+	FILE *threadLogFile = fopen(threadLogPath, "a");
+	char buf[256];
+	sprintf(buf, "new posixThreadID: %u \r\n", (unsigned int)pthread_self());
+	fwrite(buf, 1, strlen(buf), threadLogFile);
+	fclose(threadLogFile);
+	printf("%s\n", buf);
+    return NULL;
+}
+
+void LaunchThread()
+{
+    // Create the thread using POSIX routines.
+    pthread_attr_t  attr;
+    pthread_t       posixThreadID;
+	
+    assert(!pthread_attr_init(&attr));
+    assert(!pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED));
+	
+    int     threadError = pthread_create(&posixThreadID, &attr, &PosixThreadMainRoutine, NULL);
+	
+	char *threadLogPath = strcat(gethome(), "/threadLog.txt");
+	FILE *threadLogFile = fopen(threadLogPath, "a");
+	char buf[256];
+	sprintf(buf, "main posixThreadID: %u \r\n", (unsigned int)pthread_self());
+	fwrite(buf, 1, strlen(buf), threadLogFile);
+	
+	printf("%s\n", buf);
+    assert(!pthread_attr_destroy(&attr));
+    if (threadError != 0)
+    {
+		printf("threadError");
+    }
+	sleep(1);
+	fclose(threadLogFile);
 }
 @end

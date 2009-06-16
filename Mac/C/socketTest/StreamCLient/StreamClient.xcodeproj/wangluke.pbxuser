@@ -52,15 +52,11 @@
 			PBXWorkspaceStateSaveDate = 266744633;
 		};
 		perUserProjectItems = {
-			1B3A360F0FCA869500F5BED1 = 1B3A360F0FCA869500F5BED1 /* PBXTextBookmark */;
-			1B3A36110FCA869500F5BED1 = 1B3A36110FCA869500F5BED1 /* PBXTextBookmark */;
-			1B3A368B0FCA941600F5BED1 = 1B3A368B0FCA941600F5BED1 /* PBXTextBookmark */;
-			1B3A368C0FCA941600F5BED1 = 1B3A368C0FCA941600F5BED1 /* PBXTextBookmark */;
-			1B3A368D0FCA941600F5BED1 = 1B3A368D0FCA941600F5BED1 /* PBXTextBookmark */;
-			1B3A368E0FCA941600F5BED1 = 1B3A368E0FCA941600F5BED1 /* PBXTextBookmark */;
-			1BD016920FE645260085C484 /* PBXTextBookmark */ = 1BD016920FE645260085C484 /* PBXTextBookmark */;
-			1BD016CD0FE653810085C484 /* PBXTextBookmark */ = 1BD016CD0FE653810085C484 /* PBXTextBookmark */;
-			1BD016CE0FE654BC0085C484 /* PBXTextBookmark */ = 1BD016CE0FE654BC0085C484 /* PBXTextBookmark */;
+			1B3A36110FCA869500F5BED1 /* PBXTextBookmark */ = 1B3A36110FCA869500F5BED1 /* PBXTextBookmark */;
+			1B3A368B0FCA941600F5BED1 /* PBXTextBookmark */ = 1B3A368B0FCA941600F5BED1 /* PBXTextBookmark */;
+			1B3A368D0FCA941600F5BED1 /* PBXTextBookmark */ = 1B3A368D0FCA941600F5BED1 /* PBXTextBookmark */;
+			1B3A368E0FCA941600F5BED1 /* PBXTextBookmark */ = 1B3A368E0FCA941600F5BED1 /* PBXTextBookmark */;
+			1BD016D30FE6609D0085C484 /* PBXTextBookmark */ = 1BD016D30FE6609D0085C484 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 1B3424750FC2B6BA00B23525 /* Source Control */;
 		userBuildSettings = {
@@ -162,23 +158,6 @@
 		modificationTime = 264932907.658886;
 		state = 2;
 	};
-	1B3A360F0FCA869500F5BED1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B3A36100FCA869500F5BED1 /* findsvc.c */;
-		name = "findsvc.c: 82";
-		rLen = 10;
-		rLoc = 1262;
-		rType = 0;
-		vrLen = 1140;
-		vrLoc = 1602;
-	};
-	1B3A36100FCA869500F5BED1 /* findsvc.c */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.c;
-		name = findsvc.c;
-		path = /Users/wangluke/Documents/Mac_/C/apue.2e_src/sockets/findsvc.c;
-		sourceTree = "<absolute>";
-	};
 	1B3A36110FCA869500F5BED1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1B3A36120FCA869500F5BED1 /* in6.h */;
@@ -213,16 +192,6 @@
 		vrLen = 1907;
 		vrLoc = 20008;
 	};
-	1B3A368C0FCA941600F5BED1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
-		name = "main.c: 63";
-		rLen = 7;
-		rLoc = 1484;
-		rType = 0;
-		vrLen = 972;
-		vrLoc = 1062;
-	};
 	1B3A368D0FCA941600F5BED1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1B3A36170FCA869500F5BED1 /* socket.h */;
@@ -243,27 +212,7 @@
 		vrLen = 972;
 		vrLoc = 1073;
 	};
-	1BD016920FE645260085C484 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
-		name = "main.c: 54";
-		rLen = 0;
-		rLoc = 1165;
-		rType = 0;
-		vrLen = 1207;
-		vrLoc = 755;
-	};
-	1BD016CD0FE653810085C484 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
-		name = "main.c: 63";
-		rLen = 0;
-		rLoc = 1477;
-		rType = 0;
-		vrLen = 1156;
-		vrLoc = 881;
-	};
-	1BD016CE0FE654BC0085C484 /* PBXTextBookmark */ = {
+	1BD016D30FE6609D0085C484 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
 		name = "main.c: 69";

@@ -17,7 +17,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					341,
+					496,
 					20,
 					48.16259765625,
 					43,
@@ -37,6 +37,10 @@
 			PBXPerProjectTemplateStateSaveDate = 266749325;
 			PBXWorkspaceStateSaveDate = 266749325;
 		};
+		perUserProjectItems = {
+			1BD016D40FE6609D0085C484 /* PBXTextBookmark */ = 1BD016D40FE6609D0085C484 /* PBXTextBookmark */;
+			1BD016D50FE6609D0085C484 /* PBXTextBookmark */ = 1BD016D50FE6609D0085C484 /* PBXTextBookmark */;
+		};
 		sourceControlManager = 1BD016A80FE645910085C484 /* Source Control */;
 		userBuildSettings = {
 		};
@@ -48,12 +52,13 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 1;
+		breakpointsEnabled = 0;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
 		debuggerPlugin = GDBDebugging;
 		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
 		enableDebugStr = 1;
 		environmentEntries = (
 		);
@@ -77,10 +82,30 @@
 	};
 	1BD016AC0FE645A80085C484 /* showIPs.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {588, 1139}}";
-			sepNavSelRange = "{228, 0}";
-			sepNavVisRange = "{0, 318}";
+			sepNavIntBoundsRect = "{{0, 0}, {674, 1105}}";
+			sepNavSelRange = "{1301, 5}";
+			sepNavVisRange = "{890, 834}";
 		};
+	};
+	1BD016D40FE6609D0085C484 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BD016AC0FE645A80085C484 /* showIPs.c */;
+		name = "showIPs.c: 11";
+		rLen = 0;
+		rLoc = 228;
+		rType = 0;
+		vrLen = 318;
+		vrLoc = 0;
+	};
+	1BD016D50FE6609D0085C484 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BD016AC0FE645A80085C484 /* showIPs.c */;
+		name = "showIPs.c: 50";
+		rLen = 5;
+		rLoc = 1301;
+		rType = 0;
+		vrLen = 834;
+		vrLoc = 890;
 	};
 	8DD76FA90486AB0100D96B5E /* socket_apis_test */ = {
 		activeExec = 0;

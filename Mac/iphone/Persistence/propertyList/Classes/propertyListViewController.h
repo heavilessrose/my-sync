@@ -10,6 +10,10 @@
 #import "URLCacheConnection.h"
 #import "httpClient.h"
 
+#include <stdio.h>
+#include <assert.h>
+#include <pthread.h>
+#include <unistd.h>
 #define kFilename @"data.plist"
 
 @class NSData;
@@ -128,9 +132,14 @@
 - (NSData *) getNSDataFromBytes;
 - (BOOL) write:(NSData *)data toDir:(NSString *)dir asFile:(NSString *)fileName;
 - (BOOL) write:(NSData *)data toURL:(NSString *)url;
-
+// 下载并显示
 - (IBAction) startDownload:(id)sender;
 /////////流
 - (void) streamTests:(NSString *)fileURL;
+
+// 线程
+void LaunchThread();
+void* PosixThreadMainRoutine(void* data);
+
 @end
 
