@@ -1,0 +1,215 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 1BC1494F0FE771DB0041A152 /* posixThread */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* posixThread */;
+		codeSenseManager = 1BC149560FE771DE0041A152 /* Code sense */;
+		executables = (
+			1BC1494F0FE771DB0041A152 /* posixThread */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					633,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 266826203;
+			PBXWorkspaceStateSaveDate = 266826203;
+		};
+		perUserProjectItems = {
+			1BC149D70FE7A65B0041A152 /* PBXTextBookmark */ = 1BC149D70FE7A65B0041A152 /* PBXTextBookmark */;
+			1BC149D90FE7A65B0041A152 /* PBXTextBookmark */ = 1BC149D90FE7A65B0041A152 /* PBXTextBookmark */;
+			1BC149DB0FE7A65B0041A152 /* PBXTextBookmark */ = 1BC149DB0FE7A65B0041A152 /* PBXTextBookmark */;
+			1BC149DD0FE7A65B0041A152 /* PBXTextBookmark */ = 1BC149DD0FE7A65B0041A152 /* PBXTextBookmark */;
+			1BC149DF0FE7A65B0041A152 /* PBXTextBookmark */ = 1BC149DF0FE7A65B0041A152 /* PBXTextBookmark */;
+			1BC149E10FE7A65B0041A152 /* PBXTextBookmark */ = 1BC149E10FE7A65B0041A152 /* PBXTextBookmark */;
+			1BC149E20FE7A65B0041A152 /* PBXTextBookmark */ = 1BC149E20FE7A65B0041A152 /* PBXTextBookmark */;
+			1BC149E40FE7A65B0041A152 /* PBXTextBookmark */ = 1BC149E40FE7A65B0041A152 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 1BC149550FE771DE0041A152 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {811, 629}}";
+			sepNavSelRange = "{228, 0}";
+			sepNavVisRange = "{40, 792}";
+		};
+	};
+	1BC1494F0FE771DB0041A152 /* posixThread */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = posixThread;
+		sourceDirectories = (
+		);
+	};
+	1BC149550FE771DE0041A152 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	1BC149560FE771DE0041A152 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	1BC149D70FE7A65B0041A152 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC149D80FE7A65B0041A152 /* assert.h */;
+		name = "assert.h: 84";
+		rLen = 20;
+		rLoc = 3220;
+		rType = 0;
+		vrLen = 964;
+		vrLoc = 2567;
+	};
+	1BC149D80FE7A65B0041A152 /* assert.h */ = {
+		isa = PBXFileReference;
+		name = assert.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/assert.h;
+		sourceTree = "<absolute>";
+	};
+	1BC149D90FE7A65B0041A152 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC149DA0FE7A65B0041A152 /* _types.h */;
+		name = "_types.h: 72";
+		rLen = 130;
+		rLoc = 3132;
+		rType = 0;
+		vrLen = 1465;
+		vrLoc = 2197;
+	};
+	1BC149DA0FE7A65B0041A152 /* _types.h */ = {
+		isa = PBXFileReference;
+		name = _types.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/sys/_types.h;
+		sourceTree = "<absolute>";
+	};
+	1BC149DB0FE7A65B0041A152 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC149DC0FE7A65B0041A152 /* pthread.h */;
+		name = "pthread.h: 109";
+		rLen = 18;
+		rLoc = 3178;
+		rType = 0;
+		vrLen = 786;
+		vrLoc = 2605;
+	};
+	1BC149DC0FE7A65B0041A152 /* pthread.h */ = {
+		isa = PBXFileReference;
+		name = pthread.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/pthread.h;
+		sourceTree = "<absolute>";
+	};
+	1BC149DD0FE7A65B0041A152 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC149DE0FE7A65B0041A152 /* stdio.h */;
+		name = "stdio.h: 84";
+		rLen = 27;
+		rLoc = 3326;
+		rType = 0;
+		vrLen = 582;
+		vrLoc = 2890;
+	};
+	1BC149DE0FE7A65B0041A152 /* stdio.h */ = {
+		isa = PBXFileReference;
+		name = stdio.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/stdio.h;
+		sourceTree = "<absolute>";
+	};
+	1BC149DF0FE7A65B0041A152 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC149E00FE7A65B0041A152 /* time.h */;
+		name = "time.h: 157";
+		rLen = 87;
+		rLoc = 5806;
+		rType = 0;
+		vrLen = 1238;
+		vrLoc = 4768;
+	};
+	1BC149E00FE7A65B0041A152 /* time.h */ = {
+		isa = PBXFileReference;
+		name = time.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/time.h;
+		sourceTree = "<absolute>";
+	};
+	1BC149E10FE7A65B0041A152 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 31";
+		rLen = 5;
+		rLoc = 768;
+		rType = 0;
+		vrLen = 756;
+		vrLoc = 0;
+	};
+	1BC149E20FE7A65B0041A152 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC149E30FE7A65B0041A152 /* time.h */;
+		name = "time.h: 157";
+		rLen = 87;
+		rLoc = 5806;
+		rType = 0;
+		vrLen = 1238;
+		vrLoc = 4768;
+	};
+	1BC149E30FE7A65B0041A152 /* time.h */ = {
+		isa = PBXFileReference;
+		name = time.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/time.h;
+		sourceTree = "<absolute>";
+	};
+	1BC149E40FE7A65B0041A152 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 11";
+		rLen = 0;
+		rLoc = 228;
+		rType = 0;
+		vrLen = 792;
+		vrLoc = 40;
+	};
+	8DD76FA90486AB0100D96B5E /* posixThread */ = {
+		activeExec = 0;
+		executables = (
+			1BC1494F0FE771DB0041A152 /* posixThread */,
+		);
+	};
+}
