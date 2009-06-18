@@ -36,5 +36,5 @@
 @end
 
 @protocol httpClientDelegate<NSObject>
-- (void) didFinishDownload;
+- (void) didFinishDownload:(NSString *)filepath;
 @end

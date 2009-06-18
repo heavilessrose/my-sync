@@ -29,9 +29,11 @@
 	//http://l.yimg.com/a/i/ww/beta/y3.gif
 	//http://www.google.com/logos/missinglink.gif
 	//http://www.apple.com.cn/macpro/images/overview_hero1_20090303.png
+	//http://www.gifanimations.com/GA/image/animations/aliens/alien-01.gif
+	//http://online.sccnn.com/gif8/021/gif0405_001.gif
 
-	[self download:@"http://www.apple.com.cn/macpro/images/overview_hero1_20090303.png"];
-	[self.delegate didFinishDownload];
+	NSString *filepath = [self download:@"http://online.sccnn.com/gif8/021/gif0405_001.gif"];
+	[self.delegate didFinishDownload:filepath];
 }
 
 - (void) getResponseHeader
@@ -130,7 +132,7 @@ struct hostent * getHost(NSString *name)
 }
 
 
-- (void) download:(NSString *)url
+- (NSString *) download:(NSString *)url
 {
 	int sockfd;
 	char buffer[1024];
@@ -199,9 +201,7 @@ struct hostent * getHost(NSString *name)
 	//sprintf(request, "GET /%s HTTP/1.1\r\nAccept: */*\r\nAccept-Language: zh-cn\r\n\
 //			User-Agent: Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)\r\n\
 //			Host: %s:%d\r\nConnection: Close\r\n\r\n", host_file, host_addr, portnumber);
-	sprintf(request, "GET /%s HTTP/1.1\r\nAccept: */*\r\nAccept-Language: zh-cn\r\n\
-			User-Agent: Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543 Safari/419.3\r\n\
-			Host: %s:%d\r\nConnection: Close\r\n\r\n", host_file, host_addr, portnumber);
+	sprintf(request, "GET /%s HTTP/1.1\r\nAccept: */*\r\nHost: %s:%d\r\nConnection: Close\r\n\r\n", host_file, host_addr, portnumber);
 	
 	printf("----request---------------\n");
 	printf("%s", request);// 准备request，将要发送给服务器
@@ -284,6 +284,11 @@ struct hostent * getHost(NSString *name)
 	close(sockfd);
 	//exit(0);
 	//return 0;
+	
+	NSString* downloadedFilePath = [[NSString alloc] initWithCString:local_file_path];
+	//[downloadedFilePath release];
+	NSLog(@">>>>>>>>>> %@",downloadedFilePath);
+	return downloadedFilePath;
 }
 
 #pragma mark -

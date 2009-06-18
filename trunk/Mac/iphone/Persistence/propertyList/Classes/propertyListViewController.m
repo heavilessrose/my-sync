@@ -995,11 +995,12 @@ static void WriteStreamClientCallBack( CFWriteStreamRef stream, CFStreamEventTyp
 	[client release];
 }
 
-- (void) didFinishDownload
+- (void) didFinishDownload:(NSString *)filepath
 {
+	NSLog(@">>>>>>>>>> %@",filepath);
 	[self stopAnimation];
 	NSString *home = [[NSString alloc] initWithCString:getenv("HOME")];
-	UIImage *theImage = [[UIImage alloc] initWithContentsOfFile:[home stringByAppendingPathComponent:@"overview_hero1_20090303.png"]];
+	UIImage *theImage = [[UIImage alloc] initWithContentsOfFile:filepath];
 	if (theImage) {
 		imageView.image = theImage;
 		[theImage release];
