@@ -14,6 +14,7 @@
 		1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */; };
 		1BEEE4300FD7A10E00426E20 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BEEE42F0FD7A10E00426E20 /* Localizable.strings */; };
 		1BEEE4690FD7AC3C00426E20 /* propertyListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEEE4680FD7AC3C00426E20 /* propertyListViewController.xib */; };
+		1BF860EF0FEB224100134551 /* AsyncSock.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF860EE0FEB224100134551 /* AsyncSock.m */; };
 		1D3623260D0F684500981E51 /* propertyListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* propertyListAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -36,6 +37,8 @@
 		1BEEE42D0FD7A0FC00426E20 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1BEEE45B0FD7A6F300426E20 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_CN; path = zh_CN.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1BEEE46A0FD7AC4800426E20 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = zh_CN.lproj/propertyListViewController.xib; sourceTree = "<group>"; };
+		1BF860ED0FEB224100134551 /* AsyncSock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSock.h; sourceTree = "<group>"; };
+		1BF860EE0FEB224100134551 /* AsyncSock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSock.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* propertyListAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = propertyListAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* propertyListAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = propertyListAppDelegate.m; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 				1B3D2AB80FC3EE1A00ED6450 /* httpClient.m */,
 				1B7D2F280FCB999300B59364 /* Streams.h */,
 				1B7D2F290FCB999300B59364 /* Streams.m */,
+				1BF860F00FEB224800134551 /* asyncSocketWrap */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -90,6 +94,15 @@
 				1D6058910D05DD3D006BFB54 /* propertyList.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1BF860F00FEB224800134551 /* asyncSocketWrap */ = {
+			isa = PBXGroup;
+			children = (
+				1BF860ED0FEB224100134551 /* AsyncSock.h */,
+				1BF860EE0FEB224100134551 /* AsyncSock.m */,
+			);
+			name = asyncSocketWrap;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -206,6 +219,7 @@
 				1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */,
 				1B3D2AB90FC3EE1A00ED6450 /* httpClient.m in Sources */,
 				1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */,
+				1BF860EF0FEB224100134551 /* AsyncSock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
