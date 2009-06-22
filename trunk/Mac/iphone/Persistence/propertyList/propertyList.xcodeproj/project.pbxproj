@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B1562790FEF5826004D4BA6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1562780FEF5826004D4BA6 /* CFNetwork.framework */; };
+		1B1562E20FEF5D69004D4BA6 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1562E10FEF5D69004D4BA6 /* CoreFoundation.framework */; };
 		1B3D2AB90FC3EE1A00ED6450 /* httpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D2AB80FC3EE1A00ED6450 /* httpClient.m */; };
 		1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A9A990FB2FAFD00D3F76F /* Alert.m */; };
 		1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7D2F290FCB999300B59364 /* Streams.m */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B1562780FEF5826004D4BA6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1B1562E10FEF5D69004D4BA6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		1B3D2AB70FC3EE1A00ED6450 /* httpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = httpClient.h; sourceTree = "<group>"; };
 		1B3D2AB80FC3EE1A00ED6450 /* httpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = httpClient.m; sourceTree = "<group>"; };
 		1B5A9A980FB2FAFD00D3F76F /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				1B1562790FEF5826004D4BA6 /* CFNetwork.framework in Frameworks */,
+				1B1562E20FEF5D69004D4BA6 /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +147,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B1562E10FEF5D69004D4BA6 /* CoreFoundation.framework */,
+				1B1562780FEF5826004D4BA6 /* CFNetwork.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -285,7 +293,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE_ALLOWED = NO;
 				PROVISIONING_PROFILE_REQUIRED = NO;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphonesimulator2.1;
 			};
 			name = Debug;
 		};
@@ -297,10 +305,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE_ALLOWED = NO;
 				PROVISIONING_PROFILE_REQUIRED = NO;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphonesimulator2.1;
 			};
 			name = Release;
 		};
