@@ -444,7 +444,7 @@ static int i = 0;
 			NSLog(@"incoming data: %s", [(NSData*)data bytes]);
 			if(i == 0){
 				i++;
-				//???: 此方法不是以append方式打开文件？
+				//???: 此方法不是以append方式打开文件
 				[(NSData*)data writeToFile:[[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:@"dd.gif"] atomically:YES];
 			}
 			break;
