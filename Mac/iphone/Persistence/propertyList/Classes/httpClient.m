@@ -262,6 +262,7 @@ struct hostent * getHost(NSString *name)
 	// 接收http response
 	while((nbytes=read(sockfd,buffer,1))==1)
 	{
+		// 请求或响应都是以两个换行结束？
 		if(i < 4) {
 			if(buffer[0] == '\r' || buffer[0] == '\n') 
 				i++;
