@@ -102,7 +102,7 @@
 - (IBAction)copy:(id)sender;
 // 文件字节数
 - (unsigned)fileLength:(FILE *)fp;
-- (void)write:(const char *)buffer toFile:(NSString *)fileName;
++ (void)write:(const char *)buffer toFile:(NSString *)fileName;
 
 - (BOOL)writePlist:(id)plist toFile:(NSString *)fileName;
 - (id)plistFromFile:(NSString *)fileName;

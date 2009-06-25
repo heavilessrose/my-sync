@@ -47,7 +47,6 @@
 #pragma mark -
 #pragma mark utils
 
-
 - (NSError *)errorFromCFStreamError:(CFStreamError)err
 {
 	if (err.domain == 0 && err.error == 0) return nil;
@@ -84,8 +83,7 @@
 	}
 	
 	NSDictionary *info = nil;
-	if(message != nil)
-	{
+	if(message != nil){
 		info = [NSDictionary dictionaryWithObject:message forKey:NSLocalizedDescriptionKey];
 	}
 	return [NSError errorWithDomain:domain code:err.error userInfo:info];
@@ -94,14 +92,12 @@
 - (NSError *)getStreamError
 {
 	CFStreamError err;
-	if (_readStream != NULL)
-	{
+	if (_readStream != NULL){
 		err = CFReadStreamGetError (_readStream);
 		if (err.error != 0) return [self errorFromCFStreamError: err];
 	}
 	
-	if (_writeStream != NULL)
-	{
+	if (_writeStream != NULL){
 		err = CFWriteStreamGetError (_writeStream);
 		if (err.error != 0) return [self errorFromCFStreamError: err];
 	}
@@ -155,260 +151,123 @@
 }
 
 #pragma mark -
-#pragma mark 回调
-//- (void)doCFReadStreamCallback:(CFStreamEventType)type forStream:(CFReadStreamRef)stream
-//{
-//	NSParameterAssert(theReadStream != NULL);
-//	
-//	CFStreamError err;
-//	switch (type)
-//	{
-//		case kCFStreamEventOpenCompleted:
-//			theFlags |= kDidCompleteOpenForRead;
-//			[self doStreamOpen];
-//			break;
-//		case kCFStreamEventHasBytesAvailable:
-//			if(theFlags & kStartingTLS)
-//				[self onTLSStarted:YES];
-//			else
-//				[self doBytesAvailable];
-//			break;
-//		case kCFStreamEventErrorOccurred:
-//		case kCFStreamEventEndEncountered:
-//			err = CFReadStreamGetError (theReadStream);
-//			[self closeWithError: [self errorFromCFStreamError:err]];
-//			break;
-//		default:
-//			NSLog (@"AsyncSocket %p received unexpected CFReadStream callback, CFStreamEventType %d.", self, type);
-//	}
-//}
-//
-//- (void)doCFWriteStreamCallback:(CFStreamEventType)type forStream:(CFWriteStreamRef)stream
-//{
-//	NSParameterAssert(theWriteStream != NULL);
-//	
-//	CFStreamError err;
-//	switch (type)
-//	{
-//		case kCFStreamEventOpenCompleted:
-//			theFlags |= kDidCompleteOpenForWrite;
-//			[self doStreamOpen];
-//			break;
-//		case kCFStreamEventCanAcceptBytes:
-//			if(theFlags & kStartingTLS)
-//				[self onTLSStarted:YES];
-//			else
-//				[self doSendBytes];
-//			break;
-//		case kCFStreamEventErrorOccurred:
-//		case kCFStreamEventEndEncountered:
-//			err = CFWriteStreamGetError (theWriteStream);
-//			[self closeWithError: [self errorFromCFStreamError:err]];
-//			break;
-//		default:
-//			NSLog (@"AsyncSocket %p received unexpected CFWriteStream callback, CFStreamEventType %d.", self, type);
-//	}
-//}
-//
-///**
-// * This is the callback we setup for CFReadStream.
-// * This method does nothing but forward the call to it's Objective-C counterpart
-// **/
-//static void MyCFReadStreamCallback (CFReadStreamRef stream, CFStreamEventType type, void *pInfo)
-//{
-//	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-//	
-//	AsyncSock *theSocket = [[(AsyncSock *)pInfo retain] autorelease];
-//	[theSocket doCFReadStreamCallback:type forStream:stream];
-//	
-//	[pool release];
-//}
-//
-///**
-// * This is the callback we setup for CFWriteStream.
-// * This method does nothing but forward the call to it's Objective-C counterpart
-// **/
-//static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType type, void *pInfo)
-//{
-//	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-//	
-//	AsyncSock *theSocket = [[(AsyncSock *)pInfo retain] autorelease];
-//	[theSocket doCFWriteStreamCallback:type forStream:stream];
-//	
-//	[pool release];
-//}
-//
-///**
-// * Creates the CFReadStream and CFWriteStream from the given native socket.
-// * The CFSocket may be extracted from either stream after the streams have been opened.
-// * 
-// * Note: The given native socket must already be connected!
-// **/
-//- (BOOL)createStreamsFromNative:(CFSocketNativeHandle)native error:(NSError **)errPtr
-//{
-//	// Create the socket & streams.
-//	CFStreamCreatePairWithSocket(kCFAllocatorDefault, native, &_readStream, &_writeStream);
-//	if (_readStream == NULL || _writeStream == NULL)
-//	{
-//		//NSError *err = [self getStreamError];
-//		
-//		//NSLog (@"AsyncSocket %p couldn't create streams from accepted socket: %@", self, err);
-//		
-//		//if (errPtr) *errPtr = err;
-//		return NO;
-//	}
-//	
-//	// Ensure the CF & BSD socket is closed when the streams are closed.
-//	CFReadStreamSetProperty(_readStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
-//	CFWriteStreamSetProperty(_writeStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
-//	
-//	return YES;
-//}
-//
-//- (BOOL)attachStreamsToRunLoop:(NSRunLoop *)runLoop error:(NSError **)errPtr
-//{
-//	// Get the CFRunLoop to which the socket should be attached.
-//	_runLoop = (runLoop == nil) ? CFRunLoopGetCurrent() : [runLoop getCFRunLoop];
-//	
-//	// Setup read stream callbacks
-//	
-//	CFOptionFlags readStreamEvents = kCFStreamEventHasBytesAvailable | 
-//	kCFStreamEventErrorOccurred     |
-//	kCFStreamEventEndEncountered    |
-//	kCFStreamEventOpenCompleted;
-//	
-//	if (!CFReadStreamSetClient(_readStream,
-//							   readStreamEvents,
-//							   (CFReadStreamClientCallBack)&MyCFReadStreamCallback,
-//							   (CFStreamClientContext *)(&_context)))
-//	{
-//		//NSError *err = [self getStreamError];
-//		
-//		NSLog (@"AsyncSocket %p couldn't attach read stream to run-loop,", self);
-//		//NSLog (@"Error: %@", err);
-//		
-//		//if (errPtr) *errPtr = err;
-//		return NO;
-//	}
-//	
-//	// Setup write stream callbacks
-//	
-//	CFOptionFlags writeStreamEvents = kCFStreamEventCanAcceptBytes |
-//	kCFStreamEventErrorOccurred  |
-//	kCFStreamEventEndEncountered |
-//	kCFStreamEventOpenCompleted;
-//	
-//	if (!CFWriteStreamSetClient (_writeStream,
-//								 writeStreamEvents,
-//								 (CFWriteStreamClientCallBack)&MyCFWriteStreamCallback,
-//								 (CFStreamClientContext *)(&_context)))
-//	{
-//		//NSError *err = [self getStreamError];
-//		
-//		NSLog (@"AsyncSocket %p couldn't attach write stream to run-loop,", self);
-//		//NSLog (@"Error: %@", err);
-//		
-//		//if (errPtr) *errPtr = err;
-//		return NO;
-//	}
-//	
-//	// Add read and write streams to run loop
-//	
-//	unsigned i, count = [_runLoopModes count];
-//	for(i = 0; i < count; i++)
-//	{
-//		CFStringRef runLoopMode = (CFStringRef)[_runLoopModes objectAtIndex:i];
-//		CFReadStreamScheduleWithRunLoop(_readStream, _runLoop, runLoopMode);
-//		CFWriteStreamScheduleWithRunLoop(_writeStream, _runLoop, runLoopMode);
-//	}
-//	
-//	return YES;
-//}
-//
-//- (BOOL)openStreamsAndReturnError:(NSError **)errPtr
-//{
-//	BOOL pass = YES;
-//	
-//	if(pass && !CFReadStreamOpen (_readStream))
-//	{
-//		NSLog (@"AsyncSocket %p couldn't open read stream,", self);
-//		pass = NO;
-//	}
-//	
-//	if(pass && !CFWriteStreamOpen (_writeStream))
-//	{
-//		NSLog (@"AsyncSocket %p couldn't open write stream,", self);
-//		pass = NO;
-//	}
-//	
-//	if(!pass)
-//	{
-//		if (errPtr) *errPtr = [self getStreamError];
-//	}
-//	
-//	return pass;
-//}
-//
-//- (void)doSocketOpen:(CFSocketRef)sock withCFSocketError:(CFSocketError)socketError
-//{
-//	//NSParameterAssert ((sock == theSocket4) || (sock == theSocket6));
-//	
+#pragma mark 测试
+// 
+- (void)doSocketOpen:(CFSocketRef)sock withCFSocketError:(CFSocketError)socketError
+{
+	//NSParameterAssert ((_sock == theSocket4) || (_sock == theSocket6));
+	
 //	if(socketError == kCFSocketTimeout || socketError == kCFSocketError)
 //	{
-//		NSLog(@"doSocketOpen error: %d", socketError);
-//		//[self closeWithError:[self getSocketError]];
+//		[self closeWithError:[self getSocketError]];
 //		return;
 //	}
-//	
-//	// Get the underlying native (BSD) socket
-//	CFSocketNativeHandle nativeSocket = CFSocketGetNative(sock);
-//	
-//	// Setup the socket so that invalidating the socket will not close the native socket
-//	CFSocketSetSocketFlags(sock, 0);
-//	
-//	// Invalidate and release the CFSocket - All we need from here on out is the nativeSocket
-//	// Note: If we don't invalidate the socket (leaving the native socket open)
-//	// then theReadStream and theWriteStream won't function properly.
-//	// Specifically, their callbacks won't work, with the exception of kCFStreamEventOpenCompleted.
-//	// I'm not entirely sure why this is, but I'm guessing that events on the socket fire to the CFSocket we created,
-//	// as opposed to the CFReadStream/CFWriteStream.
-//	
-//	CFSocketInvalidate(sock);
-//	CFRelease(sock);
-//	
-//	NSError *err;
-//	BOOL pass = YES;
-//	
-//	if(pass && ![self createStreamsFromNative:nativeSocket error:&err]) pass = NO;
-//	if(pass && ![self attachStreamsToRunLoop:nil error:&err])           pass = NO;
-//	if(pass && ![self openStreamsAndReturnError:&err])                  pass = NO;
-//	
+	
+	// Get the underlying native (BSD) socket
+	CFSocketNativeHandle nativeSocket = CFSocketGetNative(_sock);
+	
+	// Setup the socket so that invalidating the socket will not close the native socket
+	CFSocketSetSocketFlags(_sock, 0);
+	
+	// Invalidate and release the CFSocket - All we need from here on out is the nativeSocket
+	// Note: If we don't invalidate the socket (leaving the native socket open)
+	// then theReadStream and theWriteStream won't function properly.
+	// Specifically, their callbacks won't work, with the exception of kCFStreamEventOpenCompleted.
+	// I'm not entirely sure why this is, but I'm guessing that events on the socket fire to the CFSocket we created,
+	// as opposed to the CFReadStream/CFWriteStream.
+	
+	CFSocketInvalidate(_sock);
+	CFRelease(_sock);
+//	theSocket4 = NULL;
+//	theSocket6 = NULL;
+	
+	NSError *err;
+	BOOL pass = YES;
+	
+	if(pass && ![self doCreateStreamsFromNative:nativeSocket error:&err]) pass = NO;
+	if(pass && ![self attachStreamsToRunLoop:nil error:&err])           pass = NO;
+	if(pass && ![self openStreamsAndReturnError:&err])                  pass = NO;
+	
 //	if(!pass)
 //	{
-//		//[self closeWithError:err];
+//		[self closeWithError:err];
 //	}
-//}
+}
+/**
+ * Creates the CFReadStream and CFWriteStream from the given native socket.
+ * The CFSocket may be extracted from either stream after the streams have been opened.
+ * 
+ * Note: The given native socket must already be connected!
+ **/
+- (BOOL)doCreateStreamsFromNative:(CFSocketNativeHandle)native error:(NSError **)errPtr
+{
+	// Create the socket & streams.
+	CFStreamCreatePairWithSocket(kCFAllocatorDefault, native, &_readStream, &_writeStream);
+	if (_readStream == NULL || _writeStream == NULL)
+	{
+		NSError *err = [self getStreamError];
+		
+		NSLog (@"AsyncSocket %p couldn't create streams from accepted socket: %@", self, err);
+		
+		if (errPtr) *errPtr = err;
+		return NO;
+	}
+	
+	// Ensure the CF & BSD socket is closed when the streams are closed.
+	CFReadStreamSetProperty(_readStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
+	CFWriteStreamSetProperty(_writeStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
+	
+	return YES;
+}
 
-// 测试： 打开流
-- (BOOL)openStreams{
+/**
+ * Creates the CFReadStream and CFWriteStream from the given hostname and port number.
+ * The CFSocket may be extracted from either stream after the streams have been opened.
+ **/
+- (BOOL)createStreamsToHost:(NSString *)hostname onPort:(UInt16)port error:(NSError **)errPtr
+{
+	// Create the socket & streams.
+	CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault, (CFStringRef)hostname, port, &_readStream, &_writeStream);
+	if (_readStream == NULL || _writeStream == NULL)
+	{
+		if (errPtr) *errPtr = [self getStreamError];
+		return NO;
+	}
+	
+	// Ensure the CF & BSD socket is closed when the streams are closed.
+	CFReadStreamSetProperty(_readStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
+	CFWriteStreamSetProperty(_writeStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
+	
+	return YES;
+}
+
+// 打开流
+- (BOOL)openStreamsAndReturnError:(NSError **)errPtr
+{
 	BOOL pass = YES;
-	if(pass && !CFReadStreamOpen (_readStream)){
-		NSLog (@"AsyncSock %p couldn't open read stream,", self);
+	
+	if(pass && !CFReadStreamOpen (_readStream))
+	{
+		NSLog (@"AsyncSocket %p couldn't open read stream,", self);
 		pass = NO;
-	}		
-	if(pass && !CFWriteStreamOpen (_writeStream)){
+	}
+	
+	if(pass && !CFWriteStreamOpen (_writeStream))
+	{
 		NSLog (@"AsyncSocket %p couldn't open write stream,", self);
 		pass = NO;
 	}
 	
-//	if(!pass){
+//	if(!pass)
+//	{
 //		if (errPtr) *errPtr = [self getStreamError];
 //	}
 	
 	return pass;
 }
-
-static int i = 0;
+#pragma mark -
+#pragma mark 事件处理
+// CFSocket事件
 - (void)doCFSocketCallback:(CFSocketCallBackType)type forSocket:(CFSocketRef)sock
 			   withAddress:(NSData *)address withData:(const void *)data
 {
@@ -418,55 +277,30 @@ static int i = 0;
 		// the connect finishes
 		case kCFSocketConnectCallBack: 
 			NSLog(@"doCFSocketCallback: connected, ready to open streams");
-			
-			//char dd[1024] = "lalala";
-			char dd[1024];
-			//???: 请求或响应以必须以两个\n结束？
-			sprintf(dd, "GET /%s HTTP/1.1\r\nAccept: */*\r\nHost: %s:%d\r\nConnection: Close\r\n\r\n","gif8/021/gif0405_001.gif","online.sccnn.com",80);
-			
-			NSData* send = [NSData dataWithBytes:dd length:strlen(dd)];
-			
-			//???: 这个方法是UDP还是TCP？ 用它不用打开流？
-			if(CFSocketSendData(_sock, (CFDataRef)address, (CFDataRef)send, 10) != kCFSocketSuccess){
-				NSLog(@"send error");
-			}else{
-				NSLog(@"send success");
-			}
 			// The data argument is either NULL or a pointer to an SInt32 error code, if the connect failed.
-			//if(data)
-//				[self doSocketOpen:sock withCFSocketError:kCFSocketError];
-//			else
-//				[self doSocketOpen:sock withCFSocketError:kCFSocketSuccess];
+			if(data)
+				[self doSocketOpen:sock withCFSocketError:kCFSocketError];
+			else
+				[self doSocketOpen:sock withCFSocketError:kCFSocketSuccess];
 			break;
-		//???: 服务器写到客户端, 会截断数据？还是说 缓冲很小？
-		case kCFSocketDataCallBack:
-			NSLog(@"doCFSocketCallback: Incoming data ready");
-			NSLog(@"incoming data: %s", [(NSData*)data bytes]);
-			if(i == 0){
-				i++;
-				//???: 此方法不是以append方式打开文件？
-				[(NSData*)data writeToFile:[[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:@"dd.gif"] atomically:YES];
-			}
-			break;
-		//called when the socket is writable
-		case kCFSocketWriteCallBack:
-			NSLog(@"doCFSocketCallback: socket is writable");
-			
-			//if(CFSocketSendData(_sock, (CFDataRef)address, (CFDataRef)send, 10) != kCFSocketSuccess){
-//				NSLog(@"send error");
-//			}else{
-//				NSLog(@"send success");
-//			}
-			break;
-		//called when data is available to be read or a new connection is waiting to be accepted
-		case kCFSocketReadCallBack:
-			NSLog(@"doCFSocketCallback: kCFSocketReadCallBack");
-			
-			break;
-		case kCFSocketNoCallBack:
-			NSLog(@"doCFSocketCallback: kCFSocketNoCallBack");
-			
-			break;
+		//case kCFSocketDataCallBack:
+//			NSLog(@"doCFSocketCallback: Incoming data ready");
+//
+//			break;
+//		//called when the socket is writable
+//		case kCFSocketWriteCallBack:
+//			NSLog(@"doCFSocketCallback: socket is writable");
+//
+//			break;
+//		//called when data is available to be read or a new connection is waiting to be accepted
+//		case kCFSocketReadCallBack:
+//			NSLog(@"doCFSocketCallback: kCFSocketReadCallBack");
+//			
+//			break;
+//		case kCFSocketNoCallBack:
+//			NSLog(@"doCFSocketCallback: kCFSocketNoCallBack");
+//			
+//			break;
 //		case kCFSocketAcceptCallBack:
 //			[self doAcceptWithSocket: *((CFSocketNativeHandle *)pData)];
 //			break;
@@ -492,8 +326,167 @@ static void MyCFSocketCallback (CFSocketRef sref, CFSocketCallBackType callbackT
 	[pool release];
 }
 
+// 流事件
+/**
+ * This is the callback we setup for CFReadStream.
+ * This method does nothing but forward the call to it's Objective-C counterpart
+ **/
+static void MyCFReadStreamCallback (CFReadStreamRef stream, CFStreamEventType type, void *pInfo)
+{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	AsyncSock *theSocket = [[(AsyncSock *)pInfo retain] autorelease];
+	[theSocket doCFReadStreamCallback:type forStream:stream];
+	
+	[pool release];
+}
+
+/**
+ * This is the callback we setup for CFWriteStream.
+ * This method does nothing but forward the call to it's Objective-C counterpart
+ **/
+static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType type, void *pInfo)
+{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	AsyncSock *theSocket = [[(AsyncSock *)pInfo retain] autorelease];
+	[theSocket doCFWriteStreamCallback:type forStream:stream];
+	
+	[pool release];
+}
+
+- (void)doCFReadStreamCallback:(CFStreamEventType)type forStream:(CFReadStreamRef)stream
+{
+	NSParameterAssert(_readStream != NULL);
+	
+	CFStreamError err;
+	switch (type)
+	{
+		//The open has completed successfully.
+		case kCFStreamEventOpenCompleted:
+			NSLog(@"read stream opened success");
+			//[self doStreamOpen];
+			break;
+		//The stream has bytes to be read
+		case kCFStreamEventHasBytesAvailable:
+			//NSLog(@"the read stream has bytes to be read");
+			[self doBytesAvailable];
+			break;
+		//
+		case kCFStreamEventErrorOccurred:
+			NSLog(@"read stream err occur");
+			break;
+		case kCFStreamEventEndEncountered:
+			NSLog(@"read stream end");
+			break;
+		default:
+			NSLog (@"AsyncSocket %p received unexpected CFReadStream callback, CFStreamEventType %d.", self, type);
+	}
+}
+
+- (void)doCFWriteStreamCallback:(CFStreamEventType)type forStream:(CFWriteStreamRef)stream
+{
+	NSParameterAssert(_writeStream != NULL);
+	
+	switch (type)
+	{
+		case kCFStreamEventOpenCompleted:
+			NSLog(@"write stream opened success");
+			//[self doStreamOpen];
+			break;
+		case kCFStreamEventCanAcceptBytes:
+			NSLog(@"The stream can accept bytes for writing");
+			[self doSendBytes];
+			break;
+		case kCFStreamEventErrorOccurred:
+			NSLog(@"write stream err occur");
+			break;
+		case kCFStreamEventEndEncountered:
+			NSLog(@"write stream end");
+			break;
+		default:
+			NSLog (@"AsyncSocket %p received unexpected CFWriteStream callback, CFStreamEventType %d.", self, type);
+	}
+}
+
+// Sends error message and disconnects
+- (void)closeWithError:(NSError *)err
+{
+	//theFlags |= kClosingWithError;
+//	
+//	if (theFlags & kDidPassConnectMethod)
+//	{
+//		// Try to salvage what data we can.
+//		[self recoverUnreadData];
+//		
+//		// Let the delegate know, so it can try to recover if it likes.
+//		if ([theDelegate respondsToSelector:@selector(onSocket:willDisconnectWithError:)])
+//		{
+//			[theDelegate onSocket:self willDisconnectWithError:err];
+//		}
+//	}
+	//[self close];
+}
+
+- (void)doSendBytes
+{
+	if(_writeStream != NULL)
+	{
+		//BOOL done = NO, error = NO;
+		while (/* !done && !error && */CFWriteStreamCanAcceptBytes(_writeStream))
+		{
+//			// Figure out what to write.
+//			CFIndex bytesRemaining = [theCurrentWrite->buffer length] - theCurrentWrite->bytesDone;
+//			CFIndex bytesToWrite = (bytesRemaining < WRITE_CHUNKSIZE) ? bytesRemaining : WRITE_CHUNKSIZE;
+//			UInt8 *writestart = (UInt8 *)([theCurrentWrite->buffer bytes] + theCurrentWrite->bytesDone);
+//			
+//			// Write.
+//			CFIndex bytesWritten = CFWriteStreamWrite (theWriteStream, writestart, bytesToWrite);
+//			
+//			// Check results.
+//			if (bytesWritten < 0)
+//			{
+//				bytesWritten = 0;
+//				error = YES;
+//			}
+//			
+//			// Is packet done?
+//			theCurrentWrite->bytesDone += bytesWritten;
+//			done = ([theCurrentWrite->buffer length] == theCurrentWrite->bytesDone);
+			
+			char dd[1024];
+			//???: 请求或响应以必须以两个\n结束？
+			sprintf(dd, "GET /%s HTTP/1.1\r\nAccept: */*\r\nHost: %s:%d\r\nConnection: Close\r\n\r\n","gif8/021/gif0405_001.gif","online.sccnn.com",80);
+			CFIndex bytesWritten = CFWriteStreamWrite (_writeStream, dd, strlen(dd));
+		}
+		
+//		if(done)
+//		{
+//			[self completeCurrentWrite];
+//			if (!error) [self scheduleDequeueWrite];
+//		}
+//		
+//		if(error)
+//		{
+//			CFStreamError err = CFWriteStreamGetError(theWriteStream);
+//			[self closeWithError:[self errorFromCFStreamError:err]];
+//			return;
+//		}
+	}
+}
+
+- (void)doBytesAvailable{
+	UInt8 buf[102400];
+	CFIndex datalen = CFReadStreamRead(_readStream, buf, sizeof buf);
+
+//	NSLog(@"%s", buf);
+//	NSData* data = [NSData dataWithBytes:buf length:datalen];
+//	[data writeToFile:[[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:@"ddd.txt"] atomically:NO];
+	[propertyListViewController write:(char *)buf toFile:@"dee.gif"];
+}
+
 #pragma mark -
-#pragma mark 创建socket并加入runloop
+#pragma mark runloop
 
 - (CFSocketRef)createSocket:(CFOptionFlags)callbackTypes{
 	CFSocketRef sock = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, 
@@ -505,6 +498,66 @@ static void MyCFSocketCallback (CFSocketRef sref, CFSocketCallBackType callbackT
 	CFRunLoopSourceRef source = CFSocketCreateRunLoopSource(kCFAllocatorDefault, _sock, 0);
 	_runLoop = (_runLoop == nil) ? CFRunLoopGetCurrent() : _runLoop;
 	CFRunLoopAddSource (_runLoop, source, kCFRunLoopCommonModes);
+}
+
+- (BOOL)attachStreamsToRunLoop:(NSRunLoop *)runLoop error:(NSError **)errPtr
+{
+	// Get the CFRunLoop to which the socket should be attached.
+	_runLoop = (runLoop == nil) ? CFRunLoopGetCurrent() : [runLoop getCFRunLoop];
+	
+	// Setup read stream callbacks
+	
+	CFOptionFlags readStreamEvents = kCFStreamEventHasBytesAvailable | 
+	kCFStreamEventErrorOccurred     |
+	kCFStreamEventEndEncountered    |
+	kCFStreamEventOpenCompleted;
+	
+	if (!CFReadStreamSetClient(_readStream,
+							   readStreamEvents,
+							   (CFReadStreamClientCallBack)&MyCFReadStreamCallback,
+							   (CFStreamClientContext *)(&_context)))
+	{
+		NSError *err = [self getStreamError];
+		
+		NSLog (@"AsyncSocket %p couldn't attach read stream to run-loop,", self);
+		NSLog (@"Error: %@", err);
+		
+		if (errPtr) *errPtr = err;
+		return NO;
+	}
+	
+	// Setup write stream callbacks
+	
+	CFOptionFlags writeStreamEvents = kCFStreamEventCanAcceptBytes |
+	kCFStreamEventErrorOccurred  |
+	kCFStreamEventEndEncountered |
+	kCFStreamEventOpenCompleted;
+	
+	if (!CFWriteStreamSetClient (_writeStream,
+								 writeStreamEvents,
+								 (CFWriteStreamClientCallBack)&MyCFWriteStreamCallback,
+								 (CFStreamClientContext *)(&_context)))
+	{
+		NSError *err = [self getStreamError];
+		
+		NSLog (@"AsyncSocket %p couldn't attach write stream to run-loop,", self);
+		NSLog (@"Error: %@", err);
+		
+		if (errPtr) *errPtr = err;
+		return NO;
+	}
+	
+	// Add read and write streams to run loop
+	
+	unsigned i, count = [_runLoopModes count];
+	for(i = 0; i < count; i++)
+	{
+		CFStringRef runLoopMode = (CFStringRef)[_runLoopModes objectAtIndex:i];
+		CFReadStreamScheduleWithRunLoop(_readStream, _runLoop, runLoopMode);
+		CFWriteStreamScheduleWithRunLoop(_writeStream, _runLoop, runLoopMode);
+	}
+	
+	return YES;
 }
 
 @end
