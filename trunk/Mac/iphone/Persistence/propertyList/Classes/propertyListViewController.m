@@ -221,14 +221,14 @@ const double URLCacheInterval = 86400.0;
 	return len;
 }
 
-- (void)write:(const char *)buffer toFile:(NSString *)fileName
++ (void)write:(const char *)buffer toFile:(NSString *)fileName
 {
 	const char *destPath = [[[propertyListViewController appDocumentsDir] stringByAppendingPathComponent:fileName] UTF8String];
 
-	if([self.copyto.text length] != 0)
-		destPath = [[self.copyto.text stringByAppendingPathComponent:fileName] UTF8String];
+	//if([self.copyto.text length] != 0)
+//		destPath = [[self.copyto.text stringByAppendingPathComponent:fileName] UTF8String];
 	
-	printf("\n^^^^^^^destPath: %s", destPath);
+	//printf("\n^^^^^^^destPath: %s", destPath);
 	FILE *fpdest = fopen(destPath, "ab+");
 	if(fpdest){
 		//[written setText:@""];
@@ -236,10 +236,10 @@ const double URLCacheInterval = 86400.0;
 		fwrite(buffer, 1, fileLen, fpdest);
 		fclose(fpdest);
 	}
-	else {
-		[written setText:@"fopen fail"];
-		fclose(fpdest);
-	}
+	//else {
+//		[written setText:@"fopen fail"];
+//		fclose(fpdest);
+//	}
 }
 
 

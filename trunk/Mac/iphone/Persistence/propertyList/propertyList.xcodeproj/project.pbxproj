@@ -14,7 +14,6 @@
 		1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7D2F290FCB999300B59364 /* Streams.m */; };
 		1BBB25B70FB3F0C400B26386 /* URLCache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB25B60FB3F0C400B26386 /* URLCache.plist */; };
 		1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */; };
-		1BE627E30FF23B1B00ED75AB /* AsyncSock_bak.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE627E20FF23B1B00ED75AB /* AsyncSock_bak.m */; };
 		1BEEE4300FD7A10E00426E20 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BEEE42F0FD7A10E00426E20 /* Localizable.strings */; };
 		1BEEE4690FD7AC3C00426E20 /* propertyListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEEE4680FD7AC3C00426E20 /* propertyListViewController.xib */; };
 		1BF860EF0FEB224100134551 /* AsyncSock.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF860EE0FEB224100134551 /* AsyncSock.m */; };
@@ -39,7 +38,6 @@
 		1BBB25B60FB3F0C400B26386 /* URLCache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = URLCache.plist; sourceTree = "<group>"; };
 		1BBB25ED0FB3F4DE00B26386 /* URLCacheConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLCacheConnection.h; sourceTree = "<group>"; };
 		1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLCacheConnection.m; sourceTree = "<group>"; };
-		1BE627E20FF23B1B00ED75AB /* AsyncSock_bak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSock_bak.m; sourceTree = "<group>"; };
 		1BEEE42D0FD7A0FC00426E20 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1BEEE45B0FD7A6F300426E20 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_CN; path = zh_CN.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1BEEE46A0FD7AC4800426E20 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = zh_CN.lproj/propertyListViewController.xib; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 			children = (
 				1BF860ED0FEB224100134551 /* AsyncSock.h */,
 				1BF860EE0FEB224100134551 /* AsyncSock.m */,
-				1BE627E20FF23B1B00ED75AB /* AsyncSock_bak.m */,
 			);
 			name = asyncSocketWrap;
 			sourceTree = "<group>";
@@ -231,7 +228,6 @@
 				1B3D2AB90FC3EE1A00ED6450 /* httpClient.m in Sources */,
 				1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */,
 				1BF860EF0FEB224100134551 /* AsyncSock.m in Sources */,
-				1BE627E30FF23B1B00ED75AB /* AsyncSock_bak.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,4 +33,15 @@
 - (NSData*)getRemoteAddr:(NSString *)hostname port:(UInt16)port;
 - (BOOL)createStreamsToHost:(NSString *)hostname onPort:(UInt16)port error:(NSError **)errPtr;
 - (void)test;
+
+// not for AsyncSock_bak.m
+- (BOOL)doCreateStreamsFromNative:(CFSocketNativeHandle)native error:(NSError **)errPtr;
+- (BOOL)createStreamsToHost:(NSString *)hostname onPort:(UInt16)port error:(NSError **)errPtr;
+- (BOOL)openStreamsAndReturnError:(NSError **)errPtr;
+- (void)doCFReadStreamCallback:(CFStreamEventType)type forStream:(CFReadStreamRef)stream;
+- (void)doCFWriteStreamCallback:(CFStreamEventType)type forStream:(CFWriteStreamRef)stream;
+- (void)closeWithError:(NSError *)err;
+- (BOOL)attachStreamsToRunLoop:(NSRunLoop *)runLoop error:(NSError **)errPtr;
+- (void)doSendBytes;
+- (void)doBytesAvailable;
 @end
