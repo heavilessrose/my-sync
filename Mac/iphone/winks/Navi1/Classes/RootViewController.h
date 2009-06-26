@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 
 
+/*!
+    @class       RootViewController 
+    @superclass  UIViewController {
+    @abstract    navigationController的根视图控制器
+    @discussion  <#(comprehensive description)#>
+*/
 @interface RootViewController : UIViewController {
-
+	IBOutlet UIButton *pressMe;
 }
 
+@property (nonatomic, retain) IBOutlet UIButton *pressMe;
+
+- (IBAction)pressMe:(id)sender;
 @end

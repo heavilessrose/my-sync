@@ -12,6 +12,9 @@
 		1B20451A0FF379C400CF5F9E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2045190FF379C400CF5F9E /* SecondViewController.m */; };
 		1B20451C0FF37AA800CF5F9E /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B20451B0FF37AA800CF5F9E /* FirstView.xib */; };
 		1B20451E0FF37AB400CF5F9E /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B20451D0FF37AB400CF5F9E /* SecondView.xib */; };
+		1BCF409A0FF4A50500C4F3FB /* RootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BCF40990FF4A50500C4F3FB /* RootView.xib */; };
+		1BCF40A00FF4A68C00C4F3FB /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BCF409E0FF4A68C00C4F3FB /* whiteButton.png */; };
+		1BCF40A10FF4A68C00C4F3FB /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BCF409F0FF4A68C00C4F3FB /* blueButton.png */; };
 		1D3623260D0F684500981E51 /* Navi1AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Navi1AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -29,6 +32,9 @@
 		1B2045190FF379C400CF5F9E /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		1B20451B0FF37AA800CF5F9E /* FirstView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstView.xib; sourceTree = "<group>"; };
 		1B20451D0FF37AB400CF5F9E /* SecondView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondView.xib; sourceTree = "<group>"; };
+		1BCF40990FF4A50500C4F3FB /* RootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootView.xib; sourceTree = "<group>"; };
+		1BCF409E0FF4A68C00C4F3FB /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteButton.png; path = ../../official_examples/UICatalog/images/whiteButton.png; sourceTree = SOURCE_ROOT; };
+		1BCF409F0FF4A68C00C4F3FB /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blueButton.png; path = ../../official_examples/UICatalog/images/blueButton.png; sourceTree = SOURCE_ROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* Navi1AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navi1AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* Navi1AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Navi1AppDelegate.m; sourceTree = "<group>"; };
@@ -102,10 +108,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BCF409E0FF4A68C00C4F3FB /* whiteButton.png */,
+				1BCF409F0FF4A68C00C4F3FB /* blueButton.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				1B20451B0FF37AA800CF5F9E /* FirstView.xib */,
 				1B20451D0FF37AB400CF5F9E /* SecondView.xib */,
+				1BCF40990FF4A50500C4F3FB /* RootView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -165,6 +174,9 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				1B20451C0FF37AA800CF5F9E /* FirstView.xib in Resources */,
 				1B20451E0FF37AB400CF5F9E /* SecondView.xib in Resources */,
+				1BCF409A0FF4A50500C4F3FB /* RootView.xib in Resources */,
+				1BCF40A00FF4A68C00C4F3FB /* whiteButton.png in Resources */,
+				1BCF40A10FF4A68C00C4F3FB /* blueButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
