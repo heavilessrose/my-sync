@@ -506,7 +506,6 @@ static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType 
 	_runLoop = (runLoop == nil) ? CFRunLoopGetCurrent() : [runLoop getCFRunLoop];
 	
 	// Setup read stream callbacks
-	
 	CFOptionFlags readStreamEvents = kCFStreamEventHasBytesAvailable | 
 	kCFStreamEventErrorOccurred     |
 	kCFStreamEventEndEncountered    |
@@ -519,7 +518,7 @@ static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType 
 	{
 		NSError *err = [self getStreamError];
 		
-		NSLog (@"AsyncSocket %p couldn't attach read stream to run-loop,", self);
+		NSLog (@"AsyncSock %p couldn't attach read stream to run-loop,", self);
 		NSLog (@"Error: %@", err);
 		
 		if (errPtr) *errPtr = err;
@@ -527,7 +526,6 @@ static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType 
 	}
 	
 	// Setup write stream callbacks
-	
 	CFOptionFlags writeStreamEvents = kCFStreamEventCanAcceptBytes |
 	kCFStreamEventErrorOccurred  |
 	kCFStreamEventEndEncountered |
@@ -548,7 +546,6 @@ static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType 
 	}
 	
 	// Add read and write streams to run loop
-	
 	unsigned i, count = [_runLoopModes count];
 	for(i = 0; i < count; i++)
 	{
