@@ -1,8 +1,8 @@
 //
 //  FirstViewController.h
-//  Navi1
+//  TabiNavi
 //
-//  Created by wang luke on 6/25/09.
+//  Created by wang luke on 6/29/09.
 //  Copyright 2009 luke. All rights reserved.
 //
 
@@ -10,11 +10,10 @@
 
 
 @interface FirstViewController : UIViewController {
-	IBOutlet UIButton *pressMe;
+	IBOutlet UIButton *next;
 }
 
+@property (nonatomic, retain) IBOutlet UIButton *next;
 
-@property (nonatomic, retain) IBOutlet UIButton *pressMe;
-
-- (IBAction)pressMe:(id)sender;
+- (IBAction)nextPressed:(id)sender;
 @end

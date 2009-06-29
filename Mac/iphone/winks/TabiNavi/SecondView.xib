@@ -36,32 +36,10 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUITextField" id="944346379">
+					<object class="IBUIButton" id="639927001">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 360}, {280, 31}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUIText">First View</string>
-						<int key="IBUIBorderStyle">3</int>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="2482800">
-								<int key="NSID">2</int>
-							</object>
-						</object>
-						<bool key="IBUIClearsOnBeginEditing">YES</bool>
-						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
-						<float key="IBUIMinimumFontSize">1.700000e+01</float>
-						<object class="IBUITextInputTraits" key="IBUITextInputTraits"/>
-					</object>
-					<object class="IBUIButton" id="402152655">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{124, 180}, {72, 37}}</string>
+						<string key="NSFrame">{{101, 167}, {113, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -72,10 +50,11 @@
 							<double key="NSSize">1.500000e+01</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<string key="IBUIHighlightedTitle">PressMe</string>
-						<string key="IBUIDisabledTitle">PressMe</string>
-						<string key="IBUISelectedTitle">PressMe</string>
-						<string key="IBUINormalTitle">PressMe</string>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUIHighlightedTitle">SecondView</string>
+						<string key="IBUIDisabledTitle">SecondView</string>
+						<string key="IBUISelectedTitle">SecondView</string>
+						<string key="IBUINormalTitle">SecondView</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -86,12 +65,11 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 411}</string>
+				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="2482800"/>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MSAwLjE1OTkzNTk1IDAuNDgzMzE1OTQAA</bytes>
 				</object>
 			</object>
 		</object>
@@ -107,19 +85,19 @@
 					<int key="connectionID">4</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">pressMe:</string>
-						<reference key="source" ref="402152655"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">next</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="639927001"/>
 					</object>
-					<int key="connectionID">6</int>
+					<int key="connectionID">5</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">pressMe</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="402152655"/>
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">nextPressed:</string>
+						<reference key="source" ref="639927001"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">7</int>
 				</object>
@@ -140,8 +118,7 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="944346379"/>
-							<reference ref="402152655"/>
+							<reference ref="639927001"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -158,12 +135,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
-						<reference key="object" ref="944346379"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="402152655"/>
+						<reference key="object" ref="639927001"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -177,14 +149,12 @@
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
-					<string>5.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>FirstViewController</string>
+					<string>SecondViewController</string>
 					<string>UIResponder</string>
-					<string>{{335, 269}, {320, 411}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{264, 107}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -215,25 +185,25 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">FirstViewController</string>
+					<string key="className">SecondViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">pressMe:</string>
+						<string key="NS.key.0">nextPressed:</string>
 						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">pressMe</string>
+						<string key="NS.key.0">next</string>
 						<string key="NS.object.0">UIButton</string>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/FirstViewController.h</string>
+						<string key="minorKey">Classes/SecondViewController.h</string>
 					</object>
 				</object>
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">Navi1.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">TabiNavi.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>

@@ -7,13 +7,24 @@
 //
 
 #import "FirstViewController.h"
+#import "SecondViewController.h"
 
 
 @implementation FirstViewController
+@synthesize pressMe;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	self.title = @"FirstView";
+	
+	UIImage *buttonImageNormal = [UIImage imageNamed:@"whiteButton.png"];
+	UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+	[pressMe setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
+	
+	UIImage *buttonImagePressed = [UIImage imageNamed:@"blueButton.png"];
+	UIImage *stretchableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+	[pressMe setBackgroundImage:stretchableButtonImagePressed forState:UIControlStateHighlighted];
+	
     [super viewDidLoad];
 }
 
@@ -33,5 +44,11 @@
     [super dealloc];
 }
 
-
+#pragma mark -
+// 切换到secondView
+- (IBAction)pressMe:(id)sender{
+	SecondViewController *secondViewController = [[SecondViewController alloc] initWithNibName:@"SecondView" bundle:nil];
+	[self.navigationController pushViewController:secondViewController animated:YES];
+	[secondViewController release];
+}
 @end
