@@ -1,3 +1,18 @@
+在app的环境下，系统会自动启动run loop，并初始化，按键事件的处理，定时器，刷屏等依赖于run loop的循环处理环境，
+而在daemon的环境下，run loop并不会自动启动，需要手动来启动，
+当然也可以自己建立一套事件循环处理机制，不过目前找到的定时器接口依赖于系统的run loop机制，
+还有一些其他的高级接口也可能依赖于此，所以最好使用系统的
+
+第一步：创建  
+ + (NSRunLoop *)currentRunLoop，该函数会返回当前线程的run loop，如果没有，则创建
+第二步：创建事件源
+CFRunLoopSourceRef CFRunLoopSourceCreate ( CFAllocatorRef allocator,CFIndex order,CFRunLoopSourceContext *context)
+第三步：添加事件源到run loop
+void CFRunLoopAddSource (CFRunLoopRef rl, CFRunLoopSourceRef source, CFStringRef mode)
+第四步：启动run loop
+- (void)run,启动run loop前必须先添加事件源，否则run loop会立即返回
+
+
 http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html
 
 

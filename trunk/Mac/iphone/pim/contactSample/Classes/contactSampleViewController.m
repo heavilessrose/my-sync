@@ -22,7 +22,7 @@
     [super dealloc];
 }
 
-// 选取器
+// 显示选取器
 - (IBAction)showPicker:(id)sender 
 {
 	// 显示联系人选择
@@ -33,21 +33,21 @@
 }
 
 
-- (void)viewDidLoad
-{
-	// 注册接收电话本修改的通知
-	ABAddressBookRegisterExternalChangeCallback (addressBook,
-													  MyAddressBookExternalChangeCallback,
-													  NULL);
-}
-
-// 获得电话本修改通知后的处理函数
-void *MyAddressBookExternalChangeCallback (ABAddressBookRef addressBook,
-										   CFDictionaryRef info,
-										   void *context)
-{
-	
-}
+//- (void)viewDidLoad
+//{
+//	// 注册接收电话本修改的通知
+//	ABAddressBookRegisterExternalChangeCallback (addressBook,
+//													  MyAddressBookExternalChangeCallback,
+//													  NULL);
+//}
+//
+//// 获得电话本修改通知后的处理函数
+//void *MyAddressBookExternalChangeCallback (ABAddressBookRef addressBook,
+//										   CFDictionaryRef info,
+//										   void *context)
+//{
+//	
+//}
 
 #pragma mark -
 #pragma mark Application Delegate
