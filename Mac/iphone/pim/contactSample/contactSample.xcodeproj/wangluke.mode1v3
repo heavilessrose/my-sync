@@ -273,6 +273,7 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
@@ -337,7 +338,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1BED77AA0FE89E0E005FC179</string>
+										<string>1BA72B9B0FF8D16E002EC1B7</string>
 										<key>history</key>
 										<array>
 											<string>1BC5EADF0FC6513D0020C908</string>
@@ -346,21 +347,23 @@
 											<string>1BC5EAF50FC657B90020C908</string>
 											<string>1BC5EB180FC66B270020C908</string>
 											<string>1BC5EB380FC679D80020C908</string>
-											<string>1BC5EC280FC6A5C40020C908</string>
-											<string>1B3A35EC0FCA759400F5BED1</string>
 											<string>1B3A35ED0FCA759400F5BED1</string>
-											<string>1BED77A90FE89E0E005FC179</string>
-										</array>
-										<key>nextStack</key>
-										<array>
-											<string>1B3A35F10FCA759400F5BED1</string>
+											<string>1BA72A8D0FF898AA002EC1B7</string>
+											<string>1BA72B0D0FF8B1D8002EC1B7</string>
+											<string>1BA72B0F0FF8B1D8002EC1B7</string>
+											<string>1BA72B0B0FF8B1CD002EC1B7</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>1BC5EAFC0FC657B90020C908</string>
 											<string>1BC5EB1D0FC66B270020C908</string>
-											<string>1BC5EB200FC66B270020C908</string>
 											<string>1BC5EC2C0FC6A5C40020C908</string>
+											<string>1BA72A680FF89686002EC1B7</string>
+											<string>1BA72A900FF898AA002EC1B7</string>
+											<string>1BA72A910FF898AA002EC1B7</string>
+											<string>1BA72A930FF898AA002EC1B7</string>
+											<string>1BA72A9A0FF89969002EC1B7</string>
+											<string>1BA72B100FF8B1D8002EC1B7</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -418,9 +421,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>1BED77AB0FE89E0E005FC179</string>
+				<string>1BA72A6A0FF89686002EC1B7</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>1BED77AC0FE89E0E005FC179</string>
+				<string>1BA72A6B0FF89686002EC1B7</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -554,7 +557,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>/Users/wangluke/Documents/Mac/iphone/pim/contactSample/contactSample.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>1BB8AC740FC5089B0011CDF5</string>
 	</array>
 	<key>WindowString</key>
 	<string>-1 131 1280 871 0 0 1280 1002 </string>
@@ -573,12 +578,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>contactSampleViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -634,7 +641,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1BB8AC740FC5089B0011CDF5</string>
-				<string>1BD1DF920FCA34120021DB89</string>
+				<string>1BA72A760FF896DC002EC1B7</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -676,8 +683,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {316, 201}}</string>
-											<string>{{316, 0}, {378, 201}}</string>
+											<string>{{0, 0}, {316, 202}}</string>
+											<string>{{316, 0}, {378, 202}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -692,8 +699,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {694, 201}}</string>
-											<string>{{0, 201}, {694, 180}}</string>
+											<string>{{0, 0}, {694, 202}}</string>
+											<string>{{0, 202}, {694, 179}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -726,7 +733,7 @@
 										<real>148</real>
 									</array>
 									<key>Frame</key>
-									<string>{{316, 0}, {378, 201}}</string>
+									<string>{{316, 0}, {378, 202}}</string>
 									<key>RubberWindowFrame</key>
 									<string>21 557 694 422 0 0 1280 1002 </string>
 								</dict>
@@ -754,13 +761,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>1B3A35F40FCA759400F5BED1</string>
+				<string>1BA72A7E0FF89700002EC1B7</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>1B3A35F50FCA759400F5BED1</string>
-				<string>1B3A35F60FCA759400F5BED1</string>
-				<string>1B3A35F70FCA759400F5BED1</string>
-				<string>1B3A35F80FCA759400F5BED1</string>
-				<string>1B3A35F90FCA759400F5BED1</string>
+				<string>1BA72A7F0FF89700002EC1B7</string>
+				<string>1BA72A800FF89700002EC1B7</string>
+				<string>1BA72A810FF89700002EC1B7</string>
+				<string>1BA72A820FF89700002EC1B7</string>
+				<string>1BA72A830FF89700002EC1B7</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -924,7 +931,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>1BD1DF990FCA34120021DB89</string>
+				<string>1BA72A840FF89700002EC1B7</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -934,7 +941,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
