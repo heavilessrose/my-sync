@@ -1,15 +1,15 @@
 //
-//  SecondViewController.m
-//  Navi1
+//  ThirdViewController.m
+//  TabiNavi
 //
-//  Created by wang luke on 6/25/09.
+//  Created by wang luke on 6/29/09.
 //  Copyright 2009 luke. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "ThirdViewController.h"
 
 
-@implementation SecondViewController
+@implementation ThirdViewController
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -29,7 +29,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	self.title = @"SecondView";
+	self.title = @"ThirdView";
     [super viewDidLoad];
 }
 

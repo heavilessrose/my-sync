@@ -1,15 +1,16 @@
 //
-//  SecondViewController.m
-//  Navi1
+//  MyTableViewController.m
+//  TabiNavi
 //
-//  Created by wang luke on 6/25/09.
+//  Created by wang luke on 6/29/09.
 //  Copyright 2009 luke. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "MyTableViewController.h"
 
 
-@implementation SecondViewController
+@implementation MyTableViewController
+@synthesize tableData;
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -29,8 +30,9 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	self.title = @"SecondView";
     [super viewDidLoad];
+	[super viewDidLoad];
+	tableData = [[NSArray alloc] initWithObjects:@"foo", @"bar", @"baz", nil];
 }
 
 /*
@@ -51,5 +53,26 @@
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark Table view delegates
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	
+	return [tableData count];
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	static NSString *CellIdentifier = @"Cell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
+									   reuseIdentifier:CellIdentifier] autorelease];
+	}
+	
+	// Set up the cell...
+	cell.text = [tableData objectAtIndex:indexPath.row];
+	
+	return cell;
+}
 @end

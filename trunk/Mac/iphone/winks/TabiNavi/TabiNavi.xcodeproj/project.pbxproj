@@ -1,0 +1,320 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1BA729370FF86C6D002EC1B7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729360FF86C6D002EC1B7 /* FirstViewController.m */; };
+		1BA7293A0FF86C7D002EC1B7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729390FF86C7D002EC1B7 /* SecondViewController.m */; };
+		1BA7293D0FF86C88002EC1B7 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7293C0FF86C88002EC1B7 /* ThirdViewController.m */; };
+		1BA7293F0FF86CA6002EC1B7 /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA7293E0FF86CA6002EC1B7 /* FirstView.xib */; };
+		1BA729410FF86CB3002EC1B7 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729400FF86CB3002EC1B7 /* SecondView.xib */; };
+		1BA729430FF86CBF002EC1B7 /* ThirdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729420FF86CBF002EC1B7 /* ThirdView.xib */; };
+		1BA729AF0FF8821E002EC1B7 /* MyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729AE0FF8821E002EC1B7 /* MyNavigationController.m */; };
+		1BA729BB0FF885B1002EC1B7 /* dependenticon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729B60FF885B1002EC1B7 /* dependenticon.png */; };
+		1BA729BC0FF885B1002EC1B7 /* doubleicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729B70FF885B1002EC1B7 /* doubleicon.png */; };
+		1BA729BD0FF885B1002EC1B7 /* singleicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729B80FF885B1002EC1B7 /* singleicon.png */; };
+		1BA729BE0FF885B1002EC1B7 /* toolicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729B90FF885B1002EC1B7 /* toolicon.png */; };
+		1BA729BF0FF885B1002EC1B7 /* clockicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729BA0FF885B1002EC1B7 /* clockicon.png */; };
+		1BA72A0D0FF88B5B002EC1B7 /* MyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA72A0C0FF88B5B002EC1B7 /* MyTableViewController.m */; };
+		1BA72A0F0FF88C45002EC1B7 /* FilesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72A0E0FF88C45002EC1B7 /* FilesView.xib */; };
+		1BA72A140FF88DB5002EC1B7 /* MyNavTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA72A130FF88DB5002EC1B7 /* MyNavTableController.m */; };
+		1D3623260D0F684500981E51 /* TabiNaviAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TabiNaviAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1BA729350FF86C6D002EC1B7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		1BA729360FF86C6D002EC1B7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		1BA729380FF86C7D002EC1B7 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		1BA729390FF86C7D002EC1B7 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		1BA7293B0FF86C88002EC1B7 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		1BA7293C0FF86C88002EC1B7 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		1BA7293E0FF86CA6002EC1B7 /* FirstView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstView.xib; sourceTree = "<group>"; };
+		1BA729400FF86CB3002EC1B7 /* SecondView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondView.xib; sourceTree = "<group>"; };
+		1BA729420FF86CBF002EC1B7 /* ThirdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdView.xib; sourceTree = "<group>"; };
+		1BA729AD0FF8821E002EC1B7 /* MyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationController.h; sourceTree = "<group>"; };
+		1BA729AE0FF8821E002EC1B7 /* MyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationController.m; sourceTree = "<group>"; };
+		1BA729B60FF885B1002EC1B7 /* dependenticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dependenticon.png; path = ../../tabBasedMultiView/dependenticon.png; sourceTree = SOURCE_ROOT; };
+		1BA729B70FF885B1002EC1B7 /* doubleicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = doubleicon.png; path = ../../tabBasedMultiView/doubleicon.png; sourceTree = SOURCE_ROOT; };
+		1BA729B80FF885B1002EC1B7 /* singleicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = singleicon.png; path = ../../tabBasedMultiView/singleicon.png; sourceTree = SOURCE_ROOT; };
+		1BA729B90FF885B1002EC1B7 /* toolicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolicon.png; path = ../../tabBasedMultiView/toolicon.png; sourceTree = SOURCE_ROOT; };
+		1BA729BA0FF885B1002EC1B7 /* clockicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clockicon.png; path = ../../tabBasedMultiView/clockicon.png; sourceTree = SOURCE_ROOT; };
+		1BA72A0B0FF88B5B002EC1B7 /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewController.h; sourceTree = "<group>"; };
+		1BA72A0C0FF88B5B002EC1B7 /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewController.m; sourceTree = "<group>"; };
+		1BA72A0E0FF88C45002EC1B7 /* FilesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilesView.xib; sourceTree = "<group>"; };
+		1BA72A120FF88DB5002EC1B7 /* MyNavTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavTableController.h; sourceTree = "<group>"; };
+		1BA72A130FF88DB5002EC1B7 /* MyNavTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavTableController.m; sourceTree = "<group>"; };
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* TabiNaviAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabiNaviAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* TabiNaviAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabiNaviAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* TabiNavi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabiNavi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* TabiNavi_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabiNavi_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* TabiNaviAppDelegate.h */,
+				1D3623250D0F684500981E51 /* TabiNaviAppDelegate.m */,
+				1BA729AD0FF8821E002EC1B7 /* MyNavigationController.h */,
+				1BA729AE0FF8821E002EC1B7 /* MyNavigationController.m */,
+				1BA72A120FF88DB5002EC1B7 /* MyNavTableController.h */,
+				1BA72A130FF88DB5002EC1B7 /* MyNavTableController.m */,
+				1BA72A0B0FF88B5B002EC1B7 /* MyTableViewController.h */,
+				1BA72A0C0FF88B5B002EC1B7 /* MyTableViewController.m */,
+				1BA729350FF86C6D002EC1B7 /* FirstViewController.h */,
+				1BA729360FF86C6D002EC1B7 /* FirstViewController.m */,
+				1BA729380FF86C7D002EC1B7 /* SecondViewController.h */,
+				1BA729390FF86C7D002EC1B7 /* SecondViewController.m */,
+				1BA7293B0FF86C88002EC1B7 /* ThirdViewController.h */,
+				1BA7293C0FF86C88002EC1B7 /* ThirdViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* TabiNavi.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1BA729C00FF885B5002EC1B7 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				1BA729B60FF885B1002EC1B7 /* dependenticon.png */,
+				1BA729B70FF885B1002EC1B7 /* doubleicon.png */,
+				1BA729B80FF885B1002EC1B7 /* singleicon.png */,
+				1BA729B90FF885B1002EC1B7 /* toolicon.png */,
+				1BA729BA0FF885B1002EC1B7 /* clockicon.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* TabiNavi_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1BA729C00FF885B5002EC1B7 /* images */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				1BA7293E0FF86CA6002EC1B7 /* FirstView.xib */,
+				1BA729400FF86CB3002EC1B7 /* SecondView.xib */,
+				1BA729420FF86CBF002EC1B7 /* ThirdView.xib */,
+				1BA72A0E0FF88C45002EC1B7 /* FilesView.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* TabiNavi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TabiNavi" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TabiNavi;
+			productName = TabiNavi;
+			productReference = 1D6058910D05DD3D006BFB54 /* TabiNavi.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TabiNavi" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* TabiNavi */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				1BA7293F0FF86CA6002EC1B7 /* FirstView.xib in Resources */,
+				1BA729410FF86CB3002EC1B7 /* SecondView.xib in Resources */,
+				1BA729430FF86CBF002EC1B7 /* ThirdView.xib in Resources */,
+				1BA729BB0FF885B1002EC1B7 /* dependenticon.png in Resources */,
+				1BA729BC0FF885B1002EC1B7 /* doubleicon.png in Resources */,
+				1BA729BD0FF885B1002EC1B7 /* singleicon.png in Resources */,
+				1BA729BE0FF885B1002EC1B7 /* toolicon.png in Resources */,
+				1BA729BF0FF885B1002EC1B7 /* clockicon.png in Resources */,
+				1BA72A0F0FF88C45002EC1B7 /* FilesView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* TabiNaviAppDelegate.m in Sources */,
+				1BA729370FF86C6D002EC1B7 /* FirstViewController.m in Sources */,
+				1BA7293A0FF86C7D002EC1B7 /* SecondViewController.m in Sources */,
+				1BA7293D0FF86C88002EC1B7 /* ThirdViewController.m in Sources */,
+				1BA729AF0FF8821E002EC1B7 /* MyNavigationController.m in Sources */,
+				1BA72A0D0FF88B5B002EC1B7 /* MyTableViewController.m in Sources */,
+				1BA72A140FF88DB5002EC1B7 /* MyNavTableController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TabiNavi_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = TabiNavi;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TabiNavi_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = TabiNavi;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.2;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TabiNavi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TabiNavi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
