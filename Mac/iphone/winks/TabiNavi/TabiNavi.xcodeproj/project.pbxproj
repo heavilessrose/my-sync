@@ -26,6 +26,13 @@
 		1BA72AC10FF899BE002EC1B7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA72ABF0FF899BE002EC1B7 /* AddressBook.framework */; };
 		1BA72AC20FF899BE002EC1B7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA72AC00FF899BE002EC1B7 /* AddressBookUI.framework */; };
 		1BA72ACD0FF89AAC002EC1B7 /* ContactsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72ACC0FF89AAC002EC1B7 /* ContactsView.xib */; };
+		1BBD10460FF9A7620053ECFE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD10450FF9A7620053ECFE /* SettingsViewController.m */; };
+		1BBD10610FF9AAAC0053ECFE /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD10600FF9AAAC0053ECFE /* SettingsView.xib */; };
+		1BBD10660FF9AB570053ECFE /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD10650FF9AB570053ECFE /* TextFieldCell.m */; };
+		1BBD10680FF9ABA90053ECFE /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD10670FF9ABA90053ECFE /* TextFieldCell.xib */; };
+		1BBD10890FF9AFB70053ECFE /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD10880FF9AFB70053ECFE /* SwitchCell.m */; };
+		1BBD108B0FF9AFD30053ECFE /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD108A0FF9AFD30053ECFE /* SwitchCell.xib */; };
+		1BBD109B0FF9B3620053ECFE /* SettingsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD109A0FF9B3620053ECFE /* SettingsNavController.m */; };
 		1D3623260D0F684500981E51 /* TabiNaviAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TabiNaviAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -61,6 +68,17 @@
 		1BA72ABF0FF899BE002EC1B7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		1BA72AC00FF899BE002EC1B7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		1BA72ACC0FF89AAC002EC1B7 /* ContactsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsView.xib; sourceTree = "<group>"; };
+		1BBD10440FF9A7620053ECFE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		1BBD10450FF9A7620053ECFE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		1BBD10600FF9AAAC0053ECFE /* SettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
+		1BBD10640FF9AB570053ECFE /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
+		1BBD10650FF9AB570053ECFE /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
+		1BBD10670FF9ABA90053ECFE /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		1BBD10870FF9AFB70053ECFE /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
+		1BBD10880FF9AFB70053ECFE /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
+		1BBD108A0FF9AFD30053ECFE /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
+		1BBD10990FF9B3620053ECFE /* SettingsNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavController.h; sourceTree = "<group>"; };
+		1BBD109A0FF9B3620053ECFE /* SettingsNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavController.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TabiNaviAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabiNaviAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* TabiNaviAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabiNaviAppDelegate.m; sourceTree = "<group>"; };
@@ -94,6 +112,7 @@
 			children = (
 				1BA72A6C0FF896B2002EC1B7 /* UI */,
 				1BA72A890FF89751002EC1B7 /* PIM */,
+				1BBD10470FF9A7670053ECFE /* setting */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -148,6 +167,21 @@
 			name = PIM;
 			sourceTree = "<group>";
 		};
+		1BBD10470FF9A7670053ECFE /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				1BBD10990FF9B3620053ECFE /* SettingsNavController.h */,
+				1BBD109A0FF9B3620053ECFE /* SettingsNavController.m */,
+				1BBD10440FF9A7620053ECFE /* SettingsViewController.h */,
+				1BBD10450FF9A7620053ECFE /* SettingsViewController.m */,
+				1BBD10640FF9AB570053ECFE /* TextFieldCell.h */,
+				1BBD10650FF9AB570053ECFE /* TextFieldCell.m */,
+				1BBD10870FF9AFB70053ECFE /* SwitchCell.h */,
+				1BBD10880FF9AFB70053ECFE /* SwitchCell.m */,
+			);
+			name = setting;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +214,9 @@
 				1BA729400FF86CB3002EC1B7 /* SecondView.xib */,
 				1BA729420FF86CBF002EC1B7 /* ThirdView.xib */,
 				1BA72A0E0FF88C45002EC1B7 /* FilesView.xib */,
+				1BBD10600FF9AAAC0053ECFE /* SettingsView.xib */,
+				1BBD10670FF9ABA90053ECFE /* TextFieldCell.xib */,
+				1BBD108A0FF9AFD30053ECFE /* SwitchCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -249,6 +286,9 @@
 				1BA729BF0FF885B1002EC1B7 /* clockicon.png in Resources */,
 				1BA72A0F0FF88C45002EC1B7 /* FilesView.xib in Resources */,
 				1BA72ACD0FF89AAC002EC1B7 /* ContactsView.xib in Resources */,
+				1BBD10610FF9AAAC0053ECFE /* SettingsView.xib in Resources */,
+				1BBD10680FF9ABA90053ECFE /* TextFieldCell.xib in Resources */,
+				1BBD108B0FF9AFD30053ECFE /* SwitchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +308,10 @@
 				1BA72A0D0FF88B5B002EC1B7 /* MyTableViewController.m in Sources */,
 				1BA72A140FF88DB5002EC1B7 /* MyNavTableController.m in Sources */,
 				1BA72A880FF8974A002EC1B7 /* ContactsViewController.m in Sources */,
+				1BBD10460FF9A7620053ECFE /* SettingsViewController.m in Sources */,
+				1BBD10660FF9AB570053ECFE /* TextFieldCell.m in Sources */,
+				1BBD10890FF9AFB70053ECFE /* SwitchCell.m in Sources */,
+				1BBD109B0FF9B3620053ECFE /* SettingsNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
