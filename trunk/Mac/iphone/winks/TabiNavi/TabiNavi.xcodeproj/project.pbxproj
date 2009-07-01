@@ -26,6 +26,8 @@
 		1BA72AC10FF899BE002EC1B7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA72ABF0FF899BE002EC1B7 /* AddressBook.framework */; };
 		1BA72AC20FF899BE002EC1B7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA72AC00FF899BE002EC1B7 /* AddressBookUI.framework */; };
 		1BA72ACD0FF89AAC002EC1B7 /* ContactsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72ACC0FF89AAC002EC1B7 /* ContactsView.xib */; };
+		1BB851A10FFB165100490ACE /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB851A00FFB165100490ACE /* Utils.m */; };
+		1BB852A90FFB70F800490ACE /* wk_fileapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB852A80FFB70F800490ACE /* wk_fileapi.m */; };
 		1BBD10460FF9A7620053ECFE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD10450FF9A7620053ECFE /* SettingsViewController.m */; };
 		1BBD10610FF9AAAC0053ECFE /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD10600FF9AAAC0053ECFE /* SettingsView.xib */; };
 		1BBD10660FF9AB570053ECFE /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD10650FF9AB570053ECFE /* TextFieldCell.m */; };
@@ -68,6 +70,10 @@
 		1BA72ABF0FF899BE002EC1B7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		1BA72AC00FF899BE002EC1B7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		1BA72ACC0FF89AAC002EC1B7 /* ContactsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsView.xib; sourceTree = "<group>"; };
+		1BB8519F0FFB165100490ACE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		1BB851A00FFB165100490ACE /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		1BB852A70FFB70F800490ACE /* wk_fileapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_fileapi.h; sourceTree = "<group>"; };
+		1BB852A80FFB70F800490ACE /* wk_fileapi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wk_fileapi.m; sourceTree = "<group>"; };
 		1BBD10440FF9A7620053ECFE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		1BBD10450FF9A7620053ECFE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		1BBD10600FF9AAAC0053ECFE /* SettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
@@ -110,9 +116,14 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1BB852620FFB6C8A00490ACE /* include */,
+				1BB851A50FFB233000490ACE /* osal */,
 				1BA72A6C0FF896B2002EC1B7 /* UI */,
 				1BA72A890FF89751002EC1B7 /* PIM */,
 				1BBD10470FF9A7670053ECFE /* setting */,
+				1BB8519F0FFB165100490ACE /* Utils.h */,
+				1BB851A00FFB165100490ACE /* Utils.m */,
+				1BB852AA0FFB70FD00490ACE /* file */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -165,6 +176,29 @@
 				1BA72A870FF8974A002EC1B7 /* ContactsViewController.m */,
 			);
 			name = PIM;
+			sourceTree = "<group>";
+		};
+		1BB851A50FFB233000490ACE /* osal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = osal;
+			sourceTree = "<group>";
+		};
+		1BB852620FFB6C8A00490ACE /* include */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		1BB852AA0FFB70FD00490ACE /* file */ = {
+			isa = PBXGroup;
+			children = (
+				1BB852A70FFB70F800490ACE /* wk_fileapi.h */,
+				1BB852A80FFB70F800490ACE /* wk_fileapi.m */,
+			);
+			name = file;
 			sourceTree = "<group>";
 		};
 		1BBD10470FF9A7670053ECFE /* setting */ = {
@@ -312,6 +346,8 @@
 				1BBD10660FF9AB570053ECFE /* TextFieldCell.m in Sources */,
 				1BBD10890FF9AFB70053ECFE /* SwitchCell.m in Sources */,
 				1BBD109B0FF9B3620053ECFE /* SettingsNavController.m in Sources */,
+				1BB851A10FFB165100490ACE /* Utils.m in Sources */,
+				1BB852A90FFB70F800490ACE /* wk_fileapi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
