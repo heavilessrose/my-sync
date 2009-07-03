@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <syslimits.h>
 
 
 @interface wk_fileapi : NSObject {

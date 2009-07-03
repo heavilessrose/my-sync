@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B26927E0FFD9ADB00C29608 /* wk_socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26927D0FFD9ADB00C29608 /* wk_socket.m */; };
 		1BA729370FF86C6D002EC1B7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729360FF86C6D002EC1B7 /* FirstViewController.m */; };
 		1BA7293A0FF86C7D002EC1B7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729390FF86C7D002EC1B7 /* SecondViewController.m */; };
 		1BA7293D0FF86C88002EC1B7 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7293C0FF86C88002EC1B7 /* ThirdViewController.m */; };
@@ -40,6 +41,7 @@
 		1BCE1C940FFC81DD00688869 /* device.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE1C8D0FFC81DD00688869 /* device.c */; };
 		1BCE1C950FFC81DD00688869 /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE1C8F0FFC81DD00688869 /* encode.c */; };
 		1BCE1C960FFC81DD00688869 /* unicode_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE1C910FFC81DD00688869 /* unicode_helper.c */; };
+		1BD7074A0FFDB8A4001E9E6E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD707490FFDB8A4001E9E6E /* CFNetwork.framework */; };
 		1D3623260D0F684500981E51 /* TabiNaviAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TabiNaviAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -49,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B26927C0FFD9ADB00C29608 /* wk_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_socket.h; sourceTree = "<group>"; };
+		1B26927D0FFD9ADB00C29608 /* wk_socket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wk_socket.m; sourceTree = "<group>"; };
 		1BA729350FF86C6D002EC1B7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		1BA729360FF86C6D002EC1B7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		1BA729380FF86C7D002EC1B7 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 		1BCE1C900FFC81DD00688869 /* encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
 		1BCE1C910FFC81DD00688869 /* unicode_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unicode_helper.c; sourceTree = "<group>"; };
 		1BCE1C920FFC81DD00688869 /* unicode_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unicode_helper.h; sourceTree = "<group>"; };
+		1BD707490FFDB8A4001E9E6E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TabiNaviAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabiNaviAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* TabiNaviAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabiNaviAppDelegate.m; sourceTree = "<group>"; };
@@ -123,6 +128,7 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				1BA72AC10FF899BE002EC1B7 /* AddressBook.framework in Frameworks */,
 				1BA72AC20FF899BE002EC1B7 /* AddressBookUI.framework in Frameworks */,
+				1BD7074A0FFDB8A4001E9E6E /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +146,7 @@
 				1BCE1CC20FFC858D00688869 /* utils */,
 				1BB852AA0FFB70FD00490ACE /* file */,
 				1BCE1C850FFC80DD00688869 /* sms */,
+				1B26927F0FFD9AE400C29608 /* socket */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -150,6 +157,15 @@
 				1D6058910D05DD3D006BFB54 /* TabiNavi.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1B26927F0FFD9AE400C29608 /* socket */ = {
+			isa = PBXGroup;
+			children = (
+				1B26927C0FFD9ADB00C29608 /* wk_socket.h */,
+				1B26927D0FFD9ADB00C29608 /* wk_socket.m */,
+			);
+			name = socket;
 			sourceTree = "<group>";
 		};
 		1BA729C00FF885B5002EC1B7 /* images */ = {
@@ -301,6 +317,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1BD707490FFDB8A4001E9E6E /* CFNetwork.framework */,
 				1BA72ABF0FF899BE002EC1B7 /* AddressBook.framework */,
 				1BA72AC00FF899BE002EC1B7 /* AddressBookUI.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -396,6 +413,7 @@
 				1BCE1C940FFC81DD00688869 /* device.c in Sources */,
 				1BCE1C950FFC81DD00688869 /* encode.c in Sources */,
 				1BCE1C960FFC81DD00688869 /* unicode_helper.c in Sources */,
+				1B26927E0FFD9ADB00C29608 /* wk_socket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

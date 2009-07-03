@@ -7,11 +7,6 @@
 //
 
 #import "wk_fileapi.h"
-#import <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <syslimits.h>
 
 
 @implementation wk_fileapi
@@ -209,7 +204,7 @@ int Winks_GetFolderSize(
 						unsigned long CmpSize)/* CmpSize==0 获取整个文件夹的文件大小，否则只判断是否大于CmpSize */
 {
 	traversDir(Path);
-	*RetSize = dirsize
+	*RetSize = dirsize;
 	return 0;
 }  
 

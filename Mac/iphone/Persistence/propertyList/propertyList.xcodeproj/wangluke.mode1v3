@@ -233,6 +233,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -273,10 +275,6 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>1BF860F00FEB224800134551</string>
-								<string>29B97315FDCFA39411CA2CEA</string>
-								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>1BEEE42F0FD7A10E00426E20</string>
-								<string>1BEEE4680FD7AC3C00426E20</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -287,7 +285,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>5</integer>
+									<integer>16</integer>
+									<integer>14</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -325,14 +324,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>propertyListViewController.m</string>
+								<string>AsyncSock.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -340,11 +337,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>propertyListViewController.m</string>
+										<string>AsyncSock.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1BB852D20FFB739A00490ACE</string>
+										<string>1BD70D760FFE0322001E9E6E</string>
 										<key>history</key>
 										<array>
 											<string>1B3D2AE20FC4033600ED6450</string>
@@ -368,7 +365,6 @@
 											<string>1BC149CC0FE78DEA0041A152</string>
 											<string>1BF01DD10FEA1EF8006F62FA</string>
 											<string>1BF01DD20FEA1EF8006F62FA</string>
-											<string>1BC3C26B0FEA20B100C50ED1</string>
 											<string>1BFB860F0FEA600F00B4CAEA</string>
 											<string>1BF861C20FEB932700134551</string>
 											<string>1BF861C50FEB932700134551</string>
@@ -383,11 +379,12 @@
 											<string>1B2044330FF32E4000CF5F9E</string>
 											<string>1B2044350FF32E4000CF5F9E</string>
 											<string>1B2044630FF34B1300CF5F9E</string>
-											<string>1B2044890FF36D6400CF5F9E</string>
-											<string>1B1740E20FF49D7B00845362</string>
-											<string>1BBD12170FF9FC0C0053ECFE</string>
 											<string>1BB852CF0FFB739A00490ACE</string>
-											<string>1BB852D00FFB739A00490ACE</string>
+											<string>1BD7074D0FFDD55A001E9E6E</string>
+											<string>1BD7074E0FFDD55A001E9E6E</string>
+											<string>1BD7074F0FFDD55A001E9E6E</string>
+											<string>1BD70D720FFE0322001E9E6E</string>
+											<string>1BD70D730FFE0322001E9E6E</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -411,6 +408,9 @@
 											<string>1B2044380FF32E4000CF5F9E</string>
 											<string>1BBD121A0FF9FC0C0053ECFE</string>
 											<string>1BB852D10FFB739A00490ACE</string>
+											<string>1BD707520FFDD55A001E9E6E</string>
+											<string>1BD70D740FFE0322001E9E6E</string>
+											<string>1BD70D750FFE0322001E9E6E</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -468,9 +468,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>1BB851FB0FFB5D1C00490ACE</string>
+				<string>1BD70D770FFE0322001E9E6E</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>1BB851FC0FFB5D1C00490ACE</string>
+				<string>1BD70D780FFE0322001E9E6E</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
