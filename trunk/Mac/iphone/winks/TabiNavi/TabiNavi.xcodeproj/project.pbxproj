@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B26927E0FFD9ADB00C29608 /* wk_socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26927D0FFD9ADB00C29608 /* wk_socket.m */; };
 		1BA729370FF86C6D002EC1B7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729360FF86C6D002EC1B7 /* FirstViewController.m */; };
 		1BA7293A0FF86C7D002EC1B7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729390FF86C7D002EC1B7 /* SecondViewController.m */; };
 		1BA7293D0FF86C88002EC1B7 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7293C0FF86C88002EC1B7 /* ThirdViewController.m */; };
@@ -15,11 +14,6 @@
 		1BA729410FF86CB3002EC1B7 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729400FF86CB3002EC1B7 /* SecondView.xib */; };
 		1BA729430FF86CBF002EC1B7 /* ThirdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729420FF86CBF002EC1B7 /* ThirdView.xib */; };
 		1BA729AF0FF8821E002EC1B7 /* MyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729AE0FF8821E002EC1B7 /* MyNavigationController.m */; };
-		1BA729BB0FF885B1002EC1B7 /* dependenticon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729B60FF885B1002EC1B7 /* dependenticon.png */; };
-		1BA729BC0FF885B1002EC1B7 /* doubleicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729B70FF885B1002EC1B7 /* doubleicon.png */; };
-		1BA729BD0FF885B1002EC1B7 /* singleicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729B80FF885B1002EC1B7 /* singleicon.png */; };
-		1BA729BE0FF885B1002EC1B7 /* toolicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729B90FF885B1002EC1B7 /* toolicon.png */; };
-		1BA729BF0FF885B1002EC1B7 /* clockicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA729BA0FF885B1002EC1B7 /* clockicon.png */; };
 		1BA72A0D0FF88B5B002EC1B7 /* MyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA72A0C0FF88B5B002EC1B7 /* MyTableViewController.m */; };
 		1BA72A0F0FF88C45002EC1B7 /* FilesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72A0E0FF88C45002EC1B7 /* FilesView.xib */; };
 		1BA72A140FF88DB5002EC1B7 /* MyNavTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA72A130FF88DB5002EC1B7 /* MyNavTableController.m */; };
@@ -48,11 +42,12 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		995F361510008A6B0037F728 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 995F361410008A6B0037F728 /* WebViewController.m */; };
+		99A41FA11001118500F1B51D /* WebViewNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A41FA01001118500F1B51D /* WebViewNavController.m */; };
+		99A41FA31001129600F1B51D /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A41FA21001129600F1B51D /* WebView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B26927C0FFD9ADB00C29608 /* wk_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_socket.h; sourceTree = "<group>"; };
-		1B26927D0FFD9ADB00C29608 /* wk_socket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wk_socket.m; sourceTree = "<group>"; };
 		1BA729350FF86C6D002EC1B7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		1BA729360FF86C6D002EC1B7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		1BA729380FF86C7D002EC1B7 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -64,11 +59,6 @@
 		1BA729420FF86CBF002EC1B7 /* ThirdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdView.xib; sourceTree = "<group>"; };
 		1BA729AD0FF8821E002EC1B7 /* MyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationController.h; sourceTree = "<group>"; };
 		1BA729AE0FF8821E002EC1B7 /* MyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationController.m; sourceTree = "<group>"; };
-		1BA729B60FF885B1002EC1B7 /* dependenticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dependenticon.png; path = ../../tabBasedMultiView/dependenticon.png; sourceTree = SOURCE_ROOT; };
-		1BA729B70FF885B1002EC1B7 /* doubleicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = doubleicon.png; path = ../../tabBasedMultiView/doubleicon.png; sourceTree = SOURCE_ROOT; };
-		1BA729B80FF885B1002EC1B7 /* singleicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = singleicon.png; path = ../../tabBasedMultiView/singleicon.png; sourceTree = SOURCE_ROOT; };
-		1BA729B90FF885B1002EC1B7 /* toolicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolicon.png; path = ../../tabBasedMultiView/toolicon.png; sourceTree = SOURCE_ROOT; };
-		1BA729BA0FF885B1002EC1B7 /* clockicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clockicon.png; path = ../../tabBasedMultiView/clockicon.png; sourceTree = SOURCE_ROOT; };
 		1BA72A0B0FF88B5B002EC1B7 /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewController.h; sourceTree = "<group>"; };
 		1BA72A0C0FF88B5B002EC1B7 /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewController.m; sourceTree = "<group>"; };
 		1BA72A0E0FF88C45002EC1B7 /* FilesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilesView.xib; sourceTree = "<group>"; };
@@ -116,6 +106,11 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TabiNavi_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabiNavi_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		995F361310008A6B0037F728 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		995F361410008A6B0037F728 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		99A41F9F1001118500F1B51D /* WebViewNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewNavController.h; sourceTree = "<group>"; };
+		99A41FA01001118500F1B51D /* WebViewNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewNavController.m; sourceTree = "<group>"; };
+		99A41FA21001129600F1B51D /* WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +141,6 @@
 				1BCE1CC20FFC858D00688869 /* utils */,
 				1BB852AA0FFB70FD00490ACE /* file */,
 				1BCE1C850FFC80DD00688869 /* sms */,
-				1B26927F0FFD9AE400C29608 /* socket */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -159,23 +153,9 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1B26927F0FFD9AE400C29608 /* socket */ = {
-			isa = PBXGroup;
-			children = (
-				1B26927C0FFD9ADB00C29608 /* wk_socket.h */,
-				1B26927D0FFD9ADB00C29608 /* wk_socket.m */,
-			);
-			name = socket;
-			sourceTree = "<group>";
-		};
 		1BA729C00FF885B5002EC1B7 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				1BA729B60FF885B1002EC1B7 /* dependenticon.png */,
-				1BA729B70FF885B1002EC1B7 /* doubleicon.png */,
-				1BA729B80FF885B1002EC1B7 /* singleicon.png */,
-				1BA729B90FF885B1002EC1B7 /* toolicon.png */,
-				1BA729BA0FF885B1002EC1B7 /* clockicon.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -183,6 +163,7 @@
 		1BA72A6C0FF896B2002EC1B7 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				995F3630100093290037F728 /* web */,
 				1D3623240D0F684500981E51 /* TabiNaviAppDelegate.h */,
 				1D3623250D0F684500981E51 /* TabiNaviAppDelegate.m */,
 				1BA729AD0FF8821E002EC1B7 /* MyNavigationController.h */,
@@ -310,6 +291,7 @@
 				1BBD10600FF9AAAC0053ECFE /* SettingsView.xib */,
 				1BBD10670FF9ABA90053ECFE /* TextFieldCell.xib */,
 				1BBD108A0FF9AFD30053ECFE /* SwitchCell.xib */,
+				99A41FA21001129600F1B51D /* WebView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -325,6 +307,17 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		995F3630100093290037F728 /* web */ = {
+			isa = PBXGroup;
+			children = (
+				995F361310008A6B0037F728 /* WebViewController.h */,
+				995F361410008A6B0037F728 /* WebViewController.m */,
+				99A41F9F1001118500F1B51D /* WebViewNavController.h */,
+				99A41FA01001118500F1B51D /* WebViewNavController.m */,
+			);
+			name = web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,16 +366,12 @@
 				1BA7293F0FF86CA6002EC1B7 /* FirstView.xib in Resources */,
 				1BA729410FF86CB3002EC1B7 /* SecondView.xib in Resources */,
 				1BA729430FF86CBF002EC1B7 /* ThirdView.xib in Resources */,
-				1BA729BB0FF885B1002EC1B7 /* dependenticon.png in Resources */,
-				1BA729BC0FF885B1002EC1B7 /* doubleicon.png in Resources */,
-				1BA729BD0FF885B1002EC1B7 /* singleicon.png in Resources */,
-				1BA729BE0FF885B1002EC1B7 /* toolicon.png in Resources */,
-				1BA729BF0FF885B1002EC1B7 /* clockicon.png in Resources */,
 				1BA72A0F0FF88C45002EC1B7 /* FilesView.xib in Resources */,
 				1BA72ACD0FF89AAC002EC1B7 /* ContactsView.xib in Resources */,
 				1BBD10610FF9AAAC0053ECFE /* SettingsView.xib in Resources */,
 				1BBD10680FF9ABA90053ECFE /* TextFieldCell.xib in Resources */,
 				1BBD108B0FF9AFD30053ECFE /* SwitchCell.xib in Resources */,
+				99A41FA31001129600F1B51D /* WebView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,7 +402,8 @@
 				1BCE1C940FFC81DD00688869 /* device.c in Sources */,
 				1BCE1C950FFC81DD00688869 /* encode.c in Sources */,
 				1BCE1C960FFC81DD00688869 /* unicode_helper.c in Sources */,
-				1B26927E0FFD9ADB00C29608 /* wk_socket.m in Sources */,
+				995F361510008A6B0037F728 /* WebViewController.m in Sources */,
+				99A41FA11001118500F1B51D /* WebViewNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

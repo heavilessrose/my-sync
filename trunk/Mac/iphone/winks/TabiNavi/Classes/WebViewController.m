@@ -1,15 +1,21 @@
-/*
-File: WebViewController.m
-Abstract: The view controller for hosting the UIWebView feature of this sample.
-
-Version: 1.7
-*/
+//
+//  WebViewController.m
+//  TabiNavi
+//
+//  Created by luke on 7/5/09.
+//  Copyright 2009 luke. All rights reserved.
+//
 
 #import "WebViewController.h"
-#import "Constants.h"
 
 @implementation WebViewController
 
+#define kLeftMargin				20.0
+#define kTopMargin				20.0
+#define kRightMargin			20.0
+#define kBottomMargin			20.0
+#define kTweenMargin			10.0
+#define kTextFieldHeight		30.0
 - (id)init
 {
 	self = [super init];
@@ -42,7 +48,7 @@ Version: 1.7
 	self.view = contentView;
 	
 	[contentView release];
-
+	
 	CGRect webFrame = [[UIScreen mainScreen] applicationFrame];
 	webFrame.origin.y += kTopMargin + 5.0;	// leave from the URL input field and its label
 	webFrame.size.height -= 40.0;
@@ -67,8 +73,8 @@ Version: 1.7
 	urlField.autocorrectionType = UITextAutocorrectionTypeNo;	// we don't like autocompletion while typing
 	urlField.clearButtonMode = UITextFieldViewModeAlways;
 	[self.view addSubview:urlField];
-
-	[myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.apple.com"]]];
+	
+	[myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -105,7 +111,7 @@ Version: 1.7
 {
 	// load error, hide the activity indicator in the status bar
 	[UIApplication sharedApplication].isNetworkActivityIndicatorVisible = NO;
-
+	
 	// report the error inside the webview
 	NSString* errorString = [NSString stringWithFormat:
 							 @"<html><center><font size=+5 color='red'>An error occurred:<br>%@</font></center></html>",
@@ -114,4 +120,3 @@ Version: 1.7
 }
 
 @end
-
