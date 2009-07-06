@@ -52,9 +52,9 @@
 #include <sys/select.h>
 #include <sys/time.h>
 
-#include <IOKit/IOKitLib.h>
-#include <IOKit/serial/IOSerialKeys.h>
-#include <IOKit/IOBSD.h>
+//#include <IOKit/IOKitLib.h>
+//#include <IOKit/serial/IOSerialKeys.h>
+//#include <IOKit/IOBSD.h>
 #include "encode.h"
 #include "device.h"
 
@@ -213,6 +213,11 @@ void CloseConn(int fd) {
 #define kATCommandString	"AT\r"
 #define kOKResponseString	"OK\r\n"
 #define kNumRetries 		100
+
+// luke add
+typedef unsigned char	Boolean; /* 0 or 1 */
+#define false	   0
+#define true	    1
 
 Boolean ResetConn(int fd, CALLBACK callback) {
 	int numBytes; // Number of bytes read or written 

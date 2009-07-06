@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B586E0C1001957A00303A6F /* IOKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B586E0B1001957A00303A6F /* IOKit */; };
+		1B586F521001FC5A00303A6F /* wk_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B586F511001FC5A00303A6F /* wk_socket.c */; };
+		1B586F701002029000303A6F /* wk_osfnc.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B586F6E1002029000303A6F /* wk_osfnc.c */; };
 		1BA729370FF86C6D002EC1B7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729360FF86C6D002EC1B7 /* FirstViewController.m */; };
 		1BA7293A0FF86C7D002EC1B7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729390FF86C7D002EC1B7 /* SecondViewController.m */; };
 		1BA7293D0FF86C88002EC1B7 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7293C0FF86C88002EC1B7 /* ThirdViewController.m */; };
@@ -49,8 +50,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B586E0B1001957A00303A6F /* IOKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = IOKit; sourceTree = "<group>"; };
-		1B586E14100195A700303A6F /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		1B586F511001FC5A00303A6F /* wk_socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wk_socket.c; sourceTree = "<group>"; };
+		1B586F531001FCA400303A6F /* wk_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_socket.h; sourceTree = "<group>"; };
+		1B586F6D1002026C00303A6F /* wk_public.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; path = wk_public.h; sourceTree = "<group>"; };
+		1B586F6E1002029000303A6F /* wk_osfnc.c */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.c; path = wk_osfnc.c; sourceTree = "<group>"; };
+		1B586F6F1002029000303A6F /* wk_osfnc.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; path = wk_osfnc.h; sourceTree = "<group>"; };
+		1B586F72100202B800303A6F /* wk_ospub.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; path = wk_ospub.h; sourceTree = "<group>"; };
+		1B586F73100202B800303A6F /* wk_project.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; path = wk_project.h; sourceTree = "<group>"; };
 		1BA729350FF86C6D002EC1B7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		1BA729360FF86C6D002EC1B7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		1BA729380FF86C7D002EC1B7 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -127,7 +133,6 @@
 				1BA72AC10FF899BE002EC1B7 /* AddressBook.framework in Frameworks */,
 				1BA72AC20FF899BE002EC1B7 /* AddressBookUI.framework in Frameworks */,
 				1BD7074A0FFDB8A4001E9E6E /* CFNetwork.framework in Frameworks */,
-				1B586E0C1001957A00303A6F /* IOKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +142,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1B586E9B1001A5DA00303A6F /* socket */,
 				1BB852620FFB6C8A00490ACE /* include */,
 				1BB851A50FFB233000490ACE /* osal */,
 				1BA72A6C0FF896B2002EC1B7 /* UI */,
@@ -155,6 +161,15 @@
 				1D6058910D05DD3D006BFB54 /* TabiNavi.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1B586E9B1001A5DA00303A6F /* socket */ = {
+			isa = PBXGroup;
+			children = (
+				1B586F531001FCA400303A6F /* wk_socket.h */,
+				1B586F511001FC5A00303A6F /* wk_socket.c */,
+			);
+			name = socket;
 			sourceTree = "<group>";
 		};
 		1BA729C00FF885B5002EC1B7 /* images */ = {
@@ -205,6 +220,11 @@
 		1BB852620FFB6C8A00490ACE /* include */ = {
 			isa = PBXGroup;
 			children = (
+				1B586F72100202B800303A6F /* wk_ospub.h */,
+				1B586F73100202B800303A6F /* wk_project.h */,
+				1B586F6E1002029000303A6F /* wk_osfnc.c */,
+				1B586F6F1002029000303A6F /* wk_osfnc.h */,
+				1B586F6D1002026C00303A6F /* wk_public.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -263,7 +283,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				1B586E0B1001957A00303A6F /* IOKit */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -304,7 +323,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1B586E14100195A700303A6F /* IOKit.framework */,
 				1BD707490FFDB8A4001E9E6E /* CFNetwork.framework */,
 				1BA72ABF0FF899BE002EC1B7 /* AddressBook.framework */,
 				1BA72AC00FF899BE002EC1B7 /* AddressBookUI.framework */,
@@ -410,6 +428,8 @@
 				1BCE1C960FFC81DD00688869 /* unicode_helper.c in Sources */,
 				995F361510008A6B0037F728 /* WebViewController.m in Sources */,
 				99A41FA11001118500F1B51D /* WebViewNavController.m in Sources */,
+				1B586F521001FC5A00303A6F /* wk_socket.c in Sources */,
+				1B586F701002029000303A6F /* wk_osfnc.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,10 +479,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
 				PREBINDING = NO;
 				PROVISIONING_PROFILE_ALLOWED = NO;
 				PROVISIONING_PROFILE_REQUIRED = NO;
 				SDKROOT = iphoneos2.2;
+				USER_HEADER_SEARCH_PATHS = "/System/Library/Frameworks/IOKit.framework/Versions/A/Headers/**";
 			};
 			name = Debug;
 		};
@@ -474,10 +496,12 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "";
 				PREBINDING = NO;
 				PROVISIONING_PROFILE_ALLOWED = NO;
 				PROVISIONING_PROFILE_REQUIRED = NO;
 				SDKROOT = iphoneos2.2;
+				USER_HEADER_SEARCH_PATHS = "/System/Library/Frameworks/IOKit.framework/Versions/A/Headers/**";
 			};
 			name = Release;
 		};

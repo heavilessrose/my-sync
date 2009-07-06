@@ -1,40 +1,19 @@
-//
-//  wk_socket.m
-//  TabiNavi
-//
-//  Created by wang luke on 7/3/09.
-//  Copyright 2009 luke. All rights reserved.
-//
+/*
+ *  wk_socket.c
+ *  TabiNavi
+ *
+ *  Created by wang luke on 7/6/09.
+ *  Copyright 2009 luke. All rights reserved.
+ *
+ */
 
-#import "wk_socket.h"
-#import <sys/socket.h>
-#import <netinet/in.h>
-#import <arpa/inet.h>
-#import <netdb.h>
+#include "wk_socket.h"
 
-@implementation wk_socket
-//CFRunLoopRef _runLoop;
-//
-//CFOptionFlags _SocketCallbackTypes = kCFSocketConnectCallBack
-//									|kCFSocketDataCallBack
-//									|kCFSocketReadCallBack
-//									|kCFSocketWriteCallBack
-//									|kCFSocketNoCallBack;
-//
-//static void Winks_CFSocketCallback (CFSocketRef sref, CFSocketCallBackType callbackType, CFDataRef address, 
-//								const void *data, void *info){
-//	
-//}
-
-//- (CFSocketRef)createSocket:(CFSocketNativeHandle)sock callback:(CFOptionFlags)callbackTypes{
-//	CFSocketRef sock = CFSocketCreateWithNative(kCFAllocatorDefault, socket, callbackTypes, 
-//												(CFSocketCallBack)&Winks_CFSocketCallback, NULL);
-//	return sock;
-//}
+/********************************************************************************\
+ 对外提供的函数接口
+ \********************************************************************************/
 
 
-#pragma mark -
-#pragma mark osal
 /*************************************************************************************\
  函数原型：  int Winks_SoStartup( void )
  函数介绍：
@@ -47,7 +26,8 @@
  任何socket函数在被调用以前都需要确定本函数被调用。
  本函数初始化socket抽象层的所有资源，创建轮训查询线程，等待用户随后的调用动作。
  \*************************************************************************************/
-int Winks_SoStartup( void ){
+int Winks_SoStartup( void )
+{
 	
 }
 
@@ -62,8 +42,14 @@ int Winks_SoStartup( void ){
  实现描述：
  本函数释放所有socket抽象层资源，关闭线程。第一期开发本函数不实现，以存根函数存在。
  \*************************************************************************************/
-int Winks_SoCleanup( void ){
-	
+int Winks_SoCleanup( void )
+{
+
+}
+
+int Winks_getlasterror()
+{    
+    return Winks_SocketALGB.winks_errcode;
 }
 
 /*************************************************************************************\
@@ -83,19 +69,9 @@ int Winks_SoCleanup( void ){
  如果找到，则使用用户提供的参数调用平台socket函数，返回成功则告知用户返回成
  功，返回失败则释放申请的资源，同时返回用户失败。
  \*************************************************************************************/
-int Winks_socket( int family ,int type ,int protocol ){
-	// bsd socket句柄
-	CFSocketNativeHandle nativeFd;
-	if((nativeFd=socket(PF_INET, SOCK_STREAM, /*IPPROTO_TCP*/0))==-1){
-		fprintf(stderr,"Socket Error:%s\a\n",strerror(errno));
-		return -1;
-	}
-	CFSocketRef sock = CFSocketCreateWithNative(kCFAllocatorDefault, nativeFd, _SocketCallbackTypes, 
-																   (CFSocketCallBack)&Winks_CFSocketCallback, NULL);
-	if(sock == NULL){
-		NSLog(@"Winks_socket: CFSocketCreateWithNative error");
-	}
-	return nativeFd;
+int Winks_socket( int family, int type, int protocol )
+{
+
 }
 
 /*************************************************************************************\
@@ -121,18 +97,9 @@ int Winks_socket( int family ,int type ,int protocol ){
  一旦被调用，首先检查参数有效值，错误返回失败；如果正确，记录用户设置，将该socket
  设置成非阻塞模式并返回成功。
  \*************************************************************************************/
-int Winks_asyncselect( int socket, int opcode, WINKS_CHN_ID channel, int msg ){
-	CFSocketRef sock = CFSocketCreateWithNative(kCFAllocatorDefault, socket, _SocketCallbackTypes, 
-												(CFSocketCallBack)&Winks_CFSocketCallback, NULL);
-	if(sock == NULL){
-		NSLog(@"Winks_asyncselect: CFSocketCreateWithNative error");
-		return -1;
-	}
-	CFRunLoopSourceRef source = CFSocketCreateRunLoopSource(kCFAllocatorDefault, sock, 0);
-	_runLoop = (_runLoop == nil) ? CFRunLoopGetCurrent() : _runLoop;
-	CFRunLoopAddSource (_runLoop, source, kCFRunLoopCommonModes);
-	
-	return 0;
+int Winks_asyncselect( int sockhd, int opcode, WINKS_CHN_ID channel, int msg )
+{
+
 }
 
 /*************************************************************************************\
@@ -158,21 +125,11 @@ int Winks_asyncselect( int socket, int opcode, WINKS_CHN_ID channel, int msg ){
  连接函数被调用以后，轮训查询函数就需要启动查询该传输句柄的状态，而一旦连
  接成功，则该句柄的数据接收和数据发送消息都需要同时开始监视。
  \*************************************************************************************/
-int Winks_connect(int socket, struct winks_sockaddr* serv_addr, int addrlen ){
-	//CFSocketRef sock = [self createSocket:socket callback:_SocketCallbackTypes];
-//	if(sock != NULL){
-//		
-//	}else{
-//		NSLog(@"create CFSocket from native error");
-//		return -1;
-//	}
-	
-	if(connect(socket, (struct sockaddr*)serv_addr, addrlen) == -1){
-		fprintf(stderr,"Connect Error:%s\a\n",strerror(errno));
-		return -1;
-	}
-	return 0;
+int Winks_connect(int sockhd, struct winks_sockaddr* serv_addr, int addrlen )
+{
+
 }
+
 
 /*************************************************************************************\
  函数原型：int Winks_send( int socket, void *buf, int len, int flags )
@@ -205,13 +162,9 @@ int Winks_connect(int socket, struct winks_sockaddr* serv_addr, int addrlen ){
  一旦返回0，本函数在告知用户平台返回值的同时，还需补发关闭消息通知应用连
  接已经平稳断连。
  \*************************************************************************************/
-int Winks_send( int socket, void *buf, int len, int flags ){
-	int sent = -1;
-	if((sent = send(socket, buf, len, flags)) == -1){
-		perror("Winks_send");
-		return -1;
-	}
-	return sent;
+int Winks_send( int sockhd, void *buf, int len, int flags )
+{
+
 }
 
 /*************************************************************************************\
@@ -244,13 +197,9 @@ int Winks_send( int socket, void *buf, int len, int flags ){
  发送函数一旦返回0，本函数在告知用户平台返回值的同时，还需补发关闭消息
  通知应用连接已经平稳断连。
  \*************************************************************************************/
-int Winks_recv( int socket, void *buf, int len, int flags ){
-	int recved = -1;
-	if((recved = recv(socket, buf, len, flags)) == -1){
-		perror("Winks_recv");
-		return -1;
-	}
-	return recved;
+int Winks_recv( int sockhd, void *buf, int len, int flags )
+{
+
 }
 
 /*************************************************************************************\
@@ -269,12 +218,9 @@ int Winks_recv( int socket, void *buf, int len, int flags ){
  特别的，我们不关注该socket句柄是否真的被删除了，考虑到Linux资源足够丰富，我们
  仅仅需要调用平台的关闭函数即可，下层资源的释放由系统处理。
  \*************************************************************************************/
-int Winks_closesocket( int socket ){
-	if(close(socket) == -1){
-		perror("Winks_closesocket");
-		return -1;
-	}
-	return 0;
+int Winks_closesocket( int sockhd )
+{
+
 }
 
 /*************************************************************************************\
@@ -305,8 +251,9 @@ int Winks_closesocket( int socket ){
  资源里面申请资源，申请失败返回-1，申请成功的话，通过建立一个独立线程进行域名查
  询，无论查询成功与否，都要向用户发送消息通知查询结果。
  \*************************************************************************************/
-int Winks_AsyncGetHostByName( char* name, char* pHost, int hostlen, WINKS_CHN_ID channel, int msg ){
-	
+int Winks_AsyncGetHostByName( char* name, char* pHost, int hostlen, WINKS_CHN_ID channel, int msg )
+{
+
 }
 
 /*************************************************************************************\
@@ -320,24 +267,35 @@ int Winks_AsyncGetHostByName( char* name, char* pHost, int hostlen, WINKS_CHN_ID
  成功返回0，失败返回-1。
  实现描述：
  本函数用来放弃一个正在进行的域名查询请求。用户可以使用本函数放弃一个正在进行
- 的域名查询．
+ 的域名查询，需要注意的是，系统不能保证放弃过程中是否已经成功的获得了结果，因
+ 此即使放弃了本次操作，也需要准备在消息通道中接收并处理该域名查询的消息。
+ 一旦被调用，首先检查参数有效性，错误返回失败；如果正确，会直接关闭对应的域名
+ 查询线程，返回成功。
+ 特别的，我们不关注本次操作中是否已经发送过消息了，因此用户仍然需要处理可能到
+ 来的消息。
  \*************************************************************************************/
-int Winks_CancelGetHostByName( int handle ){
-	
+int Winks_CancelGetHostByName( int handle )
+{
+
 }
 
+//////////////////////////////////////////////
 /*************************************************************************************\
- 函数原型：  unsigned short Winks_htons( unsigned short port )
+ 函数原型：  static void* winks_SocketThread( void* param )
  函数介绍：
- 由本地字节序转换为网络字节序.
+ socket轮训事件查询线程函数。
  参数说明：
  参数名称	参数类型	参数介绍	备注
- port		u_short
+ param	    void* 	    socket全局控制块	
  函数返回值：
- 返回转换后的字节序数字.
+ 无。
  实现描述：
+ 本函数为socket轮询事件查询函数，用来查询socket事件并发送消息。本函数为
+ 内部关键函数，不对外公开。
+ 本函数按照用户调用情况，使用一个固定时间和select函数轮询查询所有活动socket
+ 的状态，通过检查各个socket的状态，发送事件通知消息。
  \*************************************************************************************/
-unsigned short Winks_htons( unsigned short port ){
-	return htons(port);
+static void winks_SocketThread( void* param )
+{
+
 }
-@end
