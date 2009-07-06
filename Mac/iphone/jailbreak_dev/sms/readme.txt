@@ -6,6 +6,8 @@ copy the libIOKit.A.dylib(/usr/lib/libIOKit.A.dylib) from the iphone then includ
 参考：
 http://www.hackint0sh.org/forum/f9/47723.htm
 
+/System/Library/Frameworks/IOKit.framework/Versions/A/Headers
+
 短信中心号码：
 北京移动的是+8613800100500
 移动短信中心号码设置方法

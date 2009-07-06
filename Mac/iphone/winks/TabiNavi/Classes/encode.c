@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <IOKit/IOKitLib.h>
-#include <IOKit/serial/IOSerialKeys.h>
-#include <IOKit/IOBSD.h>
+//#include <IOKit/IOKitLib.h>
+//#include <IOKit/serial/IOSerialKeys.h>
+//#include <IOKit/IOBSD.h>
 #include "unicode_helper.h"
 
 //#define DEBUG_ENABLED 1
