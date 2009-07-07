@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BBD52AF1002EE88000690F0 /* mutexTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD52AE1002EE88000690F0 /* mutexTest.c */; };
+		1BBD52B31002F0C6000690F0 /* multiMutexTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD52B21002F0C6000690F0 /* multiMutexTest.c */; };
+		1BBD52B61002F16A000690F0 /* multiMutexTest2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD52B51002F16A000690F0 /* multiMutexTest2.c */; };
 		8DD76FAC0486AB0100D96B5E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.c */; settings = {ATTRIBUTES = (); }; };
 		8DD76FB00486AB0100D96B5E /* posixThread.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6A0FF2C0290799A04C91782 /* posixThread.1 */; };
 /* End PBXBuildFile section */
@@ -26,6 +29,9 @@
 
 /* Begin PBXFileReference section */
 		08FB7796FE84155DC02AAC07 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		1BBD52AE1002EE88000690F0 /* mutexTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mutexTest.c; sourceTree = "<group>"; };
+		1BBD52B21002F0C6000690F0 /* multiMutexTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = multiMutexTest.c; sourceTree = "<group>"; };
+		1BBD52B51002F16A000690F0 /* multiMutexTest2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = multiMutexTest2.c; sourceTree = "<group>"; };
 		8DD76FB20486AB0100D96B5E /* posixThread */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = posixThread; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A0FF2C0290799A04C91782 /* posixThread.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = posixThread.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +61,9 @@
 			isa = PBXGroup;
 			children = (
 				08FB7796FE84155DC02AAC07 /* main.c */,
+				1BBD52AE1002EE88000690F0 /* mutexTest.c */,
+				1BBD52B21002F0C6000690F0 /* multiMutexTest.c */,
+				1BBD52B51002F16A000690F0 /* multiMutexTest2.c */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -119,6 +128,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD76FAC0486AB0100D96B5E /* main.c in Sources */,
+				1BBD52AF1002EE88000690F0 /* mutexTest.c in Sources */,
+				1BBD52B31002F0C6000690F0 /* multiMutexTest.c in Sources */,
+				1BBD52B61002F16A000690F0 /* multiMutexTest2.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
