@@ -21,7 +21,7 @@
 	self = [super init];
 	if (self)
 	{
-		// this title will appear in the navigation bar
+		// navigation bar标题
 		self.title = NSLocalizedString(@"WebTitle", @"");
 	}
 	return self;
@@ -50,7 +50,7 @@
 	[contentView release];
 	
 	CGRect webFrame = [[UIScreen mainScreen] applicationFrame];
-	webFrame.origin.y += kTopMargin + 5.0;	// leave from the URL input field and its label
+	webFrame.origin.y += kTopMargin + 5.0;
 	webFrame.size.height -= 40.0;
 	myWebView = [[UIWebView alloc] initWithFrame:webFrame];
 	myWebView.backgroundColor = [UIColor whiteColor];
@@ -69,8 +69,8 @@
 	urlField.backgroundColor = [UIColor whiteColor];
 	urlField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	urlField.returnKeyType = UIReturnKeyGo;
-	urlField.keyboardType = UIKeyboardTypeURL;	// this makes the keyboard more friendly for typing URLs
-	urlField.autocorrectionType = UITextAutocorrectionTypeNo;	// we don't like autocompletion while typing
+	urlField.keyboardType = UIKeyboardTypeURL;
+	urlField.autocorrectionType = UITextAutocorrectionTypeNo;
 	urlField.clearButtonMode = UITextFieldViewModeAlways;
 	[self.view addSubview:urlField];
 	
@@ -79,11 +79,10 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	// we support rotation in this view controller
 	return YES;
 }
 
-// this helps dismiss the keyboard when the "Done" button is clicked
+// 取消键盘
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	[textField resignFirstResponder];
@@ -97,22 +96,20 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-	// starting the load, show the activity indicator in the status bar
+	// 状态栏显示loading图标
 	[UIApplication sharedApplication].isNetworkActivityIndicatorVisible = YES;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-	// finished loading, hide the activity indicator in the status bar
+	// 取消状态栏显示loading图标
 	[UIApplication sharedApplication].isNetworkActivityIndicatorVisible = NO;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-	// load error, hide the activity indicator in the status bar
 	[UIApplication sharedApplication].isNetworkActivityIndicatorVisible = NO;
 	
-	// report the error inside the webview
 	NSString* errorString = [NSString stringWithFormat:
 							 @"<html><center><font size=+5 color='red'>An error occurred:<br>%@</font></center></html>",
 							 error.localizedDescription];

@@ -8,7 +8,7 @@
  */
 
 #include "wk_socket.h"
-
+static Winks_SocketALGB_s Winks_SocketALGB;
 /********************************************************************************\
  对外提供的函数接口
  \********************************************************************************/
@@ -28,7 +28,57 @@
  \*************************************************************************************/
 int Winks_SoStartup( void )
 {
+	int i = 0;
 	
+    if( Winks_SocketALGB.ifInit )
+    {
+        Winks_printf( "WINKS socket startup have initialed\r\n" );
+        return -1;
+    }
+	
+    if( (Winks_SocketALGB.Socket_Mutex = Winks_CreateMutex( WINKS_SO_SOMUTEXNAME )) == NULL )
+    {
+        Winks_printf( "WINKS socket startup create socket mutex failure\r\n" );
+        return -1;
+    }
+	
+    if( (Winks_SocketALGB.GH_Mutex = Winks_CreateMutex( WINKS_SO_GHMUTEXNAME)) == NULL )
+    {
+        Winks_printf( "WINKS socket startup create GH mutex failure\r\n" );
+        return -1;
+    }
+    if( (Winks_SocketALGB.GH_SyncMutex = Winks_CreateMutex( WINKS_SO_GHSYNCMUTEXNAME)) == NULL )
+    {
+        Winks_printf( "WINKS socket startup create GH sync mutex failure\r\n" );
+        return -1;
+    }
+	
+    if( (Winks_SocketALGB.Global_Event = Winks_CreateEvent( WINKS_SO_EVENTNAME)) == NULL )
+    {
+        Winks_printf( "WINKS socket startup create event failure, \r\n");
+        return -1;
+    }
+	
+    
+    for( i = 0; i < WINKS_SO_MAXSONUM; i++ )
+    {
+        Winks_SocketALGB.sockcb[i].s = -1;
+    }
+	
+    for( i = 0; i < WINKS_SO_MAXGHNUM; i++ )
+    {
+        Winks_SocketALGB.GHcb[i].ThreadID = NULL;
+    }
+	
+    if( (Winks_SocketALGB.Global_Thread = Winks_CreateThread( WINKS_SO_THREADNAME, winks_SocketThread, 
+															 NULL )) == NULL )
+    {
+        Winks_printf( "WINKS socket startup create thread failure\r\n" );
+        return -1;
+    }
+	
+    Winks_SocketALGB.ifInit = 1;
+	return 0;
 }
 
 /*************************************************************************************\
@@ -298,4 +348,104 @@ int Winks_CancelGetHostByName( int handle )
 static void winks_SocketThread( void* param )
 {
 
+}
+
+/********************************************************************************\
+ 依赖具体平台的内部函数接口
+ \********************************************************************************/
+
+static void* Winks_CreateMutex( const char* name){
+	// name没有用到
+	pthread_mutex_t *mutex = NULL;
+	pthread_mutex_init(&mutex, NULL);
+	return (void*)mutex;
+}
+static int Winks_DeleteMutex( void* mutex ){
+	return pthread_mutex_destroy((pthread_mutex_t*)mutex);
+}
+static int Winks_GetMutex( void* mutex, int timeout ){
+	return pthread_mutex_lock((pthread_mutex_t*)mutex);
+}
+static int Winks_PutMutex( void* mutex ){
+	return pthread_mutex_unlock((pthread_mutex_t*)mutex);
+}
+
+static int winks_real_connect_socket(int sockhd, struct winks_sockaddr* serv_addr, int addrlen){
+	
+}
+static void* Winks_CreateEvent( const char* name){
+	
+}
+static int Winks_DeleteEvent( void* event ){
+	
+}
+static int Winks_GetEvent( void* event, int timeout ){
+	
+}
+static int Winks_SetEvent( void* event ){
+	
+}
+
+static void* Winks_CreateThread(const char* name, WK_THREAD_ENTRY entry,void* param ){
+	pthread_attr_t attr;
+	pthread_t posixThreadID;
+	
+	assert(!pthread_attr_init(&attr));
+	assert(!pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED));
+	
+	int threadError = pthread_create(&posixThreadID, &attr, &entry, param);
+	assert(!pthread_attr_destroy(&attr));
+	if (threadError != 0){
+		return NULL;
+	}
+	return posixThreadID;
+}
+static int Winks_DeleteThread( void* thread ){
+	
+}
+
+static WK_FD osal_socket(int family , int type , int protocol){
+	
+}
+static int osal_sock_close(WK_FD socket){
+	
+}
+static int osal_sock_setnonblock(WK_FD socket){
+	
+}
+static int osal_sock_connect(WK_FD socket, struct winks_sockaddr* serv_addr, int addrlen){
+	
+}
+static int osal_sock_send(WK_FD socket, char *buf, int len){
+	
+}
+static int osal_sock_recv(WK_FD socket,char *buf,int len){
+	
+}
+
+static int osal_sock_select(WK_FD_SET *readfds, WK_FD_SET *writefds, WK_FD_SET *excptfds,long timeout){
+	
+}
+static void WK_FD_ZERO(WK_FD_SET *set){
+	
+}
+static void WK_FD_SET_ADD(WK_FD fd, WK_FD_SET *set){
+	
+}
+static int WK_FD_ISSET(WK_FD fd,WK_FD_SET *set){
+	
+}
+static void osal_set_last_error(int platform_errcode){
+	
+}
+
+static unsigned long osal_gethostbyname(char *name){
+	
+}
+static unsigned int osal_get_tick(){
+	
+}
+
+static void osal_thread_sleep(uint32 ms){
+	
 }
