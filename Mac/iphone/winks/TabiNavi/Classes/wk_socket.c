@@ -9,6 +9,7 @@
 
 #include "wk_socket.h"
 static Winks_SocketALGB_s Winks_SocketALGB;
+static int maxfd = 0;
 /********************************************************************************\
  对外提供的函数接口
  \********************************************************************************/
@@ -121,7 +122,41 @@ int Winks_getlasterror()
  \*************************************************************************************/
 int Winks_socket( int family, int type, int protocol )
 {
-
+	int i = 0;
+	
+    if( !Winks_SocketALGB.ifInit )
+    {
+        Winks_printf( "WINKS socket creat not initial\r\n" );
+        return -1;
+    }
+	
+    Winks_GetMutex( Winks_SocketALGB.Socket_Mutex, -1 );
+    while( i++ < WINKS_SO_MAXSONUM - 1 )
+    {
+        /* We keep handle 0 as a debug handle, will not alloc 0 to user */
+        if( (++Winks_SocketALGB.sockhd) >= WINKS_SO_MAXSONUM )
+            Winks_SocketALGB.sockhd = 1;
+        if( Winks_SocketALGB.sockcb[Winks_SocketALGB.sockhd].s == -1 )
+        {
+            /* Get a vaild socket CB */
+            if( (Winks_SocketALGB.sockcb[Winks_SocketALGB.sockhd].s = osal_socket( family, type, protocol )) 
+			   == -1 )
+            {
+                Winks_SocketALGB.sockhd --;
+                Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+                Winks_printf( "WINKS socket create socket failure\r\n" );
+                return -1;
+            }
+            Winks_printf( "WINKS socket create socket hd %d, socket %d\r\n", Winks_SocketALGB.sockhd, 
+						 Winks_SocketALGB.sockcb[Winks_SocketALGB.sockhd].s );
+            Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+            return Winks_SocketALGB.sockhd;
+        }
+    }
+    Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+	
+    Winks_printf( "WINKS socket create socket control block full\r\n" );
+    return -1;
 }
 
 /*************************************************************************************\
@@ -303,7 +338,71 @@ int Winks_closesocket( int sockhd )
  \*************************************************************************************/
 int Winks_AsyncGetHostByName( char* name, char* pHost, int hostlen, WINKS_CHN_ID channel, int msg )
 {
-
+	Winks_GetHost_s* pHostcb = NULL;
+    unsigned long addr = 0;
+    Winks_hostent* phost = (Winks_hostent* )pHost;
+    int len = 0;
+    Winks_GH_s* pGH = NULL;
+    static int Tname = 0;
+#define WINKS_SO_TNAMELEN   16
+    char pTname[WINKS_SO_TNAMELEN];
+	
+    if( name == NULL || pHost == NULL || hostlen < (sizeof(Winks_hostent) + 4 + 4 + 4) )
+    {
+        Winks_printf( "WINKS socket gethostbyname parameter error\r\n" );
+        return -1;
+    }
+	
+    if( ((addr = inet_addr(name)) != (unsigned long)-1) || (((addr = Winks_GHGetfromCache(name)) != 0)) )
+    {
+        /* We get it from cache */
+        phost->h_name = NULL;
+        phost->h_aliases = NULL;
+        phost->h_addrtype = AF_INET;
+        phost->h_length = 4;
+        phost->h_addr_list = (char** )(phost + 1);
+        phost->h_addr_list[0] = (char* )(phost->h_addr_list) + (2 * sizeof(char* ));
+        phost->h_addr_list[1] = NULL;
+        *((unsigned long* )(phost->h_addr_list[0])) = addr;
+		
+        return 0;
+    }
+    /* we find a free handle */
+    if( (pHostcb = winks_lockGHhandle( WINKS_SO_MAXGHNUM )) == NULL )
+    {
+        Winks_printf( "WINKS socket gethostbyname cb full\r\n" );
+        return WINKS_SO_FAILURE;
+    }
+	
+    /* we save user parameters */
+    len = strlen(name);
+    pHostcb->channel = channel;
+    pHostcb->pHost = pHost;
+    pHostcb->Hostlen = hostlen;
+    pHostcb->MsgNum = msg;
+	
+    pGH = Winks_salAlloc( sizeof(int) + len + 1 );
+    memset( pGH, 0, (sizeof(int) + len + 1) );
+    pGH->GHID = pHostcb - Winks_SocketALGB.GHcb;
+    memcpy( pGH->name, name, len );
+	
+    if( Tname ++ >= 9999 )
+        Tname = 0;
+    sprintf( pTname, "%s%d", WINKS_SO_GHTHREADNAME, Tname );
+	
+    if( (pHostcb->ThreadID = Winks_CreateThread( (void* )pTname, winks_GHThread, 
+												pGH )) == NULL )
+    {
+        memset( pHostcb, 0, sizeof(Winks_GetHost_s) );
+        pHostcb->ThreadID = NULL;
+        Winks_PutMutex( Winks_SocketALGB.GH_Mutex );
+        Winks_printf( "WINKS socket gethostbyname create thread failure\r\n" );
+        return WINKS_SO_FAILURE;
+    }
+    
+    Winks_PutMutex( Winks_SocketALGB.GH_Mutex );
+	
+    return (pHostcb - Winks_SocketALGB.GHcb);
 }
 
 /*************************************************************************************\
@@ -347,12 +446,187 @@ int Winks_CancelGetHostByName( int handle )
  \*************************************************************************************/
 static void winks_SocketThread( void* param )
 {
-
+	int nfds = 0, ret = 0, i = 0, lret = 0;
+    Winks_EventSock_s SEvent;
+    Winks_Socketmsg_s msg;
+    
+    Winks_Socket_s* pSock = NULL;
+    WK_FD_SET rdfds;
+    WK_FD_SET wrfds;
+    WK_FD_SET expfds;
+    long times;
+	
+    
+    times = WINKS_SO_TIME;   //200 microsecond
+	
+    /* firstly we wait in global event for any event */
+    Winks_SocketALGB.ifWait = 1;
+    Winks_printf( "WINKS socket thread initial wait\r\n" );
+    Winks_GetEvent( Winks_SocketALGB.Global_Event, -1 );
+    Winks_printf( "WINKS socket thread initial wakeup\r\n" );
+    Winks_SocketALGB.ifWait = 0;
+    
+    /* when get event, set flags first */
+	
+    while( 1 )
+    {
+        if( (nfds = winks_getsockstatus( &SEvent )) > 0 )
+        {
+            //Winks_printf( "WINKS socket thread get live socket, num = %d\r\n", SEvent.num );
+            WK_FD_ZERO( &rdfds );
+            WK_FD_ZERO( &wrfds );
+            WK_FD_ZERO( &expfds );
+            for( i = 0; i < SEvent.num; i++ )
+            {
+                if( (SEvent.s[i].Opcode & WINKS_SO_ONCONNECT) )
+                {
+                    //Winks_printf( "WINKS socket thread get onconnect socket %d\r\n", SEvent.s[i].sockhd );
+                    WK_FD_SET_ADD( SEvent.s[i].sockhd, &wrfds );
+                    WK_FD_SET_ADD( SEvent.s[i].sockhd, &expfds );
+                }
+                if( (SEvent.s[i].Opcode & WINKS_SO_ONWRITE) )
+                {
+                    //Winks_printf( "WINKS socket thread get onwrite socket %d\r\n", SEvent.s[i].sockhd );
+                    WK_FD_SET_ADD( SEvent.s[i].sockhd, &wrfds );
+                }
+                if( (SEvent.s[i].Opcode & WINKS_SO_ONREAD) )
+                {
+                    //Winks_printf( "WINKS socket thread get onread socket %d\r\n", SEvent.s[i].sockhd );
+                    WK_FD_SET_ADD( SEvent.s[i].sockhd, &rdfds );
+                }
+            }
+            //ret = osal_sock_select(&rdfds, &wrfds, &expfds, 0 );
+			ret = osal_sock_select(&rdfds, &wrfds, &expfds, 200);
+			
+            if( ret > 0 )
+            {
+                /* some event occured */
+                for( i = 0; i < SEvent.num; i++ )
+                {
+                    if( WK_FD_ISSET(SEvent.s[i].sockhd, &wrfds) )
+                    {
+                        if( (pSock = winks_lockhandle( SEvent.s[i].index )) != NULL )
+                        {
+                            if( SEvent.s[i].Opcode & WINKS_SO_ONCONNECT )
+                            {
+                                Winks_printf( "WINKS socket thread poll onconnect event %d, %d\r\n", SEvent.s[i].index,SEvent.s[i].sockhd );
+								
+                                pSock->Opcode &= ~WINKS_SO_ONCONNECT;
+                                msg.wParam = (unsigned long )(pSock - Winks_SocketALGB.sockcb);
+                                msg.lParam = WINKS_SO_CONNECT;
+                                lret = Winks_PostMsg( pSock->channel, (unsigned long )(pSock->MsgNum), &msg, sizeof(Winks_Socketmsg_s) );
+                                Winks_printf( "WINKS socket thread post connect msg ret %d\r\n", lret );
+                                //why need this statment 
+								pSock->Opcode |= WINKS_SO_ONREAD | WINKS_SO_ONWRITE;
+                            }
+                            else if( SEvent.s[i].Opcode & WINKS_SO_ONWRITE )
+                            {
+                                Winks_printf( "WINKS socket thread poll onwrite event %d, %d\r\n", SEvent.s[i].index,SEvent.s[i].sockhd );
+                                pSock->Opcode &= ~WINKS_SO_ONWRITE;
+                                msg.wParam = (unsigned long )(pSock - Winks_SocketALGB.sockcb);
+                                msg.lParam = WINKS_SO_WRITE;
+                                lret = Winks_PostMsg( pSock->channel, (unsigned long )(pSock->MsgNum), &msg, sizeof(Winks_Socketmsg_s) );
+                                Winks_printf( "WINKS socket thread post write msg ret %d\r\n", lret );
+                            }
+                            else
+                            {
+                                Winks_printf( "WINKS socket thread poll write event %d, but socket no flags\r\n", SEvent.s[i].sockhd );
+                            }
+                            Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+                        }
+                        else
+                        {
+                            Winks_printf( "WINKS socket thread poll write event %d, but socket invalid\r\n", SEvent.s[i].sockhd );
+                        }
+                    }
+                    if( WK_FD_ISSET(SEvent.s[i].sockhd, &rdfds) )
+                    {
+                        if( (pSock = winks_lockhandle( SEvent.s[i].index )) != NULL )
+                        {
+                            Winks_printf( "WINKS socket thread poll onreceive event %d, %d\r\n", SEvent.s[i].index,SEvent.s[i].sockhd );
+                            pSock->Opcode &= ~WINKS_SO_ONREAD;
+                            msg.wParam = (unsigned long )(pSock - Winks_SocketALGB.sockcb);
+                            msg.lParam = WINKS_SO_READ;
+                            lret = Winks_PostMsg( pSock->channel, (unsigned long )(pSock->MsgNum), &msg, sizeof(Winks_Socketmsg_s) );
+                            Winks_printf( "WINKS socket thread post read msg ret %d\r\n", lret );
+                            Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+                        }
+                        else
+                        {
+                            Winks_printf( "WINKS socket thread poll read event %d, but socket invalid\r\n", SEvent.s[i].sockhd );
+                        }
+                    }
+#if 0
+                    if( WK_FD_ISSET(SEvent.s[i].sockhd, &expfds) )
+                    {
+                        if( (pSock = winks_lockhandle( SEvent.s[i].index )) != NULL )
+                        {
+                            Winks_printf( "WINKS socket thread poll onconnect failure event %d\r\n", SEvent.s[i].sockhd );
+                            pSock->Opcode &= ~WINKS_SO_ONCONNECT;
+                            msg.wParam = (unsigned long )(pSock - Winks_SocketALGB.sockcb);
+                            msg.lParam = WINKS_SO_CONNECT | (tp_os_net_get_errno() << 16);
+                            lret = Winks_PostMsg( pSock->channel, (void* )(pSock->MsgNum), &msg, sizeof(Winks_Socketmsg_s) );
+                            Winks_printf( "WINKS socket thread postmsg ret %d\r\n", lret );
+                            Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+                        }
+                        else
+                        {
+                            Winks_printf( "WINKS socket thread poll except event %d, but socket invalid\r\n", SEvent.s[i].sockhd );
+                        }
+                        
+                    }
+#endif
+                }
+                
+            }
+            else if(ret<0) 
+            {
+                Winks_printf( "WINKS socket thread select return error %d\r\n", Winks_get_platform_error() );
+            }
+			//adde sleep thread
+			osal_thread_sleep(200);
+        }
+        else
+        {
+            Winks_SocketALGB.ifWait = 1;
+            Winks_printf( "WINKS socket thread wait\r\n" );
+            Winks_GetEvent( Winks_SocketALGB.Global_Event, -1 );
+            Winks_printf( "WINKS socket thread wakeup\r\n" );
+            Winks_SocketALGB.ifWait = 0;
+        }
+    }
 }
 
 /********************************************************************************\
  依赖具体平台的内部函数接口
  \********************************************************************************/
+static Winks_Socket_s* winks_lockhandle( int sockhd )
+{
+    Winks_Socket_s* pSock = NULL;
+	
+    if( !Winks_SocketALGB.ifInit )
+    {
+        Winks_printf( "WINKS socket get handle not initial\r\n" );
+        return NULL;
+    }
+    if( sockhd < 0 && sockhd >= WINKS_SO_MAXSONUM )
+    {
+        Winks_printf( "WINKS socket get handle socket invalid in range\r\n" );
+        return NULL;
+    }
+	
+    pSock = &(Winks_SocketALGB.sockcb[sockhd]);
+	
+    Winks_GetMutex( Winks_SocketALGB.Socket_Mutex, -1 );
+    if( pSock->s == -1 )
+    {
+        Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+        Winks_printf( "WINKS socket get handle socket invalid\r\n" );
+        return NULL;
+    }
+	
+    return pSock;
+}
 
 static void* Winks_CreateMutex( const char* name){
 	// name没有用到
@@ -370,8 +644,36 @@ static int Winks_PutMutex( void* mutex ){
 	return pthread_mutex_unlock((pthread_mutex_t*)mutex);
 }
 
+//真正执行连接动作
 static int winks_real_connect_socket(int sockhd, struct winks_sockaddr* serv_addr, int addrlen){
+	Winks_Socket_s* pSock = NULL;
+	int ret;
+	if( (pSock = winks_lockhandle(sockhd)) == NULL ) {
+		Winks_printf( "WINKS socket connect gethandle failure\r\n" );
+		return WINKS_SO_FAILURE;
+	}
+	ret = osal_sock_connect( pSock->s, serv_addr, addrlen );
+	if( ret < 0 && Winks_getlasterror()!= WINKS_SO_EWOULDBLOCK) {
+		Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+		Winks_printf( "WINKS socket connect call system error %d\r\n", Winks_get_platform_error() );
+		return ret;
+	}
 	
+	if( ret == 0 && pSock->MsgNum ) {
+		/* 屏蔽平台差异 */
+		ret = -1;
+		winks_set_lasterror(WINKS_SO_EWOULDBLOCK);
+	}
+	
+	winks_set_lasterror(WINKS_SO_EWOULDBLOCK);
+	pSock->Opcode |= WINKS_SO_ONCONNECT;
+	
+	Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+	//???:
+	if( winks_ifthreadwait() )
+		Winks_SetEvent( Winks_SocketALGB.Global_Event );
+	
+	return ret;
 }
 static void* Winks_CreateEvent( const char* name){
 	
@@ -386,11 +688,16 @@ static int Winks_SetEvent( void* event ){
 	
 }
 
+static int winks_ifthreadwait()
+{
+    return Winks_SocketALGB.ifWait;
+}
 static void* Winks_CreateThread(const char* name, WK_THREAD_ENTRY entry,void* param ){
 	pthread_attr_t attr;
 	pthread_t posixThreadID;
 	
 	assert(!pthread_attr_init(&attr));
+	// 线程以分离状态启动，在线程退出时收回占用资源
 	assert(!pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED));
 	
 	int threadError = pthread_create(&posixThreadID, &attr, &entry, param);
@@ -398,54 +705,127 @@ static void* Winks_CreateThread(const char* name, WK_THREAD_ENTRY entry,void* pa
 	if (threadError != 0){
 		return NULL;
 	}
-	return posixThreadID;
+	return (void*)posixThreadID;
 }
 static int Winks_DeleteThread( void* thread ){
+	return pthread_cancel((pthread_t)thread);
+}
+static int winks_getsockstatus( Winks_EventSock_s* pSevent )
+{
+    int ret = -1, i = 0;
 	
+    memset( pSevent, 0, sizeof(Winks_EventSock_s) );
+	
+    Winks_GetMutex( Winks_SocketALGB.Socket_Mutex, -1 );
+    for( i = 0; i < WINKS_SO_MAXSONUM; i ++ )
+    {
+        if( (Winks_SocketALGB.sockcb[i].s != -1) && (Winks_SocketALGB.sockcb[i].Opcode & WINKS_SO_ONMASK) )
+        {
+            if( ret < (int)Winks_SocketALGB.sockcb[i].s )
+                ret = Winks_SocketALGB.sockcb[i].s;
+            pSevent->s[pSevent->num].sockhd = Winks_SocketALGB.sockcb[i].s;
+            pSevent->s[pSevent->num].Opcode = Winks_SocketALGB.sockcb[i].Opcode;
+            pSevent->s[pSevent->num].index = i;
+            pSevent->num ++;
+        }
+    }
+    Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+	
+    return ret + 1;
 }
 
 static WK_FD osal_socket(int family , int type , int protocol){
-	
+	WK_FD sock_handle;
+	if (AF_INET != family || SOCK_STREAM != type) {
+		return -1;
+	}
+	sock_handle = socket(AF_INET,SOCK_STREAM,/*IPPROTO_TCP*/0);
+	if (sock_handle == -1) {
+		//osal_set_last_error(WSAGetLastError());
+		perror("socket create");
+		return -1;
+	}
+	return sock_handle;
 }
 static int osal_sock_close(WK_FD socket){
-	
+	if(close(socket) == -1){
+		perror("close socket");
+		return -1;
+	}
+	return 0;
 }
 static int osal_sock_setnonblock(WK_FD socket){
-	
+	if(fcntl(socket, F_SETFL, O_NONBLOCK) == -1){
+		perror("set nonblocking");
+		return -1;
+	}
+	return 0;
 }
 static int osal_sock_connect(WK_FD socket, struct winks_sockaddr* serv_addr, int addrlen){
-	
+	if(-1 == connect(socket, (struct sockaddr*)serv_addr, addrlen)){
+		perror("sock connect");
+		return -1;
+	}
+	return 0;
 }
 static int osal_sock_send(WK_FD socket, char *buf, int len){
-	
+	int byteSent = send(socket, buf, len, 0);
+	if(-1 == byteSent){
+		perror("send");
+		return -1;
+	}
+	return 0;
 }
 static int osal_sock_recv(WK_FD socket,char *buf,int len){
-	
+	int byteRecved = recv(socket, buf, len, 0);
+	if(-1 == byteRecved){
+		perror("recv");
+		return -1;
+	}
+	return 0;
 }
 
 static int osal_sock_select(WK_FD_SET *readfds, WK_FD_SET *writefds, WK_FD_SET *excptfds,long timeout){
-	
+	struct timeval tv;
+	tv.tv_sec = 0;
+	tv.tv_usec = timeout * 1000;
+	int readyFDnum = select(maxfd, readfds, writefds, excptfds, tv);
+	if(-1 == readyFDnum){
+		perror("select");
+		return -1;
+	}
+	return readyFDnum;
 }
 static void WK_FD_ZERO(WK_FD_SET *set){
-	
+	FD_ZERO(set);
 }
 static void WK_FD_SET_ADD(WK_FD fd, WK_FD_SET *set){
-	
+	FD_SET(fd, set);
 }
 static int WK_FD_ISSET(WK_FD fd,WK_FD_SET *set){
-	
+	FD_ISSET(fd, set);
 }
+// 转换错误
 static void osal_set_last_error(int platform_errcode){
-	
+	if (EWOULDBLOCK == platform_errcode || EINPROGRESS == platform_errcode){
+		Winks_SocketALGB.winks_errcode = WINKS_SO_EWOULDBLOCK;
+	}else{
+		Winks_SocketALGB.winks_errcode = WINKS_SO_FAILURE;
+	}
 }
 
 static unsigned long osal_gethostbyname(char *name){
-	
+	struct hostent *pHostent = gethostbyname(name);
+	if (NULL == pHostent) {
+		perror("gethostbyname");
+		return 0;
+	}
+	return *((unsigned long*)pHostent->h_addr_list[0]);
 }
 static unsigned int osal_get_tick(){
 	
 }
 
 static void osal_thread_sleep(uint32 ms){
-	
+	sleep(ms);
 }

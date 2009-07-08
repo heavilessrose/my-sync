@@ -115,8 +115,8 @@ char* gethome()
 struct hostent * getHost(NSString *name)
 {
 	struct hostent *host;
-	const char* host_addr = [name UTF8String];
-	if((host=gethostbyname(host_addr))==NULL){
+	const char* host_name = [name UTF8String];
+	if((host=gethostbyname(host_name))==NULL){
 		fprintf(stderr,"Gethostname error, %s\n", strerror(errno));
 		exit(1);
 	}
