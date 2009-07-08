@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B586F521001FC5A00303A6F /* wk_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B586F511001FC5A00303A6F /* wk_socket.c */; };
 		1B586F701002029000303A6F /* wk_osfnc.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B586F6E1002029000303A6F /* wk_osfnc.c */; };
 		1BA729370FF86C6D002EC1B7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729360FF86C6D002EC1B7 /* FirstViewController.m */; };
 		1BA7293A0FF86C7D002EC1B7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA729390FF86C7D002EC1B7 /* SecondViewController.m */; };
@@ -23,6 +22,7 @@
 		1BA72AC10FF899BE002EC1B7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA72ABF0FF899BE002EC1B7 /* AddressBook.framework */; };
 		1BA72AC20FF899BE002EC1B7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA72AC00FF899BE002EC1B7 /* AddressBookUI.framework */; };
 		1BA72ACD0FF89AAC002EC1B7 /* ContactsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72ACC0FF89AAC002EC1B7 /* ContactsView.xib */; };
+		1BB3F1061004A0AB005B7DC0 /* wk_sockAl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3F1051004A0AB005B7DC0 /* wk_sockAl.m */; };
 		1BB851A10FFB165100490ACE /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB851A00FFB165100490ACE /* Utils.m */; };
 		1BB852A90FFB70F800490ACE /* wk_fileapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB852A80FFB70F800490ACE /* wk_fileapi.m */; };
 		1BBD10460FF9A7620053ECFE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD10450FF9A7620053ECFE /* SettingsViewController.m */; };
@@ -50,8 +50,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B586F511001FC5A00303A6F /* wk_socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wk_socket.c; sourceTree = "<group>"; };
-		1B586F531001FCA400303A6F /* wk_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_socket.h; sourceTree = "<group>"; };
 		1B586F6D1002026C00303A6F /* wk_public.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; path = wk_public.h; sourceTree = "<group>"; };
 		1B586F6E1002029000303A6F /* wk_osfnc.c */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.c; path = wk_osfnc.c; sourceTree = "<group>"; };
 		1B586F6F1002029000303A6F /* wk_osfnc.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; path = wk_osfnc.h; sourceTree = "<group>"; };
@@ -78,6 +76,8 @@
 		1BA72ABF0FF899BE002EC1B7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		1BA72AC00FF899BE002EC1B7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		1BA72ACC0FF89AAC002EC1B7 /* ContactsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsView.xib; sourceTree = "<group>"; };
+		1BB3F1041004A0AB005B7DC0 /* wk_sockAl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_sockAl.h; sourceTree = "<group>"; };
+		1BB3F1051004A0AB005B7DC0 /* wk_sockAl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wk_sockAl.m; sourceTree = "<group>"; };
 		1BB8519F0FFB165100490ACE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1BB851A00FFB165100490ACE /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		1BB852A70FFB70F800490ACE /* wk_fileapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_fileapi.h; sourceTree = "<group>"; };
@@ -166,8 +166,8 @@
 		1B586E9B1001A5DA00303A6F /* socket */ = {
 			isa = PBXGroup;
 			children = (
-				1B586F531001FCA400303A6F /* wk_socket.h */,
-				1B586F511001FC5A00303A6F /* wk_socket.c */,
+				1BB3F1041004A0AB005B7DC0 /* wk_sockAl.h */,
+				1BB3F1051004A0AB005B7DC0 /* wk_sockAl.m */,
 			);
 			name = socket;
 			sourceTree = "<group>";
@@ -428,8 +428,8 @@
 				1BCE1C960FFC81DD00688869 /* unicode_helper.c in Sources */,
 				995F361510008A6B0037F728 /* WebViewController.m in Sources */,
 				99A41FA11001118500F1B51D /* WebViewNavController.m in Sources */,
-				1B586F521001FC5A00303A6F /* wk_socket.c in Sources */,
 				1B586F701002029000303A6F /* wk_osfnc.c in Sources */,
+				1BB3F1061004A0AB005B7DC0 /* wk_sockAl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

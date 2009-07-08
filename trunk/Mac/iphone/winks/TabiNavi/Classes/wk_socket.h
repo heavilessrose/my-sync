@@ -16,6 +16,18 @@
 #include "wk_osfnc.h"
 
 #include <sys/select.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <errno.h>
+#include <string.h>
+#include <netdb.h>
+#include <netinet/in.h>
+
+#include <assert.h>
 #include <pthread.h>
 
 /*************************************************************************\
