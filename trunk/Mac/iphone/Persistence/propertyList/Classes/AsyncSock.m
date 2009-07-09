@@ -16,7 +16,8 @@
 //@class propertyListViewController;
 
 @implementation AsyncSock
-
+static void MyCFSocketCallback (CFSocketRef sref, CFSocketCallBackType callbackType, CFDataRef address, 
+								const void *data, void *info);
 - (id)init{
 	if((self = [super init])){
 		_runLoopModes = [[NSArray arrayWithObject:NSDefaultRunLoopMode] retain];
@@ -37,7 +38,19 @@
 }
 
 - (void)test{
-	_sock = [self createSocket:kCFSocketConnectCallBack|kCFSocketDataCallBack|kCFSocketReadCallBack|kCFSocketWriteCallBack|kCFSocketNoCallBack];
+	CFOptionFlags callbacktypes = kCFSocketConnectCallBack|kCFSocketDataCallBack|kCFSocketReadCallBack|kCFSocketWriteCallBack|kCFSocketNoCallBack;
+	_sock = [self createSocket:callbacktypes];
+	
+	//???:try to use bsd socket: OK 多次创建，底层使用的是同一个socket描述符，bsdsocket与CFSocket一一对应可多次互相转换
+	CFSocketNativeHandle bsdsock = CFSocketGetNative(_sock);
+	_sock = NULL;
+	printf("bsdsock = %d\n", bsdsock);
+	_sock = CFSocketCreateWithNative(kCFAllocatorDefault, bsdsock, callbacktypes, (CFSocketCallBack)&MyCFSocketCallback, &_context);
+	_sock = NULL;
+	_sock = CFSocketCreateWithNative(kCFAllocatorDefault, bsdsock, callbacktypes, (CFSocketCallBack)&MyCFSocketCallback, &_context);
+	bsdsock = CFSocketGetNative(_sock);
+	printf("\n@@@@ bsdsock = %d\n", bsdsock);
+	
 	[self attachSockToRunloop];
 	CFDataRef remoteAddr = (CFDataRef)[self getRemoteAddr:@"online.sccnn.com" port:80];
 	//CFDataRef remoteAddr = (CFDataRef)[self getRemoteAddr:@"127.0.0.1" port:9034];
@@ -139,7 +152,7 @@
 	hints.ai_socktype = SOCK_STREAM;
 	
 	// 取得服务器地址信息（struct addrinfo）
-	if ((rv = getaddrinfo(/* argv[1] */ HOST, PORT, &hints, &servinfo)) != 0) {
+	if ((rv = getaddrinfo(HOST, PORT, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		return 1;
 	}
@@ -317,6 +330,7 @@
 static void MyCFSocketCallback (CFSocketRef sref, CFSocketCallBackType callbackType, CFDataRef address, 
 								const void *data, void *info)
 {
+	NSLog(@"info: %@", [((AsyncSock *)info) description]);
 	NSLog(@"MyCFSocketCallback: %d", (int)callbackType);
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
@@ -325,7 +339,10 @@ static void MyCFSocketCallback (CFSocketRef sref, CFSocketCallBackType callbackT
 	
 	[pool release];
 }
-
+- (NSString *)description
+{
+	return @"AsyncSock 1";
+}
 // 流事件
 /**
  * This is the callback we setup for CFReadStream.

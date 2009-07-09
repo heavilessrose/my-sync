@@ -22,6 +22,9 @@
 
 //#include "wk_osfnc.h"
 
+typedef long int WK_FD;
+typedef fd_set WK_FD_SET;
+
 //Socket 操作码及通知消息事件类型数值
 #define WINKS_SO_CONNECT	0x01	//连接
 #define WINKS_SO_READ		0x02	//读取
@@ -157,4 +160,52 @@ int Winks_getlasterror();
 int Winks_AsyncGetHostByName( char* name, char* pHost, int hostlen, WINKS_CHN_ID channel, int msg );
 int Winks_CancelGetHostByName( int handle );
 
+/********************************************************************************\
+ 不依赖具体平台的内部函数接口
+ \********************************************************************************/
+static void winks_SocketThread( void* param );
+static void winks_GHThread( void* param );
+static Winks_Socket_s* winks_lockhandle( int sockhd );
+static Winks_GetHost_s* winks_lockGHhandle( int GHid );
+static int winks_ifthreadwait();
+static int winks_getsockstatus( Winks_EventSock_s* pSevent );
+static unsigned long Winks_GHGetfromCache( char* name );
+static int Winks_GHPutinCache( char* name, unsigned long addr );
+static int Winks_get_platform_error();
+static void winks_set_lasterror(int errCode);
+
+/********************************************************************************\
+ 依赖具体平台的内部函数接口
+ \********************************************************************************/
+static void* Winks_CreateMutex( const char* name);
+static int Winks_DeleteMutex( void* mutex );
+static int Winks_GetMutex( void* mutex, int timeout );
+static int Winks_PutMutex( void* mutex );
+
+static int winks_real_connect_socket(int sockhd, struct winks_sockaddr* serv_addr, int addrlen);
+static void* Winks_CreateEvent( const char* name);
+static int Winks_DeleteEvent( void* event );
+static int Winks_GetEvent( void* event, int timeout );
+static int Winks_SetEvent( void* event );
+
+static void* Winks_CreateThread(const char* name, WK_THREAD_ENTRY entry,void* param );
+static int Winks_DeleteThread( void* thread );
+
+static WK_FD osal_socket(int family , int type , int protocol);
+static int osal_sock_close(WK_FD socket);
+static int osal_sock_setnonblock(WK_FD socket);
+static int osal_sock_connect(WK_FD socket, struct winks_sockaddr* serv_addr, int addrlen);
+static int osal_sock_send(WK_FD socket, char *buf, int len);
+static int osal_sock_recv(WK_FD socket,char *buf,int len);
+
+static int osal_sock_select(WK_FD_SET *readfds, WK_FD_SET *writefds, WK_FD_SET *excptfds,long timeout);
+static void WK_FD_ZERO(WK_FD_SET *set);
+static void WK_FD_SET_ADD(WK_FD fd, WK_FD_SET *set);
+static int WK_FD_ISSET(WK_FD fd,WK_FD_SET *set);
+static void osal_set_last_error(int platform_errcode);
+
+static unsigned long osal_gethostbyname(char *name);
+static unsigned int osal_get_tick();
+
+static void osal_thread_sleep(uint32 ms);
 @end

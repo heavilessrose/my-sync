@@ -11,12 +11,11 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-
 #include <arpa/inet.h>
 
 #define PORT "9034" // the port client will be connecting to 
 
-#define MAXDATASIZE 100 // max number of bytes we can get at once 
+#define MAXDATASIZE 1024 // max number of bytes we can get at once 
 
 // get sockaddr, IPv4 or IPv6:
 void *get_in_addr(struct sockaddr *sa)
@@ -30,7 +29,7 @@ void *get_in_addr(struct sockaddr *sa)
 
 int main(int argc, char *argv[])
 {
-	int sockfd, numbytes;
+	int sockfd, numrecv, numsent;
 	char buf[MAXDATASIZE];
 	struct addrinfo hints, *servinfo, *p;
 	int rv;
@@ -81,16 +80,30 @@ int main(int argc, char *argv[])
 	
 	freeaddrinfo(servinfo); // all done with this structure
 	
-	if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
+	if ((numrecv = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
 	    perror("recv");
 	    exit(1);
 	}
+	buf[numrecv] = '\0';
+	printf("client: received: %s\n", buf);
 	
-	buf[numbytes] = '\0';
+	char sendbuf[MAXDATASIZE] = "lalalalala";
+	sendbuf[strlen(sendbuf)] = '\0';
+	if((numsent = send(sockfd, "lalalalala", 10, 0)) == -1){
+		perror("send");
+		exit(1);
+	}
+	char end[1] = {'\0'}; 
+	send(sockfd, end, 1, 0);
+	printf("client: sent: %s\n", sendbuf);
 	
-	printf("client: received '%s'\n",buf);
-	
-	close(sockfd);
+	if ((numrecv = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
+	    perror("recv");
+	    exit(1);
+	}
+	buf[numrecv] = '\0';
+	printf("client: received: %s\n", buf);
+	//close(sockfd);
 	
 	return 0;
 }
