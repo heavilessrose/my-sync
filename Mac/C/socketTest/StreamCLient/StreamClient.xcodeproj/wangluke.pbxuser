@@ -5,7 +5,8 @@
 		activeExecutable = 1B34246F0FC2B6B700B23525 /* StreamClient */;
 		activeTarget = 8DD76FA90486AB0100D96B5E /* StreamClient */;
 		breakpoints = (
-			1B3A360D0FCA868800F5BED1 /* main.c:51 */,
+			1B3A360D0FCA868800F5BED1 /* main.c:50 */,
+			1BFC76FF1005BE3500A485C8 /* main.c:90 */,
 		);
 		codeSenseManager = 1B3424760FC2B6BA00B23525 /* Code sense */;
 		executables = (
@@ -48,15 +49,16 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 267348332;
-			PBXWorkspaceStateSaveDate = 267348332;
+			PBXPerProjectTemplateStateSaveDate = 268814678;
+			PBXWorkspaceStateSaveDate = 268814678;
 		};
 		perUserProjectItems = {
-			1B10BEDF0FEF6F8F00F68AE9 /* PBXTextBookmark */ = 1B10BEDF0FEF6F8F00F68AE9 /* PBXTextBookmark */;
 			1B3A36110FCA869500F5BED1 /* PBXTextBookmark */ = 1B3A36110FCA869500F5BED1 /* PBXTextBookmark */;
 			1B3A368B0FCA941600F5BED1 /* PBXTextBookmark */ = 1B3A368B0FCA941600F5BED1 /* PBXTextBookmark */;
-			1B3A368D0FCA941600F5BED1 /* PBXTextBookmark */ = 1B3A368D0FCA941600F5BED1 /* PBXTextBookmark */;
-			1B52A0200FEF6826002FB0BB /* PBXTextBookmark */ = 1B52A0200FEF6826002FB0BB /* PBXTextBookmark */;
+			1BFC775D1005CBE700A485C8 /* PBXTextBookmark */ = 1BFC775D1005CBE700A485C8 /* PBXTextBookmark */;
+			1BFC775F1005CBE700A485C8 /* PBXTextBookmark */ = 1BFC775F1005CBE700A485C8 /* PBXTextBookmark */;
+			1BFC77601005CBE700A485C8 /* PBXTextBookmark */ = 1BFC77601005CBE700A485C8 /* PBXTextBookmark */;
+			1BFC77621005CBE700A485C8 /* PBXTextBookmark */ = 1BFC77621005CBE700A485C8 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 1B3424750FC2B6BA00B23525 /* Source Control */;
 		userBuildSettings = {
@@ -64,20 +66,10 @@
 	};
 	08FB7796FE84155DC02AAC07 /* main.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1011, 1666}}";
-			sepNavSelRange = "{1302, 0}";
-			sepNavVisRange = "{678, 1168}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 1853}}";
+			sepNavSelRange = "{1175, 459}";
+			sepNavVisRange = "{763, 1233}";
 		};
-	};
-	1B10BEDF0FEF6F8F00F68AE9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
-		name = "main.c: 57";
-		rLen = 0;
-		rLoc = 1302;
-		rType = 0;
-		vrLen = 1168;
-		vrLoc = 678;
 	};
 	1B34246F0FC2B6B700B23525 /* StreamClient */ = {
 		isa = PBXExecutable;
@@ -151,7 +143,7 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	1B3A360D0FCA868800F5BED1 /* main.c:51 */ = {
+	1B3A360D0FCA868800F5BED1 /* main.c:50 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -161,11 +153,11 @@
 		delayBeforeContinue = 0;
 		fileReference = 08FB7796FE84155DC02AAC07 /* main.c */;
 		functionName = "main()";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 51;
+		lineNumber = 50;
 		location = StreamClient;
-		modificationTime = 264932907.658886;
+		modificationTime = 268813516.358088;
 		state = 2;
 	};
 	1B3A36110FCA869500F5BED1 /* PBXTextBookmark */ = {
@@ -202,25 +194,74 @@
 		vrLen = 1907;
 		vrLoc = 20008;
 	};
-	1B3A368D0FCA941600F5BED1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B3A36170FCA869500F5BED1 /* socket.h */;
-		name = "socket.h: 560";
-		rLen = 81;
-		rLoc = 20473;
-		rType = 0;
-		vrLen = 1907;
-		vrLoc = 20008;
+	1BFC76FF1005BE3500A485C8 /* main.c:90 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.c */;
+		functionName = "main()";
+		hitCount = 1;
+		ignoreCount = 0;
+		lineNumber = 90;
+		location = StreamClient;
+		modificationTime = 268813558.384576;
+		state = 2;
 	};
-	1B52A0200FEF6826002FB0BB /* PBXTextBookmark */ = {
+	1BFC775D1005CBE700A485C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BFC775E1005CBE700A485C8 /* netdb.h */;
+		name = "netdb.h: 157";
+		rLen = 48;
+		rLoc = 5992;
+		rType = 0;
+		vrLen = 1364;
+		vrLoc = 5057;
+	};
+	1BFC775E1005CBE700A485C8 /* netdb.h */ = {
+		isa = PBXFileReference;
+		name = netdb.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/netdb.h;
+		sourceTree = "<absolute>";
+	};
+	1BFC775F1005CBE700A485C8 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
-		name = "main.c: 17";
-		rLen = 0;
-		rLoc = 271;
+		name = "main.c: 63";
+		rLen = 7;
+		rLoc = 1511;
 		rType = 0;
-		vrLen = 1283;
-		vrLoc = 253;
+		vrLen = 1181;
+		vrLoc = 629;
+	};
+	1BFC77601005CBE700A485C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BFC77611005CBE700A485C8 /* netdb.h */;
+		name = "netdb.h: 157";
+		rLen = 48;
+		rLoc = 5992;
+		rType = 0;
+		vrLen = 1364;
+		vrLoc = 5057;
+	};
+	1BFC77611005CBE700A485C8 /* netdb.h */ = {
+		isa = PBXFileReference;
+		name = netdb.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/netdb.h;
+		sourceTree = "<absolute>";
+	};
+	1BFC77621005CBE700A485C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 54";
+		rLen = 459;
+		rLoc = 1175;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 763;
 	};
 	8DD76FA90486AB0100D96B5E /* StreamClient */ = {
 		activeExec = 0;

@@ -388,8 +388,8 @@ const double URLCacheInterval = 86400.0;
 	LaunchThread();
 	
 	// cfsocket联网测试
-	AsyncSock* ssock = [[AsyncSock alloc] init];
-	[ssock test];
+//	AsyncSock* ssock = [[AsyncSock alloc] init];
+//	[ssock test];
 	
 	[super viewDidLoad];
 }

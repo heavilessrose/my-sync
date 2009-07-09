@@ -32,7 +32,7 @@
 - (void) connectAndDown;
 - (void) getResponseHeader;
 
-- (int) download:(NSString *)url;
+- (NSString *) download:(NSString *)url;
 @end
 
 @protocol httpClientDelegate<NSObject>

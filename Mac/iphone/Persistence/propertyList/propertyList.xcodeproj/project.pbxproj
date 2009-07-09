@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1B1562790FEF5826004D4BA6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1562780FEF5826004D4BA6 /* CFNetwork.framework */; };
 		1B1562E20FEF5D69004D4BA6 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1562E10FEF5D69004D4BA6 /* CoreFoundation.framework */; };
-		1B3D2AB90FC3EE1A00ED6450 /* httpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D2AB80FC3EE1A00ED6450 /* httpClient.m */; };
 		1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A9A990FB2FAFD00D3F76F /* Alert.m */; };
 		1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7D2F290FCB999300B59364 /* Streams.m */; };
 		1BBB25B70FB3F0C400B26386 /* URLCache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBB25B60FB3F0C400B26386 /* URLCache.plist */; };
@@ -17,6 +16,7 @@
 		1BEEE4300FD7A10E00426E20 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BEEE42F0FD7A10E00426E20 /* Localizable.strings */; };
 		1BEEE4690FD7AC3C00426E20 /* propertyListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEEE4680FD7AC3C00426E20 /* propertyListViewController.xib */; };
 		1BF860EF0FEB224100134551 /* AsyncSock.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF860EE0FEB224100134551 /* AsyncSock.m */; };
+		1BFC78551005F3AF00A485C8 /* httpClient_nonBlocking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC78541005F3AF00A485C8 /* httpClient_nonBlocking.m */; };
 		1D3623260D0F684500981E51 /* propertyListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* propertyListAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -30,7 +30,6 @@
 		1B1562780FEF5826004D4BA6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1B1562E10FEF5D69004D4BA6 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		1B3D2AB70FC3EE1A00ED6450 /* httpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = httpClient.h; sourceTree = "<group>"; };
-		1B3D2AB80FC3EE1A00ED6450 /* httpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = httpClient.m; sourceTree = "<group>"; };
 		1B5A9A980FB2FAFD00D3F76F /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
 		1B5A9A990FB2FAFD00D3F76F /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		1B7D2F280FCB999300B59364 /* Streams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Streams.h; sourceTree = "<group>"; };
@@ -43,6 +42,7 @@
 		1BEEE46A0FD7AC4800426E20 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = zh_CN.lproj/propertyListViewController.xib; sourceTree = "<group>"; };
 		1BF860ED0FEB224100134551 /* AsyncSock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSock.h; sourceTree = "<group>"; };
 		1BF860EE0FEB224100134551 /* AsyncSock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSock.m; sourceTree = "<group>"; };
+		1BFC78541005F3AF00A485C8 /* httpClient_nonBlocking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = httpClient_nonBlocking.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* propertyListAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = propertyListAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* propertyListAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = propertyListAppDelegate.m; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 				1BBB25ED0FB3F4DE00B26386 /* URLCacheConnection.h */,
 				1BBB25EE0FB3F4DE00B26386 /* URLCacheConnection.m */,
 				1B3D2AB70FC3EE1A00ED6450 /* httpClient.h */,
-				1B3D2AB80FC3EE1A00ED6450 /* httpClient.m */,
+				1BFC78541005F3AF00A485C8 /* httpClient_nonBlocking.m */,
 				1B7D2F280FCB999300B59364 /* Streams.h */,
 				1B7D2F290FCB999300B59364 /* Streams.m */,
 				1BF860F00FEB224800134551 /* asyncSocketWrap */,
@@ -225,9 +225,9 @@
 				28D7ACF80DDB3853001CB0EB /* propertyListViewController.m in Sources */,
 				1B5A9A9A0FB2FAFD00D3F76F /* Alert.m in Sources */,
 				1BBB25EF0FB3F4DE00B26386 /* URLCacheConnection.m in Sources */,
-				1B3D2AB90FC3EE1A00ED6450 /* httpClient.m in Sources */,
 				1B7D2F2A0FCB999300B59364 /* Streams.m in Sources */,
 				1BF860EF0FEB224100134551 /* AsyncSock.m in Sources */,
+				1BFC78551005F3AF00A485C8 /* httpClient_nonBlocking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
