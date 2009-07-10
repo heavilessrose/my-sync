@@ -19,10 +19,12 @@
 
 #pragma mark -
 #pragma mark osal
+static Winks_SocketALGB_s Winks_SocketALGB;
 /********************************************************************************\
  对外提供的函数接口
  \********************************************************************************/
-
+// 通道回调函数
+static int winks_Socket_Handle( unsigned long msg, void *data, unsigned long size );
 
 /*************************************************************************************\
  函数原型：  int Winks_SoStartup( void )
@@ -38,7 +40,29 @@
  \*************************************************************************************/
 int Winks_SoStartup( void )
 {
+    int i = 0;
 
+    if( Winks_SocketALGB.ifInit )
+    {
+        Winks_printf( "WINKS socket startup have initialed\r\n" );
+        return WINKS_SO_FAILURE;
+    }
+
+    for( i = 0; i < WINKS_SO_MAXSONUM; i++ )
+    {
+        Winks_SocketALGB.sockcb[i].s = -1;
+    }
+	
+    for( i = 0; i < WINKS_SO_MAXGHNUM; i++ )
+    {
+        Winks_SocketALGB.GHcb[i].ReqID = (unsigned long )-1;
+    }
+	
+    Winks_SocketALGB.channel = Winks_CreateChn( winks_Socket_Handle );
+    Winks_SocketALGB.timer = Winks_CreateTimer( Winks_SocketALGB.channel, WINKS_SO_CLEANTIME, WINKS_TIMER_DEFAULT );
+    Winks_SocketALGB.ifInit = 1;
+	
+    return WINKS_SO_SUCCESS;
 }
 
 /*************************************************************************************\
@@ -54,14 +78,38 @@ int Winks_SoStartup( void )
  \*************************************************************************************/
 int Winks_SoCleanup( void )
 {
+	int i = 0;
 	
+    if( !Winks_SocketALGB.ifInit )
+    {
+        Winks_printf( "WINKS socket cleanup have not initialed\r\n" );
+        return WINKS_SO_FAILURE;
+    }
+	
+    for( i = 0; i < WINKS_SO_MAXSONUM; i++ )
+    {
+        if( Winks_SocketALGB.sockcb[i].s != -1 )
+            osal_sock_close( (Winks_SocketALGB.sockcb[i].s) );
+    }
+    Winks_DestroyChn( Winks_SocketALGB.channel );
+    Winks_DestroyTimer( Winks_SocketALGB.timer );
+	
+    Winks_mem_set( &Winks_SocketALGB, 0, sizeof(Winks_SocketALGB) );
+	
+    return WINKS_SO_SUCCESS;
+}
+
+static int Winks_setlasterror( int err )
+{
+    Winks_SocketALGB.error = err;
+	
+    return 0;
 }
 
 int Winks_getlasterror()
-{    
-    return Winks_SocketALGB.winks_errcode;
+{
+    return Winks_SocketALGB.error;
 }
-
 /*************************************************************************************\
  函数原型：  int Winks_socket( int family, int type, int protocol )
  函数介绍：
@@ -81,18 +129,42 @@ int Winks_getlasterror()
  \*************************************************************************************/
 int Winks_socket( int family, int type, int protocol )
 {
-	// bsd socket句柄
-	CFSocketNativeHandle nativeFd;
-	if((nativeFd = socket(PF_INET, SOCK_STREAM, /*IPPROTO_TCP*/0))==-1){
-		fprintf(stderr,"Socket Error:%s\a\n",strerror(errno));
-		return -1;
-	}
-	CFSocketRef sock = CFSocketCreateWithNative(kCFAllocatorDefault, nativeFd, _SocketCallbackTypes, 
-												(CFSocketCallBack)&Winks_CFSocketCallback, NULL);
-	if(sock == NULL){
-		NSLog(@"Winks_socket: CFSocketCreateWithNative error");
-	}
-	return nativeFd;
+    int i = 0, account = 0;
+	
+    if( !Winks_SocketALGB.ifInit )
+    {
+        Winks_printf( "WINKS socket creat not initial\r\n" );
+        return WINKS_SO_FAILURE;
+    }
+	
+    while( i++ < WINKS_SO_MAXSONUM - 1 )
+    {
+        /* We keep handle 0 as a debug handle, will not alloc 0 to user */
+        if( (++Winks_SocketALGB.sockhd) >= WINKS_SO_MAXSONUM )
+            Winks_SocketALGB.sockhd = 1;
+        if( Winks_SocketALGB.sockcb[Winks_SocketALGB.sockhd].s == -1 )
+        {
+            /* Get a vaild socket CB */
+            if( (Winks_SocketALGB.sockcb[Winks_SocketALGB.sockhd].s = 
+				 osal_socket( family, type, protocol )) == -1 )
+            {
+                Winks_SocketALGB.sockhd --;
+                Winks_SocketALGB.sockcb[Winks_SocketALGB.sockhd].s = -1;
+                Winks_setlasterror( WINKS_SO_EUNKNOWERROR );
+                Winks_printf( "WINKS socket create socket failure:%s\r\n", strerror(errno) );
+                return WINKS_SO_FAILURE;
+            }
+            Winks_printf( "WINKS socket create socket hd %d, socket %d\r\n", Winks_SocketALGB.sockhd, 
+						 Winks_SocketALGB.sockcb[Winks_SocketALGB.sockhd].s );
+//            SetProtocolEventHandler(Winks_socket_notify, MSG_ID_APP_SOC_NOTIFY_IND);
+//            Winks_StopTimer( Winks_SocketALGB.timer );
+            return Winks_SocketALGB.sockhd;
+        }
+    }
+	
+    Winks_setlasterror( WINKS_SO_ELOWSYSRESOURCE );
+    Winks_printf( "WINKS socket create socket control block full\r\n" );
+    return WINKS_SO_FAILURE;
 }
 
 /*************************************************************************************\
@@ -120,7 +192,38 @@ int Winks_socket( int family, int type, int protocol )
  \*************************************************************************************/
 int Winks_asyncselect( int sockhd, int opcode, WINKS_CHN_ID channel, int msg )
 {
+	Winks_Socket_s* pSock = NULL;
+    int ret = 0;
+    unsigned char value = 1;
 	
+    if( (pSock = winks_lockhandle(sockhd)) == NULL )
+    {
+        Winks_printf( "WINKS socket asyncselect gethandle failure\r\n" );
+        return WINKS_SO_FAILURE;
+    }
+	
+	ret = osal_sock_setnonblock(pSock->s);
+	
+    if( ret < 0 )
+	{
+        Winks_setlasterror( Winks_SocErrConvert( ret ) );
+		return WINKS_SO_FAILURE;
+	}
+	
+//	value = SOC_READ | SOC_WRITE | SOC_ACCEPT | SOC_CLOSE | SOC_CONNECT;
+//	ret = soc_setsockopt( (kal_int8)(pSock->s), SOC_ASYNC, &value, (kal_int8)(sizeof(value)) );
+    
+    if( ret < 0 )
+	{
+        Winks_setlasterror( Winks_SocErrConvert( ret ) );
+		return WINKS_SO_FAILURE;
+	}
+	
+    pSock->Opcode = opcode;
+    pSock->MsgNum = msg;
+    pSock->channel = channel;
+	
+    return WINKS_SO_SUCCESS;
 }
 
 /*************************************************************************************\
@@ -148,7 +251,43 @@ int Winks_asyncselect( int sockhd, int opcode, WINKS_CHN_ID channel, int msg )
  \*************************************************************************************/
 int Winks_connect(int sockhd, struct winks_sockaddr* serv_addr, int addrlen )
 {
+	Winks_Socket_s* pSock = NULL;
+    int ret = 0;
+  	sockaddr_struct destaddr;		/* socket address structure */
 	
+	
+    if( (pSock = winks_lockhandle(sockhd)) == NULL )
+    {
+        Winks_printf( "WINKS socket connect gethandle failure\r\n" );
+        return WINKS_SO_FAILURE;
+    }
+	
+    if( Winks_SocAddrConvert( serv_addr, &destaddr ) < 0 )
+    {
+        Winks_setlasterror( WINKS_SO_EINVALIDPARA );
+        return WINKS_SO_FAILURE;
+    }
+	
+    ret = soc_connect( (kal_int8)(pSock->s), &destaddr );
+	
+	if( ret < 0 )
+	{
+		Winks_printf( "WK socal connect get return value %d\r\n", ret );
+        Winks_setlasterror( Winks_SocErrConvert(ret) );
+		return WINKS_SO_FAILURE;
+	}
+	else if( ret == 0 )
+	{
+        Winks_Socketmsg_s msg;
+		
+        msg.wParam = (unsigned long )(pSock - Winks_SocketALGB.sockcb);
+        msg.lParam = WINKS_SO_CONNECT;
+        Winks_PostMsg( pSock->channel, (unsigned long )(pSock->MsgNum), &msg, sizeof(Winks_Socketmsg_s) );
+		ret = WINKS_SO_FAILURE;
+		Winks_setlasterror( WINKS_SO_EWOULDBLOCK );
+	}
+	
+    return ret;
 }
 
 
@@ -325,6 +464,7 @@ static void winks_SocketThread( void* param )
 /********************************************************************************\
  依赖具体平台的内部函数接口
  \********************************************************************************/
+// 
 static Winks_Socket_s* winks_lockhandle( int sockhd )
 {
     Winks_Socket_s* pSock = NULL;
@@ -342,10 +482,10 @@ static Winks_Socket_s* winks_lockhandle( int sockhd )
 	
     pSock = &(Winks_SocketALGB.sockcb[sockhd]);
 	
-    Winks_GetMutex( Winks_SocketALGB.Socket_Mutex, -1 );
+    //Winks_GetMutex( Winks_SocketALGB.Socket_Mutex, OS_WAIT_FOREVER );
     if( pSock->s == -1 )
     {
-        Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
+        //Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
         Winks_printf( "WINKS socket get handle socket invalid\r\n" );
         return NULL;
     }
@@ -480,11 +620,12 @@ static int osal_sock_close(WK_FD socket){
 	return 0;
 }
 static int osal_sock_setnonblock(WK_FD socket){
-	if(fcntl(socket, F_SETFL, O_NONBLOCK) == -1){
+	int ret;
+	if((ret = fcntl(socket, F_SETFL, O_NONBLOCK)) == -1){
 		perror("set nonblocking");
 		return -1;
 	}
-	return 0;
+	return ret;
 }
 static int osal_sock_connect(WK_FD socket, struct winks_sockaddr* serv_addr, int addrlen){
 	if(-1 == connect(socket, (struct sockaddr*)serv_addr, addrlen)){
@@ -559,6 +700,81 @@ static void osal_thread_sleep(uint32 ms){
 /********************************************************************************\
  不依赖具体平台的内部函数接口
  \********************************************************************************/
+// 系统错误转换为winks错误
+static long Winks_SocErrConvert(long error)
+{
+	long result = 0;
+	
+    //result = error;
+	
+	switch (error)
+	{
+		case SOC_SUCCESS:
+			break;
+		case SOC_ERROR:
+			result = WINKS_SO_FAILURE;
+			break;
+		case EWOULDBLOCK:
+			result = WINKS_SO_EWOULDBLOCK;
+			break;
+		case EMFILE:
+			result = WINKS_SO_ELOWSYSRESOURCE;
+			break;
+		case ENOTSOCK:
+			result = WINKS_SO_EINVALID_SOCKET;
+			break;
+		case EINVAL:
+			result = WINKS_SO_EINVALIDPARA;
+			break;
+		case EINPROGRESS:
+			result = WINKS_SO_EINPROGRESS;
+			break;
+		case EOPNOTSUPP:
+			result = WINKS_SO_EOPNOTSUPP;
+			break;
+		case ECONNABORTED:
+			result = WINKS_SO_ECONNABORTED;
+			break;
+		case EINVAL
+			result = WINKS_SO_EINVAL;
+			break;
+		case EPIPE:
+			break;
+		case ENOTCONN:
+			result = WINKS_SO_ENOTCONN;
+			break;
+		case EMSGSIZE:
+			result = WINKS_SO_EMSGSIZE;
+			break;
+		case ENETDOWN:
+			result = WINKS_SO_ENETDOWN;
+			break;
+		case ECONNRESET:
+			result = WINKS_SO_ERESET;
+			break;
+		default:
+			result = WINKS_SO_EUNKNOWERROR;
+			break;
+	}
+	
+	return result;
+}
 
+
+// 
+static int Winks_SocAddrConvert( struct winks_sockaddr* sevr_addr, sockaddr_struct* destaddr )
+{
+    struct winks_sockaddr_in* paddr = (struct winks_sockaddr_in* )sevr_addr;
+	
+    if( sevr_addr == NULL )
+        return -1;
+	
+    Winks_mem_set( destaddr, 0, sizeof(sockaddr_struct) );
+    destaddr->port = htons(paddr->sin_port);            //host
+    destaddr->addr_len = sizeof(paddr->sin_addr);
+    Winks_mem_cpy( destaddr->addr, &(paddr->sin_addr), destaddr->addr_len );  //network
+	
+    return 0;
+}
 
 @end
