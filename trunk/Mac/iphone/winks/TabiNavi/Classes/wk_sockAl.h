@@ -145,6 +145,37 @@ typedef struct tag_Winks_GetHost_s
 		char pdata[WINKS_SO_MAXNAMELEN + 1];
 	}Winks_GetHost_s;
 
+typedef struct tag_Winks_SocketALGB_s
+	{
+		int ifInit;
+		int error;
+		unsigned short sockhd;
+		unsigned short ghhd;
+		unsigned short pushhd;//???:
+#ifndef WINKS_DUAL_SIM
+		unsigned short DialID;
+#else
+		unsigned long DialID;
+#endif
+		Winks_Socket_s sockcb[WINKS_SO_MAXSONUM];
+		Winks_GetHost_s GHcb[WINKS_SO_MAXGHNUM];
+		Winks_GHCache_s GHCache[WINKS_SO_MAXGHCACHENUM];
+#ifdef WINKS_SO_PUSHSUPPORT
+		Winks_Pushcb_s Pushcb[WINKS_SO_MAXPUSHNUM];
+		Winks_Pushdata_s* ptmpdata;
+#endif  //WINKS_SO_PUSHSUPPORT
+		WINKS_CHN_ID channel;
+		WINKS_TIMER_ID timer;
+	}Winks_SocketALGB_s;
+
+/* socket message structure */
+typedef struct tag_Winks_Socketmsg_s
+	{
+		unsigned long wParam;
+		unsigned long lParam;
+	}Winks_Socketmsg_s;
+
+
 /********************************************************************************\
  对外提供的函数接口
  \********************************************************************************/
