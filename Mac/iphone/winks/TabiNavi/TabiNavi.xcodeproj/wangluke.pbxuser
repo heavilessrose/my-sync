@@ -31,8 +31,8 @@
 	};
 	1B586F72100202B800303A6F /* wk_ospub.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {969, 10047}}";
-			sepNavSelRange = "{15992, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {969, 10030}}";
+			sepNavSelRange = "{17047, 13}";
 			sepNavVisRange = "{15815, 1347}";
 			sepNavWindowFrame = "{{15, 108}, {1115, 889}}";
 		};
@@ -212,16 +212,16 @@
 	};
 	1BB3F1041004A0AB005B7DC0 /* wk_sockAl.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {969, 4335}}";
-			sepNavSelRange = "{5704, 18}";
-			sepNavVisRange = "{4702, 2162}";
+			sepNavIntBoundsRect = "{{0, 0}, {969, 4811}}";
+			sepNavSelRange = "{1621, 0}";
+			sepNavVisRange = "{670, 1596}";
 		};
 	};
 	1BB3F1051004A0AB005B7DC0 /* wk_sockAl.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {969, 23851}}";
-			sepNavSelRange = "{23829, 14}";
-			sepNavVisRange = "{23575, 1429}";
+			sepNavIntBoundsRect = "{{0, 0}, {1132, 22474}}";
+			sepNavSelRange = "{24715, 13}";
+			sepNavVisRange = "{24658, 1892}";
 			sepNavWindowFrame = "{{15, 108}, {1115, 889}}";
 		};
 	};
@@ -408,22 +408,29 @@
 		fRef = 1BB3F1051004A0AB005B7DC0 /* wk_sockAl.c */;
 		name = "wk_sockAl.c: 755";
 		rLen = 14;
-		rLoc = 23829;
+		rLoc = 23883;
 		rType = 0;
 		vrLen = 1429;
 		vrLoc = 23575;
 	};
 	1BF7B3F6100B5A720049367E /* sem.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {969, 4267}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1063}";
+			sepNavIntBoundsRect = "{{0, 0}, {969, 4556}}";
+			sepNavSelRange = "{361, 0}";
+			sepNavVisRange = "{0, 1157}";
+		};
+	};
+	1BF7B3F8100B5A9C0049367E /* wk_sem.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {969, 793}}";
+			sepNavSelRange = "{450, 0}";
+			sepNavVisRange = "{0, 450}";
 		};
 	};
 	1BF7B3F9100B5A9C0049367E /* wk_sem.c */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {969, 986}}";
-			sepNavSelRange = "{435, 0}";
+			sepNavSelRange = "{852, 0}";
 			sepNavVisRange = "{0, 833}";
 		};
 	};
@@ -475,7 +482,7 @@
 		isa = PBXTextBookmark;
 		fRef = 1BB3F1051004A0AB005B7DC0 /* wk_sockAl.c */;
 		rLen = 1;
-		rLoc = 773;
+		rLoc = 774;
 		rType = 1;
 	};
 	1BF7B409100B65430049367E /* PBXTextBookmark */ = {
@@ -500,7 +507,7 @@
 		fRef = 1BB3F1051004A0AB005B7DC0 /* wk_sockAl.c */;
 		name = "wk_sockAl.c: 1249";
 		rLen = 0;
-		rLoc = 41450;
+		rLoc = 41569;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 41170;
@@ -520,7 +527,7 @@
 		fRef = 1BB3F1051004A0AB005B7DC0 /* wk_sockAl.c */;
 		name = "wk_sockAl.c: 756";
 		rLen = 0;
-		rLoc = 23879;
+		rLoc = 23933;
 		rType = 0;
 		vrLen = 1429;
 		vrLoc = 23575;
