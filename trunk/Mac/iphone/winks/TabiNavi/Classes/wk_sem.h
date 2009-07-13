@@ -20,3 +20,7 @@ struct sembuf op_set = {0, 1, SEM_UNDO};
 // 等待该信号量值变为0
 struct sembuf op_end = {0, 0, SEM_UNDO};
 
+int sem_create(int initval);
+int sem_set(int id);
+int sem_get(int id);
+int sem_rm(int id);

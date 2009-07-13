@@ -6,8 +6,9 @@
 //  Copyright 2009 luke. All rights reserved.
 //
 #include "wk_sockAl.h"
+#include "wk_sem.h"
 
-static Winks_SocketALGB_s Winks_SocketALGB;
+static struct Winks_SocketALGB_s Winks_SocketALGB;
 
 //声明外部数据
 //extern Winks_sposal_context  g_sposal_context;
@@ -693,13 +694,13 @@ int Winks_CancelGetHostByName( int handle )
     Winks_PutMutex( Winks_SocketALGB.GH_Mutex );
 	
     return WINKS_SO_SUCCESS;
-	
 }
 
 
 /********************************************************************************\
  不依赖具体平台的内部函数接口
  \********************************************************************************/
+// 得到sockhd对应的Winks_Socket_s
 static Winks_Socket_s* winks_lockhandle( int sockhd )
 {
     Winks_Socket_s* pSock = NULL;
@@ -1133,7 +1134,6 @@ static void  osal_thread_entry(uint32 argc,void *param){
 }
 
 static void osal_thread_sleep(uint32 ms){
-
 	ms = 200;
 	sleep(ms);
 }
@@ -1159,53 +1159,53 @@ static int Winks_DeleteThread( void* thread ){
 
 static void* Winks_CreateEvent( const char* name)
 {
-    SCI_EVENT_GROUP_PTR eventHandle = NULL;
-	eventHandle = SCI_CreateEvent(name);
-	if (SCI_NULL == eventHandle)
-	{
-		return NULL;
-	}
-	return (void*)eventHandle;
+//    SCI_EVENT_GROUP_PTR eventHandle = NULL;
+//	eventHandle = SCI_CreateEvent(name);
+//	if (SCI_NULL == eventHandle)
+//	{
+//		return NULL;
+//	}
+//	return (void*)eventHandle;
 }
 
 static int Winks_DeleteEvent( void* event )
 {
-    SCI_EVENT_GROUP_PTR eventHandle = (SCI_EVENT_GROUP_PTR)event;
-	if (SCI_SUCCESS == SCI_DeleteEvent(eventHandle))
-	{
-		return WINKS_SO_SUCCESS;
-	}
+//    SCI_EVENT_GROUP_PTR eventHandle = (SCI_EVENT_GROUP_PTR)event;
+//	if (SCI_SUCCESS == SCI_DeleteEvent(eventHandle))
+//	{
+//		return WINKS_SO_SUCCESS;
+//	}
 	return WINKS_SO_FAILURE;
 }
 
 static int Winks_GetEvent( void* event, int timeout )
 {
-	SCI_EVENT_GROUP_PTR eventHandle = (SCI_EVENT_GROUP_PTR)event;
-    uint32 requestFlag = 0x1;
-	uint32 getOption = SCI_AND_CLEAR;
-	uint32 actual_flag;
-	uint32 wait_option;
-	if(0 == timeout)
-		wait_option = SCI_NO_WAIT;
-	else if (-1 == timeout)
-	{
-		wait_option = SCI_WAIT_FOREVER;
-	}else
-		wait_option = timeout;
-	if (SCI_SUCCESS == SCI_GetEvent(eventHandle,requestFlag,getOption,&actual_flag,wait_option))
-	{
-		return WINKS_SO_SUCCESS;
-	}
+//	SCI_EVENT_GROUP_PTR eventHandle = (SCI_EVENT_GROUP_PTR)event;
+//    uint32 requestFlag = 0x1;
+//	uint32 getOption = SCI_AND_CLEAR;
+//	uint32 actual_flag;
+//	uint32 wait_option;
+//	if(0 == timeout)
+//		wait_option = SCI_NO_WAIT;
+//	else if (-1 == timeout)
+//	{
+//		wait_option = SCI_WAIT_FOREVER;
+//	}else
+//		wait_option = timeout;
+//	if (SCI_SUCCESS == SCI_GetEvent(eventHandle,requestFlag,getOption,&actual_flag,wait_option))
+//	{
+//		return WINKS_SO_SUCCESS;
+//	}
 	return WINKS_SO_FAILURE;	
 }
 
 static int Winks_SetEvent( void* event )
 {
-	SCI_EVENT_GROUP_PTR eventHandle = (SCI_EVENT_GROUP_PTR)event;
-    if (SCI_SUCCESS == SCI_SetEvent(eventHandle,0x01,SCI_OR))
-    {
-		return WINKS_SO_SUCCESS;
-    }
+//	SCI_EVENT_GROUP_PTR eventHandle = (SCI_EVENT_GROUP_PTR)event;
+//    if (SCI_SUCCESS == SCI_SetEvent(eventHandle,0x01,SCI_OR))
+//    {
+//		return WINKS_SO_SUCCESS;
+//    }
 	return WINKS_SO_FAILURE;
 }
 
@@ -1331,11 +1331,11 @@ static long Winks_SocErrConvert(long error)
 	
 	switch (error)
 	{
-		case SOC_SUCCESS:
-			break;
-		case SOC_ERROR:
-			result = WINKS_SO_FAILURE;
-			break;
+//		case SOC_SUCCESS:
+//			break;
+//		case SOC_ERROR:
+//			result = WINKS_SO_FAILURE;
+//			break;
 		case EWOULDBLOCK:
 			result = WINKS_SO_EWOULDBLOCK;
 			break;

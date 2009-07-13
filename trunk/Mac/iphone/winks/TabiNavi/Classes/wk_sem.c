@@ -48,7 +48,7 @@ int sem_get(int id){
 	return 0;
 }
 
-// 释放信号量
+// 删除信号量
 int sem_rm(int id){
 	if (semctl(id, 0, IPC_RMID) < 0){
 		perror("sem_rm");
