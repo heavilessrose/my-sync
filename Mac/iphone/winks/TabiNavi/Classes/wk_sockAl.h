@@ -5,22 +5,15 @@
 //  Created by wang luke on 7/8/09.
 //  Copyright 2009 luke. All rights reserved.
 //
-
-#import <Foundation/Foundation.h>
-
-// socket 抽象层
-@interface wk_sockAl : NSObject {
-
-}
-
 #ifndef _SOCKAL_H_
 #define _SOCKAL_H_
+
 
 #ifndef _WK_PUBLIC_H_
 #include "wk_public.h"
 #endif
 
-//#include "wk_osfnc.h"
+#include "wk_osfnc.h"
 
 typedef long int WK_FD;
 typedef fd_set WK_FD_SET;
@@ -41,25 +34,27 @@ typedef fd_set WK_FD_SET;
 //socket状态查询轮训时间
 #define WINKS_SO_TIME	    200	    //轮训时间（毫秒）
 
-//关闭网络连接等待时间
-#define WINKS_SO_CLEANTIME  (5 * 1000)
-
 #define WINKS_SO_MAXSONUM	5	    //最大支持SOCKET句柄数
 #define WINKS_SO_MAXGHNUM	5	    //最大支持域名查询数
 #define WINKS_SO_MAXGHCACHENUM  5   //最大支持域名查询高速缓存数量
-#define WINKS_SO_MAXPUSHNUM  5		//最大支持PUSH注册数量
 
 #define WINKS_SO_THREADNAME	    ((char* )("WTHREAD"))	//全局线程名称
 #define WINKS_SO_GHTHREADNAME	((char* )("WGTHREAD"))	//域名查询线程名称
 #define WINKS_SO_EVENTNAME	    ((char* )("WEVENT"))	//全局事件名称
 #define WINKS_SO_SOMUTEXNAME	((char* )("WSOMUTEX"))	//Socket句柄互斥锁名称
-#define WINKS_SO_GHMUTEXNAME	((char* )("WGHMUTEX"))	//域名查询互斥锁名称
+#define WINKS_SO_GHMUTEXNAME	((char* )("WGHMUTEX"))	//域名查询cache互斥锁名称
 #define WINKS_SO_GHSYNCMUTEXNAME	((char* )("WGSMUTEX"))	//域名查询同步互斥锁名称
 
-#define WINKS_SO_THREADPRI      150
-#define WINKS_SO_THREADSIZE     2048
+#define WINKS_SO_NAMELIVETIME   (7*24*60*60*1000)   //域名查询高速缓存生存时间，一周
 
 #define WINKS_SO_GHBFLEN	100	    //域名查询缓冲区建议长度
+#define WINKS_SO_MAXNAMELEN     63
+
+//关闭网络连接等待时间
+#define WINKS_SO_CLEANTIME  (5 * 1000)
+
+//#define WINKS_SO_THREADPRI      150
+//#define WINKS_SO_THREADSIZE     2048
 
 #define WINKS_SO_SUCCESS    0
 #define WINKS_SO_FAILURE    -1
@@ -79,10 +74,7 @@ typedef fd_set WK_FD_SET;
 #define WINKS_SO_EUNKNOWERROR       -23
 
 #define WINKS_SO_MAXCHANNELLEN  15
-#define WINKS_SO_MAXNAMELEN     63
 #define WINKS_SO_MAXAPPIDLEN    63
-
-#define WINKS_SO_NAMELIVETIME   (7*24*60*60*1000)   //域名查询高速缓存生存时间，一周
 
 typedef struct tag_Winks_GHCache_s
 	{
@@ -102,19 +94,17 @@ typedef struct tag_Winks_hostent
 #define h_addr h_addr_list[0]   /* address, for backward compat */
 	}Winks_hostent;
 
-struct winks_sockaddr
-{ 
+struct winks_sockaddr{ 
 	unsigned short sa_family; 
 	char sa_data[14]; 
 }; 
 
 struct winks_in_addr
 {
-    unsigned long wk_addr;
+	unsigned int wk_addr;
 };
 
-struct winks_sockaddr_in
-{ 
+struct winks_sockaddr_in{ 
 	unsigned short sin_family; 
 	unsigned short int sin_port; 
 	struct winks_in_addr sin_addr; 
@@ -123,7 +113,7 @@ struct winks_sockaddr_in
 
 typedef struct tag_Winks_Socket_s
 	{
-		int s;
+		WK_FD s;
 		unsigned long Opcode;
 		WINKS_CHN_ID channel;
 		int MsgNum;
@@ -141,32 +131,9 @@ typedef struct tag_Winks_GetHost_s
 		int Hostlen;
 		WINKS_CHN_ID channel;
 		int MsgNum;
-		unsigned long ReqID;
-		char pdata[WINKS_SO_MAXNAMELEN + 1];
+		void* ThreadID;
 	}Winks_GetHost_s;
 
-typedef struct tag_Winks_SocketALGB_s
-	{
-		int ifInit;
-		int error;
-		unsigned short sockhd;
-		unsigned short ghhd;
-		unsigned short pushhd;//???:
-#ifndef WINKS_DUAL_SIM
-		unsigned short DialID;
-#else
-		unsigned long DialID;
-#endif
-		Winks_Socket_s sockcb[WINKS_SO_MAXSONUM];
-		Winks_GetHost_s GHcb[WINKS_SO_MAXGHNUM];
-		Winks_GHCache_s GHCache[WINKS_SO_MAXGHCACHENUM];
-#ifdef WINKS_SO_PUSHSUPPORT
-		Winks_Pushcb_s Pushcb[WINKS_SO_MAXPUSHNUM];
-		Winks_Pushdata_s* ptmpdata;
-#endif  //WINKS_SO_PUSHSUPPORT
-		WINKS_CHN_ID channel;
-		WINKS_TIMER_ID timer;
-	}Winks_SocketALGB_s;
 
 /* socket message structure */
 typedef struct tag_Winks_Socketmsg_s
@@ -175,6 +142,55 @@ typedef struct tag_Winks_Socketmsg_s
 		unsigned long lParam;
 	}Winks_Socketmsg_s;
 
+/* socket brief message, for thread poll socket status */
+typedef struct tag_Winks_Sockbri_s
+	{
+		WK_FD sockhd;
+		unsigned long Opcode;
+		int index;
+	}Winks_Sockbri_s;
+
+typedef struct tag_Winks_EventSock_s
+	{
+		int num;
+		Winks_Sockbri_s s[WINKS_SO_MAXSONUM];
+	}Winks_EventSock_s;
+
+
+typedef struct tag_Winks_SockConnectInfo{
+	int is_waiting;
+	int sockhd;
+	struct winks_sockaddr addr_info;
+	int addr_len;
+}Winks_SockConnectInfo;
+
+typedef struct tag_Winks_SocketALGB_s
+	{
+		int ifInit;
+		unsigned short sockhd;
+		unsigned short ghhd;
+		unsigned short pushhd;
+		unsigned short unused;
+		Winks_Socket_s sockcb[WINKS_SO_MAXSONUM];
+		Winks_GetHost_s GHcb[WINKS_SO_MAXGHNUM];
+		Winks_GHCache_s GHCache[WINKS_SO_MAXGHCACHENUM];
+		Winks_Pushcb_s Pushcb[WINKS_SO_MAXPUSHNUM];
+		Winks_Pushdata_s* ptmpdata;
+		void* Global_Thread;
+		int ifWait;
+		void* Global_Event;
+		void* gprs_event;      //将gprs激活异步转同步
+		void* Socket_Mutex;
+		void* GH_Mutex;
+		void* GH_SyncMutex;
+		
+		int winks_errcode;   //存储的是Winks平台统一规定的错误码
+		int platform_errcode; //存储的是各平台的错误码，为方便调试而保存。
+		int gprs_active_status;  //gprs激活状态
+		int gprs_active_cnt;
+		Winks_SockConnectInfo sock_connect_info[WINKS_SO_MAXSONUM]; //记录等待连接的socket
+		
+	}Winks_SocketALGB_s;
 
 /********************************************************************************\
  对外提供的函数接口
@@ -194,6 +210,7 @@ int Winks_CancelGetHostByName( int handle );
 /********************************************************************************\
  不依赖具体平台的内部函数接口
  \********************************************************************************/
+
 static void winks_SocketThread( void* param );
 static void winks_GHThread( void* param );
 static Winks_Socket_s* winks_lockhandle( int sockhd );
@@ -208,6 +225,7 @@ static void winks_set_lasterror(int errCode);
 /********************************************************************************\
  依赖具体平台的内部函数接口
  \********************************************************************************/
+
 static void* Winks_CreateMutex( const char* name);
 static int Winks_DeleteMutex( void* mutex );
 static int Winks_GetMutex( void* mutex, int timeout );
@@ -239,4 +257,8 @@ static unsigned long osal_gethostbyname(char *name);
 static unsigned int osal_get_tick();
 
 static void osal_thread_sleep(uint32 ms);
-@end
+
+int winks_sp_open_gprs();
+static int winks_sp_close_gprs();
+
+#endif

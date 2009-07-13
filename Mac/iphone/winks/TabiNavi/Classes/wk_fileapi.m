@@ -11,7 +11,7 @@
 
 @implementation wk_fileapi
 static int dirsize;
-typedef	int	TraversFunc(const char *);
+//typedef	int	TraversFunc(const char *);
 static int traversDir(const char *path);
 
 #pragma mark -
