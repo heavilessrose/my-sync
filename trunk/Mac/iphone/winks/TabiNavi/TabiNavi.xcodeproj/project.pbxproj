@@ -32,6 +32,7 @@
 		1BBD10890FF9AFB70053ECFE /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD10880FF9AFB70053ECFE /* SwitchCell.m */; };
 		1BBD108B0FF9AFD30053ECFE /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD108A0FF9AFD30053ECFE /* SwitchCell.xib */; };
 		1BBD109B0FF9B3620053ECFE /* SettingsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD109A0FF9B3620053ECFE /* SettingsNavController.m */; };
+		1BC6FCA7100C3732004E5637 /* wk_timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BC6FCA6100C3732004E5637 /* wk_timer.c */; };
 		1BCE1C840FFC80D800688869 /* wk_smsapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE1C830FFC80D800688869 /* wk_smsapi.m */; };
 		1BCE1C930FFC81DD00688869 /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE1C8A0FFC81DD00688869 /* ConvertUTF.c */; };
 		1BCE1C940FFC81DD00688869 /* device.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE1C8D0FFC81DD00688869 /* device.c */; };
@@ -95,6 +96,8 @@
 		1BBD108A0FF9AFD30053ECFE /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		1BBD10990FF9B3620053ECFE /* SettingsNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavController.h; sourceTree = "<group>"; };
 		1BBD109A0FF9B3620053ECFE /* SettingsNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavController.m; sourceTree = "<group>"; };
+		1BC6FCA6100C3732004E5637 /* wk_timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wk_timer.c; sourceTree = "<group>"; };
+		1BC6FCD9100C46A0004E5637 /* wk_timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_timer.h; sourceTree = "<group>"; };
 		1BCE1C820FFC80D800688869 /* wk_smsapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_smsapi.h; sourceTree = "<group>"; };
 		1BCE1C830FFC80D800688869 /* wk_smsapi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wk_smsapi.m; sourceTree = "<group>"; };
 		1BCE1C8A0FFC81DD00688869 /* ConvertUTF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ConvertUTF.c; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 				1BCE1CC20FFC858D00688869 /* utils */,
 				1BB852AA0FFB70FD00490ACE /* file */,
 				1BCE1C850FFC80DD00688869 /* sms */,
+				1BC6FCA8100C3738004E5637 /* timer */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -259,6 +263,15 @@
 				1BBD10880FF9AFB70053ECFE /* SwitchCell.m */,
 			);
 			name = setting;
+			sourceTree = "<group>";
+		};
+		1BC6FCA8100C3738004E5637 /* timer */ = {
+			isa = PBXGroup;
+			children = (
+				1BC6FCD9100C46A0004E5637 /* wk_timer.h */,
+				1BC6FCA6100C3732004E5637 /* wk_timer.c */,
+			);
+			name = timer;
 			sourceTree = "<group>";
 		};
 		1BCE1C850FFC80DD00688869 /* sms */ = {
@@ -440,6 +453,7 @@
 				1BB3F1061004A0AB005B7DC0 /* wk_sockAl.c in Sources */,
 				1BF7B3F7100B5A720049367E /* sem.c in Sources */,
 				1BF7B3FA100B5A9C0049367E /* wk_sem.c in Sources */,
+				1BC6FCA7100C3732004E5637 /* wk_timer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

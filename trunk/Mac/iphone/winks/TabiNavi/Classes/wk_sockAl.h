@@ -8,6 +8,19 @@
 #ifndef _SOCKAL_H_
 #define _SOCKAL_H_
 
+#include "wk_sem.h"
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <sys/types.h>
+#include <pthread.h>
+//#include <sys/select.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/time.h>
+#include <errno.h>
+#include <assert.h>
 
 #ifndef _WK_PUBLIC_H_
 #include "wk_public.h"
@@ -33,6 +46,8 @@ typedef fd_set WK_FD_SET;
 
 //socket状态查询轮训时间
 #define WINKS_SO_TIME	    200	    //轮训时间（毫秒）
+
+#define WINKS_SO_SYSSECPTICK    1                  //系统每一次心跳折合毫秒数
 
 #define WINKS_SO_MAXSONUM	5	    //最大支持SOCKET句柄数
 #define WINKS_SO_MAXGHNUM	5	    //最大支持域名查询数
@@ -75,6 +90,13 @@ typedef fd_set WK_FD_SET;
 
 #define WINKS_SO_MAXCHANNELLEN  15
 #define WINKS_SO_MAXAPPIDLEN    63
+
+typedef void (*WK_THREAD_ENTRY)( void* param );
+
+typedef struct tag_OsalThreadParam{
+	WK_THREAD_ENTRY  pEntry;
+	void* param;
+}OsalThreadParam;
 
 typedef struct tag_Winks_GHCache_s
 	{
@@ -169,25 +191,25 @@ typedef struct tag_Winks_SocketALGB_s
 		int ifInit;
 		unsigned short sockhd;
 		unsigned short ghhd;
-		unsigned short pushhd;
+//		unsigned short pushhd;
 		unsigned short unused;
 		Winks_Socket_s sockcb[WINKS_SO_MAXSONUM];
 		Winks_GetHost_s GHcb[WINKS_SO_MAXGHNUM];
 		Winks_GHCache_s GHCache[WINKS_SO_MAXGHCACHENUM];
-		Winks_Pushcb_s Pushcb[WINKS_SO_MAXPUSHNUM];
-		Winks_Pushdata_s* ptmpdata;
+//		Winks_Pushcb_s Pushcb[WINKS_SO_MAXPUSHNUM];
+//		Winks_Pushdata_s* ptmpdata;
 		void* Global_Thread;
 		int ifWait;
 		void* Global_Event;
-		void* gprs_event;      //将gprs激活异步转同步
+//		void* gprs_event;      //将gprs激活异步转同步
 		void* Socket_Mutex;
 		void* GH_Mutex;
 		void* GH_SyncMutex;
 		
 		int winks_errcode;   //存储的是Winks平台统一规定的错误码
 		int platform_errcode; //存储的是各平台的错误码，为方便调试而保存。
-		int gprs_active_status;  //gprs激活状态
-		int gprs_active_cnt;
+//		int gprs_active_status;  //gprs激活状态
+//		int gprs_active_cnt;
 		Winks_SockConnectInfo sock_connect_info[WINKS_SO_MAXSONUM]; //记录等待连接的socket
 		
 	}Winks_SocketALGB_s;
@@ -256,7 +278,7 @@ static void osal_set_last_error(int platform_errcode);
 static unsigned long osal_gethostbyname(char *name);
 static unsigned int osal_get_tick();
 
-static void osal_thread_sleep(uint32 ms);
+static void osal_thread_sleep(unsigned int ms);
 
 int winks_sp_open_gprs();
 static int winks_sp_close_gprs();

@@ -1,0 +1,63 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 1B8480D8100C9991001A9E3E /* timer_mac */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* timer_mac */;
+		addToTargets = (
+			8DD76FA90486AB0100D96B5E /* timer_mac */,
+		);
+		codeSenseManager = 1B8480E6100C99B0001A9E3E /* Code sense */;
+		executables = (
+			1B8480D8100C9991001A9E3E /* timer_mac */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 269261201;
+			PBXWorkspaceStateSaveDate = 269261201;
+		};
+		sourceControlManager = 1B8480E5100C99B0001A9E3E /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	1B8480D8100C9991001A9E3E /* timer_mac */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = timer_mac;
+		sourceDirectories = (
+		);
+	};
+	1B8480E5100C99B0001A9E3E /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	1B8480E6100C99B0001A9E3E /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	8DD76FA90486AB0100D96B5E /* timer_mac */ = {
+		activeExec = 0;
+		executables = (
+			1B8480D8100C9991001A9E3E /* timer_mac */,
+		);
+	};
+}

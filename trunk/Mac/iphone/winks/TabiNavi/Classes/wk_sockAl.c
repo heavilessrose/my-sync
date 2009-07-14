@@ -6,9 +6,9 @@
 //  Copyright 2009 luke. All rights reserved.
 //
 #include "wk_sockAl.h"
-#include "wk_sem.h"
 
-static struct Winks_SocketALGB_s Winks_SocketALGB;
+static Winks_SocketALGB_s Winks_SocketALGB;
+static WK_FD maxfd;
 
 //声明外部数据
 //extern Winks_sposal_context  g_sposal_context;
@@ -31,7 +31,7 @@ static struct Winks_SocketALGB_s Winks_SocketALGB;
 int Winks_SoStartup( void )
 {
     int i = 0;
-#ifdef WINKS_SIMULATOR
+#if TARGET_IPHONE_SIMULATOR
 	char* pdsvr = "192.168.10.2";
 #endif
 	
@@ -64,11 +64,11 @@ int Winks_SoStartup( void )
         return WINKS_SO_FAILURE;
     }
 	
-	if ((Winks_SocketALGB.gprs_event = Winks_CreateEvent( WINKS_SO_GPRSEVENT)) == NULL )
-	{
-		Winks_printf( "WINKS socket startup create gprs event failure, \r\n");
-        return WINKS_SO_FAILURE;
-	}
+//	if ((Winks_SocketALGB.gprs_event = Winks_CreateEvent( WINKS_SO_GPRSEVENT)) == NULL )
+//	{
+//		Winks_printf( "WINKS socket startup create gprs event failure, \r\n");
+//        return WINKS_SO_FAILURE;
+//	}
 	
     
     for( i = 0; i < WINKS_SO_MAXSONUM; i++ )
@@ -89,7 +89,6 @@ int Winks_SoStartup( void )
     }
 	
     Winks_SocketALGB.ifInit = 1;
-	
     return WINKS_SO_SUCCESS;
 }
 
@@ -276,31 +275,8 @@ int Winks_connect(int sockhd, struct winks_sockaddr* serv_addr, int addrlen )
     int ret = 0;
 	
     Winks_printf("winks connect sockhd:%d,addrlen:%d\r\n",sockhd,addrlen);
-	//Winks_printHex(serv_addr,addrlen,"winks connect server");
-	//先打开gprs
-	winks_sp_open_gprs();
-	SCI_MEMSET(&Winks_SocketALGB.sock_connect_info[sockhd],0,sizeof(Winks_SocketALGB.sock_connect_info[sockhd]));
-	//如果gprs已经激活,则直接调用connect,
-	//否则返回wouldblock,并记录连接信息,在收到激活结果通知之后再次连接
-	if ( WINKS_SP_GPRS_ACTIVE_OK == Winks_SocketALGB.gprs_active_status )
-	{
-		ret = winks_real_connect_socket(sockhd,serv_addr,addrlen);		
-		
-	}else{
-		//int cpyLen = (sizeof(struct winks_sockaddr)>addrlen?addrlen:sizeof(struct winks_sockaddr));
-		Winks_SocketALGB.sock_connect_info[sockhd].is_waiting = 1;
-		//Winks_SocketALGB.sock_connect_info[sockhd]
-		//SCI_MEMCPY(&(Winks_SocketALGB.sock_connect_info[sockhd].addr_info),serv_addr,sizeof(struct winks_sockaddr_in));
-		Winks_SocketALGB.sock_connect_info[sockhd].addr_info = *serv_addr;
-		Winks_SocketALGB.sock_connect_info[sockhd].addr_len = addrlen;
-		winks_set_lasterror(WINKS_SO_EWOULDBLOCK);
-		ret = -1;
-	}    
-    return ret;    
-}
 
-//真正执行连接动作
-static int winks_real_connect_socket(int sockhd, struct winks_sockaddr* serv_addr, int addrlen){
+	memset(&Winks_SocketALGB.sock_connect_info[sockhd],0,sizeof(Winks_SocketALGB.sock_connect_info[sockhd]));
 	Winks_Socket_s* pSock = NULL;
 	int ret;
 	if( (pSock = winks_lockhandle(sockhd)) == NULL )
@@ -318,7 +294,6 @@ static int winks_real_connect_socket(int sockhd, struct winks_sockaddr* serv_add
 	
 	if( ret == 0 && pSock->MsgNum )
 	{
-		/* 屏蔽平台差异 */
 		ret = -1;
 		winks_set_lasterror(WINKS_SO_EWOULDBLOCK);
 	}
@@ -333,6 +308,7 @@ static int winks_real_connect_socket(int sockhd, struct winks_sockaddr* serv_add
 	
 	return ret;
 }
+
 
 /*************************************************************************************\
  函数原型：int Winks_send( int socket, void *buf, int len, int flags )
@@ -1127,13 +1103,13 @@ static void winks_set_lasterror(int errCode){
 /********************************************************************************\
  依赖具体平台的内部函数接口
  \********************************************************************************/
-static void  osal_thread_entry(uint32 argc,void *param){
-    OsalThreadParam *threadParam = (OsalThreadParam *)param;
-	(*(threadParam->pEntry))(threadParam->param);
-	SCI_Free(threadParam);
-}
+//static void  osal_thread_entry(unsigned int argc,void *param){
+//    OsalThreadParam *threadParam = (OsalThreadParam *)param;
+//	(*(threadParam->pEntry))(threadParam->param);
+//	SCI_Free(threadParam);
+//}
 
-static void osal_thread_sleep(uint32 ms){
+static void osal_thread_sleep(unsigned int ms){
 	ms = 200;
 	sleep(ms);
 }
@@ -1166,6 +1142,8 @@ static void* Winks_CreateEvent( const char* name)
 //		return NULL;
 //	}
 //	return (void*)eventHandle;
+	
+	return (void*)sem_create(0);
 }
 
 static int Winks_DeleteEvent( void* event )
@@ -1175,7 +1153,12 @@ static int Winks_DeleteEvent( void* event )
 //	{
 //		return WINKS_SO_SUCCESS;
 //	}
-	return WINKS_SO_FAILURE;
+	
+	if((sem_rm((int *)event)) == -1)
+		return WINKS_SO_FAILURE;
+	else {
+		return WINKS_SO_SUCCESS;
+	}
 }
 
 static int Winks_GetEvent( void* event, int timeout )
@@ -1196,7 +1179,11 @@ static int Winks_GetEvent( void* event, int timeout )
 //	{
 //		return WINKS_SO_SUCCESS;
 //	}
-	return WINKS_SO_FAILURE;	
+	if((sem_get((int *)event)) == -1)
+		return WINKS_SO_FAILURE;
+	else {
+		return WINKS_SO_SUCCESS;
+	}
 }
 
 static int Winks_SetEvent( void* event )
@@ -1206,7 +1193,12 @@ static int Winks_SetEvent( void* event )
 //    {
 //		return WINKS_SO_SUCCESS;
 //    }
-	return WINKS_SO_FAILURE;
+	
+	if((sem_set((int *)event)) == -1)
+		return WINKS_SO_FAILURE;
+	else {
+		return WINKS_SO_SUCCESS;
+	}
 }
 
 
@@ -1281,7 +1273,7 @@ static int osal_sock_select(WK_FD_SET *readfds, WK_FD_SET *writefds, WK_FD_SET *
 	struct timeval tv;
 	tv.tv_sec = 0;
 	tv.tv_usec = timeout * 1000;
-	int readyFDnum = select(maxfd, readfds, writefds, excptfds, tv);
+	int readyFDnum = select(maxfd + 1, readfds, writefds, excptfds, &tv);
 	if(-1 == readyFDnum){
 		perror("select");
 		return -1;
@@ -1345,9 +1337,9 @@ static long Winks_SocErrConvert(long error)
 		case ENOTSOCK:
 			result = WINKS_SO_EINVALID_SOCKET;
 			break;
-		case EINVAL:
-			result = WINKS_SO_EINVALIDPARA;
-			break;
+//		case EINVAL:
+//			result = WINKS_SO_EINVALIDPARA;
+//			break;
 		case EINPROGRESS:
 			result = WINKS_SO_EINPROGRESS;
 			break;
@@ -1357,7 +1349,7 @@ static long Winks_SocErrConvert(long error)
 		case ECONNABORTED:
 			result = WINKS_SO_ECONNABORTED;
 			break;
-		case EINVAL
+		case EINVAL:
 			result = WINKS_SO_EINVAL;
 			break;
 		case EPIPE:
