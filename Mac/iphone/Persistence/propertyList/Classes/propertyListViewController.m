@@ -10,6 +10,9 @@
 #import "Alert.h"
 #import "propertyListViewController.h"
 
+#include <sys/time.h>
+#include <signal.h>
+
 @class AsyncSock;
 
 const double URLCacheInterval = 86400.0;
@@ -313,6 +316,8 @@ const double URLCacheInterval = 86400.0;
 
 - (void)viewDidLoad
 {
+	testTimer();
+	
 	// 国际化
 	/*
 	 */
@@ -1074,5 +1079,26 @@ void LaunchThread()
     }
 	sleep(1);
 	fclose(threadLogFile);
+}
+
+#pragma mark -
+#pragma mark 定时器
+int n = 0;
+void timefunc(int sig) /* 定时事件代码 */
+{
+	char info[256];
+	sprintf(info, "ITIMER_PROF[%d]\n", n++);
+	alertWithMessage([NSString stringWithCString:info]);
+	signal(SIGPROF, timefunc); /* 捕获定时信号 */
+}
+
+void testTimer(){
+	struct itimerval value;
+	value.it_value.tv_sec=1; /* 定时1.5秒 */
+	value.it_value.tv_usec=500000;
+	value.it_interval.tv_sec=1; /* 定时1.5秒 */
+	value.it_interval.tv_usec=500000;
+	signal(SIGPROF, timefunc); /* 捕获定时信号 */
+	setitimer(ITIMER_PROF, &value, NULL); /* 定时开始 */
 }
 @end

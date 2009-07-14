@@ -12,14 +12,18 @@
  *	sem_close(id);
  *	sem_rm(id);
  *	
- * [0]: Êµ¼ÊÊ¹ÓÃµÄĞÅºÅÁ¿¡£
- * [1]: Ê¹ÓÃÕß£¨½ø³Ì/Ïß³Ì£©¼ÆÊı¡£
- * [2]: lock sem_create() ºÍ sem_close()
+ * [0]: å®é™…ä½¿ç”¨çš„ä¿¡å·é‡ã€‚
+ * [1]: ä½¿ç”¨è€…ï¼ˆè¿›ç¨‹/çº¿ç¨‹ï¼‰è®¡æ•°ã€‚
+ * [2]: lock sem_create() å’Œ sem_close()
  */
 
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <errno.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <pthread.h>
 
 void sem_op(int, int);
 int sem_create(key_t, int);
@@ -29,6 +33,7 @@ void sem_close(int);
 void sem_wait(int);
 void sem_signal(int);
 
+static int id;
 #define	BIGCOUNT 10000		/* initial value of process counter */
 
 /*
@@ -71,17 +76,13 @@ static struct sembuf op_op[1] = {
 
 
 /****************************************************************************
- * Ö¸¶¨³õÊ¼Öµ´´½¨Ò»¸öĞÅºÅÁ¿¡£Èç¹ûÒÑ´æÔÚÔò²»»áÈ¥³õÊ¼»¯£¬²¢open¡£
- * ³É¹¦·µ»ØĞÅºÅÁ¿ID, ·ñÔò-1.
+ * æŒ‡å®šåˆå§‹å€¼åˆ›å»ºä¸€ä¸ªä¿¡å·é‡ã€‚å¦‚æœå·²å­˜åœ¨åˆ™ä¸ä¼šå»åˆå§‹åŒ–ï¼Œå¹¶openã€‚
+ * æˆåŠŸè¿”å›ä¿¡å·é‡ID, å¦åˆ™-1.
  */
 int sem_create(key_t key, int initval)
 {
-	register int		id, semval;
-	union semun {
-		int		val;
-		struct semid_ds	*buf;
-		ushort		*array;
-	} semctl_arg;
+	int		id, semval;
+	semun_t semctl_arg;
 	
 	if (key == IPC_PRIVATE)
 		return(-1);	/* not intended for private semaphores */
@@ -111,7 +112,7 @@ again:
 	if (semop(id, &op_lock[0], 2) < 0) {
 		if (errno == EINVAL)
 			goto again;
-		err_sys("can't lock");
+		printf("can't lock");
 	}
 	
 	/*
@@ -120,7 +121,7 @@ again:
 	 */
 	
 	if ((semval = semctl(id, 1, GETVAL, 0)) < 0)
-		err_sys("can't GETVAL");
+		printf("can't GETVAL");
 	
 	if (semval == 0) {
 		/*
@@ -132,11 +133,11 @@ again:
 		
 		semctl_arg.val = initval;
 		if (semctl(id, 0, SETVAL, semctl_arg) < 0)
-			err_sys("can SETVAL[0]");
+			printf("can SETVAL[0]");
 		
 		semctl_arg.val = BIGCOUNT;
 		if (semctl(id, 1, SETVAL, semctl_arg) < 0)
-			err_sys("can SETVAL[1]");
+			printf("can SETVAL[1]");
 	}
 	
 	/*
@@ -144,14 +145,14 @@ again:
 	 */
 	
 	if (semop(id, &op_endcreate[0], 2) < 0)
-		err_sys("can't end create");
+		printf("can't end create");
 	
 	return(id);
 }
 
 /****************************************************************************
- * ´ò¿ªÒ»¸öÒÑ´æÔÚµÄĞÅºÅÁ¿¡£
- * ÕıÈ··µ»ØĞÅºÅÁ¿ID, ·ñÔò-1.
+ * æ‰“å¼€ä¸€ä¸ªå·²å­˜åœ¨çš„ä¿¡å·é‡ã€‚
+ * æ­£ç¡®è¿”å›ä¿¡å·é‡ID, å¦åˆ™-1.
  */
 int sem_open(key_t key)
 {
@@ -172,25 +173,25 @@ int sem_open(key_t key)
 	 */
 	
 	if (semop(id, &op_open[0], 1) < 0)
-		err_sys("can't open");
+		printf("can't open");
 	
 	return(id);
 }
 
 /****************************************************************************
- * É¾³ıĞÅºÅÁ¿¡£
- * ÇÒ²»¹ÜÊÇ·ñÓĞÆäËûÏß³Ì/½ø³ÌÔÚÊ¹ÓÃ´ËĞÅºÅÁ¿¡£
+ * åˆ é™¤ä¿¡å·é‡ã€‚
+ * ä¸”ä¸ç®¡æ˜¯å¦æœ‰å…¶ä»–çº¿ç¨‹/è¿›ç¨‹åœ¨ä½¿ç”¨æ­¤ä¿¡å·é‡ã€‚
  */
 void sem_rm(int id)
 {
 	if (semctl(id, 0, IPC_RMID, 0) < 0)
-		err_sys("can't IPC_RMID");
+		printf("can't IPC_RMID");
 }
 
 /****************************************************************************
- * ¹Ø±ÕĞÅºÅÁ¿.
- * Ïß³ÌÖĞÖ¹Ê±µ÷ÓÃ´Ëº¯Êı¡£
- * Ê¹ÓÃ´ËĞÅºÅÁ¿µÄÏß³Ì/½ø³ÌÊı¼õÒ»£¬Èç¹ûÕâÊÇ×îºóÒ»¸öÊ¹ÓÃ´ËĞÅºÅÁ¿µÄÏß³Ì/½ø³ÌÔòÉ¾³ı´ËĞÅºÅÁ¿¡£
+ * å…³é—­ä¿¡å·é‡.
+ * çº¿ç¨‹ä¸­æ­¢æ—¶è°ƒç”¨æ­¤å‡½æ•°ã€‚
+ * ä½¿ç”¨æ­¤ä¿¡å·é‡çš„çº¿ç¨‹/è¿›ç¨‹æ•°å‡ä¸€ï¼Œå¦‚æœè¿™æ˜¯æœ€åä¸€ä¸ªä½¿ç”¨æ­¤ä¿¡å·é‡çš„çº¿ç¨‹/è¿›ç¨‹åˆ™åˆ é™¤æ­¤ä¿¡å·é‡ã€‚
  */
 void sem_close(int id)
 {
@@ -202,7 +203,7 @@ void sem_close(int id)
 	 */
 	
 	if (semop(id, &op_close[0], 3) < 0)
-		err_sys("can't semop");
+		printf("can't semop");
 	
 	/*
 	 * Now that we have a lock, read the value of the process
@@ -213,19 +214,19 @@ void sem_close(int id)
 	 */
 	
 	if ((semval = semctl(id, 1, GETVAL, 0)) < 0)
-		err_sys("can't GETVAL");
+		printf("can't GETVAL");
 	
 	if (semval > BIGCOUNT)
-		err_dump("sem[1] > BIGCOUNT");
+		printf("sem[1] > BIGCOUNT");
 	else if (semval == BIGCOUNT)
 		sem_rm(id);
 	else
 		if (semop(id, &op_unlock[0], 1) < 0)
-			err_sys("can't unlock");	/* unlock */
+			printf("can't unlock");	/* unlock */
 }
 
 /****************************************************************************
- * waiÖ±µ½ĞÅºÅÁ¿µÄÖµ´óÓÚ0, Ôò¼õÒ»²¢return
+ * waiç›´åˆ°ä¿¡å·é‡çš„å€¼å¤§äº0, åˆ™å‡ä¸€å¹¶return
  */
 void sem_wait(int id)
 {
@@ -233,7 +234,7 @@ void sem_wait(int id)
 }
 
 /****************************************************************************
- * ¼Ó1
+ * åŠ 1
  */
 void sem_signal(int id)
 {
@@ -243,15 +244,33 @@ void sem_signal(int id)
 void sem_op(int id, int value)
 {
 	if ((op_op[0].sem_op = value) == 0)
-		err_sys("can't have value == 0");
+		printf("can't have value == 0");
 	
 	if (semop(id, &op_op[0], 1) < 0)
-		err_sys("sem_op error");
+		printf("sem_op error");
+}
+
+static int a = 0;
+void* funcThread(void* param){
+	sleep(2);
+	a = 1;
+	sem_signal(id);
+	return NULL;
 }
 
 int main(int argc, const char* argv[]){
-	int id = sem_create(0);
+	//id = sem_create(ftok(getenv("HOME"), 555), 100);
+	id = sem_create(ftok("/var/root", 777), 1);
+	//id = sem_create(IPC_PRIVATE, 0);
+	
+	pthread_t thread;
+	pthread_create(&thread, NULL, funcThread, NULL);
+	
+	while(!a){
+		printf("main thread\n");
+		sleep(1);
+	}
 	sem_wait(id);
-	printf("sem_wait return");
+	printf("\nsem_wait return\n");
 	return 0;
 }

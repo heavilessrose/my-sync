@@ -141,5 +141,9 @@
 void LaunchThread();
 void* PosixThreadMainRoutine(void* data);
 
+// 定时器
+void timefunc(int sig);
+void testTimer();
+
 @end
 

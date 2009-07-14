@@ -8,6 +8,7 @@ Create Time:22/01/2008
 
 
 #include "wk_public.h"
+#include <stdio.h>
 
 #ifdef __cplusplus
 extern "C" {
