@@ -24,14 +24,15 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <string.h>
 
-void sem_op(int, int);
+int sem_op(int, int);
 int sem_create(key_t, int);
 int sem_open(key_t);
 void sem_rm(int);
 void sem_close(int);
-void sem_wait(int);
-void sem_signal(int);
+int sem_wait(int);
+int sem_signal(int);
 
 static int id;
 #define	BIGCOUNT 10000		/* initial value of process counter */
@@ -91,8 +92,12 @@ int sem_create(key_t key, int initval)
 		return(-1);	/* probably an ftok() error by caller */
 	
 again:
-	if ((id = semget(key, 3, 0666 | IPC_CREAT)) < 0)
+	printf("again: start semget\n");
+	printf("ENOSYS = %s", strerror(ENOSYS));
+	if ((id = semget(key, 3, 0666 | IPC_CREAT)) < 0){
+		perror("semget err info");
 		return(-1);	/* permission problem or tables full */
+	}
 	
 	/*
 	 * When the semaphore is created, we know that the value of all
@@ -228,49 +233,61 @@ void sem_close(int id)
 /****************************************************************************
  * wai直到信号量的值大于0, 则减一并return
  */
-void sem_wait(int id)
+int sem_wait(int id)
 {
-	sem_op(id, -1);
+	return sem_op(id, -1);
 }
 
 /****************************************************************************
  * 加1
  */
-void sem_signal(int id)
+int sem_signal(int id)
 {
-	sem_op(id, 1);
+	return sem_op(id, 1);
 }
 
-void sem_op(int id, int value)
+int sem_op(int id, int value)
 {
-	if ((op_op[0].sem_op = value) == 0)
+	if ((op_op[0].sem_op = value) == 0){
 		printf("can't have value == 0");
+		return -1;
+	}
 	
-	if (semop(id, &op_op[0], 1) < 0)
-		printf("sem_op error");
+	if (semop(id, &op_op[0], 1) < 0){
+		perror("sem_op error");
+		return -1;
+	}
+	return 0;
 }
 
 static int a = 0;
 void* funcThread(void* param){
 	sleep(2);
+	printf("new thread\n");
 	a = 1;
-	sem_signal(id);
+	if(sem_signal(id) == -1){
+		printf("sem_signal error\n");
+	}
 	return NULL;
 }
 
 int main(int argc, const char* argv[]){
-	//id = sem_create(ftok(getenv("HOME"), 555), 100);
-	id = sem_create(ftok("/var/root", 777), 1);
-	//id = sem_create(IPC_PRIVATE, 0);
-	
 	pthread_t thread;
 	pthread_create(&thread, NULL, funcThread, NULL);
 	
+	//id = sem_create(ftok(getenv("HOME"), 555), 100);
+	id = sem_create(ftok("/var/root", 12345), 1);
+	//id = sem_create(IPC_PRIVATE, 0);
+	if(id == -1){
+		perror("main sem_create\n");
+	}
 	while(!a){
 		printf("main thread\n");
 		sleep(1);
 	}
-	sem_wait(id);
+	if(sem_wait(id) == -1){
+		printf("sem_wait error\n");
+	}
 	printf("\nsem_wait return\n");
 	return 0;
 }
