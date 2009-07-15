@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8DD76FAC0486AB0100D96B5E /* condition.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* condition.c */; settings = {ATTRIBUTES = (); }; };
+		1BC09A16100D89D80040E145 /* condition.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BC09A15100D89D80040E145 /* condition.c */; };
 		8DD76FB00486AB0100D96B5E /* condition.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6A0FF2C0290799A04C91782 /* condition.1 */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		08FB7796FE84155DC02AAC07 /* condition.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = condition.c; sourceTree = "<group>"; };
+		1BC09A15100D89D80040E145 /* condition.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = condition.c; path = ../condition_iphone/condition.c; sourceTree = SOURCE_ROOT; };
 		8DD76FB20486AB0100D96B5E /* condition */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = condition; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A0FF2C0290799A04C91782 /* condition.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = condition.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -54,7 +54,7 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				08FB7796FE84155DC02AAC07 /* condition.c */,
+				1BC09A15100D89D80040E145 /* condition.c */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DD76FAC0486AB0100D96B5E /* condition.c in Sources */,
+				1BC09A16100D89D80040E145 /* condition.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
