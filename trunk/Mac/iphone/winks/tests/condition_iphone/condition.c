@@ -5,9 +5,12 @@
 int x = 0;
 pthread_cond_t condition = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t condLock = PTHREAD_MUTEX_INITIALIZER;
+struct timespec timeout;
 
 void* poll(void* param){
 	printf("new thread\n");
+	timeout.tv_sec = 20;
+	timeout.tv_nsec = 0;
 	
 	while(1){
 		sleep(2);
@@ -15,6 +18,7 @@ void* poll(void* param){
 		while(x == 0){
 			printf("new thread starting wait\n");
 			pthread_cond_wait(&condition, &condLock);
+			//pthread_cond_timedwait(&condition, &condLock, &timeout);
 		}
 		pthread_mutex_unlock(&condLock);
 		
