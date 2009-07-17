@@ -7,11 +7,12 @@
 //
 
 #import "ContactsViewController.h"
-#import "Utils.h"
+//#import "Utils.h"
 
 
 @implementation ContactsViewController
 ABAddressBookRef _addressBook;
+ABRecordID* people_ID_list;
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -227,27 +228,59 @@ void osalTest(){
 int Winks_GetPhonebookCount(unsigned long *phone_cnt, unsigned long *sim_cnt){
 	CFIndex count = ABAddressBookGetPersonCount(_addressBook);
 	*phone_cnt = (unsigned long)count;
+	
+	people_ID_list = calloc((size_t) count, sizeof(ABRecordID));
+	setIdList();
 	return 0;
 }
 
-/*取指定电话本记录中的所有电话号码*/
+// 设置id列表
+void setIdList(){
+	if(_addressBook == nil)
+		_addressBook = ABAddressBookCreate();
+	NSArray* allPeople = (NSArray*)ABAddressBookCopyArrayOfAllPeople(_addressBook);
+	
+	for(NSUInteger i = 0; i < allPeople.count; i++){
+		ABRecordRef person = [allPeople objectAtIndex:i];
+		*(people_ID_list + i) = ABRecordGetRecordID(person);
+	}		
+}
+
+// ABRecordID 与 index转换
+//unsigned int getIndexFromID(ABRecordID pid){
+//	int i;
+//	unsigned long len = 0;
+//	Winks_GetPhonebookCount(&len, NULL);
+//	for(i = 0; i < len; i++){
+//		if(pid == people_ID_list[i])
+//			break;
+//	}
+//	return i;
+//} 
+
+
+/*取电话本中指定的一条记录（一条记录可能含有多个电话号码）*/
 //type，1表示电话本机，2表示sim卡
 //index，表示第几条，从0开始 
 //numberItme，返回的电话号码放在此参数中
 //返回值，0表示成功，-1表示失败
-//int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookItem_s* numberItem){
-//	if (!numberItem)
-//		return -1;
-//	
-//	if (type == 2)
-//		return -1;
-//	
-//	BOOL bReturn = FALSE;
-//	unsigned int iContactsCount = 0;
-//	
-//	
-//	return -1;
-//}
+int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookItem_s* numberItem){
+	if (!numberItem)
+		return -1;
+	
+	if (type == 2)
+		return -1;
+	
+	ABRecordID recordid = *(people_ID_list + index);
+	ABRecordRef thePeople = ABAddressBookGetPersonWithRecordID (_addressBook, recordid);
+	NSMutableArray * numArr = [ContactsViewController getNumbers:thePeople];
+	int count = [numArr count];
+	int i;
+	for (i = 0; i < count; i++) {
+		numberItem->number[i] = [(NSString *)[numArr objectAtIndex:(NSUInteger)i] UTF8String];
+	}
+	return 0;
+}
 
 void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned long len){
 	if (!friend_no || !friend_name || len <= 0 || !*friend_no){
@@ -269,11 +302,11 @@ void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned l
 		if([numbers containsObject:ns_friend_no]){
 			NSString* name = (NSString *)ABRecordCopyCompositeName(person);
 			NSLog(@"friend_name: %@", name);
-			friend_name = (char *)[name UTF8String];
-			return;
+			memcpy(friend_name, [name UTF8String], sizeof([name UTF8String]));
+			break;
 		}
 	}
-	
+	[ns_friend_no release];
 	//CFRelease(_addressBook);
 }
 @end
