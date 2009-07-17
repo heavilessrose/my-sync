@@ -36,8 +36,11 @@ int Winks_GetPhonebookCount(unsigned long *phone_cnt, unsigned long *sim_cnt);
 //index，表示第几条，从0开始 
 //numberItme，返回的电话号码放在此参数中
 //返回值，0表示成功，-1表示失败
-//int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookItem_s* numberItem);
+int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookItem_s* numberItem);
 
 /* 从电话本中取号码对应的名字(UTF-8 编码) */
 void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned long len);
+
+#pragma mark 内部函数
+void setIdList()；
 @end

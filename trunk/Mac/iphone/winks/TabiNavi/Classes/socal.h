@@ -16,20 +16,23 @@
 
 #include "wk_osfnc.h"
 
+#include <assert.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <sys/types.h>
 #include <pthread.h>
-#include <sys/select.h>
+//#include <sys/select.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/time.h>
 #include <errno.h>
-#include <assert.h>
+#include <string.h>
+//#include <stdio.h>
+#include <stdlib.h>
 
-#define WINKS_THREAD_ENTRY void *(*)(void *) // 线程执行函数
+typedef void *(*WINKS_THREAD_ENTRY)( void* param ); // 线程执行函数
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Socket 操作码及通知消息事件类型数值
@@ -93,7 +96,7 @@
 //#define WINKS_SO_MAXPUSHDATALEN	140	//最大PUSH数据长度
 
 #define WINKS_SO_NAMELIVETIME   (7*24*60*60*1000)   //域名查询高速缓存生存时间，一周
-#define WINKS_SO_SYSSECPTICK    16                  //系统每一次心跳折合毫秒数
+#define WINKS_SO_SYSSECPTICK    1 /*16*/                 //系统每一次心跳折合毫秒数
 
 ///* Push TPDU num define */
 ///* Message Type */
@@ -174,7 +177,7 @@ struct winks_sockaddr_in{
 typedef struct tag_Winks_Socket_s
 	{
 		int s;
-		unsigned long Opcode;
+		unsigned long Opcode; // socket操作码
 		WINKS_CHN_ID channel;
 		int MsgNum;
 	} Winks_Socket_s;
@@ -211,7 +214,7 @@ typedef struct tag_Winks_SocketALGB_s
 //		Winks_Pushdata_s* ptmpdata;
 		void* Global_Thread; // 全局轮询线程
 		int ifWait; // 线程等待事件(条件变量)
-		//int Global_Event; // 线程等待事件(条件变量)
+		//void* Global_Event; // 线程等待事件(条件变量)
 		void* Socket_Mutex; // Socket控制块互斥锁
 		void* GH_Mutex; // 域名查询控制块互斥锁
 		void* GH_SyncMutex;
@@ -231,9 +234,9 @@ typedef struct tag_Winks_Sockbri_s
 	{
 		int sockhd;
 		unsigned long Opcode;
-		int index;
+		int index;// sockhd
 	}Winks_Sockbri_s;
-//???:
+//有事件发生的socket集合结构
 typedef struct tag_Winks_EventSock_s
 	{
 		int num;
@@ -315,10 +318,54 @@ int Winks_closesocket( int sockhd );
 int Winks_getlasterror();
 int Winks_AsyncGetHostByName( char* name, char* pHost, int hostlen, WINKS_CHN_ID channel, int msg );
 int Winks_CancelGetHostByName( int handle );
-
 /********************************************************************************\
  内部函数接口
  \********************************************************************************/
+#pragma mark -
+#pragma mark 内部函数接口
+
+unsigned short Winks_htons( unsigned short port );
+// 系统心跳(开机运行了多长时间 WINKS_SO_SYSSECPTICK最后换算成毫秒)
+static unsigned long Winks_GetTick();
+static unsigned long Winks_GHGetfromCache( char* name );
+static int Winks_GHPutinCache( char* name, unsigned long addr );
+static Winks_GetHost_s* winks_lockGHhandle( int GHid );
+static void* winks_GHThread( void* param );
+static void* Winks_CreateThread(WINKS_THREAD_ENTRY entry, void* param);
+static int Winks_DeleteThread( void* thread );
+static int Winks_CreateEvent();
+//static void Winks_DeleteEvent();
+static int Winks_GetEvent(struct timespec* timeout );
+static int Winks_SetEvent(int event);
+static void* Winks_CreateMutex();
+static int Winks_DeleteMutex( void* mutex );
+static int Winks_GetMutex( void* mutex);
+static int Winks_PutMutex( void* mutex );
+static Winks_Socket_s* winks_lockhandle( int sockhd );
+static int winks_ifthreadwait();
+static int winks_getsockstatus( Winks_EventSock_s* pSevent );
+static void* winks_SocketThread( void* param );
+
+#pragma mark -
+#pragma mark PUSH
+//static int Winks_PushCheckSMSHead( unsigned char* pdata, int size, Winks_PushSMSHead_s* pSMSHead );
+//static int Winks_PushCheckUDHHead( unsigned char* pdata, int size, Winks_PushUDH_s* pUDH );
+//static Winks_Pushcb_s* Winks_PushFindCb( unsigned short dport );
+//static Winks_Pushdata_s* Winks_PushCreateSeg( Winks_PushSMSHead_s* pSMSHead, Winks_PushUDH_s* pUDH );
+//static int Winks_PushAddDataToCb( Winks_Pushcb_s* pPCb, Winks_Pushdata_s* pPData );
+//static Winks_Pushdata_s* Winks_PushFindSeg( Winks_PushSMSHead_s* pSMSHead, Winks_PushUDH_s* pUDH );
+//static int Winks_PushAppendData( Winks_Pushdata_s* pPData, Winks_PushSMSHead_s* pSMSHead, Winks_PushUDH_s* pUDH );
+//
+//static int Winks_PushAddDataToTmp( Winks_Pushdata_s* pPData );
+//
+//static int Winks_PushDumpData( Winks_Pushdata_s* pPData );
+//int Winks_PushParse( unsigned char* pdata, int size );
+//int Winks_pushcreate( Winks_Push_s* pPush );
+//int Winks_pushrecv(int push, char* pDest, int* destlen, 
+//				   char* pAppid, int* appidlen, char* pdata, int* datalen );
+//int Winks_pushclose( int push );
+//int Winks_setdialid( unsigned long id );
+
 
 
 #endif

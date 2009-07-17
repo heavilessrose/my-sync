@@ -7,22 +7,14 @@
  *
  */
 
-#include "fw_comm.h"
-
-#include "os_net_socket.h"
-#include "os_dns_api.h"
-
-//#include "UIResource.h"
-#include "sc_net.h"
-//#include "sc_pdp.h"
 #include "wk_public.h"
 #include "wk_osfnc.h"
 #include "socal.h"
 
 static Winks_SocketALGB_s Winks_SocketALGB;
 // 条件变量
-static pthread_cond_t condition;
-static pthread_mutex_t condLock;
+static pthread_cond_t condition = PTHREAD_COND_INITIALIZER;
+static pthread_mutex_t condLock = PTHREAD_MUTEX_INITIALIZER;
 static struct timespec timeout;
 #define WAIT 1
 #define RESUME 0
@@ -74,7 +66,7 @@ int Winks_SoStartup( void )
         return WINKS_SO_FAILURE;
     }
 	Winks_CreateEvent();
-//    if( Winks_CreateEvent( (void* )WINKS_SO_EVENTNAME, OS_TRUE )) == NULL )
+//    if( (Winks_SocketALGB.Global_Event = Winks_CreateEvent( (void* )WINKS_SO_EVENTNAME, OS_TRUE )) == (void* )OS_FAILURE )
 //    {
 //        Winks_printf( "WINKS socket startup create event failure, error %d\r\n", TP_OS_GET_ERRNO() );
 //        return WINKS_SO_FAILURE;
@@ -91,8 +83,7 @@ int Winks_SoStartup( void )
         Winks_SocketALGB.GHcb[i].ThreadID = NULL;
     }
 	
-    if( (Winks_SocketALGB.Global_Thread = Winks_CreateThread( (void* )WINKS_SO_THREADNAME, winks_SocketThread, 
-															 WINKS_SO_THREADPRI, WINKS_SO_THREADSIZE, NULL )) == NULL )
+    if( (Winks_SocketALGB.Global_Thread = Winks_CreateThread(winks_SocketThread, NULL )) == NULL )
     {
         Winks_printf( "WINKS socket startup create thread failure\r\n" );
         return WINKS_SO_FAILURE;
@@ -127,8 +118,8 @@ int Winks_SoCleanup( void )
     if( Winks_SocketALGB.Global_Thread != NULL )
         Winks_DeleteThread( Winks_SocketALGB.Global_Thread );
 	
-    if( Winks_SocketALGB.Global_Event != NULL )
-        Winks_DeleteEvent( Winks_SocketALGB.Global_Event );
+//    if( Winks_SocketALGB.Global_Event != NULL )
+//        Winks_DeleteEvent( Winks_SocketALGB.Global_Event );
 	
     if( Winks_SocketALGB.GH_Mutex != NULL )
         Winks_DeleteMutex( Winks_SocketALGB.GH_Mutex );
@@ -301,10 +292,11 @@ int Winks_connect(int sockhd, struct winks_sockaddr* serv_addr, int addrlen )
 	
     ret = connect( pSock->s, (struct sockaddr* )serv_addr, addrlen );
 	
-    if( ret < 0 && tp_os_net_get_errno() && (tp_os_net_get_errno() != EINPROGRESS) )
+//    if( ret < 0 && tp_os_net_get_errno() && (tp_os_net_get_errno() != EINPROGRESS) )
+	if( ret < 0 && errno && (errno != EINPROGRESS) )
     {
         Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
-        Winks_printf( "WINKS socket connect call system error %d\r\n", tp_os_net_get_errno() );
+        Winks_printf( "WINKS socket connect call system error %d\r\n", strerror(errno) );
         return ret;
     }
 	//???:
@@ -321,7 +313,7 @@ int Winks_connect(int sockhd, struct winks_sockaddr* serv_addr, int addrlen )
     Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
     
     if( winks_ifthreadwait() )
-        Winks_SetEvent();
+        Winks_SetEvent(RESUME);
 	
     return ret;
     
@@ -382,10 +374,11 @@ int Winks_send( int sockhd, void *buf, int len, int flags )
     }
     else if( ret < 0 )
     {
-        if( tp_os_net_get_errno() != EAGAIN )
+        if( errno != EAGAIN )
         {
             Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
-            Winks_printf( "WINKS socket send call system error %d\r\n", tp_os_net_get_errno() );
+//            Winks_printf( "WINKS socket send call system error %d\r\n", tp_os_net_get_errno() );
+			Winks_printf( "WINKS socket send call system error %d\r\n", strerror(errno) );
         }
         else
         {
@@ -393,7 +386,7 @@ int Winks_send( int sockhd, void *buf, int len, int flags )
             Winks_setlasterror(WINKS_SO_EWOULDBLOCK);
             Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
             if( winks_ifthreadwait() )
-                Winks_SetEvent();
+                Winks_SetEvent(RESUME);
         }
 		
     }
@@ -465,10 +458,10 @@ int Winks_recv( int sockhd, void *buf, int len, int flags )
     }
     else if( ret < 0 )
     {
-        if( tp_os_net_get_errno() != EAGAIN )
+        if( errno != EAGAIN )
         {
             Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
-            Winks_printf( "WINKS socket recv call system error %d\r\n", tp_os_net_get_errno() );
+            Winks_printf( "WINKS socket recv call system error %d\r\n", strerror(errno) );
         }
         else
         {
@@ -476,7 +469,7 @@ int Winks_recv( int sockhd, void *buf, int len, int flags )
             Winks_setlasterror(WINKS_SO_EWOULDBLOCK);
             Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
             if( winks_ifthreadwait() )
-                Winks_SetEvent();
+                Winks_SetEvent(RESUME);
         }
 		
     }
@@ -618,8 +611,7 @@ int Winks_AsyncGetHostByName( char* name, char* pHost, int hostlen, WINKS_CHN_ID
         Tname = 0;
     sprintf( pTname, "%s%d", WINKS_SO_GHTHREADNAME, Tname );
 	
-    if( (pHostcb->ThreadID = Winks_CreateThread( (void* )pTname, winks_GHThread, 
-												WINKS_SO_THREADPRI, WINKS_SO_THREADSIZE, pGH )) == NULL )
+    if( (pHostcb->ThreadID = Winks_CreateThread( winks_GHThread, pGH )) == NULL )
     {
         Winks_mem_set( pHostcb, 0, sizeof(Winks_GetHost_s) );
         pHostcb->ThreadID = NULL;
@@ -667,7 +659,7 @@ int Winks_CancelGetHostByName( int handle )
         return WINKS_SO_FAILURE;
     }
 	
-    if( Winks_DeleteThread( pHostcb->ThreadID ) != OS_SUCCESS )
+    if( Winks_DeleteThread( pHostcb->ThreadID ) != 0 )
     {
         Winks_printf( "WINKS socket gethostbyname cancel delete thread failure\r\n" );
         return WINKS_SO_FAILURE;
@@ -694,6 +686,11 @@ unsigned short Winks_htons( unsigned short port )
     return (unsigned short)htons(port);
 }
 
+// 系统心跳(开机运行了多长时间 WINKS_SO_SYSSECPTICK最后换算成毫秒)
+static unsigned long Winks_GetTick(){
+	
+}
+
 static unsigned long Winks_GHGetfromCache( char* name )
 {
     int i = 0;
@@ -703,7 +700,7 @@ static unsigned long Winks_GHGetfromCache( char* name )
     {
         if( Winks_SocketALGB.GHCache[i].name != NULL )
         {
-            if( tp_os_current_tick_get() > Winks_SocketALGB.GHCache[i].live )
+            if( Winks_GetTick() > Winks_SocketALGB.GHCache[i].live )
             {
                 /* timeout, drop */
                 if( Winks_SocketALGB.GHCache[i].name != Winks_SocketALGB.GHCache[i].pdata )
@@ -735,17 +732,17 @@ static int Winks_GHPutinCache( char* name, unsigned long addr )
     Winks_GetMutex( Winks_SocketALGB.GH_Mutex );
     for( i = 0; i < WINKS_SO_MAXGHCACHENUM; i++ )
     {
-        if( (tp_os_current_tick_get() > Winks_SocketALGB.GHCache[i].live) || (Winks_SocketALGB.GHCache[i].name == NULL) )
+        if( (Winks_GetTick() > Winks_SocketALGB.GHCache[i].live) || (Winks_SocketALGB.GHCache[i].name == NULL) )
         {
             if( (Winks_SocketALGB.GHCache[i].name != NULL) &&
-			   (tp_os_current_tick_get() > Winks_SocketALGB.GHCache[i].live) )
+			   (Winks_GetTick() > Winks_SocketALGB.GHCache[i].live) )
             {
                 /* timeout, drop */
                 if( Winks_SocketALGB.GHCache[i].name != Winks_SocketALGB.GHCache[i].pdata )
                     Winks_salFree(Winks_SocketALGB.GHCache[i].name);
                 Winks_SocketALGB.GHCache[i].name = NULL;
             }
-            Winks_SocketALGB.GHCache[i].live = tp_os_current_tick_get() + 
+            Winks_SocketALGB.GHCache[i].live = Winks_GetTick() + 
 			(WINKS_SO_NAMELIVETIME / WINKS_SO_SYSSECPTICK);
             if( (len = strlen(name)) > WINKS_SO_MAXNAMELEN )
                 Winks_SocketALGB.GHCache[i].name = Winks_salAlloc( len + 1 );
@@ -812,7 +809,7 @@ static Winks_GetHost_s* winks_lockGHhandle( int GHid )
 	
 }
 
-static void winks_GHThread( void* param )
+static void* winks_GHThread( void* param )
 {
     Winks_GH_s* pGH = param;
     struct hostent* pHost = NULL;
@@ -823,7 +820,7 @@ static void winks_GHThread( void* param )
     if( pGH == NULL )
     {
         Winks_printf( "WINKS socket get GH thread param error\r\n" );
-        return;
+        return NULL;
     }
 	
     /* We user a mutex to sync gh thread */
@@ -836,7 +833,7 @@ static void winks_GHThread( void* param )
     {
         Winks_printf( "WINKS socket GH thread lock handle error\r\n" );
         Winks_PutMutex( Winks_SocketALGB.GH_SyncMutex );
-        return;
+        return NULL;
     }
 	
     if( pHost == NULL )
@@ -852,7 +849,7 @@ static void winks_GHThread( void* param )
         Winks_PutMutex( Winks_SocketALGB.GH_SyncMutex );
 		
         Winks_salFree(pGH);
-        return;
+        return NULL;
     }
 	
     phost = (Winks_hostent* )(pHostcb->pHost);
@@ -876,8 +873,7 @@ static void winks_GHThread( void* param )
 	
     Winks_GHPutinCache( pGH->name, *((unsigned long* )(pHost->h_addr_list[0])) );
     Winks_salFree(pGH);
-    return;
-	
+    return NULL;
 }
 
 
@@ -891,7 +887,7 @@ static void* Winks_CreateThread(WINKS_THREAD_ENTRY entry, void* param)
 	// 线程以分离状态启动，在线程退出时立即回收资源
 	assert(!pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED));
 	
-	int threadError = pthread_create(&posixThreadID, &attr, &entry, param);
+	int threadError = pthread_create(&posixThreadID, &attr, entry, param);
 	assert(!pthread_attr_destroy(&attr));
 	if (threadError != 0){
 		printf("Winks_CreateThread: %s\n", strerror(threadError));
@@ -915,15 +911,15 @@ static int Winks_DeleteThread( void* thread )
 static int Winks_CreateEvent()
 {
 	Winks_SocketALGB.ifWait = 1;
-	condition = PTHREAD_COND_INITIALIZER;
-	condLock = PTHREAD_MUTEX_INITIALIZER;
+//	condition = PTHREAD_COND_INITIALIZER;
+//	condLock = PTHREAD_MUTEX_INITIALIZER;
     return 0; // 返回条件变量
 }
 
-static void Winks_DeleteEvent()
-{
-    Winks_SocketALGB.Global_Event ＝ 0;
-}
+//static void Winks_DeleteEvent()
+//{
+//    Winks_SocketALGB.Global_Event ＝ 0;
+//}
 
 static int Winks_GetEvent(struct timespec* timeout )
 {
@@ -1018,6 +1014,7 @@ static int winks_ifthreadwait()
     return Winks_SocketALGB.ifWait;
 }
 
+// 返回已有事件发生的socket数＋1，并加入到Winks_EventSock_s
 static int winks_getsockstatus( Winks_EventSock_s* pSevent )
 {
     int ret = -1, i = 0;
@@ -1056,7 +1053,7 @@ static int winks_getsockstatus( Winks_EventSock_s* pSevent )
  本函数按照用户调用情况，使用一个固定时间和select函数轮询查询所有活动socket
  的状态，通过检查各个socket的状态，发送事件通知消息。
  \*************************************************************************************/
-static void winks_SocketThread( void* param )
+static void* winks_SocketThread( void* param )
 {
     int nfds = 0, ret = 0, i = 0, lret = 0;
     Winks_EventSock_s SEvent;
@@ -1073,12 +1070,12 @@ static void winks_SocketThread( void* param )
 	
     /* firstly we wait in global event for any event */
     //Winks_SocketALGB.ifWait = 1;
-	Winks_SetEvent(1);
+	Winks_SetEvent(WAIT);
     Winks_printf( "WINKS socket thread initial wait\r\n" );
-    Winks_GetEvent( timeout );
+    Winks_GetEvent( &timeout );
     Winks_printf( "WINKS socket thread initial wakeup\r\n" );
     //Winks_SocketALGB.ifWait = 0;
-	Winks_SetEvent(0);
+	Winks_SetEvent(RESUME);
 	
     
     /* when get event, set flags first */
@@ -1180,7 +1177,8 @@ static void winks_SocketThread( void* param )
                             Winks_printf( "WINKS socket thread poll onconnect failure event %d\r\n", SEvent.s[i].sockhd );
                             pSock->Opcode &= ~WINKS_SO_ONCONNECT;
                             msg.wParam = (unsigned long )(pSock - Winks_SocketALGB.sockcb);
-                            msg.lParam = WINKS_SO_CONNECT | (tp_os_net_get_errno() << 16);
+//                            msg.lParam = WINKS_SO_CONNECT | (tp_os_net_get_errno() << 16);
+                            msg.lParam = WINKS_SO_CONNECT | errno << 16);
                             lret = Winks_PostMsg( pSock->channel, (void* )(pSock->MsgNum), &msg, sizeof(Winks_Socketmsg_s) );
                             Winks_printf( "WINKS socket thread postmsg ret %d\r\n", lret );
                             Winks_PutMutex( Winks_SocketALGB.Socket_Mutex );
@@ -1197,18 +1195,19 @@ static void winks_SocketThread( void* param )
             }
             else
             {
-                Winks_printf( "WINKS socket thread select return error %d\r\n", tp_os_net_get_errno() );
+//                Winks_printf( "WINKS socket thread select return error %d\r\n", tp_os_net_get_errno() );
+				Winks_printf( "WINKS socket thread select return error %d\r\n", strerror(errno) );
             }
         }
         else
         {
 //            Winks_SocketALGB.ifWait = 1;
-			Winks_SetEvent(1);
+			Winks_SetEvent(WAIT);
             Winks_printf( "WINKS socket thread wait\r\n" );
-            Winks_GetEvent( Winks_SocketALGB.Global_Event, OS_WAIT_FOREVER );
+            Winks_GetEvent( &timeout );
             Winks_printf( "WINKS socket thread wakeup\r\n" );
 //            Winks_SocketALGB.ifWait = 0;
-			Winks_SetEvent(0);
+			Winks_SetEvent(RESUME);
         }
     }
 	
@@ -1220,153 +1219,153 @@ static void winks_SocketThread( void* param )
 \*************************************************************************************/
 #pragma mark -
 #pragma mark PUSH
-static int Winks_PushCheckSMSHead( unsigned char* pdata, int size, Winks_PushSMSHead_s* pSMSHead )
-{
-
-    return off;
-}
-
-static int Winks_PushCheckUDHHead( unsigned char* pdata, int size, Winks_PushUDH_s* pUDH )
-{
-
-    return off;
-}
-
-static Winks_Pushcb_s* Winks_PushFindCb( unsigned short dport )
-{
-
-    return NULL;
-}
-
-static Winks_Pushdata_s* Winks_PushCreateSeg( Winks_PushSMSHead_s* pSMSHead, Winks_PushUDH_s* pUDH )
-{
-
-    return pPData;
-	
-}
-
-static int Winks_PushAddDataToCb( Winks_Pushcb_s* pPCb, Winks_Pushdata_s* pPData )
-{
-
-    return 0;
-	
-}
-
-static Winks_Pushdata_s* Winks_PushFindSeg( Winks_PushSMSHead_s* pSMSHead, Winks_PushUDH_s* pUDH )
-{
-
-    return NULL;
-}
-
-static int Winks_PushAppendData( Winks_Pushdata_s* pPData, Winks_PushSMSHead_s* pSMSHead, Winks_PushUDH_s* pUDH )
-{
-    return 1;
-}
-
-static int Winks_PushAddDataToTmp( Winks_Pushdata_s* pPData )
-{
-
-    return 0;
-	
-}
-
-static int Winks_PushDumpData( Winks_Pushdata_s* pPData )
-{
-    return -1;
-	
-}
-/*************************************************************************************\
- 函数原型：  int Winks_pushparse( char* pdata, int size )
- 
- 函数介绍：
- Push数据解析函数。
- 参数说明：
- 参数名称	参数类型		参数介绍		备注
- pdata		char*			PUSH数据
- size		int				PUSH数据长度
- 
- 函数返回值：
- 成功返回0，失败返回-1。
- 实现描述：
- 本函数用来解析PUSH数据，抽象层初始化的时候需要向消息通道注册PUSH接收消息，
- 一旦有PUSH数据到来，抽象层应该调用本函数将PUSH数据送到PUSH处理模块进行处理。
- \*************************************************************************************/
-int Winks_PushParse( unsigned char* pdata, int size )
-{
-    return WINKS_SO_SUCCESS;
-}
-
-/*************************************************************************************\
- 函数原型：  int Winks_pushcreate( Winks_Push_s* pPush )
- 
- 函数介绍：
- Push创建函数。
- 参数说明：
- 参数名称	参数类型		参数介绍	备注
- pPush		Winks_Push_s	创建参数	
- 
- 函数返回值：
- 成功返回创建句柄，失败返回-1。
- 实现描述：
- 本函数用来创建Push侦听控制块，一旦返回成功，抽象层将在用户指定的端口上侦听Push数据，
- 同时还可对指定APPID进行侦听（第一版暂不支持APPID）如果有符合要求的Push数据到达，抽象
- 层会往用户指定的消息通道发送指定消息，用户可以通过调用函数Winks_pushrecv得到数据。
- 消息数值为一个Winks_Socketmsg_s结构，其中wParam代表Push侦听句柄，lParam代表Push数据的长度。
- \*************************************************************************************/
-int Winks_pushcreate( Winks_Push_s* pPush )
-{
-    return WINKS_SO_FAILURE;
-}
-/*************************************************************************************\
- 函数原型：  int Winks_pushrecv(int push, unsigned short* pPort, char* pDest, int* destlen, 
- char* pAppid, int* appidlen, void* pdata, int* datalen )
- 
- 函数介绍：
- Push读取数据函数。
- 参数说明：
- 参数名称	参数类型		参数介绍			备注
- push		int				Push侦听句柄	
- pPort		unsigned short*	Push数据到达端口	为空代表用户不关心
- pDest		char* 			目的地址			为空代表用户不关心
- destlen		int*			目的地址缓冲区长度	
- pAppid		char*			Appid内容			为空代表用户不关心
- appidlen	int*			appid缓冲区长度	
- pdata		char*			数据缓冲区	
- datalen		int*			数据缓冲区长度	
- 函数返回值：
- 成功返回读取数据长度，
- 失败返回
- -1                          general error
- WINKS_SO_PUSHEDEST          Dest parameter error
- WINKS_SO_PUSHEAPPID         Appid parameter error
- 实现描述：
- 本函数用来读取Push数据，抽象层会按照用户要求将数据和相应参数填入用户提供的缓冲区内，
- 如果用户提供的缓冲区长度不够，抽象层会在用户提供的缓冲区长度指针里面填写需要的长度，
- 以便用户申请更多的缓冲区来获取数据。本函数返回的数据为实际的push数据。
- \*************************************************************************************/
-int Winks_pushrecv(int push, char* pDest, int* destlen, 
-				   char* pAppid, int* appidlen, char* pdata, int* datalen )
-{
-    return len;
-}
-
-/*************************************************************************************\
- 函数原型：  int Winks_pushclose( int push )
- 函数介绍：
- Push关闭函数。
- 参数说明：
- 参数名称	参数类型	参数介绍	备注
- push		int			Push侦听句柄	
- 函数返回值：
- 成功返回0，失败返回-1。
- 实现描述：
- 本函数关闭用户指定的Push侦听句柄。
- \*************************************************************************************/
-int Winks_pushclose( int push )
-{
-    return 0;
-}
-int Winks_setdialid( unsigned long id )
-{
-    return 0;
-}
+//static int Winks_PushCheckSMSHead( unsigned char* pdata, int size, Winks_PushSMSHead_s* pSMSHead )
+//{
+//
+//    return off;
+//}
+//
+//static int Winks_PushCheckUDHHead( unsigned char* pdata, int size, Winks_PushUDH_s* pUDH )
+//{
+//
+//    return off;
+//}
+//
+//static Winks_Pushcb_s* Winks_PushFindCb( unsigned short dport )
+//{
+//
+//    return NULL;
+//}
+//
+//static Winks_Pushdata_s* Winks_PushCreateSeg( Winks_PushSMSHead_s* pSMSHead, Winks_PushUDH_s* pUDH )
+//{
+//
+//    return pPData;
+//	
+//}
+//
+//static int Winks_PushAddDataToCb( Winks_Pushcb_s* pPCb, Winks_Pushdata_s* pPData )
+//{
+//
+//    return 0;
+//	
+//}
+//
+//static Winks_Pushdata_s* Winks_PushFindSeg( Winks_PushSMSHead_s* pSMSHead, Winks_PushUDH_s* pUDH )
+//{
+//
+//    return NULL;
+//}
+//
+//static int Winks_PushAppendData( Winks_Pushdata_s* pPData, Winks_PushSMSHead_s* pSMSHead, Winks_PushUDH_s* pUDH )
+//{
+//    return 1;
+//}
+//
+//static int Winks_PushAddDataToTmp( Winks_Pushdata_s* pPData )
+//{
+//
+//    return 0;
+//	
+//}
+//
+//static int Winks_PushDumpData( Winks_Pushdata_s* pPData )
+//{
+//    return -1;
+//	
+//}
+///*************************************************************************************\
+// 函数原型：  int Winks_pushparse( char* pdata, int size )
+// 
+// 函数介绍：
+// Push数据解析函数。
+// 参数说明：
+// 参数名称	参数类型		参数介绍		备注
+// pdata		char*			PUSH数据
+// size		int				PUSH数据长度
+// 
+// 函数返回值：
+// 成功返回0，失败返回-1。
+// 实现描述：
+// 本函数用来解析PUSH数据，抽象层初始化的时候需要向消息通道注册PUSH接收消息，
+// 一旦有PUSH数据到来，抽象层应该调用本函数将PUSH数据送到PUSH处理模块进行处理。
+// \*************************************************************************************/
+//int Winks_PushParse( unsigned char* pdata, int size )
+//{
+//    return WINKS_SO_SUCCESS;
+//}
+//
+///*************************************************************************************\
+// 函数原型：  int Winks_pushcreate( Winks_Push_s* pPush )
+// 
+// 函数介绍：
+// Push创建函数。
+// 参数说明：
+// 参数名称	参数类型		参数介绍	备注
+// pPush		Winks_Push_s	创建参数	
+// 
+// 函数返回值：
+// 成功返回创建句柄，失败返回-1。
+// 实现描述：
+// 本函数用来创建Push侦听控制块，一旦返回成功，抽象层将在用户指定的端口上侦听Push数据，
+// 同时还可对指定APPID进行侦听（第一版暂不支持APPID）如果有符合要求的Push数据到达，抽象
+// 层会往用户指定的消息通道发送指定消息，用户可以通过调用函数Winks_pushrecv得到数据。
+// 消息数值为一个Winks_Socketmsg_s结构，其中wParam代表Push侦听句柄，lParam代表Push数据的长度。
+// \*************************************************************************************/
+//int Winks_pushcreate( Winks_Push_s* pPush )
+//{
+//    return WINKS_SO_FAILURE;
+//}
+///*************************************************************************************\
+// 函数原型：  int Winks_pushrecv(int push, unsigned short* pPort, char* pDest, int* destlen, 
+// char* pAppid, int* appidlen, void* pdata, int* datalen )
+// 
+// 函数介绍：
+// Push读取数据函数。
+// 参数说明：
+// 参数名称	参数类型		参数介绍			备注
+// push		int				Push侦听句柄	
+// pPort		unsigned short*	Push数据到达端口	为空代表用户不关心
+// pDest		char* 			目的地址			为空代表用户不关心
+// destlen		int*			目的地址缓冲区长度	
+// pAppid		char*			Appid内容			为空代表用户不关心
+// appidlen	int*			appid缓冲区长度	
+// pdata		char*			数据缓冲区	
+// datalen		int*			数据缓冲区长度	
+// 函数返回值：
+// 成功返回读取数据长度，
+// 失败返回
+// -1                          general error
+// WINKS_SO_PUSHEDEST          Dest parameter error
+// WINKS_SO_PUSHEAPPID         Appid parameter error
+// 实现描述：
+// 本函数用来读取Push数据，抽象层会按照用户要求将数据和相应参数填入用户提供的缓冲区内，
+// 如果用户提供的缓冲区长度不够，抽象层会在用户提供的缓冲区长度指针里面填写需要的长度，
+// 以便用户申请更多的缓冲区来获取数据。本函数返回的数据为实际的push数据。
+// \*************************************************************************************/
+//int Winks_pushrecv(int push, char* pDest, int* destlen, 
+//				   char* pAppid, int* appidlen, char* pdata, int* datalen )
+//{
+//    return len;
+//}
+//
+///*************************************************************************************\
+// 函数原型：  int Winks_pushclose( int push )
+// 函数介绍：
+// Push关闭函数。
+// 参数说明：
+// 参数名称	参数类型	参数介绍	备注
+// push		int			Push侦听句柄	
+// 函数返回值：
+// 成功返回0，失败返回-1。
+// 实现描述：
+// 本函数关闭用户指定的Push侦听句柄。
+// \*************************************************************************************/
+//int Winks_pushclose( int push )
+//{
+//    return 0;
+//}
+//int Winks_setdialid( unsigned long id )
+//{
+//    return 0;
+//}
