@@ -20,7 +20,7 @@ extern "C" {
 extern int Winks_api_StartTimer(unsigned long delay);
 extern int Winks_api_StopTimer(void);
 
-// 系统心跳数， 与ms进行换算
+// 系统心跳数, 与ms进行换算,得到系统启动运行了多少毫秒
 WINKS_TICKS Winks_GetSysTick(void);
 	
 

@@ -1,0 +1,137 @@
+// !$*UTF8*$!
+{
+	1B4B7285101473A600E6A03F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* calendarViewController.m */;
+		name = "calendarViewController.m: 54";
+		rLen = 0;
+		rLoc = 1939;
+		rType = 0;
+		vrLen = 869;
+		vrLoc = 655;
+	};
+	1BC25680101451670051A232 /* calendar */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = calendar;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	1BC25689101451870051A232 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	1BC2568A101451870051A232 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	1BC2568C1014555F0051A232 /* calendarViewController.m:37 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 28D7ACF70DDB3853001CB0EB /* calendarViewController.m */;
+		functionName = "-viewDidLoad";
+		hitCount = 1;
+		ignoreCount = 0;
+		lineNumber = 37;
+		location = calendar;
+		modificationTime = 269768393.855709;
+		state = 2;
+	};
+	1BD232F31014800600BF0C35 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* calendarViewController.m */;
+		name = "calendarViewController.m: 46";
+		rLen = 0;
+		rLoc = 1147;
+		rType = 0;
+		vrLen = 1023;
+		vrLoc = 654;
+	};
+	1D6058900D05DD3D006BFB54 /* calendar */ = {
+		activeExec = 0;
+		executables = (
+			1BC25680101451670051A232 /* calendar */,
+		);
+	};
+	28D7ACF70DDB3853001CB0EB /* calendarViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {812, 1407}}";
+			sepNavSelRange = "{1147, 0}";
+			sepNavVisRange = "{654, 1023}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 1BC25680101451670051A232 /* calendar */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* calendar */;
+		breakpoints = (
+			1BC2568C1014555F0051A232 /* calendarViewController.m:37 */,
+		);
+		codeSenseManager = 1BC2568A101451870051A232 /* Code sense */;
+		executables = (
+			1BC25680101451670051A232 /* calendar */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					468,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 269778629;
+			PBXWorkspaceStateSaveDate = 269778629;
+		};
+		perUserProjectItems = {
+			1B4B7285101473A600E6A03F /* PBXTextBookmark */ = 1B4B7285101473A600E6A03F /* PBXTextBookmark */;
+			1BD232F31014800600BF0C35 /* PBXTextBookmark */ = 1BD232F31014800600BF0C35 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 1BC25689101451870051A232 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+}

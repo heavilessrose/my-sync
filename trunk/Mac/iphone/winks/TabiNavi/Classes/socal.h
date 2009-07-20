@@ -95,7 +95,7 @@ typedef void *(*WINKS_THREAD_ENTRY)( void* param ); // 线程执行函数
 
 //#define WINKS_SO_MAXPUSHDATALEN	140	//最大PUSH数据长度
 
-#define WINKS_SO_NAMELIVETIME   (7*24*60*60*1000)   //域名查询高速缓存生存时间，一周
+#define WINKS_SO_NAMELIVETIME   (7*24*60*60*1000)   //域名查询高速缓存生存时间，一周(ms)
 #define WINKS_SO_SYSSECPTICK    1 /*16*/                 //系统每一次心跳折合毫秒数
 
 ///* Push TPDU num define */
