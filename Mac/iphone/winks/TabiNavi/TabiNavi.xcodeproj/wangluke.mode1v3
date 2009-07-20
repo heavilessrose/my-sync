@@ -178,7 +178,7 @@
 	<key>FavBarConfig</key>
 	<dict>
 		<key>PBXProjectModuleGUID</key>
-		<string>1BA729310FF86C4E002EC1B7</string>
+		<string>1BD232EB1014800500BF0C35</string>
 		<key>XCBarModuleItemNames</key>
 		<dict/>
 		<key>XCBarModuleItems</key>
@@ -233,6 +233,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -280,8 +282,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>21</integer>
-									<integer>19</integer>
+									<integer>23</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -317,14 +318,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>wk_timer.c</string>
+								<string>wk_api.c</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -332,11 +331,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>wk_timer.c</string>
+										<string>wk_api.c</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1B9B013A101054B300299900</string>
+										<string>1BD232E81014800500BF0C35</string>
 										<key>history</key>
 										<array>
 											<string>1BD544C3100B69BC00D10B30</string>
@@ -344,7 +343,6 @@
 											<string>1BC6FCB3100C3743004E5637</string>
 											<string>1BC6FCEE100C5349004E5637</string>
 											<string>1BC6FCF7100C5588004E5637</string>
-											<string>1BC6FCF9100C5588004E5637</string>
 											<string>1BC6FD06100C5732004E5637</string>
 											<string>1BC6FD0C100C57BD004E5637</string>
 											<string>1BC6FE77100C9773004E5637</string>
@@ -368,10 +366,13 @@
 											<string>1B385A99100F3B45007E84DA</string>
 											<string>1B385A9A100F3B45007E84DA</string>
 											<string>1B385A9B100F3B45007E84DA</string>
-											<string>1B385A9C100F3B45007E84DA</string>
 											<string>1B645A26100F425200B9F6D3</string>
 											<string>1B645A27100F425200B9F6D3</string>
-											<string>1BC953C310100F7F00ADCF2E</string>
+											<string>1B9B017410107F8800299900</string>
+											<string>1B9B017510107F8800299900</string>
+											<string>1B9B017610107F8800299900</string>
+											<string>1B4B728F101473E800E6A03F</string>
+											<string>1B4B7290101473E800E6A03F</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -388,9 +389,12 @@
 											<string>1BC1361E100F33E9005526A8</string>
 											<string>1BC13623100F33E9005526A8</string>
 											<string>1BC13638100F38E8005526A8</string>
-											<string>1BC13639100F38E8005526A8</string>
 											<string>1B385AA3100F3B45007E84DA</string>
 											<string>1B385AA7100F3B45007E84DA</string>
+											<string>1B9B017A10107F8800299900</string>
+											<string>1B9B017B10107F8800299900</string>
+											<string>1B9B017C10107F8800299900</string>
+											<string>1B9B017E10107F8800299900</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -422,7 +426,7 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 830}, {1083, 0}}</string>
+								<string>{{0, 827}, {1083, 0}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 131 1280 871 0 0 1280 1002 </string>
 							</dict>
@@ -448,9 +452,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>1B9B013B101054B300299900</string>
+				<string>1BD232E91014800500BF0C35</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>1B9B013C101054B300299900</string>
+				<string>1BD232EA1014800500BF0C35</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -584,6 +588,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/wangluke/Documents/Mac/iphone/winks/TabiNavi/TabiNavi.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -784,13 +789,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>1B645A2F100F425200B9F6D3</string>
+				<string>1BD232EC1014800500BF0C35</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>1B645A30100F425200B9F6D3</string>
-				<string>1B645A31100F425200B9F6D3</string>
-				<string>1B645A32100F425200B9F6D3</string>
-				<string>1B645A33100F425200B9F6D3</string>
-				<string>1B645A34100F425200B9F6D3</string>
+				<string>1BD232ED1014800500BF0C35</string>
+				<string>1BD232EE1014800500BF0C35</string>
+				<string>1BD232EF1014800500BF0C35</string>
+				<string>1BD232F01014800500BF0C35</string>
+				<string>1BD232F11014800500BF0C35</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -880,8 +885,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>1BC13536100ED9AD005526A8</string>
-				<string>1BC13537100ED9AD005526A8</string>
+				<string>1B9B014F10105F7400299900</string>
+				<string>1B9B015010105F7400299900</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
