@@ -243,7 +243,7 @@ void setIdList(){
 	for(NSUInteger i = 0; i < allPeople.count; i++){
 		ABRecordRef person = [allPeople objectAtIndex:i];
 		*(people_ID_list + i) = ABRecordGetRecordID(person);
-	}		
+	}
 }
 
 // ABRecordID 与 index转换
