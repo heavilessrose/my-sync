@@ -42,5 +42,5 @@ int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookIt
 void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned long len);
 
 #pragma mark 内部函数
-void setIdList()；
+void setIdList();
 @end
