@@ -1,6 +1,5 @@
 /*
- *  socal.c
- *  TabiNavi
+ *  wk_socal.c
  *
  *  Created by wang luke on 7/15/09.
  *  Copyright 2009 luke. All rights reserved.
@@ -9,7 +8,7 @@
 
 #include "wk_public.h"
 #include "wk_osfnc.h"
-#include "socal.h"
+#include "wk_socal.h"
 
 static Winks_SocketALGB_s Winks_SocketALGB;
 // 条件变量

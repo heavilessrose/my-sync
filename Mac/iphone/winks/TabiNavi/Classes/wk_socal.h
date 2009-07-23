@@ -1,6 +1,5 @@
 /*
- *  socal.h
- *  TabiNavi
+ *  wk_socal.h
  *
  *  Created by wang luke on 7/15/09.
  *  Copyright 2009 luke. All rights reserved.
