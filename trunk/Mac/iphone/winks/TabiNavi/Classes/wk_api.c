@@ -575,7 +575,11 @@ void Winks_printf2file(int opt)
 {
     if(!opt)
         return;
-	
+	////
+	const char *path = [@"/debug.txt" fileSystemRepresentation];
+	// Specify stderr writes to a file (truncating contents first) 
+	freopen(path, "w"/*"a"*/, stderr);
+	////
 	return;
 }
 
@@ -795,4 +799,20 @@ void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned l
 	}
 	[ns_friend_no release];
 	//CFRelease(_addressBook);
+}
+
+#pragma mark -
+// ppc平台为初始化电话监控
+int winks_api_osinit(void){
+	
+}
+
+// ppc平台为关闭电话监控
+int winks_api_osdestroy(void){
+	
+}
+
+
+int winks_api_PostMessage(void){
+	
 }

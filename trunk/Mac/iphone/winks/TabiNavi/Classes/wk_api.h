@@ -21,6 +21,9 @@
 extern "C" {
 #endif
 	
+// 调试	
+#define debug(format, ...) CFShow([NSString stringWithFormat:format, ## __VA_ARGS__]);
+	
 #ifdef WINKS_SUPPORT_MEMORY_CARD
 	int Winks_IsMemoryCardExist(void);
 	int Winks_GetMemoryCardDriver(char *drv, unsigned int len);
