@@ -113,7 +113,7 @@ int Winks_GetSysDateTime(Winks_DateTime_s *dateTime_p){
 
 /**************************************************************************\
  功能描述:
- 获取开机到现在的tick
+ 获取开机到现在的tick 开机后经过的毫秒数
  参数说明:
  无
  返回值:
@@ -123,10 +123,12 @@ int Winks_GetSysDateTime(Winks_DateTime_s *dateTime_p){
  \**************************************************************************/
 WINKS_TICKS Winks_GetSysTick(void)
 {
-	//FIXME: 得到调用进程运行的clock, 是否满足需求？
+	//FIXME: 得到调用进程运行的clock
 	WINKS_TICKS t = clock();
+	
+	unsigned long ms = t / (CLOCKS_PER_SEC / 1000);
     Winks_printf("Winks_GetSysTick %d\n", t);
-    return t;
+    return ms;
 }
 
 
@@ -710,96 +712,6 @@ int Winks_GetTimeDifference(Winks_DateTime_s *t1, Winks_DateTime_s *t2, Winks_Da
     return WINKS_RETURN_SUCCESS;
 }
 
-#pragma mark 联系人
-/*取电话本的记录个数*/
-//phone_cnt，返回本机电话的条数
-//sim_cnt,返回sim卡电话的条数
-//返回值：0表示成功，-1表示失败
-int Winks_GetPhonebookCount(unsigned long *phone_cnt, unsigned long *sim_cnt){
-	CFIndex count = ABAddressBookGetPersonCount(_addressBook);
-	*phone_cnt = (unsigned long)count;
-	
-	people_ID_list = calloc((size_t) count, sizeof(ABRecordID));
-	setIdList();
-	return 0;
-}
-
-// 设置id列表
-void setIdList(){
-	if(_addressBook == nil)
-		_addressBook = ABAddressBookCreate();
-	NSArray* allPeople = (NSArray*)ABAddressBookCopyArrayOfAllPeople(_addressBook);
-	
-	for(NSUInteger i = 0; i < allPeople.count; i++){
-		ABRecordRef person = [allPeople objectAtIndex:i];
-		*(people_ID_list + i) = ABRecordGetRecordID(person);
-	}
-}
-
-// ABRecordID 与 index转换
-//unsigned int getIndexFromID(ABRecordID pid){
-//	int i;
-//	unsigned long len = 0;
-//	Winks_GetPhonebookCount(&len, NULL);
-//	for(i = 0; i < len; i++){
-//		if(pid == people_ID_list[i])
-//			break;
-//	}
-//	return i;
-//} 
-
-
-/*取电话本中指定的一条记录（一条记录可能含有多个电话号码）*/
-//type，1表示电话本机，2表示sim卡
-//index，表示第几条，从0开始 
-//numberItme，返回的电话号码放在此参数中
-//返回值，0表示成功，-1表示失败
-int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookItem_s* numberItem){
-	if (!numberItem)
-		return -1;
-	
-	if (type == 2)
-		return -1;
-	
-	ABRecordID recordid = *(people_ID_list + index);
-	ABRecordRef thePeople = ABAddressBookGetPersonWithRecordID (_addressBook, recordid);
-	NSMutableArray * numArr = [ContactsViewController getNumbers:thePeople];
-	int count = [numArr count];
-	int i;
-	for (i = 0; i < count; i++) {
-		numberItem->number[i] = [(NSString *)[numArr objectAtIndex:(NSUInteger)i] UTF8String];
-	}
-	return 0;
-}
-
-/* 从电话本中取号码对应的名字(UTF-8 编码) */
-void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned long len){
-	if (!friend_no || !friend_name || len <= 0 || !*friend_no){
-		return;
-	}
-	int iLen = 0;
-	iLen = strlen(friend_no);
-	NSString *ns_friend_no = [[NSString alloc] initWithCString:friend_no];
-	
-	if(_addressBook == nil)
-		_addressBook = ABAddressBookCreate();
-	NSArray* allPeople = (NSArray*)ABAddressBookCopyArrayOfAllPeople(_addressBook);
-	//CFArrayRef people = ABAddressBookCopyPeopleWithName (ABAddressBookRef addressBook, CFStringRef name);
-	
-	NSArray* numbers = nil;
-	for(NSUInteger i = 0; i < allPeople.count; i++){
-		ABRecordRef person = [allPeople objectAtIndex:i];
-		numbers = [ContactsViewController getNumbers:person];
-		if([numbers containsObject:ns_friend_no]){
-			NSString* name = (NSString *)ABRecordCopyCompositeName(person);
-			NSLog(@"friend_name: %@", name);
-			memcpy(friend_name, [name UTF8String], sizeof([name UTF8String]));
-			break;
-		}
-	}
-	[ns_friend_no release];
-	//CFRelease(_addressBook);
-}
 
 #pragma mark -
 // ppc平台为初始化电话监控

@@ -148,14 +148,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1B586E9B1001A5DA00303A6F /* socket */,
-				1BB852620FFB6C8A00490ACE /* include */,
 				1BB851A50FFB233000490ACE /* osal */,
 				1BA72A6C0FF896B2002EC1B7 /* UI */,
 				1BA72A890FF89751002EC1B7 /* PIM */,
 				1BBD10470FF9A7670053ECFE /* setting */,
 				1BCE1CC20FFC858D00688869 /* utils */,
-				1BB852AA0FFB70FD00490ACE /* file */,
 				1BC6FCA8100C3738004E5637 /* timer */,
 			);
 			path = Classes;
@@ -167,13 +164,6 @@
 				1D6058910D05DD3D006BFB54 /* TabiNavi.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1B586E9B1001A5DA00303A6F /* socket */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = socket;
 			sourceTree = "<group>";
 		};
 		1BA729C00FF885B5002EC1B7 /* images */ = {
@@ -230,20 +220,6 @@
 				1BC09A66100DA7400040E145 /* wk_socal.c */,
 			);
 			name = osal;
-			sourceTree = "<group>";
-		};
-		1BB852620FFB6C8A00490ACE /* include */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = include;
-			sourceTree = "<group>";
-		};
-		1BB852AA0FFB70FD00490ACE /* file */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = file;
 			sourceTree = "<group>";
 		};
 		1BBD10470FF9A7670053ECFE /* setting */ = {
