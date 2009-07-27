@@ -9,16 +9,29 @@
 
 #include "wk_api.h"
 
+pthread_mutex_t MutexChn;
+pthread_mutex_t MutexMsg;
+pthread_mutex_t MutexTimer;
+pthread_mutex_t MutexPostMsg;
+
 #pragma mark 定时器
 const unsigned long KMaxTimerOut = 30*60*1000;//30 min
 
-void timefunc(int sig) /* 定时事件代码 */
+void osaltimerfunc(int sig) /* 定时事件代码 */
 {
-	
+	Winks_printf("[TimerLog]osaltimerfunc\r\n");
+	if(timerexist()){
+		Winks_api_StopTimer();
+	}
+	Winks_OsalTimerExpiry();
 }
 
 
 int Winks_api_StartTimer(unsigned long delay){
+	if(timerexist()){
+		Winks_api_StopTimer();
+	}
+	
 	// 定时器不自动重新启动
 	struct itimerval value;
 	value.it_value.tv_sec = delay / 1000;
@@ -26,7 +39,7 @@ int Winks_api_StartTimer(unsigned long delay){
 	value.it_interval.tv_sec = 0;
 	value.it_interval.tv_usec = 0;
 	//???:
-	signal(SIGALRM, timefunc); /* 捕获定时信号 */
+	signal(SIGALRM, osaltimerfunc); /* 定时信号处理注册 */
 	setitimer(ITIMER_REAL, &value, NULL); /* 定时开始 */
 	
 	return 0;
@@ -44,6 +57,18 @@ int Winks_api_StopTimer(void){
 	}
 	printf("stoptimer call end\n");
 	
+	return 0;
+}
+
+// timer是否已存在.存在返回1，否则返回0
+int timerexist(){
+	
+	struct itimerval tv;
+	gettimer(&tv);
+	
+	if(tv.it_value.tv_sec || tv.it_value.tv_usec || tv.it_interval.tv_sec || tv.it_interval.tv_usec){
+		return 1;
+	}
 	return 0;
 }
 
@@ -114,12 +139,8 @@ int Winks_GetSysDateTime(Winks_DateTime_s *dateTime_p){
 /**************************************************************************\
  功能描述:
  获取开机到现在的tick 开机后经过的毫秒数
- 参数说明:
- 无
- 返回值:
- 开机到现在的tick值
  实现描述:
- 使用clock函数得到当前进程（deamon进程所以开机即会运行）运行的clock数。
+ 使用clock函数得到当前进程运行的clock数（deamon进程所以开机即会运行）。
  \**************************************************************************/
 WINKS_TICKS Winks_GetSysTick(void)
 {
@@ -127,7 +148,7 @@ WINKS_TICKS Winks_GetSysTick(void)
 	WINKS_TICKS t = clock();
 	
 	unsigned long ms = t / (CLOCKS_PER_SEC / 1000);
-    Winks_printf("Winks_GetSysTick %d\n", t);
+    Winks_printf("Winks_GetSysTick %d ms\n", ms);
     return ms;
 }
 
@@ -656,11 +677,20 @@ int Winks_api_GetMutex(int mutex_id){
     if (1 > mutex_id || 3 < mutex_id) {
 		return WINKS_RETURN_FAILURE;
     }
-	//???:如何组织此三个互斥量
-    if (SCI_SUCCESS == )) {
-		return WINKS_RETURN_FAILURE;
+    switch(mutex_id)
+    {
+        case WINKS_MUTEX_CHN:
+            pthread_mutex_lock(&MutexChn);
+            break;
+        case WINKS_MUTEX_MSG:
+            pthread_mutex_lock(&MutexMsg);
+            break;
+        case WINKS_MUTEX_TIMER:
+            pthread_mutex_lock(&MutexTimer);
+            break;
+        default: return WINKS_RETURN_FAILURE;
     }
-	return WINKS_RETURN_SUCCESS;    
+    return WINKS_RETURN_SUCCESS;
 }
 
 /**************************************************************************\
@@ -678,8 +708,20 @@ int Winks_api_GetMutex(int mutex_id){
  实现描述:
  \**************************************************************************/
 int Winks_api_PutMutex(int mutex_id){
-	
-	return WINKS_RETURN_SUCCESS;   
+	switch(mutex_id)
+	{
+        case WINKS_MUTEX_CHN:
+            pthread_mutex_unlock(&MutexChn);
+            break;
+        case WINKS_MUTEX_MSG:
+            pthread_mutex_unlock(&MutexMsg);
+            break;
+        case WINKS_MUTEX_TIMER:
+            pthread_mutex_unlock(&MutexTimer);
+            break;
+        default: return WINKS_RETURN_FAILURE;
+	}
+	return WINKS_RETURN_SUCCESS;
 }
 
 #pragma mark wap
@@ -710,21 +752,4 @@ int Winks_GetTimeDifference(Winks_DateTime_s *t1, Winks_DateTime_s *t2, Winks_Da
     result->sec = (unsigned char)( s3 - result->hour * 60 * 60 - result->min * 60 );
 	
     return WINKS_RETURN_SUCCESS;
-}
-
-
-#pragma mark -
-// ppc平台为初始化电话监控
-int winks_api_osinit(void){
-	
-}
-
-// ppc平台为关闭电话监控
-int winks_api_osdestroy(void){
-	
-}
-
-
-int winks_api_PostMessage(void){
-	
 }
