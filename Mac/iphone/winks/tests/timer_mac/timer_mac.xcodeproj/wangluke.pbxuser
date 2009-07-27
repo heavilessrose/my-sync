@@ -34,26 +34,20 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 269516609;
-			PBXWorkspaceStateSaveDate = 269516609;
+			PBXPerProjectTemplateStateSaveDate = 270352728;
+			PBXWorkspaceStateSaveDate = 270352728;
 		};
 		perUserProjectItems = {
-			1B645A22100F425100B9F6D3 /* PBXTextBookmark */ = 1B645A22100F425100B9F6D3 /* PBXTextBookmark */;
-			1B9B019310107F8900299900 /* PBXTextBookmark */ = 1B9B019310107F8900299900 /* PBXTextBookmark */;
+			1BC57401101D948B00BF7401 /* PBXTextBookmark */ = 1BC57401101D948B00BF7401 /* PBXTextBookmark */;
+			1BC57403101D948B00BF7401 /* PBXTextBookmark */ = 1BC57403101D948B00BF7401 /* PBXTextBookmark */;
+			1BC57405101D948B00BF7401 /* PBXTextBookmark */ = 1BC57405101D948B00BF7401 /* PBXTextBookmark */;
+			1BC57406101D948B00BF7401 /* PBXTextBookmark */ = 1BC57406101D948B00BF7401 /* PBXTextBookmark */;
+			1BC57408101D948B00BF7401 /* PBXTextBookmark */ = 1BC57408101D948B00BF7401 /* PBXTextBookmark */;
+			1BC5740A101D948B00BF7401 /* PBXTextBookmark */ = 1BC5740A101D948B00BF7401 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 1B8480E5100C99B0001A9E3E /* Source Control */;
 		userBuildSettings = {
 		};
-	};
-	1B645A22100F425100B9F6D3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1B84812A100CA1AE001A9E3E /* timer.c */;
-		name = "timer.c: 24";
-		rLen = 9;
-		rLoc = 569;
-		rType = 0;
-		vrLen = 947;
-		vrLoc = 0;
 	};
 	1B8480D8100C9991001A9E3E /* timer_mac */ = {
 		isa = PBXExecutable;
@@ -76,6 +70,8 @@
 		executableUserSymbolLevel = 0;
 		libgmallocEnabled = 0;
 		name = timer_mac;
+		savedGlobals = {
+		};
 		sourceDirectories = (
 		);
 	};
@@ -92,20 +88,94 @@
 	};
 	1B84812A100CA1AE001A9E3E /* timer.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1011, 1105}}";
-			sepNavSelRange = "{207, 0}";
-			sepNavVisRange = "{126, 1084}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 1513}}";
+			sepNavSelRange = "{84, 0}";
+			sepNavVisRange = "{0, 1237}";
 		};
 	};
-	1B9B019310107F8900299900 /* PBXTextBookmark */ = {
+	1BC57401101D948B00BF7401 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC57402101D948B00BF7401 /* _structs.h */;
+		name = "_structs.h: 100";
+		rLen = 16;
+		rLoc = 3442;
+		rType = 0;
+		vrLen = 1225;
+		vrLoc = 2662;
+	};
+	1BC57402101D948B00BF7401 /* _structs.h */ = {
+		isa = PBXFileReference;
+		name = _structs.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/sys/_structs.h;
+		sourceTree = "<absolute>";
+	};
+	1BC57403101D948B00BF7401 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC57404101D948B00BF7401 /* time.h */;
+		name = "time.h: 94";
+		rLen = 7;
+		rLoc = 3913;
+		rType = 0;
+		vrLen = 1065;
+		vrLoc = 3070;
+	};
+	1BC57404101D948B00BF7401 /* time.h */ = {
+		isa = PBXFileReference;
+		name = time.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/sys/time.h;
+		sourceTree = "<absolute>";
+	};
+	1BC57405101D948B00BF7401 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1B84812A100CA1AE001A9E3E /* timer.c */;
-		name = "timer.c: 10";
-		rLen = 0;
-		rLoc = 207;
+		name = "timer.c: 13";
+		rLen = 9;
+		rLoc = 256;
 		rType = 0;
-		vrLen = 1084;
-		vrLoc = 126;
+		vrLen = 1163;
+		vrLoc = 0;
+	};
+	1BC57406101D948B00BF7401 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC57407101D948B00BF7401 /* _structs.h */;
+		name = "_structs.h: 100";
+		rLen = 16;
+		rLoc = 3442;
+		rType = 0;
+		vrLen = 1225;
+		vrLoc = 2662;
+	};
+	1BC57407101D948B00BF7401 /* _structs.h */ = {
+		isa = PBXFileReference;
+		name = _structs.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/sys/_structs.h;
+		sourceTree = "<absolute>";
+	};
+	1BC57408101D948B00BF7401 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC57409101D948B00BF7401 /* time.h */;
+		name = "time.h: 94";
+		rLen = 7;
+		rLoc = 3913;
+		rType = 0;
+		vrLen = 1065;
+		vrLoc = 3070;
+	};
+	1BC57409101D948B00BF7401 /* time.h */ = {
+		isa = PBXFileReference;
+		name = time.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/sys/time.h;
+		sourceTree = "<absolute>";
+	};
+	1BC5740A101D948B00BF7401 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1B84812A100CA1AE001A9E3E /* timer.c */;
+		name = "timer.c: 4";
+		rLen = 0;
+		rLoc = 84;
+		rType = 0;
+		vrLen = 1237;
+		vrLoc = 0;
 	};
 	8DD76FA90486AB0100D96B5E /* timer_mac */ = {
 		activeExec = 0;

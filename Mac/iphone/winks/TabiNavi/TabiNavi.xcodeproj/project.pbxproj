@@ -33,6 +33,7 @@
 		1BBD108B0FF9AFD30053ECFE /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBD108A0FF9AFD30053ECFE /* SwitchCell.xib */; };
 		1BBD109B0FF9B3620053ECFE /* SettingsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD109A0FF9B3620053ECFE /* SettingsNavController.m */; };
 		1BC09A67100DA7400040E145 /* wk_socal.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BC09A66100DA7400040E145 /* wk_socal.c */; };
+		1BC573BD101D52C000BF7401 /* wk_osapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC573BC101D52C000BF7401 /* wk_osapi.m */; };
 		1BC6FCA7100C3732004E5637 /* wk_timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BC6FCA6100C3732004E5637 /* wk_timer.c */; };
 		1BC95533101014F700ADCF2E /* wk_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BC95532101014F700ADCF2E /* wk_api.c */; };
 		1BCE1C840FFC80D800688869 /* wk_smsapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE1C830FFC80D800688869 /* wk_smsapi.m */; };
@@ -95,6 +96,8 @@
 		1BBD109A0FF9B3620053ECFE /* SettingsNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavController.m; sourceTree = "<group>"; };
 		1BC09A65100DA7400040E145 /* wk_socal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_socal.h; sourceTree = "<group>"; };
 		1BC09A66100DA7400040E145 /* wk_socal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wk_socal.c; sourceTree = "<group>"; };
+		1BC573BB101D52C000BF7401 /* wk_osapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_osapi.h; sourceTree = "<group>"; };
+		1BC573BC101D52C000BF7401 /* wk_osapi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wk_osapi.m; sourceTree = "<group>"; };
 		1BC6FCA6100C3732004E5637 /* wk_timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wk_timer.c; sourceTree = "<group>"; };
 		1BC6FCD9100C46A0004E5637 /* wk_timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_timer.h; sourceTree = "<group>"; };
 		1BC95531101014F700ADCF2E /* wk_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wk_api.h; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				1B1544701018685F006873D4 /* wk_contacts.m */,
 				1BC09A65100DA7400040E145 /* wk_socal.h */,
 				1BC09A66100DA7400040E145 /* wk_socal.c */,
+				1BC573BB101D52C000BF7401 /* wk_osapi.h */,
+				1BC573BC101D52C000BF7401 /* wk_osapi.m */,
 			);
 			name = osal;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				1BC95533101014F700ADCF2E /* wk_api.c in Sources */,
 				1B15444C10184CE3006873D4 /* wk_app.c in Sources */,
 				1B1544711018685F006873D4 /* wk_contacts.m in Sources */,
+				1BC573BD101D52C000BF7401 /* wk_osapi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
