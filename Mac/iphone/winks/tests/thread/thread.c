@@ -4,11 +4,9 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <signal.h>
-#include <string.h>
-#include <stdlib.h>
 
-pthread_t posixThreadID;
-static int flag = 0;
+static pthread_t posixThreadID;
+//static int flag = 0;
 // 条件变量
 static pthread_cond_t condition = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t condLock = PTHREAD_MUTEX_INITIALIZER;
@@ -16,6 +14,7 @@ static struct timespec timeout;
 #define WAIT 1
 #define RESUME 0
 int ifWait = 0;
+
 
 static int Winks_SetEvent(int event)
 {
@@ -44,41 +43,32 @@ static int Winks_GetEvent(struct timespec* timeout )
     return 0;
 }
 
-//static int Winks_DeleteThread( void* thread ){
-//	flag = 1;
-//	return 0;
-//}
+static int Winks_DeleteThread( void* thread ){
+	
+}
 
 // The thread entry point routine.
 void* PosixThreadMainRoutine(void* data)
 {
-//	int oldstate;
-//	int oldtype;
-//	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &oldstate);
-//	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, &oldtype);
-//	printf("oldstate: %d\n", oldstate);
-//	printf("oldtype: %d\n", oldtype);
+	//	int oldstate;
+	//	int oldtype;
+	//	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &oldstate);
+	//	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, &oldtype);
+	//	printf("oldstate: %d\n", oldstate);
+	//	printf("oldtype: %d\n", oldtype);
 	
 	int n = 0;
 	Winks_SetEvent(WAIT);
     printf( "WINKS socket thread initial wait\r\n" );
     Winks_GetEvent( &timeout );
     printf( "WINKS socket thread initial wakeup\r\n" );
-//	Winks_SetEvent(RESUME);
-	
-	
-//	if(flag){
-//		flag = 0;
-//		pthread_exit(NULL);
-//	}
+	Winks_SetEvent(RESUME);
 	
 	int a = 1;
 	while(1){
+		//		if(flag)
+		//			pthread_exit(NULL);
 		sleep(1);
-//		if(flag){
-//			flag = 0;
-//			pthread_exit(NULL);
-//		}
 		while(a){
 			printf("%d new posixThreadID: %u \n", n, (unsigned int)pthread_self());
 			n++;
@@ -91,66 +81,54 @@ void* PosixThreadMainRoutine(void* data)
             printf( "WINKS socket thread wait\r\n" );
             Winks_GetEvent( &timeout );
             printf( "WINKS socket thread wakeup\r\n" );
-//			Winks_SetEvent(RESUME);
+			Winks_SetEvent(RESUME);
 		}
 	}
 	
-   return NULL;
+	return NULL;
 }
 
-pthread_t* LaunchThread()
+void LaunchThread()
 {
-   // Create the thread using POSIX routines.
-   pthread_attr_t  attr;
-//   pthread_t       posixThreadID;
+	// Create the thread using POSIX routines.
+	pthread_attr_t  attr;
+	//   pthread_t       posixThreadID;
 	
-   assert(!pthread_attr_init(&attr));
-   assert(!pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED));
+	assert(!pthread_attr_init(&attr));
+	assert(!pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED));
 	
-   int threadError = pthread_create(&posixThreadID, &attr, &PosixThreadMainRoutine, NULL);
+	int threadError = pthread_create(&posixThreadID, &attr, &PosixThreadMainRoutine, NULL);
 	
 	printf("main posixThreadID: %u \n", (unsigned int)pthread_self());
-   assert(!pthread_attr_destroy(&attr));
-   if (threadError != 0)
-   {
+	assert(!pthread_attr_destroy(&attr));
+	if (threadError != 0)
+	{
 		printf("threadError");
-   }
-//	sleep(1);
-	return &posixThreadID;
+	}
+	//	sleep(1);
 }
 
 
 int main(int argc, int *argv[]){
-	pthread_t* a = LaunchThread();
+	LaunchThread();
 	sleep(1);
-//	printf("---start cancel\n");
-//	pthread_testcancel();
-//	pthread_cancel(posixThreadID);
-////	flag = 1;
-//	printf("---canceled\n");
+	//	printf("---start cancel\n");
+	//	pthread_testcancel();
+	//	pthread_cancel(posixThreadID);
+	////	flag = 1;
+	//	printf("---canceled\n");
 	
 	int n = 0;
 	while(1){
 		sleep(2);
 		printf("main sleeping\n");
 		n++;
-		
-		if(n >= 7){
-//			Winks_SetEvent(RESUME);
-//			Winks_DeleteThread(&posixThreadID);
-			int err;
-			if((err = pthread_cancel(posixThreadID)) != 0){
-				printf("<< pthread_cancel: %s\n", strerror(err));
-			}
-		}
-			
 		if(n % 5 == 0){
 			printf("start setevent: %s\n", "RESUME");
 			Winks_SetEvent(RESUME);
 		}
 	}
 }
-
 
 
 //#include <unistd.h>
