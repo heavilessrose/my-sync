@@ -232,10 +232,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.0;
+				PROVISIONING_PROFILE_ALLOWED = NO;
+				PROVISIONING_PROFILE_REQUIRED = NO;
+				SDKROOT = iphoneos2.2;
 			};
 			name = Debug;
 		};
@@ -243,12 +246,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.0;
+				PROVISIONING_PROFILE_ALLOWED = NO;
+				PROVISIONING_PROFILE_REQUIRED = NO;
+				SDKROOT = iphoneos2.2;
 			};
 			name = Release;
 		};
