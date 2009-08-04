@@ -1,0 +1,147 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 81F33C9F0EA1A78E006D9D6A /* recurse */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* recurse */;
+		codeSenseManager = 81F33CA60EA1A791006D9D6A /* Code sense */;
+		executables = (
+			81F33C9F0EA1A78E006D9D6A /* recurse */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 245475214;
+			PBXWorkspaceStateSaveDate = 245475214;
+		};
+		perUserProjectItems = {
+			81F33CB10EA1A7CF006D9D6A /* PBXTextBookmark */ = 81F33CB10EA1A7CF006D9D6A /* PBXTextBookmark */;
+			81F33CB30EA1A7CF006D9D6A /* PBXTextBookmark */ = 81F33CB30EA1A7CF006D9D6A /* PBXTextBookmark */;
+			81F33CB40EA1A7CF006D9D6A /* PBXTextBookmark */ = 81F33CB40EA1A7CF006D9D6A /* PBXTextBookmark */;
+			81F33CB60EA1A7CF006D9D6A /* PBXTextBookmark */ = 81F33CB60EA1A7CF006D9D6A /* PBXTextBookmark */;
+		};
+		sourceControlManager = 81F33CA50EA1A791006D9D6A /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 380}}";
+			sepNavSelRange = "{224, 0}";
+			sepNavVisRange = "{108, 184}";
+		};
+	};
+	81F33C9F0EA1A78E006D9D6A /* recurse */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = recurse;
+		sourceDirectories = (
+		);
+	};
+	81F33CA50EA1A791006D9D6A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	81F33CA60EA1A791006D9D6A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	81F33CB10EA1A7CF006D9D6A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81F33CB20EA1A7CF006D9D6A /* main.c */;
+		name = "main.c: 1";
+		rLen = 284;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 188;
+		vrLoc = 0;
+	};
+	81F33CB20EA1A7CF006D9D6A /* main.c */ = {
+		isa = PBXFileReference;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/11.02 - recurse/main.c";
+		sourceTree = "<absolute>";
+	};
+	81F33CB30EA1A7CF006D9D6A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 137;
+		vrLoc = 0;
+	};
+	81F33CB40EA1A7CF006D9D6A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81F33CB50EA1A7CF006D9D6A /* main.c */;
+		name = "main.c: 1";
+		rLen = 284;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 188;
+		vrLoc = 0;
+	};
+	81F33CB50EA1A7CF006D9D6A /* main.c */ = {
+		isa = PBXFileReference;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/11.02 - recurse/main.c";
+		sourceTree = "<absolute>";
+	};
+	81F33CB60EA1A7CF006D9D6A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 15";
+		rLen = 0;
+		rLoc = 224;
+		rType = 0;
+		vrLen = 184;
+		vrLoc = 108;
+	};
+	8DD76FA90486AB0100D96B5E /* recurse */ = {
+		activeExec = 0;
+		executables = (
+			81F33C9F0EA1A78E006D9D6A /* recurse */,
+		);
+	};
+}

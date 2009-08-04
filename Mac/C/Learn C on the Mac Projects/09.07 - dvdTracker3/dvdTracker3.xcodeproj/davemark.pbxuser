@@ -1,0 +1,260 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 81B983840E9ECD5C003C05C5 /* dvdTracker3 */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* dvdTracker3 */;
+		breakpoints = (
+			81B983950E9ED0B0003C05C5 /* main.c:124 */,
+		);
+		codeSenseManager = 81B9838B0E9ECD62003C05C5 /* Code sense */;
+		executables = (
+			81B983840E9ECD5C003C05C5 /* dvdTracker3 */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 245288284;
+			PBXWorkspaceStateSaveDate = 245288284;
+		};
+		perUserProjectItems = {
+			81B983A60E9ED129003C05C5 /* PBXTextBookmark */ = 81B983A60E9ED129003C05C5 /* PBXTextBookmark */;
+			81B983A80E9ED129003C05C5 /* PBXTextBookmark */ = 81B983A80E9ED129003C05C5 /* PBXTextBookmark */;
+			81B983AA0E9ED129003C05C5 /* PBXTextBookmark */ = 81B983AA0E9ED129003C05C5 /* PBXTextBookmark */;
+			81B983AC0E9ED129003C05C5 /* PBXTextBookmark */ = 81B983AC0E9ED129003C05C5 /* PBXTextBookmark */;
+			81B983AD0E9ED129003C05C5 /* PBXTextBookmark */ = 81B983AD0E9ED129003C05C5 /* PBXTextBookmark */;
+			81B983AF0E9ED129003C05C5 /* PBXTextBookmark */ = 81B983AF0E9ED129003C05C5 /* PBXTextBookmark */;
+			81B983B00E9ED129003C05C5 /* PBXTextBookmark */ = 81B983B00E9ED129003C05C5 /* PBXTextBookmark */;
+			81B983B20E9ED129003C05C5 /* PBXTextBookmark */ = 81B983B20E9ED129003C05C5 /* PBXTextBookmark */;
+			81B983B30E9ED129003C05C5 /* PBXTextBookmark */ = 81B983B30E9ED129003C05C5 /* PBXTextBookmark */;
+			81B983B50E9ED129003C05C5 /* PBXTextBookmark */ = 81B983B50E9ED129003C05C5 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 81B9838A0E9ECD62003C05C5 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {628, 3002}}";
+			sepNavSelRange = "{424, 25}";
+			sepNavVisRange = "{329, 138}";
+			sepNavWindowFrame = "{{1118, 278}, {801, 900}}";
+		};
+	};
+	81B983840E9ECD5C003C05C5 /* dvdTracker3 */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = dvdTracker3;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+	};
+	81B9838A0E9ECD62003C05C5 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	81B9838B0E9ECD62003C05C5 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	81B983950E9ED0B0003C05C5 /* main.c:124 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.c */;
+		functionName = "ListDVDsInReverse()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 124;
+		location = dvdTracker3;
+		modificationTime = 245289145.619313;
+		state = 1;
+	};
+	81B983A60E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B983A70E9ED129003C05C5 /* main.c */;
+		name = "main.c: 6";
+		rLen = 0;
+		rLoc = 84;
+		rType = 0;
+		vrLen = 248;
+		vrLoc = 0;
+	};
+	81B983A70E9ED129003C05C5 /* main.c */ = {
+		isa = PBXFileReference;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/09.06 - cdTracker3/main.c";
+		sourceTree = "<absolute>";
+	};
+	81B983A80E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B983A90E9ED129003C05C5 /* dvdT3main.c */;
+		name = "dvdT3main.c: 6";
+		rLen = 1;
+		rLoc = 84;
+		rType = 0;
+		vrLen = 248;
+		vrLoc = 0;
+	};
+	81B983A90E9ED129003C05C5 /* dvdT3main.c */ = {
+		isa = PBXFileReference;
+		name = dvdT3main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/09.06 - cdTracker3/dvdT3main.c";
+		sourceTree = "<absolute>";
+	};
+	81B983AA0E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B983AB0E9ED129003C05C5 /* dvdTracker3.h */;
+		name = "dvdTracker3.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 291;
+		vrLoc = 132;
+	};
+	81B983AB0E9ED129003C05C5 /* dvdTracker3.h */ = {
+		isa = PBXFileReference;
+		name = dvdTracker3.h;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/Learn C Projects/dvdTracker3/dvdTracker3.h";
+		sourceTree = "<absolute>";
+	};
+	81B983AC0E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 4";
+		rLen = 0;
+		rLoc = 81;
+		rType = 0;
+		vrLen = 228;
+		vrLoc = 0;
+	};
+	81B983AD0E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B983AE0E9ED129003C05C5 /* main.c */;
+		name = "main.c: 6";
+		rLen = 0;
+		rLoc = 84;
+		rType = 0;
+		vrLen = 248;
+		vrLoc = 0;
+	};
+	81B983AE0E9ED129003C05C5 /* main.c */ = {
+		isa = PBXFileReference;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/09.06 - cdTracker3/main.c";
+		sourceTree = "<absolute>";
+	};
+	81B983AF0E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 137;
+		vrLoc = 0;
+	};
+	81B983B00E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B983B10E9ED129003C05C5 /* dvdT3main.c */;
+		name = "dvdT3main.c: 6";
+		rLen = 1;
+		rLoc = 84;
+		rType = 0;
+		vrLen = 248;
+		vrLoc = 0;
+	};
+	81B983B10E9ED129003C05C5 /* dvdT3main.c */ = {
+		isa = PBXFileReference;
+		name = dvdT3main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/09.06 - cdTracker3/dvdT3main.c";
+		sourceTree = "<absolute>";
+	};
+	81B983B20E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 4";
+		rLen = 0;
+		rLoc = 81;
+		rType = 0;
+		vrLen = 228;
+		vrLoc = 0;
+	};
+	81B983B30E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B983B40E9ED129003C05C5 /* dvdTracker3.h */;
+		name = "dvdTracker3.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 291;
+		vrLoc = 132;
+	};
+	81B983B40E9ED129003C05C5 /* dvdTracker3.h */ = {
+		isa = PBXFileReference;
+		name = dvdTracker3.h;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/Learn C Projects/dvdTracker3/dvdTracker3.h";
+		sourceTree = "<absolute>";
+	};
+	81B983B50E9ED129003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 4";
+		rLen = 0;
+		rLoc = 81;
+		rType = 0;
+		vrLen = 294;
+		vrLoc = 0;
+	};
+	8DD76FA90486AB0100D96B5E /* dvdTracker3 */ = {
+		activeExec = 0;
+		executables = (
+			81B983840E9ECD5C003C05C5 /* dvdTracker3 */,
+		);
+	};
+}
