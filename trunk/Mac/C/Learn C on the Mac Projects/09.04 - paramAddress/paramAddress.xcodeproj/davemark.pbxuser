@@ -1,0 +1,193 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 81B982C80E9D66EE003C05C5 /* paramAddress */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* paramAddress */;
+		codeSenseManager = 81B982CF0E9D66F0003C05C5 /* Code sense */;
+		executables = (
+			81B982C80E9D66EE003C05C5 /* paramAddress */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 245196526;
+			PBXWorkspaceStateSaveDate = 245196526;
+		};
+		perUserProjectItems = {
+			81B982DB0E9DA97B003C05C5 /* PBXTextBookmark */ = 81B982DB0E9DA97B003C05C5 /* PBXTextBookmark */;
+			81B982DD0E9DA97B003C05C5 /* PBXTextBookmark */ = 81B982DD0E9DA97B003C05C5 /* PBXTextBookmark */;
+			81B982DF0E9DA97B003C05C5 /* PBXTextBookmark */ = 81B982DF0E9DA97B003C05C5 /* PBXTextBookmark */;
+			81B982E00E9DA97B003C05C5 /* PBXTextBookmark */ = 81B982E00E9DA97B003C05C5 /* PBXTextBookmark */;
+			81B982E20E9DA97B003C05C5 /* PBXTextBookmark */ = 81B982E20E9DA97B003C05C5 /* PBXTextBookmark */;
+			81B982E30E9DA97B003C05C5 /* PBXTextBookmark */ = 81B982E30E9DA97B003C05C5 /* PBXTextBookmark */;
+			81B982E50E9DA97B003C05C5 /* PBXTextBookmark */ = 81B982E50E9DA97B003C05C5 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 81B982CE0E9D66F0003C05C5 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {556, 475}}";
+			sepNavSelRange = "{29, 12}";
+			sepNavVisRange = "{0, 263}";
+			sepNavWindowFrame = "{{-1425, 300}, {801, 900}}";
+		};
+	};
+	81B982C80E9D66EE003C05C5 /* paramAddress */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = paramAddress;
+		sourceDirectories = (
+		);
+	};
+	81B982CE0E9D66F0003C05C5 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	81B982CF0E9D66F0003C05C5 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	81B982DB0E9DA97B003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B982DC0E9DA97B003C05C5 /* main.c */;
+		name = "main.c: 1";
+		rLen = 512;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 247;
+		vrLoc = 0;
+	};
+	81B982DC0E9DA97B003C05C5 /* main.c */ = {
+		isa = PBXFileReference;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/09.03 - paramAddress/main.c";
+		sourceTree = "<absolute>";
+	};
+	81B982DD0E9DA97B003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B982DE0E9DA97B003C05C5 /* paramAddress.h */;
+		name = "paramAddress.h: 24";
+		rLen = 0;
+		rLoc = 465;
+		rType = 0;
+		vrLen = 294;
+		vrLoc = 179;
+	};
+	81B982DE0E9DA97B003C05C5 /* paramAddress.h */ = {
+		isa = PBXFileReference;
+		name = paramAddress.h;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/Learn C Projects/paramAddress/paramAddress.h";
+		sourceTree = "<absolute>";
+	};
+	81B982DF0E9DA97B003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 2";
+		rLen = 12;
+		rLoc = 29;
+		rType = 0;
+		vrLen = 263;
+		vrLoc = 0;
+	};
+	81B982E00E9DA97B003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B982E10E9DA97B003C05C5 /* main.c */;
+		name = "main.c: 1";
+		rLen = 512;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 247;
+		vrLoc = 0;
+	};
+	81B982E10E9DA97B003C05C5 /* main.c */ = {
+		isa = PBXFileReference;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/09.03 - paramAddress/main.c";
+		sourceTree = "<absolute>";
+	};
+	81B982E20E9DA97B003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 2";
+		rLen = 12;
+		rLoc = 29;
+		rType = 0;
+		vrLen = 263;
+		vrLoc = 0;
+	};
+	81B982E30E9DA97B003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B982E40E9DA97B003C05C5 /* paramAddress.h */;
+		name = "paramAddress.h: 24";
+		rLen = 0;
+		rLoc = 465;
+		rType = 0;
+		vrLen = 294;
+		vrLoc = 179;
+	};
+	81B982E40E9DA97B003C05C5 /* paramAddress.h */ = {
+		isa = PBXFileReference;
+		name = paramAddress.h;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/Learn C Projects/paramAddress/paramAddress.h";
+		sourceTree = "<absolute>";
+	};
+	81B982E50E9DA97B003C05C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 2";
+		rLen = 12;
+		rLoc = 29;
+		rType = 0;
+		vrLen = 263;
+		vrLoc = 0;
+	};
+	8DD76FA90486AB0100D96B5E /* paramAddress */ = {
+		activeExec = 0;
+		executables = (
+			81B982C80E9D66EE003C05C5 /* paramAddress */,
+		);
+	};
+}

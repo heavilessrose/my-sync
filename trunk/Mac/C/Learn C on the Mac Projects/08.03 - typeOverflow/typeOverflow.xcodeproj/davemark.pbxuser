@@ -1,0 +1,147 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 8169CB6C0E93BD09001BA91C /* typeOverflow */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* typeOverflow */;
+		codeSenseManager = 8169CB730E93BD0C001BA91C /* Code sense */;
+		executables = (
+			8169CB6C0E93BD09001BA91C /* typeOverflow */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 244563209;
+			PBXWorkspaceStateSaveDate = 244563209;
+		};
+		perUserProjectItems = {
+			8169CB800E93BD9E001BA91C /* PBXTextBookmark */ = 8169CB800E93BD9E001BA91C /* PBXTextBookmark */;
+			8169CB820E93BD9E001BA91C /* PBXTextBookmark */ = 8169CB820E93BD9E001BA91C /* PBXTextBookmark */;
+			8169CB830E93BD9E001BA91C /* PBXTextBookmark */ = 8169CB830E93BD9E001BA91C /* PBXTextBookmark */;
+			8169CB9D0E9429AC001BA91C /* PBXTextBookmark */ = 8169CB9D0E9429AC001BA91C /* PBXTextBookmark */;
+		};
+		sourceControlManager = 8169CB720E93BD0C001BA91C /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 253}}";
+			sepNavSelRange = "{61, 0}";
+			sepNavVisRange = "{0, 177}";
+		};
+	};
+	8169CB6C0E93BD09001BA91C /* typeOverflow */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = typeOverflow;
+		sourceDirectories = (
+		);
+	};
+	8169CB720E93BD0C001BA91C /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	8169CB730E93BD0C001BA91C /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	8169CB800E93BD9E001BA91C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8169CB810E93BD9E001BA91C /* main.c */;
+		name = "main.c: 1";
+		rLen = 177;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 177;
+		vrLoc = 0;
+	};
+	8169CB810E93BD9E001BA91C /* main.c */ = {
+		isa = PBXFileReference;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/08.03 - typeOverflow/main.c";
+		sourceTree = "<absolute>";
+	};
+	8169CB820E93BD9E001BA91C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 137;
+		vrLoc = 0;
+	};
+	8169CB830E93BD9E001BA91C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8169CB840E93BD9E001BA91C /* main.c */;
+		name = "main.c: 1";
+		rLen = 177;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 177;
+		vrLoc = 0;
+	};
+	8169CB840E93BD9E001BA91C /* main.c */ = {
+		isa = PBXFileReference;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/08.03 - typeOverflow/main.c";
+		sourceTree = "<absolute>";
+	};
+	8169CB9D0E9429AC001BA91C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 3";
+		rLen = 0;
+		rLoc = 61;
+		rType = 0;
+		vrLen = 177;
+		vrLoc = 0;
+	};
+	8DD76FA90486AB0100D96B5E /* typeOverflow */ = {
+		activeExec = 0;
+		executables = (
+			8169CB6C0E93BD09001BA91C /* typeOverflow */,
+		);
+	};
+}

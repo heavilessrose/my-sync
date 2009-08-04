@@ -1,0 +1,220 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 81B1FBFD0EA0463D00048531 /* dinoEdit */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* dinoEdit */;
+		addToTargets = (
+		);
+		breakpoints = (
+			81B1FC1D0EA0489D00048531 /* main.c:52 */,
+		);
+		codeSenseManager = 81B1FC040EA0464100048531 /* Code sense */;
+		executables = (
+			81B1FBFD0EA0463D00048531 /* dinoEdit */,
+		);
+		expressions = (
+			kDinoFileName,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 245444492;
+			PBXWorkspaceStateSaveDate = 245444492;
+		};
+		perUserProjectItems = {
+			81B1FC350EA04B0200048531 /* PBXTextBookmark */ = 81B1FC350EA04B0200048531 /* PBXTextBookmark */;
+			81B1FC380EA04B0200048531 /* PBXTextBookmark */ = 81B1FC380EA04B0200048531 /* PBXTextBookmark */;
+			81DB7F030EA12696008DE9D2 /* PBXTextBookmark */ = 81DB7F030EA12696008DE9D2 /* PBXTextBookmark */;
+			81DB7F050EA12696008DE9D2 /* PBXTextBookmark */ = 81DB7F050EA12696008DE9D2 /* PBXTextBookmark */;
+			81DB7F060EA12696008DE9D2 /* PBXTextBookmark */ = 81DB7F060EA12696008DE9D2 /* PBXTextBookmark */;
+			81DB7F0E0EA12F80008DE9D2 /* PBXTextBookmark */ = 81DB7F0E0EA12F80008DE9D2 /* PBXTextBookmark */;
+			81DB7F1F0EA12F98008DE9D2 /* PBXTextBookmark */ = 81DB7F1F0EA12F98008DE9D2 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 81B1FC030EA0464100048531 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 2812}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 347}";
+			sepNavWindowFrame = "{{-936, 300}, {922, 900}}";
+		};
+	};
+	81B1FBFD0EA0463D00048531 /* dinoEdit */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = dinoEdit;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	81B1FC030EA0464100048531 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	81B1FC040EA0464100048531 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	81B1FC1D0EA0489D00048531 /* main.c:52 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.c */;
+		functionName = "GetNumberOfDinos()";
+		hitCount = 1;
+		ignoreCount = 0;
+		lineNumber = 52;
+		location = dinoEdit;
+		modificationTime = 245385380.804463;
+		state = 1;
+	};
+	81B1FC350EA04B0200048531 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B1FC360EA04B0200048531 /* main.c */;
+		name = "main.c: 1";
+		rLen = 3158;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 299;
+		vrLoc = 0;
+	};
+	81B1FC360EA04B0200048531 /* main.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/10.03 - dinoEdit/main.c";
+		sourceTree = "<absolute>";
+	};
+	81B1FC380EA04B0200048531 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81B1FC390EA04B0200048531 /* main.c */;
+		name = "main.c: 1";
+		rLen = 3158;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 299;
+		vrLoc = 0;
+	};
+	81B1FC390EA04B0200048531 /* main.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = main.c;
+		path = "/Users/davemark/Documents/Writing/Learn C - Apress/DavidGleason_LearnC/Learn C Projects/10.03 - dinoEdit/main.c";
+		sourceTree = "<absolute>";
+	};
+	81DB7E840EA0DD84008DE9D2 /* MyDinos */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {812, 253}}";
+			sepNavSelRange = "{50, 0}";
+			sepNavVisRange = "{0, 100}";
+			sepNavWindowFrame = "{{745, 16}, {1494, 1162}}";
+		};
+	};
+	81DB7F030EA12696008DE9D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81DB7E840EA0DD84008DE9D2 /* MyDinos */;
+		name = "MyDinos: 1";
+		rLen = 0;
+		rLoc = 50;
+		rType = 0;
+		vrLen = 100;
+		vrLoc = 0;
+	};
+	81DB7F050EA12696008DE9D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 347;
+		vrLoc = 0;
+	};
+	81DB7F060EA12696008DE9D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 81DB7E840EA0DD84008DE9D2 /* MyDinos */;
+		name = "MyDinos: 1";
+		rLen = 0;
+		rLoc = 50;
+		rType = 0;
+		vrLen = 100;
+		vrLoc = 0;
+	};
+	81DB7F0E0EA12F80008DE9D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 347;
+		vrLoc = 0;
+	};
+	81DB7F1F0EA12F98008DE9D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 347;
+		vrLoc = 0;
+	};
+	8DD76FA90486AB0100D96B5E /* dinoEdit */ = {
+		activeExec = 0;
+		executables = (
+			81B1FBFD0EA0463D00048531 /* dinoEdit */,
+		);
+	};
+}
