@@ -8,37 +8,29 @@
 
 #import "GreetView.h"
 
-
 @implementation GreetView
 @synthesize greetingTimer;
 
 #define kGreetingRect_x (20)
-#define kGreetingRect_y (20)
-#define kGreetingRectWidth (self.frame.size.width - kGreetingRect_x * 2)
+#define kGreetingRect_y (40)
+#define kGreetingRectWidth (320 - kGreetingRect_x * 2)
 #define kGreetingRectHeight (18)
 #define kDrawPoint_x (kGreetingRect_x + kGreetingRectWidth)
 #define kDrawPoint_y kGreetingRect_y
 static int n = 0;
 
-
-static void debugFrame(CGRect frame){
+static void debugFrame(CGRect frame)
+{
 	printf("X=%f, Y=%f, W=%f, H=%f\n", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     if (self = [super initWithFrame:frame]) {
 		debugFrame(frame);
         // Initialization code
-		CGRect newFrame = frame;
-		newFrame.origin.x == kGreetingRect_x;
-		newFrame.origin.y == kGreetingRect_y;
-		newFrame.size.height == kGreetingRectHeight;
-		newFrame.size.width == kGreetingRectWidth;
-		
-//		newFrame.origin.x == frame.origin.x - 60;
-//		newFrame.origin.y == frame.origin.y - 60;
-//		newFrame.size.height == frame.size.height - 60;
-//		newFrame.size.width == frame.size.width - 60;
+		CGRect newFrame = CGRectMake(kGreetingRect_x, kGreetingRect_y, kGreetingRectWidth, kGreetingRectHeight);
+
 		
 		debugFrame(newFrame);
 		self.frame = newFrame;
@@ -49,13 +41,15 @@ static void debugFrame(CGRect frame){
 }
 
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
     // Drawing code
-	[self renderGreeting:@"诉讼代理开始的放开了死灵法师地理空间防水堵漏份开始ksjkjksdkjsdkjjk1sdfasfasdfasfas拉拉"];
+	[self renderGreeting:@"诉讼代理开始的放开了死灵法"];
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
 	[self disposeTimer];
     [super dealloc];
 }
