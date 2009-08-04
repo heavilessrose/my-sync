@@ -10,5 +10,5 @@
 
 
 @interface UIColor(Random)
-+(UIColor *)randomColor;
++ (UIColor *)randomColor;
 @end
