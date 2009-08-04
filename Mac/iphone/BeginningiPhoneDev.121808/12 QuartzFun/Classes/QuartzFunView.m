@@ -20,6 +20,18 @@
 @dynamic redrawRect;
 @synthesize useRandomColor;
 
+//???: 此方法与initWithCoder 各在什么情况下被调用?
+- (id)initwithFrame:(CGRect)frame
+{
+	CGRect newFrame = frame;
+	newFrame.origin.x += 20;
+	newFrame.origin.y += 20;
+	newFrame.size.height -= 40;
+	newFrame.size.width -= 40;
+	self.frame = newFrame;
+	return self;
+}
+
 // This version is a little different that the code in the book. This
 // version is more efficient, but the change was made too late to get
 // it into the book. In the book, we loaded a UIImage every time we 

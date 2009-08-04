@@ -10,7 +10,7 @@
 
 
 @implementation UIColor(Random)
-+(UIColor *)randomColor
++ (UIColor *)randomColor
 {
 	static BOOL seeded = NO;
 	if (!seeded) {
