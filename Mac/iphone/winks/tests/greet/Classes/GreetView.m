@@ -11,12 +11,13 @@
 @implementation GreetView
 @synthesize greetingTimer;
 
-#define kGreetingRect_x (20)
+#define kGreetingRect_x (40)
 #define kGreetingRect_y (40)
 #define kGreetingRectWidth (320 - kGreetingRect_x * 2)
-#define kGreetingRectHeight (18)
-#define kDrawPoint_x (kGreetingRect_x + kGreetingRectWidth)
-#define kDrawPoint_y kGreetingRect_y
+#define kGreetingRectHeight (18 + 2)
+// 以下两个宏的坐标以该view的左上角为坐标原点
+#define kDrawPoint_x (kGreetingRectWidth)
+#define kDrawPoint_y 0
 static int n = 0;
 
 static void debugFrame(CGRect frame)
@@ -27,6 +28,7 @@ static void debugFrame(CGRect frame)
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+		super.backgroundColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
 		debugFrame(frame);
         // Initialization code
 		CGRect newFrame = CGRectMake(kGreetingRect_x, kGreetingRect_y, kGreetingRectWidth, kGreetingRectHeight);
@@ -35,7 +37,7 @@ static void debugFrame(CGRect frame)
 		debugFrame(newFrame);
 		self.frame = newFrame;
 		
-		self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+		self.backgroundColor = [UIColor colorWithRed:0.5f green:0.0f blue:0.0f alpha:1.0f];
     }
     return self;
 }
@@ -44,7 +46,7 @@ static void debugFrame(CGRect frame)
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-	[self renderGreeting:@"诉讼代理开始的放开了死灵法"];
+	[self renderGreeting:@"诉讼代理开始的放开了死灵法代理开始的放开了死灵法代理开始的放开了死灵法"];
 }
 
 
@@ -64,9 +66,10 @@ static void debugFrame(CGRect frame)
 
 - (void)renderGreeting:(NSString *)greeting
 {
+	//???: 不应放在循环中
 	CGFloat greetingWidth = [self getStrWidth:greeting];
-	if( greetingWidth > kGreetingRectWidth){
-		if(n < (kGreetingRectWidth * 2 + (greetingWidth - kGreetingRectWidth)))
+	if(greetingWidth > kGreetingRectWidth){
+		if(n < (kGreetingRectWidth + greetingWidth))
 			n++;
 		else
 			n = 0;
@@ -82,7 +85,7 @@ static void debugFrame(CGRect frame)
 		[greeting drawAtPoint:CGPointMake(kDrawPoint_x - n,kDrawPoint_y) withFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]];
 	}else{
 		// 居中画
-		CGFloat x = (kGreetingRectWidth - greetingWidth) / 2 + kGreetingRect_x;
+		CGFloat x = (kGreetingRectWidth - greetingWidth) / 2;
 		[greeting drawAtPoint:CGPointMake(x,kDrawPoint_y) withFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]];
 	}
 }
