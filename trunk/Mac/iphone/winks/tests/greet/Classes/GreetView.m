@@ -11,10 +11,11 @@
 @implementation GreetView
 @synthesize greetingTimer;
 
+#define kFontHeight 18
 #define kGreetingRect_x (40)
 #define kGreetingRect_y (40)
 #define kGreetingRectWidth (320 - kGreetingRect_x * 2)
-#define kGreetingRectHeight (18 + 2)
+#define kGreetingRectHeight (kFontHeight + 2)
 // 以下两个宏的坐标以该view的左上角为坐标原点
 #define kDrawPoint_x (kGreetingRectWidth)
 #define kDrawPoint_y 0
