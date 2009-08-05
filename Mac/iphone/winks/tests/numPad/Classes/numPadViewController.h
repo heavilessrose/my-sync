@@ -17,5 +17,7 @@
 @property (nonatomic, assign) BOOL numberPadShowing;
 @property (nonatomic, retain) UIButton *doneButton;
 @property (nonatomic, retain) UITextField *selectedTextField;
+
+- (IBAction)backgroudClick:(id)sender;
 @end
 
