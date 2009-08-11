@@ -36,7 +36,7 @@ void *get_in_addr(struct sockaddr *sa)
 
 int main(int argc, const char* argv[])
 {
-	int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
+	int listensockfd, new_fd;  // listen on sock_fd, new connection on new_fd
 	struct addrinfo hints, *servinfo, *p;
 	struct sockaddr_storage their_addr; // connector's address information
 	socklen_t sin_size;
@@ -62,21 +62,21 @@ int main(int argc, const char* argv[])
 	// loop through all the results and bind to the first we can
 	for(p = servinfo; p != NULL; p = p->ai_next) {
 		// 2.得到socket descriptor
-		if ((sockfd = socket(p->ai_family, p->ai_socktype,
+		if ((listensockfd = socket(p->ai_family, p->ai_socktype,
 							 p->ai_protocol)) == -1) {
 			perror("server: socket");
 			continue;
 		}
 		
 		// 端口重用
-		if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes,
+		if (setsockopt(listensockfd, SOL_SOCKET, SO_REUSEADDR, &yes,
 					   sizeof(int)) == -1) {
 			perror("setsockopt");
 			exit(1);
 		}
 		// 3.绑定sockfd 到ai_addr(ip地址和port)
-		if (bind(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
-			close(sockfd);
+		if (bind(listensockfd, p->ai_addr, p->ai_addrlen) == -1) {
+			close(listensockfd);
 			perror("server: bind");
 			continue;
 		}
@@ -91,7 +91,7 @@ int main(int argc, const char* argv[])
 	
 	freeaddrinfo(servinfo); // all done with this structure
 	// 4.监听sockfd
-	if (listen(sockfd, BACKLOG) == -1) {
+	if (listen(listensockfd, BACKLOG) == -1) {
 		perror("listen");
 		exit(1);
 	}
@@ -109,7 +109,7 @@ int main(int argc, const char* argv[])
 	while(1) {  // main accept() loop
 		sin_size = sizeof their_addr;
 		// 5.从backlog queue中取一个连入的连接(struct sockaddr *). 网络上使用struct sockaddr, 端点使用socket描述符(已经与ip和port绑定)。
-		new_fd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size);
+		new_fd = accept(listensockfd, (struct sockaddr *)&their_addr, &sin_size);
 		if (new_fd == -1) {
 			perror("accept");
 			continue;
@@ -122,7 +122,7 @@ int main(int argc, const char* argv[])
 		
 		// 6.处理连接并send response。
 		if (!fork()) { // this is the child process
-			close(sockfd); // child doesn't need the listener
+			close(listensockfd); // child doesn't need the listener
 			if (send(new_fd, "Hello, world!", 13, 0) == -1)
 				perror("send");
 			char buf[1024];

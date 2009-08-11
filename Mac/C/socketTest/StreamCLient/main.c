@@ -29,7 +29,7 @@ void *get_in_addr(struct sockaddr *sa)
 
 int main(int argc, char *argv[])
 {
-	int sockfd, numrecv, numsent;
+	int clientsockfd, numrecv, numsent;
 	char buf[MAXDATASIZE];
 	struct addrinfo hints, *servinfo, *p;
 	int rv;
@@ -53,15 +53,15 @@ int main(int argc, char *argv[])
 	}
 	// loop through all the results and connect to the first we can
 	for(p = servinfo; p != NULL; p = p->ai_next) {
-		if ((sockfd = socket(p->ai_family, p->ai_socktype,
+		if ((clientsockfd = socket(p->ai_family, p->ai_socktype,
 							 p->ai_protocol)) == -1) {
 			perror("client: socket"); // 创建socket描述符失败
 			continue;
 		}
 		
 		// 使用addrinfo连接(实际上就是将sockfd连接到sockaddr_in)
-		if (connect(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
-			close(sockfd);
+		if (connect(clientsockfd, p->ai_addr, p->ai_addrlen) == -1) {
+			close(clientsockfd);
 			perror("client: connect"); // connect失败
 			continue;
 		}
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 	
 	freeaddrinfo(servinfo); // all done with this structure
 	
-	if ((numrecv = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
+	if ((numrecv = recv(clientsockfd, buf, MAXDATASIZE-1, 0)) == -1) {
 	    perror("recv");
 	    exit(1);
 	}
@@ -89,15 +89,15 @@ int main(int argc, char *argv[])
 	
 	char sendbuf[MAXDATASIZE] = "lalalalala";
 	sendbuf[strlen(sendbuf)] = '\0';
-	if((numsent = send(sockfd, "lalalalala", 10, 0)) == -1){
+	if((numsent = send(clientsockfd, "lalalalala", 10, 0)) == -1){
 		perror("send");
 		exit(1);
 	}
 	char end[1] = {'\0'}; 
-	send(sockfd, end, 1, 0);
+	send(clientsockfd, end, 1, 0);
 	printf("client: sent: %s\n", sendbuf);
 	
-	if ((numrecv = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
+	if ((numrecv = recv(clientsockfd, buf, MAXDATASIZE-1, 0)) == -1) {
 	    perror("recv");
 	    exit(1);
 	}

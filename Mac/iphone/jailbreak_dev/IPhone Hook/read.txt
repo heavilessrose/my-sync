@@ -1,1 +1,49 @@
 MobileSubstrate是对IPhone平台hook的一个封装，我们的彩像倚赖这个库，其他的一些来电视频的软件也依赖这个库。
+
+假设你toolchain的头文件路径是/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/，则做如下几点修改，就可以编译通过ExampleHook
+
+1./Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/objc/objc-api.h，在该文件添加
+
+  /* OBJC2_UNAVAILABLE: unavailable in objc 2.0, deprecated in Leopard */
+#if !defined(OBJC2_UNAVAILABLE)
+#   if __OBJC2__
+#       define OBJC2_UNAVAILABLE UNAVAILABLE_ATTRIBUTE
+#   else
+#       define OBJC2_UNAVAILABLE DEPRECATED_IN_MAC_OS_X_VERSION_10_5_AND_LATER
+#   endif
+#endif
+
+2./Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/UIKit/UIKit.h，修改该文件，
+添加
+#import <UIKit/UIInterface.h>
+#import <UIKit/UIAlert.h>
+
+屏蔽
+//#import <UIKit/UIAlertSheet.h>
+
+3./Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/CoreGraphics/CGBase.h,在该文件中添加
+
+#if defined(__LP64__) && __LP64__
+typedef double CGFloat;
+#define CGFLOAT_MIN DBL_MIN
+#define CGFLOAT_MAX DBL_MAX
+#define CGFLOAT_IS_DOUBLE 1
+#else /* !defined(__LP64__) || !__LP64__ */
+typedef float CGFloat;
+#define CGFLOAT_MIN FLT_MIN
+#define CGFLOAT_MAX FLT_MAX
+#define CGFLOAT_IS_DOUBLE 0
+#endif /* !defined(__LP64__) || !__LP64__ */
+
+
+
+4./Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/Foundation/NSObjCRuntime.h,在该文件中添加
+#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
+typedef long NSInteger;
+typedef unsigned long NSUInteger;
+#else
+typedef int NSInteger;
+typedef unsigned int NSUInteger;
+#endif
+
+附件ExampleHook的例子，已经更改好了makefile文件
