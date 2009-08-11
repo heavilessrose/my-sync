@@ -1,0 +1,165 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 1BC3F496100729FE004B5A89 /* asyncSocket */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* asyncSocket */;
+		codeSenseManager = 1BC3F49F10072A0E004B5A89 /* Code sense */;
+		executables = (
+			1BC3F496100729FE004B5A89 /* asyncSocket */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					833,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 268906841;
+			PBXWorkspaceStateSaveDate = 268906841;
+		};
+		perUserProjectItems = {
+			1B0646B5100754C400C8EDE1 /* PBXTextBookmark */ = 1B0646B5100754C400C8EDE1 /* PBXTextBookmark */;
+			1B0646B7100754C400C8EDE1 /* PBXTextBookmark */ = 1B0646B7100754C400C8EDE1 /* PBXTextBookmark */;
+			1B0646B8100754C400C8EDE1 /* PBXTextBookmark */ = 1B0646B8100754C400C8EDE1 /* PBXTextBookmark */;
+			1B0646BA100754C400C8EDE1 /* PBXTextBookmark */ = 1B0646BA100754C400C8EDE1 /* PBXTextBookmark */;
+			1BC3F4C510072F3A004B5A89 /* PBXTextBookmark */ = 1BC3F4C510072F3A004B5A89 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 1BC3F49E10072A0E004B5A89 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 1190}}";
+			sepNavSelRange = "{249, 1423}";
+			sepNavVisRange = "{935, 738}";
+		};
+	};
+	1B0646B5100754C400C8EDE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1B0646B6100754C400C8EDE1 /* string.h */;
+		name = "string.h: 96";
+		rLen = 46;
+		rLoc = 3919;
+		rType = 0;
+		vrLen = 1389;
+		vrLoc = 3220;
+	};
+	1B0646B6100754C400C8EDE1 /* string.h */ = {
+		isa = PBXFileReference;
+		name = string.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/string.h;
+		sourceTree = "<absolute>";
+	};
+	1B0646B7100754C400C8EDE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 70";
+		rLen = 8;
+		rLoc = 1472;
+		rType = 0;
+		vrLen = 697;
+		vrLoc = 1033;
+	};
+	1B0646B8100754C400C8EDE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1B0646B9100754C400C8EDE1 /* string.h */;
+		name = "string.h: 96";
+		rLen = 46;
+		rLoc = 3919;
+		rType = 0;
+		vrLen = 1389;
+		vrLoc = 3220;
+	};
+	1B0646B9100754C400C8EDE1 /* string.h */ = {
+		isa = PBXFileReference;
+		name = string.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/string.h;
+		sourceTree = "<absolute>";
+	};
+	1B0646BA100754C400C8EDE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 14";
+		rLen = 1423;
+		rLoc = 249;
+		rType = 0;
+		vrLen = 738;
+		vrLoc = 935;
+	};
+	1BC3F496100729FE004B5A89 /* asyncSocket */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = asyncSocket;
+		sourceDirectories = (
+		);
+	};
+	1BC3F49E10072A0E004B5A89 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	1BC3F49F10072A0E004B5A89 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	1BC3F4B510072E9A004B5A89 /* error.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = error.c;
+		path = /Users/wangluke/Documents/Mac/C/unpv1_3e/sock/error.c;
+		sourceTree = "<absolute>";
+	};
+	1BC3F4C510072F3A004B5A89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1BC3F4B510072E9A004B5A89 /* error.c */;
+		name = "error.c: 88";
+		rLen = 443;
+		rLoc = 1487;
+		rType = 0;
+		vrLen = 665;
+		vrLoc = 0;
+	};
+	8DD76FA90486AB0100D96B5E /* asyncSocket */ = {
+		activeExec = 0;
+		executables = (
+			1BC3F496100729FE004B5A89 /* asyncSocket */,
+		);
+	};
+}
