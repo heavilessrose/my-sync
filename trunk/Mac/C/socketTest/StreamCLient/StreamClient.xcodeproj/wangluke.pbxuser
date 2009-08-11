@@ -5,8 +5,7 @@
 		activeExecutable = 1B34246F0FC2B6B700B23525 /* StreamClient */;
 		activeTarget = 8DD76FA90486AB0100D96B5E /* StreamClient */;
 		breakpoints = (
-			1B3A360D0FCA868800F5BED1 /* main.c:50 */,
-			1BFC76FF1005BE3500A485C8 /* main.c:90 */,
+			1BFC76FF1005BE3500A485C8 /* main.c:32 */,
 		);
 		codeSenseManager = 1B3424760FC2B6BA00B23525 /* Code sense */;
 		executables = (
@@ -49,14 +48,14 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 268814678;
-			PBXWorkspaceStateSaveDate = 268814678;
+			PBXPerProjectTemplateStateSaveDate = 271309554;
+			PBXWorkspaceStateSaveDate = 271309554;
 		};
 		perUserProjectItems = {
 			1B3A36110FCA869500F5BED1 /* PBXTextBookmark */ = 1B3A36110FCA869500F5BED1 /* PBXTextBookmark */;
 			1B3A368B0FCA941600F5BED1 /* PBXTextBookmark */ = 1B3A368B0FCA941600F5BED1 /* PBXTextBookmark */;
+			1B4E15AC102BDE340019605C /* PBXTextBookmark */ = 1B4E15AC102BDE340019605C /* PBXTextBookmark */;
 			1BFC775D1005CBE700A485C8 /* PBXTextBookmark */ = 1BFC775D1005CBE700A485C8 /* PBXTextBookmark */;
-			1BFC775F1005CBE700A485C8 /* PBXTextBookmark */ = 1BFC775F1005CBE700A485C8 /* PBXTextBookmark */;
 			1BFC77601005CBE700A485C8 /* PBXTextBookmark */ = 1BFC77601005CBE700A485C8 /* PBXTextBookmark */;
 			1BFC77621005CBE700A485C8 /* PBXTextBookmark */ = 1BFC77621005CBE700A485C8 /* PBXTextBookmark */;
 		};
@@ -66,9 +65,9 @@
 	};
 	08FB7796FE84155DC02AAC07 /* main.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1011, 1853}}";
-			sepNavSelRange = "{1175, 459}";
-			sepNavVisRange = "{763, 1233}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 1887}}";
+			sepNavSelRange = "{2219, 10}";
+			sepNavVisRange = "{1586, 994}";
 		};
 	};
 	1B34246F0FC2B6B700B23525 /* StreamClient */ = {
@@ -143,23 +142,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	1B3A360D0FCA868800F5BED1 /* main.c:50 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 08FB7796FE84155DC02AAC07 /* main.c */;
-		functionName = "main()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 50;
-		location = StreamClient;
-		modificationTime = 268813516.358088;
-		state = 2;
-	};
 	1B3A36110FCA869500F5BED1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1B3A36120FCA869500F5BED1 /* in6.h */;
@@ -194,7 +176,17 @@
 		vrLen = 1907;
 		vrLoc = 20008;
 	};
-	1BFC76FF1005BE3500A485C8 /* main.c:90 */ = {
+	1B4E15AC102BDE340019605C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 92";
+		rLen = 10;
+		rLoc = 2219;
+		rType = 0;
+		vrLen = 994;
+		vrLoc = 1586;
+	};
+	1BFC76FF1005BE3500A485C8 /* main.c:32 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -206,7 +198,7 @@
 		functionName = "main()";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 90;
+		lineNumber = 32;
 		location = StreamClient;
 		modificationTime = 268813558.384576;
 		state = 2;
@@ -223,19 +215,10 @@
 	};
 	1BFC775E1005CBE700A485C8 /* netdb.h */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
 		name = netdb.h;
 		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/netdb.h;
 		sourceTree = "<absolute>";
-	};
-	1BFC775F1005CBE700A485C8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
-		name = "main.c: 63";
-		rLen = 7;
-		rLoc = 1511;
-		rType = 0;
-		vrLen = 1181;
-		vrLoc = 629;
 	};
 	1BFC77601005CBE700A485C8 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -249,6 +232,7 @@
 	};
 	1BFC77611005CBE700A485C8 /* netdb.h */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
 		name = netdb.h;
 		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/netdb.h;
 		sourceTree = "<absolute>";
@@ -257,8 +241,8 @@
 		isa = PBXTextBookmark;
 		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
 		name = "main.c: 54";
-		rLen = 459;
-		rLoc = 1175;
+		rLen = 0;
+		rLoc = 636;
 		rType = 0;
 		vrLen = 1233;
 		vrLoc = 763;
