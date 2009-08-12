@@ -14,6 +14,7 @@
 #pragma mark 定时器
 const unsigned long KMaxTimerOut = 30*60*1000;//30 min
 
+
 void osaltimerfunc(int sig) /* 定时事件代码 */
 {
 	Winks_printf("[TimerLog]osaltimerfunc\r\n");
