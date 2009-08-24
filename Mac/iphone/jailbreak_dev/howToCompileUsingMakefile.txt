@@ -1,0 +1,87 @@
+You can use the command line xcodebuild to build and install iPhone project such as
+
+xcodebuild -target Project_Name
+xcodebuild install -target Project_Name
+
+Here is an example to compile iPhone Project using Makefile instead of XCode.
+
+The Makefile will compile and codesign the binary using ldid (Intel binary version) and then install the files directly to iPhone /Applications/ folder using ssh
+
+Location of files
+----------------
+Classes : source code (.m .c .cpp etc)
+Resources : png file and other support files
+Project folder : *.xib Info.plist
+
+(1) First you need to download this sample zip file and extract it to your Mac and cd to the directory
+
+
+curl -O http://www.iphone.org.hk/attach/48150-PeoplePickerDemo.zip
+unzip 48150-PeoplePickerDemo.zip
+cd PeoplePickerDemo
+
+
+(3) Change the IPHONE_IP in the Makefile to the IP address of iPhone, default is 10.0.2.2
+(4) install respring utility in iPhone
+make install_respring
+
+(5) run make and make install
+make
+make install
+
+(6) Test launch the app Demo in iPhone
+.
+.
+.
+
+In order to avoid typing the password using ssh, you can install the ssh public key of your Mac to your iPhone using the following method
+
+(a) keygen in Mac terminal and type (if you haven't generated it before)
+ssh-keygen -t rsa
+
+You will be asked to enter a passphrase, please remember that if you enter that.
+
+(b) create .ssh directory in iPhone (assume ip address of iPhone is 10.0.2.2) and in Mac terminal and type
+ssh root@10.0.2.2 'mkdir -p .ssh'
+then enter iPhone root password (alpine)
+
+(c) copy mac public key to iPhone, and in Mac Terminal type
+cat ~/.ssh/id_rsa.pub | ssh root@10.0.2.2 'cat >> .ssh/authorized_keys'
+then enter iPhone root password (alpine)
+
+(d) Edit the file /etc/ssh/sshd_config in iPhone
+
+change these
+
+#StrictModes yes
+#PubkeyAuthentication yes
+#AuthorizedKeysFile .ssh/authorized_keys
+
+
+to
+
+
+StrictModes no
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+
+
+(e)reboot iPhone
+
+
+To compile ldid in Power PC, do this
+
+
+wget http://svn.telesphoreo.org/trunk/data/ldid/ldid-1.0.476.tgz
+
+tar -zxf ldid-1.0.476.tgz
+
+# this patch is for PowerPC only
+wget -qO- http://fink.cvs.sourceforge.net/viewvc/*checkout*/fink/dists/10.4/unstable/crypto/finkinfo/ldid.patch?revision=1.1 | patch -p0
+
+
+cd ldid-1.0.476
+
+g++ -I . -o util/ldid{,.cpp} -x c util/{lookup2,sha1}.c
+
+sudo cp -a util/ldid /usr/bin
