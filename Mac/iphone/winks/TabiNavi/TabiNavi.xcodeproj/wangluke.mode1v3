@@ -220,6 +220,7 @@
 				<string>get-info</string>
 				<string>show-inspector</string>
 				<string>servicesModulebreakpoints</string>
+				<string>servicesModulebuild</string>
 				<string>NSToolbarFlexibleSpaceItem</string>
 				<string>com.apple.pbx.toolbar.searchfield</string>
 			</array>
@@ -271,8 +272,7 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
-								<string>1BB851A50FFB233000490ACE</string>
-								<string>1BCE1C850FFC80DD00688869</string>
+								<string>1BA72A6C0FF896B2002EC1B7</string>
 								<string>1BCE1CC20FFC858D00688869</string>
 								<string>1C37FABC05509CD000000102</string>
 								<string>1C37FABC05539CD112110102</string>
@@ -280,6 +280,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>6</integer>
+									<integer>3</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -322,7 +324,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>wk_osapi.m</string>
+								<string>TabiNaviAppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -330,11 +332,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>wk_osapi.m</string>
+										<string>TabiNaviAppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1B29DE661032D378002A2367</string>
+										<string>1BBDE995104B711D0036C534</string>
 										<key>history</key>
 										<array>
 											<string>1BD544C3100B69BC00D10B30</string>
@@ -363,11 +365,6 @@
 											<string>1BB9EFBF1017019900591BFD</string>
 											<string>1BB9EFC01017019900591BFD</string>
 											<string>1BB9EFC11017019900591BFD</string>
-											<string>1BB9EFC21017019900591BFD</string>
-											<string>1BB9EFC31017019900591BFD</string>
-											<string>1BB9EFC41017019900591BFD</string>
-											<string>1BB9EFC51017019900591BFD</string>
-											<string>1BB9EFC61017019900591BFD</string>
 											<string>1BB9EFC71017019900591BFD</string>
 											<string>1BB9EFC81017019900591BFD</string>
 											<string>1BB9EFC91017019900591BFD</string>
@@ -403,11 +400,17 @@
 											<string>1BC574D0101DAB6C00BF7401</string>
 											<string>1B29DE3B1032CBB6002A2367</string>
 											<string>1B29DE3C1032CBB6002A2367</string>
-											<string>1B29DE3D1032CBB6002A2367</string>
-										</array>
-										<key>nextStack</key>
-										<array>
-											<string>1B29DE3F1032CBB6002A2367</string>
+											<string>1BBDE973104B70DB0036C534</string>
+											<string>1BBDE974104B70DB0036C534</string>
+											<string>1BBDE976104B70DB0036C534</string>
+											<string>1BBDE977104B70DB0036C534</string>
+											<string>1BBDE978104B70DB0036C534</string>
+											<string>1BBDE979104B70DB0036C534</string>
+											<string>1BBDE97A104B70DB0036C534</string>
+											<string>1BBDE97B104B70DB0036C534</string>
+											<string>1BBDE97C104B70DB0036C534</string>
+											<string>1BBDE993104B711D0036C534</string>
+											<string>1BBDE975104B70DB0036C534</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -457,7 +460,13 @@
 											<string>1BC95CAD1019C77F00D56754</string>
 											<string>1BC574D3101DAB6C00BF7401</string>
 											<string>1BC574E8101DAB6C00BF7401</string>
-											<string>1B29DE3E1032CBB6002A2367</string>
+											<string>1BBDE97E104B70DB0036C534</string>
+											<string>1BBDE97F104B70DB0036C534</string>
+											<string>1BBDE980104B70DB0036C534</string>
+											<string>1BBDE983104B70DB0036C534</string>
+											<string>1BBDE987104B70DB0036C534</string>
+											<string>1BBDE988104B70DB0036C534</string>
+											<string>1BBDE994104B711D0036C534</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -515,9 +524,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>1B29DE411032CBB6002A2367</string>
+				<string>1BBDE996104B711D0036C534</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>1B29DE421032CBB6002A2367</string>
+				<string>1BBDE997104B711D0036C534</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -651,7 +660,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Users/wangluke/Documents/Mac/iphone/winks/TabiNavi/TabiNavi.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -890,7 +898,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>wk_api.c</string>
+										<string></string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -948,8 +956,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>1B29DE391032CB9C002A2367</string>
-				<string>1B29DE3A1032CB9C002A2367</string>
+				<string>1BBDE971104B70D90036C534</string>
+				<string>1BBDE972104B70D90036C534</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>

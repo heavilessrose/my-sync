@@ -44,7 +44,7 @@ void* testTimer(void *param){
 	struct itimerval value;
 	value.it_value.tv_sec=0; /* 定时1.5秒 */
 	value.it_value.tv_usec=50000;
-	value.it_interval.tv_sec=1; /* 重新开始1.5秒 */
+	value.it_interval.tv_sec=0; /* 重新开始1.5秒 */
 	value.it_interval.tv_usec=50000;
 	signal(SIGALRM, timefunc); /* 捕获定时信号 */
 	setitimer(ITIMER_REAL, &value, NULL); /* 定时开始 */
@@ -87,8 +87,11 @@ int main(int argc, const char* argv[])
 	}
 	setnewtimer();
 //	sleep(5);
-	printf("-----\n");
-	
+//	printf("-----\n");
+//	sleep(5);
+//	stoptimer();
+//	printf("-----\n");
+//	printf("-----\n");
 
 	while(1){
 	}
