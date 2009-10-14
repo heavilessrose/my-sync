@@ -20,6 +20,7 @@ timer:	timer.o
 
 clean:
 	rm *.o timer
+
 ///////////////////////////////////////////////////////
 # Makefile for iPhone Application for Xcode gcc compiler (SDK Headers)
 
