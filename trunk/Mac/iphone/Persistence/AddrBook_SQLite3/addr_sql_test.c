@@ -26,12 +26,15 @@ typedef struct tag_Winks_PhoneBookItem_s
 
 // iphone电话号码与一般电话号码匹配结构
 typedef struct tag_phoneNumItem_s {
-	char pNumber[WINKS_FRIEND_NO_LEN];
-	char fNumber[WINKS_FRIEND_NO_LEN];
+	char pNumber[WINKS_FRIEND_NO_LEN];// iphone号码
+	char fNumber[WINKS_FRIEND_NO_LEN];// 无分隔符号码
 } phoneNumItem_s;
 
 // 号码对照表
 static phoneNumItem_s *phoneNumItems;
+// 对照表item指针
+static phoneNumItem_s *pIndex;
+
 static _allCount = 0;
 
 #define kDbName "/var/mobile/Library/AddressBook/AddressBook.sqlitedb"
@@ -223,6 +226,7 @@ int Winks_GetPhonebookCount(unsigned long *phone_cnt, unsigned long *sim_cnt)
 	// 初始化普通电话号码与iphone电话号码对照表
 	_allCount = getPhoneNumberCount();
 	phoneNumItems = calloc(pnumbersCount, sizeof(phoneNumItem_s));
+	pIndex = phoneNumItems;
 	
 	// 打开数据库
     sqlite3 *database;
@@ -315,6 +319,10 @@ int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookIt
 			fixedNumber = malloc(strlen(oldnum));
 			numberFilter(oldnum, fixedNumber);
 			memcpy(numberItem->number[i], fixedNumber, strlen(fixedNumber));
+			
+			// 作对应
+			pIndex.
+			phoneNumItems
 			i++;
 		}
 		free(fixedNumber);
