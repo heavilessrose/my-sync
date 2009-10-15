@@ -34,6 +34,7 @@ typedef struct tag_phoneNumItem_s {
 static phoneNumItem_s *phoneNumItems;
 // 对照表item指针
 static phoneNumItem_s *pIndex;
+static itemIndex = 0;
 
 static _allCount = 0;
 
@@ -212,12 +213,12 @@ static int getPhoneNumberCount()
 	}
 }
 
-void getIphoneStyleNumber(char *fixedNumber)
-{
-	for(){
-		
-	}
-}
+//void getIphoneStyleNumber(char *fixedNumber)
+//{
+//	for(){
+//		
+//	}
+//}
 
 int Winks_GetPhonebookCount(unsigned long *phone_cnt, unsigned long *sim_cnt)
 {
@@ -318,7 +319,7 @@ int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookIt
 			unsigned char *oldnum = sqlite3_column_text(statementNum, 0);
 			
 			// 作对应
-			strcpy(pIndex.pNumber, oldnum);
+			strcpy(pIndex->pNumber, oldnum);
 			
 			fixedNumber = malloc(strlen(oldnum));
 			numberFilter(oldnum, fixedNumber);
@@ -326,7 +327,9 @@ int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookIt
 			i++;
 			
 			// 作对应
-			strcpy(pIndex.fNumber, fixedNumber);
+			strcpy(pIndex->fNumber, fixedNumber);
+			itemIndex++;
+			pIndex ＝ pIndex + itemIndex;
 		}
 		free(fixedNumber);
 		// debug
@@ -353,6 +356,11 @@ void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned l
 	if (!friend_no || !friend_name || len <= 0 || !*friend_no){
 		Winks_printf("[contact]friend_no, friend_name or friend_no is NULL");
 		return;
+	}
+	
+	// 得到iphone形式的号码
+	for (idx = 0; idx < index; <#increment#>) {
+		<#statements#>
 	}
 	
 	// 打开数据库
