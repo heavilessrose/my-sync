@@ -316,14 +316,17 @@ int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookIt
 		char *fixedNumber;
 		while(sqlite3_step(statementNum) == SQLITE_ROW) {
 			unsigned char *oldnum = sqlite3_column_text(statementNum, 0);
+			
+			// 作对应
+			strcpy(pIndex.pNumber, oldnum);
+			
 			fixedNumber = malloc(strlen(oldnum));
 			numberFilter(oldnum, fixedNumber);
 			memcpy(numberItem->number[i], fixedNumber, strlen(fixedNumber));
+			i++;
 			
 			// 作对应
-			pIndex.
-			phoneNumItems
-			i++;
+			strcpy(pIndex.fNumber, fixedNumber);
 		}
 		free(fixedNumber);
 		// debug
