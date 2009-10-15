@@ -30,6 +30,10 @@ typedef struct tag_phoneNumItem_s {
 	char fNumber[WINKS_FRIEND_NO_LEN];
 } phoneNumItem_s;
 
+// 号码对照表
+static phoneNumItem_s *phoneNumItems;
+static _allCount = 0;
+
 #define kDbName "/var/mobile/Library/AddressBook/AddressBook.sqlitedb"
 static void numberFilter(const char *number, char *fixedNumber);
 static int getPhoneNumberCount();
@@ -176,8 +180,6 @@ static void numberFilter(const char *number, char *fixedNumber)
 }
 
 // 得到电话本中目前所有号码个数
-//static phoneNumItem_s *phoneNumItems;
-
 static int getPhoneNumberCount()
 {
     sqlite3 *database;
@@ -207,16 +209,23 @@ static int getPhoneNumberCount()
 	}
 }
 
+void getIphoneStyleNumber(char *fixedNumber)
+{
+	for(){
+		
+	}
+}
+
 int Winks_GetPhonebookCount(unsigned long *phone_cnt, unsigned long *sim_cnt)
 {
 	*sim_cnt = 0;
 	
 	// 初始化普通电话号码与iphone电话号码对照表
-//	int pnumbersCount = getPhoneNumberCount();
-//	phoneNumItems = calloc(pnumbersCount, sizeof(phoneNumItem_s));
-		
-    sqlite3 *database;
+	_allCount = getPhoneNumberCount();
+	phoneNumItems = calloc(pnumbersCount, sizeof(phoneNumItem_s));
+	
 	// 打开数据库
+    sqlite3 *database;
 	if(sqlite3_open(kDbName, &database) != SQLITE_OK)
 	{
 		sqlite3_close(database);
@@ -224,6 +233,7 @@ int Winks_GetPhonebookCount(unsigned long *phone_cnt, unsigned long *sim_cnt)
 		return -1;
 	}
 	
+	// 得到电话本中联系人个数
 	sqlite3_stmt *statement;
 	if(sqlite3_prepare_v2(database, "SELECT name,seq FROM sqlite_sequence", -1, &statement, NULL) == SQLITE_OK){
 		while(sqlite3_step(statement) == SQLITE_ROW) {
@@ -265,20 +275,20 @@ int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookIt
 		return -1;	
 	}
 	
-	sqlite3 *database;
 	// 打开数据库
+	sqlite3 *database;
 	if(sqlite3_open(kDbName, &database) != SQLITE_OK)
 	{
 		sqlite3_close(database);
 		Winks_printf("[contact]Failed to open DB--\n");
 		return -1;
 	}
-	
 	Winks_printf("db opened");
+	
+	// 得到index对应的联系人id
 	sqlite3_stmt *statementPerson;
 	int record_id = 0;
 	if(sqlite3_prepare_v2(database, "SELECT ROWID FROM ABPerson ORDER BY ROWID", -1, &statementPerson, NULL) == SQLITE_OK){
-		
 		int i = 0;
 		while(sqlite3_step(statementPerson) == SQLITE_ROW){
 			if((i++) == index)
@@ -292,6 +302,7 @@ int Winks_ReadPhonebook(unsigned int type, unsigned int index, Winks_PhoneBookIt
 		return -1;
 	}
 	
+	// 得到联系人的所有号码
 	sqlite3_stmt *statementNum;
 	char sql[256];
 	sprintf(sql, "SELECT value FROM ABMultiValue WHERE property=3 AND record_id=%d", record_id);
@@ -333,8 +344,8 @@ void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned l
 		return;
 	}
 	
-	sqlite3 *database;
 	// 打开数据库
+	sqlite3 *database;
 	if(sqlite3_open(kDbName, &database) != SQLITE_OK)
 	{
 		sqlite3_close(database);
@@ -342,6 +353,7 @@ void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned l
 		return;
 	}
 	
+	// 得到号码对应的联系人id
 	sqlite3_stmt *statementNum;
 	int record_id = 0;
 	char sql[256];
@@ -359,7 +371,7 @@ void Winks_GetPhonebookName(const char* friend_no, char *friend_name, unsigned l
 		return;
 	}
 	
-	
+	// 根据联系人id得到联系人姓名
 	sqlite3_stmt *statementPerson;
 	memset(sql, 0, 256);
 	sprintf(sql, "SELECT First, Last FROM ABPerson WHERE ROWID='%d'", record_id);
