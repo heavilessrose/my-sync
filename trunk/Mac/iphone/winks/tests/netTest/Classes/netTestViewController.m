@@ -22,6 +22,7 @@
 #import <ctype.h>
 
 #import "GprsInitor.h"
+#import "GprsInitor_2.h"
 
 @implementation netTestViewController
 
@@ -48,8 +49,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	GprsInitor *gprs = [[GprsInitor alloc] init];
+//	GprsInitor *gprs = [[GprsInitor alloc] init];
+//	[gprs gprsInit];
+	
+	GprsInitor_2 *gprs = [[GprsInitor_2 alloc] init];
 	[gprs gprsInit];
+	sockTest();
 }
 
 

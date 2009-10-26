@@ -14,7 +14,7 @@
 void CallLog(const char* str) {
 	//    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	char* path = "/var/mobile/netLog";
-	//char *path = "/Users/wangluke/netLog";
+	//char *path = "/Users/luke/netLog";
 	
 	FILE *myLog = NULL;
 	myLog = fopen(path,"a+");
