@@ -2,16 +2,16 @@
 {
 	1D3623240D0F684500981E51 /* NetStatusAppDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {624, 426}}";
-			sepNavSelRange = "{399, 0}";
-			sepNavVisRange = "{0, 401}";
+			sepNavIntBoundsRect = "{{0, 0}, {488, 570}}";
+			sepNavSelRange = "{416, 0}";
+			sepNavVisRange = "{477, 381}";
 		};
 	};
 	1D3623250D0F684500981E51 /* NetStatusAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {810, 1350}}";
-			sepNavSelRange = "{1775, 0}";
-			sepNavVisRange = "{1230, 763}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 1755}}";
+			sepNavSelRange = "{2400, 0}";
+			sepNavVisRange = "{1982, 917}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* NetStatus */ = {
@@ -37,9 +37,9 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					341,
+					833,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 					20,
@@ -54,8 +54,18 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 279514487;
-			PBXWorkspaceStateSaveDate = 279514487;
+			PBXPerProjectTemplateStateSaveDate = 279538772;
+			PBXWorkspaceStateSaveDate = 279538772;
+		};
+		perUserProjectItems = {
+			A3357B4610A9682100588627 /* PBXTextBookmark */ = A3357B4610A9682100588627 /* PBXTextBookmark */;
+			A3357B4710A9682100588627 /* PBXTextBookmark */ = A3357B4710A9682100588627 /* PBXTextBookmark */;
+			A3357B4810A9682100588627 /* PlistBookmark */ = A3357B4810A9682100588627 /* PlistBookmark */;
+			A3357B4910A9682100588627 /* PBXTextBookmark */ = A3357B4910A9682100588627 /* PBXTextBookmark */;
+			A3357B4A10A9682100588627 /* PBXTextBookmark */ = A3357B4A10A9682100588627 /* PBXTextBookmark */;
+			A3357BD010AAC32F00588627 /* PBXTextBookmark */ = A3357BD010AAC32F00588627 /* PBXTextBookmark */;
+			A3357BD110AAC32F00588627 /* XCBuildMessageTextBookmark */ = A3357BD110AAC32F00588627 /* XCBuildMessageTextBookmark */;
+			A3357CD610ABD6D400588627 /* PBXTextBookmark */ = A3357CD610ABD6D400588627 /* PBXTextBookmark */;
 		};
 		sourceControlManager = A3357A4910A90D7C00588627 /* Source Control */;
 		userBuildSettings = {
@@ -71,7 +81,7 @@
 	32CA4F630368D1EE00C91783 /* NetStatus_Prefix.pch */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {642, 443}}";
-			sepNavSelRange = "{260, 0}";
+			sepNavSelRange = "{180, 122}";
 			sepNavVisRange = "{0, 310}";
 		};
 	};
@@ -116,5 +126,99 @@
 	A3357A4A10A90D7C00588627 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	A3357A7D10A91AC400588627 /* Makefile */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {943, 2190}}";
+			sepNavSelRange = "{2953, 4}";
+			sepNavVisRange = "{2375, 784}";
+		};
+	};
+	A3357B4610A9682100588627 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 356;
+		vrLoc = 0;
+	};
+	A3357B4710A9682100588627 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A3357A7D10A91AC400588627 /* Makefile */;
+		name = "Makefile: 105";
+		rLen = 4;
+		rLoc = 2953;
+		rType = 0;
+		vrLen = 784;
+		vrLoc = 2375;
+	};
+	A3357B4810A9682100588627 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* NetStatus-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/luke/Documents/my-sync/trunk/Mac/iphone/winks/NetStatus/NetStatus-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	A3357B4910A9682100588627 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* NetStatus_Prefix.pch */;
+		name = "NetStatus_Prefix.pch: 8";
+		rLen = 122;
+		rLoc = 180;
+		rType = 0;
+		vrLen = 310;
+		vrLoc = 0;
+	};
+	A3357B4A10A9682100588627 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A3357B4B10A9682100588627 /* SCNetworkReachability.h */;
+		name = "SCNetworkReachability.h: 85";
+		rLen = 0;
+		rLoc = 3178;
+		rType = 0;
+		vrLen = 1330;
+		vrLoc = 2447;
+	};
+	A3357B4B10A9682100588627 /* SCNetworkReachability.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = SCNetworkReachability.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/SystemConfiguration.framework/Headers/SCNetworkReachability.h;
+		sourceTree = "<absolute>";
+	};
+	A3357BD010AAC32F00588627 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* NetStatusAppDelegate.m */;
+		name = "NetStatusAppDelegate.m: 107";
+		rLen = 0;
+		rLoc = 2400;
+		rType = 0;
+		vrLen = 917;
+		vrLoc = 1982;
+	};
+	A3357BD110AAC32F00588627 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Expected ';' before '}' token";
+		fRef = 1D3623240D0F684500981E51 /* NetStatusAppDelegate.h */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 22;
+		rType = 1;
+	};
+	A3357CD610ABD6D400588627 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* NetStatusAppDelegate.h */;
+		name = "NetStatusAppDelegate.h: 22";
+		rLen = 0;
+		rLoc = 416;
+		rType = 0;
+		vrLen = 858;
+		vrLoc = 0;
 	};
 }
