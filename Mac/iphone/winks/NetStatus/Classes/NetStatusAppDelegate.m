@@ -18,7 +18,13 @@
 
 @synthesize window;
 @synthesize textView;
-
+///
+@synthesize testObj;
+@synthesize testObj1;
+@synthesize testObj2;
+@synthesize testObj3;
+@synthesize testObj4;
+@synthesize tmpObj;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
@@ -30,7 +36,7 @@
 	zeroAddr.sin_len = sizeof(zeroAddr);
 	zeroAddr.sin_family = AF_INET;
 	
-	SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &zeroAddr);
+	SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (struct sockaddr *) &zeroAddr);
 	
 	SCNetworkReachabilityFlags flags;
 	SCNetworkReachabilityGetFlags(target, &flags);
@@ -80,6 +86,9 @@
 	[self.textView release];
 	
 	////////
+	[self retainTest];
+	
+	////////
     // Override point for customization after application launch
     [window makeKeyAndVisible];
 }
@@ -88,6 +97,23 @@
 - (void)dealloc {
     [window release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark retain test
+- (void)retainTest
+{
+	self.tmpObj = [[NSObject alloc] init];
+	[tmpObj release];
+	// retain属性 无self
+	NSLog(@"testObj count = %u, tmpObj count = %u", [testObj retainCount], [tmpObj retainCount]);
+	testObj = [tmpObj retain];
+	NSLog(@"testObj count = %u, tmpObj count = %u", [testObj retainCount], [tmpObj retainCount]);
+	self.testObj = nil;
+	NSLog(@"testObj count = %u, tmpObj count = %u", [testObj retainCount], [tmpObj retainCount]);
+	[testObj release];
+	NSLog(@"testObj count = %u, tmpObj count = %u", [testObj retainCount], [tmpObj retainCount]);
+	[tmpObj release];
 }
 
 
