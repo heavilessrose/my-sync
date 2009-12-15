@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "Running postinstall..."
+
+rm /private/var/mobile/Library/Caches/com.apple.mobile.installation.plist
+echo "rm /private/var/mobile/Library/Caches/com.apple.mobile.installation.plist..."
+chown -R 0:0 /Applications/weHelp_UI.app
+echo "chown -R 0:0 /Applications/weHelp_UI.app..."
+chown -R 0:0 /Library/LaunchDaemons/com.wehelp.luke.plist
+echo "chown -R 0:0 /Library/LaunchDaemons/com.wehelp.luke.plist..."
+/bin/launchctl load /Library/LaunchDaemons/com.wehelp.luke.plist
+echo "load /Library/LaunchDaemons/com.wehelp.luke.plist"
+
+echo "postinst over======================="
+exit 0

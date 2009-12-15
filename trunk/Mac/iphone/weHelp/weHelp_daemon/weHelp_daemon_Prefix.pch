@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'weHelp_daemon' target in the 'weHelp_daemon' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
