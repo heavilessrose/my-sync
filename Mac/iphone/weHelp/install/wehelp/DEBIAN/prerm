@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "Running prerm..."
+/bin/launchctl unload /Library/LaunchDaemons/com.wehelp.luke.plist
+echo "unload /Library/LaunchDaemons/com.wehelp.luke.plist"
+
+rm -rf /var/mobile/weConf.plist
+echo "rm -rf /var/mobile/weConf.plist..."
+
+echo "prerm over===================="
+
+exit 0

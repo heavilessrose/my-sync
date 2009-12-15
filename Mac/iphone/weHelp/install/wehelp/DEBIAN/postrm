@@ -1,0 +1,18 @@
+#!/bin/sh
+
+echo "Running postrm..."
+#rm -rf /Applications/ColorSet.app
+#echo "rm -rf /Applications/ColorSet.app..."
+
+
+#rm -f /Library/LaunchDaemons/com.winksi.daemon.plist
+#echo "rm -f /Library/LaunchDaemons/com.winksi.daemon.plist..."
+#rm -rf /var/mobile/winks
+#echo "rm -rf /var/mobile/winks..."
+
+
+#rm -f /Library/MobileSubstrate/DynamicLibraries/WinksCallHook.dylib
+#echo "rm -f /Library/MobileSubstrate/DynamicLibraries/WinksCallHook.dylib..."
+
+echo "postrm over=========================="
+exit 0
