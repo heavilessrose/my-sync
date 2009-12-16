@@ -55,8 +55,8 @@ CFLAGS += -I"/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/gcc/arm-ap
 			-F"$(SDK)/System/Library/PrivateFrameworks" \
 			-I"./Classes" \
 			-march=armv6 \
-			-DDEBUG -std=c99 \
-			-DSHOW_LOG
+			-DDEBUG -std=c99
+			#-DSHOW_LOG
 			
 
 CPPFLAGS=$CFLAGS

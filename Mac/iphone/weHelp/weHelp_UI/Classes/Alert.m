@@ -18,24 +18,22 @@ void alertWithError(NSError *error)
 void alertWithMessage(NSString *message)
 {
 	/* open an alert with an OK button */
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"WinksAlertTitle", nil) 
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
 													message:message delegate:nil 
-										  cancelButtonTitle:NSLocalizedString(@"WinksAlertYes", nil) 
+										  cancelButtonTitle:@"确定" 
 										  otherButtonTitles: nil];
 	[alert show];
-	NSLog(@"alert retain: %d", [alert retainCount]);
 	[alert release];
 }
 
 void alertWithOkAndDelegate(NSString *message, id delegate)
 {
 	/* open an alert with an OK button */
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"WinksAlertTitle", nil) 
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
 													message:message delegate:delegate 
-										  cancelButtonTitle:NSLocalizedString(@"WinksAlertYes", nil) 
+										  cancelButtonTitle:@"确定" 
 										  otherButtonTitles: nil];
 	[alert show];
-	NSLog(@"alert retain: %d", [alert retainCount]);
 	[alert release];
 }
 
@@ -46,7 +44,6 @@ void alertWithMessageAndTitle(NSString *title, NSString *message)
 										  cancelButtonTitle:NSLocalizedString(@"WinksAlertYes", nil) 
 										  otherButtonTitles: nil];
 	[alert show];
-	NSLog(@"alert retain: %d", [alert retainCount]);
 	[alert release];
 }
 

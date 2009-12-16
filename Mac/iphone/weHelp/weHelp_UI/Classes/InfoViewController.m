@@ -13,6 +13,7 @@
 @synthesize toolbar;
 @synthesize backItem;
 @synthesize flipDelegate;
+//@synthesize background;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -27,6 +28,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	//[self.view sendSubviewToBack:background];
 }
 
 /*
@@ -51,11 +53,10 @@
 
 
 - (void)dealloc {
-	NSLog(@"infoview dealloc");
 	[toolbar release];
 	[backItem release];
+	//[background release];
     [super dealloc];
-	NSLog(@"infoview dealloc over");
 }
 
 - (IBAction)back

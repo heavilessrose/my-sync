@@ -52,6 +52,8 @@
 	
 	[self loadMainViewController];
 	[self.view addSubview:mainViewControl.view];
+//	[self loadInfoViewController];
+//	[self.view addSubview:infoViewControl.view];
 }
 
 /*
@@ -76,7 +78,6 @@
 
 
 - (void)dealloc {
-	NSLog(@"root view dealloc");
 	[mainViewControl release];
 	if (infoViewControl != nil) {
 		[infoViewControl release];

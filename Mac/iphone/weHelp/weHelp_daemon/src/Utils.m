@@ -38,7 +38,7 @@ static void CallLog(const char* str)
 		//getCurTime(tmp);
 		
 		fputs(tmp,myLog);
-		fputs("  ",myLog);
+		fputs("[DAEMON] ",myLog);
 		fputs(str,myLog);
 		fputs("\n",myLog);
 		//
@@ -78,10 +78,9 @@ int getCurImsi(char *imsi)
 	if (imsiNSStr != nil) {
 		const char *imsiStr = [imsiNSStr cStringUsingEncoding:NSASCIIStringEncoding];
 		int imsiStrLen = strlen(imsiStr);
-		printf("imsiStrLen = %d\r\n", imsiStrLen);
 		strcpy(imsi, imsiStr);
 	}else {
-		printf("getCurImsi err\r\n");
+		Winks_printf("getCurImsi err");
 		[pool release];
 		return -1;
 	}
@@ -95,6 +94,7 @@ int initStoredConf(char *pimsi, char *pnumber, BOOL *popenstate, int *prefreshsp
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	NSDictionary *confPlist = (NSDictionary *)plistFromFile(CONFIG_FILE);
 	if (confPlist != nil) {
+		Winks_printf("got confile -- ");
 		// 读取
 		NSString *imsi = (NSString *)[confPlist objectForKey:@"IMSI"];
 		NSString *smsto = (NSString *)[confPlist objectForKey:@"targetNumber"];

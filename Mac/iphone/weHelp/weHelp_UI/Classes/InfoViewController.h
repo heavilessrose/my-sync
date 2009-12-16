@@ -13,11 +13,14 @@
 	IBOutlet UIToolbar *toolbar;
 	IBOutlet UIBarButtonItem *backItem;
 	id flipDelegate;
+	
+	//IBOutlet UIImageView *background;
 }
 
 @property (nonatomic, retain) UIToolbar *toolbar;
 @property (nonatomic, retain) UIBarButtonItem *backItem;
-@property (nonatomic,assign) id <WeFlipControllerDelegate> flipDelegate;
+@property (nonatomic, assign) id <WeFlipControllerDelegate> flipDelegate;
+//@property (nonatomic, retain) UIImageView *background;
 
 - (IBAction)back;
 @end
