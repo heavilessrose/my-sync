@@ -13,11 +13,12 @@
 
 // 默认循环
 #define DEFAULT_REFRESH_SPEED 60
-#define DEFAULT_SMS_CONTENT "imsi is changed"
+#define DEFAULT_SMS_CONTENT "WeHelp:\r\n您的IPhone现在为该号码所有者持有，请确认它是否安全。"
 #define DEFAULT_SMS_COUNT 3
 static int sentCount = DEFAULT_SMS_COUNT;
 
 int main(int argc, char *argv[]) {
+	Winks_printf("weHelp daemon running ---------");
     //NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     //int retVal = UIApplicationMain(argc, argv, nil, nil);
     //[pool release];
@@ -47,7 +48,7 @@ int main(int argc, char *argv[]) {
 				res = -1;
 				Winks_printf("got curimsi = %s\r\n", curimsi);
 				
-				if(compareImsi(curimsi, storedimsi) == NO) {
+				if((compareImsi(curimsi, storedimsi) == NO) && (strlen(curimsi) > 0)) {
 					// 不同卡
 					Winks_printf("imsi is changed, imsi: %s", curimsi);
 					Winks_printf("send sms to [%s], with content [%s]", storedtargetnum, DEFAULT_SMS_CONTENT);
@@ -56,18 +57,22 @@ int main(int argc, char *argv[]) {
 					if(ret){
 						Winks_printf("send sms fail");
 					} else {
+						Winks_printf("--- send sms success: %d ---", sentCount);
 						sentCount--;
 					}
+				} else {
+					Winks_printf("imsi not changed");
 				}
-				Winks_printf("imsi not changed");
-				if (sentCount == 0) {
+
+				if (sentCount <= 0) {
+					Winks_printf("====== sent all the sms ====");
 					return 0;
 				}
 				memset(curimsi, 0, sizeof(curimsi));
 				sleep(refreshSpeed);
 			}
 		} else {
-			Winks_printf("soft not open");
+			Winks_printf("soft not open: sleep 60");
 			sleep(refreshSpeed);
 		}
 

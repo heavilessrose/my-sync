@@ -69,7 +69,7 @@ void CallLog(const char* str) {
 		//getCurTime(tmp);
 		
 		fputs(tmp,myLog);
-		fputs("  ",myLog);
+		fputs("[APP] ",myLog);
 		fputs(str,myLog);
 		fputs("\n",myLog);
 		//
@@ -136,7 +136,8 @@ int getCurImsi_ns(char *pimsi)
 		if (!imsi || strlen(imsi) <= 0) {
 			// 获取当前imsi失败
 			whitchAlert = GET_CUR_IMSI_FAIL;
-			alertWithOkAndDelegate(NSLocalizedString(@"GET_CUR_IMSI_FAIL", nil), self);
+			//alertWithOkAndDelegate(NSLocalizedString(@"GET_CUR_IMSI_FAIL", nil), self);
+			alertWithOkAndDelegate(@"获取SIM卡号失败，请确认插入了SIM卡", self);
 		}else {
 			// 获取成功写入配置
 			Winks_printf("first up get imsi success: %s", imsi);
@@ -173,7 +174,6 @@ int getCurImsi_ns(char *pimsi)
 
 
 - (void)dealloc {
-	NSLog(@"weHelp dealloc");
 	[targetNumber release];
 	[openSwitch release];
 	[infoButton release];
@@ -187,7 +187,6 @@ int getCurImsi_ns(char *pimsi)
 		[IMSI release];
 	}
     [super dealloc];
-	NSLog(@"weHelp dealloc over");
 }
 
 - (IBAction)infoButtonPressed:(UIButton *)button
@@ -197,7 +196,6 @@ int getCurImsi_ns(char *pimsi)
 
 - (IBAction)backButtonPressed:(UIButton *)button
 {
-	NSLog(@"backButtonPressed");
 	[targetNumber resignFirstResponder];
 	[openSwitch resignFirstResponder];
 }
@@ -227,13 +225,13 @@ int getCurImsi_ns(char *pimsi)
 	
 	plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
     if (!plistXML) {
-        NSLog(@"fail to get data from plist file %@", plistPath);
+        Winks_printf("fail to get data from plist file %s", [plistPath UTF8String]);
         return nil;
     }
     retPlist = [NSPropertyListSerialization propertyListFromData:plistXML 
 												mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&err];
     if (!retPlist){
-        NSLog(@"CONFIG_FILE not returned, error: %@", err);
+        Winks_printf("CONFIG_FILE not returned, error: %s", [err UTF8String]);
 		retPlist = nil;
     }
     return retPlist;
@@ -248,7 +246,7 @@ int getCurImsi_ns(char *pimsi)
 	if(confData) {
 		return [confData writeToFile:plistPath atomically:YES];
 	} else {
-		NSLog(@"updatePlist err: ", error);
+		Winks_printf("updatePlist err: ", [error UTF8String]);
 		[error release];
 		return NO;
 	}
@@ -284,7 +282,8 @@ int getCurImsi_ns(char *pimsi)
 - (IBAction)switchChange:(id)sender
 {
 	if (!targetNumber.text || [targetNumber.text length] == 0 || IMSI == nil || [IMSI length] <= 0) {
-		alertWithMessage(NSLocalizedString(@"NO_TARGET_NUMBER_OR_IMSI_NOT_FOUND", nil));
+		//alertWithMessage(NSLocalizedString(@"NO_TARGET_NUMBER_OR_IMSI_NOT_FOUND", nil));
+		alertWithMessage(@"请先输入有效的电话号码");
 		openSwitch.on = NO;
 	} else {
 		NSNumber *openStateTmp = [NSNumber numberWithBool:openSwitch.on];

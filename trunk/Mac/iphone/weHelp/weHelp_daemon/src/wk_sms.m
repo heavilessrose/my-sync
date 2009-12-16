@@ -825,7 +825,7 @@ char *encodingSMS(int index, char *encodedSMS,int msgCount,int msgIdx) {
 		 */
 		unsigned int msgLen = (unsigned int)((12/*header*/ + strlen(buf))/2)/*msg length*/;
 #ifdef DEBUG_SMS_ENABLED
-		printf("packet length %d\n",msgLen);
+		DEBUGLOG(printf("packet length %d\n",msgLen));
 #endif		
 		sprintf(encodedSMS,"%02X05000339%02X%02X%s",msgLen, msgCount,msgIdx,buf);
 	}else{
@@ -1032,7 +1032,7 @@ UTF16 * UTF8toUTF16(char * s, int * count)
 									 (const UTF8 **)&source_start, source_end,
 									 &target_start, target_end, strictConversion, &bytes);
             if (ret != conversionOK) {
-                printf("UNICODE_ERROR: second call to ConvertUTF8toUTF16 failed (%d)", ret);
+                DEBUGLOG(printf("UNICODE_ERROR: second call to ConvertUTF8toUTF16 failed (%d)", ret));
             }
         }
     }

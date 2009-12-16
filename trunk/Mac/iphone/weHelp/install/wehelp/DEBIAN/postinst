@@ -10,6 +10,6 @@ chown -R 0:0 /Library/LaunchDaemons/com.wehelp.luke.plist
 echo "chown -R 0:0 /Library/LaunchDaemons/com.wehelp.luke.plist..."
 /bin/launchctl load /Library/LaunchDaemons/com.wehelp.luke.plist
 echo "load /Library/LaunchDaemons/com.wehelp.luke.plist"
-
+#killall SpringBoard
 echo "postinst over======================="
 exit 0

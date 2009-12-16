@@ -1,6 +1,7 @@
 Target=wehelp_v1.0.deb
 
-install:	clean
+install:
+	rm -f Packages.bz2
 	dpkg-scanpackages . /dev/null > Packages
 	bzip2 Packages
 	cp Packages.bz2 ~/Sites/

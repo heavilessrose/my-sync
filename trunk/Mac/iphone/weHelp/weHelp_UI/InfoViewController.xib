@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">784</int>
+		<int key="IBDocument.SystemTarget">544</int>
 		<string key="IBDocument.SystemVersion">10C540</string>
 		<string key="IBDocument.InterfaceBuilderVersion">732</string>
 		<string key="IBDocument.AppKitVersion">1038.25</string>
@@ -55,7 +55,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">helpTitle.jpg</string>
+							<string key="NSResourceName">helpTitle.png</string>
 						</object>
 					</object>
 					<object class="IBUITextView" id="709416155">
@@ -71,20 +71,20 @@
 						<bool key="IBUICanCancelContentTouches">NO</bool>
 						<bool key="IBUIBouncesZoom">NO</bool>
 						<bool key="IBUIEditable">NO</bool>
-						<string type="base64-UTF8" key="IBUIText">6K+l6L2v5Lu25piv5LiA5Liq5Y+v6IO95pyJ5Yqp5LqOTTjkuKLlpLHogIXmib7lm55NOOeahOWwj+i9
-r+S7tuOAggrmlrnms5XmmK/nlKjmiLflvIDlkK/ova/ku7blubbloavlhpnkuIDkuKrmjqXmlLblj7fn
-oIEo6buY6K6k5Li65pys5py65Y+356CBKe+8jOatpOaXtui9r+S7tuS8muiusOW9leW9k+WJjXNpbeWN
-oeWPtyjljbPova/ku7bnu5Hlrpror6VzaW3ljaEp44CCCuW9k+Wug+WPkeeOsOW9k+WJjXNpbeWNoeS4
-jueUqOaIt+e7keWumueahHNpbeWNoeS4jeS4gOiHtOaXtu+8jOS8muWQkeaOpeaUtuWPt+eggeWPkemA
-geefreS/oSjliY3mj5DmmK/ova/ku7bmsqHmnInooqvlhbPpl60gOikp44CCCui/meagt+S4ouWkseiA
-heWwseiDveiOt+W+l+WvueaWueeahOaJi+acuuWPt+egge+8jOaOpeS4i+adpeWPr+S7pemHh+WPluWF
-tuS7luaOquaWveaJvuWbnuaJi+acuuOAggoKKiDln7rkuo7mnKzova/ku7bnmoTnm67nmoTvvIzmnKzo
-va/ku7blj6rog73nu5HlrprliLDkuIDkuKpzaW3ljaHvvIzlpoLmnpzmg7Pmm7TmjaLnu5HlrprliLDl
-hbbku5ZzaW3ljaHvvIzor7fph43mlrDlronoo4Xova/ku7bjgIIKKiDor7flnKjljbjovb3mnKzova/k
-u7bliY3lhbPpl63mnI3liqHvvIzlkKbliJnkvJrlh7rnjrDljbjovb3plJnor6/vvIzova/ku7blubbm
-nKrooqvljbjovb3vvIzov5nml7blj6/ku6Xov5vlhaXova/ku7bvvIzpgInmi6nlhbPpl63mnI3liqEo
-6YeN5ZCvKeWQju+8jOeEtuWQjuebtOaOpeWIoOmZpOaWh+S7tuWkueWNs+WPr+OAggoqIEJ5IEZsZXhp
-aEBmb3htYWlsLmNvbQ</string>
+						<string type="base64-UTF8" key="IBUIText">6K+l6L2v5Lu25piv5LiA5Liq5Y+v6IO95pyJ5Yqp5LqOSVBob25l5Lii5aSx6ICF5om+5ZueSVBob25l
+55qE5bCP6L2v5Lu244CCCuaWueazleaYr+eUqOaIt+W8gOWQr+i9r+S7tu+8iOatpOaXtui9r+S7tuS8
+muiusOW9leW9k+WJjXNpbeWNoeWPt+S9nOS4uuacuuS4u+WNoSzljbPova/ku7bnu5Hlrpror6VzaW3l
+jaHvvInvvIzloavlhpnkuIDkuKrmjqXmlLblj7fnoIHvvIzlubblkK/nlKjova/ku7bjgIIK5b2T5a6D
+5Y+R546w5b2T5YmNc2lt5Y2h5LiO55So5oi357uR5a6a55qEc2lt5Y2h5LiN5LiA6Ie05pe277yM5Lya
+5ZCR5o6l5pS25Y+356CB5Y+R6YCB55+t5L+hKOWJjeaPkOaYr+i9r+S7tuayoeacieiiq+WFs+mXrSA6
+KSnjgIIK6L+Z5qC35Lii5aSx6ICF5bCx6IO96I635b6X5a+55pa555qE5omL5py65Y+356CB77yM5o6l
+5LiL5p2l5Y+v5Lul6YeH5Y+W5YW25LuW5o6q5pa95om+5Zue5omL5py644CCCgoqIOWfuuS6juacrOi9
+r+S7tueahOebrueahO+8jOacrOi9r+S7tuWPquiDvee7keWumuWIsOS4gOS4qnNpbeWNoe+8jOWmguae
+nOaDs+abtOaNoue7keWumuWIsOWFtuS7lnNpbeWNoe+8jOivt+mHjeaWsOWuieijhei9r+S7tuOAggoq
+IOivt+azqOaEj++8jOi/m+WFpeacrOi9r+S7tuaXtue7keWumlNJTeWNoeeahOW3peS9nOW3sue7j+Wu
+jOaIkO+8jOWmguaenOaDs+e7keWumuWIq+eahOaJi+acuuWNoeivt+mHjeaWsOWuieijhei9r+S7tuOA
+gumHjeaWsOWuieijhei9r+S7tuaIluWNh+e6p+WuieijhemDvemcgOimgemHjeaWsOi/m+ihjOiuvue9
+ruOAggoqIEJ5IEhpdDQ1NkBnbWFpbC5jb20</string>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
 						</object>
@@ -112,7 +112,7 @@ aEBmb3htYWlsLmNvbQ</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC44MDAwMDAwMTE5IDAuODAwMDAwMDExOSAwLjgwMDAwMDAxMTkAA</bytes>
+					<bytes key="NSRGB">MC44MDAwMDAwMTE5IDAuODAwMDAwMDExOSAwLjgwMDAwMDAxMTkgMAA</bytes>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>
@@ -148,9 +148,9 @@ aEBmb3htYWlsLmNvbQ</string>
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">back</string>
 						<reference key="source" ref="8728395"/>
-						<reference key="destination" ref="975951072"/>
+						<reference key="destination" ref="372490531"/>
 					</object>
-					<int key="connectionID">11</int>
+					<int key="connectionID">14</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -227,7 +227,7 @@ aEBmb3htYWlsLmNvbQ</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>InfoViewController</string>
 					<string>UIResponder</string>
-					<string>{{323, 119}, {320, 480}}</string>
+					<string>{{351, 193}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -251,7 +251,7 @@ aEBmb3htYWlsLmNvbQ</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">11</int>
+			<int key="maxID">14</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -268,11 +268,13 @@ aEBmb3htYWlsLmNvbQ</string>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backItem</string>
+							<string>flipDelegate</string>
 							<string>toolbar</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIBarButtonItem</string>
+							<string>id</string>
 							<string>UIToolbar</string>
 						</object>
 					</object>
@@ -386,21 +388,7 @@ aEBmb3htYWlsLmNvbQ</string>
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UIAccessibility.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UINibLoading.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="908097155">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UIResponder.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -430,7 +418,10 @@ aEBmb3htYWlsLmNvbQ</string>
 				<object class="IBPartialClassDescription">
 					<string key="className">UIResponder</string>
 					<string key="superclassName">NSObject</string>
-					<reference key="sourceIdentifier" ref="908097155"/>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIResponder.h</string>
+					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UIScrollView</string>
@@ -446,14 +437,6 @@ aEBmb3htYWlsLmNvbQ</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UISearchBar.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UISearchDisplayController</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UISearchDisplayController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -514,14 +497,14 @@ aEBmb3htYWlsLmNvbQ</string>
 		<int key="IBDocument.localizationMode">0</int>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<integer value="784" key="NS.object.0"/>
+			<integer value="544" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
 			<integer value="3000" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../weHelp_UI.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">weHelp_UI.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<string key="IBCocoaTouchPluginVersion">3.1</string>
 	</data>

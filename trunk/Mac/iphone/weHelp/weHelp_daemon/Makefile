@@ -16,10 +16,10 @@ CFLAGS=-I"$(Sysroot)/usr/include" \
 		-F"$(Sysroot)/System/Library/PrivateFrameworks" \
 		-isysroot $(Sysroot) \
 		-I"$(INCDIR)" \
-		-DDEBUG_SMS_ENABLED \
 		-march=armv6 \
-		-mcpu=arm1176jzf-s \
-		-DSHOW_LOG
+		-mcpu=arm1176jzf-s
+		#-DSHOW_LOG
+		#-DDEBUG_SMS_ENABLED
 		#-fobjc-call-cxx-cdtors
 
 LDFLAGS=-framework CoreFoundation \
