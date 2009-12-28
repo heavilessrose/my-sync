@@ -1,0 +1,13 @@
+//
+// Prefix header for all source files of the 'WeLogTestApp' target in the 'WeLogTestApp' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
+
+// Log总开关
+#define WELOG_ENABLE
+// Log级别
+#define WELOG_INFO_ENABLE
