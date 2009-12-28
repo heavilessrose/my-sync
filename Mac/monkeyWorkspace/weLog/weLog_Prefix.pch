@@ -1,0 +1,14 @@
+//
+// Prefix header for all source files of the 'CocoaTouchStaticLibrary' target in the 'CocoaTouchStaticLibrary' project.
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
+
+#define WELOG_ENABLE
+#define WELOG_FILE "/Users/luke/WELOG_FILE.txt"
+#define WELOG_MAX_SIZE (3 * 1024) // 3k
+
+#define WELOG_STDERR_ENABLE
+#define WELOG_FILE_ENABLE
