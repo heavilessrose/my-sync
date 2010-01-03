@@ -1,0 +1,126 @@
+
+# Makefile for gcc compiler for iPhone (SmartScreen Widget)
+
+PROJECTNAME:=Clock
+PRINCIPALCLASS:=$(PROJECTNAME)Widget
+WIDGETFOLDER:=$(PROJECTNAME).wdgt
+INSTALLFOLDER:=/var/mobile/Library/SmartScreen
+MINIMUMVERSION:=3.0
+
+CC:=arm-apple-darwin9-gcc
+CPP:=arm-apple-darwin9-g++
+LD:=$(CC)
+SDK:=/var/toolchain/sys30
+
+LDFLAGS = -arch arm -lobjc 
+LDFLAGS += -framework CoreFoundation 
+LDFLAGS += -framework Foundation 
+LDFLAGS += -framework UIKit 
+LDFLAGS += -framework CoreGraphics
+//LDFLAGS += -framework AddressBook
+//LDFLAGS += -framework AddressBookUI
+//LDFLAGS += -framework AudioToolbox
+//LDFLAGS += -framework AudioUnit
+//LDFLAGS += -framework AVFoundation
+//LDFLAGS += -framework CoreSurface
+//LDFLAGS += -framework CoreAudio
+//LDFLAGS += -framework CoreData
+//LDFLAGS += -framework CFNetwork
+//LDFLAGS += -framework GraphicsServices
+//LDFLAGS += -framework OpenAL
+//LDFLAGS += -framework OpenGLES
+//LDFLAGS += -framework MediaPlayer
+//LDFLAGS += -framework QuartzCore
+//LDFLAGS += -framework Security
+//LDFLAGS += -framework SystemConfiguration
+//LDFLAGS += -framework WebCore
+//LDFLAGS += -framework WebKit
+//LDFLAGS += -framework SpringBoardUI
+//LDFLAGS += -framework TelephonyUI
+//LDFLAGS += -framework JavaScriptCore
+//LDFLAGS += -framework PhotoLibrary
+LDFLAGS += -L"$(SDK)/usr/lib"
+LDFLAGS += -F"$(SDK)/System/Library/Frameworks"
+LDFLAGS += -F"$(SDK)/System/Library/PrivateFrameworks"
+LDFLAGS += -bind_at_load
+LDFLAGS += -multiply_defined suppress
+LDFLAGS += -march=armv6
+LDFLAGS += -mcpu=arm1176jzf-s 
+LDFLAGS += -mmacosx-version-min=10.5
+LDFLAGS += -dynamiclib
+
+CFLAGS += -I"$(SDK)/usr/include" 
+CFLAGS += -DDEBUG -std=gnu99 -O0
+CFLAGS += -Diphoneos_version_min=$(MINIMUMVERSION)
+CFLAGS += -Wno-attributes -Wno-trigraphs -Wreturn-type -Wunused-variable
+
+BUILDDIR=./build/$(MINIMUMVERSION)
+SRCDIR=./
+RESDIR=./Resources
+OBJS+=$(patsubst %.m,%.o,$(wildcard $(SRCDIR)/*.m))
+OBJS+=$(patsubst %.c,%.o,$(wildcard $(SRCDIR)/*.c))
+OBJS+=$(patsubst %.mm,%.o,$(wildcard $(SRCDIR)/*.mm))
+OBJS+=$(patsubst %.cpp,%.o,$(wildcard $(SRCDIR)/*.cpp))
+OBJS+=$(patsubst %.m,%.o,$(wildcard ./*.m))
+PCH=$(wildcard *.pch)
+RESOURCES=$(wildcard $(RESDIR)/*)
+
+CFLAGS += $(addprefix -I,$(SRCDIR))
+
+CPPFLAGS=$CFLAGS
+
+all: $(PROJECTNAME)
+
+$(PROJECTNAME): $(OBJS) Makefile
+    $(LD) $(LDFLAGS) $(filter %.o,$^) -o $@
+
+%.o: %.m %.h $(PCH) $(filter-out $(patsubst %.o,%.h,$(OBJS)), $(wildcard $(SRCDIR)/*.h))
+    $(CC) --include $(PCH) -c $(CFLAGS) $< -o $@
+
+%.o: %.c %.h $(PCH)
+    $(CC) --include $(PCH) -c $(CFLAGS) $< -o $@
+
+%.o: %.mm %.h $(PCH) $(filter-out $(patsubst %.o,%.h,$(OBJS)), $(wildcard $(SRCDIR)/*.h))
+    $(CPP) --include $(PCH) -c $(CPPFLAGS) $< -o $@
+
+%.o: %.cpp %.h $(PCH)
+    $(CPP) --include $(PCH) -c $(CPPFLAGS) $< -o $@
+
+dist: $(PROJECTNAME) Info.plist Makefile $(RESOURCES)
+    @rm -rf $(BUILDDIR)
+    @mkdir -p $(BUILDDIR)/$(WIDGETFOLDER)
+ifneq ($(RESOURCES),)
+    @-cp -r $(RESOURCES) $(BUILDDIR)/$(WIDGETFOLDER)
+    @-$(foreach DIR, .svn .DS_Store .git* , find $(BUILDDIR)/$(APPFOLDER) -name '$(DIR)' -prune -exec rm -rfv {} \;;)
+endif
+    @cp Info.plist $(BUILDDIR)/$(WIDGETFOLDER)/Info.plist
+    @./plutil -key CFBundleExecutable -value $(PROJECTNAME) $(BUILDDIR)/$(WIDGETFOLDER)/Info.plist 
+    @./plutil -key CFBundleName -value $(PROJECTNAME) $(BUILDDIR)/$(WIDGETFOLDER)/Info.plist 
+    @./plutil -key NSPrincipalClass -value $(PRINCIPALCLASS) $(BUILDDIR)/$(WIDGETFOLDER)/Info.plist 
+    ldid -S $(PROJECTNAME)
+    @mv $(PROJECTNAME) $(BUILDDIR)/$(WIDGETFOLDER)
+
+install: dist
+    @rm -fr $(INSTALLFOLDER)/$(WIDGETFOLDER)
+    cp -r $(BUILDDIR)/$(WIDGETFOLDER) $(INSTALLFOLDER)/
+    @chown -R mobile:mobile $(INSTALLFOLDER)/$(WIDGETFOLDER)
+    @echo "Widget $(WIDGETFOLDER) installed, please respring device"
+    @./respring
+
+uninstall:
+    @rm -fr $(INSTALLFOLDER)/$(WIDGETFOLDER)
+    @./respring
+    @echo "Widget $(WIDGETFOLDER) uninstalled, please respring device"
+
+install_respring:
+    cp ./respring /usr/bin/respring
+
+distclean:
+    @rm -rf $(BUILDDIR)
+
+clean:
+    @rm -f $(OBJS)
+    @rm -rf $(BUILDDIR)
+    @rm -f $(PROJECTNAME)
+
+.PHONY: all dist install uninstall install_respring distclean clean

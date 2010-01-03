@@ -46,7 +46,7 @@ ssh root@10.0.2.2 'mkdir -p .ssh'
 then enter iPhone root password (alpine)
 
 (c) copy mac public key to iPhone, and in Mac Terminal type
-cat ~/.ssh/id_rsa.pub | ssh root@10.0.2.2 'cat >> .ssh/authorized_keys'
+cat ~/.ssh/id_rsa.pub | ssh root@192.168.10.251 'cat >> .ssh/authorized_keys'
 then enter iPhone root password (alpine)
 
 (d) Edit the file /etc/ssh/sshd_config in iPhone
