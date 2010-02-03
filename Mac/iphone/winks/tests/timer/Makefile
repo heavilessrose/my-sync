@@ -2,7 +2,7 @@ CC=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-gc
 CXX=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-g++-4.0.1
 LD=$(CC)
 
-IP=192.168.1.109
+IP=192.168.10.184
 PROJECTNAME=timer
 SDKVER=2.2.1
 
@@ -18,11 +18,11 @@ LDFLAGS=-framework CoreFoundation \
 		-bind_at_load \
 		-isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS$(SDKVER).sdk
 
-all:	install
+all:	clean $(PROJECTNAME) install
 
 install:
 	ldid_intel -S $(PROJECTNAME)
-	scp $(PROJECTNAME) root@$(IP):~/tests/
+	scp $(PROJECTNAME) root@$(IP):~/
 
 $(PROJECTNAME):	$(PROJECTNAME).o
 	$(LD) $(LDFLAGS) -o $@ $^
@@ -31,4 +31,4 @@ $(PROJECTNAME):	$(PROJECTNAME).o
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 clean:
-	rm *.o $(PROJECTNAME)
+	rm -f *.o $(PROJECTNAME)
