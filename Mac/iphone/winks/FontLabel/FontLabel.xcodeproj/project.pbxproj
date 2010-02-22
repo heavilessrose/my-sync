@@ -29,8 +29,6 @@
 		A32E84E01118208500AC2D91 /* Paint Boy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A32E84D91118208500AC2D91 /* Paint Boy.ttf */; };
 		A32E84E11118208500AC2D91 /* Schwarzwald Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A32E84DA1118208500AC2D91 /* Schwarzwald Regular.ttf */; };
 		A32E84E21118208500AC2D91 /* Scissor Cuts.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A32E84DB1118208500AC2D91 /* Scissor Cuts.ttf */; };
-		A32E84E51118209200AC2D91 /* TextMate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A32E84E31118209200AC2D91 /* TextMate.ttf */; };
-		A32E84E61118209200AC2D91 /* 华文楷体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A32E84E41118209200AC2D91 /* 华文楷体.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +66,6 @@
 		A32E84D91118208500AC2D91 /* Paint Boy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Paint Boy.ttf"; path = "Resources/Paint Boy.ttf"; sourceTree = "<group>"; };
 		A32E84DA1118208500AC2D91 /* Schwarzwald Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Schwarzwald Regular.ttf"; path = "Resources/Schwarzwald Regular.ttf"; sourceTree = "<group>"; };
 		A32E84DB1118208500AC2D91 /* Scissor Cuts.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Scissor Cuts.ttf"; path = "Resources/Scissor Cuts.ttf"; sourceTree = "<group>"; };
-		A32E84E31118209200AC2D91 /* TextMate.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = TextMate.ttf; path = ../TextMate.ttf; sourceTree = SOURCE_ROOT; };
-		A32E84E41118209200AC2D91 /* 华文楷体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "华文楷体.ttf"; path = "../华文楷体.ttf"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +136,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A32E84E31118209200AC2D91 /* TextMate.ttf */,
-				A32E84E41118209200AC2D91 /* 华文楷体.ttf */,
 				A32E84D51118208500AC2D91 /* A Damn Mess.ttf */,
 				A32E84D61118208500AC2D91 /* Abberancy.ttf */,
 				A32E84D71118208500AC2D91 /* Abduction.ttf */,
@@ -262,8 +256,6 @@
 				A32E84E01118208500AC2D91 /* Paint Boy.ttf in Resources */,
 				A32E84E11118208500AC2D91 /* Schwarzwald Regular.ttf in Resources */,
 				A32E84E21118208500AC2D91 /* Scissor Cuts.ttf in Resources */,
-				A32E84E51118209200AC2D91 /* TextMate.ttf in Resources */,
-				A32E84E61118209200AC2D91 /* 华文楷体.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

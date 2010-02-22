@@ -116,12 +116,12 @@ static FontManager *sharedFontManager = nil;
 		// 已匹配外部字体
 		url = [urls objectForKey:filename];
 	}
-	test = @"url == nil";
+	test = @"url==nil";
 	if (url != nil) {
 		CGFontRef cgFont = (CGFontRef)CFDictionaryGetValue(fonts, url);
 		test = @"cgFont == NULL";
 		if (cgFont != NULL) {
-			test = @"got cgFont";
+			test = [@"got cgFont:" stringByAppendingFormat:@"%@", filename];
 			return [ZFont fontWithCGFont:cgFont size:pointSize];
 		}
 	}

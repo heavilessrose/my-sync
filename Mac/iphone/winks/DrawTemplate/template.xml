@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="winkslayout.xsd">
+	<canvas>
+		<rect>
+			<d>0,0,320,270</d>
+			<border-width>1</border-width>
+			<border-color>#656565</border-color>
+		</rect>
+			
+<!--Show greeting-->
+        		
+		<text>
+	        <d>223,134,84,35</d>
+			<sref>greeting</sref>
+			<align>center</align> 
+			<overflow>scroll</overflow> 
+			<font>
+			 <size>14</size>
+		 	</font>
+		</text> 
+	
+<!--Show Winks -->		
+		<media>
+			<d>11,7,240,236</d>
+			<sref>winks</sref>
+		</media>
+		
+	</canvas>
+</page>
