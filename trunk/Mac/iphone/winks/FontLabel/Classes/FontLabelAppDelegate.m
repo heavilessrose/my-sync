@@ -24,8 +24,8 @@
 #import "FontLabelViewController.h"
 #import "FontManager.h"
 
-NSString *test = @"成功";
-NSString *initstr = @"成功";
+NSString *test = @"start test";
+NSString *initstr = @"start init";
 
 @implementation FontLabelAppDelegate
 

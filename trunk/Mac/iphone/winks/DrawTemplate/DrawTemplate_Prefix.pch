@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'DrawTemplate' target in the 'DrawTemplate' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+	#import <UIKit/UIKit.h>
+//#define NDEBUG // Assert开关
+#endif
