@@ -13,7 +13,7 @@
 
 @implementation GifView
 
-@synthesize plView;
+@synthesize plView, gMedia;
 
 - (int)prepareGifLayer:(PlayerView *)pplView gifPath:(NSString *)pgifpath
 {
@@ -43,6 +43,15 @@
 		}
 	}
 	return 0;
+}
+
+- (id)initWithSection:(Winks_CCDW_Media_s *)pSection
+{
+	gMedia = pSection;
+	id instance = [self initWithFrame:CGRectMake(gMedia->base.Section.x, gMedia->base.Section.y, 
+												 gMedia->base.Section.w, gMedia->base.Section.h)];
+	
+	return instance;
 }
 
 - (id)initWithFrame:(CGRect)frame {
