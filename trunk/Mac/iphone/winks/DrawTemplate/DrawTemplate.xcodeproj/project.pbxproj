@@ -13,6 +13,7 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		2899E5220DE3E06400AC0155 /* DrawTemplateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* DrawTemplateViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		A3D4668B1133800600A2895C /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D4668A1133800600A2895C /* ImageView.m */; };
 		A3EE1B13113257F600C5C707 /* wk_xml.c in Sources */ = {isa = PBXBuildFile; fileRef = A3EE1ACD113257F500C5C707 /* wk_xml.c */; };
 		A3EE1B16113257F600C5C707 /* wk_iphoneccdrw.c in Sources */ = {isa = PBXBuildFile; fileRef = A3EE1AD3113257F500C5C707 /* wk_iphoneccdrw.c */; };
 		A3EE1B17113257F600C5C707 /* UIShow_template.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE1AD5113257F600C5C707 /* UIShow_template.m */; };
@@ -55,6 +56,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* DrawTemplate_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawTemplate_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* DrawTemplate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrawTemplate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A3D466891133800600A2895C /* ImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
+		A3D4668A1133800600A2895C /* ImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageView.m; sourceTree = "<group>"; };
 		A3EE1ACD113257F500C5C707 /* wk_xml.c */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.c; path = wk_xml.c; sourceTree = "<group>"; };
 		A3EE1ACE113257F500C5C707 /* wk_xml.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; path = wk_xml.h; sourceTree = "<group>"; };
 		A3EE1AD3113257F500C5C707 /* wk_iphoneccdrw.c */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.c; path = wk_iphoneccdrw.c; sourceTree = "<group>"; };
@@ -140,10 +143,10 @@
 				A3EE1ADB113257F600C5C707 /* include */,
 				A3EE1AE9113257F600C5C707 /* glgif */,
 				A3EE1AF8113257F600C5C707 /* engine */,
-				A3EE1AFE113257F600C5C707 /* DrawTemplateViewController.m */,
-				A3EE1AFF113257F600C5C707 /* DrawTemplateViewController.h */,
-				A3EE1B00113257F600C5C707 /* DrawTemplateAppDelegate.m */,
 				A3EE1B01113257F600C5C707 /* DrawTemplateAppDelegate.h */,
+				A3EE1B00113257F600C5C707 /* DrawTemplateAppDelegate.m */,
+				A3EE1AFF113257F600C5C707 /* DrawTemplateViewController.h */,
+				A3EE1AFE113257F600C5C707 /* DrawTemplateViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -264,8 +267,8 @@
 				A3EE1AF9113257F600C5C707 /* wk_engin.h */,
 				A3EE1AFA113257F600C5C707 /* wk_engin.m */,
 				A3EE1AFB113257F600C5C707 /* wk_socketengin.m */,
-				A3EE1AFC113257F600C5C707 /* wk_template_api.c */,
 				A3EE1AFD113257F600C5C707 /* wk_template_api.h */,
+				A3EE1AFC113257F600C5C707 /* wk_template_api.c */,
 			);
 			path = engine;
 			sourceTree = "<group>";
@@ -273,6 +276,8 @@
 		A3EE1B02113257F600C5C707 /* draws */ = {
 			isa = PBXGroup;
 			children = (
+				A3EE1B0D113257F600C5C707 /* wk_osdraw.h */,
+				A3EE1B0E113257F600C5C707 /* wk_osdraw.m */,
 				A3EE1B03113257F600C5C707 /* BgView.h */,
 				A3EE1B04113257F600C5C707 /* BgView.m */,
 				A3EE1B05113257F600C5C707 /* GifView.h */,
@@ -283,10 +288,10 @@
 				A3EE1B0A113257F600C5C707 /* PlayerView.mm */,
 				A3EE1B0B113257F600C5C707 /* QuartzView.h */,
 				A3EE1B0C113257F600C5C707 /* QuartzView.m */,
-				A3EE1B0D113257F600C5C707 /* wk_osdraw.h */,
-				A3EE1B0E113257F600C5C707 /* wk_osdraw.m */,
 				A3EE1C551132938300C5C707 /* RectView.h */,
 				A3EE1C561132938300C5C707 /* RectView.m */,
+				A3D466891133800600A2895C /* ImageView.h */,
+				A3D4668A1133800600A2895C /* ImageView.m */,
 			);
 			path = draws;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 				A3EE1B2A113257F600C5C707 /* QuartzView.m in Sources */,
 				A3EE1B2B113257F600C5C707 /* wk_osdraw.m in Sources */,
 				A3EE1C571132938300C5C707 /* RectView.m in Sources */,
+				A3D4668B1133800600A2895C /* ImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

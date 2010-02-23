@@ -13,6 +13,7 @@
 #import "draws/BgView.h"
 #import "draws/GreetView.h"
 #import "draws/GifView.h"
+#import "draws/RectView.h"
 #import "MyLog.h"
 
 @implementation DrawTemplateViewController
@@ -139,9 +140,6 @@ const int CCDW_DrawType[] =
 // 依次绘制Winks_CCDW_RgBase_s链表
 - (int)ccsw_draw:(Winks_CCDW_Global_s *)pCCDW
 {
-	//	while (Winks_CCDW_DrawFunc[i].type > 0) {
-	//		
-	//	}
 	Winks_CCDW_RgBase_s* pBase = pCCDW->pRegion;
 	
 	while (pBase) {
@@ -149,7 +147,7 @@ const int CCDW_DrawType[] =
         pBase = pBase->pnext;
 	}
 	
-	
+	/*
 	CGRect showRect = CGRectMake(0, 30, 320, 270);
 	
 	// 背景色
@@ -173,10 +171,11 @@ const int CCDW_DrawType[] =
 	GreetView *greetview = [[GreetView alloc] initWithFrame:showRect];
 	[self.view addSubview:greetview];
 	[greetview release];
-	
+	*/
 	return 0;
 }
 
+// 确定pBase类型调用相应的绘制方法
 - (int)ccdw_draw:(Winks_CCDW_RgBase_s *)pBase
 {
 	int i = 0;
@@ -187,18 +186,22 @@ const int CCDW_DrawType[] =
 		if(WK_CCDW_RGTYPE_RECT == pBase->type)
 		{
 			[self ccdw_drawRect:pBase];
+			return 0;
 		} 
-		else if (WK_CCDW_RGTYPE_TEXT == pBase->type)
+		if (WK_CCDW_RGTYPE_TEXT == pBase->type)
 		{
 			[self ccdw_drawText:pBase];
+			return 0;
 		} 
-		else if (WK_CCDW_RGTYPE_MEDIA == pBase->type) 
+		if (WK_CCDW_RGTYPE_MEDIA == pBase->type) 
 		{
 			[self ccdw_drawMedia:pBase];
-		} 
-		else if (WK_CCDW_RGTYPE_WINKS == pBase->type) 
+			return 0;
+		}
+		if (WK_CCDW_RGTYPE_WINKS == pBase->type) 
 		{
 			[self ccdw_drawMedia:pBase];
+			return 0;
 		}
 		i++;
 	}
@@ -207,16 +210,21 @@ const int CCDW_DrawType[] =
 
 - (int)ccdw_drawRect:(Winks_CCDW_RgBase_s *)pSection
 {
-	
+	RectView *rectview = [[RectView alloc] initWithSection:(Winks_CCDW_Rect_s *)pSection];
+	[self.view addSubview:rectview];
+	[rectview release];
 	return 0;
 }
 
 - (int)ccdw_drawText:(Winks_CCDW_RgBase_s *)pSection
 {
-	
+	GreetView *greetview = [[GreetView alloc] initWithSection:(Winks_CCDW_Text_s *)pSection];
+	[self.view addSubview:greetview];
+	[greetview release];
 	return 0;
 }
 
+// 静态图及gif
 - (int)ccdw_drawMedia:(Winks_CCDW_RgBase_s *)pSection
 {
 	

@@ -1853,7 +1853,7 @@ int Winks_GetShowElement(char *number, unsigned long extDataFlag, char *eTag, un
 						 char * eDataBuf, unsigned long* eDataBufSize, char *tIdBuf, unsigned long tIdBufSize)
 {
 	//for test
-	char file[] = "/Users/qingjunpan/ImgWorkhard.gif";
+	char file[] = "/Users/luke/ImgWorkhard.gif";
 	int fileLen = strlen(file) + 1;
 	memcpy(eDataBuf, file, fileLen);
 	*eDataBufSize = fileLen;

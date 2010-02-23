@@ -32,7 +32,7 @@
 	CGContextRestoreGState(context);
 	draw_frame(self.bounds, 0x00ff00ff);
 	//winks_ui_drawRect(0, 30, 20, 50, 0x00ff00ff);
-	CGContextRestoreGState(context);
+	//CGContextRestoreGState(context);
 }
 
 

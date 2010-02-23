@@ -168,6 +168,8 @@ void winks_ui_drawDashRect(int LeftTop_x, int LeftTop_y, int RightBottom_x, int 
 {
 	if(line_height <= 0)
         return;
+	
+	set_curColor(v_Color);
 	switch (line_style) {
 			CGRect rect;
 			// 实线矩形
@@ -245,12 +247,14 @@ void winks_ui_drawGraphicFromFile (int v_Top, int v_Left, const char *file_name)
 // 画文字
 void winks_ui_textOutlen(int x, int y, const char * text, int len)
 {
-	CGContextSaveGState(_context);
-	CGContextSetFillColorWithColor(_context, [[UIColor whiteColor] CGColor]);
+	//CGContextSaveGState(_context);
+	//CGContextSetFillColorWithColor(_context, [[UIColor whiteColor] CGColor]);
 	
 	NSString *nstext = [NSString stringWithCString:text encoding:NSUTF8StringEncoding];
-	[nstext drawAtPoint:CGPointMake(x, y) withFont:[UIFont fontWithName:@"Zapfino" size:20]];
-	
+	//[nstext drawAtPoint:CGPointMake(x, y) withFont:[UIFont fontWithName:@"Zapfino" size:20]];
+	[nstext drawAtPoint:CGPointMake(x, y) withFont:[UIFont systemFontOfSize:[UIFont buttonFontSize]]];
+//	[nstext drawInRect:nstext withFont:[UIFont systemFontOfSize:[UIFont buttonFontSize]] 
+//		  lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
 	/*
 	 char *commentsMsg = (char *)text;
 	 UIFont *commentsFont = [UIFont systemFontOfSize:7.0];
@@ -266,7 +270,8 @@ void winks_ui_textOutlen(int x, int y, const char * text, int len)
 	 CGContextShowTextAtPoint(_context, x, y, commentsMsg, strlen(commentsMsg));
 	 */
 	//UIGraphicsGetImageFromCurrentImageContext();
-	CGContextRestoreGState(_context);
+	
+	//CGContextRestoreGState(_context);
 }
 
 /*************************************************************************************\

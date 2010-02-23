@@ -170,6 +170,7 @@ int Winks_sprintf(char * pStr, const char *fmt, ...)
 	return 0;
 }
 
+
 void winks_ui_handle_scrolling_text(winks_scrolling_text_s *s)
 {
 	
@@ -183,7 +184,7 @@ int Winks_GetSysDateTime(Winks_DateTime_s *dateTime_p)
 
 int Winks_Utf2UnicodeString(const char *in_utf8, char *out_unicode, unsigned int size)
 {
-	
+
 	return 0;
 }
 
