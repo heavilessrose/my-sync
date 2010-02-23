@@ -56,10 +56,15 @@ void winks_ui_fillRect(int LeftTop_x,int LeftTop_y,int RightBottom_x, int RightB
 void winks_ui_drawDashRect(int LeftTop_x,int LeftTop_y,int RightBottom_x, int RightBottom_y, unsigned int v_Color ,
 						   int line_height,int line_style);
 void set_curColor(unsigned int pcolor);
+
+//void winks_ui_handle_scrolling_text(winks_scrolling_text_s *s);
+
 void clear_rect(int LeftTop_x,int LeftTop_y,int RightBottom_x, int RightBottom_y);
 void _clear_rect(CGRect prect);
 // 画图片
 void winks_ui_drawGraphicFromFile (int v_Top, int v_Left, const char *file_name);
 // 画文字
 void winks_ui_textOutlen(int x, int y, const char * text, int len);
+
+
 #endif
