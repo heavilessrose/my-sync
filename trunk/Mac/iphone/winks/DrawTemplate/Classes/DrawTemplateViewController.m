@@ -227,7 +227,9 @@ const int CCDW_DrawType[] =
 // 静态图及gif
 - (int)ccdw_drawMedia:(Winks_CCDW_RgBase_s *)pSection
 {
-	
+	GifView *gifview = [[GifView alloc] initWithSection:(Winks_CCDW_Media_s *)pSection];
+	[self.view addSubview:gifview];
+	[gifview release];
 	return 0;
 }
 

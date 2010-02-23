@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "PlayerView.h"
+#import "wk_iphoneccshw.h"
 
 
 @interface GifView : UIView {
 	PlayerView *plView;
+	Winks_CCDW_Media_s *gMedia;
 }
 
-@property(nonatomic, retain)PlayerView *plView;
+@property (nonatomic, retain) PlayerView *plView;
+@property (nonatomic, assign) Winks_CCDW_Media_s *gMedia;
 
 - (int)prepareGifLayer:(PlayerView *)mainLayer gifPath:(NSString *)pgifpath;
+- (id)initWithSection:(Winks_CCDW_Media_s *)pSection;
 
 @end
