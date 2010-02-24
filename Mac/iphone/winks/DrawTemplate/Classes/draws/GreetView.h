@@ -26,6 +26,11 @@
 
 - (void)getGreetingStyles;
 - (void)renderGreeting:(NSString *)greeting width:(int)greetingWidth;
+- (void)drawCrollUp:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align;
+- (void)drawCrollLeft:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align;
+
 - (void)timerFireMethod:(NSTimer*)theTimer;
 - (void)disposeGreetTimer;
+
+
 @end

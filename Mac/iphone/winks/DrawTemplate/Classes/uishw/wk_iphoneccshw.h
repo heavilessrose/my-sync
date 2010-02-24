@@ -37,12 +37,14 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 #define WINKS_FALSE 0   /* 假(否) */
 
 //from wk_osal.h
+#define WK_WG_NOWRAP 0
 #define WK_WG_WRAP   1//折叠
 
 #define WK_WG_FONTRIGHTTRUNC    4       //从右边截断
 #define WK_WG_GRADIENTCOLORANIMATION   1 //彩色色块在文字上滚动
 #define WK_WG_FONTLEFTSCROLL    1       //从左向右滚动
 #define WK_WG_FONTRIGHTSCROLL   2       //从右向左滚动
+#define WK_WG_FONTUPSCROLL 3 // 从下向上滚动
 #define WK_WG_TEXTCOLORSLIDE   2//每个文字每秒显示不同的颜色
 #define WINKS_NEEDSCROLLING_FLAG   1   //显示文本需要滚动
 #define WK_WG_STRETCH_NONE  0//默认

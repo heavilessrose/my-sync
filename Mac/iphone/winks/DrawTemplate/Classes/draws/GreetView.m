@@ -141,8 +141,10 @@ static int utf2UnicodeString(const char *in_utf8, char *out_unicode, unsigned in
 }
 
 #define CROLL_STEP 2
-static int drawPoint = 0;
-static int drawPoint_continue = 0;
+static int drawPoint_x = 0;
+static int drawPoint_y = 0;
+static int drawPoint_continue_x = 0;
+static int drawPoint_continue_y = 0;
 
 - (void)renderGreeting:(NSString *)greeting width:(int)greetingWidth
 {
@@ -151,8 +153,10 @@ static int drawPoint_continue = 0;
 	// 默认居中
 	CGPoint rectPoint = CGPointMake((gText->txtstyle.width - greetingWidth) / 2, 
 									(gText->txtstyle.height - gText->txtstyle.font_feature.size) / 2);
-	if(gText->txtstyle.show_flags == WINKS_SHOW_CENTER)
-	{
+	// 滚动方向
+	int direct = 0;
+	
+	if(gText->txtstyle.show_flags == WINKS_SHOW_CENTER){
 		align = UITextAlignmentCenter;
 		rectPoint.x = (gText->txtstyle.width - greetingWidth) / 2;
 	} else if(gText->txtstyle.show_flags == WINKS_SHOW_RIGHT){
@@ -163,27 +167,115 @@ static int drawPoint_continue = 0;
 		rectPoint.x = 0;
 	}
 	
-	// multiLine
+	
 	// 默认单行
 	CGSize rectSize = CGSizeMake(greetingWidth, gText->txtstyle.height);
+	/*
+	// multiLine
 	if (gText->txtstyle.lineflags == 1) {
 		// WK_WG_MULLINE = 1
 		rectPoint.y = 0;
 		rectSize.width = gText->txtstyle.width;
+		direct = WK_WG_FONTUPSCROLL;
+	}
+	*/
+	// wrap
+	if (gText->txtstyle.wrapflags == WK_WG_WRAP) {
+		rectSize.width = gText->txtstyle.width;
+		rectPoint.y = 0;
+		direct = WK_WG_FONTUPSCROLL;
 	}
 
 	// scroll
 	// 默认向左滚动
-	if (gText->txtstyle.font_feature.way == WK_WG_FONTRIGHTSCROLL && greetingWidth > gText->txtstyle.width) {
-		
-	}
+//	if (gText->txtstyle.font_feature.way == WK_WG_FONTRIGHTSCROLL && greetingWidth > gText->txtstyle.width) {
+//		direct = WK_WG_FONTRIGHTSCROLL;
+//	}
 	
-	if(greetingWidth > gText->txtstyle.width){
-		if(drawPoint < (gText->txtstyle.width/2 + greetingWidth)) {
-			drawPoint += CROLL_STEP;
+	// 滚动
+	CGRect dwRect = CGRectMake(rectPoint.x, rectPoint.y, rectSize.width, rectSize.height);
+	switch (direct) {
+		case WK_WG_FONTLEFTSCROLL:
+		case WK_WG_FONTRIGHTSCROLL:
+			[self drawCrollLeft:greeting withRect:dwRect withAlign:align];
+			break;
+		case WK_WG_FONTUPSCROLL:
+			[self drawCrollUp:greeting withRect:dwRect withAlign:align];
+			break;
+		default:
+		{// 默认不滚动
+			self.greetingTimer = nil;
+			//CGFloat x = (gText->txtstyle.width - gGreetWidth) / 2;
+			/*
+			 [greeting drawAtPoint:CGPointMake(x, (gText->txtstyle.height - gText->txtstyle.font_feature.size) / 2) 
+			 withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size]];
+			 */
+			
+			[greeting drawInRect:CGRectMake(rectPoint.x, rectPoint.y, rectSize.width, rectSize.height) 
+						withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
+				   lineBreakMode:UILineBreakModeClip alignment:align];
+		}
+			break;
+	}
+
+}
+
+- (void)drawCrollUp:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align
+{
+	// 计算所有行总高度
+	CGSize boundingSize = CGSizeMake(rect.size.width, CGFLOAT_MAX);
+	CGSize requiredSize = [greeting sizeWithFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size]
+							   constrainedToSize:boundingSize
+								   lineBreakMode:UILineBreakModeClip];
+	CGFloat requiredHeight = requiredSize.height;
+	
+	rect.size.height = requiredHeight;
+	if (gText->txtstyle.height < requiredHeight) 
+	{
+		// 控制上下移动
+		if (gText->txtstyle.height < requiredHeight + gText->txtstyle.height / 2)
+		{
+			if (drawPoint_y < requiredHeight) {
+				drawPoint_y += CROLL_STEP;
+			} else {
+				drawPoint_y = 0;
+			}
+		}
+		
+		// 滚动
+		if(greetingTimer == nil){
+			NSTimeInterval animationInterval = 2.0 / 60.0;
+			self.greetingTimer = [NSTimer scheduledTimerWithTimeInterval:animationInterval 
+																  target:self 
+																selector:@selector(timerFireMethod:) 
+																userInfo:nil repeats:YES];
+		}
+		if ((drawPoint_continue_y != 0) && drawPoint_continue_y < (gText->txtstyle.width + gGreetWidth)) {
+			drawPoint_continue_y += CROLL_STEP;
+			
+			[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint_continue_y, rect.origin.y - drawPoint_y, rect.size.width, rect.size.height) 
+						withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
+				   lineBreakMode:UILineBreakModeClip alignment:align];
 		} else {
-			drawPoint_continue = drawPoint;
-			drawPoint = 0;
+			drawPoint_continue_y = 0;
+		}
+		
+		[greeting drawInRect:CGRectMake(/*gText->txtstyle.width*/0, rect.origin.y + gText->txtstyle.height - drawPoint_y, rect.size.width, rect.size.height) 
+					withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
+			   lineBreakMode:UILineBreakModeClip alignment:align];
+	}
+}
+
+- (void)drawCrollLeft:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align
+{
+	if((gGreetWidth > gText->txtstyle.width && rect.size.width > gText->txtstyle.width)){
+		// 控制左右移动
+		if(drawPoint_x < (gText->txtstyle.width/2 + gGreetWidth) && (gGreetWidth > gText->txtstyle.width && rect.size.width > gText->txtstyle.width)) 
+		{
+			drawPoint_x += CROLL_STEP;
+		} else {
+			drawPoint_continue_x = drawPoint_x;
+			drawPoint_x = 0;
 		}
 		
 		// 向左滚动画
@@ -194,36 +286,22 @@ static int drawPoint_continue = 0;
 																selector:@selector(timerFireMethod:) 
 																userInfo:nil repeats:YES];
 		}
-		if ((drawPoint_continue != 0) && drawPoint_continue < (gText->txtstyle.width + greetingWidth)) {
-			drawPoint_continue += CROLL_STEP;
+		if ((drawPoint_continue_x != 0) && drawPoint_continue_x < (gText->txtstyle.width + gGreetWidth)) {
+			drawPoint_continue_x += CROLL_STEP;
 			
-			[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint_continue, rectPoint.y, rectSize.width, rectSize.height) 
+			[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint_continue_x, rect.origin.y, rect.size.width, rect.size.height) 
 						withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
 				   lineBreakMode:UILineBreakModeClip alignment:align];
 			
 		}else {
-			drawPoint_continue = 0;
+			drawPoint_continue_x = 0;
 		}
 		
-		[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint, rectPoint.y, rectSize.width, rectSize.height) 
-					withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
-			   lineBreakMode:UILineBreakModeClip alignment:align];
-		
-		
-	}else{
-		self.greetingTimer = nil;
-		//CGFloat x = (gText->txtstyle.width - greetingWidth) / 2;
-		/*
-		[greeting drawAtPoint:CGPointMake(x, (gText->txtstyle.height - gText->txtstyle.font_feature.size) / 2) 
-					 withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size]];
-		*/
-		
-		[greeting drawInRect:CGRectMake(rectPoint.x, rectPoint.y, rectSize.width, rectSize.height) 
+		[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint_x, rect.origin.y, rect.size.width, rect.size.height) 
 					withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
 			   lineBreakMode:UILineBreakModeClip alignment:align];
 	}
 }
-
 #pragma mark timer
 - (void)timerFireMethod:(NSTimer*)theTimer
 {
@@ -238,8 +316,10 @@ static int drawPoint_continue = 0;
 		printf("disposeGreetTimer: timer != nil count = %u start\r\n", [greetingTimer retainCount]);
 		[greetingTimer invalidate];
 		self.greetingTimer = nil;
-		drawPoint = 0;
-		drawPoint_continue = 0;
+		drawPoint_x = 0;
+		drawPoint_y = 0;
+		drawPoint_continue_x = 0;
+		drawPoint_continue_y = 0;
 	}
 	printf("disposeGreetTimer end\r\n");
 }
