@@ -1854,6 +1854,7 @@ int Winks_GetShowElement(char *number, unsigned long extDataFlag, char *eTag, un
 {
 	//for test
 	char file[] = "/Users/luke/ImgWorkhard.gif";
+	//char file[] = "/Users";
 	int fileLen = strlen(file) + 1;
 	memcpy(eDataBuf, file, fileLen);
 	*eDataBufSize = fileLen;
