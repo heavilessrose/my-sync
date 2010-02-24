@@ -168,7 +168,7 @@ void winks_ui_drawDashRect(int LeftTop_x, int LeftTop_y, int RightBottom_x, int 
 {
 	if(line_height <= 0)
         return;
-	
+	CGContextSaveGState(_context);
 	set_curColor(v_Color);
 	switch (line_style) {
 			CGRect rect;
@@ -177,7 +177,7 @@ void winks_ui_drawDashRect(int LeftTop_x, int LeftTop_y, int RightBottom_x, int 
 			// 设置笔触大小
 			CGContextSetLineWidth(_context, (CGFloat)line_height);
 			rect = _makeRect(LeftTop_x, LeftTop_y, RightBottom_x, RightBottom_y);
-			_drawRect(rect, kCGPathStroke, v_Color);
+			_drawRect(rect, kCGPathFillStroke, v_Color);
 			break;
 			// 虚线矩形
 		case 2:
@@ -214,6 +214,7 @@ void winks_ui_drawDashRect(int LeftTop_x, int LeftTop_y, int RightBottom_x, int 
 		default:
 			break;
 	}
+	CGContextRestoreGState(_context);
 }
 
 // 画图片

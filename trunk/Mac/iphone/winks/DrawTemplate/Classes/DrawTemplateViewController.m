@@ -19,6 +19,10 @@
 @implementation DrawTemplateViewController
 Winks_CCSW_Global_s gCCSW;
 
+// 展示区域偏移
+#define SW_START_X 0
+#define SW_START_Y 40
+
 const int CCDW_DrawType[] = 
 {
     WK_CCDW_RGTYPE_RECT,
@@ -29,15 +33,6 @@ const int CCDW_DrawType[] =
     -1
 };
 
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
 #if 0
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -85,14 +80,6 @@ const int CCDW_DrawType[] =
 	[self ccsw_draw:gCCSW.pCCDWglb];
 }
 
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -210,6 +197,7 @@ const int CCDW_DrawType[] =
 
 - (int)ccdw_drawRect:(Winks_CCDW_RgBase_s *)pSection
 {
+	pSection->Section.y += SW_START_Y;
 	RectView *rectview = [[RectView alloc] initWithSection:(Winks_CCDW_Rect_s *)pSection];
 	[self.view addSubview:rectview];
 	[rectview release];
@@ -218,6 +206,7 @@ const int CCDW_DrawType[] =
 
 - (int)ccdw_drawText:(Winks_CCDW_RgBase_s *)pSection
 {
+	pSection->Section.y += SW_START_Y;
 	GreetView *greetview = [[GreetView alloc] initWithSection:(Winks_CCDW_Text_s *)pSection];
 	[self.view addSubview:greetview];
 	[greetview release];
@@ -227,6 +216,7 @@ const int CCDW_DrawType[] =
 // 静态图及gif
 - (int)ccdw_drawMedia:(Winks_CCDW_RgBase_s *)pSection
 {
+	pSection->Section.y += SW_START_Y;
 	GifView *gifview = [[GifView alloc] initWithSection:(Winks_CCDW_Media_s *)pSection];
 	[self.view addSubview:gifview];
 	[gifview release];
