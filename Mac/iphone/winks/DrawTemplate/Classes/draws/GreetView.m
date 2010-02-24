@@ -233,13 +233,11 @@ static int drawPoint_continue_y = 0;
 	if (gText->txtstyle.height < requiredHeight) 
 	{
 		// 控制上下移动
-		if (gText->txtstyle.height < requiredHeight + gText->txtstyle.height / 2)
-		{
-			if (drawPoint_y < requiredHeight) {
-				drawPoint_y += CROLL_STEP;
-			} else {
-				drawPoint_y = 0;
-			}
+		if (drawPoint_y < requiredHeight + gText->txtstyle.height) {
+			drawPoint_y += CROLL_STEP;
+		} else {
+			//drawPoint_continue_y = drawPoint_y;
+			drawPoint_y = 0;
 		}
 		
 		// 滚动
@@ -250,16 +248,17 @@ static int drawPoint_continue_y = 0;
 																selector:@selector(timerFireMethod:) 
 																userInfo:nil repeats:YES];
 		}
+		/*
 		if ((drawPoint_continue_y != 0) && drawPoint_continue_y < (gText->txtstyle.width + gGreetWidth)) {
 			drawPoint_continue_y += CROLL_STEP;
 			
-			[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint_continue_y, rect.origin.y - drawPoint_y, rect.size.width, rect.size.height) 
+			[greeting drawInRect:CGRectMake(0, rect.origin.y - drawPoint_y, rect.size.width, rect.size.height) 
 						withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
 				   lineBreakMode:UILineBreakModeClip alignment:align];
 		} else {
 			drawPoint_continue_y = 0;
 		}
-		
+		*/
 		[greeting drawInRect:CGRectMake(/*gText->txtstyle.width*/0, rect.origin.y + gText->txtstyle.height - drawPoint_y, rect.size.width, rect.size.height) 
 					withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
 			   lineBreakMode:UILineBreakModeClip alignment:align];
