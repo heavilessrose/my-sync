@@ -21,6 +21,7 @@ static int real_font_h = 0;
 static int real_font_w = 0;
 
 static CGColorRef *gColors;
+static int allLines_H = 0;
 - (id)initWithSection:(Winks_CCDW_Text_s *)pSection
 {
 	gText = pSection;
@@ -243,6 +244,7 @@ static int drawPoint_continue_y = 0;
 							   constrainedToSize:boundingSize
 								   lineBreakMode:UILineBreakModeClip];
 	CGFloat requiredHeight = requiredSize.height;
+	allLines_H = requiredSize.height;
 	
 	rect.size.height = requiredHeight;
 	if (gText->txtstyle.height < requiredHeight) 
@@ -351,20 +353,21 @@ static CGColorRef tmp = NULL;
 }
 
 - (void)drawWithColors:(CGContextRef)context atRect:(CGRect)textRect lineBreakMode:(UILineBreakMode)breakMode alignment:(UITextAlignment)alignMode
-{	
-	for (int i = 0; i < gText->txtstyle.text_colorlist.tal_colornum; i++) {
-		//UIGraphicsPushContext(context);
-		CGContextSaveGState(context);
-		CGRect clipRect = CGRectMake(textRect.origin.x, textRect.origin.y + i * perColor_h, textRect.size.width, perColor_h);
-		UIRectClip(clipRect);
-		CGContextSetStrokeColorWithColor(context, gColors[i]);
-		CGContextSetFillColorWithColor(context, gColors[i]);
-		[gNsGreet drawInRect:textRect withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] lineBreakMode:breakMode 
-			   alignment:alignMode];
-		//UIGraphicsPopContext();
-		CGContextRestoreGState(context);
-		
-		
+{
+	for (int j = 0; j < allLines_H / real_font_h; j++) {
+		for (int i = 0; i < gText->txtstyle.text_colorlist.tal_colornum; i++) {
+			// 每行
+			//UIGraphicsPushContext(context);
+			CGContextSaveGState(context);
+			CGRect clipRect = CGRectMake(textRect.origin.x, textRect.origin.y + j * real_font_h + i * perColor_h, textRect.size.width, perColor_h);
+			UIRectClip(clipRect);
+			CGContextSetStrokeColorWithColor(context, gColors[i]);
+			CGContextSetFillColorWithColor(context, gColors[i]);
+			[gNsGreet drawInRect:textRect withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] lineBreakMode:breakMode 
+					   alignment:alignMode];
+			//UIGraphicsPopContext();
+			CGContextRestoreGState(context);
+		}
 	}
 }
 
