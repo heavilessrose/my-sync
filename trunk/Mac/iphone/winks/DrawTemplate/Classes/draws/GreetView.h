@@ -25,12 +25,15 @@
 - (CGFloat)getStrWidth:(NSString *)str withFontSize:(int)size;
 
 - (void)getGreetingStyles;
-- (void)renderGreeting:(NSString *)greeting width:(int)greetingWidth;
-- (void)drawCrollUp:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align;
-- (void)drawCrollLeft:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align;
+- (void)renderGreeting:(NSString *)greeting width:(int)greetingWidth at:(CGContextRef)context;
+- (void)drawCrollUp:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align at:(CGContextRef)context;
+- (void)drawCrollLeft:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align at:(CGContextRef)context;
 
 - (void)timerFireMethod:(NSTimer*)theTimer;
 - (void)disposeGreetTimer;
 
+- (void)initColors;
+- (void)colorCroll;
+- (void)drawWithColors:(CGContextRef)context atRect:(CGRect)textRect lineBreakMode:(UILineBreakMode)breakMode alignment:(UITextAlignment)alignMode;
 
 @end

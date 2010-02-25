@@ -106,7 +106,8 @@ void draw_frame(CGRect pframe, unsigned int v_Color)
 
 CGColorRef makeColor(unsigned int v_Color)
 {
-	return RGBA_COLOR(((v_Color & 0xFF000000) >> 24), ((v_Color & 0xFF0000) >> 16), ((v_Color & 0xFF00) >> 8), (v_Color & 0xFF)).CGColor;
+	CGColorRef color = RGBA_COLOR(((v_Color & 0xFF000000) >> 24), ((v_Color & 0xFF0000) >> 16), ((v_Color & 0xFF00) >> 8), (v_Color & 0xFF)).CGColor;
+	return color;
 }
 
 void set_curColor(unsigned int pcolor)

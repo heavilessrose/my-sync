@@ -17,6 +17,10 @@ extern Winks_CCSW_Global_s gCCSW;
 static int showtext_in_area(winks_scrolling_text_s * text);
 static void handle_scrolling_text(winks_scrolling_text_s *s);
 
+static int real_font_h = 0;
+static int real_font_w = 0;
+
+static CGColorRef *gColors;
 - (id)initWithSection:(Winks_CCDW_Text_s *)pSection
 {
 	gText = pSection;
@@ -24,6 +28,9 @@ static void handle_scrolling_text(winks_scrolling_text_s *s);
 								   gText->base.Section.w, gText->base.Section.h)];
 	
 	[self getGreetingStyles];
+	int colorSize = sizeof(CGColorRef);
+	gColors = malloc(gText->txtstyle.text_colorlist.tal_colornum * colorSize);
+	[self initColors];
 	return instance;
 }
 
@@ -60,7 +67,7 @@ static int utf2UnicodeString(const char *in_utf8, char *out_unicode, unsigned in
 //	}
 	
 	set_curColor(gText->txtstyle.font_feature.color);
-	[self renderGreeting:gNsGreet width:gGreetWidth];
+	[self renderGreeting:gNsGreet width:gGreetWidth at:context];
 
 	
 /*	
@@ -84,7 +91,10 @@ static int utf2UnicodeString(const char *in_utf8, char *out_unicode, unsigned in
 - (void)dealloc {
 	[gNsGreet release];
 	[self disposeGreetTimer];
-	
+	for (int i = 0; i < gText->txtstyle.text_colorlist.tal_colornum; i++) {
+		CGColorRelease(gColors[i]);
+	}
+	free(gColors);
     [super dealloc];
 }
 
@@ -132,6 +142,9 @@ static int utf2UnicodeString(const char *in_utf8, char *out_unicode, unsigned in
 	
 	self.gNsGreet = [NSString stringWithCString:gText->txtstyle.text];
 	self.gGreetWidth = (int)[self getStrWidth:gNsGreet withFontSize:gText->txtstyle.font_feature.size];
+	CGSize font_size = [gNsGreet sizeWithFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size]];
+	real_font_h = font_size.height;
+	real_font_w = font_size.width;// 总长度
 }
 
 - (CGFloat)getStrWidth:(NSString *)str withFontSize:(int)size
@@ -146,7 +159,7 @@ static int drawPoint_y = 0;
 static int drawPoint_continue_x = 0;
 static int drawPoint_continue_y = 0;
 
-- (void)renderGreeting:(NSString *)greeting width:(int)greetingWidth
+- (void)renderGreeting:(NSString *)greeting width:(int)greetingWidth at:(CGContextRef)context
 {
 	// align
 	UITextAlignment align = UITextAlignmentCenter;
@@ -178,29 +191,30 @@ static int drawPoint_continue_y = 0;
 		rectSize.width = gText->txtstyle.width;
 		direct = WK_WG_FONTUPSCROLL;
 	}
-	*/
+	 */
+	
+	// scroll
+	// 默认向左滚动
+	if (gText->txtstyle.font_feature.way == WK_WG_FONTRIGHTSCROLL && greetingWidth > gText->txtstyle.width) {
+		direct = WK_WG_FONTRIGHTSCROLL;
+	}
+	
 	// wrap
 	if (gText->txtstyle.wrapflags == WK_WG_WRAP) {
 		rectSize.width = gText->txtstyle.width;
 		rectPoint.y = 0;
 		direct = WK_WG_FONTUPSCROLL;
 	}
-
-	// scroll
-	// 默认向左滚动
-//	if (gText->txtstyle.font_feature.way == WK_WG_FONTRIGHTSCROLL && greetingWidth > gText->txtstyle.width) {
-//		direct = WK_WG_FONTRIGHTSCROLL;
-//	}
 	
 	// 滚动
 	CGRect dwRect = CGRectMake(rectPoint.x, rectPoint.y, rectSize.width, rectSize.height);
 	switch (direct) {
 		case WK_WG_FONTLEFTSCROLL:
 		case WK_WG_FONTRIGHTSCROLL:
-			[self drawCrollLeft:greeting withRect:dwRect withAlign:align];
+			[self drawCrollLeft:greeting withRect:dwRect withAlign:align at:context];
 			break;
 		case WK_WG_FONTUPSCROLL:
-			[self drawCrollUp:greeting withRect:dwRect withAlign:align];
+			[self drawCrollUp:greeting withRect:dwRect withAlign:align at:context];
 			break;
 		default:
 		{// 默认不滚动
@@ -220,7 +234,8 @@ static int drawPoint_continue_y = 0;
 
 }
 
-- (void)drawCrollUp:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align
+#pragma mark croll
+- (void)drawCrollUp:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align at:(CGContextRef)context
 {
 	// 计算所有行总高度
 	CGSize boundingSize = CGSizeMake(rect.size.width, CGFLOAT_MAX);
@@ -259,13 +274,15 @@ static int drawPoint_continue_y = 0;
 			drawPoint_continue_y = 0;
 		}
 		*/
-		[greeting drawInRect:CGRectMake(/*gText->txtstyle.width*/0, rect.origin.y + gText->txtstyle.height - drawPoint_y, rect.size.width, rect.size.height) 
-					withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
+//		[greeting drawInRect:CGRectMake(/*gText->txtstyle.width*/0, rect.origin.y + gText->txtstyle.height - drawPoint_y, rect.size.width, rect.size.height) 
+//					withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
+//			   lineBreakMode:UILineBreakModeClip alignment:align];
+		[self drawWithColors:context atRect:CGRectMake(/*gText->txtstyle.width*/0, rect.origin.y + gText->txtstyle.height - drawPoint_y, rect.size.width, rect.size.height) 
 			   lineBreakMode:UILineBreakModeClip alignment:align];
 	}
 }
 
-- (void)drawCrollLeft:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align
+- (void)drawCrollLeft:(NSString *)greeting withRect:(CGRect)rect withAlign:(UITextAlignment)align at:(CGContextRef)context
 {
 	if((gGreetWidth > gText->txtstyle.width && rect.size.width > gText->txtstyle.width)){
 		// 控制左右移动
@@ -278,7 +295,7 @@ static int drawPoint_continue_y = 0;
 		}
 		
 		// 向左滚动画
-		if(greetingTimer == nil){
+		if(greetingTimer == nil) {
 			NSTimeInterval animationInterval = 2.0 / 60.0;
 			self.greetingTimer = [NSTimer scheduledTimerWithTimeInterval:animationInterval 
 																  target:self 
@@ -288,24 +305,79 @@ static int drawPoint_continue_y = 0;
 		if ((drawPoint_continue_x != 0) && drawPoint_continue_x < (gText->txtstyle.width + gGreetWidth)) {
 			drawPoint_continue_x += CROLL_STEP;
 			
-			[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint_continue_x, rect.origin.y, rect.size.width, rect.size.height) 
-						withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
+//			[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint_continue_x, rect.origin.y, rect.size.width, rect.size.height) 
+//						withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
+//				   lineBreakMode:UILineBreakModeClip alignment:align];
+			[self drawWithColors:context atRect:CGRectMake(gText->txtstyle.width - drawPoint_continue_x, rect.origin.y, rect.size.width, rect.size.height) 
 				   lineBreakMode:UILineBreakModeClip alignment:align];
 			
 		}else {
 			drawPoint_continue_x = 0;
 		}
 		
-		[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint_x, rect.origin.y, rect.size.width, rect.size.height) 
-					withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
+//		[greeting drawInRect:CGRectMake(gText->txtstyle.width - drawPoint_x, rect.origin.y, rect.size.width, rect.size.height) 
+//					withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] 
+//			   lineBreakMode:UILineBreakModeClip alignment:align];
+		[self drawWithColors:context atRect:CGRectMake(gText->txtstyle.width - drawPoint_x, rect.origin.y, rect.size.width, rect.size.height) 
 			   lineBreakMode:UILineBreakModeClip alignment:align];
 	}
 }
+
+#pragma mark color
+static int perColor_h = 0;
+static CGColorRef tmp = NULL;
+- (void)initColors
+{
+	// 颜色
+//	gText->txtstyle.text_colorlist.colorlist;
+//	gText->txtstyle.text_colorlist.tal_colornum;
+	perColor_h = gText->txtstyle.font_feature.size / gText->txtstyle.text_colorlist.tal_colornum;
+	for (int i = 0; i < gText->txtstyle.text_colorlist.tal_colornum; i++) {
+		gColors[i] = makeColor(gText->txtstyle.text_colorlist.colorlist[i]);
+		CGColorRetain(gColors[i]);
+	}
+}
+
+- (void)colorCroll
+{
+	tmp = gColors[0];
+	for (int i = 0; i < gText->txtstyle.text_colorlist.tal_colornum; i++) {
+		if (i == gText->txtstyle.text_colorlist.tal_colornum - 1) {
+			gColors[i] = tmp;
+			break;
+		}
+		gColors[i] = gColors[i+1];
+	}
+}
+
+- (void)drawWithColors:(CGContextRef)context atRect:(CGRect)textRect lineBreakMode:(UILineBreakMode)breakMode alignment:(UITextAlignment)alignMode
+{	
+	for (int i = 0; i < gText->txtstyle.text_colorlist.tal_colornum; i++) {
+		//UIGraphicsPushContext(context);
+		CGContextSaveGState(context);
+		CGRect clipRect = CGRectMake(textRect.origin.x, textRect.origin.y + i * perColor_h, textRect.size.width, perColor_h);
+		UIRectClip(clipRect);
+		CGContextSetStrokeColorWithColor(context, gColors[i]);
+		CGContextSetFillColorWithColor(context, gColors[i]);
+		[gNsGreet drawInRect:textRect withFont:[UIFont systemFontOfSize:gText->txtstyle.font_feature.size] lineBreakMode:breakMode 
+			   alignment:alignMode];
+		//UIGraphicsPopContext();
+		CGContextRestoreGState(context);
+		
+		
+	}
+}
+
 #pragma mark timer
+int i = 0;
 - (void)timerFireMethod:(NSTimer*)theTimer
 {
 	// repaint
+	if (i % 10 == 0) {
+		[self colorCroll];
+	}
 	[self setNeedsDisplay];
+	i++;
 }
 
 - (void)disposeGreetTimer
