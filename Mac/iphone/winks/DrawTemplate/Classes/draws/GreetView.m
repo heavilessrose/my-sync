@@ -181,7 +181,6 @@ static int drawPoint_continue_y = 0;
 		rectPoint.x = 0;
 	}
 	
-	
 	// 默认单行
 	CGSize rectSize = CGSizeMake(greetingWidth, gText->txtstyle.height);
 	/*
