@@ -218,7 +218,9 @@ const int CCDW_DrawType[] =
 {
 	pSection->Section.y += SW_START_Y;
 	GifView *gifview = [[GifView alloc] initWithSection:(Winks_CCDW_Media_s *)pSection];
+	//[gifview retain];
 	[self.view addSubview:gifview];
+	//[self.view.layer addSublayer:gifview.plView.layer];
 	[gifview release];
 	return 0;
 }

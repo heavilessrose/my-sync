@@ -15,15 +15,66 @@
 
 @synthesize plView, gMedia;
 
-- (int)prepareGifLayer:(PlayerView *)pplView gifPath:(NSString *)pgifpath
+
+- (id)initWithSection:(Winks_CCDW_Media_s *)pSection
+{
+	gMedia = pSection;
+	id instance = [self initWithFrame:CGRectMake(gMedia->base.Section.x, gMedia->base.Section.y, 
+												 gMedia->base.Section.w, gMedia->base.Section.h)];
+	
+	return instance;
+}
+
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+		//self.alpha = 0.0f;
+		
+		//self.plView = [[PlayerView alloc] initWithFrame:CGRectMake(42.0f,40.0f, 240.0f, 236.0f)];
+		self.plView = [[PlayerView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+		int ret = [self prepareGifLayer:plView gifPath:gMedia->pbuf];
+		if (ret == 0) {
+			//[self addSubview:plView];
+			[self.layer addSublayer:plView.layer];
+		}
+		[plView release];
+    }
+    return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+	CGContextRef context = init_drawContext();
+	CGRect prect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+	draw_frame(prect, 0xff0000ff);
+}
+
+
+- (void)dealloc {
+	NSLog(@"GifView dealloc ---- ");
+	
+	NSLog(@"gifview = %u", [self retainCount]);
+	NSLog(@"plView = %u", [plView retainCount]);
+	if(plView != nil){
+		[plView removeFromSuperview];
+		[plView stopAnimation];
+		[plView release];
+		plView = nil;
+	}
+    [super dealloc];
+}
+
+
+#pragma mark gif
+- (int)prepareGifLayer:(PlayerView *)pplView gifPath:(char *)pgifpath
 {
 	// gif层
 	FILE *fp;
-	NSString *gifPath = [[NSBundle mainBundle] pathForResource:pgifpath ofType:nil];
-	if((fp = fopen([gifPath cStringUsingEncoding:NSASCIIStringEncoding], "r")) == NULL)
+	//NSString *gifPath = [[NSBundle mainBundle] pathForResource:pgifpath ofType:nil];
+	//if((fp = fopen([gifPath cStringUsingEncoding:NSASCIIStringEncoding], "r")) == NULL)
+	if((fp = fopen(pgifpath, "r")) == NULL)
 	{
 		return -1;
-	} 
+	}
 	else 
 	{
 		VideoSource *src = VideoSource_init(fp, VIDEOSOURCE_FILE);
@@ -44,49 +95,5 @@
 	}
 	return 0;
 }
-
-- (id)initWithSection:(Winks_CCDW_Media_s *)pSection
-{
-	gMedia = pSection;
-	id instance = [self initWithFrame:CGRectMake(gMedia->base.Section.x, gMedia->base.Section.y, 
-												 gMedia->base.Section.w, gMedia->base.Section.h)];
-	
-	return instance;
-}
-
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-		self.alpha = 0.0f;
-		
-		self.plView = [[PlayerView alloc] initWithFrame:CGRectMake(42.0f,40.0f, 240.0f, 236.0f)];
-		int ret = [self prepareGifLayer:plView gifPath:@"defwinks.gif"];
-		if (ret == 0) {
-			[self addSubview:plView];
-		}
-		[plView release];
-    }
-    return self;
-}
-
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-	draw_frame(self.bounds, 0x00ff00ff);
-}
-
-
-- (void)dealloc {
-	NSLog(@"GifView dealloc ---- ");
-    [super dealloc];
-	
-	NSLog(@"gifview = %u", [self retainCount]);
-	NSLog(@"plView = %u", [plView retainCount]);
-	if(plView != nil){
-		[plView removeFromSuperview];
-		[plView stopAnimation];
-		[plView release];
-		plView = nil;
-	}
-}
-
 
 @end

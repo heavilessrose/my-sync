@@ -19,7 +19,7 @@
 @property (nonatomic, retain) PlayerView *plView;
 @property (nonatomic, assign) Winks_CCDW_Media_s *gMedia;
 
-- (int)prepareGifLayer:(PlayerView *)mainLayer gifPath:(NSString *)pgifpath;
+- (int)prepareGifLayer:(PlayerView *)mainLayer gifPath:(char *)pgifpath;
 - (id)initWithSection:(Winks_CCDW_Media_s *)pSection;
 
 @end
