@@ -15,6 +15,12 @@
 		B0775A921153103C00CE6FD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0775A911153103C00CE6FD4 /* QuartzCore.framework */; };
 		B0775ADB1153156E00CE6FD4 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B0775ADA1153156E00CE6FD4 /* Three20.bundle */; };
 		B0775AEE115316A700CE6FD4 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0775AD61153156000CE6FD4 /* libThree20.a */; };
+		B0775B0511531A4200CE6FD4 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B0411531A4200CE6FD4 /* TabBarController.m */; };
+		B0775B2811531E1800CE6FD4 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B2711531E1800CE6FD4 /* MenuController.m */; };
+		B0775B2C1153295E00CE6FD4 /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = B0775B2B1153295E00CE6FD4 /* tab.png */; };
+		B0775B4611532C9A00CE6FD4 /* China.png in Resources */ = {isa = PBXBuildFile; fileRef = B0775B4511532C9A00CE6FD4 /* China.png */; };
+		B0775B5F11532EF800CE6FD4 /* CountryController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B5E11532EF800CE6FD4 /* CountryController.m */; };
+		B0775B8A11533C4B00CE6FD4 /* SouvenirController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B8911533C4B00CE6FD4 /* SouvenirController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,21 +28,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = B0775AD01153156000CE6FD4 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20;
 		};
 		B0775AD71153156000CE6FD4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B0775AD01153156000CE6FD4 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		B0775AE31153166C00CE6FD4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B0775AD01153156000CE6FD4 /* Three20.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20 */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20;
 		};
 /* End PBXContainerItemProxy section */
@@ -54,6 +60,16 @@
 		B0775A911153103C00CE6FD4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		B0775AD01153156000CE6FD4 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../../../../open/iphone/three20/three20/src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		B0775ADA1153156E00CE6FD4 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../../../../../open/iphone/three20/three20/src/Three20.bundle; sourceTree = SOURCE_ROOT; };
+		B0775B0311531A4200CE6FD4 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		B0775B0411531A4200CE6FD4 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		B0775B2611531E1800CE6FD4 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		B0775B2711531E1800CE6FD4 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		B0775B2B1153295E00CE6FD4 /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab.png; sourceTree = "<group>"; };
+		B0775B4511532C9A00CE6FD4 /* China.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = China.png; sourceTree = "<group>"; };
+		B0775B5D11532EF800CE6FD4 /* CountryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryController.h; sourceTree = "<group>"; };
+		B0775B5E11532EF800CE6FD4 /* CountryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryController.m; sourceTree = "<group>"; };
+		B0775B8811533C4B00CE6FD4 /* SouvenirController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouvenirController.h; sourceTree = "<group>"; };
+		B0775B8911533C4B00CE6FD4 /* SouvenirController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouvenirController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +93,14 @@
 			children = (
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
+				B0775B0311531A4200CE6FD4 /* TabBarController.h */,
+				B0775B0411531A4200CE6FD4 /* TabBarController.m */,
+				B0775B2611531E1800CE6FD4 /* MenuController.h */,
+				B0775B2711531E1800CE6FD4 /* MenuController.m */,
+				B0775B5D11532EF800CE6FD4 /* CountryController.h */,
+				B0775B5E11532EF800CE6FD4 /* CountryController.m */,
+				B0775B8811533C4B00CE6FD4 /* SouvenirController.h */,
+				B0775B8911533C4B00CE6FD4 /* SouvenirController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -113,6 +137,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B0775B4511532C9A00CE6FD4 /* China.png */,
+				B0775B2B1153295E00CE6FD4 /* tab.png */,
 				B0775ADA1153156E00CE6FD4 /* Three20.bundle */,
 				8D1107310486CEB800E47090 /* Expo-Info.plist */,
 			);
@@ -210,6 +236,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0775ADB1153156E00CE6FD4 /* Three20.bundle in Resources */,
+				B0775B2C1153295E00CE6FD4 /* tab.png in Resources */,
+				B0775B4611532C9A00CE6FD4 /* China.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +250,10 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				B0775B0511531A4200CE6FD4 /* TabBarController.m in Sources */,
+				B0775B2811531E1800CE6FD4 /* MenuController.m in Sources */,
+				B0775B5F11532EF800CE6FD4 /* CountryController.m in Sources */,
+				B0775B8A11533C4B00CE6FD4 /* SouvenirController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
