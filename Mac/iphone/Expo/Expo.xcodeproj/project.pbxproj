@@ -21,6 +21,7 @@
 		B0775B4611532C9A00CE6FD4 /* China.png in Resources */ = {isa = PBXBuildFile; fileRef = B0775B4511532C9A00CE6FD4 /* China.png */; };
 		B0775B5F11532EF800CE6FD4 /* CountryController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B5E11532EF800CE6FD4 /* CountryController.m */; };
 		B0775B8A11533C4B00CE6FD4 /* SouvenirController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B8911533C4B00CE6FD4 /* SouvenirController.m */; };
+		B0DB64161155C8990007C7E3 /* SearchCountryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DB64151155C8990007C7E3 /* SearchCountryResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		B0775B5E11532EF800CE6FD4 /* CountryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryController.m; sourceTree = "<group>"; };
 		B0775B8811533C4B00CE6FD4 /* SouvenirController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouvenirController.h; sourceTree = "<group>"; };
 		B0775B8911533C4B00CE6FD4 /* SouvenirController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouvenirController.m; sourceTree = "<group>"; };
+		B0DB64141155C8990007C7E3 /* SearchCountryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCountryResult.h; sourceTree = "<group>"; };
+		B0DB64151155C8990007C7E3 /* SearchCountryResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCountryResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B0775C1E11537B7900CE6FD4 /* Model */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				B0775B0311531A4200CE6FD4 /* TabBarController.h */,
@@ -164,6 +168,15 @@
 				B0775AD81153156000CE6FD4 /* UnitTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B0775C1E11537B7900CE6FD4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B0DB64141155C8990007C7E3 /* SearchCountryResult.h */,
+				B0DB64151155C8990007C7E3 /* SearchCountryResult.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +267,7 @@
 				B0775B2811531E1800CE6FD4 /* MenuController.m in Sources */,
 				B0775B5F11532EF800CE6FD4 /* CountryController.m in Sources */,
 				B0775B8A11533C4B00CE6FD4 /* SouvenirController.m in Sources */,
+				B0DB64161155C8990007C7E3 /* SearchCountryResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
