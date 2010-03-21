@@ -1,5 +1,5 @@
 //
-//  MenuController.h
+//  TableMenuController.h
 //  Expo
 //
 //  Created by luke on 10-3-19.
@@ -16,7 +16,7 @@ typedef enum {
 	MenuPageAbout, // 关于
 } MenuPage;
 
-@interface MenuController : TTTableViewController {
+@interface TableMenuController : TTTableViewController {
 	MenuPage _page;
 }
 

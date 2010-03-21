@@ -1,15 +1,15 @@
 //
-//  MenuController.m
+//  TableMenuController.m
 //  Expo
 //
 //  Created by luke on 10-3-19.
 //  Copyright 2010 Luke. All rights reserved.
 //
 
-#import "MenuController.h"
+#import "TableMenuController.h"
 
 
-@implementation MenuController
+@implementation TableMenuController
 
 @synthesize page = _page;
 
@@ -85,6 +85,7 @@
 	} else if (_page == MenuPageSearch) {
 		self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
 						   @"Search",
+						   [TTTableTextItem itemWithText:@"Image Search" URL:@"tt://search/Image"],
 						   nil];
 	} else if (_page == MenuPageSouvenir) {
 		self.dataSource = [TTSectionedDataSource dataSourceWithObjects:

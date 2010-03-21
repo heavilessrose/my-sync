@@ -44,7 +44,7 @@ const static NSUInteger kYahooBatchSize = 16;
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     if (!searchTerms) {
-        TTDINFO(@"No search terms specified. Cannot load the model resource.");
+        TTDWARNING(@"No search terms specified. Cannot load the model resource.");
         return;
     }
     
@@ -56,7 +56,7 @@ const static NSUInteger kYahooBatchSize = 16;
     NSString *offset = [NSString stringWithFormat:@"%lu", (unsigned long)recordOffset];
     NSString *batchSize = [NSString stringWithFormat:@"%lu", (unsigned long)kYahooBatchSize];
     
-    // Construct the request.
+    // request.
     NSString *host = @"http://search.yahooapis.com";
     NSString *path = @"/ImageSearchService/V1/imageSearch";
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
