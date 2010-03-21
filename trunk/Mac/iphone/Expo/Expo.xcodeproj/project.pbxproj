@@ -16,12 +16,16 @@
 		B0775ADB1153156E00CE6FD4 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B0775ADA1153156E00CE6FD4 /* Three20.bundle */; };
 		B0775AEE115316A700CE6FD4 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0775AD61153156000CE6FD4 /* libThree20.a */; };
 		B0775B0511531A4200CE6FD4 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B0411531A4200CE6FD4 /* TabBarController.m */; };
-		B0775B2811531E1800CE6FD4 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B2711531E1800CE6FD4 /* MenuController.m */; };
+		B0775B2811531E1800CE6FD4 /* TableMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B2711531E1800CE6FD4 /* TableMenuController.m */; };
 		B0775B2C1153295E00CE6FD4 /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = B0775B2B1153295E00CE6FD4 /* tab.png */; };
 		B0775B4611532C9A00CE6FD4 /* China.png in Resources */ = {isa = PBXBuildFile; fileRef = B0775B4511532C9A00CE6FD4 /* China.png */; };
 		B0775B5F11532EF800CE6FD4 /* CountryController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B5E11532EF800CE6FD4 /* CountryController.m */; };
 		B0775B8A11533C4B00CE6FD4 /* SouvenirController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B8911533C4B00CE6FD4 /* SouvenirController.m */; };
 		B0D08F1D1155FC690063D3F6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B0DB65011155E92A0007C7E3 /* libxml2.dylib */; };
+		B0D08F67115615CF0063D3F6 /* SearchResultsPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D08F66115615CF0063D3F6 /* SearchResultsPhotoSource.m */; };
+		B0D08F6A115619660063D3F6 /* ForwardingAdapters.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D08F69115619660063D3F6 /* ForwardingAdapters.m */; };
+		B0D08F7511561A620063D3F6 /* SearchPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D08F7411561A620063D3F6 /* SearchPhotosViewController.m */; };
+		B0D08F88115628820063D3F6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B0D08F87115628820063D3F6 /* Default.png */; };
 		B0DB64161155C8990007C7E3 /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DB64151155C8990007C7E3 /* SearchResult.m */; };
 		B0DB64191155CB4D0007C7E3 /* URLModelResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DB64181155CB4D0007C7E3 /* URLModelResponse.m */; };
 		B0DB641C1155CD7D0007C7E3 /* SearchResultsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DB641B1155CD7D0007C7E3 /* SearchResultsModel.m */; };
@@ -82,14 +86,21 @@
 		B0775ADA1153156E00CE6FD4 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../../../../../open/iphone/three20/three20/src/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		B0775B0311531A4200CE6FD4 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		B0775B0411531A4200CE6FD4 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
-		B0775B2611531E1800CE6FD4 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
-		B0775B2711531E1800CE6FD4 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		B0775B2611531E1800CE6FD4 /* TableMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableMenuController.h; sourceTree = "<group>"; };
+		B0775B2711531E1800CE6FD4 /* TableMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableMenuController.m; sourceTree = "<group>"; };
 		B0775B2B1153295E00CE6FD4 /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab.png; sourceTree = "<group>"; };
 		B0775B4511532C9A00CE6FD4 /* China.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = China.png; sourceTree = "<group>"; };
 		B0775B5D11532EF800CE6FD4 /* CountryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryController.h; sourceTree = "<group>"; };
 		B0775B5E11532EF800CE6FD4 /* CountryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryController.m; sourceTree = "<group>"; };
 		B0775B8811533C4B00CE6FD4 /* SouvenirController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouvenirController.h; sourceTree = "<group>"; };
 		B0775B8911533C4B00CE6FD4 /* SouvenirController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouvenirController.m; sourceTree = "<group>"; };
+		B0D08F65115615CF0063D3F6 /* SearchResultsPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsPhotoSource.h; sourceTree = "<group>"; };
+		B0D08F66115615CF0063D3F6 /* SearchResultsPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsPhotoSource.m; sourceTree = "<group>"; };
+		B0D08F68115619660063D3F6 /* ForwardingAdapters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardingAdapters.h; sourceTree = "<group>"; };
+		B0D08F69115619660063D3F6 /* ForwardingAdapters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardingAdapters.m; sourceTree = "<group>"; };
+		B0D08F7311561A620063D3F6 /* SearchPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPhotosViewController.h; sourceTree = "<group>"; };
+		B0D08F7411561A620063D3F6 /* SearchPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPhotosViewController.m; sourceTree = "<group>"; };
+		B0D08F87115628820063D3F6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		B0DB64141155C8990007C7E3 /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
 		B0DB64151155C8990007C7E3 /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
 		B0DB64171155CB4D0007C7E3 /* URLModelResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLModelResponse.h; sourceTree = "<group>"; };
@@ -162,8 +173,8 @@
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				B0775B0311531A4200CE6FD4 /* TabBarController.h */,
 				B0775B0411531A4200CE6FD4 /* TabBarController.m */,
-				B0775B2611531E1800CE6FD4 /* MenuController.h */,
-				B0775B2711531E1800CE6FD4 /* MenuController.m */,
+				B0775B2611531E1800CE6FD4 /* TableMenuController.h */,
+				B0775B2711531E1800CE6FD4 /* TableMenuController.m */,
 				B0775B5D11532EF800CE6FD4 /* CountryController.h */,
 				B0775B5E11532EF800CE6FD4 /* CountryController.m */,
 				B0775B8811533C4B00CE6FD4 /* SouvenirController.h */,
@@ -204,6 +215,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B0D08F87115628820063D3F6 /* Default.png */,
 				B0775B4511532C9A00CE6FD4 /* China.png */,
 				B0775B2B1153295E00CE6FD4 /* tab.png */,
 				B0775ADA1153156E00CE6FD4 /* Three20.bundle */,
@@ -302,6 +314,12 @@
 		B0DB64551155E0200007C7E3 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
+				B0D08F65115615CF0063D3F6 /* SearchResultsPhotoSource.h */,
+				B0D08F66115615CF0063D3F6 /* SearchResultsPhotoSource.m */,
+				B0D08F68115619660063D3F6 /* ForwardingAdapters.h */,
+				B0D08F69115619660063D3F6 /* ForwardingAdapters.m */,
+				B0D08F7311561A620063D3F6 /* SearchPhotosViewController.h */,
+				B0D08F7411561A620063D3F6 /* SearchPhotosViewController.m */,
 			);
 			name = Photo;
 			sourceTree = "<group>";
@@ -409,6 +427,7 @@
 				B0775ADB1153156E00CE6FD4 /* Three20.bundle in Resources */,
 				B0775B2C1153295E00CE6FD4 /* tab.png in Resources */,
 				B0775B4611532C9A00CE6FD4 /* China.png in Resources */,
+				B0D08F88115628820063D3F6 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +441,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				B0775B0511531A4200CE6FD4 /* TabBarController.m in Sources */,
-				B0775B2811531E1800CE6FD4 /* MenuController.m in Sources */,
+				B0775B2811531E1800CE6FD4 /* TableMenuController.m in Sources */,
 				B0775B5F11532EF800CE6FD4 /* CountryController.m in Sources */,
 				B0775B8A11533C4B00CE6FD4 /* SouvenirController.m in Sources */,
 				B0DB64161155C8990007C7E3 /* SearchResult.m in Sources */,
@@ -444,6 +463,9 @@
 				B0DB644E1155D9270007C7E3 /* NSStringAdditions.m in Sources */,
 				B0DB64511155DB9F0007C7E3 /* YahooJSONResponse.m in Sources */,
 				B0DB64541155DBBF0007C7E3 /* YahooXMLResponse.m in Sources */,
+				B0D08F67115615CF0063D3F6 /* SearchResultsPhotoSource.m in Sources */,
+				B0D08F6A115619660063D3F6 /* ForwardingAdapters.m in Sources */,
+				B0D08F7511561A620063D3F6 /* SearchPhotosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,19 +485,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Expo_Prefix.pch;
 				INFOPLIST_FILE = "Expo-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/usr/lib\"",
-				);
 				PRODUCT_NAME = Expo;
 			};
 			name = Debug;
@@ -485,17 +499,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Expo_Prefix.pch;
 				INFOPLIST_FILE = "Expo-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/usr/lib\"",
-				);
 				PRODUCT_NAME = Expo;
 			};
 			name = Release;
