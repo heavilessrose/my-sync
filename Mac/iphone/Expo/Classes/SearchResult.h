@@ -1,5 +1,5 @@
 //
-//  SearchCountryResult.h
+//  SearchResult.h
 //  Expo
 //
 //  Created by luke on 10-3-21.
@@ -10,7 +10,7 @@
 
 // 表示一条国家搜索记录.
 // 当执行搜索之后, 包含一组该对象的TTModel被载入.
-@interface SearchCountryResult : NSObject {
+@interface SearchResult : NSObject {
     NSString *title;
     NSString *bigImageURL;
     NSString *thumbnailURL;
