@@ -68,6 +68,7 @@ const static NSUInteger kYahooBatchSize = 16;
                                 nil];
 	
     NSString *url = [host stringByAppendingFormat:@"%@?%@", path, [parameters gtm_httpArgumentsString]];
+	TTDINFO(@"Request url: %@", url);
     TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
     request.cachePolicy = cachePolicy;
     request.response = responseProcessor;
