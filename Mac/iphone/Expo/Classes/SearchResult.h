@@ -12,6 +12,7 @@
 // 当执行搜索之后, 包含一组该对象的TTModel被载入.
 @interface SearchResult : NSObject {
     NSString *title;
+	NSString *summary;
     NSString *bigImageURL;
     NSString *thumbnailURL;
 	NSString *txtInfo; // 搜索出的国家相关文字信息
@@ -19,6 +20,7 @@
 }
 
 @property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *summary;
 @property (nonatomic, retain) NSString *bigImageURL;
 @property (nonatomic, retain) NSString *thumbnailURL;
 @property (nonatomic, retain) NSString *txtInfo;

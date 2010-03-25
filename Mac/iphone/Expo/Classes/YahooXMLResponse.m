@@ -28,6 +28,7 @@
 	
     // 根据Yahoo Image Search API 查询XML树.
     NSArray *titles = [root nodesForXPath:@"//foo:Title" error:&error];
+	NSArray *summarys = [root nodesForXPath:@"//foo:Summary" error:&error];
     NSArray *bigImageURLs = [root nodesForXPath:@"//foo:Result/foo:Url" error:&error];
     NSArray *bigImageWidths = [root nodesForXPath:@"//foo:Result/foo:Width" error:&error];
     NSArray *bigImageHeights = [root nodesForXPath:@"//foo:Result/foo:Height" error:&error];
@@ -42,6 +43,10 @@
     for (NSUInteger i = 0; i < [titles count]; i++) {
         SearchResult *result = [[[SearchResult alloc] init] autorelease];
         result.title = [[titles objectAtIndex:i] stringValue];
+		result.summary = [[summarys objectAtIndex:i] stringValue];
+		if (result.summary) {
+			TTDINFO(@"result.summary: %@", result.summary);
+		}
         result.bigImageURL = [[bigImageURLs objectAtIndex:i] stringValue];
         result.thumbnailURL = [[thumbnailURLs objectAtIndex:i] stringValue];
         result.bigImageSize = CGSizeMake([[[bigImageWidths objectAtIndex:i] stringValue] intValue], 

@@ -10,11 +10,12 @@
 
 @implementation SearchResult
 
-@synthesize title, bigImageURL, thumbnailURL, txtInfo, bigImageSize;
+@synthesize title, summary, bigImageURL, thumbnailURL, txtInfo, bigImageSize;
 
 - (void)dealloc
 {
     [title release];
+	[summary release];
     [bigImageURL release];
     [thumbnailURL release];
 	[txtInfo release];

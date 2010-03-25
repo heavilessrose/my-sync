@@ -43,7 +43,7 @@ static const SBJsonParser *jsonParser;
     if (repr)
         return repr;
     
-    NSLog(@"-JSONFragmentValue failed. Error trace is: %@", [jsonParser errorTrace]);
+    TTDERROR(@"-JSONFragmentValue failed. Error trace is: %@", [jsonParser errorTrace]);
     return nil;
 }
 
@@ -56,7 +56,7 @@ static const SBJsonParser *jsonParser;
     if (repr)
         return repr;
     
-    NSLog(@"-JSONValue failed. Error trace is: %@", [jsonParser errorTrace]);
+    TTDERROR(@"-JSONValue failed. Error trace is: %@", [jsonParser errorTrace]);
     return nil;
 }
 

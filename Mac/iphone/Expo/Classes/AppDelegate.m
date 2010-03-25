@@ -11,6 +11,7 @@
 #import "TableMenuController.h"
 #import "CountryController.h"
 #import "SearchPhotosViewController.h"
+#import "PhotoInfoController.h"
 
 @implementation AppDelegate
 
@@ -36,6 +37,9 @@
 			transition:UIViewAnimationTransitionFlipFromLeft];
 	// 图片搜索
 	[map from:@"tt://search/Image" toSharedViewController:[SearchPhotosViewController class]];
+	// 图片信息
+	[map from:@"tt://photo/(initWithPhotoInfo:)/PhotoInfo" toViewController:[PhotoInfoController class]
+			transition:UIViewAnimationTransitionFlipFromLeft];
 	
 	// 尝试恢复上次退出时的状态
 	if (![navigator restoreViewControllers]) {

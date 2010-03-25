@@ -14,6 +14,7 @@
 @interface PhotoItem : NSObject <TTPhoto>
 {
     NSString *caption;
+	NSString *summary;
     NSString *imageURL;
     NSString *thumbnailURL;
     id <TTPhotoSource> photoSource;
@@ -22,7 +23,8 @@
 }
 @property (nonatomic, retain) NSString *imageURL;
 @property (nonatomic, retain) NSString *thumbnailURL;
-+ (id)itemWithImageURL:(NSString*)imageURL thumbImageURL:(NSString*)thumbImageURL caption:(NSString*)caption size:(CGSize)size;
+@property (nonatomic, retain) NSString *summary;
++ (id)itemWithImageURL:(NSString*)imageURL thumbImageURL:(NSString*)thumbImageURL caption:(NSString*)caption summary:(NSString *)summary size:(CGSize)size;
 @end
 
 #pragma mark -
@@ -100,7 +102,7 @@
     // photo browsing system from the domain object (SearchResult)
     // at the specified index in the TTModel.
     SearchResult *result = [[model results] objectAtIndex:index];
-    id<TTPhoto> photo = [PhotoItem itemWithImageURL:result.bigImageURL thumbImageURL:result.thumbnailURL caption:result.title size:result.bigImageSize];
+    id<TTPhoto> photo = [PhotoItem itemWithImageURL:result.bigImageURL thumbImageURL:result.thumbnailURL caption:result.title summary:result.summary size:result.bigImageSize];
     photo.index = index;
     photo.photoSource = self;
     return photo;
@@ -127,12 +129,16 @@
 @implementation PhotoItem
 
 @synthesize caption, photoSource, size, index; // properties declared in the TTPhoto protocol
-@synthesize imageURL, thumbnailURL; // PhotoItem's own properties
+@synthesize imageURL, thumbnailURL, summary; // PhotoItem's own properties
 
-+ (id)itemWithImageURL:(NSString*)theImageURL thumbImageURL:(NSString*)theThumbImageURL caption:(NSString*)theCaption size:(CGSize)theSize
++ (id)itemWithImageURL:(NSString*)theImageURL thumbImageURL:(NSString*)theThumbImageURL caption:(NSString*)theCaption summary:(NSString *)theSummary size:(CGSize)theSize
 {
     PhotoItem *item = [[[[self class] alloc] init] autorelease];
     item.caption = theCaption;
+	if (theSummary) {
+		item.summary = theSummary;
+		TTDINFO(@"PhotoItem summary: %@", item.summary);
+	}
     item.imageURL = theImageURL;
     item.thumbnailURL = theThumbImageURL;
     item.size = theSize;
@@ -154,6 +160,7 @@
 - (void)dealloc
 {
     [caption release];
+	[summary release];
     [imageURL release];
     [thumbnailURL release];
     [super dealloc];

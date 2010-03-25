@@ -42,7 +42,7 @@ static const SBJsonWriter *jsonWriter;
     if (json)
         return json;
 
-    NSLog(@"-JSONFragment failed. Error trace is: %@", [jsonWriter errorTrace]);
+    TTDERROR(@"-JSONFragment failed. Error trace is: %@", [jsonWriter errorTrace]);
     return nil;
 }
 
@@ -54,7 +54,7 @@ static const SBJsonWriter *jsonWriter;
     if (json)
         return json;
     
-    NSLog(@"-JSONRepresentation failed. Error trace is: %@", [jsonWriter errorTrace]);
+    TTDERROR(@"-JSONRepresentation failed. Error trace is: %@", [jsonWriter errorTrace]);
     return nil;
 }
 
