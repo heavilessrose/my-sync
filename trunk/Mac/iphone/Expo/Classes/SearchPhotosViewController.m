@@ -25,7 +25,7 @@
 
 - (void)doSearch
 {
-    NSLog(@"Searching for %@", queryField.text);
+    TTDINFO(@"Searching for %@", queryField.text);
     
     [queryField resignFirstResponder];
     

@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		B07621CE115B08D000ED9A26 /* PhotoInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07621CD115B08D000ED9A26 /* PhotoInfoController.m */; };
 		B0775A921153103C00CE6FD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0775A911153103C00CE6FD4 /* QuartzCore.framework */; };
 		B0775ADB1153156E00CE6FD4 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B0775ADA1153156E00CE6FD4 /* Three20.bundle */; };
 		B0775AEE115316A700CE6FD4 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0775AD61153156000CE6FD4 /* libThree20.a */; };
@@ -81,6 +82,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Expo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expo_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Expo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Expo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		B07621CC115B08D000ED9A26 /* PhotoInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoInfoController.h; sourceTree = "<group>"; };
+		B07621CD115B08D000ED9A26 /* PhotoInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoInfoController.m; sourceTree = "<group>"; };
 		B0775A911153103C00CE6FD4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		B0775AD01153156000CE6FD4 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../../../../open/iphone/three20/three20/src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		B0775ADA1153156E00CE6FD4 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../../../../../open/iphone/three20/three20/src/Three20.bundle; sourceTree = SOURCE_ROOT; };
@@ -175,10 +178,12 @@
 				B0775B0411531A4200CE6FD4 /* TabBarController.m */,
 				B0775B2611531E1800CE6FD4 /* TableMenuController.h */,
 				B0775B2711531E1800CE6FD4 /* TableMenuController.m */,
-				B0775B5D11532EF800CE6FD4 /* CountryController.h */,
-				B0775B5E11532EF800CE6FD4 /* CountryController.m */,
 				B0775B8811533C4B00CE6FD4 /* SouvenirController.h */,
 				B0775B8911533C4B00CE6FD4 /* SouvenirController.m */,
+				B0775B5D11532EF800CE6FD4 /* CountryController.h */,
+				B0775B5E11532EF800CE6FD4 /* CountryController.m */,
+				B07621CC115B08D000ED9A26 /* PhotoInfoController.h */,
+				B07621CD115B08D000ED9A26 /* PhotoInfoController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				B0D08F67115615CF0063D3F6 /* SearchResultsPhotoSource.m in Sources */,
 				B0D08F6A115619660063D3F6 /* ForwardingAdapters.m in Sources */,
 				B0D08F7511561A620063D3F6 /* SearchPhotosViewController.m in Sources */,
+				B07621CE115B08D000ED9A26 /* PhotoInfoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
