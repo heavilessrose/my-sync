@@ -73,7 +73,7 @@
 	return self;
 }
 
-- (id)initWithPhotoInfo:(NSInteger)photoIndex {
+- (id)initWithPhoto:(NSInteger)photoIndex {
 	if (self = [super init]) {
 		// 初始化
 		_index = photoIndex;
