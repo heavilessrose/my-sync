@@ -4,5 +4,13 @@
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
-    #import <UIKit/UIKit.h>
+	#import <UIKit/UIKit.h>
+
+#import "Three20/TTDebug.h"
+
+#define STATUS_BAR_HEIGHT 20
+#define NAV_BAR_HEIGHT 44
+#define NAV_BAR_ICON_SIZE (CGSizeMake(20, 20))
+#define TAB_BAR_HEIGHT 49
+#define TAB_BAR_ICON_SIZE (CGSizeMake(30, 30))
 #endif

@@ -75,7 +75,10 @@
 - (void)loadView {
 	[super loadView];
 	
-	CGRect frame = CGRectMake(10, 10, self.view.width-20, 100);
+	
+	CGFloat start_x = 10;
+	CGFloat start_y = 10 + NAV_BAR_HEIGHT + STATUS_BAR_HEIGHT;
+	CGRect frame = CGRectMake(start_x, start_y, self.view.width-(2 * start_x), 480 - start_y);
 	TTStyledTextLabel* label = [[[TTStyledTextLabel alloc] initWithFrame:frame] autorelease];
 	label.tag = 42;
 	label.font = [UIFont systemFontOfSize:22];
