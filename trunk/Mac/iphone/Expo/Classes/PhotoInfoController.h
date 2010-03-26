@@ -7,6 +7,7 @@
 //
 
 #import <Three20/Three20.h>
+#import "SearchResultsPhotoSource.h"
 
 typedef enum {
 	PhotoTypeNone,
@@ -15,7 +16,8 @@ typedef enum {
 } PhotoType;
 
 /*
- * 单个图片的展示, 及动作响应
+ * 单个缩略图的展示, 及动作响应.
+ *	- 根据index取得图片(PhotoItem *), 此缩略图直接从缓存中得到(创建新的localPhoto对象)
  */
 @interface PhotoInfoController : TTViewController {
 	PhotoType _contentType;

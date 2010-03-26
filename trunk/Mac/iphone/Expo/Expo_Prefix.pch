@@ -6,12 +6,13 @@
     #import <Foundation/Foundation.h>
 	#import <UIKit/UIKit.h>
 
-#define DEBUG
-#define TTMAXLOGLEVEL 5
-#import "Three20/TTDebug.h"
 #define STATUS_BAR_HEIGHT 20
 #define NAV_BAR_HEIGHT 44
 #define NAV_BAR_ICON_SIZE (CGSizeMake(20, 20))
 #define TAB_BAR_HEIGHT 49
 #define TAB_BAR_ICON_SIZE (CGSizeMake(30, 30))
+
+#define DEBUG
+#define TTMAXLOGLEVEL 5
+#import "Three20/TTDebug.h"
 #endif

@@ -327,13 +327,20 @@ static CGFloat kThumbSpacing = 4;
 // TTThumbsTableViewCellDelegate
 
 - (void)thumbsTableViewCell:(TTThumbsTableViewCell*)cell didSelectPhoto:(id<TTPhoto>)photo {
+	TTDINFO(@"+++TTThumsViewController::didSelectPhoto+++");
   [_delegate thumbsViewController:self didSelectPhoto:photo];
     
   BOOL shouldNavigate = YES;
   if ([_delegate respondsToSelector:@selector(thumbsViewController:shouldNavigateToPhoto:)]) {
     shouldNavigate = [_delegate thumbsViewController:self shouldNavigateToPhoto:photo];
   }
-
+	TTDINFO(@"\tshouldNavigate: %d", shouldNavigate);
+	TTDINFO(@"\tphoto:");
+	TTDINFO(@"\t\tindex:%d", photo.index);
+	TTDINFO(@"\t\tcaption:%@", photo.caption);
+	TTDINFO(@"\t\twidth:%f", photo.size.width);
+	TTDINFO(@"\t\theight:%f", photo.size.height);
+	//TTDINFO(@"\t\tsummary:%@", photo.summary);
   if (shouldNavigate) {
     NSString* URL = [self URLForPhoto:photo];
     if (URL) {

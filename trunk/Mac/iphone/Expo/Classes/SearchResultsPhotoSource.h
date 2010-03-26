@@ -10,6 +10,23 @@
 
 @protocol SearchResultsModel;
 
+// 单个图片
+@interface PhotoItem : NSObject <TTPhoto>
+{
+    NSString *caption;
+	NSString *summary;
+    NSString *imageURL;
+    NSString *thumbnailURL;
+    id <TTPhotoSource> photoSource;
+    CGSize size;
+    NSInteger index;
+}
+@property (nonatomic, retain) NSString *imageURL;
+@property (nonatomic, retain) NSString *thumbnailURL;
+@property (nonatomic, retain) NSString *summary;
++ (id)itemWithImageURL:(NSString*)imageURL thumbImageURL:(NSString*)thumbImageURL caption:(NSString*)caption summary:(NSString *)summary size:(CGSize)size;
+@end
+
 /*
 	- 从服务器载入图片s (通过Objective-C forwarding委托给SearchResultsModel实现类).
 	- 产生TTPhoto实例给photo browsing system.

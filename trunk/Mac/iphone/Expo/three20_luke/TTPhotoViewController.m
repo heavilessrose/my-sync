@@ -25,6 +25,7 @@
 #import "Three20/TTPhotoView.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTNavigator.h"
+#import "Three20/TTStyledTextLabel.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
@@ -338,7 +339,7 @@ static const NSInteger kActivityLabelTag = 96;
       style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	  
 	  // 加入图片信息按钮
-	  NSLog(@"add PhotoInfo in TTPhotoViewController");
+	  TTDINFO(@"add PhotoInfo in TTPhotoViewController");
 	  self.navigationItem.rightBarButtonItem = 
 	  [[[UIBarButtonItem alloc] initWithTitle:@"PhotoInfo" style:UIBarButtonItemStylePlain
 									   target:self action:@selector(showPhotoInfo)] autorelease];
@@ -353,10 +354,35 @@ static const NSInteger kActivityLabelTag = 96;
   return self;
 }
 
+#pragma mark luke addition
 - (void)showPhotoInfo
 {
-	TTOpenURL([NSString stringWithFormat:@"tt://photo/%d/PhotoInfo", self.centerPhoto.index]);
+	// url形式的调用难以携带信息, 只能携带一个简单字符串
+	//TTOpenURL([NSString stringWithFormat:@"tt://photo/%x/PhotoInfo", self.centerPhoto]);
+	// 直接在此显示
+	CGFloat start_x = 10;
+	CGFloat start_y = 10 + NAV_BAR_HEIGHT + STATUS_BAR_HEIGHT;
+	CGRect frame = CGRectMake(start_x, start_y, self.view.width-(2 * start_x), 480 - (2 * start_y));
+	
+	TTStyledTextLabel* label = [[[TTStyledTextLabel alloc] initWithFrame:frame] autorelease];
+	label.font = [UIFont systemFontOfSize:22];
+	label.backgroundColor = [UIColor blackColor];
+	label.textColor = [UIColor whiteColor];
+	label.html = self.centerPhoto.summary;
+	
+	TTViewController* summaryController = [[[TTViewController alloc] init] autorelease];
+	//TODO: 这里要改为title
+	summaryController.title = self.centerPhoto.caption;
+	summaryController.view.backgroundColor = [UIColor blackColor];
+	summaryController.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    summaryController.navigationBarStyle = UIBarStyleBlackTranslucent;
+    summaryController.navigationBarTintColor = nil;
+    summaryController.wantsFullScreenLayout = YES;
+    summaryController.hidesBottomBarWhenPushed = YES;
+	[summaryController.view addSubview:label];
+	[self.navigationController pushViewController:summaryController animated:YES];
 }
+//~
 
 - (void)dealloc {
   _thumbsController.delegate = nil;

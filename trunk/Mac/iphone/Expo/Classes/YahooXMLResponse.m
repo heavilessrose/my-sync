@@ -12,8 +12,8 @@
 
 @implementation YahooXMLResponse
 
-#pragma mark TTURLResponse
-
+#pragma mark TTURLResponse protocol
+// response处理回调函数
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response data:(id)data
 {
     NSError *error = nil;
@@ -39,14 +39,16 @@
     NSAssert([titles count] == [bigImageURLs count] && [titles count] == [thumbnailURLs count], 
              @"XPath error: the quantity of the data retrieved does not match.");
     
-    // 将results封装为一组SearchResult.
+    // 将解析后的response封装为一组SearchResult.
     for (NSUInteger i = 0; i < [titles count]; i++) {
         SearchResult *result = [[[SearchResult alloc] init] autorelease];
         result.title = [[titles objectAtIndex:i] stringValue];
 		result.summary = [[summarys objectAtIndex:i] stringValue];
+#if 0
 		if (result.summary) {
 			TTDINFO(@"result.summary: %@", result.summary);
 		}
+#endif
         result.bigImageURL = [[bigImageURLs objectAtIndex:i] stringValue];
         result.thumbnailURL = [[thumbnailURLs objectAtIndex:i] stringValue];
         result.bigImageSize = CGSizeMake([[[bigImageWidths objectAtIndex:i] stringValue] intValue], 
