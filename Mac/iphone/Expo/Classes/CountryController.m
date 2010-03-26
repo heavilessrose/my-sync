@@ -32,9 +32,17 @@
 
 - (id)initWithCountry:(NSString*)country {
 	if (self = [super init]) {
+		
+		self.view.backgroundColor = [UIColor blackColor];
+		self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+		self.navigationBarStyle = UIBarStyleBlackTranslucent;
+		self.navigationBarTintColor = nil;
+		self.wantsFullScreenLayout = YES;
+		self.hidesBottomBarWhenPushed = YES;
+		
 		_contentType = ContentTypeCountry;
 		self.content = country;
-		self.text = [NSString stringWithFormat:@"<b>%@</b> is just country, ya know?", country];
+		self.text = [NSString stringWithFormat:@"<b>%@</b> is just country..", country];
 		
 		self.title = country;
 		self.navigationItem.rightBarButtonItem =
@@ -46,9 +54,17 @@
 
 - (id)initWithCountryInfo:(NSString*)country {
 	if (self = [super init]) {
+		
+		self.view.backgroundColor = [UIColor blackColor];
+		self.statusBarStyle = UIStatusBarStyleBlackOpaque;
+		self.navigationBarStyle = UIBarStyleBlackOpaque;
+		self.navigationBarTintColor = nil;
+		self.wantsFullScreenLayout = NO;
+		self.hidesBottomBarWhenPushed = NO;
+		
 		_contentType = ContentTypeCountryInfo;
 		self.content = country;
-		self.text = [NSString stringWithFormat:@"<b>%@</b> is good.  Trust us.", country];
+		self.text = [NSString stringWithFormat:@"<b>%@</b> is good..", country];
 		
 		self.title = @"Country Info";
 	}
@@ -60,6 +76,13 @@
 		_contentType = ContentTypeNone;
 		_content = nil;
 		_text = nil;
+		
+		self.view.backgroundColor = [UIColor blackColor];
+		self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+		self.navigationBarStyle = UIBarStyleBlackTranslucent;
+		self.navigationBarTintColor = nil;
+		self.wantsFullScreenLayout = YES;
+		self.hidesBottomBarWhenPushed = YES;
 	}
 	return self;
 }
@@ -78,7 +101,7 @@
 	
 	CGFloat start_x = 10;
 	CGFloat start_y = 10 + NAV_BAR_HEIGHT + STATUS_BAR_HEIGHT;
-	CGRect frame = CGRectMake(start_x, start_y, self.view.width-(2 * start_x), 480 - start_y);
+	CGRect frame = CGRectMake(start_x, start_y, self.view.width-(2 * start_x), 480 - (2 * start_y));
 	TTStyledTextLabel* label = [[[TTStyledTextLabel alloc] initWithFrame:frame] autorelease];
 	label.tag = 42;
 	label.font = [UIFont systemFontOfSize:22];

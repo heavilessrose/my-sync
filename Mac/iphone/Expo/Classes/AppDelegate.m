@@ -37,8 +37,9 @@
 			transition:UIViewAnimationTransitionFlipFromLeft];
 	// 图片搜索
 	[map from:@"tt://search/Image" toSharedViewController:[SearchPhotosViewController class]];
+	
 	// 图片信息
-	[map from:@"tt://photo/(initWithPhoto:)/PhotoInfo" toViewController:[PhotoInfoController class]
+	[map from:@"tt://photo/(initWithPhotoItem:)/PhotoInfo" toViewController:[PhotoInfoController class]
 			transition:UIViewAnimationTransitionFlipFromLeft];
 	
 	// 尝试恢复上次退出时的状态

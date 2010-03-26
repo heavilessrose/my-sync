@@ -33,7 +33,7 @@
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark TTURLResponse
+#pragma mark TTURLResponse protocol
 
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response data:(id)data
 {

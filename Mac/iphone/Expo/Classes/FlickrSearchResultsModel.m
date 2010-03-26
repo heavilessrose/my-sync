@@ -1,20 +1,18 @@
 //
-//  YahooSearchResultsModel.m
-//  Expo
+//  FlickrSearchResultsModel.m
 //
-//  Created by luke on 10-3-21.
-//  Copyright 2010 Luke. All rights reserved.
+//  Created by Keith Lazuka on 7/23/09.
+//  
 //
 
-#import "YahooSearchResultsModel.h"
-#import "YahooJSONResponse.h"
-#import "YahooXMLResponse.h"
-#import "./Support/GTMNSDictionary+URLArguments.h"
+#import "FlickrSearchResultsModel.h"
+#import "FlickrJSONResponse.h"
+#import "FlickrXMLResponse.h"
+#import "GTMNSDictionary+URLArguments.h"
 
-// 每次请求拿下的result数
-const static NSUInteger kYahooBatchSize = 16;
+const static NSUInteger kFlickrBatchSize = 16;   // The number of results to pull down with each request to the server.
 
-@implementation YahooSearchResultsModel
+@implementation FlickrSearchResultsModel
 
 @synthesize searchTerms;
 
@@ -23,15 +21,15 @@ const static NSUInteger kYahooBatchSize = 16;
     if ((self = [super init])) {
         switch ( responseFormat ) {
             case SearchResponseFormatJSON:
-                responseProcessor = [[YahooJSONResponse alloc] init];
+                responseProcessor = [[FlickrJSONResponse alloc] init];
                 break;
             case SearchResponseFormatXML:
-                responseProcessor = [[YahooXMLResponse alloc] init];
+                responseProcessor = [[FlickrXMLResponse alloc] init];
                 break;
             default:
                 [NSException raise:@"SearchResponseFormat unknown!" format:nil];
         }
-        recordOffset = 1; // Yahoo API offset从1开始.
+        page = 1;
     }
     return self;
 }
@@ -49,32 +47,33 @@ const static NSUInteger kYahooBatchSize = 16;
     }
     
     if (more)
-        recordOffset += kYahooBatchSize;
+        page++;
     else
-        [responseProcessor.objects removeAllObjects]; // 清除上一次请求的数据.
+        [responseProcessor.objects removeAllObjects]; // Clear out data from previous request.
     
-    NSString *offset = [NSString stringWithFormat:@"%lu", (unsigned long)recordOffset];
-    NSString *batchSize = [NSString stringWithFormat:@"%lu", (unsigned long)kYahooBatchSize];
+    NSString *batchSize = [NSString stringWithFormat:@"%lu", (unsigned long)kFlickrBatchSize];
     
-    // request.
-    NSString *host = @"http://search.yahooapis.com";
-    NSString *path = @"/ImageSearchService/V1/imageSearch";
+    // Construct the request.
+    NSString *host = @"http://api.flickr.com";
+    NSString *path = @"/services/rest/";
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
-                                searchTerms, @"query",
-                                @"YahooDemo", @"appid",
-                                [responseProcessor format], @"output",
-                                offset, @"start",
-                                batchSize, @"results",
-								// 
+                                @"flickr.photos.search", @"method",
+                                searchTerms, @"text",
+                                @"url_m,url_t", @"extras",
+                                @"43f122b1a7fef3db2328bd75b38da08d", @"api_key", // I am providing my own API key as a convenience because I'm trusting you not to use it for evil.
+                                [responseProcessor format], @"format",
+                                [NSString stringWithFormat:@"%lu", (unsigned long)page], @"page",
+                                batchSize, @"per_page",
+                                @"1", @"nojsoncallback",
                                 nil];
-	
+            
     NSString *url = [host stringByAppendingFormat:@"%@?%@", path, [parameters gtm_httpArgumentsString]];
     TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
     request.cachePolicy = cachePolicy;
-    request.response = responseProcessor; // 设置response处理器
+    request.response = responseProcessor;
     request.httpMethod = @"GET";
     
-    // 分发request.
+    // Dispatch the request.
     [request send];
 }
 
@@ -83,7 +82,7 @@ const static NSUInteger kYahooBatchSize = 16;
     [super reset];
     [searchTerms release];
     searchTerms = nil;
-    recordOffset = 1;
+    page = 1;
     [[responseProcessor objects] removeAllObjects];
 }
 
@@ -92,11 +91,10 @@ const static NSUInteger kYahooBatchSize = 16;
     if (![theSearchTerms isEqualToString:searchTerms]) {
         [searchTerms release];
         searchTerms = [theSearchTerms retain];
-        recordOffset = 1;
+        page = 1;
     }
 }
 
-// 得到结果集合(一组SearchResult)
 - (NSArray *)results
 {
     return [[[responseProcessor objects] copy] autorelease];

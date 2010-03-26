@@ -7,7 +7,7 @@
 //
 
 #import "PhotoInfoController.h"
-
+#import "SearchResultsPhotoSource.h"
 
 @implementation PhotoInfoController
 @synthesize summary = _summary;
@@ -22,11 +22,27 @@
 }
 */
 
-/*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
+	[super loadView];
+	
+	CGFloat start_x = 10;
+	CGFloat start_y = 10 + NAV_BAR_HEIGHT + STATUS_BAR_HEIGHT;
+	CGRect frame = CGRectMake(start_x, start_y, self.view.width-(2 * start_x), 480 - start_y);
+	TTStyledTextLabel* label = [[[TTStyledTextLabel alloc] initWithFrame:frame] autorelease];
+	label.tag = 45;
+	label.font = [UIFont systemFontOfSize:22];
+	[self.view addSubview:label];
+	
+	if (_contentType == PhotoTypeStadium) {
+		// 
+	}
 }
-*/
+
+- (void)viewWillAppear:(BOOL)animated {
+	TTStyledTextLabel* label = (TTStyledTextLabel*)[self.view viewWithTag:45];
+	label.html = _summary;
+}
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -73,12 +89,25 @@
 	return self;
 }
 
-- (id)initWithPhoto:(NSInteger)photoIndex {
+//- (id)initWithPhotoSource:(NSInteger)photoIndex {
+//	if (self = [super init]) {
+//		// 初始化
+//		_index = photoIndex + 1;
+//		self.title = [NSString stringWithFormat:@"%d", _index];
+////		summary = ;
+//	}
+//	return self;
+//}
+
+- (id)initWithPhotoItem:(NSInteger)photoIndex {
 	if (self = [super init]) {
-		// 初始化
-		_index = photoIndex;
+		/*
+		PhotoItem *thePhoto = ;
+		_index = thePhoto.index;
+		_contentType = PhotoTypeStadium;
 		self.title = [NSString stringWithFormat:@"%d", _index];
-//		summary = ;
+		self.summary = thePhoto.summary;
+		 */
 	}
 	return self;
 }

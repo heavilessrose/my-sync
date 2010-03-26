@@ -15,6 +15,9 @@
 		B07621CE115B08D000ED9A26 /* PhotoInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07621CD115B08D000ED9A26 /* PhotoInfoController.m */; };
 		B07622FA115B219100ED9A26 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07622F7115B218300ED9A26 /* libThree20.a */; };
 		B0762306115B21E400ED9A26 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B0762305115B21E400ED9A26 /* Three20.bundle */; };
+		B0762579115B820400ED9A26 /* FlickrJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B0762574115B820400ED9A26 /* FlickrJSONResponse.m */; };
+		B076257A115B820400ED9A26 /* FlickrSearchResultsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0762576115B820400ED9A26 /* FlickrSearchResultsModel.m */; };
+		B076257B115B820400ED9A26 /* FlickrXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B0762578115B820400ED9A26 /* FlickrXMLResponse.m */; };
 		B0775A921153103C00CE6FD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0775A911153103C00CE6FD4 /* QuartzCore.framework */; };
 		B0775B0511531A4200CE6FD4 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B0411531A4200CE6FD4 /* TabBarController.m */; };
 		B0775B2811531E1800CE6FD4 /* TableMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0775B2711531E1800CE6FD4 /* TableMenuController.m */; };
@@ -86,6 +89,12 @@
 		B07621CD115B08D000ED9A26 /* PhotoInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoInfoController.m; sourceTree = "<group>"; };
 		B07622EC115B218300ED9A26 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20_luke/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		B0762305115B21E400ED9A26 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = three20_luke/Three20.bundle; sourceTree = SOURCE_ROOT; };
+		B0762573115B820400ED9A26 /* FlickrJSONResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickrJSONResponse.h; path = Classes/FlickrJSONResponse.h; sourceTree = SOURCE_ROOT; };
+		B0762574115B820400ED9A26 /* FlickrJSONResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickrJSONResponse.m; path = Classes/FlickrJSONResponse.m; sourceTree = SOURCE_ROOT; };
+		B0762575115B820400ED9A26 /* FlickrSearchResultsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickrSearchResultsModel.h; path = Classes/FlickrSearchResultsModel.h; sourceTree = SOURCE_ROOT; };
+		B0762576115B820400ED9A26 /* FlickrSearchResultsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickrSearchResultsModel.m; path = Classes/FlickrSearchResultsModel.m; sourceTree = SOURCE_ROOT; };
+		B0762577115B820400ED9A26 /* FlickrXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickrXMLResponse.h; path = Classes/FlickrXMLResponse.h; sourceTree = SOURCE_ROOT; };
+		B0762578115B820400ED9A26 /* FlickrXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickrXMLResponse.m; path = Classes/FlickrXMLResponse.m; sourceTree = SOURCE_ROOT; };
 		B0775A911153103C00CE6FD4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		B0775B0311531A4200CE6FD4 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		B0775B0411531A4200CE6FD4 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
@@ -251,17 +260,39 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B0775C1E11537B7900CE6FD4 /* Model */ = {
+		B076256E115B81D200ED9A26 /* abstract */ = {
 			isa = PBXGroup;
 			children = (
-				B0DB641E1155D02A0007C7E3 /* Yahoo */,
-				B0DB641D1155D0140007C7E3 /* Luke */,
 				B0DB64141155C8990007C7E3 /* SearchResult.h */,
 				B0DB64151155C8990007C7E3 /* SearchResult.m */,
 				B0DB64171155CB4D0007C7E3 /* URLModelResponse.h */,
 				B0DB64181155CB4D0007C7E3 /* URLModelResponse.m */,
 				B0DB641A1155CD7D0007C7E3 /* SearchResultsModel.h */,
 				B0DB641B1155CD7D0007C7E3 /* SearchResultsModel.m */,
+			);
+			name = abstract;
+			sourceTree = "<group>";
+		};
+		B076256F115B81DC00ED9A26 /* Flickr */ = {
+			isa = PBXGroup;
+			children = (
+				B0762573115B820400ED9A26 /* FlickrJSONResponse.h */,
+				B0762574115B820400ED9A26 /* FlickrJSONResponse.m */,
+				B0762575115B820400ED9A26 /* FlickrSearchResultsModel.h */,
+				B0762576115B820400ED9A26 /* FlickrSearchResultsModel.m */,
+				B0762577115B820400ED9A26 /* FlickrXMLResponse.h */,
+				B0762578115B820400ED9A26 /* FlickrXMLResponse.m */,
+			);
+			name = Flickr;
+			sourceTree = "<group>";
+		};
+		B0775C1E11537B7900CE6FD4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B076256F115B81DC00ED9A26 /* Flickr */,
+				B0DB641E1155D02A0007C7E3 /* Yahoo */,
+				B0DB641D1155D0140007C7E3 /* Luke */,
+				B076256E115B81D200ED9A26 /* abstract */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -472,6 +503,9 @@
 				B0D08F6A115619660063D3F6 /* ForwardingAdapters.m in Sources */,
 				B0D08F7511561A620063D3F6 /* SearchPhotosViewController.m in Sources */,
 				B07621CE115B08D000ED9A26 /* PhotoInfoController.m in Sources */,
+				B0762579115B820400ED9A26 /* FlickrJSONResponse.m in Sources */,
+				B076257A115B820400ED9A26 /* FlickrSearchResultsModel.m in Sources */,
+				B076257B115B820400ED9A26 /* FlickrXMLResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

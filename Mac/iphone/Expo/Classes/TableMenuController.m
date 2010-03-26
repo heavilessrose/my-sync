@@ -35,6 +35,14 @@
 
 - (id)initWithMenu:(MenuPage)page {
 	if (self = [super init]) {
+		
+		self.view.backgroundColor = [UIColor blackColor];
+		self.statusBarStyle = UIStatusBarStyleBlackOpaque;
+		self.navigationBarStyle = UIBarStyleBlackOpaque;
+		self.navigationBarTintColor = nil;
+		self.wantsFullScreenLayout = NO;
+		self.hidesBottomBarWhenPushed = NO;
+		
 		self.page = page;
 	}
 	return self;

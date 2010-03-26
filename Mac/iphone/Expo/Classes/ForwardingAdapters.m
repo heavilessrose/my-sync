@@ -40,6 +40,7 @@
 
 - (TTPhotoViewController*)createPhotoViewController
 {
+	TTDINFO(@"-----ForwardingAdapters::createPhotoViewController-----");
 	MyPhotoViewController *vc = [[[MyPhotoViewController alloc] init] autorelease];
 	vc.realModel = realModel;
 	return vc;

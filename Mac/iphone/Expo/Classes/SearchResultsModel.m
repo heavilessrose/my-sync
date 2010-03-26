@@ -8,6 +8,7 @@
 
 #import "SearchResultsModel.h"
 #import "YahooSearchResultsModel.h"
+#import "FlickrSearchResultsModel.h"
 
 SearchService CurrentSearchService = SearchServiceDefault;
 SearchResponseFormat CurrentSearchResponseFormat = SearchResponseFormatDefault;
@@ -20,7 +21,7 @@ id<SearchResultsModel> CreateSearchModel(SearchService service, SearchResponseFo
             model = [[[YahooSearchResultsModel alloc] initWithResponseFormat:responseFormat] autorelease];
             break;
         case SearchServiceFlickr:
-            //model = [[[FlickrSearchResultsModel alloc] initWithResponseFormat:responseFormat] autorelease];
+            model = [[[FlickrSearchResultsModel alloc] initWithResponseFormat:responseFormat] autorelease];
             break;
         default:
             [NSException raise:@"CurrentSearchService unknown" format:nil];

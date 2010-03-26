@@ -11,22 +11,6 @@
 #import "SearchResult.h"
 
 
-@interface PhotoItem : NSObject <TTPhoto>
-{
-    NSString *caption;
-	NSString *summary;
-    NSString *imageURL;
-    NSString *thumbnailURL;
-    id <TTPhotoSource> photoSource;
-    CGSize size;
-    NSInteger index;
-}
-@property (nonatomic, retain) NSString *imageURL;
-@property (nonatomic, retain) NSString *thumbnailURL;
-@property (nonatomic, retain) NSString *summary;
-+ (id)itemWithImageURL:(NSString*)imageURL thumbImageURL:(NSString*)thumbImageURL caption:(NSString*)caption summary:(NSString *)summary size:(CGSize)size;
-@end
-
 #pragma mark -
 @implementation SearchResultsPhotoSource
 
@@ -136,8 +120,9 @@
     PhotoItem *item = [[[[self class] alloc] init] autorelease];
     item.caption = theCaption;
 	if (theSummary) {
+		TTDINFO(@"add summary");
 		item.summary = theSummary;
-		TTDINFO(@"PhotoItem summary: %@", item.summary);
+		//TTDINFO(@"SearchResultsPhotoSource::PhotoItem summary: %@", item.summary);
 	}
     item.imageURL = theImageURL;
     item.thumbnailURL = theThumbImageURL;

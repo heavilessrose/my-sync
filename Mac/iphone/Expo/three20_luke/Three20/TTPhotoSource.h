@@ -84,6 +84,9 @@ typedef enum {
 
 @property(nonatomic,copy) NSString* title;
 
+// 详细信息
+@property(nonatomic,copy) NSString* summary;
+
 /**
  * Gets the URL of one of the differently sized versions of the photo.
  */
