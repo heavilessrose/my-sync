@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>Play sound</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>OnLineAlert</string>
+			<key>Title</key>
+			<string>Contacts come online</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>MessageAlert</string>
+			<key>Title</key>
+			<string>Messsage received</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>NotifyNudge</string>
+			<key>Title</key>
+			<string>Notify me nudge</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Display</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>ShowBigImage</string>
+			<key>Title</key>
+			<string>Show big image</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>DisplayOnlines</string>
+			<key>Title</key>
+			<string>Show onlines only</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+	</array>
+	<key>Title</key>
+	<string>MSN</string>
+</dict>
+</plist>
