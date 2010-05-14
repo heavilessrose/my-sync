@@ -168,7 +168,7 @@ NSString *IMFromWapNotification = @"imMSGFromWapNotification";
 	segmentedControl.frame = CGRectMake(0, 0, 90, 30);
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	segmentedControl.momentary = YES;
-	segmentedControl.tintColor = [UIColor darkGrayColor];
+	segmentedControl.tintColor = [UIColor colorWithRed:32.0/255.0 green:75.0/255.0 blue:118.0/255.0 alpha:1.0];
 	[segmentedControl setEnabled:NO forSegmentAtIndex:0]	;
 	[segmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 	

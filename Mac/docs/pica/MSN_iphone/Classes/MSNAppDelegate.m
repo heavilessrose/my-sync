@@ -735,22 +735,9 @@ enum {
 
 - (void)showLoginFlashView
 {
-#ifdef FOR_PAYMENT_APP
     self.netWorkController = [ClientNetWorkController getInstance];
-    [netWorkController sendClientRequest:nil];		
-#else
-	if([self.myAccount isEqualToString: @"appletest@msn.cn"] ||
-       [self.myAccount isEqualToString: @"appletest1@msn.cn"])
-	{
-		self.netWorkController = [ClientNetWorkController getInstance];
-		[netWorkController sendClientRequest:nil];		
-	}
-	else
-	{
-		self.netWorkController = [ClientNetWorkController getInstance];
-		[netWorkController sendH3GWIFIRequest:H3G_WIFI];
-	}
-#endif
+    [netWorkController sendClientRequest:nil];
+    
 	UIApplication *application = [UIApplication sharedApplication];
 	application.networkActivityIndicatorVisible = YES;	
 }
@@ -1349,7 +1336,7 @@ enum {
 				}
 				
 				tmpController = [[UINavigationController alloc] initWithRootViewController:standbyZwpController];
-				tmpController.navigationBar.tintColor = [UIColor darkGrayColor];
+				tmpController.navigationBar.tintColor = [UIColor colorWithRed:32.0/255.0 green:75.0/255.0 blue:118.0/255.0 alpha:1.0];
 				[tmpController setNavigationBarHidden:YES animated:NO];
 				imagePath = [[NSBundle mainBundle] pathForResource:@"a10"
 															ofType:@"png"];
@@ -1368,7 +1355,7 @@ enum {
 			tmpController = [[UINavigationController alloc] initWithRootViewController:settingController];
 			settingController.title = NSLocalizedString(@"Settings", nil);
 
-			tmpController.navigationBar.tintColor = [UIColor darkGrayColor];
+			tmpController.navigationBar.tintColor = [UIColor colorWithRed:32.0/255.0 green:75.0/255.0 blue:118.0/255.0 alpha:1.0];
 			imagePath = [[NSBundle mainBundle] pathForResource:@"myzone"
 														ofType:@"png"];
 			tmpController.tabBarItem.image = [UIImage imageWithContentsOfFile:imagePath];
@@ -1401,7 +1388,7 @@ enum {
 			}			
 			
 			tmpController = [[UINavigationController alloc] initWithRootViewController:chatSelectController];
-			tmpController.navigationBar.tintColor = [UIColor darkGrayColor];
+			tmpController.navigationBar.tintColor = [UIColor colorWithRed:32.0/255.0 green:75.0/255.0 blue:118.0/255.0 alpha:1.0];
 			imagePath = [[NSBundle mainBundle] pathForResource:@"dialog-png"
 														ofType:@"png"];
 			tmpController.tabBarItem.image = [UIImage imageWithContentsOfFile:imagePath];
@@ -1416,7 +1403,7 @@ enum {
 				}
 				
 				tmpController = [[UINavigationController alloc] initWithRootViewController:zwpController];
-				tmpController.navigationBar.tintColor = [UIColor darkGrayColor];
+				tmpController.navigationBar.tintColor = [UIColor colorWithRed:32.0/255.0 green:75.0/255.0 blue:118.0/255.0 alpha:1.0];
 				[tmpController setNavigationBarHidden:YES animated:NO];
 				imagePath = [[NSBundle mainBundle] pathForResource:@"zwp-png"
 															ofType:@"png"];
@@ -1600,7 +1587,7 @@ enum {
 		UINavigationController *tmpController = [[UINavigationController alloc] initWithRootViewController:controller];
 		self.navigationController = tmpController;
 		[tmpController release];
-		navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+		navigationController.navigationBar.tintColor = [UIColor colorWithRed:32.0/255.0 green:75.0/255.0 blue:118.0/255.0 alpha:1.0];
 		[controller release];	
 		[window addSubview: navigationController.view];
 	}
@@ -2640,6 +2627,15 @@ enum {
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
 {
+    /*
+    //TODO: test parse code
+    const char *str = "<iq type='result' from='msn.pica' to='52724222@pica/pica' addition='1' last='1'><query xmlns='jabber:iq:group' version='1|2010-05-13T05:27:33.3230000Z|2010-05-13T05:13:22.9400000Z|2010-05-13T06:33:50.7000000Z'><group groupid='0' name='Other contacts' gbcode='6f746865' sync='updated'/></query></iq><iq type='result' from='msn.pica' to='52724222@pica/pica' addition='1' last='1'><query xmlns='jabber:iq:roster' version='1|2010-05-13T05:27:33.3230000Z|2010-05-13T05:13:22.9400000Z|2010-05-13T06:33:50.7000000Z'><item jid='a5a55ac2-e68e-4496-9b1a-26697e73537d@msn.pica' block='0' sync='updated'/></query></iq><presence type='available' from='a5a55ac2-e68e-4496-9b1a-26697e73537d@msn.pica' to='52724222@pica/pica'><show>online</show><impresa/><portraithash>LlAZ+lp6VAYvrczPryecymfnJNc=</portraithash></presence><presence type='available' from='a5a55ac2-e68e-4496-9b1a-26697e73537d@msn.pica' to='52724222@pica/pica'><show>online</show><portraithash>LlAZ+lp6VAYvrczPryecymfnJNc=</portraithash></presence><presence type='available' from='a5a55ac2-e68e-4496-9b1a-26697e73537d@msn.pica' to='52724222@pica/pica'><show/><impresa/></presence>";
+    ClientNetWorkController *net = [[ClientNetWorkController alloc] init];
+    NSData *data = [NSData dataWithBytes:(const void *)str length:strlen(str)];
+    if(data)
+        [net praseLoginResponseData:data];
+     */
+    
 	shouldHideAlertMsg = NO;
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	[window setBackgroundColor:[UIColor whiteColor]];

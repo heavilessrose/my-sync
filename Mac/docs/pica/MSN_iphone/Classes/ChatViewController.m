@@ -208,6 +208,7 @@ SendReceiveStatus isSendReceive = NO;
 	pressionButton.segmentedControlStyle = UISegmentedControlStyleBar;
 	pressionButton.frame = rect;
 	pressionButton.selectedSegmentIndex = UISegmentedControlNoSegment;
+    pressionButton.tintColor = [UIColor colorWithRed:191.0/255.0 green:195.0/255.0 blue:197.0/255.0 alpha:1.0];
 	[pressionButton addTarget: self
 					   action: @selector(showPressionPanel:)
 			 forControlEvents: UIControlEventValueChanged];
@@ -240,7 +241,8 @@ SendReceiveStatus isSendReceive = NO;
 	
 	rect = CGRectMake(0, 250, 320, 44);
 	UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:rect];
-	toolBar.barStyle = UIBarStyleDefault;
+	//toolBar.barStyle = UIBarStyleDefault;
+    toolBar.tintColor = [UIColor colorWithRed:191.0/255.0 green:195.0/255.0 blue:197.0/255.0 alpha:1.0];
 	[toolBar setItems:array animated:NO];
 	toolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
 	[self.view addSubview: toolBar];

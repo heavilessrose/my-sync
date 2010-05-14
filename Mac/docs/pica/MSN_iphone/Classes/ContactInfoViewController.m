@@ -202,7 +202,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-	self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+	self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:32.0/255.0 green:75.0/255.0 blue:118.0/255.0 alpha:1.0];
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
 	[super viewDidAppear:animated];
 }

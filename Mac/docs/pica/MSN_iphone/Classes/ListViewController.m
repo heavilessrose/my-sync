@@ -152,7 +152,7 @@ NSString *SayHiPackageSentNotification = @"SayHiPackageSentNotification";
 	CGRect rect = CGRectMake(0, -2, 320, 46);
 	UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:rect];
 	toolBar.barStyle = UIBarStyleDefault;
-	toolBar.tintColor = [UIColor darkGrayColor];
+	toolBar.tintColor = [UIColor colorWithRed:32.0/255.0 green:75.0/255.0 blue:118.0/255.0 alpha:1.0];
 	[toolBar setItems:array animated:NO];
 	
 	[self.view addSubview:toolBar];
@@ -577,8 +577,8 @@ NSString *SayHiPackageSentNotification = @"SayHiPackageSentNotification";
 									destructiveButtonTitle: nil
 									otherButtonTitles: NSLocalizedString(@"Add Contact", nil),
 									NSLocalizedString(@"qtn_search_budy",nil), 
-									NSLocalizedString(@"Sort by Status",nil),
 									NSLocalizedString(@"qtn_buddy_refresh",nil),
+									NSLocalizedString(@"Sort by Status",nil),
 									NSLocalizedString(@"conversation",nil),
 									NSLocalizedString(@"qtn_main_buddy_view_logout",nil),
 //                                    NSLocalizedString(@"qtn_cancel",nil),
@@ -694,7 +694,7 @@ NSString *SayHiPackageSentNotification = @"SayHiPackageSentNotification";
     pcSearchContactsViewController* aController = [[pcSearchContactsViewController alloc] initWithNibName: @"SearchContactsViewController"
                                                                                                    bundle: nil];
     UINavigationController* aNavigation = [[UINavigationController alloc] initWithRootViewController: aController];
-	aNavigation.navigationBar.tintColor = [UIColor darkGrayColor];
+	aNavigation.navigationBar.tintColor = [UIColor colorWithRed:32.0/255.0 green:75.0/255.0 blue:118.0/255.0 alpha:1.0];
     aController.title = NSLocalizedString(@"qtn_search_budy",nil);
     [self.navigationController presentModalViewController: aNavigation animated: YES];
     [aNavigation release];
