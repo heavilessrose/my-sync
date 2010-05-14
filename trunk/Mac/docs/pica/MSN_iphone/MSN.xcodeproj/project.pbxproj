@@ -604,9 +604,6 @@
 		187AC93D0F6657CA0045BC4C /* AdvtResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvtResponseParser.m; sourceTree = "<group>"; };
 		187AC9A90F6661420045BC4C /* Advertisement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Advertisement.h; sourceTree = "<group>"; };
 		187AC9AA0F6661420045BC4C /* Advertisement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Advertisement.m; sourceTree = "<group>"; };
-		187AD2970F43CF4C00136695 /* zh_CN */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 1; name = zh_CN; path = zh_CN.lproj/Localizable.strings; sourceTree = "<group>"; };
-		187AD2980F43CF5900136695 /* zh_TW */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 1; name = zh_TW; path = zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
-		187AD2990F43CF6400136695 /* zh_HK */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 1; name = zh_HK; path = zh_HK.lproj/Localizable.strings; sourceTree = "<group>"; };
 		187AD3490F43F55A00136695 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 1; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		187ADEF80F6F41D5005CB47E /* ZwpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZwpController.h; sourceTree = "<group>"; };
 		187ADEF90F6F41D5005CB47E /* ZwpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZwpController.m; sourceTree = "<group>"; };
@@ -652,7 +649,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MSNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSNAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MSNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSNAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Mobile MSN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile MSN.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MSN_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSN_Prefix.pch; sourceTree = "<group>"; };
@@ -1135,7 +1132,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Messenger.app */,
+				1D6058910D05DD3D006BFB54 /* Mobile MSN.app */,
 				7F0C10AC0F84B0150042B391 /* Tests.app */,
 			);
 			name = Products;
@@ -1399,7 +1396,7 @@
 			);
 			name = Messenger;
 			productName = MSN;
-			productReference = 1D6058910D05DD3D006BFB54 /* Messenger.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Mobile MSN.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7F0C10AB0F84B0150042B391 /* Tests */ = {
@@ -1878,9 +1875,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				187AD3490F43F55A00136695 /* English */,
-				187AD2970F43CF4C00136695 /* zh_CN */,
-				187AD2980F43CF5900136695 /* zh_TW */,
-				187AD2990F43CF6400136695 /* zh_HK */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1938,7 +1932,7 @@
 					"\"$(SRCROOT)/../gh-unit/Examples/MyTestable-IPhone/Libraries/GHUnit\"",
 					"\"$(SRCROOT)/../../../../../codes/iphone/three20/src/build/Debug-iphonesimulator\"",
 				);
-				PRODUCT_NAME = Messenger;
+				PRODUCT_NAME = "Mobile MSN";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug_for_sale;
@@ -2013,7 +2007,7 @@
 					"\"$(SRCROOT)/../gh-unit/Examples/MyTestable-IPhone/Libraries/GHUnit\"",
 					"\"$(SRCROOT)/../../../../../codes/iphone/three20/src/build/Debug-iphonesimulator\"",
 				);
-				PRODUCT_NAME = Messenger;
+				PRODUCT_NAME = "Mobile MSN";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Distribution;
@@ -2058,7 +2052,7 @@
 					"\"$(SRCROOT)/../gh-unit/Examples/MyTestable-IPhone/Libraries/GHUnit\"",
 					"\"$(SRCROOT)/../../../../../codes/iphone/three20/src/build/Debug-iphonesimulator\"",
 				);
-				PRODUCT_NAME = Messenger;
+				PRODUCT_NAME = "Mobile MSN";
 			};
 			name = Release_simplify;
 		};
@@ -2135,7 +2129,7 @@
 					"\"$(SRCROOT)/../gh-unit/Examples/MyTestable-IPhone/Libraries/GHUnit\"",
 					"\"$(SRCROOT)/../../../../../codes/iphone/three20/src/build/Debug-iphonesimulator\"",
 				);
-				PRODUCT_NAME = Messenger;
+				PRODUCT_NAME = "Mobile MSN";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Release_for_sale;
@@ -2211,7 +2205,7 @@
 					"\"$(SRCROOT)/../gh-unit/Examples/MyTestable-IPhone/Libraries/GHUnit\"",
 					"\"$(SRCROOT)/../../../../../codes/iphone/three20/src/build/Debug-iphonesimulator\"",
 				);
-				PRODUCT_NAME = Messenger;
+				PRODUCT_NAME = "Mobile MSN";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Distribution_for_sale;
@@ -2258,7 +2252,7 @@
 					"\"$(SRCROOT)/../gh-unit/Examples/MyTestable-IPhone/Libraries/GHUnit\"",
 					"\"$(SRCROOT)/../../../../../codes/iphone/three20/src/build/Debug-iphonesimulator\"",
 				);
-				PRODUCT_NAME = Messenger;
+				PRODUCT_NAME = "Mobile MSN";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;
@@ -2279,7 +2273,7 @@
 					"\"$(SRCROOT)/../gh-unit/Examples/MyTestable-IPhone/Libraries/GHUnit\"",
 					"\"$(SRCROOT)/../../../../../codes/iphone/three20/src/build/Debug-iphonesimulator\"",
 				);
-				PRODUCT_NAME = Messenger;
+				PRODUCT_NAME = "Mobile MSN";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Release;

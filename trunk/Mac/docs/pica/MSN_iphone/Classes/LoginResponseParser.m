@@ -87,7 +87,7 @@ NSString		*LoginNotification = @"Login";
 		[aNetwork sendContactsNickNameToServer];
 		[aNetwork sendAPSInfoToServer];
 		[aNetwork sendOfflineMsgRequest];
-        [aNetwork sendUpdatePortrait];
+        //[aNetwork sendUpdatePortrait];
 #if 0
         NSArray *filePaths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES); 
         NSString *directory = [filePaths objectAtIndex: 0];
@@ -170,6 +170,7 @@ NSString		*LoginNotification = @"Login";
 	{
 		if ([elementName compare:@"iq"] == NSOrderedSame)
 		{
+            NSLog(@"<iq>");
 			nodeType = EM_IQ;
 			if (attributeDict && [attributeDict count] > 0)
 			{
@@ -183,6 +184,7 @@ NSString		*LoginNotification = @"Login";
 						if (index != NSNotFound)
 						{
 							additionValue = [[attributeDict objectForKey:@"addition"] intValue];	
+                            NSLog(@"    addition = %d", additionValue);
 						}
 						
 						index = [[attributeDict allKeys] indexOfObject:@"last"];
@@ -192,6 +194,7 @@ NSString		*LoginNotification = @"Login";
 							if (tempLastValue != 1 && lastValue == 1){
 								tempLastValue = lastValue;
 							}
+                            NSLog(@"    last = %d", tempLastValue);
 						}
 					}					
 				}
@@ -199,6 +202,7 @@ NSString		*LoginNotification = @"Login";
 		}
 		else if([elementName compare:@"presence"] == NSOrderedSame)
 		{
+            NSLog(@"<presence>");
 			nodeType = EM_PRESENCE;
 			if (attributeDict && [attributeDict count] > 0)
 			{
@@ -206,10 +210,12 @@ NSString		*LoginNotification = @"Login";
 				if (index != NSNotFound )
 				{
 					self.resultString = [attributeDict objectForKey:@"type"];	
+                    NSLog(@"    presence::type = %@", resultString);
 					index = [[attributeDict allKeys] indexOfObject:@"from"];
 					if (index != NSNotFound)
 					{
-						self.messageOrigin = [attributeDict objectForKey:@"from"];
+						self.messageOrigin = [attributeDict objectForKey:@"from"];	
+                        NSLog(@"    presence::from = %@", messageOrigin);
 						if ([messageOrigin compare:@"msn.pica"] == NSOrderedSame)
 						{
 							noteType = EM_NOTE_PRESENCE_SELF;
@@ -225,7 +231,8 @@ NSString		*LoginNotification = @"Login";
 					index = [[attributeDict allKeys] indexOfObject:@"version"];
 					if (index != NSNotFound)
 					{
-						value = [attributeDict objectForKey:@"version"];
+						value = [attributeDict objectForKey:@"version"];	
+                        NSLog(@"    presence::version = %@", value);
 						if (value != nil)
 							[self updateRosterVersion:value];
 					}
@@ -234,6 +241,7 @@ NSString		*LoginNotification = @"Login";
 		}
 		else if ([elementName compare:@"item"] == NSOrderedSame)
 		{
+            NSLog(@"<item>");
 			if (actionType == nil)
 			{
 				if (attributeDict && [attributeDict count] > 0)
@@ -243,47 +251,56 @@ NSString		*LoginNotification = @"Login";
 					if (index != NSNotFound)
 					{
 						itemInfo.jid = [attributeDict objectForKey:@"jid"];	
+                        NSLog(@"    item::jid = %@", itemInfo.jid);
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"imid"];
 					if (index != NSNotFound)
 					{
 						itemInfo.imid = [attributeDict objectForKey:@"imid"];	
+                        NSLog(@"    item::imid = %@", itemInfo.imid);
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"nickname"];
 					if (index != NSNotFound)
 					{
 						itemInfo.nickname = [attributeDict objectForKey:@"nickname"];	
+                        NSLog(@"    item::nickname = %@", itemInfo.nickname);
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"gbcode"];
 					if (index != NSNotFound)
 					{
 						itemInfo.gbcode = [attributeDict objectForKey:@"gbcode"];	
+                        NSLog(@"    item::gbcode = %@", itemInfo.gbcode);
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"localname"];
 					if (index != NSNotFound)
 					{
-						itemInfo.localname = [attributeDict objectForKey:@"localname"];	
+						itemInfo.localname = [attributeDict objectForKey:@"localname"];		
+                        NSLog(@"    item::localname = %@", itemInfo.localname);
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"localgbcode"];
 					if (index != NSNotFound)
 					{
-						itemInfo.localgbcode = [attributeDict objectForKey:@"localgbcode"];	
+						itemInfo.localgbcode = [attributeDict objectForKey:@"localgbcode"];		
+                        NSLog(@"    item::localgbcode = %@", itemInfo.localgbcode);
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"sync"];
 					if (index != NSNotFound)
 					{
-						itemInfo.sync = [attributeDict objectForKey:@"sync"];	
+						itemInfo.sync = [attributeDict objectForKey:@"sync"];		
+                        NSLog(@"    item::sync = %@", itemInfo.sync);
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"block"];
 					if (index != NSNotFound)
 					{
-						itemInfo.block = [attributeDict objectForKey:@"block"];	
+						itemInfo.block = [attributeDict objectForKey:@"block"];		
+                        NSLog(@"    item::block = %@", itemInfo.block);
 					}
 				}
 				nodeType = EM_ITEM;
 			}
 			else if ([actionType compare:@"subscriptionask"] == NSOrderedSame)
 			{
+                NSLog(@"<subscriptionask>");
 				index = [[attributeDict allKeys] indexOfObject:@"imid"];
 				if (index != NSNotFound)
 				{
@@ -296,16 +313,19 @@ NSString		*LoginNotification = @"Login";
 		}
 		else if ([elementName compare:@"error"] == NSOrderedSame)
 		{
+            NSLog(@"<error>");
 			if (attributeDict && [attributeDict count] > 0)
 			{
 				index = [[attributeDict allKeys] indexOfObject:@"code"];
 				
 				if (index != NSNotFound)
 					self.errorCode = [[attributeDict objectForKey:@"code"] intValue];
+                NSLog(@"    error::errorCode = %d", errorCode);
 			}
 		}
 		else if ([elementName compare:@"spaces"] == NSOrderedSame)
 		{
+            NSLog(@"<spaces>");
 			if (attributeDict && [attributeDict count] > 0)
 			{
 				index = [[attributeDict allKeys] indexOfObject:@"gleam"];
@@ -317,6 +337,7 @@ NSString		*LoginNotification = @"Login";
 		}
 		else if ([elementName compare:@"group"] == NSOrderedSame)
 		{
+            NSLog(@"<group>");
 			if (nodeType != EM_ITEM)
 			{
 				nodeType = EM_GROUP;
@@ -327,21 +348,25 @@ NSString		*LoginNotification = @"Login";
 					if (index != NSNotFound)
 					{
 						gropuInfo.stringId = [attributeDict objectForKey:@"groupid"];	
+                        NSLog(@"    groupid = %@", gropuInfo.stringId);
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"name"];
 					if (index != NSNotFound)
 					{
 						gropuInfo.name = [attributeDict objectForKey:@"name"];	
+                        NSLog(@"    name = %@", gropuInfo.name);
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"gbcode"];
 					if (index != NSNotFound)
 					{
-						gropuInfo.gbcode = [attributeDict objectForKey:@"gbcode"];	
+						gropuInfo.gbcode = [attributeDict objectForKey:@"gbcode"];
+                        NSLog(@"    gbcode = %@", gropuInfo.gbcode);	
 					}
 					index = [[attributeDict allKeys] indexOfObject:@"sync"];
 					if (index != NSNotFound)
 					{
-						gropuInfo.sync = [attributeDict objectForKey:@"sync"];	
+						gropuInfo.sync = [attributeDict objectForKey:@"sync"];
+                        NSLog(@"    sync = %@", gropuInfo.sync);		
 					}
 				}
 			}
@@ -349,12 +374,14 @@ NSString		*LoginNotification = @"Login";
 		}
 		else if ([elementName compare:@"query"] == NSOrderedSame)
 		{
+            NSLog(@"<query>");
 			if (attributeDict && [attributeDict count] > 0)
 			{
 				index = [[attributeDict allKeys] indexOfObject:@"xmlns"];
 				if (index != NSNotFound)
 				{
 					value = [attributeDict objectForKey:@"xmlns"];
+                    NSLog(@"    xmlns = %@", value);
 					if ([value compare:@"vcard-temp"] == NSOrderedSame)			//vcard information
 					{
 						index = [[attributeDict allKeys] indexOfObject:@"version"];
@@ -364,7 +391,9 @@ NSString		*LoginNotification = @"Login";
 							if (value != nil)
 								[self updateProfileVersion:value];
 								//[infoDictionary setObject:value forKey:kProfileVersionKey];
-						}
+						} else {
+                            NSLog(@"    version = NULL");
+                        }
 						
 						index = [[attributeDict allKeys] indexOfObject:@"resourceid"];
 						if (index != NSNotFound)
@@ -381,9 +410,12 @@ NSString		*LoginNotification = @"Login";
 						if (index != NSNotFound)
 						{
 							value = [attributeDict objectForKey:@"version"];	
+                            NSLog(@"    version = %@", value);
 							if (lastValue == 1 && value != nil)
 								[infoDictionary setObject:value forKey:@"group_version"];
-						}
+						} else {
+                            NSLog(@"    version = NULL");
+                        }
 						if (additionValue == 0)
 						{
 							[ClientNetWorkController postNotification:DeleteGroupNotification info:nil];
@@ -407,6 +439,7 @@ NSString		*LoginNotification = @"Login";
 						if (index != NSNotFound)
 						{
 							value = [attributeDict objectForKey:@"version"];	
+                            NSLog(@"    version = %@", value);
 							if (lastValue == 1 && value != nil)
 								[self updateRosterVersion:value];
 								//[infoDictionary setObject:value forKey:kRosterVersionKey];
@@ -428,12 +461,14 @@ NSString		*LoginNotification = @"Login";
 		}
 		else if ([elementName compare:@"portrait"] == NSOrderedSame)
 		{
+            NSLog(@"<portrait>");
 			if (attributeDict && [attributeDict count] > 0)
 			{
 				index = [[attributeDict allKeys] indexOfObject:@"mime"];
 				if (index != NSNotFound)
 				{
 					value = [attributeDict objectForKey:@"mime"];	
+                    NSLog(@"    mime = %@", value);
 				}
 			}
 			if (value != nil)
@@ -441,12 +476,14 @@ NSString		*LoginNotification = @"Login";
 		}
 		else if ([elementName compare:@"data"] == NSOrderedSame)
 		{
+            NSLog(@"<data>");
 			if (attributeDict && [attributeDict count] > 0)
 			{
 				index = [[attributeDict allKeys] indexOfObject:@"length"];
 				if (index != NSNotFound)
 				{
-					value = [attributeDict objectForKey:@"length"];	
+					value = [attributeDict objectForKey:@"length"];		
+                    NSLog(@"    length = %@", value);
 					if (value != nil)
 						[infoDictionary setObject:value forKey:@"length"];
 				}

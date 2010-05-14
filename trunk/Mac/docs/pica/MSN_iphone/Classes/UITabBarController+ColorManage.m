@@ -60,7 +60,7 @@
 	
 	segmentedControl = [[UISegmentedControl alloc] initWithItems:listArray];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;	
-	segmentedControl.tintColor = [UIColor colorWithRed:0.333 green:0.333 blue:0.333 alpha:1.0];
+	segmentedControl.tintColor = [UIColor colorWithRed:28.0/255.0 green:79.0/255.0 blue:130.0/255.0 alpha:1.0];
 	[segmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 	[self.view addSubview:segmentedControl];
 	CGRect aFrame = [self tabBar].frame;

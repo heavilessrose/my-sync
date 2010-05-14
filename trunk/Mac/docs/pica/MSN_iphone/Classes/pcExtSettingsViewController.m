@@ -19,9 +19,9 @@
 
 #define GROUP_COUNTS			5
 #define GROUP_ITEM1_COUNTS		3
-#define GROUP_ITEM2_COUNTS		2
-#define GROUP_ITEM3_COUNTS		1
-#define GROUP_ITEM4_COUNTS		3
+#define GROUP_ITEM2_COUNTS		1
+#define GROUP_ITEM3_COUNTS		3
+#define GROUP_ITEM4_COUNTS		2
 #define GROUP_ITEM5_COUNTS		1
 
 enum {
@@ -69,19 +69,19 @@ enum {
 	NSInteger aRow = anIndexPath.row;
 	switch (anIndexPath.section){
 		case 0:
-			aRow += INDEX_RING;
-			break;
-		case 1:
-			aRow += INDEX_DISPLAY_MODE;
-			break;
-		case 2:
-			aRow += INDEX_SAVE_HISTORY;
-			break;
-		case 3:
 			aRow += INDEX_LOGIN_INFO;
 			break;
-		case 4:
+		case 1:
 			aRow += INDEX_APS;
+			break;
+		case 2:
+			aRow += INDEX_RING;
+			break;
+		case 3:
+			aRow += INDEX_DISPLAY_MODE;
+			break;
+		case 4:
+			aRow += INDEX_SAVE_HISTORY;
 			break;
 	}
 	return aRow;
@@ -185,15 +185,15 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 	switch (section) {
 		case 0:
-			return NSLocalizedString(@"Play Sound", nil);
-		case 1:
-			return NSLocalizedString(@"Display", nil);
-		case 2:
-			return NSLocalizedString(@"Conversations",nil);
-		case 3:
 			return NSLocalizedString(@"Sign-in", nil);
-		case 4:
+		case 1:
 			return NSLocalizedString(@"When pressing Home", nil);
+		case 2:
+			return NSLocalizedString(@"Play Sound", nil);
+		case 3:
+			return NSLocalizedString(@"Display", nil);
+		case 4:
+			return NSLocalizedString(@"Conversations",nil);
 	}
     return nil;
 }
