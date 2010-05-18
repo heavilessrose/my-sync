@@ -10,6 +10,7 @@
 #import "LKSqlite.h"
 
 @implementation RootViewController
+@synthesize sqlite;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -17,8 +18,13 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    LKSqlite *sqlite = [[LKSqlite alloc] init];
-    [sqlite openDbFile:nil];
+    sqlite = [[LKSqlite alloc] init];
+    [sqlite prepareWithDbfile:@"PhoneBook_PICA.db" delegate:self];
+}
+
+- (void)dbInitCallback
+{
+    [sqlite createTable:"CREATE TABLE PhoneBook_PICA (ROWID INTEGER PRIMARY KEY AUTOINCREMENT, ContactID INTEGER, ShowName TEXT DEFAULT NoName, MainPhone TEXT, MobilePhone TEXT, HomePhone TEXT, HomeFax TEXT, WorkPhone TEXT, WorkFax TEXT, OtherPhone TEXT, Pager TEXT, Email TEXT, Avatar BLOB)"];
 }
 
 /*

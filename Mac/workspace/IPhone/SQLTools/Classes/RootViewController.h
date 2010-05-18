@@ -6,7 +6,11 @@
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
-@interface RootViewController : UITableViewController {
+#import "LKSqlite.h"
+
+@interface RootViewController : UITableViewController <LKSqliteDelegate>{
+    LKSqlite *sqlite;
 }
 
+@property(nonatomic, retain) LKSqlite *sqlite;
 @end
