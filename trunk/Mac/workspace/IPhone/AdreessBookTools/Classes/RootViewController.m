@@ -18,9 +18,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // test
-    CFStringRef firstName = NULL;
     LKContacts *contacts = [[LKContacts alloc] init];
-    [contacts getSingleProp:kABPersonFirstNameProperty from:<#(ABRecordRef)aRecord#> outValue:firstName];
+    [contacts getAllContacts];
 }
 
 /*
