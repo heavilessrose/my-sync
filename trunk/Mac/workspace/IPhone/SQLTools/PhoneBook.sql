@@ -1,4 +1,4 @@
-CREATE TABLE PhoneBook_PICA (ROWID INTEGER PRIMARY KEY AUTOINCREMENT, ContactID INTEGER, ShowName TEXT DEFAULT NoName, MainPhone TEXT, MobilePhone TEXT, HomePhone TEXT, HomeFax TEXT, WorkPhone TEXT, WorkFax TEXT, OtherPhone TEXT, Pager TEXT, Email TEXT, Avatar BLOB);
+CREATE TABLE PhoneBook_PICA (ROWID INTEGER PRIMARY KEY AUTOINCREMENT, ContactID INTEGER NOT NULL, ShowName TEXT NOT NULL DEFAULT NoName, MainPhone TEXT, MobilePhone TEXT, HomePhone TEXT, HomeFax TEXT, WorkPhone TEXT, WorkFax TEXT, OtherPhone TEXT, Pager TEXT, Email TEXT, Avatar BLOB);
 
 
 INSERT INTO PhoneBook_PICA (ContactID, MainPhone, Email) VALUES (0100, '15965986632', 'test@test.com');
