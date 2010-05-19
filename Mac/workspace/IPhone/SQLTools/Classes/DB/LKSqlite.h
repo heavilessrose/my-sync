@@ -7,6 +7,10 @@
 //
 #import "/usr/include/sqlite3.h"
 
+#define LKSqlite_TEXT  @"1"
+#define LKSqlite_INT  @"2"
+#define LKSqlite_BLOB  @"3"
+
 @protocol LKSqliteDelegate <NSObject>
 
 - (void)dbInitCallback;
@@ -15,7 +19,20 @@
 
 
 @interface LKSqlite : NSObject {
+    NSString *table;
     sqlite3 *database;
 }
+
+@property(nonatomic, retain) NSString *table;
+
+// 建表
 - (BOOL)createTable:(const char *)sql;
+// 增
+- (BOOL)addRecord:(NSDictionary *)recorditems;
+// 删
+- (BOOL)deleteRecord:(NSString *)where;
+// 改
+- (BOOL)updateRecord:(NSDictionary *)recorditems wheres:(NSArray *)wheres;
+// 查
+- (BOOL)selectRecords:(NSMutableArray *)outArry wantColumns:(NSArray *)columns types:(NSArray *)colTypes wheres:(NSArray *)wheres;
 @end
