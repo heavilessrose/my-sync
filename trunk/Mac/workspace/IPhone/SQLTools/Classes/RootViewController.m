@@ -19,12 +19,40 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     sqlite = [[LKSqlite alloc] init];
-    [sqlite prepareWithDbfile:@"PhoneBook_PICA.db" delegate:self];
+    [sqlite prepareWithDbfile:@"picadb.sqlite" table:@"phonebook" delegate:self];
+    
+    NSMutableDictionary *record = [[NSMutableDictionary alloc] init];
+    [record setObject:@"0120" forKey:@"ContactID"];
+    [record setObject:@"'15965986632'" forKey:@"MainPhone"];
+    [record setObject:@"'fuck@test.com'" forKey:@"Email"];
+    [sqlite addRecord:(NSDictionary *)record];
+    
+    
+    NSMutableDictionary *record2 = [[NSMutableDictionary alloc] init];
+    [record2 setObject:@"0456" forKey:@"ContactID"];
+    [record2 setObject:@"'15965986666'" forKey:@"MainPhone"];
+    [record2 setObject:@"'shit@test.com'" forKey:@"Email"];
+    [record2 setObject:@"2" forKey:@"ROWID"];
+    [sqlite updateRecord:(NSDictionary *)record2 where:@"ROWID"];
+    
+    //[sqlite deleteRecord:@"ContactID=0456"];
+    
+    NSMutableArray *selects = [[NSMutableArray alloc] init];
+    NSArray *wantColumns = [NSArray arrayWithObjects:@"ROWID", @"ContactID", @"MainPhone", @"Email", nil];
+    NSArray *colTypes = [NSArray arrayWithObjects:LKSqlite_INT, LKSqlite_INT, LKSqlite_TEXT, LKSqlite_TEXT, nil];
+    [sqlite selectRecords:selects wantColumns:wantColumns types:colTypes wheres:nil];
+    for (int i = 0; i < [selects count]; i++) {
+        NSDictionary *dict = (NSDictionary *)[selects objectAtIndex:i];
+        for(NSString *keystr in dict){
+            NSLog(@"label: %@, result: %@", keystr, [dict objectForKey:keystr]);
+        }
+    }
+    [selects release];
 }
 
 - (void)dbInitCallback
 {
-    [sqlite createTable:"CREATE TABLE PhoneBook_PICA (ROWID INTEGER PRIMARY KEY AUTOINCREMENT, ContactID INTEGER, ShowName TEXT DEFAULT NoName, MainPhone TEXT, MobilePhone TEXT, HomePhone TEXT, HomeFax TEXT, WorkPhone TEXT, WorkFax TEXT, OtherPhone TEXT, Pager TEXT, Email TEXT, Avatar BLOB)"];
+    [sqlite createTable:"CREATE TABLE IF NOT EXISTS main.phonebook (ROWID INTEGER PRIMARY KEY AUTOINCREMENT, ContactID INTEGER UNIQUE NOT NULL DEFAULT 1, ShowName TEXT NOT NULL DEFAULT NoName, MainPhone TEXT, MobilePhone TEXT, HomePhone TEXT, HomeFax TEXT, WorkPhone TEXT, WorkFax TEXT, OtherPhone TEXT, Pager TEXT, Email TEXT, Avatar BLOB)"];
 }
 
 /*
