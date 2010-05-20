@@ -18,6 +18,8 @@
 		A3CEF95C119A4DDF003DDBA0 /* LKContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CEF95B119A4DDF003DDBA0 /* LKContacts.m */; };
 		A3CEF982119A53DB003DDBA0 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3CEF980119A53DB003DDBA0 /* AddressBook.framework */; };
 		A3CEF983119A53DB003DDBA0 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3CEF981119A53DB003DDBA0 /* AddressBookUI.framework */; };
+		A3D1BBF011A4D6D40080E6F5 /* LKSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D1BBEF11A4D6D40080E6F5 /* LKSqlite.m */; };
+		A3D1BC0B11A4E7C70080E6F5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D1BC0A11A4E7C70080E6F5 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,9 @@
 		A3CEF95B119A4DDF003DDBA0 /* LKContacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKContacts.m; sourceTree = "<group>"; };
 		A3CEF980119A53DB003DDBA0 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		A3CEF981119A53DB003DDBA0 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		A3D1BBEE11A4D6D40080E6F5 /* LKSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKSqlite.h; path = ../SQLTools/Classes/DB/LKSqlite.h; sourceTree = SOURCE_ROOT; };
+		A3D1BBEF11A4D6D40080E6F5 /* LKSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKSqlite.m; path = ../SQLTools/Classes/DB/LKSqlite.m; sourceTree = SOURCE_ROOT; };
+		A3D1BC0A11A4E7C70080E6F5 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +55,7 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				A3CEF982119A53DB003DDBA0 /* AddressBook.framework in Frameworks */,
 				A3CEF983119A53DB003DDBA0 /* AddressBookUI.framework in Frameworks */,
+				A3D1BC0B11A4E7C70080E6F5 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +65,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A3D1BBE311A4D69D0080E6F5 /* sqlite */,
 				A3CEF959119A4DDF003DDBA0 /* AB */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
@@ -110,6 +117,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3D1BC0A11A4E7C70080E6F5 /* libsqlite3.0.dylib */,
 				A3CEF980119A53DB003DDBA0 /* AddressBook.framework */,
 				A3CEF981119A53DB003DDBA0 /* AddressBookUI.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -126,6 +134,15 @@
 				A3CEF95B119A4DDF003DDBA0 /* LKContacts.m */,
 			);
 			path = AB;
+			sourceTree = "<group>";
+		};
+		A3D1BBE311A4D69D0080E6F5 /* sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				A3D1BBEE11A4D6D40080E6F5 /* LKSqlite.h */,
+				A3D1BBEF11A4D6D40080E6F5 /* LKSqlite.m */,
+			);
+			name = sqlite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +210,7 @@
 				1D3623260D0F684500981E51 /* AdreessBookToolsAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				A3CEF95C119A4DDF003DDBA0 /* LKContacts.m in Sources */,
+				A3D1BBF011A4D6D40080E6F5 /* LKSqlite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
