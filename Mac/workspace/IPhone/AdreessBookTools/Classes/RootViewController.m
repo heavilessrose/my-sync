@@ -10,6 +10,7 @@
 #import "LKContacts.h"
 
 @implementation RootViewController
+@synthesize avatar;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -19,7 +20,7 @@
     
     // test
     LKContacts *contacts = [[LKContacts alloc] init];
-    [contacts getAllContacts];
+    [contacts getAllContacts:avatar.image];
 }
 
 /*

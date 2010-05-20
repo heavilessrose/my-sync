@@ -29,4 +29,6 @@
 - (BOOL)getContactEmails:(ABRecordRef)aPerson to:(NSMutableDictionary *)emails;
 // 得到联系人所有电话号码
 - (BOOL)getContactPhoneNumbers:(ABRecordRef)aPerson to:(NSMutableDictionary *)pnumbers;
+// 得到联系人图片
+- (UIImage *)getContactAvatar:(ABRecordRef)aPerson;
 @end

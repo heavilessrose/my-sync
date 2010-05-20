@@ -9,7 +9,7 @@
 #import "LKContacts.h"
 
 @interface LKContacts (private)
-- (int)getSingleProp:(ABPropertyID)aProp from:(ABRecordRef)aRecord outValue:(CFStringRef *)aValue;
+- (int)copySingleProp:(ABPropertyID)aProp from:(ABRecordRef)aRecord outValue:(CFStringRef *)aValue;
 - (int)setSingleProp:(ABPropertyID)aProp value:(NSString *)aValue to:(ABRecordRef)aRecord;
 - (void)getMultiProp:(ABPropertyID)aProp from:(ABRecordRef)aRecord outValue:(NSMutableDictionary *)values;
 - (ABMultiValueIdentifier)setMultiProp:(ABPropertyType)aType label:(CFStringRef)aLabel value:(CFStringRef)aValue to:(ABRecordRef)aRecord;
@@ -51,7 +51,7 @@
 #pragma mark ---private---
 
 // kABPersonFirstNameProperty
-- (int)getSingleProp:(ABPropertyID)aProp from:(ABRecordRef)aRecord outValue:(CFStringRef *)aValue
+- (int)copySingleProp:(ABPropertyID)aProp from:(ABRecordRef)aRecord outValue:(CFStringRef *)aValue
 {
     //CFStringRef aValue;
     *aValue = (CFStringRef)ABRecordCopyValue(aRecord, aProp);
@@ -59,7 +59,7 @@
     //CFRelease(aValue);
     return 0;
 }
-
+/*
 // kABPersonFirstNameProperty
 - (int)setSingleProp:(ABPropertyID)aProp value:(NSString *)aValue to:(ABRecordRef)aRecord
 {
@@ -76,7 +76,7 @@
     }
     return 0;
 }
-
+*/
 // kABPersonPhoneProperty
 - (void)getMultiProp:(ABPropertyID)aProp from:(ABRecordRef)aRecord outValue:(NSMutableDictionary *)values
 {
@@ -96,7 +96,7 @@
     
     CFRelease(multi);
 }
-
+/*
 // kABMultiStringPropertyType kABPersonPhoneMobileLabel @"(555) 555-1234"
 - (ABMultiValueIdentifier)setMultiProp:(ABPropertyType)aType label:(CFStringRef)aLabel value:(CFStringRef)aValue to:(ABRecordRef)aRecord
 {
@@ -123,8 +123,9 @@
     
     return *multivalueID;
 }
-
+*/
 #pragma mark ---Founctions---
+/*
 - (BOOL)submitAddrBookChanges
 {
     if (ABAddressBookHasUnsavedChanges(_addressBook))
@@ -153,27 +154,27 @@
 
 - (void)getStreetAddr
 {
-
+    
 }
-
+ 
 - (void)setStreetAddr:(CFStringRef *)keys values:(CFStringRef *)values valueCount:(CFIndex)count to:(ABRecordRef)aPerson
 {
     ABMutableMultiValueRef address = ABMultiValueCreateMutable(kABDictionaryPropertyType);
-    /*
+
     // Set up keys and values for the dictionary.
-    CFStringRef keys[5];
-    CFStringRef values[5];
-    keys[0] = kABPersonAddressStreetKey;
-    keys[1] = kABPersonAddressCityKey;
-    keys[2] = kABPersonAddressStateKey;
-    keys[3] = kABPersonAddressZIPKey;
-    keys[4] = kABPersonAddressCountryKey;
-    values[0] = CFSTR("1234 Laurel Street");
-    values[1] = CFSTR("Atlanta");
-    values[2] = CFSTR("GA");
-    values[3] = CFSTR("30303");
-    values[4] = CFSTR("USA");
-    */
+//    CFStringRef keys[5];
+//    CFStringRef values[5];
+//    keys[0] = kABPersonAddressStreetKey;
+//    keys[1] = kABPersonAddressCityKey;
+//    keys[2] = kABPersonAddressStateKey;
+//    keys[3] = kABPersonAddressZIPKey;
+//    keys[4] = kABPersonAddressCountryKey;
+//    values[0] = CFSTR("1234 Laurel Street");
+//    values[1] = CFSTR("Atlanta");
+//    values[2] = CFSTR("GA");
+//    values[3] = CFSTR("30303");
+//    values[4] = CFSTR("USA");
+
     CFDictionaryRef aDict = CFDictionaryCreate(
                                                kCFAllocatorDefault,
                                                (void *)keys,
@@ -196,8 +197,17 @@
     }
     CFRelease(address);
 }
+*/
 
-- (BOOL)getContactShownameCopy:(ABRecordRef)aPerson to:(CFStringRef *)showname
+- (UIImage *)getContactAvatar:(ABRecordRef)aPerson
+{
+    CFDataRef avatarData = ABPersonCopyImageData(aPerson);
+    UIImage *avatar = [UIImage imageWithData:(NSData *)avatarData];
+    //[[UIImage alloc] initWithData:(NSData *)avatarData];
+    return avatar;
+}
+
+- (BOOL)copyContactShowname:(ABRecordRef)aPerson to:(CFStringRef *)showname
 {
     *showname = ABRecordCopyCompositeName(aPerson);
     NSLog(@"showname = %@", *showname);
@@ -246,8 +256,7 @@
     return NO;
 }
 
-// for test
-- (BOOL)getAllContacts
+- (BOOL)importPhonebook:(UIImage *)image
 {
     CFIndex count = ABAddressBookGetPersonCount(_addressBook);
 	allPeople = (NSArray*)ABAddressBookCopyArrayOfAllPeople(_addressBook);
@@ -261,6 +270,7 @@
 	for(i = 0; i < allPeople.count; i++){
 		ABRecordRef person = [allPeople objectAtIndex:i];
 		ABRecordID recordID = ABRecordGetRecordID(person);
+        
 		// 依次处理每个联系人
         /*CFStringRef firstname = NULL;
         CFStringRef lastname = NULL;
@@ -326,6 +336,12 @@
 //        [self getSingleProp:kABPersonLastNameProperty from:person outValue:&lastname];
 //        [self getSingleProp:kABPersonLastNameProperty from:person outValue:&lastname];
         //CFRelease(firstname);
+        
+        
+        
+        
+        // 联系人图片
+        UIImage * image = [self getContactAvatar:person];
 	}
     return YES;
 }
