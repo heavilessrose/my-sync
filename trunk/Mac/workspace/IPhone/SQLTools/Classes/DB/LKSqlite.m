@@ -11,8 +11,11 @@
 #import <string.h>
 #import <stdlib.h>
 
-
-#define kDbName "/var/mobile/Library/AddressBook/AddressBook.sqlitedb"
+//#define kdbName "/var/mobile/Library/AddressBook/AddressBook.sqlitedb"
+#define kdb_phonebook_table_schema 
+#define kdb_facebook_table_schema 
+#define kdb_group_table_schema 
+#define kdb_relation_table_schema 
 
 static sqlite3_stmt *insert_statement = nil;
 static sqlite3_stmt *select_statement = nil;
@@ -44,7 +47,6 @@ static sqlite3_stmt *update_statement = nil;
         *isexisted = NO;
         NSLog(@"dbfile not existed");
     }
-
     
 	if(sqlite3_open(dbfilePath, &database) != SQLITE_OK)
 	{
@@ -56,11 +58,42 @@ static sqlite3_stmt *update_statement = nil;
 }
 
 #pragma mark -
-- (BOOL)prepareWithDbfile:(NSString *)dbfileName table:(NSString *)table delegate:(id)delegate
+
+- (void)dealloc
+{
+    NSLog(@"LKSqlite dealloc =====");
+    [table release];
+    [self closeDB];
+    [super dealloc];
+    NSLog(@"LKSqlite dealloc over =====");
+}
+
+// Finalize (delete) all of the SQLite compiled queries.
++ (void)finalizeStatements
+{
+    if (insert_statement) {
+        sqlite3_finalize(insert_statement);
+        insert_statement = nil;
+    }
+    if (select_statement) {
+        sqlite3_finalize(select_statement);
+        select_statement = nil;
+    }
+    if (delete_statement) {
+        sqlite3_finalize(delete_statement);
+        delete_statement = nil;
+    }
+    if (update_statement) {
+        sqlite3_finalize(update_statement);
+        update_statement = nil;
+    }
+}
+
+- (BOOL)prepareWithDbfile:(NSString *)dbfileName table:(NSString *)tablename delegate:(id)delegate
 {
     BOOL isexisted = NO;
     if([self openDbFile:dbfileName ifexist:&isexisted]) {
-        self.table = table;
+        self.table = tablename;
         if(!isexisted){
             [delegate dbInitCallback];
         }
@@ -73,6 +106,7 @@ static sqlite3_stmt *update_statement = nil;
 
 - (BOOL)closeDB
 {
+    [LKSqlite finalizeStatements];
     if(sqlite3_close(database) != SQLITE_OK){
         NSLog(@"close database err");
         return NO;

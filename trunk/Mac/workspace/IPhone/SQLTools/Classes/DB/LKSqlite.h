@@ -25,6 +25,9 @@
 
 @property(nonatomic, retain) NSString *table;
 
+// Finalize
++ (void)finalizeStatements;
+- (BOOL)closeDB;
 // 建表
 - (BOOL)createTable:(const char *)sql;
 // 增
@@ -32,7 +35,7 @@
 // 删
 - (BOOL)deleteRecord:(NSString *)where;
 // 改
-- (BOOL)updateRecord:(NSDictionary *)recorditems wheres:(NSArray *)wheres;
+- (BOOL)updateRecord:(NSDictionary *)recorditems where:(NSString *)where;
 // 查
 - (BOOL)selectRecords:(NSMutableArray *)outArry wantColumns:(NSArray *)columns types:(NSArray *)colTypes wheres:(NSArray *)wheres;
 @end
