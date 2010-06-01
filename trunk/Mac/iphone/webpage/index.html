@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Untitled</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.6, user-scalable=no">
+    <link rel="apple-touch-icon" href="Images/HomeScreenIcon.png">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="Parts/Transitions.css">
+    <script type="text/javascript" src="Parts/utilities.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Parts/setup.js" charset="utf-8"></script>
+    <script type="text/javascript" src="main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Parts/Transitions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Parts/StackLayout.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Parts/Text.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Parts/PushButton.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Parts/ButtonHandler.js" charset="utf-8"></script>
+</head>
+<body onload="load();">
+    <div id="views">
+        <div id="front">
+            <div id="background">
+            </div>
+            <div id="title"></div>
+            <textarea id="message" onchange="messageChanged(event)">Tap to enter a new message.
+
+To change settings, tap on the info button.</textarea>
+            <div id="infoButton" checked="checked"></div>
+        </div>
+        <div id="settings">
+            <div id="header">
+                <div id="done"></div>
+                <div id="text"></div>
+            </div>
+            <div id="settingsGroup">
+                <div id="familyTitle"></div>
+                <select apple-style-relative="height: 20px;" id="fontFamily" onchange="fontFamilyChanged(event)">
+                    <option>American Typewriter</option>
+                    <option>American Typewriter Condensed</option>
+                    <option>Arial</option>
+                    <option>Arial Rounded MT Bold</option>
+                    <option>Courier New</option>
+                    <option>Georgia</option>
+                    <option>Helvetica</option>
+                    <option selected="selected">Marker Felt</option>
+                    <option>Times New Roman</option>
+                    <option>Trebuchet MS</option>
+                    <option>Verdana</option>
+                    <option>Zapfino</option>
+                </select>
+                <div id="sizeTitle"></div>
+                <select apple-style-relative="height: 20px;" id="fontSize" onchange="fontSizeChanged(event)">
+                    <option value="12px">12px</option>
+                    <option value="14px">14px</option>
+                    <option value="16px">16px</option>
+                    <option selected="selected" value="18px">18px</option>
+                    <option value="24px">24px</option>
+                    <option value="36px">36px</option>
+                    <option value="48px">48px</option>
+                </select>
+                <div id="fontColor"></div>
+                <div id="blackColorChip"></div>
+                <div id="redColorChip"></div>
+                <div id="blueColorChip"></div>
+                <div id="greenColorChip"></div>
+                <div id="purpleColorChip"></div>
+                <div id="checkMark"></div>
+            </div>
+            <div id="reset"></div>
+            <div id="footer"></div>
+        </div>
+    </div>
+</body>
+</html>
