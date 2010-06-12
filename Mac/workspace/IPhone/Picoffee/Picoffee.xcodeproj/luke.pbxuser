@@ -1,0 +1,135 @@
+// !$*UTF8*$!
+{
+	1D3623240D0F684500981E51 /* PicoffeeAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1311, 565}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 322}";
+		};
+	};
+	1D3623250D0F684500981E51 /* PicoffeeAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1311, 600}}";
+			sepNavSelRange = "{208, 0}";
+			sepNavVisRange = "{0, 477}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* Picoffee */ = {
+		activeExec = 0;
+		executables = (
+			A3727C2511C35BDB00E48BE0 /* Picoffee */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = A3727C2511C35BDB00E48BE0 /* Picoffee */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* Picoffee */;
+		codeSenseManager = A3727C3211C35BE500E48BE0 /* Code sense */;
+		executables = (
+			A3727C2511C35BDB00E48BE0 /* Picoffee */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1133,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 298015707;
+			PBXWorkspaceStateSaveDate = 298015707;
+		};
+		perUserProjectItems = {
+			A3727C3511C35C2600E48BE0 /* PBXTextBookmark */ = A3727C3511C35C2600E48BE0 /* PBXTextBookmark */;
+			A3727C3611C35C2600E48BE0 /* PBXBookmark */ = A3727C3611C35C2600E48BE0 /* PBXBookmark */;
+			A3727C3711C35C2600E48BE0 /* PBXTextBookmark */ = A3727C3711C35C2600E48BE0 /* PBXTextBookmark */;
+			A3727E3D11C396F600E48BE0 /* PBXTextBookmark */ = A3727E3D11C396F600E48BE0 /* PBXTextBookmark */;
+		};
+		sourceControlManager = A3727C3111C35BE500E48BE0 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	A3727C2511C35BDB00E48BE0 /* Picoffee */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Picoffee;
+		sourceDirectories = (
+		);
+	};
+	A3727C3111C35BE500E48BE0 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	A3727C3211C35BE500E48BE0 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	A3727C3511C35C2600E48BE0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* PicoffeeAppDelegate.h */;
+		name = "PicoffeeAppDelegate.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 322;
+		vrLoc = 0;
+	};
+	A3727C3611C35C2600E48BE0 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 1D3623250D0F684500981E51 /* PicoffeeAppDelegate.m */;
+	};
+	A3727C3711C35C2600E48BE0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* PicoffeeAppDelegate.h */;
+		name = "PicoffeeAppDelegate.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 322;
+		vrLoc = 0;
+	};
+	A3727E3D11C396F600E48BE0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* PicoffeeAppDelegate.m */;
+		name = "PicoffeeAppDelegate.m: 11";
+		rLen = 0;
+		rLoc = 208;
+		rType = 0;
+		vrLen = 477;
+		vrLoc = 0;
+	};
+}

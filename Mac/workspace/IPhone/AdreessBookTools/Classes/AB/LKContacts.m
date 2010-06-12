@@ -7,6 +7,7 @@
 //
 
 #import "LKContacts.h"
+#import "LKSqlite.h"
 
 @interface LKContacts (private)
 - (int)copySingleProp:(ABPropertyID)aProp from:(ABRecordRef)aRecord outValue:(CFStringRef *)aValue;
@@ -199,7 +200,7 @@
 }
 */
 
-- (UIImage *)getContactAvatar:(ABRecordRef)aPerson
+int getContactAvatar(ABRecordRef aPerson, char *portraitFile)
 {
     CFDataRef avatarData = ABPersonCopyImageData(aPerson);
     UIImage *avatar = [UIImage imageWithData:(NSData *)avatarData];
@@ -207,13 +208,13 @@
     return avatar;
 }
 
-- (BOOL)copyContactShowname:(ABRecordRef)aPerson to:(CFStringRef *)showname
+int copyContactShowname(ABRecordRef aPerson, CFStringRef *showname)
 {
-    *showname = ABRecordCopyCompositeName(aPerson);
+    CFStringRef showname = ABRecordCopyCompositeName(aPerson);
     NSLog(@"showname = %@", *showname);
     
     if(showname){
-        return YES;
+        return showname;
     } 
     else 
     {
@@ -225,12 +226,7 @@
     return NO;
 }
 
-- (ABRecordID)getContactUniqueID:(ABRecordRef)aPerson
-{
-    return ABRecordGetRecordID(aPerson);
-}
-
-- (BOOL)getContactEmails:(ABRecordRef)aPerson to:(NSMutableDictionary *)emails
+int getContactEmails:(ABRecordRef aPerson, NSMutableDictionary *emails)
 {
     if(emails)
     {
@@ -241,7 +237,7 @@
     return NO;
 }
 
-- (BOOL)getContactPhoneNumbers:(ABRecordRef)aPerson to:(NSMutableDictionary *)pnumbers
+int getContactPhoneNumbers:(ABRecordRef aPerson, NSMutableDictionary *pnumbers)
 {
     if(pnumbers)
     {
@@ -256,6 +252,7 @@
     return NO;
 }
 
+#if 0
 - (BOOL)importPhonebook:(UIImage *)image
 {
     CFIndex count = ABAddressBookGetPersonCount(_addressBook);
@@ -345,6 +342,7 @@
 	}
     return YES;
 }
+#endif
 
 #pragma mark ---external changes notify---
 void addrBookExternalChangeCallback(ABAddressBookRef addressBook, CFDictionaryRef info, void *context)
@@ -378,5 +376,41 @@ void addrBookExternalChangeCallback(ABAddressBookRef addressBook, CFDictionaryRe
     ABAddressBookUnregisterExternalChangeCallback (_addressBook, addrBookExternalChangeCallback, _externalChangeContext);
 }
 
+#pragma mark -
+#pragma mark 外部接口
 
+int importPhonebook()
+{
+    personid 
+    nickname
+    portraitFile
+    mobile
+    home
+    work
+    main
+    homefax
+    pager
+    other
+    email
+    visible
+    
+    CFIndex count = ABAddressBookGetPersonCount(_addressBook);
+	NSArray *allPeople = (NSArray*)ABAddressBookCopyArrayOfAllPeople(_addressBook);
+    
+    if(count != allPeople.count)
+    {
+        NSLog(@"allPeople count not unique");
+    }
+    
+	NSUInteger i;
+	for(i = 0; i < allPeople.count; i++){
+		ABRecordRef person = [allPeople objectAtIndex:i];
+		ABRecordID recordID = ABRecordGetRecordID(person);
+        
+        // 写入数据库
+        LKSqlite *sqlite = [[LKSqlite alloc] init];
+        [sqlite prepareWithDbfile:<#(NSString *)dbfileName#> table:<#(NSString *)tablename#> delegate:<#(id)delegate#>];
+        [sqlite release];
+    }
+}
 @end
