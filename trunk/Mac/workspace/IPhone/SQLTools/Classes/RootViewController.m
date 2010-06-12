@@ -27,13 +27,24 @@
     [record setObject:@"'fuck@test.com'" forKey:@"Email"];
     [sqlite addRecord:(NSDictionary *)record];
     
-    
     NSMutableDictionary *record2 = [[NSMutableDictionary alloc] init];
-    [record2 setObject:@"0456" forKey:@"ContactID"];
-    [record2 setObject:@"'15965986666'" forKey:@"MainPhone"];
-    [record2 setObject:@"'shit@test.com'" forKey:@"Email"];
-    [record2 setObject:@"2" forKey:@"ROWID"];
-    [sqlite updateRecord:(NSDictionary *)record2 where:@"ROWID"];
+    [record2 setObject:@"0123" forKey:@"ContactID"];
+    [record2 setObject:@"'15965986632'" forKey:@"MainPhone"];
+    [record2 setObject:@"'fuck@test.com'" forKey:@"Email"];
+    [sqlite addRecord:(NSDictionary *)record2];
+    
+    NSMutableDictionary *record3 = [[NSMutableDictionary alloc] init];
+    [record3 setObject:@"0456" forKey:@"ContactID"];
+    [record3 setObject:@"'15965986632'" forKey:@"MainPhone"];
+    [record3 setObject:@"'fuck@test.com'" forKey:@"Email"];
+    [sqlite addRecord:(NSDictionary *)record3];
+    
+//    NSMutableDictionary *record2 = [[NSMutableDictionary alloc] init];
+//    [record2 setObject:@"0456" forKey:@"ContactID"];
+//    [record2 setObject:@"'15965986666'" forKey:@"MainPhone"];
+//    [record2 setObject:@"'shit@test.com'" forKey:@"Email"];
+//    [record2 setObject:@"2" forKey:@"ROWID"];
+//    [sqlite updateRecord:(NSDictionary *)record2 where:@"ROWID"];
     
     //[sqlite deleteRecord:@"ContactID=0456"];
     

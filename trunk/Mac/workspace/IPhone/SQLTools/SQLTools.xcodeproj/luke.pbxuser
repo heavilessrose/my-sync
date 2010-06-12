@@ -22,9 +22,9 @@
 	};
 	28C286E00D94DF7D0034E888 /* RootViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {3099, 3680}}";
-			sepNavSelRange = "{1926, 0}";
-			sepNavVisRange = "{1267, 1156}";
+			sepNavIntBoundsRect = "{{0, 0}, {3099, 3788}}";
+			sepNavSelRange = "{2021, 16}";
+			sepNavVisRange = "{1570, 1419}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -36,7 +36,7 @@
 		);
 		breakpoints = (
 			A3574B2211A2ADF2003F3F76 /* LKSqlite.m:90 */,
-			A3574C9C11A2BFA6003F3F76 /* RootViewController.m:55 */,
+			A3574C9C11A2BFA6003F3F76 /* RootViewController.m:66 */,
 			A3574CAC11A2BFFE003F3F76 /* LKSqlite.m:114 */,
 			A3AEB89311A2C0F3008EF63F /* RootViewController.m:21 */,
 			A3AC764911A37E4D009C2D3C /* LKSqlite.m:136 */,
@@ -45,7 +45,7 @@
 			A3AC774E11A3B230009C2D3C /* LKSqlite.m:187 */,
 			A3AC775C11A3B2C8009C2D3C /* LKSqlite.m:173 */,
 			A3AC779F11A3D673009C2D3C /* LKSqlite.m:256 */,
-			A3AC77AF11A3D7E1009C2D3C /* RootViewController.m:43 */,
+			A3AC77AF11A3D7E1009C2D3C /* RootViewController.m:54 */,
 			A3AC77B711A3D81A009C2D3C /* LKSqlite.m:222 */,
 		);
 		codeSenseManager = A38B00A411A1447000B4F07C /* Code sense */;
@@ -75,8 +75,14 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 296010516;
-			PBXWorkspaceStateSaveDate = 296010516;
+			PBXPerProjectTemplateStateSaveDate = 296472856;
+			PBXWorkspaceStateSaveDate = 296472856;
+		};
+		perUserProjectItems = {
+			A36041E311ACB14600804F39 /* PBXTextBookmark */ = A36041E311ACB14600804F39 /* PBXTextBookmark */;
+			A36041E511ACB14600804F39 /* PBXTextBookmark */ = A36041E511ACB14600804F39 /* PBXTextBookmark */;
+			A36044AE11AD0ECA00804F39 /* PBXTextBookmark */ = A36044AE11AD0ECA00804F39 /* PBXTextBookmark */;
+			A360454A11AD2BAD00804F39 /* PBXTextBookmark */ = A360454A11AD2BAD00804F39 /* PBXTextBookmark */;
 		};
 		sourceControlManager = A38B00A311A1447000B4F07C /* Source Control */;
 		userBuildSettings = {
@@ -96,10 +102,10 @@
 		ignoreCount = 0;
 		lineNumber = 90;
 		location = SQLTools;
-		modificationTime = 295963452.603644;
+		modificationTime = 296559531.865018;
 		state = 2;
 	};
-	A3574C9C11A2BFA6003F3F76 /* RootViewController.m:55 */ = {
+	A3574C9C11A2BFA6003F3F76 /* RootViewController.m:66 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -111,9 +117,8 @@
 		functionName = "-dbInitCallback";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 55;
-		location = SQLTools;
-		modificationTime = 295963453.593145;
+		lineNumber = 66;
+		modificationTime = 296559804.915073;
 		state = 1;
 	};
 	A3574CAC11A2BFFE003F3F76 /* LKSqlite.m:114 */ = {
@@ -129,9 +134,48 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 114;
-		location = SQLTools;
-		modificationTime = 295963453.643114;
+		modificationTime = 296559804.914388;
 		state = 1;
+	};
+	A36041E311ACB14600804F39 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 55";
+		rLen = 11;
+		rLoc = 2611;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 1196;
+	};
+	A36041E511ACB14600804F39 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 22";
+		rLen = 17;
+		rLoc = 530;
+		rType = 0;
+		vrLen = 1092;
+		vrLoc = 170;
+	};
+	A36044AE11AD0ECA00804F39 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 727;
+		vrLoc = 0;
+	};
+	A360454A11AD2BAD00804F39 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 52";
+		rLen = 16;
+		rLoc = 2021;
+		rType = 0;
+		vrLen = 1419;
+		vrLoc = 1570;
 	};
 	A38B009211A1445100B4F07C /* SQLTools */ = {
 		isa = PBXExecutable;
@@ -186,7 +230,7 @@
 		ignoreCount = 0;
 		lineNumber = 136;
 		location = SQLTools;
-		modificationTime = 295963452.611509;
+		modificationTime = 296559531.866703;
 		state = 2;
 	};
 	A3AC76AE11A3849E009C2D3C /* LKSqlite.m:147 */ = {
@@ -203,7 +247,7 @@
 		ignoreCount = 0;
 		lineNumber = 147;
 		location = SQLTools;
-		modificationTime = 295963452.6121219;
+		modificationTime = 296559531.867146;
 		state = 2;
 	};
 	A3AC773C11A3B105009C2D3C /* LKSqlite.m:170 */ = {
@@ -220,7 +264,7 @@
 		ignoreCount = 0;
 		lineNumber = 170;
 		location = SQLTools;
-		modificationTime = 295963452.612551;
+		modificationTime = 296559531.867549;
 		state = 2;
 	};
 	A3AC774E11A3B230009C2D3C /* LKSqlite.m:187 */ = {
@@ -237,7 +281,7 @@
 		ignoreCount = 0;
 		lineNumber = 187;
 		location = SQLTools;
-		modificationTime = 295963452.612958;
+		modificationTime = 296559531.867961;
 		state = 2;
 	};
 	A3AC775C11A3B2C8009C2D3C /* LKSqlite.m:173 */ = {
@@ -254,7 +298,7 @@
 		ignoreCount = 0;
 		lineNumber = 173;
 		location = SQLTools;
-		modificationTime = 295963452.613818;
+		modificationTime = 296559531.869035;
 		state = 2;
 	};
 	A3AC779F11A3D673009C2D3C /* LKSqlite.m:256 */ = {
@@ -267,14 +311,13 @@
 		delayBeforeContinue = 0;
 		fileReference = A3D9395A11A26A500065CEC4 /* LKSqlite.m */;
 		functionName = "-selectRecords:wantColumns:wheres:";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 256;
-		location = SQLTools;
-		modificationTime = 295963459.321794;
+		modificationTime = 296559804.913615;
 		state = 1;
 	};
-	A3AC77AF11A3D7E1009C2D3C /* RootViewController.m:43 */ = {
+	A3AC77AF11A3D7E1009C2D3C /* RootViewController.m:54 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -284,11 +327,10 @@
 		delayBeforeContinue = 0;
 		fileReference = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
 		functionName = "-viewDidLoad";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 43;
-		location = SQLTools;
-		modificationTime = 295963454.121878;
+		lineNumber = 54;
+		modificationTime = 296559804.915451;
 		state = 1;
 	};
 	A3AC77B711A3D81A009C2D3C /* LKSqlite.m:222 */ = {
@@ -301,11 +343,10 @@
 		delayBeforeContinue = 0;
 		fileReference = A3D9395A11A26A500065CEC4 /* LKSqlite.m */;
 		functionName = "-selectRecords:wantColumns:wheres:";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 222;
-		location = SQLTools;
-		modificationTime = 295963458.0881;
+		modificationTime = 296559804.914016;
 		state = 1;
 	};
 	A3AEB89311A2C0F3008EF63F /* RootViewController.m:21 */ = {
@@ -322,7 +363,7 @@
 		ignoreCount = 0;
 		lineNumber = 21;
 		location = SQLTools;
-		modificationTime = 295963452.610938;
+		modificationTime = 296559531.866259;
 		state = 2;
 	};
 	A3D9395911A26A500065CEC4 /* LKSqlite.h */ = {
@@ -334,9 +375,9 @@
 	};
 	A3D9395A11A26A500065CEC4 /* LKSqlite.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1619, 5040}}";
-			sepNavSelRange = "{9166, 0}";
-			sepNavVisRange = "{8710, 457}";
+			sepNavIntBoundsRect = "{{0, 0}, {1619, 5620}}";
+			sepNavSelRange = "{8422, 0}";
+			sepNavVisRange = "{8024, 849}";
 		};
 	};
 }
