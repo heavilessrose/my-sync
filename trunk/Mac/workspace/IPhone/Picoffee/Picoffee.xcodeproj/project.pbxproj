@@ -13,6 +13,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		A31C51DB11D1C8A500231EBD /* pcGroupsManagerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */; };
+		A31C51DC11D1C8A500231EBD /* pcGroupsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,11 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Picoffee_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picoffee_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Picoffee-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Picoffee-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A31C51D111D1C76600231EBD /* ConstantsAndMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantsAndMacros.h; sourceTree = "<group>"; };
+		A31C51D711D1C8A500231EBD /* pcGroupsManagerTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcGroupsManagerTableCell.h; sourceTree = "<group>"; };
+		A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcGroupsManagerTableCell.m; sourceTree = "<group>"; };
+		A31C51D911D1C8A500231EBD /* pcGroupsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcGroupsManagerViewController.h; sourceTree = "<group>"; };
+		A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcGroupsManagerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +52,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A31C51D111D1C76600231EBD /* ConstantsAndMacros.h */,
 				1D3623240D0F684500981E51 /* PicoffeeAppDelegate.h */,
 				1D3623250D0F684500981E51 /* PicoffeeAppDelegate.m */,
 				A3727C3011C35BE400E48BE0 /* views */,
@@ -105,6 +113,10 @@
 		A3727C3011C35BE400E48BE0 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				A31C51D711D1C8A500231EBD /* pcGroupsManagerTableCell.h */,
+				A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */,
+				A31C51D911D1C8A500231EBD /* pcGroupsManagerViewController.h */,
+				A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -178,6 +190,8 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* PicoffeeAppDelegate.m in Sources */,
+				A31C51DB11D1C8A500231EBD /* pcGroupsManagerTableCell.m in Sources */,
+				A31C51DC11D1C8A500231EBD /* pcGroupsManagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
