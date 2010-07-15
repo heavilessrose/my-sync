@@ -8,6 +8,7 @@
 
 #import "TestViewController.h"
 #import "pcTwoLineAlertView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation TestViewController
 
@@ -30,7 +31,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+#if 1
 	pcTwoLineAlertView *alert = [[pcTwoLineAlertView alloc] initWithTitle:@"title" 
 																  message:@"message" 
 																 delegate:self 
@@ -38,6 +39,30 @@
 														otherButtonTitles:@"ok", nil];
 	[alert show];
 	[alert release];
+#endif
+	
+#if 0
+	CGRect viewFrame = CGRectMake(40, 200, 80, 50);
+	UIWebView *progressView = [[UIWebView alloc] initWithFrame:viewFrame];
+	progressView.backgroundColor = [UIColor blackColor];
+	//[progressView setCornerRadius:10];
+	[progressView setClipsToBounds:YES];
+	
+	[progressView.layer setBorderColor:
+	 [[UIColor colorWithRed:0.52 green:0.09 blue:0.07 alpha:1] CGColor]];
+	[progressView.layer setBorderWidth:2.75];
+	
+	[self.view addSubview:progressView];
+	[progressView release];
+#else
+	CGRect viewFrame = CGRectMake(40, 200, 80, 50);
+	UIView *progressView = [[UIView alloc] initWithFrame:viewFrame];
+	progressView.backgroundColor = [UIColor blackColor];
+	[progressView setClipsToBounds:YES];
+	
+	[self.view addSubview:progressView];
+	[progressView release];
+#endif
 }
 
 /*
