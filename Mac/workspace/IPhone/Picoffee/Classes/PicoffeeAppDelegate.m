@@ -7,6 +7,7 @@
 //
 
 #import "PicoffeeAppDelegate.h"
+#import "TestViewController.h"
 
 @implementation PicoffeeAppDelegate
 
@@ -15,12 +16,15 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
 
+	viewController = [[TestViewController alloc] init];
+	[window addSubview:viewController.view];
     // Override point for customization after application launch
     [window makeKeyAndVisible];
 }
 
 
 - (void)dealloc {
+	[viewController release];
     [window release];
     [super dealloc];
 }
