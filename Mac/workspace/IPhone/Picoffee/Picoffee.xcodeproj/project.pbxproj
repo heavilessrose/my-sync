@@ -17,6 +17,7 @@
 		A31C51DC11D1C8A500231EBD /* pcGroupsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */; };
 		A3FAA9AA11EF67D600AE9A8A /* pcTwoLineAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FAA9A911EF67D600AE9A8A /* pcTwoLineAlertView.m */; };
 		A3FAA9AD11EF699500AE9A8A /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FAA9AC11EF699500AE9A8A /* TestViewController.m */; };
+		A3FAAA0211EF727500AE9A8A /* pcProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FAAA0111EF727500AE9A8A /* pcProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		A3FAA9A911EF67D600AE9A8A /* pcTwoLineAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcTwoLineAlertView.m; sourceTree = "<group>"; };
 		A3FAA9AB11EF699500AE9A8A /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		A3FAA9AC11EF699500AE9A8A /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		A3FAAA0011EF727500AE9A8A /* pcProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcProgressView.h; sourceTree = "<group>"; };
+		A3FAAA0111EF727500AE9A8A /* pcProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 				A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */,
 				A3FAA9A811EF67D600AE9A8A /* pcTwoLineAlertView.h */,
 				A3FAA9A911EF67D600AE9A8A /* pcTwoLineAlertView.m */,
+				A3FAAA0011EF727500AE9A8A /* pcProgressView.h */,
+				A3FAAA0111EF727500AE9A8A /* pcProgressView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				A31C51DC11D1C8A500231EBD /* pcGroupsManagerViewController.m in Sources */,
 				A3FAA9AA11EF67D600AE9A8A /* pcTwoLineAlertView.m in Sources */,
 				A3FAA9AD11EF699500AE9A8A /* TestViewController.m in Sources */,
+				A3FAAA0211EF727500AE9A8A /* pcProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
