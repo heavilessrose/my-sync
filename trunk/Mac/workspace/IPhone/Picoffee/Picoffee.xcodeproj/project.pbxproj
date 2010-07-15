@@ -15,6 +15,8 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		A31C51DB11D1C8A500231EBD /* pcGroupsManagerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */; };
 		A31C51DC11D1C8A500231EBD /* pcGroupsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */; };
+		A3FAA9AA11EF67D600AE9A8A /* pcTwoLineAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FAA9A911EF67D600AE9A8A /* pcTwoLineAlertView.m */; };
+		A3FAA9AD11EF699500AE9A8A /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FAA9AC11EF699500AE9A8A /* TestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,10 @@
 		A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcGroupsManagerTableCell.m; sourceTree = "<group>"; };
 		A31C51D911D1C8A500231EBD /* pcGroupsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcGroupsManagerViewController.h; sourceTree = "<group>"; };
 		A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcGroupsManagerViewController.m; sourceTree = "<group>"; };
+		A3FAA9A811EF67D600AE9A8A /* pcTwoLineAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcTwoLineAlertView.h; sourceTree = "<group>"; };
+		A3FAA9A911EF67D600AE9A8A /* pcTwoLineAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcTwoLineAlertView.m; sourceTree = "<group>"; };
+		A3FAA9AB11EF699500AE9A8A /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		A3FAA9AC11EF699500AE9A8A /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,8 @@
 				A31C51D111D1C76600231EBD /* ConstantsAndMacros.h */,
 				1D3623240D0F684500981E51 /* PicoffeeAppDelegate.h */,
 				1D3623250D0F684500981E51 /* PicoffeeAppDelegate.m */,
+				A3FAA9AB11EF699500AE9A8A /* TestViewController.h */,
+				A3FAA9AC11EF699500AE9A8A /* TestViewController.m */,
 				A3727C3011C35BE400E48BE0 /* views */,
 				A3727C3311C35BF800E48BE0 /* models */,
 				A3727C3411C35C0500E48BE0 /* net */,
@@ -117,6 +125,8 @@
 				A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */,
 				A31C51D911D1C8A500231EBD /* pcGroupsManagerViewController.h */,
 				A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */,
+				A3FAA9A811EF67D600AE9A8A /* pcTwoLineAlertView.h */,
+				A3FAA9A911EF67D600AE9A8A /* pcTwoLineAlertView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -192,6 +202,8 @@
 				1D3623260D0F684500981E51 /* PicoffeeAppDelegate.m in Sources */,
 				A31C51DB11D1C8A500231EBD /* pcGroupsManagerTableCell.m in Sources */,
 				A31C51DC11D1C8A500231EBD /* pcGroupsManagerViewController.m in Sources */,
+				A3FAA9AA11EF67D600AE9A8A /* pcTwoLineAlertView.m in Sources */,
+				A3FAA9AD11EF699500AE9A8A /* TestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

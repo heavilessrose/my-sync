@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class TestViewController;
 @interface PicoffeeAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
+	TestViewController *viewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
