@@ -10,7 +10,9 @@
 
 
 @interface pcProgressView : UIView {
-
+    UILabel *msgLabel;
 }
+
+@property(nonatomic, retain) UILabel *msgLabel;
 
 @end
