@@ -9,6 +9,7 @@
 #import "TestViewController.h"
 #import "pcTwoLineAlertView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "pcProgressView.h"
 
 @implementation TestViewController
 
@@ -31,7 +32,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-#if 1
+#if 0
 	pcTwoLineAlertView *alert = [[pcTwoLineAlertView alloc] initWithTitle:@"title" 
 																  message:@"message" 
 																 delegate:self 
@@ -54,14 +55,25 @@
 	
 	[self.view addSubview:progressView];
 	[progressView release];
-#else
-	CGRect viewFrame = CGRectMake(40, 200, 80, 50);
+#elif 0
+	CGRect viewFrame = CGRectMake(120, 200, 80, 50);
 	UIView *progressView = [[UIView alloc] initWithFrame:viewFrame];
 	progressView.backgroundColor = [UIColor blackColor];
 	[progressView setClipsToBounds:YES];
-	
+    
+    CGRect indFram = CGRectMake(25, 2, 30, 30);
+    UIActivityIndicatorView *ind = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    ind.frame = indFram;
+    [ind startAnimating];
+	[progressView addSubview:ind];
 	[self.view addSubview:progressView];
 	[progressView release];
+#else
+    CGRect progressFrame = CGRectMake(60, 200, 200, 80);
+    pcProgressView *progressView = [[pcProgressView alloc] initWithFrame:progressFrame];
+    progressView.msgLabel.text = @"asdkjflasjdflaalsjdflajsldfja;sdlfja;dslfkja;dslfkjasd;flajdsf;aljsdlfjalsdjkf";
+    [self.view addSubview:progressView];
+    [progressView release];
 #endif
 }
 
