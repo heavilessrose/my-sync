@@ -1,4 +1,4 @@
-    //
+//
 //  TestViewController.m
 //  Picoffee
 //
@@ -10,6 +10,8 @@
 #import "pcTwoLineAlertView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "pcProgressView.h"
+#import "UIImage+roundCorner.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation TestViewController
 
@@ -75,6 +77,29 @@
     [self.view addSubview:progressView];
     [progressView release];
 #endif
+	
+	// 圆角图片
+	UIImage *testImg = [UIImage imageNamed:@"test.png"];
+	CGRect targetRect = CGRectMake(10, 50, 100, 100);
+	UIImageView *imgView = [[UIImageView alloc] initWithFrame:targetRect];
+#if 0			
+	UIImage *rounded = [UIImage makeRoundCornerImageWithWidth:100 withHeight:200 cornerWidth:20 cornerHeight:20];
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:rounded];
+#elif 0
+	imgView.image = testImg;
+	imgView.layer.cornerRadius = 5.0;
+	imgView.layer.masksToBounds = YES;
+	imgView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	imgView.layer.borderWidth = 1.0;
+#elif 0
+	UIImage *rounded = [UIImage roundedImage:testImg targetRect:targetRect];
+	imgView.image = rounded;
+#elif 1
+	UIImage *rounded = [UIImage makeRoundCornerImage:testImg cornerWidth:20 cornerHeight:20];
+	imgView.image = rounded;
+#endif
+	[self.view addSubview:imgView];
+	[imgView release];
 }
 
 /*
@@ -111,7 +136,6 @@
 	} else {
 		NSLog(@"press cancel");
 	}
-	
 }
 
 @end

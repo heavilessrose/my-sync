@@ -15,6 +15,9 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		A31C51DB11D1C8A500231EBD /* pcGroupsManagerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */; };
 		A31C51DC11D1C8A500231EBD /* pcGroupsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */; };
+		A32B36F411F18D0C00B7CB2B /* UIImage+Resizeable.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B36F311F18D0C00B7CB2B /* UIImage+Resizeable.m */; };
+		A32B370011F18D5B00B7CB2B /* UIImage+roundCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B36FF11F18D5B00B7CB2B /* UIImage+roundCorner.m */; };
+		A32B371311F18F4200B7CB2B /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = A32B371211F18F4200B7CB2B /* test.png */; };
 		A3FAA9AA11EF67D600AE9A8A /* pcTwoLineAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FAA9A911EF67D600AE9A8A /* pcTwoLineAlertView.m */; };
 		A3FAA9AD11EF699500AE9A8A /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FAA9AC11EF699500AE9A8A /* TestViewController.m */; };
 		A3FAAA0211EF727500AE9A8A /* pcProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FAAA0111EF727500AE9A8A /* pcProgressView.m */; };
@@ -36,6 +39,11 @@
 		A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcGroupsManagerTableCell.m; sourceTree = "<group>"; };
 		A31C51D911D1C8A500231EBD /* pcGroupsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcGroupsManagerViewController.h; sourceTree = "<group>"; };
 		A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcGroupsManagerViewController.m; sourceTree = "<group>"; };
+		A32B36F211F18D0B00B7CB2B /* UIImage+Resizeable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resizeable.h"; sourceTree = "<group>"; };
+		A32B36F311F18D0C00B7CB2B /* UIImage+Resizeable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resizeable.m"; sourceTree = "<group>"; };
+		A32B36FE11F18D5B00B7CB2B /* UIImage+roundCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+roundCorner.h"; sourceTree = "<group>"; };
+		A32B36FF11F18D5B00B7CB2B /* UIImage+roundCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+roundCorner.m"; sourceTree = "<group>"; };
+		A32B371211F18F4200B7CB2B /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		A3FAA9A811EF67D600AE9A8A /* pcTwoLineAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcTwoLineAlertView.h; sourceTree = "<group>"; };
 		A3FAA9A911EF67D600AE9A8A /* pcTwoLineAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcTwoLineAlertView.m; sourceTree = "<group>"; };
 		A3FAA9AB11EF699500AE9A8A /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
@@ -61,6 +69,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A32B36F611F18D1900B7CB2B /* addition */,
 				A31C51D111D1C76600231EBD /* ConstantsAndMacros.h */,
 				1D3623240D0F684500981E51 /* PicoffeeAppDelegate.h */,
 				1D3623250D0F684500981E51 /* PicoffeeAppDelegate.m */,
@@ -105,6 +114,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A32B371211F18F4200B7CB2B /* test.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Picoffee-Info.plist */,
 			);
@@ -119,6 +129,17 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A32B36F611F18D1900B7CB2B /* addition */ = {
+			isa = PBXGroup;
+			children = (
+				A32B36F211F18D0B00B7CB2B /* UIImage+Resizeable.h */,
+				A32B36F311F18D0C00B7CB2B /* UIImage+Resizeable.m */,
+				A32B36FE11F18D5B00B7CB2B /* UIImage+roundCorner.h */,
+				A32B36FF11F18D5B00B7CB2B /* UIImage+roundCorner.m */,
+			);
+			name = addition;
 			sourceTree = "<group>";
 		};
 		A3727C3011C35BE400E48BE0 /* views */ = {
@@ -175,6 +196,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Luke.cn;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Picoffee" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
@@ -193,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				A32B371311F18F4200B7CB2B /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +235,8 @@
 				A3FAA9AA11EF67D600AE9A8A /* pcTwoLineAlertView.m in Sources */,
 				A3FAA9AD11EF699500AE9A8A /* TestViewController.m in Sources */,
 				A3FAAA0211EF727500AE9A8A /* pcProgressView.m in Sources */,
+				A32B36F411F18D0C00B7CB2B /* UIImage+Resizeable.m in Sources */,
+				A32B370011F18D5B00B7CB2B /* UIImage+roundCorner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
