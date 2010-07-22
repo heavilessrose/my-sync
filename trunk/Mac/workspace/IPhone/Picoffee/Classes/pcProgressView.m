@@ -54,6 +54,7 @@
             msgLabel.frame = CGRectMake(msg_x_margin, self.frame.size.height - strSize.height - 2, self.frame.size.width - (msg_x_margin * 2), strSize.height);
         }
     }
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -64,9 +65,9 @@
 */
 
 - (void)dealloc {
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     [msgLabel release];
     [super dealloc];
 }
-
 
 @end
