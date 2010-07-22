@@ -34,6 +34,11 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 处理locale变化
+    NSNotificationCenter *globalNc = [NSNotificationCenter defaultCenter];
+    [globalNc addObserver:self selector:@selector(localeChanged) name:NSCurrentLocaleDidChangeNotification object:nil];
+    
 #if 0
 	pcTwoLineAlertView *alert = [[pcTwoLineAlertView alloc] initWithTitle:@"title" 
 																  message:@"message" 
@@ -126,6 +131,12 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+#pragma mark notifications
+- (void)localeChanged
+{
+    NSLog(@"[%s] ", _cmd);
 }
 
 #pragma mark alert
