@@ -1,0 +1,25 @@
+package luke.babybear.product;
+
+message Product {
+	required int32 id = 1;
+	required string name = 2;
+	required string price = 3;
+	required string briefInfo = 4;
+	optional string contentInfo = 5;
+	optional string avatarUrl = 6;
+	
+	enum SaleType {
+		DEFAULT = 0;
+		HOT = 1;
+		TUAN = 2;
+		DISCOUNT = 3;
+		NEW = 4;
+	}
+	
+	optional SaleType type = 7 [default = DEFAULT];
+}
+
+message ProductBundle {
+	repeated Product product = 1;
+}
+
