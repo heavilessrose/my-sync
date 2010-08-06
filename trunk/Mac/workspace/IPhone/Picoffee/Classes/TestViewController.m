@@ -11,9 +11,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "pcProgressView.h"
 #import "UIImage+roundCorner.h"
+#import "TapImage.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TestViewController
+@synthesize scrollShow, imgNameArr_test;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -27,7 +29,7 @@
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
-	self.view = [[UIView alloc] init];
+    [super loadView];
 	self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -75,7 +77,7 @@
 	[progressView addSubview:ind];
 	[self.view addSubview:progressView];
 	[progressView release];
-#else
+#elif 0
     CGRect progressFrame = CGRectMake(60, 200, 200, 80);
     pcProgressView *progressView = [[pcProgressView alloc] initWithFrame:progressFrame];
     progressView.msgLabel.text = @"asdkjflasjdflaalsjdflajsldfja;sdlfja;dslfkja;dslfkjasd;flajdsf;aljsdlfjalsdjkf";
@@ -99,12 +101,35 @@
 #elif 0
 	UIImage *rounded = [UIImage roundedImage:testImg targetRect:targetRect];
 	imgView.image = rounded;
-#elif 1
+#elif 0
 	UIImage *rounded = [UIImage makeRoundCornerImage:testImg cornerWidth:20 cornerHeight:20];
 	imgView.image = rounded;
 #endif
 	[self.view addSubview:imgView];
 	[imgView release];
+    
+#if 1 // scroll show
+    self.imgNameArr_test = [NSArray arrayWithObjects:
+                       @"ballmer1.jpg",
+                       @"hoff2.jpg",
+                       @"brolin.jpg",
+                       @"hoff1.jpg",
+                       @"ballmer2.jpg",
+                       nil];
+    CGRect scrollRect = CGRectMake(10, 50, 300, 100);
+    CGSize pageContentSize = CGSizeMake(80, 80);
+    
+    self.scrollShow = [[ScrollShowView alloc] initWithFrame:scrollRect pageContentSize:pageContentSize];
+    scrollShow.backgroundColor = [UIColor darkGrayColor];
+    scrollShow.backShadow = YES;
+    scrollShow.pageDelegate = self;
+    scrollShow.pageStyle = PAGESTYLE_PADDING;
+    scrollShow.x_padding = 10.0f;
+    scrollShow.y_padding = 10.0f;
+    [self.view addSubview:scrollShow];
+    [scrollShow release];
+    self.view.userInteractionEnabled = YES;
+#endif
 }
 
 /*
@@ -120,6 +145,7 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+	[scrollShow didReceiveMemoryWarning];
 }
 
 - (void)viewDidUnload {
@@ -130,9 +156,28 @@
 
 
 - (void)dealloc {
+    [imgNameArr_test release];
+    [scrollShow release];
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark ScrollShowViewPageDelegate
+- (UIView *)viewForPageAtIndex:(ScrollShowView *)scrollView pageIndex:(int)index
+{
+    CGRect ImgViewAtPageRect = CGRectMake(0, 0, 80, 80.0f);
+    TapImage *ImgViewAtPage = [[[TapImage alloc] initWithFrame:ImgViewAtPageRect] autorelease];
+	ImgViewAtPage.userInteractionEnabled = YES;
+	ImgViewAtPage.image = [UIImage imageNamed:[imgNameArr_test objectAtIndex:index]];
+    return ImgViewAtPage;
+}
+
+- (int)itemCount:(ScrollShowView *)scrollView
+{
+    return [imgNameArr_test count];
+}
+
+#pragma mark -
 #pragma mark notifications
 - (void)localeChanged
 {
