@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScrollShowView.h"
 
+@interface TestViewController : UIViewController <ScrollShowViewPageDelegate> {
 
-@interface TestViewController : UIViewController {
-
+    NSArray *imgNameArr_test;
+    ScrollShowView *scrollShow;
 }
 
+@property (nonatomic, retain) ScrollShowView *scrollShow;
+@property (nonatomic, retain) NSArray *imgNameArr_test;
 @end
