@@ -10,6 +10,7 @@
 #include "TapImage.h"
 
 @implementation TapImage
+@synthesize product_id, rank, name, price, briefInfo, contentInfo, avatarUrl;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	NSLog(@"Touches began");
@@ -22,6 +23,16 @@
 	
 	[alert show];
 	[alert release];
+}
+
+- (void)dealloc
+{
+    [name release];
+    [price release];
+    [briefInfo release];
+    [contentInfo release];
+    [avatarUrl release];
+    [super dealloc];
 }
 
 @end

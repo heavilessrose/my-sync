@@ -9,6 +9,21 @@
 
 #include "ScrollShowView.h"
 
+@interface ScrollShowView ()
+
+/*!
+ @function
+ @abstract   调整pageContent(the UIImageView)宽度, 使所有page的宽度和与scrollViewd的宽度成正比 
+ @discussion 
+ @param      
+ @result     
+ */
+
+- (void)adjustPageContentSize;
+
+@end
+
+
 
 @implementation ScrollShowView
 @synthesize scrollView, pageContentSize, backShadow, pages, pageDelegate;
@@ -26,9 +41,27 @@
     NSLog(@"%@: %f, %f, %f, %f", tip, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
 }
 
+- (void)adjustPageContentSize
+{
+    int pageCount = [pages count];
+    CGFloat adjustAll = (CGFloat)((int)scrollView.frame.size.width % pageCount);
+    CGFloat adjustSingle = adjustAll / pageCount;
+    CGFloat pageContent_w = pageContentSize.width + adjustSingle;
+    CGSize aSize = pageContentSize;
+    aSize.width = pageContent_w;
+    pageContentSize = aSize;
+}
+
+/*!
+    @function
+    @abstract   Calculate which page is visible
+    @discussion 
+    @param      
+    @result     
+*/
+
 - (int)currentPage
 {
-	// Calculate which page is visible 
 	CGFloat pageWidth = 0.0f;
     if(pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
         pageWidth = pageContentSize.width;
@@ -41,23 +74,24 @@
 	return page;
 }
 
-- (void)loadPage:(int)aPage
+- (void)loadPage:(int)aPageIndex
 {
-    if (aPage < 0 || aPage >= [pages count])
+    if (aPageIndex < 0 || aPageIndex >= [pages count])
         return;
 	
 	UIView *aPageView = nil;
-    UIView *aPageContentView = [pages objectAtIndex:aPage];
+    UIView *aPageContentView = [pages objectAtIndex:aPageIndex];
 	
 	if ((NSNull *)aPageContentView == [NSNull null]) {
-		aPageContentView = [pageDelegate viewForPageAtIndex:self pageIndex:aPage];
-		[pages replaceObjectAtIndex:aPage withObject:aPageContentView];
+		aPageContentView = [pageDelegate viewForPageAtIndex:self pageIndex:aPageIndex];
+		[pages replaceObjectAtIndex:aPageIndex withObject:aPageContentView];
+        aPageContentView.frame = CGRectMake(0.0f, 0.0f, pageContentSize.width, pageContentSize.height);
 	}
 	
 	if (aPageContentView.superview == nil) {
         if (pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
             CGRect viewFrame = aPageContentView.frame;
-            viewFrame.origin.x = viewFrame.size.width * aPage;
+            viewFrame.origin.x = viewFrame.size.width * aPageIndex;
             viewFrame.origin.y = (self.frame.size.height - viewFrame.size.height) / 2;
             aPageContentView.frame = viewFrame;
             [scrollView addSubview:aPageContentView];
@@ -65,12 +99,13 @@
             CGFloat aPageView_w = pageContentSize.width + x_padding * 2;
             CGFloat aPageView_h = pageContentSize.height + y_padding * 2;
             
-            CGRect aPageViewFrame = CGRectMake(aPageView_w * aPage, 0.0f, 
+            CGRect aPageViewFrame = CGRectMake(aPageView_w * aPageIndex, 0.0f, 
                                                aPageView_w, aPageView_h);
             aPageView = [[UIView alloc] initWithFrame:aPageViewFrame];
             aPageView.backgroundColor = [UIColor clearColor];
             aPageContentView.frame = CGRectMake(x_padding, y_padding, 
                                                 aPageContentView.frame.size.width, aPageContentView.frame.size.height);
+            [ScrollShowView debugFrame:aPageContentView.frame tip:@"aPageContentView"];
             [aPageView addSubview:aPageContentView];
             [scrollView addSubview:aPageView];
             [aPageView release];
@@ -82,6 +117,7 @@
 #pragma mark UIScrollViewDelegate methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 //- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
 	int currentPage = [self currentPage];
@@ -89,6 +125,8 @@
 	[self loadPage:currentPage - 1];
 	[self loadPage:currentPage];
 	[self loadPage:currentPage + 1];
+    // 可见的一般为最左边那个,依情况载入多个
+	[self loadPage:currentPage + 2];
 }
 
 #pragma mark -
@@ -201,13 +239,7 @@
         }
         
         int pageCount = [pageDelegate itemCount:self];
-        scrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-        
-        if(pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
-            [scrollView setContentSize:CGSizeMake(pageCount * pageContentSize.width, pageContentSize.height)];
-        } else {
-            [scrollView setContentSize:CGSizeMake(pageCount * (pageContentSize.width + x_padding * 2), (pageContentSize.height + y_padding * 2))];
-        }
+        scrollView.frame = CGRectMake(0.0f, 0.0f, self.frame.size.width, self.frame.size.height);
         
         self.pages = [[NSMutableArray alloc] initWithCapacity:pageCount];
         
@@ -216,17 +248,29 @@
         }
         [pages release];
         
+        if(pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
+            [scrollView setContentSize:CGSizeMake(pageCount * pageContentSize.width, pageContentSize.height)];
+        } else {
+            [scrollView setContentSize:CGSizeMake(pageCount * (pageContentSize.width + x_padding * 2), (pageContentSize.height + y_padding * 2))];
+        }
+        
         // Load the should visalble pages
         int vPageCount = 0.0f;
         if(pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
             vPageCount = self.frame.size.width / pageContentSize.width + 1;
         } else {
+            // 不应调整, 应根据宽度调整ContentSize
+            [self adjustPageContentSize];
             vPageCount = self.frame.size.width / (pageContentSize.width + x_padding * 2) + 1;
         }
+#if 0
         for(int i = 0; i < vPageCount; i++){
             [self loadPage:i];
         }
-        
+#else
+        [self loadPage:0];
+        [self loadPage:1];
+#endif
         _isLayouted = YES;
     }
 }
