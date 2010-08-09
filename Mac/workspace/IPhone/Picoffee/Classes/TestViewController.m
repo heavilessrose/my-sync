@@ -110,12 +110,22 @@
     
 #if 1 // scroll show
     self.imgNameArr_test = [NSArray arrayWithObjects:
-                       @"ballmer1.jpg",
-                       @"hoff2.jpg",
-                       @"brolin.jpg",
-                       @"hoff1.jpg",
-                       @"ballmer2.jpg",
-                       nil];
+                            @"ballmer1.jpg",
+                            @"hoff2.jpg",
+                            @"ballmer1.jpg",
+                            @"ballmer2.jpg",
+                            @"brolin.jpg",
+                            @"hoff1.jpg",
+                            @"ballmer2.jpg",
+                            /*
+                            @"brolin.jpg",
+                            @"hoff1.jpg",
+                            @"ballmer2.jpg",
+                            @"brolin.jpg",
+                            @"hoff1.jpg",
+                            */
+                            nil];
+    // 宽度应该为整数倍
     CGRect scrollRect = CGRectMake(10, 50, 300, 100);
     CGSize pageContentSize = CGSizeMake(80, 80);
     
