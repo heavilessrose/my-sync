@@ -19,5 +19,19 @@
     return localizedStr;
 }
 
+#pragma mark -
+#pragma mark System
+
+- (BOOL)isMultitaskingSupported
+{
+    BOOL backgroundSupported = NO;
+    /*
+    UIDevice* device = [UIDevice currentDevice];
+    if ([device respondsToSelector:@selector(isMultitaskingSupported)])
+        backgroundSupported = device.multitaskingSupported;
+     */
+    return backgroundSupported;
+}
+
 @end
 
