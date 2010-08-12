@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "defines.h"
 
 
 @interface FavoriteCell : UITableViewCell {
-
+	FavoriteItem	item;
 }
 
+@property (nonatomic, assign) FavoriteItem	item;
 @end
