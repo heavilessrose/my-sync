@@ -1,0 +1,330 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* BabyBearAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* BabyBearAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		A37CD3411212B2020007317F /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37CD33B1212B2020007317F /* CartCell.xib */; };
+		A37CD3421212B2020007317F /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37CD33C1212B2020007317F /* FavoriteCell.xib */; };
+		A37CD3431212B2020007317F /* FeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37CD33D1212B2020007317F /* FeatureCell.xib */; };
+		A37CD3441212B2020007317F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37CD33E1212B2020007317F /* MainWindow.xib */; };
+		A37CD3451212B2020007317F /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37CD33F1212B2020007317F /* ProductCell.xib */; };
+		A37CD3461212B2020007317F /* RecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37CD3401212B2020007317F /* RecommendCell.xib */; };
+		A393A7E41212A479004E6374 /* InitialDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A393A7E31212A479004E6374 /* InitialDefaults.plist */; };
+		A393A7EB1212A775004E6374 /* FeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A7EA1212A775004E6374 /* FeaturedViewController.m */; };
+		A393A7EE1212A789004E6374 /* ProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */; };
+		A393A7F11212A7A7004E6374 /* StoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A7F01212A7A7004E6374 /* StoresViewController.m */; };
+		A393A7F41212A7E3004E6374 /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A7F31212A7E3004E6374 /* FavoritesViewController.m */; };
+		A393A7F71212A804004E6374 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A7F61212A804004E6374 /* CartViewController.m */; };
+		A393A83E1212ADDC004E6374 /* RecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A83D1212ADDC004E6374 /* RecommendCell.m */; };
+		A393A8411212ADEB004E6374 /* FeatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8401212ADEB004E6374 /* FeatureCell.m */; };
+		A393A8441212ADFB004E6374 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8431212ADFB004E6374 /* ProductCell.m */; };
+		A393A8471212AE0B004E6374 /* FavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8461212AE0B004E6374 /* FavoriteCell.m */; };
+		A393A84A1212AE1D004E6374 /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8491212AE1D004E6374 /* CartCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* BabyBearAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyBearAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* BabyBearAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyBearAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* BabyBear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyBear.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* BabyBear_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyBear_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* BabyBear-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BabyBear-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A37CD33B1212B2020007317F /* CartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CartCell.xib; path = Resources/CartCell.xib; sourceTree = "<group>"; };
+		A37CD33C1212B2020007317F /* FavoriteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FavoriteCell.xib; path = Resources/FavoriteCell.xib; sourceTree = "<group>"; };
+		A37CD33D1212B2020007317F /* FeatureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FeatureCell.xib; path = Resources/FeatureCell.xib; sourceTree = "<group>"; };
+		A37CD33E1212B2020007317F /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
+		A37CD33F1212B2020007317F /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ProductCell.xib; path = Resources/ProductCell.xib; sourceTree = "<group>"; };
+		A37CD3401212B2020007317F /* RecommendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RecommendCell.xib; path = Resources/RecommendCell.xib; sourceTree = "<group>"; };
+		A393A7E31212A479004E6374 /* InitialDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitialDefaults.plist; sourceTree = "<group>"; };
+		A393A7E91212A775004E6374 /* FeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedViewController.h; sourceTree = "<group>"; };
+		A393A7EA1212A775004E6374 /* FeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedViewController.m; sourceTree = "<group>"; };
+		A393A7EC1212A789004E6374 /* ProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsViewController.h; sourceTree = "<group>"; };
+		A393A7ED1212A789004E6374 /* ProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsViewController.m; sourceTree = "<group>"; };
+		A393A7EF1212A7A7004E6374 /* StoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresViewController.h; sourceTree = "<group>"; };
+		A393A7F01212A7A7004E6374 /* StoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresViewController.m; sourceTree = "<group>"; };
+		A393A7F21212A7E3004E6374 /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
+		A393A7F31212A7E3004E6374 /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
+		A393A7F51212A804004E6374 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
+		A393A7F61212A804004E6374 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
+		A393A83C1212ADDC004E6374 /* RecommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendCell.h; sourceTree = "<group>"; };
+		A393A83D1212ADDC004E6374 /* RecommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendCell.m; sourceTree = "<group>"; };
+		A393A83F1212ADEB004E6374 /* FeatureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeatureCell.h; sourceTree = "<group>"; };
+		A393A8401212ADEB004E6374 /* FeatureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeatureCell.m; sourceTree = "<group>"; };
+		A393A8421212ADFB004E6374 /* ProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCell.h; sourceTree = "<group>"; };
+		A393A8431212ADFB004E6374 /* ProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCell.m; sourceTree = "<group>"; };
+		A393A8451212AE0B004E6374 /* FavoriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteCell.h; sourceTree = "<group>"; };
+		A393A8461212AE0B004E6374 /* FavoriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteCell.m; sourceTree = "<group>"; };
+		A393A8481212AE1D004E6374 /* CartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartCell.h; sourceTree = "<group>"; };
+		A393A8491212AE1D004E6374 /* CartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartCell.m; sourceTree = "<group>"; };
+		A393A84B1212AE4C004E6374 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = defines.h; path = Classes/defines.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* BabyBearAppDelegate.h */,
+				1D3623250D0F684500981E51 /* BabyBearAppDelegate.m */,
+				A393A7E91212A775004E6374 /* FeaturedViewController.h */,
+				A393A7EA1212A775004E6374 /* FeaturedViewController.m */,
+				A393A7EC1212A789004E6374 /* ProductsViewController.h */,
+				A393A7ED1212A789004E6374 /* ProductsViewController.m */,
+				A393A7EF1212A7A7004E6374 /* StoresViewController.h */,
+				A393A7F01212A7A7004E6374 /* StoresViewController.m */,
+				A393A7F21212A7E3004E6374 /* FavoritesViewController.h */,
+				A393A7F31212A7E3004E6374 /* FavoritesViewController.m */,
+				A393A7F51212A804004E6374 /* CartViewController.h */,
+				A393A7F61212A804004E6374 /* CartViewController.m */,
+				A393A83C1212ADDC004E6374 /* RecommendCell.h */,
+				A393A83D1212ADDC004E6374 /* RecommendCell.m */,
+				A393A83F1212ADEB004E6374 /* FeatureCell.h */,
+				A393A8401212ADEB004E6374 /* FeatureCell.m */,
+				A393A8421212ADFB004E6374 /* ProductCell.h */,
+				A393A8431212ADFB004E6374 /* ProductCell.m */,
+				A393A8451212AE0B004E6374 /* FavoriteCell.h */,
+				A393A8461212AE0B004E6374 /* FavoriteCell.m */,
+				A393A8481212AE1D004E6374 /* CartCell.h */,
+				A393A8491212AE1D004E6374 /* CartCell.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* BabyBear.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A393A84B1212AE4C004E6374 /* defines.h */,
+				32CA4F630368D1EE00C91783 /* BabyBear_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A37CD33B1212B2020007317F /* CartCell.xib */,
+				A37CD33C1212B2020007317F /* FavoriteCell.xib */,
+				A37CD33D1212B2020007317F /* FeatureCell.xib */,
+				A37CD33E1212B2020007317F /* MainWindow.xib */,
+				A37CD33F1212B2020007317F /* ProductCell.xib */,
+				A37CD3401212B2020007317F /* RecommendCell.xib */,
+				8D1107310486CEB800E47090 /* BabyBear-Info.plist */,
+				A393A7E31212A479004E6374 /* InitialDefaults.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* BabyBear */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BabyBear" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BabyBear;
+			productName = BabyBear;
+			productReference = 1D6058910D05DD3D006BFB54 /* BabyBear.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Luke;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BabyBear" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* BabyBear */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A393A7E41212A479004E6374 /* InitialDefaults.plist in Resources */,
+				A37CD3411212B2020007317F /* CartCell.xib in Resources */,
+				A37CD3421212B2020007317F /* FavoriteCell.xib in Resources */,
+				A37CD3431212B2020007317F /* FeatureCell.xib in Resources */,
+				A37CD3441212B2020007317F /* MainWindow.xib in Resources */,
+				A37CD3451212B2020007317F /* ProductCell.xib in Resources */,
+				A37CD3461212B2020007317F /* RecommendCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* BabyBearAppDelegate.m in Sources */,
+				A393A7EB1212A775004E6374 /* FeaturedViewController.m in Sources */,
+				A393A7EE1212A789004E6374 /* ProductsViewController.m in Sources */,
+				A393A7F11212A7A7004E6374 /* StoresViewController.m in Sources */,
+				A393A7F41212A7E3004E6374 /* FavoritesViewController.m in Sources */,
+				A393A7F71212A804004E6374 /* CartViewController.m in Sources */,
+				A393A83E1212ADDC004E6374 /* RecommendCell.m in Sources */,
+				A393A8411212ADEB004E6374 /* FeatureCell.m in Sources */,
+				A393A8441212ADFB004E6374 /* ProductCell.m in Sources */,
+				A393A8471212AE0B004E6374 /* FavoriteCell.m in Sources */,
+				A393A84A1212AE1D004E6374 /* CartCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BabyBear_Prefix.pch;
+				INFOPLIST_FILE = "BabyBear-Info.plist";
+				PRODUCT_NAME = BabyBear;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BabyBear_Prefix.pch;
+				INFOPLIST_FILE = "BabyBear-Info.plist";
+				PRODUCT_NAME = BabyBear;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BabyBear" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BabyBear" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
