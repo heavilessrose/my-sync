@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "defines.h"
 
 
 @interface ProductCell : UITableViewCell {
-
+	Product	item;
 }
 
+@property (nonatomic, assign) Product	item;
 @end

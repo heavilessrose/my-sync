@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "defines.h"
 
 
 @interface CartCell : UITableViewCell {
-
+	CartItem	item;
 }
-
+@property (nonatomic, assign) CartItem	item;
 @end

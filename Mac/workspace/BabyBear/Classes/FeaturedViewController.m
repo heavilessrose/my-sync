@@ -8,9 +8,18 @@
 
 #import "FeaturedViewController.h"
 
+#define kCustomRowCount		7
+
+@interface FeaturedViewController ()
+
+@property (nonatomic, retain) RecommendCell		*tmpRecomCell;
+@property (nonatomic, retain) FeatureCell		*tmpFeatureCell;
+@end
+
 
 @implementation FeaturedViewController
 
+@synthesize entries, tmpRecomCell, tmpFeatureCell;
 
 #pragma mark -
 #pragma mark Initialization
@@ -71,28 +80,60 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 5;
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 5;
+	int count = [entries count];
+	
+	// ff there's no data yet, return enough rows to fill the screen
+    if (count == 0)
+	{
+        return kCustomRowCount;
+    }
+    return count;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *RecomCellIdentifier = @"RecommendCell";
+    static NSString *FeatureCellIdentifier = @"FeatureCell";
+	static NSString *PlaceholderCellIdentifier = @"PlaceholderCell";
+	
+    // add a placeholder cell while waiting on table data
+    int nodeCount = [self.entries count];
+	
+	if (nodeCount == 0 && indexPath.row == 0)
+	{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PlaceholderCellIdentifier];
+        if (cell == nil)
+		{
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+										   reuseIdentifier:PlaceholderCellIdentifier] autorelease];   
+            cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+		
+		cell.detailTextLabel.text = NSLocalizedString(@"Loading…", nil);
+		
+		return cell;
+    }
+	
+    FeatureCell *cell = (FeatureCell *)[tableView dequeueReusableCellWithIdentifier:FeatureCellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		// UITableViewCellStyleDefault
+		[[NSBundle mainBundle] loadNibNamed:@"FeatureCell" owner:self options:nil];
+        cell = tmpFeatureCell;
+		self.tmpFeatureCell = nil;
     }
     
-    // Configure the cell...
-    
+    // Leave cells empty if there's no data yet
+    if (nodeCount > 0) {
+		
+	}
     return cell;
 }
 
@@ -169,6 +210,10 @@
 
 
 - (void)dealloc {
+    [entries release];
+	[tmpRecomCell release];
+	[tmpFeatureCell release];
+	
     [super dealloc];
 }
 

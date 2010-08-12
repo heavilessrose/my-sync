@@ -11,6 +11,8 @@
 
 @implementation RecommendCell
 
+@synthesize title, imgView, item;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
@@ -28,6 +30,8 @@
 
 
 - (void)dealloc {
+	[title release];
+	[imgView release];
     [super dealloc];
 }
 
