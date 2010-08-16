@@ -7,6 +7,14 @@
  *
  */
 
+#ifndef _BBEAR_DEFINE_H_
+#define _BBEAR_DEFINE_H_
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+	
 typedef struct {
 	UInt32	id;
 	char	*name;
@@ -49,3 +57,9 @@ typedef struct {
 	Product *base;
 	
 }CartItem;
+	
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* _BBEAR_DEFINE_H_ */
