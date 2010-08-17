@@ -29,6 +29,7 @@
 		A393A8441212ADFB004E6374 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8431212ADFB004E6374 /* ProductCell.m */; };
 		A393A8471212AE0B004E6374 /* FavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8461212AE0B004E6374 /* FavoriteCell.m */; };
 		A393A84A1212AE1D004E6374 /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8491212AE1D004E6374 /* CartCell.m */; };
+		A3A874BF121A69D2006F46A9 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A874BE121A69D2006F46A9 /* Utils.m */; };
 		A3D5344A1219336C00C19941 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D534491219336C00C19941 /* MessageUI.framework */; };
 		A3DA08011213D20C001DF575 /* xml.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA07FE1213D20C001DF575 /* xml.m */; };
 		A3DA082D1213E839001DF575 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA082C1213E839001DF575 /* XmlParser.m */; };
@@ -73,6 +74,8 @@
 		A393A8481212AE1D004E6374 /* CartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartCell.h; sourceTree = "<group>"; };
 		A393A8491212AE1D004E6374 /* CartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartCell.m; sourceTree = "<group>"; };
 		A393A84B1212AE4C004E6374 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = defines.h; path = Classes/defines.h; sourceTree = "<group>"; };
+		A3A874BD121A69D2006F46A9 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		A3A874BE121A69D2006F46A9 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		A3D534491219336C00C19941 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A3DA07FE1213D20C001DF575 /* xml.m */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.objc; path = xml.m; sourceTree = "<group>"; };
 		A3DA07FF1213D20C001DF575 /* xml.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; path = xml.h; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 			children = (
 				A3DC69091213BFEB00241311 /* network */,
 				A3DC69081213BFDE00241311 /* parser */,
+				A3A874C0121A69D9006F46A9 /* Utils */,
 				1D3623240D0F684500981E51 /* BabyBearAppDelegate.h */,
 				1D3623250D0F684500981E51 /* BabyBearAppDelegate.m */,
 				A393A7E91212A775004E6374 /* FeaturedViewController.h */,
@@ -183,6 +187,15 @@
 				A3D534491219336C00C19941 /* MessageUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3A874C0121A69D9006F46A9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A3A874BD121A69D2006F46A9 /* Utils.h */,
+				A3A874BE121A69D2006F46A9 /* Utils.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		A3DA082A1213E819001DF575 /* nsxml */ = {
@@ -321,6 +334,7 @@
 				A393A84A1212AE1D004E6374 /* CartCell.m in Sources */,
 				A3DA08011213D20C001DF575 /* xml.m in Sources */,
 				A3DA082D1213E839001DF575 /* XmlParser.m in Sources */,
+				A3A874BF121A69D2006F46A9 /* Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
