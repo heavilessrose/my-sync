@@ -67,6 +67,6 @@ typedef struct tag_XmlMem_s
 
 int XML_Generate( Xml_s* pXml, char* pSource, int* pSlen );
 int XML_Parse( XmlMem_s* pData, Xml_s** ppXml );
-int XML_Free(Xml_s* pXml );
+int XML_Free( Xml_s* pXml );
 
 #endif
