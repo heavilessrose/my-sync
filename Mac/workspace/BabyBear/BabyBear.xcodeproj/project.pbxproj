@@ -31,6 +31,11 @@
 		A393A84A1212AE1D004E6374 /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8491212AE1D004E6374 /* CartCell.m */; };
 		A3A874BF121A69D2006F46A9 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A874BE121A69D2006F46A9 /* Utils.m */; };
 		A3D5344A1219336C00C19941 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D534491219336C00C19941 /* MessageUI.framework */; };
+		A3D82C1B121BDC9700E46EE9 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C15121BDC9700E46EE9 /* tinystr.cpp */; };
+		A3D82C1C121BDC9700E46EE9 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C17121BDC9700E46EE9 /* tinyxml.cpp */; };
+		A3D82C1D121BDC9700E46EE9 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C19121BDC9700E46EE9 /* tinyxmlerror.cpp */; };
+		A3D82C1E121BDC9700E46EE9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C1A121BDC9700E46EE9 /* tinyxmlparser.cpp */; };
+		A3D82C20121BDCE500E46EE9 /* xmltest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C1F121BDCE500E46EE9 /* xmltest.cpp */; };
 		A3DA08011213D20C001DF575 /* xml.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA07FE1213D20C001DF575 /* xml.m */; };
 		A3DA082D1213E839001DF575 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA082C1213E839001DF575 /* XmlParser.m */; };
 		A3DC68A11213996600241311 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DC68A01213996600241311 /* icon.png */; };
@@ -77,6 +82,13 @@
 		A3A874BD121A69D2006F46A9 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		A3A874BE121A69D2006F46A9 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		A3D534491219336C00C19941 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		A3D82C15121BDC9700E46EE9 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
+		A3D82C16121BDC9700E46EE9 /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinystr.h; sourceTree = "<group>"; };
+		A3D82C17121BDC9700E46EE9 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
+		A3D82C18121BDC9700E46EE9 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
+		A3D82C19121BDC9700E46EE9 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
+		A3D82C1A121BDC9700E46EE9 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
+		A3D82C1F121BDCE500E46EE9 /* xmltest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xmltest.cpp; sourceTree = "<group>"; };
 		A3DA07FE1213D20C001DF575 /* xml.m */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.objc; path = xml.m; sourceTree = "<group>"; };
 		A3DA07FF1213D20C001DF575 /* xml.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; path = xml.h; sourceTree = "<group>"; };
 		A3DA08001213D20C001DF575 /* xmlgb.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; path = xmlgb.h; sourceTree = "<group>"; };
@@ -198,6 +210,20 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		A3D82B76121BC91E00E46EE9 /* tinyxml */ = {
+			isa = PBXGroup;
+			children = (
+				A3D82C15121BDC9700E46EE9 /* tinystr.cpp */,
+				A3D82C16121BDC9700E46EE9 /* tinystr.h */,
+				A3D82C17121BDC9700E46EE9 /* tinyxml.cpp */,
+				A3D82C18121BDC9700E46EE9 /* tinyxml.h */,
+				A3D82C19121BDC9700E46EE9 /* tinyxmlerror.cpp */,
+				A3D82C1A121BDC9700E46EE9 /* tinyxmlparser.cpp */,
+				A3D82C1F121BDCE500E46EE9 /* xmltest.cpp */,
+			);
+			name = tinyxml;
+			sourceTree = "<group>";
+		};
 		A3DA082A1213E819001DF575 /* nsxml */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +236,7 @@
 		A3DC69081213BFDE00241311 /* parser */ = {
 			isa = PBXGroup;
 			children = (
+				A3D82B76121BC91E00E46EE9 /* tinyxml */,
 				A3DA082A1213E819001DF575 /* nsxml */,
 				A3DC690D1213C03000241311 /* json */,
 				A3DC690C1213C02800241311 /* xml */,
@@ -335,6 +362,11 @@
 				A3DA08011213D20C001DF575 /* xml.m in Sources */,
 				A3DA082D1213E839001DF575 /* XmlParser.m in Sources */,
 				A3A874BF121A69D2006F46A9 /* Utils.m in Sources */,
+				A3D82C1B121BDC9700E46EE9 /* tinystr.cpp in Sources */,
+				A3D82C1C121BDC9700E46EE9 /* tinyxml.cpp in Sources */,
+				A3D82C1D121BDC9700E46EE9 /* tinyxmlerror.cpp in Sources */,
+				A3D82C1E121BDC9700E46EE9 /* tinyxmlparser.cpp in Sources */,
+				A3D82C20121BDCE500E46EE9 /* xmltest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
