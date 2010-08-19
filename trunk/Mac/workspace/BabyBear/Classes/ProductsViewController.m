@@ -69,6 +69,8 @@
 #pragma mark -
 #pragma mark Table view data source
 
+@synthesize entries;
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 5;
@@ -153,6 +155,86 @@
 
 
 #pragma mark -
+#pragma mark Downloading Feed
+
+#define kProductsFeedUrl @"http://localhost/products/allproducts.xml"
+
+@synthesize products, queue, productsFeedConnection, productsData;
+
+- (void)handleError:(NSError *)aErr
+{
+    NSString *errorMessage = [aErr localizedDescription];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Show Products"
+														message:errorMessage
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
+
+#pragma mark NSURLConnection delegate methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.productsData = [NSMutableData data];    // start off with new data
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [productsData appendData:data];  // append incoming data
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    if ([error code] == kCFURLErrorNotConnectedToInternet)
+	{
+        // if we can identify the error, we can present a more precise message to the user.
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"No Connection Error"
+															 forKey:NSLocalizedDescriptionKey];
+        NSError *noConnectionError = [NSError errorWithDomain:NSCocoaErrorDomain
+														 code:kCFURLErrorNotConnectedToInternet
+													 userInfo:userInfo];
+        [self handleError:noConnectionError];
+    }
+	else
+	{
+        // otherwise handle the error generically
+        [self handleError:error];
+    }
+    
+    self.productsFeedConnection = nil;   // release our connection
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    self.productsFeedConnection = nil;   // release our connection
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+    
+    // create the queue to run our ParseOperation
+    self.queue = [[NSOperationQueue alloc] init];
+    
+    // create an ParseOperation (NSOperation subclass) to parse the RSS feed data so that the UI is not blocked
+    // "ownership of productsData has been transferred to the parse operation and should no longer be
+    // referenced in this thread.
+    //
+    XmlParseOperation *parser = [[XmlParseOperation alloc] initWithData:productsData delegate:self];
+    
+    [queue addOperation:parser]; // this will start the "ParseOperation"
+    
+    [parser release];
+    
+    // ownership of productsData has been transferred to the parse operation
+    // and should no longer be referenced in this thread
+    self.productsData = nil;
+}
+
+
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
@@ -168,7 +250,15 @@
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
+	[entries release];
+	[products release];
+	[queue release];
+	
+	[productsFeedConnection release];
+	[productsData release];
+	
     [super dealloc];
 }
 

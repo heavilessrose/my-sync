@@ -10,6 +10,14 @@
 #import "RecommendCell.h"
 #import "FeatureCell.h"
 
+//#import "tinyxml.h"
+#import "rapidxml.hpp"
+//#import "rapidxml_print.hpp"
+//#import "rapidxml_iterators.hpp"
+//#import "rapidxml_utils.hpp"
+
+#import "SlimXml.h"
+
 @interface FeaturedViewController : UITableViewController {
 	NSArray					*entries; // the main data model for our UITableView
 	IBOutlet RecommendCell	*tmpRecomCell;
