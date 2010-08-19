@@ -1,65 +1,65 @@
 <?xml version="1.0"?>
 <product>
-	<product-id>01</product-id>
-	<name>product-01</name>
-	<price>22.9</price>
-	<all-rating>3.5</all-rating>
-	<desc>product-01 description for test!!</desc>
-	<icon-url>http://localhost/product-01/icon-01.png</icon-url>
-	<gallary>
-		<photo-url>http://localhost/product-01/0.png</photo-url>
-		<photo-url>http://localhost/product-01/01.png</photo-url>
-		<photo-url>http://localhost/product-01/02.png</photo-url>
-		<photo-url>http://localhost/product-01/03.png</photo-url>
-		<photo-url>http://localhost/product-01/04.png</photo-url>
-		<photo-url>http://localhost/product-01/05.png</photo-url>
-	</gallary>
-	<reviews count="3">
-		<review>
-			<name>luke</name>
-			<rating>3.5</rating>
-			<date>2010-08-11</date>
-			<title>good one</title>
-			<catagory>good</catagory>
-			<comment>brief good comments for test!</comment>
-		</review>
-		<review>
-			<name>luke2</name>
-			<rating>5</rating>
-			<date>2010-08-11</date>
-			<title>perfect one</title>
-			<catagory>perfect</catagory>
-			<comment>brief perfect comments for test!</comment>
-		</review>
-		<review>
-			<name>luke3</name>
-			<rating>1.5</rating>
-			<date>2010-08-11</date>
-			<title>bad one</title>
-			<catagory>bad</catagory>
-			<comment>brief bad comments for test!</comment>
-		</review>
-	</reviews>
-	<stores>
-		<store>
-			<store-id>001</store-id>
-			<store-name>store-001</store-name>
-			<store-addr>store1 address</store-addr>
-			<store-reserves>1</store-reserves>
+	<pid>01</pid>
+	<pname>product-01</pname>
+	<pprice>22.9</pprice>
+	<pall-rating>3.5</pall-rating>
+	<pdesc>product-01 description for test!!</pdesc>
+	<picon-url>http://localhost/product-01/icon-01.png</picon-url>
+	<pgallary>
+		<pphoto-url>http://localhost/product-01/0.png</pphoto-url>
+		<pphoto-url>http://localhost/product-01/01.png</pphoto-url>
+		<pphoto-url>http://localhost/product-01/02.png</pphoto-url>
+		<pphoto-url>http://localhost/product-01/03.png</pphoto-url>
+		<pphoto-url>http://localhost/product-01/04.png</pphoto-url>
+		<pphoto-url>http://localhost/product-01/05.png</pphoto-url>
+	</pgallary>
+	<previews>
+		<preview>
+			<rname>luke</rname>
+			<rrating>3.5</rrating>
+			<rdate>2010-08-11</rdate>
+			<rtitle>good one</rtitle>
+			<rcatagory>good</rcatagory>
+			<rcomment>brief good comments for test!</rcomment>
+		</preview>
+		<preview>
+			<rname>luke2</rname>
+			<rrating>5</rrating>
+			<rdate>2010-08-11</rdate>
+			<rtitle>perfect one</rtitle>
+			<rcatagory>perfect</rcatagory>
+			<rcomment>brief perfect comments for test!</rcomment>
+		</preview>
+		<preview>
+			<rname>luke3</rname>
+			<rrating>1.5</rrating>
+			<rdate>2010-08-11</rdate>
+			<rtitle>bad one</rtitle>
+			<rcatagory>bad</rcatagory>
+			<rcomment>brief bad comments for test!</rcomment>
+		</preview>
+	</previews>
+	<pstores>
+		<pstore>
+			<sid>001</sid>
+			<sname>store-001</sname>
+			<saddr>store1 address</saddr>
+			<sreserves>1</sreserves>
 			<!--经度-->
-			<Longitude>456.123</Longitude>
+			<slongitude>456.123</slongitude>
 			<!--纬度-->
-			<Latitude>456.456</Latitude>
-		</store>
-		<store>
-			<store-id>002</store-id>
-			<store-name>store-002</store-name>
-			<store-addr>store2 address</store-addr>
-			<store-reserves>2</store-reserves>
+			<slatitude>456.456</slatitude>
+		</pstore>
+		<pstore>
+			<sid>002</sid>
+			<sname>store-002</sname>
+			<saddr>store2 address</saddr>
+			<sreserves>2</sreserves>
 			<!--经度-->
-			<Longitude>123.123</Longitude>
+			<slongitude>123.123</slongitude>
 			<!--纬度-->
-			<Latitude>123.456</Latitude>
-		</store>
-	</stores>
+			<slatitude>123.456</slatitude>
+		</pstore>
+	</pstores>
 </product>
