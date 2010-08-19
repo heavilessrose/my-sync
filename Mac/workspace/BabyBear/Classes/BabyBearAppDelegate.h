@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "tinyxml.h"
 
 @interface BabyBearAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow			*window;
