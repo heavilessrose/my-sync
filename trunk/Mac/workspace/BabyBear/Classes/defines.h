@@ -15,6 +15,7 @@
 extern "C" {
 #endif
 	
+	/*
 typedef struct {
 	UInt32	id;
 	char	*name;
@@ -57,6 +58,7 @@ typedef struct {
 	Product *base;
 	
 }CartItem;
+	 */
 	
 #ifdef __cplusplus
 }
