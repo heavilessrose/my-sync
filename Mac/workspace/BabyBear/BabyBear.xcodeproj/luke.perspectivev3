@@ -257,8 +257,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -296,16 +294,18 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
+								<string>A315E71B121D086100D766F2</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>A3EDE924121E64960017D54F</string>
 								<string>1C77FABC04509CD000000102</string>
 								<string>1C3E0DCA080725EA00A55177</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>43</integer>
-									<integer>34</integer>
+									<integer>21</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -338,12 +338,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>A393A8001212AB35004E6374</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ProductsViewController.m</string>
+								<string>BabyBearAppDelegate.mm</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -351,17 +353,16 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>A393A8011212AB35004E6374</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ProductsViewController.m</string>
+										<string>BabyBearAppDelegate.mm</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>A3EDE914121E62F40017D54F</string>
+										<string>A3EDE9C2121E8C1D0017D54F</string>
 										<key>history</key>
 										<array>
 											<string>A393A8021212AB35004E6374</string>
 											<string>A393A8801212B17C004E6374</string>
 											<string>A3DC68BA1213B04000241311</string>
-											<string>A3DC68BD1213B04000241311</string>
 											<string>A3DC68BE1213B04000241311</string>
 											<string>A3DC68C01213B04000241311</string>
 											<string>A3DC68C11213B04000241311</string>
@@ -375,14 +376,10 @@
 											<string>A3A874C6121A6D93006F46A9</string>
 											<string>A3A874C7121A6D93006F46A9</string>
 											<string>A3A874C8121A6D93006F46A9</string>
-											<string>A3A8757B121A9855006F46A9</string>
 											<string>A3A8757D121A9855006F46A9</string>
 											<string>A3D82B81121BC92900E46EE9</string>
 											<string>A3D82B82121BC92900E46EE9</string>
 											<string>A3D82B83121BC92900E46EE9</string>
-											<string>A3D82B84121BC92900E46EE9</string>
-											<string>A3D82B85121BC92900E46EE9</string>
-											<string>A3D82B86121BC92900E46EE9</string>
 											<string>A3D82B89121BC92900E46EE9</string>
 											<string>A3D82C23121BDCF400E46EE9</string>
 											<string>A3D82CA0121BF13B00E46EE9</string>
@@ -401,14 +398,12 @@
 											<string>A315E741121D0AD800D766F2</string>
 											<string>A315E742121D0AD800D766F2</string>
 											<string>A315E743121D0AD800D766F2</string>
-											<string>A315E744121D0AD800D766F2</string>
 											<string>A315E745121D0AD800D766F2</string>
 											<string>A315E746121D0AD800D766F2</string>
 											<string>A315E748121D0AD800D766F2</string>
 											<string>A315E74A121D0AD800D766F2</string>
 											<string>A315E74B121D0AD800D766F2</string>
 											<string>A315E74E121D0AD800D766F2</string>
-											<string>A315E7BE121D236200D766F2</string>
 											<string>A315E7E6121D25ED00D766F2</string>
 											<string>A315E7E8121D25ED00D766F2</string>
 											<string>A315E7E9121D25ED00D766F2</string>
@@ -416,18 +411,12 @@
 											<string>A315E7F7121D270E00D766F2</string>
 											<string>A30A2C33121E11050014AAB7</string>
 											<string>A30A2C49121E1AEF0014AAB7</string>
-											<string>A30A2C4D121E1AEF0014AAB7</string>
 											<string>A30A2C6C121E252D0014AAB7</string>
 											<string>A30A2C6D121E252D0014AAB7</string>
 											<string>A30A2C6E121E252D0014AAB7</string>
-											<string>A30A2C8D121E29C50014AAB7</string>
-											<string>A30A2C8F121E29C50014AAB7</string>
 											<string>A30A2C9D121E2C520014AAB7</string>
 											<string>A30A2CBD121E2FB80014AAB7</string>
-											<string>A30A2CBE121E2FB80014AAB7</string>
-											<string>A30A2DA3121E48330014AAB7</string>
 											<string>A30A2DBC121E49DB0014AAB7</string>
-											<string>A30A2DC4121E4A1B0014AAB7</string>
 											<string>A3EDE8AB121E5BEF0017D54F</string>
 											<string>A3EDE8AC121E5BEF0017D54F</string>
 											<string>A3EDE8AE121E5BEF0017D54F</string>
@@ -438,7 +427,19 @@
 											<string>A3EDE904121E629D0017D54F</string>
 											<string>A3EDE909121E62B40017D54F</string>
 											<string>A3EDE90F121E62EC0017D54F</string>
-											<string>A3EDE912121E62EC0017D54F</string>
+											<string>A3EDE967121E86000017D54F</string>
+											<string>A3EDE968121E86000017D54F</string>
+											<string>A3EDE972121E88630017D54F</string>
+											<string>A3EDE986121E89950017D54F</string>
+											<string>A3EDE987121E89950017D54F</string>
+											<string>A3EDE988121E89950017D54F</string>
+											<string>A3EDE989121E89950017D54F</string>
+											<string>A3EDE98A121E89950017D54F</string>
+											<string>A3EDE98B121E89950017D54F</string>
+											<string>A3EDE98C121E89950017D54F</string>
+											<string>A3EDE995121E89C10017D54F</string>
+											<string>A3EDE9C0121E8C1D0017D54F</string>
+											<string>A3EDE9C1121E8C1D0017D54F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -742,7 +743,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>303981300.80726099</real>
+	<real>303991837.116651</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -759,7 +760,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>A3EDE907121E629D0017D54F</string>
+		<string>A3EDE9C3121E8C1D0017D54F</string>
 		<string>A3EDE86A121E53DA0017D54F</string>
 		<string>A3EDE86C121E53DA0017D54F</string>
 		<string>/Users/luke/Documents/luke/Mac/workspace/BabyBear/BabyBear.xcodeproj</string>

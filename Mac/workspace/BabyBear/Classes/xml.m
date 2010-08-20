@@ -106,16 +106,21 @@ static int xml_pargetbackoff( XmlMem_s* pdata, int len )
     }
     else
     {
-        if( len > pdata->offset + plast->offset )
-        {
-            /* 不支持回退超过一个数据块长度的位移 */
-            assert(0);
-            return -1;
-        }
-        len -= pdata->offset;
-        pdata->offset = 0;
-        
-        plast->offset -= len;
+		if (!plast) {
+			assert(0);
+			return -1;
+		}
+		if( len > pdata->offset + plast->offset )
+		{
+			/* 不支持回退超过一个数据块长度的位移 */
+			assert(0);
+			return -1;
+		}
+		len -= pdata->offset;
+		pdata->offset = 0;
+		
+		plast->offset -= len;
+
         return 0;
     }
 
@@ -1098,12 +1103,12 @@ static int xml_parse( XmlMem_s* pdata, XmlInt_s** ppxml )
     char token[2];
     int ret = 0;
     XmlInt_s* pxml = NULL;
-    XmlEleInt_s* pele = NULL;
+    //XmlEleInt_s* pele = NULL;
 
     if( (pxml = xml_allocxml()) == NULL )
         return WX_ERESOURCE;
 
-    pele = pxml->pelement;
+    //pele = pxml->pelement;
 
     while( xml_getnexttoken( pxml, pdata, token ) >= 0 )
     {

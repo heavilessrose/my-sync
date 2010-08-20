@@ -9,6 +9,12 @@
 #import "BabyBearAppDelegate.h"
 #import "defines.h"
 
+#import "FeaturedViewController.h"
+#import "ProductsViewController.h"
+#import "StoresViewController.h"
+#import "FavoritesViewController.h"
+#import "CartViewController.h"
+
 @interface BabyBearAppDelegate ()
 @property (nonatomic, assign) NSInteger	networkingCount;
 @end
@@ -60,6 +66,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#ifdef USE_XIB
 #pragma unused(application)
 #pragma unused(launchOptions)
     assert(self.window != nil);
@@ -70,6 +77,28 @@
     self.tabs.selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentTab"];
     
     [window makeKeyAndVisible];
+#else
+	
+	self.tabs = [[[UITabBarController alloc] init] autorelease];
+	FeaturedViewController *featureVC = [[[FeaturedViewController alloc] init] autorelease];
+	ProductsViewController *productsVC = [[[ProductsViewController alloc] init] autorelease];
+	StoresViewController *storesVC = [[[StoresViewController alloc] init] autorelease];
+	FavoritesViewController *favoritesVC = [[[FavoritesViewController alloc] init] autorelease];
+	CartViewController *cartVC = [[[CartViewController alloc] init] autorelease];
+	
+	UINavigationController *featureNV = [[[UINavigationController alloc] initWithRootViewController:featureVC] autorelease];
+	UINavigationController *productsNV = [[[UINavigationController alloc] initWithRootViewController:productsVC] autorelease];
+	UINavigationController *storesNV = [[[UINavigationController alloc] initWithRootViewController:storesVC] autorelease];
+	UINavigationController *favoritesNV = [[[UINavigationController alloc] initWithRootViewController:favoritesVC] autorelease];
+	UINavigationController *cartNV = [[[UINavigationController alloc] initWithRootViewController:cartVC] autorelease];
+	
+	NSArray* controllers = [NSArray arrayWithObjects:featureNV, productsNV, storesNV, favoritesNV, cartNV, nil];
+	tabs.viewControllers = controllers;
+	
+	// Add the tab bar controller's current view as a subview of the window
+	window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+	[window addSubview:tabs.view];
+#endif
 	
 	return YES;
 }
