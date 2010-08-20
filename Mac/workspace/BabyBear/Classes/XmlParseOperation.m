@@ -125,14 +125,19 @@
 #pragma mark -
 #pragma mark XML processing
 
+
+- (void)parserDidStartDocument:(NSXMLParser *)parser
+{
+	NSLog(@"parserDidStartDocument");
+}
+
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI 
  qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-    // entry: { id (link), im:name (app name), im:image (variable height) }
-    //
     if ([elementName isEqualToString:kProduct]) {
         self.workingEntry = [[[BaseProduct alloc] init] autorelease];
     } 
+	/*
 	else if ([elementName isEqualToString:kPReview]) {
 		if (!aReview) {
 			self.aReview = [[[Review alloc] init] autorelease];
@@ -147,6 +152,7 @@
 			assert(0);
 		}
 	}
+	 */
 
     storingCharacterData = [elementsToParse containsObject:elementName];
 }
@@ -191,10 +197,6 @@
 				 */
 			}
         }
-        else if ([elementName isEqualToString:kProduct]) {
-            [self.workingArray addObject:self.workingEntry];  
-            self.workingEntry = nil;
-        }
     }
 }
 
@@ -202,7 +204,15 @@
 {
     if (storingCharacterData) {
         [workingPropertyString appendString:string];
+		NSLog(@"workingPropertyString: %@", workingPropertyString);
     }
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser
+{
+	NSLog(@"parserDidEndDocument");
+	[self.workingArray addObject:self.workingEntry];  
+	self.workingEntry = nil;
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
