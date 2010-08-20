@@ -35,7 +35,8 @@
 #define kSLatitude	(@"slatitude")
 
 
-@interface BaseProduct : NSObject {
+@interface BaseProduct : NSObject
+{
 	NSString		*pid;
 	NSString		*pname;
 	NSString		*pprice;
@@ -48,6 +49,11 @@
 	//NSString		*preview;
 	NSMutableArray	*pstores;
 	//NSString		*pstore;
+	
+	UIImage			*productIcon;
+	BOOL			iconLoaded;
+	BOOL			gallaryLoaded;
+	NSString		*iconLocalPath;
 }
 
 @property (nonatomic, retain) NSString	*pid;
@@ -62,5 +68,10 @@
 //@property (nonatomic, retain) NSString	*preview;
 @property (nonatomic, retain) NSMutableArray	*pstores;
 //@property (nonatomic, retain) NSString	*pstore;
+
+@property (nonatomic, retain) UIImage	*productIcon;
+@property (nonatomic, assign) BOOL		iconLoaded;
+@property (nonatomic, assign) BOOL		gallaryLoaded;
+@property (nonatomic, retain) NSString	*iconLocalPath;
 
 @end

@@ -14,6 +14,8 @@
 @synthesize pid, pname, pprice, pallRating, pdesc, pUrlIcon, pgallary, 
 /*pUrlPhoto,*/ previews, /*preview,*/ pstores; /*pstore,*/
 
+@synthesize iconLoaded, gallaryLoaded, iconLocalPath, productIcon;
+
 - (id)init
 {
 	if (self = [super init]) {

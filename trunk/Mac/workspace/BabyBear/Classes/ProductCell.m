@@ -11,7 +11,7 @@
 
 @implementation ProductCell
 
-@synthesize item;
+@synthesize product;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -29,7 +29,10 @@
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
+	[product release];
+	
     [super dealloc];
 }
 
