@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseProduct.h"
+#import "ScrollShowView.h"
+#import "ImageDownloader.h"
 
 
-@interface ProductDetailViewConctroller : UITableViewController {
-
+@interface ProductDetailViewConctroller : UITableViewController <ScrollShowViewPageDelegate, ImageDownloaderDelegate> {
+	BaseProduct	*product;
 }
 
 @end

@@ -34,6 +34,9 @@
 		A393A8471212AE0B004E6374 /* FavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8461212AE0B004E6374 /* FavoriteCell.m */; };
 		A393A84A1212AE1D004E6374 /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A8491212AE1D004E6374 /* CartCell.m */; };
 		A3A874BF121A69D2006F46A9 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A874BE121A69D2006F46A9 /* Utils.m */; };
+		A3C12FA5122263130002B05F /* ScrollShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C12FA4122263130002B05F /* ScrollShowView.m */; };
+		A3C12FB8122263590002B05F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C12FB7122263590002B05F /* QuartzCore.framework */; };
+		A3C12FDD122264C70002B05F /* TapImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C12FDC122264C70002B05F /* TapImage.m */; };
 		A3D5344A1219336C00C19941 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D534491219336C00C19941 /* MessageUI.framework */; };
 		A3D82C1B121BDC9700E46EE9 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C15121BDC9700E46EE9 /* tinystr.cpp */; };
 		A3D82C1C121BDC9700E46EE9 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C17121BDC9700E46EE9 /* tinyxml.cpp */; };
@@ -112,6 +115,11 @@
 		A393A84B1212AE4C004E6374 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = defines.h; path = Classes/defines.h; sourceTree = "<group>"; };
 		A3A874BD121A69D2006F46A9 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		A3A874BE121A69D2006F46A9 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		A3C12FA3122263130002B05F /* ScrollShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollShowView.h; path = ../IPhone/Picoffee/Classes/ScrollShowView.h; sourceTree = SOURCE_ROOT; };
+		A3C12FA4122263130002B05F /* ScrollShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollShowView.m; path = ../IPhone/Picoffee/Classes/ScrollShowView.m; sourceTree = SOURCE_ROOT; };
+		A3C12FB7122263590002B05F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A3C12FDB122264C70002B05F /* TapImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapImage.h; path = ../IPhone/Picoffee/Classes/TapImage.h; sourceTree = SOURCE_ROOT; };
+		A3C12FDC122264C70002B05F /* TapImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapImage.m; path = ../IPhone/Picoffee/Classes/TapImage.m; sourceTree = SOURCE_ROOT; };
 		A3D534491219336C00C19941 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A3D82C15121BDC9700E46EE9 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
 		A3D82C16121BDC9700E46EE9 /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinystr.h; sourceTree = "<group>"; };
@@ -147,6 +155,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				A3D5344A1219336C00C19941 /* MessageUI.framework in Frameworks */,
+				A3C12FB8122263590002B05F /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +165,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A3C12FD5122264A80002B05F /* additions */,
+				A3C12F9B122263040002B05F /* views */,
 				A315E71B121D086100D766F2 /* entity */,
 				A3DC69091213BFEB00241311 /* network */,
 				A3DC69081213BFDE00241311 /* parser */,
@@ -231,6 +242,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3C12FB7122263590002B05F /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -289,6 +301,24 @@
 				A3A874BE121A69D2006F46A9 /* Utils.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		A3C12F9B122263040002B05F /* views */ = {
+			isa = PBXGroup;
+			children = (
+				A3C12FA3122263130002B05F /* ScrollShowView.h */,
+				A3C12FA4122263130002B05F /* ScrollShowView.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		A3C12FD5122264A80002B05F /* additions */ = {
+			isa = PBXGroup;
+			children = (
+				A3C12FDB122264C70002B05F /* TapImage.h */,
+				A3C12FDC122264C70002B05F /* TapImage.m */,
+			);
+			name = additions;
 			sourceTree = "<group>";
 		};
 		A3D82B76121BC91E00E46EE9 /* tinyxml */ = {
@@ -489,6 +519,8 @@
 				A315E7C9121D23F900D766F2 /* Review.m in Sources */,
 				A30A2C59121E21490014AAB7 /* ImageDownloader.m in Sources */,
 				A3EDE8A7121E5AF10017D54F /* ProductDetailViewConctroller.m in Sources */,
+				A3C12FA5122263130002B05F /* ScrollShowView.m in Sources */,
+				A3C12FDD122264C70002B05F /* TapImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

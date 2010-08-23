@@ -13,4 +13,22 @@
 
 @synthesize rname, rrating, rdate, rtitle, rcatagory, rcomment;
 
+
+- (void)dealloc
+{
+	[rname release];
+	[rrating release];
+	[rdate release];
+	[rtitle release];
+	[rcatagory release];
+	[rcomment release];
+	
+	[super dealloc];
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"rname = %@, rdate: %@, rtitle: %@", rname, rdate, rtitle];
+}
+
 @end

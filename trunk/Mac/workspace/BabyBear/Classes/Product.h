@@ -10,7 +10,7 @@
 #import "BaseProduct.h"
 
 @interface Product : BaseProduct {
-
+	
 }
 
 @end

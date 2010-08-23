@@ -21,8 +21,8 @@
 @property (nonatomic, retain) NSArray				*elementsToParse;
 @property (nonatomic, assign) BOOL					storingCharacterData;
 
-@property (nonatomic, retain) Review				*aReview;
-@property (nonatomic, retain) Store					*aStore;
+@property (nonatomic, assign) Review				*aReview;
+@property (nonatomic, assign) Store					*aStore;
 
 @end
 
@@ -81,8 +81,8 @@
     [workingPropertyString release];
     [workingArray release];
 	
-	[aReview release];
-	[aStore release];
+//	[aReview release];
+//	[aStore release];
 	
 	[super dealloc];
 }
@@ -128,7 +128,7 @@
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
-	NSLog(@"parserDidStartDocument");
+	NSLog(@"parserDidStartDocument < --------- ");
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI 
@@ -137,22 +137,26 @@
     if ([elementName isEqualToString:kProduct]) {
         self.workingEntry = [[[BaseProduct alloc] init] autorelease];
     } 
-	/*
+	else if ([elementName isEqualToString:kPGallary]) {
+		// create array for gallary
+	}
+	else if ([elementName isEqualToString:kPReviews]) {
+		// create array for all reviews 
+	}
 	else if ([elementName isEqualToString:kPReview]) {
 		if (!aReview) {
-			self.aReview = [[[Review alloc] init] autorelease];
+			self.aReview = [[Review alloc] init];
 		} else {
 			assert(0);
 		}
 	}
 	else if ([elementName isEqualToString:kPStore]) {
 		if (!aStore) {
-			self.aStore = [[[Store alloc] init] autorelease];
+			self.aStore = [[Store alloc] init];
 		} else {
 			assert(0);
 		}
 	}
-	 */
 
     storingCharacterData = [elementsToParse containsObject:elementName];
 }
@@ -167,34 +171,82 @@
                                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             [workingPropertyString setString:@""];  // clear the string for next time
             if ([elementName isEqualToString:kPID]) {
-                self.workingEntry.pid = trimmedString;
+                workingEntry.pid = trimmedString;
             }
             else if ([elementName isEqualToString:kPName]) {        
-                self.workingEntry.pname = trimmedString;
+                workingEntry.pname = trimmedString;
             }
             else if ([elementName isEqualToString:kPPrice]) {
-                self.workingEntry.pprice = trimmedString;
+                workingEntry.pprice = trimmedString;
             }
             else if ([elementName isEqualToString:kPAllRating]) {
-                self.workingEntry.pallRating = trimmedString;
+                workingEntry.pallRating = trimmedString;
             }
             else if ([elementName isEqualToString:kPDesc]) {
-                self.workingEntry.pdesc = trimmedString;
+                workingEntry.pdesc = trimmedString;
             }
             else if ([elementName isEqualToString:kPUrlIcon]) {
-                self.workingEntry.pUrlIcon = trimmedString;
+                workingEntry.pUrlIcon = trimmedString;
             }
+			// gallary
 			else if ([elementName isEqualToString:kPUrlPhoto]) {
-				if ([elementName isEqualToString:kPUrlPhoto]) {
-					[self.workingEntry.pgallary addObject:trimmedString];
-				}
+				[workingEntry.pgallary addObject:trimmedString];
 			}
-			else if ([elementName isEqualToString:kPReviews]) {
-				/*
-				if ([elementName isEqualToString:kRTitle]) {
-					[self.workingEntry.pgallary addObject:trimmedString];
-				}
-				 */
+			// reviews
+			else if ([elementName isEqualToString:kRTitle]) {
+				aReview.rtitle = trimmedString;
+			}
+			else if ([elementName isEqualToString:kRName]) {
+				aReview.rname = trimmedString;
+			}
+			else if ([elementName isEqualToString:kRDate]) {
+				aReview.rdate = trimmedString;
+			}
+			else if ([elementName isEqualToString:kRRating]) {
+				aReview.rrating = trimmedString;
+			}
+			else if ([elementName isEqualToString:kRCatagory]) {
+				aReview.rcatagory = trimmedString;
+			}
+			else if ([elementName isEqualToString:kRComment]) {
+				aReview.rcomment = trimmedString;
+			}
+			else if ([elementName isEqualToString:kPReview]) {
+				// one review parsed over
+				[workingEntry.previews addObject:aReview];
+				NSLog(@"%@", aReview);
+				self.aReview = nil;
+			}
+			// stores
+			else if ([elementName isEqualToString:kSID]) {
+				aStore.sid = trimmedString;
+			}
+			else if ([elementName isEqualToString:kSName]) {
+				aStore.sname = trimmedString;
+			}
+			else if ([elementName isEqualToString:kSAddr]) {
+				aStore.saddr = trimmedString;
+			}
+			else if ([elementName isEqualToString:kSReserves]) {
+				aStore.sreserves = trimmedString;
+			}
+			else if ([elementName isEqualToString:kSLongitude]) {
+				aStore.slongitude = trimmedString;
+			}
+			else if ([elementName isEqualToString:kSLatitude]) {
+				aStore.slatitude = trimmedString;
+			}
+			else if ([elementName isEqualToString:kPStore]) {
+				[workingEntry.pstores addObject:aStore];
+				NSLog(@"%@", aStore);
+				self.aStore = nil;
+			}
+			// product
+			else if ([elementName isEqualToString:kProduct]) {
+				NSLog(@"%@", workingEntry);
+				storingCharacterData = NO;
+				[workingArray addObject:workingEntry];
+				self.workingEntry = nil;
 			}
         }
     }
@@ -204,15 +256,12 @@
 {
     if (storingCharacterData) {
         [workingPropertyString appendString:string];
-		NSLog(@"workingPropertyString: %@", workingPropertyString);
     }
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-	NSLog(@"parserDidEndDocument");
-	[self.workingArray addObject:self.workingEntry];  
-	self.workingEntry = nil;
+	NSLog(@"parserDidEndDocument  --------- >");
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
