@@ -37,14 +37,27 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
+- (id)init
+{
+	if (self = [super init]) {
+		
+		self.title = NSLocalizedString(@"Feature", nil);
+		
+		//UIImage* anImage = [UIImage imageNamed:@"MyViewControllerImage.png"];
+		UITabBarItem* barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Feature", nil) image:nil tag:4560];
+		self.tabBarItem = barItem;
+		[barItem release];
+	}
+	return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
 }
-*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {

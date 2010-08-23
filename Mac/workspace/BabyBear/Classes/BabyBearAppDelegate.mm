@@ -76,9 +76,8 @@
     
     self.tabs.selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentTab"];
     
-    [window makeKeyAndVisible];
 #else
-	
+	NSLog(@"%@", self.tabs);
 	self.tabs = [[[UITabBarController alloc] init] autorelease];
 	FeaturedViewController *featureVC = [[[FeaturedViewController alloc] init] autorelease];
 	ProductsViewController *productsVC = [[[ProductsViewController alloc] init] autorelease];
@@ -93,11 +92,14 @@
 	UINavigationController *cartNV = [[[UINavigationController alloc] initWithRootViewController:cartVC] autorelease];
 	
 	NSArray* controllers = [NSArray arrayWithObjects:featureNV, productsNV, storesNV, favoritesNV, cartNV, nil];
+	//NSArray* controllers = [NSArray arrayWithObjects:featureVC, productsVC, storesVC, favoritesVC, cartVC, nil];
 	tabs.viewControllers = controllers;
 	
 	// Add the tab bar controller's current view as a subview of the window
-	window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+	self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+	NSLog(@"tabs.view: %@", tabs.view);
 	[window addSubview:tabs.view];
+    [window makeKeyAndVisible];
 #endif
 	
 	return YES;

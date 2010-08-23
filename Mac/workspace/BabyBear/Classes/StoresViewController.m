@@ -11,6 +11,22 @@
 
 @implementation StoresViewController
 
+
+- (id)init
+{
+	if (self = [super init]) {
+		
+		self.title = NSLocalizedString(@"Stores", nil);
+		
+		//UIImage* anImage = [UIImage imageNamed:@"MyViewControllerImage.png"];
+		UITabBarItem* barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Stores", nil) image:nil tag:4562];
+		self.tabBarItem = barItem;
+		[barItem release];
+	}
+	return self;
+}
+
+
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

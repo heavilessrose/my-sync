@@ -42,13 +42,13 @@
 		A3D82C20121BDCE500E46EE9 /* xmltest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C1F121BDCE500E46EE9 /* xmltest.cpp */; };
 		A3DA08011213D20C001DF575 /* xml.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA07FE1213D20C001DF575 /* xml.m */; };
 		A3DA082D1213E839001DF575 /* XmlParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */; };
+		A3DDC425121F821C00FC28E3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DDC424121F821C00FC28E3 /* MainWindow.xib */; };
 		A3EDE8A7121E5AF10017D54F /* ProductDetailViewConctroller.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EDE8A5121E5AF10017D54F /* ProductDetailViewConctroller.m */; };
 		A3EDE92F121E64970017D54F /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE925121E64960017D54F /* CartCell.xib */; };
 		A3EDE930121E64970017D54F /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE926121E64960017D54F /* FavoriteCell.xib */; };
 		A3EDE931121E64970017D54F /* FeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE927121E64970017D54F /* FeatureCell.xib */; };
 		A3EDE932121E64970017D54F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE929121E64970017D54F /* icon.png */; };
 		A3EDE933121E64970017D54F /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE92A121E64970017D54F /* Placeholder.png */; };
-		A3EDE934121E64970017D54F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE92B121E64970017D54F /* MainWindow.xib */; };
 		A3EDE935121E64970017D54F /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE92C121E64970017D54F /* ProductCell.xib */; };
 		A3EDE936121E64970017D54F /* ProductDetailViewConctroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE92D121E64970017D54F /* ProductDetailViewConctroller.xib */; };
 		A3EDE937121E64970017D54F /* RecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE92E121E64970017D54F /* RecommendCell.xib */; };
@@ -125,6 +125,7 @@
 		A3DA08001213D20C001DF575 /* xmlgb.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; path = xmlgb.h; sourceTree = "<group>"; };
 		A3DA082B1213E839001DF575 /* XmlParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParseOperation.h; sourceTree = "<group>"; };
 		A3DA082C1213E839001DF575 /* XmlParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParseOperation.m; sourceTree = "<group>"; };
+		A3DDC424121F821C00FC28E3 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		A3EDE8A4121E5AF10017D54F /* ProductDetailViewConctroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewConctroller.h; sourceTree = "<group>"; };
 		A3EDE8A5121E5AF10017D54F /* ProductDetailViewConctroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewConctroller.m; sourceTree = "<group>"; };
 		A3EDE925121E64960017D54F /* CartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		A3EDE927121E64970017D54F /* FeatureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCell.xib; sourceTree = "<group>"; };
 		A3EDE929121E64970017D54F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		A3EDE92A121E64970017D54F /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
-		A3EDE92B121E64970017D54F /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		A3EDE92C121E64970017D54F /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		A3EDE92D121E64970017D54F /* ProductDetailViewConctroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailViewConctroller.xib; sourceTree = "<group>"; };
 		A3EDE92E121E64970017D54F /* RecommendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendCell.xib; sourceTree = "<group>"; };
@@ -372,11 +372,11 @@
 		A3EDE924121E64960017D54F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3DDC424121F821C00FC28E3 /* MainWindow.xib */,
 				A3EDE925121E64960017D54F /* CartCell.xib */,
 				A3EDE926121E64960017D54F /* FavoriteCell.xib */,
 				A3EDE927121E64970017D54F /* FeatureCell.xib */,
 				A3EDE928121E64970017D54F /* images */,
-				A3EDE92B121E64970017D54F /* MainWindow.xib */,
 				A3EDE92C121E64970017D54F /* ProductCell.xib */,
 				A3EDE92D121E64970017D54F /* ProductDetailViewConctroller.xib */,
 				A3EDE92E121E64970017D54F /* RecommendCell.xib */,
@@ -444,10 +444,10 @@
 				A3EDE931121E64970017D54F /* FeatureCell.xib in Resources */,
 				A3EDE932121E64970017D54F /* icon.png in Resources */,
 				A3EDE933121E64970017D54F /* Placeholder.png in Resources */,
-				A3EDE934121E64970017D54F /* MainWindow.xib in Resources */,
 				A3EDE935121E64970017D54F /* ProductCell.xib in Resources */,
 				A3EDE936121E64970017D54F /* ProductDetailViewConctroller.xib in Resources */,
 				A3EDE937121E64970017D54F /* RecommendCell.xib in Resources */,
+				A3DDC425121F821C00FC28E3 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

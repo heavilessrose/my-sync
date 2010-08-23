@@ -47,6 +47,20 @@
 
 @synthesize isProductsFetched;
 
+- (id)init
+{
+	if (self = [super init]) {
+		
+		self.title = NSLocalizedString(@"Products", nil);
+		
+		//UIImage* anImage = [UIImage imageNamed:@"MyViewControllerImage.png"];
+		UITabBarItem* barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Products", nil) image:nil tag:4561];
+		self.tabBarItem = barItem;
+		[barItem release];
+	}
+	return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
