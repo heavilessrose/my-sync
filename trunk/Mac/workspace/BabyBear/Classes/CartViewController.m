@@ -24,6 +24,19 @@
 }
 */
 
+- (id)init
+{
+	if (self = [super init]) {
+		
+		self.title = NSLocalizedString(@"Cart", nil);
+		
+		//UIImage* anImage = [UIImage imageNamed:@"MyViewControllerImage.png"];
+		UITabBarItem* barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Cart", nil) image:nil tag:4564];
+		self.tabBarItem = barItem;
+		[barItem release];
+	}
+	return self;
+}
 
 #pragma mark -
 #pragma mark View lifecycle

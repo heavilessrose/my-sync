@@ -24,6 +24,20 @@
 }
 */
 
+- (id)init
+{
+	if (self = [super init]) {
+		
+		self.title = NSLocalizedString(@"Favorites", nil);
+		
+		//UIImage* anImage = [UIImage imageNamed:@"MyViewControllerImage.png"];
+		UITabBarItem* barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Favorites", nil) image:nil tag:4563];
+		self.tabBarItem = barItem;
+		[barItem release];
+	}
+	return self;
+}
+
 
 #pragma mark -
 #pragma mark View lifecycle

@@ -11,9 +11,18 @@
 
 @implementation ProductDetailViewConctroller
 
-
 #pragma mark -
 #pragma mark View lifecycle
+
+
+- (id)init
+{
+	if (self = [super init]) {
+		
+		self.title = NSLocalizedString(@"ProductDetail", nil);
+	}
+	return self;
+}
 
 /*
 - (void)viewDidLoad {
