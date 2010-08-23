@@ -43,5 +43,9 @@
 	[super dealloc];
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"pid: %@, pname: %@, pprice: %@, pallRating: %@", pid, pname, pprice, pallRating];
+}
 
 @end

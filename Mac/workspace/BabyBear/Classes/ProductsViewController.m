@@ -19,7 +19,6 @@
 
 @interface ProductsViewController ()
 @property (nonatomic, retain) ProductCell	*tmpProductCell;
-@property (nonatomic, retain) UITableView	*tableView;
 @property (nonatomic, assign) BOOL			isProductsFetched;
 
 - (void)startImgDownload:(Product *)aProduct forIndexPath:(NSIndexPath *)indexPath;
@@ -118,7 +117,7 @@
 #pragma mark Table view data source
 
 @synthesize entries;
-@synthesize tmpProductCell, tableView;
+@synthesize tmpProductCell;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -362,7 +361,7 @@
 - (void)dealloc
 {
 	[tmpProductCell release];
-	[tableView release];
+	//[tableView release];
 	
 	[entries release];
 	[products release];
@@ -375,7 +374,7 @@
 }
 
 #pragma mark -
-#pragma mark Icon and Gallary photos support
+#pragma mark Icon photos support
 
 @synthesize imageDownloadsInProgress;
 

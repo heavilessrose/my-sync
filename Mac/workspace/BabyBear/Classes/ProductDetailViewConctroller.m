@@ -7,31 +7,39 @@
 //
 
 #import "ProductDetailViewConctroller.h"
+#import "TapImage.h"
+
+
+@interface ProductDetailViewConctroller ()
+
+@property (nonatomic, assign) BaseProduct	*product;
+@end
 
 
 @implementation ProductDetailViewConctroller
 
 #pragma mark -
 #pragma mark View lifecycle
+@synthesize product;
 
-
-- (id)init
+- (id)initWithProduct:(BaseProduct *)aProduct
 {
 	if (self = [super init]) {
 		
 		self.title = NSLocalizedString(@"ProductDetail", nil);
+		self.product = aProduct;
 	}
 	return self;
 }
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	
 }
-*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -168,6 +176,23 @@
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark ScrollShowView delegate methods
+
+
+- (UIView *)viewForPageAtIndex:(ScrollShowView *)scrollView pageIndex:(int)index
+{
+    CGRect ImgViewAtPageRect = CGRectMake(0, 0, 80, 80.0f);
+    TapImage *ImgViewAtPage = [[[TapImage alloc] initWithFrame:ImgViewAtPageRect] autorelease];
+	ImgViewAtPage.userInteractionEnabled = YES;
+	ImgViewAtPage.image = [UIImage imageNamed:[imgNameArr_test objectAtIndex:index]];
+    return ImgViewAtPage;
+}
+
+- (int)itemCount:(ScrollShowView *)scrollView
+{
+	
+}
 
 @end
 

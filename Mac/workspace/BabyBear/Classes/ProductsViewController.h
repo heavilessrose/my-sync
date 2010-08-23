@@ -12,7 +12,8 @@
 #import "ProductCell.h"
 #import "ImageDownloader.h"
 
-@interface ProductsViewController : UITableViewController <UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
+@interface ProductsViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, 
+UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 	
 	NSArray				*entries; // the main data model for our UITableView
     NSMutableDictionary *imageDownloadsInProgress;  // the set of IconDownloader objects for each product
@@ -25,7 +26,6 @@
 	NSMutableData		*productsData;
 	
 	IBOutlet ProductCell	*tmpProductCell;
-	IBOutlet UITableView	*tableView;
 }
 
 

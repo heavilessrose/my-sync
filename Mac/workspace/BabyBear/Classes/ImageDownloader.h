@@ -12,7 +12,7 @@
 
 
 @protocol ImageDownloaderDelegate
-
+@required
 - (void)imageDidLoad:(NSIndexPath *)indexPath;
 
 @end

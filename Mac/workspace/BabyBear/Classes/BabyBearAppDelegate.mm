@@ -99,7 +99,7 @@
 	self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 	NSLog(@"tabs.view: %@", tabs.view);
 	[window addSubview:tabs.view];
-    [window makeKeyAndVisible];
+	[window makeKeyAndVisible];
 #endif
 	
 	return YES;
