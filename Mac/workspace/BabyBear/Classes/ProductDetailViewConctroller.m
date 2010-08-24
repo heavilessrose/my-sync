@@ -13,6 +13,10 @@
 @interface ProductDetailViewConctroller ()
 
 @property (nonatomic, assign) BaseProduct	*product;
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
+@property (nonatomic, retain) NSMutableDictionary *downloadedPreImgs;
+@property (nonatomic, retain) IBOutlet ScrollShowView	*scrollshow;
+@property (nonatomic, retain) IBOutlet UITableView	*tableView;
 @end
 
 
@@ -20,7 +24,7 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-@synthesize product;
+@synthesize product, scrollshow;
 
 - (id)initWithProduct:(BaseProduct *)aProduct
 {
@@ -38,7 +42,15 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
+	self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+	self.downloadedPreImgs = [NSMutableDictionary dictionary];
 	
+	self.scrollshow.backgroundColor = [UIColor darkGrayColor];
+    self.scrollshow.backShadow = YES;
+    self.scrollshow.pageDelegate = self;
+    self.scrollshow.pageStyle = PAGESTYLE_PADDING;
+    self.scrollshow.x_padding = 10.0f;
+    self.scrollshow.y_padding = 10.0f;
 }
 
 /*
@@ -73,6 +85,8 @@
 #pragma mark -
 #pragma mark Table view data source
 
+@synthesize tableView;
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
@@ -90,7 +104,7 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
@@ -173,7 +187,39 @@
 
 
 - (void)dealloc {
+	[imageDownloadsInProgress release];
+	[downloadedPreImgs release];
+	[scrollshow release];
+	
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark ImageDownloader support
+
+@synthesize imageDownloadsInProgress, downloadedPreImgs;
+
+- (void)startImgDownload:(NSNumber *)index
+{
+    ImageDownloader *imgDownloader = [imageDownloadsInProgress objectForKey:index];
+    if (imgDownloader == nil) {
+        imgDownloader = [[ImageDownloader alloc] init];
+        imgDownloader.product = self.product;
+        imgDownloader.indexPathInTableView = [NSIndexPath indexPathWithIndex:[index intValue]];
+        imgDownloader.delegate = self;
+        [imageDownloadsInProgress setObject:imgDownloader forKey:index];
+        [imgDownloader startDownload:DT_PRODUCT_IMG imgIndex:[index intValue]];
+        [imgDownloader release];
+    }
+}
+
+- (void)imageDidLoad:(NSIndexPath *)indexPath
+{
+    ImageDownloader *imgDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+    if (imgDownloader != nil) {
+		TapImage *ImgViewAtPage = [product.productImgs objectAtIndex:[indexPath row]];
+		ImgViewAtPage.image = [imgDownloader.product.productImgs objectAtIndex:[indexPath row]];
+	}
 }
 
 #pragma mark -
@@ -185,13 +231,16 @@
     CGRect ImgViewAtPageRect = CGRectMake(0, 0, 80, 80.0f);
     TapImage *ImgViewAtPage = [[[TapImage alloc] initWithFrame:ImgViewAtPageRect] autorelease];
 	ImgViewAtPage.userInteractionEnabled = YES;
-	ImgViewAtPage.image = [UIImage imageNamed:[imgNameArr_test objectAtIndex:index]];
+	//ImgViewAtPage.image = [downloadedPreImgs objectForKey:[NSNumber numberWithInt:index]];
+	ImgViewAtPage.image = nil;
+	[product.productImgs addObject:ImgViewAtPage];
+	[self startImgDownload:[NSNumber numberWithInt:index]];
     return ImgViewAtPage;
 }
 
 - (int)itemCount:(ScrollShowView *)scrollView
 {
-	
+	return [self.product.pgallary count];
 }
 
 @end

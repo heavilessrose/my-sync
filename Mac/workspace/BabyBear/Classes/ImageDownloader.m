@@ -30,13 +30,27 @@
     [super dealloc];
 }
 
-- (void)startDownload
+- (void)startDownload:(DownlaodType)aDt imgIndex:(int)index
 {
     self.activeDownload = [NSMutableData data];
+	NSString *urlStr = nil;
+	switch (aDt) {
+		case DT_PRODUCT_ICON:
+			//index = -1;
+			urlStr = product.pUrlIcon;
+			break;
+		case DT_PRODUCT_IMG:
+			urlStr = [product.pgallary objectAtIndex:index];
+			break;
+		default:
+			NSLog(@"unkown dt");
+			break;
+	}
+	
     // alloc+init and start an NSURLConnection; release on completion/failure
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:
                              [NSURLRequest requestWithURL:
-                              [NSURL URLWithString:product.pUrlIcon]] delegate:self];
+                              [NSURL URLWithString:urlStr]] delegate:self];
     self.imageConnection = conn;
     [conn release];
 }
@@ -70,18 +84,24 @@
 {
     // Set appIcon and clear temporary data/image
     UIImage *image = [[UIImage alloc] initWithData:self.activeDownload];
-    
-    if (image.size.width != kProductIconHeight && image.size.height != kProductIconHeight) {
-        CGSize itemSize = CGSizeMake(kProductIconHeight, kProductIconHeight);
-		UIGraphicsBeginImageContext(itemSize);
-		CGRect imageRect = CGRectMake(0.0f, 0.0f, itemSize.width, itemSize.height);
-		[image drawInRect:imageRect];
-		self.product.productIcon = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
-    }
-    else {
-        self.product.productIcon = image;
-    }
+    if (dt == DT_PRODUCT_ICON) {
+		if (image.size.width != kProductIconHeight && image.size.height != kProductIconHeight) {
+			CGSize itemSize = CGSizeMake(kProductIconHeight, kProductIconHeight);
+			UIGraphicsBeginImageContext(itemSize);
+			CGRect imageRect = CGRectMake(0.0f, 0.0f, itemSize.width, itemSize.height);
+			[image drawInRect:imageRect];
+			self.product.productIcon = UIGraphicsGetImageFromCurrentImageContext();
+			UIGraphicsEndImageContext();
+		}
+		else {
+			self.product.productIcon = image;
+		}
+	}
+	else if (dt == DT_PRODUCT_IMG) {
+		[self.product.productImgs addObject:image];
+	} else {
+		assert(0);
+	}
     
     self.activeDownload = nil;
     [image release];
