@@ -8,6 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+
+// 将product预览图index与url对应
+@interface ProductImageUrlWithIndex : NSObject
+{
+	NSString	*url;
+	NSInteger	index;
+}
+
+@property (nonatomic, retain) NSString	*url;
+
+- (id)initWithUrl:(NSString *)aUrl andIndex:(NSInteger)aIndex;
+
+@end
+
+
 #define kProduct	(@"product")
 #define kPID		(@"pid")
 #define kPName		(@"pname")
@@ -37,23 +52,24 @@
 
 @interface BaseProduct : NSObject
 {
-	NSString		*pid;
-	NSString		*pname;
-	NSString		*pprice;
-	NSString		*pallRating;
-	NSString		*pdesc;
-	NSString		*pUrlIcon;
-	NSMutableArray	*pgallary;
-	//NSString		*pUrlPhoto;
-	NSMutableArray	*previews;
-	//NSString		*preview;
-	NSMutableArray	*pstores;
-	//NSString		*pstore;
+	NSString			*pid;
+	NSString			*pname;
+	NSString			*pprice;
+	NSString			*pallRating;
+	NSString			*pdesc;
+	NSString			*pUrlIcon;
+	NSMutableArray		*pgallary;
+	//NSString			*pUrlPhoto;
+	NSMutableArray		*previews;
+	//NSString			*preview;
+	NSMutableArray		*pstores;
+	//NSString			*pstore;
 	
-	UIImage			*productIcon;
-	BOOL			iconLoaded;
-	BOOL			gallaryLoaded;
-	NSString		*iconLocalPath;
+	UIImage				*productIcon;
+	NSMutableArray		*productImgs;
+	BOOL				iconLoaded;
+	BOOL				gallaryLoaded;
+	NSString			*iconLocalPath;
 }
 
 @property (nonatomic, retain) NSString	*pid;
@@ -70,6 +86,7 @@
 //@property (nonatomic, retain) NSString	*pstore;
 
 @property (nonatomic, retain) UIImage	*productIcon;
+@property (nonatomic, retain) NSMutableArray	*productImgs;
 @property (nonatomic, assign) BOOL		iconLoaded;
 @property (nonatomic, assign) BOOL		gallaryLoaded;
 @property (nonatomic, retain) NSString	*iconLocalPath;

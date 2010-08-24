@@ -238,18 +238,17 @@
 */
 
 
-#pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
 	
 	ProductDetailViewConctroller *detailViewController = [[ProductDetailViewConctroller alloc] initWithNibName:@"ProductDetailViewConctroller" bundle:nil];
-	// ...
-	// Pass the selected object to the new view controller.
-	NSLog(@"%@", self.navigationController);
-	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController release];
+	
+	if (detailViewController) {
+		[self.navigationController pushViewController:detailViewController animated:YES];
+		[detailViewController release];
+	}
 }
 
 
@@ -387,7 +386,7 @@
         imgDownloader.indexPathInTableView = indexPath;
         imgDownloader.delegate = self;
         [imageDownloadsInProgress setObject:imgDownloader forKey:indexPath];
-        [imgDownloader startDownload];
+        [imgDownloader startDownload:DT_PRODUCT_ICON imgIndex:-1];
         [imgDownloader release];
     }
 }

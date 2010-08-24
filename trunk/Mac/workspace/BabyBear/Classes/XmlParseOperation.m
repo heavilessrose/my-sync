@@ -190,7 +190,15 @@
             }
 			// gallary
 			else if ([elementName isEqualToString:kPUrlPhoto]) {
+#if 0 
+				static int index = 0;
+				ProductImageUrlWithIndex *aUrlIndex = [[ProductImageUrlWithIndex alloc] initWithUrl:trimmedString andIndex:index];
+				index++;
+				[workingEntry.pgallary setObject:[NSNull null] forKey:aUrlIndex];
+				[aUrlIndex release];
+#else
 				[workingEntry.pgallary addObject:trimmedString];
+#endif
 			}
 			// reviews
 			else if ([elementName isEqualToString:kRTitle]) {

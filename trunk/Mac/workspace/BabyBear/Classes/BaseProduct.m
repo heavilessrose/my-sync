@@ -9,12 +9,35 @@
 #import "BaseProduct.h"
 
 
+
+@implementation ProductImageUrlWithIndex
+@synthesize url;
+
+- (id)initWithUrl:(NSString *)aUrl andIndex:(NSInteger)aIndex
+{
+	if (self = [super init]) {
+		self.url = aUrl;
+		index = aIndex;
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+	[url release];
+	[super dealloc];
+}
+
+@end
+
+
+
 @implementation BaseProduct
 
 @synthesize pid, pname, pprice, pallRating, pdesc, pUrlIcon, pgallary, 
 /*pUrlPhoto,*/ previews, /*preview,*/ pstores; /*pstore,*/
 
-@synthesize iconLoaded, gallaryLoaded, iconLocalPath, productIcon;
+@synthesize iconLoaded, gallaryLoaded, iconLocalPath, productIcon, productImgs;
 
 - (id)init
 {
@@ -22,6 +45,7 @@
 		self.pgallary	= [NSMutableArray array];
 		self.previews	= [NSMutableArray array];
 		self.pstores	= [NSMutableArray array];
+		self.productImgs = [NSMutableArray array];
 	}
 	
 	return self;
@@ -36,6 +60,7 @@
 	[pallRating release];
 	[pdesc release];
 	[pUrlIcon release];
+	[productImgs release];
 	[pgallary release];
 	[previews release];
 	[pstores release];
