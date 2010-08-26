@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (nonatomic, retain) NSMutableDictionary *downloadedPreImgs;
 @property (nonatomic, retain) IBOutlet ScrollShowView	*scrollshow;
-@property (nonatomic, retain) IBOutlet UITableView	*tableView;
+//@property (nonatomic, retain) IBOutlet UITableView	*tableView;
 @end
 
 
@@ -32,25 +32,31 @@
 		
 		self.title = NSLocalizedString(@"ProductDetail", nil);
 		self.product = aProduct;
+		self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+		self.downloadedPreImgs = [NSMutableDictionary dictionary];
 	}
 	return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
-	self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-	self.downloadedPreImgs = [NSMutableDictionary dictionary];
+    CGRect scrollRect = CGRectMake(10, 0, 300, 100);
+    CGSize pageContentSize = CGSizeMake(80, 80);
+	self.scrollshow = [[ScrollShowView alloc] initWithFrame:scrollRect pageContentSize:pageContentSize];
+	scrollshow.backgroundColor = [UIColor darkGrayColor];
+    scrollshow.backShadow = YES;
+    scrollshow.pageDelegate = self;
+    scrollshow.pageStyle = PAGESTYLE_PADDING;
+	[self.view addSubview:scrollshow];
+    scrollshow.x_padding = 10.0f;
+    scrollshow.y_padding = 10.0f;
 	
-	self.scrollshow.backgroundColor = [UIColor darkGrayColor];
-    self.scrollshow.backShadow = YES;
-    self.scrollshow.pageDelegate = self;
-    self.scrollshow.pageStyle = PAGESTYLE_PADDING;
-    self.scrollshow.x_padding = 10.0f;
-    self.scrollshow.y_padding = 10.0f;
+	CGRect tableRect = CGRectMake(0, 100, 320, 360);
+	[self.tableView setFrame:tableRect];
 }
 
 /*
@@ -85,7 +91,7 @@
 #pragma mark -
 #pragma mark Table view data source
 
-@synthesize tableView;
+//@synthesize tableView;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -205,7 +211,7 @@
     if (imgDownloader == nil) {
         imgDownloader = [[ImageDownloader alloc] init];
         imgDownloader.product = self.product;
-        imgDownloader.indexPathInTableView = [NSIndexPath indexPathWithIndex:[index intValue]];
+        imgDownloader.index = [index intValue];
         imgDownloader.delegate = self;
         [imageDownloadsInProgress setObject:imgDownloader forKey:index];
         [imgDownloader startDownload:DT_PRODUCT_IMG imgIndex:[index intValue]];
@@ -213,18 +219,21 @@
     }
 }
 
-- (void)imageDidLoad:(NSIndexPath *)indexPath
+- (void)imageDidLoadWithIndex:(int)aIndex
 {
-    ImageDownloader *imgDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+	NSNumber *aIndexKey = [NSNumber numberWithInt:aIndex];
+    ImageDownloader *imgDownloader = [imageDownloadsInProgress objectForKey:aIndexKey];
     if (imgDownloader != nil) {
-		TapImage *ImgViewAtPage = [product.productImgs objectAtIndex:[indexPath row]];
-		ImgViewAtPage.image = [imgDownloader.product.productImgs objectAtIndex:[indexPath row]];
+		TapImage *ImgViewAtPage = [product.productImgs objectAtIndex:aIndex];
+		//ImgViewAtPage.image = [imgDownloader.product.productImgs objectAtIndex:aIndex];
+		UIImageView *mv = [[UIImageView alloc] initWithImage:[imgDownloader.product.productImgs objectAtIndex:aIndex]];
+		[self.view addSubview:mv];
+		[mv release];
 	}
 }
 
 #pragma mark -
 #pragma mark ScrollShowView delegate methods
-
 
 - (UIView *)viewForPageAtIndex:(ScrollShowView *)scrollView pageIndex:(int)index
 {

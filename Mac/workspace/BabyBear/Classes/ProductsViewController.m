@@ -243,8 +243,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
 	
-	ProductDetailViewConctroller *detailViewController = [[ProductDetailViewConctroller alloc] initWithNibName:@"ProductDetailViewConctroller" bundle:nil];
-	
+	//ProductDetailViewConctroller *detailViewController = [[ProductDetailViewConctroller alloc] initWithNibName:@"ProductDetailViewConctroller" bundle:nil];
+	ProductDetailViewConctroller *detailViewController = [[ProductDetailViewConctroller alloc] 
+														  initWithProduct:[products objectAtIndex:[indexPath row]]];
 	if (detailViewController) {
 		[self.navigationController pushViewController:detailViewController animated:YES];
 		[detailViewController release];
@@ -408,7 +409,7 @@
 }
 
 // called by our ImageDownloader when an icon is ready to be displayed
-- (void)imageDidLoad:(NSIndexPath *)indexPath
+- (void)imageDidLoadWithIndexPath:(NSIndexPath *)indexPath
 {
     ImageDownloader *imgDownloader = [imageDownloadsInProgress objectForKey:indexPath];
     if (imgDownloader != nil) {
