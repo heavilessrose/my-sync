@@ -7,12 +7,13 @@
 //
 
 #import "ImageDownloader.h"
+#import "TapImage.h"
 
 #define kProductIconHeight 48
 
 @implementation ImageDownloader
 
-@synthesize delegate, product, indexPathInTableView, activeDownload, imageConnection;
+@synthesize delegate, product, indexPathInTableView, activeDownload, imageConnection, index;
 
 
 #pragma mark Mark
@@ -30,9 +31,10 @@
     [super dealloc];
 }
 
-- (void)startDownload:(DownlaodType)aDt imgIndex:(int)index
+- (void)startDownload:(DownlaodType)aDt imgIndex:(int)aIndex
 {
     self.activeDownload = [NSMutableData data];
+	dt = aDt;
 	NSString *urlStr = nil;
 	switch (aDt) {
 		case DT_PRODUCT_ICON:
@@ -40,6 +42,8 @@
 			urlStr = product.pUrlIcon;
 			break;
 		case DT_PRODUCT_IMG:
+			assert(self.index == aIndex);
+			index = aIndex;
 			urlStr = [product.pgallary objectAtIndex:index];
 			break;
 		default:
@@ -98,7 +102,8 @@
 		}
 	}
 	else if (dt == DT_PRODUCT_IMG) {
-		[self.product.productImgs addObject:image];
+		TapImage *theTapImageView = (TapImage *)[self.product.productImgs objectAtIndex:index];
+		theTapImageView.image = image;
 	} else {
 		assert(0);
 	}
@@ -110,7 +115,12 @@
     self.imageConnection = nil;
 	
     // call our delegate and tell it that our icon is ready for display
-    [delegate imageDidLoad:self.indexPathInTableView];
+	if (dt == DT_PRODUCT_ICON) {
+		[delegate imageDidLoadWithIndexPath:self.indexPathInTableView];
+	} else if (dt == DT_PRODUCT_IMG) {
+		[delegate imageDidLoadWithIndex:index];
+	}
+
 }
 
 

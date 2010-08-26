@@ -16,10 +16,12 @@ typedef enum _DownloadType {
 	DT_PRODUCT_IMG,
 }DownlaodType;
 
-@protocol ImageDownloaderDelegate
-@required
-- (void)imageDidLoad:(NSIndexPath *)indexPath;
+typedef int DownloadIndex;
 
+@protocol ImageDownloaderDelegate
+@optional
+- (void)imageDidLoadWithIndexPath:(NSIndexPath *)indexPath;
+- (void)imageDidLoadWithIndex:(int)aIndex;
 @end
 
 
@@ -32,6 +34,7 @@ typedef enum _DownloadType {
     NSMutableData					*activeDownload;
     NSURLConnection					*imageConnection;
 	DownlaodType					dt;
+	DownloadIndex					index;
 }
 
 @property (nonatomic, assign) id <ImageDownloaderDelegate> delegate;
@@ -41,9 +44,10 @@ typedef enum _DownloadType {
 
 @property (nonatomic, retain) NSMutableData					*activeDownload;
 @property (nonatomic, retain) NSURLConnection				*imageConnection;
+@property (nonatomic, assign) DownloadIndex					index;
 
 //- (void)startDownload;
-- (void)startDownload:(DownlaodType)dt imgIndex:(int)index;
+- (void)startDownload:(DownlaodType)dt imgIndex:(int)aIndex;
 - (void)cancelDownload;
 
 @end
