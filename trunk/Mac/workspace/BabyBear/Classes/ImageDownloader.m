@@ -120,7 +120,6 @@
 	} else if (dt == DT_PRODUCT_IMG) {
 		[delegate imageDidLoadWithIndex:index];
 	}
-
 }
 
 

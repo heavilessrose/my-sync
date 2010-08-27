@@ -140,7 +140,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     static NSString *ProductCellIdentifier = @"ProductCell";
 	static NSString *PlaceholderCellIdentifier = @"PlaceholderCell";
 	
