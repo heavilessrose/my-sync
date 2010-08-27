@@ -12,13 +12,15 @@
 #import "ImageDownloader.h"
 
 
-@interface ProductDetailViewConctroller : UITableViewController <ScrollShowViewPageDelegate, ImageDownloaderDelegate> {
+@interface ProductDetailViewConctroller : UIViewController 
+<ScrollShowViewPageDelegate, ImageDownloaderDelegate, UITableViewDelegate, UITableViewDataSource> 
+{
 	BaseProduct			*product;
     NSMutableDictionary *imageDownloadsInProgress;  // the set of IconDownloader objects for each product
 	NSMutableDictionary *downloadedPreImgs; // the set of UIImage objects that downloaded from server
 	
 	IBOutlet ScrollShowView	*scrollshow;
-	//IBOutlet UITableView	*tableView;
+	IBOutlet UITableView	*tableView;
 }
 
 - (id)initWithProduct:(BaseProduct *)aProduct;

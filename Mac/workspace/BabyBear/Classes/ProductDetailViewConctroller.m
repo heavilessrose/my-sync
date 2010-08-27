@@ -8,6 +8,7 @@
 
 #import "ProductDetailViewConctroller.h"
 #import "TapImage.h"
+#import "Utils.h"
 
 
 @interface ProductDetailViewConctroller ()
@@ -16,7 +17,7 @@
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (nonatomic, retain) NSMutableDictionary *downloadedPreImgs;
 @property (nonatomic, retain) IBOutlet ScrollShowView	*scrollshow;
-//@property (nonatomic, retain) IBOutlet UITableView	*tableView;
+@property (nonatomic, retain) IBOutlet UITableView	*tableView;
 @end
 
 
@@ -91,7 +92,7 @@
 #pragma mark -
 #pragma mark Table view data source
 
-//@synthesize tableView;
+@synthesize tableView;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -106,18 +107,20 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Configure the cell...
-    
-    return cell;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
+    static NSString *ScrollShowCellID = @"ScrollShowCell";
+	UITableViewCell *sCell = nil;
+    if ([indexPath row] == 0) {
+		UITableViewCell *sCell = [self.tableView dequeueReusableCellWithIdentifier:ScrollShowCellID];
+		if (sCell == nil) {
+			sCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ScrollShowCellID] autorelease];
+		}
+	} else {
+		
+	}
+
+    return sCell;
 }
 
 
@@ -221,15 +224,24 @@
 
 - (void)imageDidLoadWithIndex:(int)aIndex
 {
+	/*
 	NSNumber *aIndexKey = [NSNumber numberWithInt:aIndex];
     ImageDownloader *imgDownloader = [imageDownloadsInProgress objectForKey:aIndexKey];
     if (imgDownloader != nil) {
-		TapImage *ImgViewAtPage = [product.productImgs objectAtIndex:aIndex];
+		TapImage *ImgViewAtPage = [self.product.productImgs objectAtIndex:aIndex];
+		NSLog(@"%@", ImgViewAtPage);
 		//ImgViewAtPage.image = [imgDownloader.product.productImgs objectAtIndex:aIndex];
-		UIImageView *mv = [[UIImageView alloc] initWithImage:[imgDownloader.product.productImgs objectAtIndex:aIndex]];
-		[self.view addSubview:mv];
-		[mv release];
+		
+		UIImage *ii = [UIImage imageNamed:@"icon.png"];
+		
+		
+		[Utils writeData:UIImagePNGRepresentation(ii) toFile:@"ii" type:FILE_IMG replaceExists:YES];
+		
+//		TapImage *mv = [[TapImage alloc] initWithImage:ii];
+//		[self.view addSubview:mv];
+//		[mv release];
 	}
+	 */
 }
 
 #pragma mark -
@@ -242,6 +254,7 @@
 	ImgViewAtPage.userInteractionEnabled = YES;
 	//ImgViewAtPage.image = [downloadedPreImgs objectForKey:[NSNumber numberWithInt:index]];
 	ImgViewAtPage.image = nil;
+	ImgViewAtPage.index = index;
 	[product.productImgs addObject:ImgViewAtPage];
 	[self startImgDownload:[NSNumber numberWithInt:index]];
     return ImgViewAtPage;
