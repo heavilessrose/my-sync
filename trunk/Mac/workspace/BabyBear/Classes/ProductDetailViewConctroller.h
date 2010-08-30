@@ -19,8 +19,9 @@
     NSMutableDictionary *imageDownloadsInProgress;  // the set of IconDownloader objects for each product
 	NSMutableDictionary *downloadedPreImgs; // the set of UIImage objects that downloaded from server
 	
-	IBOutlet ScrollShowView	*scrollshow;
-	IBOutlet UITableView	*tableView;
+	UIScrollView		*scrollView;
+	ScrollShowView	*scrollshow;
+	UITableView	*tableView;
 }
 
 - (id)initWithProduct:(BaseProduct *)aProduct;
