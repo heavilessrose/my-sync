@@ -3,13 +3,13 @@
  *  Picoffee
  *
  *  Created by luke on 8/6/10.
- *  Copyright 2010 __MyCompanyName__. All rights reserved.
+ *  Copyright 2010 Luke. All rights reserved.
  *
  */
 
 #import <Foundation/Foundation.h>
 
-enum _SaleType {
+typedef enum _SaleType {
     SaleType_DEFAULT = 0,
     SaleType_HOT,
     SaleType_TUAN,
@@ -25,6 +25,8 @@ enum _SaleType {
     NSString *briefInfo;
     NSString *contentInfo;
     NSString *avatarUrl;
+	
+	int index;
 }
 
 @property (nonatomic, assign) int product_id;
@@ -34,5 +36,6 @@ enum _SaleType {
 @property (nonatomic, retain) NSString *briefInfo;
 @property (nonatomic, retain) NSString *contentInfo;
 @property (nonatomic, retain) NSString *avatarUrl;
+@property (nonatomic, assign) int index;
 
 @end
