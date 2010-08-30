@@ -13,11 +13,12 @@
 
 @interface ProductDetailViewConctroller ()
 
+@property (nonatomic, retain) UIScrollView		*scrollView;
 @property (nonatomic, assign) BaseProduct	*product;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (nonatomic, retain) NSMutableDictionary *downloadedPreImgs;
-@property (nonatomic, retain) IBOutlet ScrollShowView	*scrollshow;
-@property (nonatomic, retain) IBOutlet UITableView	*tableView;
+@property (nonatomic, retain) ScrollShowView	*scrollshow;
+@property (nonatomic, retain) UITableView	*tableView;
 @end
 
 
@@ -25,7 +26,7 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-@synthesize product, scrollshow;
+@synthesize product, scrollshow, scrollView;
 
 - (id)initWithProduct:(BaseProduct *)aProduct
 {
@@ -45,19 +46,28 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
-    CGRect scrollRect = CGRectMake(10, 0, 300, 100);
+	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+	scrollView.backgroundColor = [UIColor redColor];
+	[scrollView setContentSize:CGSizeMake(320, 1000)];
+	
+    CGRect scrollRect = CGRectMake(0, 0, 320, 100);
     CGSize pageContentSize = CGSizeMake(80, 80);
 	self.scrollshow = [[ScrollShowView alloc] initWithFrame:scrollRect pageContentSize:pageContentSize];
 	scrollshow.backgroundColor = [UIColor darkGrayColor];
     scrollshow.backShadow = YES;
     scrollshow.pageDelegate = self;
     scrollshow.pageStyle = PAGESTYLE_PADDING;
-	[self.view addSubview:scrollshow];
     scrollshow.x_padding = 10.0f;
     scrollshow.y_padding = 10.0f;
+	//[self.view addSubview:scrollshow];
+	[scrollView addSubview:scrollshow];
 	
-	CGRect tableRect = CGRectMake(0, 100, 320, 360);
-	[self.tableView setFrame:tableRect];
+	CGRect tableRect = CGRectMake(0, 100, 320, 300);
+	self.tableView = [[UITableView alloc] initWithFrame:tableRect style:UITableViewStyleGrouped];
+	[scrollView addSubview:tableView];
+	
+	[self.view addSubview:scrollView];
+	[scrollView release];
 }
 
 /*
@@ -108,16 +118,12 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     static NSString *ScrollShowCellID = @"ScrollShowCell";
 	UITableViewCell *sCell = nil;
-    if ([indexPath row] == 0) {
-		UITableViewCell *sCell = [self.tableView dequeueReusableCellWithIdentifier:ScrollShowCellID];
-		if (sCell == nil) {
-			sCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ScrollShowCellID] autorelease];
-		}
-	} else {
-		
+	sCell = [self.tableView dequeueReusableCellWithIdentifier:ScrollShowCellID];
+	if (sCell == nil) {
+		sCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ScrollShowCellID] autorelease];
 	}
 
     return sCell;
@@ -199,6 +205,7 @@
 	[imageDownloadsInProgress release];
 	[downloadedPreImgs release];
 	[scrollshow release];
+	[scrollView release];
 	
     [super dealloc];
 }
