@@ -3,7 +3,7 @@
  *  Picoffee
  *
  *  Created by luke on 8/4/10.
- *  Copyright 2010 __MyCompanyName__. All rights reserved.
+ *  Copyright 2010 Luke. All rights reserved.
  *
  */
 
