@@ -13,12 +13,12 @@
 
 @interface ProductDetailViewConctroller ()
 
-@property (nonatomic, retain) UIScrollView		*scrollView;
-@property (nonatomic, assign) BaseProduct	*product;
-@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
-@property (nonatomic, retain) NSMutableDictionary *downloadedPreImgs;
-@property (nonatomic, retain) ScrollShowView	*scrollshow;
-@property (nonatomic, retain) UITableView	*tableView;
+@property (nonatomic, retain) UIScrollView			*scrollView;
+@property (nonatomic, assign) BaseProduct			*product;
+@property (nonatomic, retain) NSMutableDictionary	*imageDownloadsInProgress;
+@property (nonatomic, retain) NSMutableDictionary	*downloadedPreImgs;
+@property (nonatomic, retain) ScrollShowView		*scrollshow;
+@property (nonatomic, retain) UITableView			*tableView;
 @end
 
 

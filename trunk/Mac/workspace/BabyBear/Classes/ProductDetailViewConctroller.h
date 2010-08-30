@@ -20,8 +20,8 @@
 	NSMutableDictionary *downloadedPreImgs; // the set of UIImage objects that downloaded from server
 	
 	UIScrollView		*scrollView;
-	ScrollShowView	*scrollshow;
-	UITableView	*tableView;
+	ScrollShowView		*scrollshow;
+	UITableView			*tableView;
 }
 
 - (id)initWithProduct:(BaseProduct *)aProduct;
