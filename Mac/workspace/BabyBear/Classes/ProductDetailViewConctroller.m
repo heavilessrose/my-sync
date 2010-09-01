@@ -17,6 +17,7 @@
 @property (nonatomic, assign) BaseProduct			*product;
 @property (nonatomic, retain) NSMutableDictionary	*imageDownloadsInProgress;
 @property (nonatomic, retain) NSMutableDictionary	*downloadedPreImgs;
+@property (nonatomic, retain) ProductInfoView		*infoView;
 @property (nonatomic, retain) ScrollShowView		*scrollshow;
 @property (nonatomic, retain) UITableView			*tableView;
 @end
@@ -26,7 +27,7 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-@synthesize product, scrollshow, scrollView;
+@synthesize product, scrollshow, infoView, scrollView;
 
 - (id)initWithProduct:(BaseProduct *)aProduct
 {
@@ -46,11 +47,18 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
-	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-	scrollView.backgroundColor = [UIColor redColor];
-	[scrollView setContentSize:CGSizeMake(320, 1000)];
+	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+	scrollView.backgroundColor = [UIColor grayColor];
+	//[scrollView setContentSize:CGSizeMake(320, 1000)];
 	
-    CGRect scrollRect = CGRectMake(0, 0, 320, 100);
+	CGRect ProductInfoRect = CGRectMake(0, 0, 0, 0);
+	NSString *details = @"asdfasdfasdfasdfadsfds asdf46asd4f98 as6df4ads8f7 asd6f54asdf sd65f4a";
+	ProductInfoRect = [ProductInfoView calcFrame:details frame:ProductInfoRect];
+	self.infoView = [[ProductInfoView alloc] initWithDetailInfo:details andFrame:ProductInfoRect];
+	[scrollView addSubview:infoView];
+	[infoView release];
+	
+    CGRect scrollRect = CGRectMake(0, ProductInfoRect.size.height, 320, 100);
     CGSize pageContentSize = CGSizeMake(80, 80);
 	self.scrollshow = [[ScrollShowView alloc] initWithFrame:scrollRect pageContentSize:pageContentSize];
 	scrollshow.backgroundColor = [UIColor darkGrayColor];
@@ -62,10 +70,11 @@
 	//[self.view addSubview:scrollshow];
 	[scrollView addSubview:scrollshow];
 	
-	CGRect tableRect = CGRectMake(0, 100, 320, 300);
+	CGRect tableRect = CGRectMake(0, ProductInfoRect.size.height + 100, 320, 300);
 	self.tableView = [[UITableView alloc] initWithFrame:tableRect style:UITableViewStyleGrouped];
 	[scrollView addSubview:tableView];
 	
+	[scrollView setContentSize:CGSizeMake(320, ProductInfoRect.size.height + 100 + 300)];
 	[self.view addSubview:scrollView];
 	[scrollView release];
 }
@@ -204,6 +213,7 @@
 - (void)dealloc {
 	[imageDownloadsInProgress release];
 	[downloadedPreImgs release];
+	[infoView release];
 	[scrollshow release];
 	[scrollView release];
 	
