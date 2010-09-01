@@ -10,6 +10,7 @@
 #import "BaseProduct.h"
 #import "ScrollShowView.h"
 #import "ImageDownloader.h"
+#import "ProductInfoView.h"
 
 
 @interface ProductDetailViewConctroller : UIViewController 
@@ -20,6 +21,7 @@
 	NSMutableDictionary *downloadedPreImgs; // the set of UIImage objects that downloaded from server
 	
 	UIScrollView		*scrollView;
+	ProductInfoView		*infoView;
 	ScrollShowView		*scrollshow;
 	UITableView			*tableView;
 }
