@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RateView.h"
 
-@interface ProductInfoView : UIView {
+@interface ProductInfoView : UIView <RateViewDelegate> {
 	NSString *detailInfo;
 	IBOutlet RateView *rateView;
 }

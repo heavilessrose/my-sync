@@ -32,11 +32,24 @@
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
+	self.rateView = [[RateView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+	rateView.notSelectedImage = [UIImage imageNamed:@"star_empty.png"];
+	rateView.halfSelectedImage = [UIImage imageNamed:@"star_half.png"];
+	rateView.fullSelectedImage = [UIImage imageNamed:@"star.png"];
+	rateView.rating = 2.5;
+	rateView.editable = YES;
+	rateView.maxRating = 5;
+	rateView.delegate = self;
 	
+	rateView.backgroundColor = [UIColor clearColor];
+	[self addSubview:rateView];
+	[rateView release];
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
 	[detailInfo release];
 	[rateView release];
 	
@@ -58,5 +71,15 @@
 	theFrame.size.width = DetailInfo_W;
 	return theFrame;
 }
+
+#pragma mark -
+#pragma mark rateView delegate
+
+
+- (void)rateView:(RateView *)rateView ratingDidChange:(float)rating
+{
+	rateView.reviewCountLabel.text = [NSString stringWithFormat:@"%f Reviews", rating];
+}
+
 
 @end

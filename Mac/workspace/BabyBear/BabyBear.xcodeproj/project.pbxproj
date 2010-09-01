@@ -28,8 +28,9 @@
 		A323ADBB122E4BBB00BD2217 /* ReviewDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A323ADBA122E4BBB00BD2217 /* ReviewDetailController.m */; };
 		A323ADBE122E4C2300BD2217 /* ReviewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = A323ADBD122E4C2300BD2217 /* ReviewDatasource.m */; };
 		A323ADC7122E52A200BD2217 /* ProductInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A323ADC6122E52A200BD2217 /* ProductInfoView.m */; };
-		A323AE5E122E6BF900BD2217 /* halfstar.png in Resources */ = {isa = PBXBuildFile; fileRef = A323AE5C122E6BF900BD2217 /* halfstar.png */; };
+		A323AE5E122E6BF900BD2217 /* star_half.png in Resources */ = {isa = PBXBuildFile; fileRef = A323AE5C122E6BF900BD2217 /* star_half.png */; };
 		A323AE5F122E6BF900BD2217 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = A323AE5D122E6BF900BD2217 /* star.png */; };
+		A33D8531122E7AED0038FFDF /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = A33D8530122E7AED0038FFDF /* star_empty.png */; };
 		A393A7E41212A479004E6374 /* InitialDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A393A7E31212A479004E6374 /* InitialDefaults.plist */; };
 		A393A7EB1212A775004E6374 /* FeaturedViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A393A7EA1212A775004E6374 /* FeaturedViewController.mm */; };
 		A393A7EE1212A789004E6374 /* ProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */; };
@@ -110,8 +111,9 @@
 		A323ADBD122E4C2300BD2217 /* ReviewDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewDatasource.m; sourceTree = "<group>"; };
 		A323ADC5122E52A200BD2217 /* ProductInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductInfoView.h; sourceTree = "<group>"; };
 		A323ADC6122E52A200BD2217 /* ProductInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductInfoView.m; sourceTree = "<group>"; };
-		A323AE5C122E6BF900BD2217 /* halfstar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halfstar.png; sourceTree = "<group>"; };
+		A323AE5C122E6BF900BD2217 /* star_half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_half.png; sourceTree = "<group>"; };
 		A323AE5D122E6BF900BD2217 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		A33D8530122E7AED0038FFDF /* star_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_empty.png; sourceTree = "<group>"; };
 		A393A7E31212A479004E6374 /* InitialDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitialDefaults.plist; sourceTree = "<group>"; };
 		A393A7E91212A775004E6374 /* FeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedViewController.h; sourceTree = "<group>"; };
 		A393A7EA1212A775004E6374 /* FeaturedViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FeaturedViewController.mm; sourceTree = "<group>"; };
@@ -457,7 +459,8 @@
 		A3EDE928121E64970017D54F /* images */ = {
 			isa = PBXGroup;
 			children = (
-				A323AE5C122E6BF900BD2217 /* halfstar.png */,
+				A33D8530122E7AED0038FFDF /* star_empty.png */,
+				A323AE5C122E6BF900BD2217 /* star_half.png */,
 				A323AE5D122E6BF900BD2217 /* star.png */,
 				A3EDE929121E64970017D54F /* icon.png */,
 				A3EDE92A121E64970017D54F /* Placeholder.png */,
@@ -521,8 +524,9 @@
 				A3EDE937121E64970017D54F /* RecommendCell.xib in Resources */,
 				A3DDC425121F821C00FC28E3 /* MainWindow.xib in Resources */,
 				A323ADB6122E48E900BD2217 /* RateView.xib in Resources */,
-				A323AE5E122E6BF900BD2217 /* halfstar.png in Resources */,
+				A323AE5E122E6BF900BD2217 /* star_half.png in Resources */,
 				A323AE5F122E6BF900BD2217 /* star.png in Resources */,
+				A33D8531122E7AED0038FFDF /* star_empty.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
