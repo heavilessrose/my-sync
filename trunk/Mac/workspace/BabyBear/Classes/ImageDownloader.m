@@ -8,6 +8,7 @@
 
 #import "ImageDownloader.h"
 #import "TapImage.h"
+#import "Animations.h"
 
 #define kProductIconHeight 48
 
@@ -104,6 +105,9 @@
 	else if (dt == DT_PRODUCT_IMG) {
 		TapImage *theTapImageView = (TapImage *)[self.product.productImgs objectAtIndex:index];
 		theTapImageView.image = image;
+		
+		
+		[Animations pulsatingEff:theTapImageView];
 	} else {
 		assert(0);
 	}
