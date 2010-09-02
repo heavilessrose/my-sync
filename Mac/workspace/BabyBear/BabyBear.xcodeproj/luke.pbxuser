@@ -29,8 +29,8 @@
 			1D6058900D05DD3D006BFB54 /* BabyBear */,
 		);
 		breakpoints = (
-			A3C7BF0F122F599E009B3ABC /* ProductsViewController.m:256 */,
-			A3C7BF16122F59E2009B3ABC /* ProductsViewController.m:124 */,
+			A3C7BF0F122F599E009B3ABC /* ProductsViewController.m:253 */,
+			A3C7BF16122F59E2009B3ABC /* ProductsViewController.m:123 */,
 		);
 		codeSenseManager = A393A7AC12129C1D004E6374 /* Code sense */;
 		executables = (
@@ -455,16 +455,16 @@
 	};
 	A315E71C121D087800D766F2 /* BaseProduct.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1619, 2499}}";
-			sepNavSelRange = "{756, 27}";
-			sepNavVisRange = "{572, 486}";
+			sepNavIntBoundsRect = "{{0, 0}, {1280, 2457}}";
+			sepNavSelRange = "{322, 0}";
+			sepNavVisRange = "{0, 409}";
 		};
 	};
 	A315E71D121D087800D766F2 /* BaseProduct.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1323.27, 1638}}";
 			sepNavSelRange = "{1069, 0}";
-			sepNavVisRange = "{410, 525}";
+			sepNavVisRange = "{416, 519}";
 		};
 	};
 	A315E71F121D08B900D766F2 /* FeatureProduct.h */ = {
@@ -806,7 +806,7 @@
 		fRef = A393A7EC1212A789004E6374 /* ProductsViewController.h */;
 		name = "ProductsViewController.h: 25";
 		rLen = 0;
-		rLoc = 773;
+		rLoc = 785;
 		rType = 0;
 		vrLen = 862;
 		vrLoc = 130;
@@ -838,9 +838,9 @@
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableView.h;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2233.57, 8526}}";
-			sepNavSelRange = "{20038, 93}";
-			sepNavVisRange = "{19736, 2262}";
+			sepNavIntBoundsRect = "{{0, 0}, {2233.57, 8589}}";
+			sepNavSelRange = "{19631, 104}";
+			sepNavVisRange = "{19047, 1231}";
 		};
 	};
 	A33D851D122E7A310038FFDF /* PBXTextBookmark */ = {
@@ -963,30 +963,30 @@
 	A393A7E91212A775004E6374 /* FeaturedViewController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1280, 609}}";
-			sepNavSelRange = "{367, 0}";
-			sepNavVisRange = "{0, 575}";
+			sepNavSelRange = "{443, 7}";
+			sepNavVisRange = "{129, 502}";
 		};
 	};
 	A393A7EA1212A775004E6374 /* FeaturedViewController.mm */ = {
 		uiCtxt = {
 			sepNavFolds = "{\n    c =     (\n                {\n            l = DetailViewController;\n            r = \"{5491, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{5542, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{5592, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 10158}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1280, 5744}}";
-			sepNavSelRange = "{1104, 0}";
-			sepNavVisRange = "{744, 709}";
+			sepNavIntBoundsRect = "{{0, 0}, {1648.37, 7455}}";
+			sepNavSelRange = "{2936, 7}";
+			sepNavVisRange = "{2503, 1007}";
 		};
 	};
 	A393A7EC1212A789004E6374 /* ProductsViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1280, 945}}";
-			sepNavSelRange = "{440, 7}";
-			sepNavVisRange = "{126, 1219}";
+			sepNavIntBoundsRect = "{{0, 0}, {1280, 903}}";
+			sepNavSelRange = "{1037, 8}";
+			sepNavVisRange = "{678, 628}";
 		};
 	};
 	A393A7ED1212A789004E6374 /* ProductsViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1301.59, 10773}}";
-			sepNavSelRange = "{4008, 0}";
-			sepNavVisRange = "{3435, 1127}";
+			sepNavIntBoundsRect = "{{0, 0}, {1280, 10542}}";
+			sepNavSelRange = "{3648, 21}";
+			sepNavVisRange = "{3053, 384}";
 		};
 	};
 	A393A7EF1212A7A7004E6374 /* StoresViewController.h */ = {
@@ -1169,7 +1169,7 @@
 		fRef = A315E71C121D087800D766F2 /* BaseProduct.h */;
 		name = "BaseProduct.h: 89";
 		rLen = 11;
-		rLoc = 2598;
+		rLoc = 2593;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 1331;
@@ -1189,7 +1189,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 137";
 		rLen = 0;
-		rLoc = 4051;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 7274;
@@ -1252,7 +1252,7 @@
 		isa = PBXTextBookmark;
 		fRef = A3DA082B1213E839001DF575 /* XmlParseOperation.h */;
 		name = "XmlParseOperation.h: 16";
-		rLen = 53;
+		rLen = 58;
 		rLoc = 285;
 		rType = 0;
 		vrLen = 815;
@@ -1335,7 +1335,7 @@
 		fRef = A393A7EC1212A789004E6374 /* ProductsViewController.h */;
 		name = "ProductsViewController.h: 25";
 		rLen = 0;
-		rLoc = 773;
+		rLoc = 785;
 		rType = 0;
 		vrLen = 838;
 		vrLoc = 154;
@@ -1354,8 +1354,8 @@
 		isa = PBXTextBookmark;
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 161";
-		rLen = 648;
-		rLoc = 4561;
+		rLen = 731;
+		rLoc = 4477;
 		rType = 0;
 		vrLen = 1306;
 		vrLoc = 3057;
@@ -1375,7 +1375,7 @@
 		fRef = A315E71C121D087800D766F2 /* BaseProduct.h */;
 		name = "BaseProduct.h: 89";
 		rLen = 11;
-		rLoc = 2598;
+		rLoc = 2593;
 		rType = 0;
 		vrLen = 803;
 		vrLoc = 0;
@@ -1385,7 +1385,7 @@
 		fRef = A315E71C121D087800D766F2 /* BaseProduct.h */;
 		name = "BaseProduct.h: 19";
 		rLen = 0;
-		rLoc = 333;
+		rLoc = 328;
 		rType = 0;
 		vrLen = 425;
 		vrLoc = 0;
@@ -1406,7 +1406,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 256;
+		rLoc = 253;
 		rType = 1;
 	};
 	A3C7BEA4122F4AE8009B3ABC /* PBXTextBookmark */ = {
@@ -1414,7 +1414,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 243";
 		rLen = 0;
-		rLoc = 7375;
+		rLoc = 7374;
 		rType = 0;
 		vrLen = 507;
 		vrLoc = 7063;
@@ -1424,7 +1424,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 243";
 		rLen = 0;
-		rLoc = 7375;
+		rLoc = 7374;
 		rType = 0;
 		vrLen = 507;
 		vrLoc = 7063;
@@ -1434,7 +1434,7 @@
 		fRef = A315E71C121D087800D766F2 /* BaseProduct.h */;
 		name = "BaseProduct.h: 40";
 		rLen = 6;
-		rLoc = 737;
+		rLoc = 732;
 		rType = 0;
 		vrLen = 629;
 		vrLoc = 563;
@@ -1444,7 +1444,7 @@
 		fRef = A315E71C121D087800D766F2 /* BaseProduct.h */;
 		name = "BaseProduct.h: 41";
 		rLen = 0;
-		rLoc = 766;
+		rLoc = 761;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 447;
@@ -1454,7 +1454,7 @@
 		fRef = A315E71C121D087800D766F2 /* BaseProduct.h */;
 		name = "BaseProduct.h: 41";
 		rLen = 0;
-		rLoc = 780;
+		rLoc = 775;
 		rType = 0;
 		vrLen = 608;
 		vrLoc = 447;
@@ -1464,7 +1464,7 @@
 		fRef = A315E71C121D087800D766F2 /* BaseProduct.h */;
 		name = "BaseProduct.h: 70";
 		rLen = 5;
-		rLoc = 1521;
+		rLoc = 1516;
 		rType = 0;
 		vrLen = 543;
 		vrLoc = 1291;
@@ -1494,7 +1494,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 472";
 		rLen = 20;
-		rLoc = 14395;
+		rLoc = 14375;
 		rType = 0;
 		vrLen = 510;
 		vrLoc = 13898;
@@ -1504,7 +1504,7 @@
 		fRef = A315E71C121D087800D766F2 /* BaseProduct.h */;
 		name = "BaseProduct.h: 51";
 		rLen = 34;
-		rLoc = 1058;
+		rLoc = 1053;
 		rType = 0;
 		vrLen = 447;
 		vrLoc = 3;
@@ -1513,8 +1513,8 @@
 		isa = PBXTextBookmark;
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 189";
-		rLen = 4;
-		rLoc = 5898;
+		rLen = 0;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1180;
 		vrLoc = 4823;
@@ -1524,7 +1524,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 189";
 		rLen = 0;
-		rLoc = 6197;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1180;
 		vrLoc = 4823;
@@ -1534,7 +1534,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 186";
 		rLen = 0;
-		rLoc = 5831;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 4823;
@@ -1544,7 +1544,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 186";
 		rLen = 0;
-		rLoc = 5831;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 4823;
@@ -1554,7 +1554,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 186";
 		rLen = 0;
-		rLoc = 5831;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 4823;
@@ -1564,7 +1564,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 186";
 		rLen = 0;
-		rLoc = 5831;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 4823;
@@ -1574,7 +1574,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 186";
 		rLen = 0;
-		rLoc = 5831;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 5445;
@@ -1584,7 +1584,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 256";
 		rLen = 0;
-		rLoc = 7627;
+		rLoc = 7625;
 		rType = 0;
 		vrLen = 442;
 		vrLoc = 6822;
@@ -1640,8 +1640,8 @@
 		isa = PBXTextBookmark;
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 188";
-		rLen = 3;
-		rLoc = 5846;
+		rLen = 0;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 4823;
@@ -1651,7 +1651,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 187";
 		rLen = 0;
-		rLoc = 5845;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 4823;
@@ -1661,7 +1661,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 187";
 		rLen = 0;
-		rLoc = 5845;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 4823;
@@ -1671,7 +1671,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 187";
 		rLen = 0;
-		rLoc = 5845;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 4823;
@@ -1681,7 +1681,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 187";
 		rLen = 0;
-		rLoc = 5845;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1573;
 		vrLoc = 4859;
@@ -1691,7 +1691,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 188";
 		rLen = 0;
-		rLoc = 5845;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1626;
 		vrLoc = 4886;
@@ -1701,7 +1701,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 188";
 		rLen = 0;
-		rLoc = 5845;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1626;
 		vrLoc = 4894;
@@ -1711,7 +1711,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 188";
 		rLen = 0;
-		rLoc = 5845;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1573;
 		vrLoc = 4894;
@@ -1721,7 +1721,7 @@
 		fRef = A315E71C121D087800D766F2 /* BaseProduct.h */;
 		name = "BaseProduct.h: 41";
 		rLen = 27;
-		rLoc = 756;
+		rLoc = 751;
 		rType = 0;
 		vrLen = 486;
 		vrLoc = 572;
@@ -1740,8 +1740,8 @@
 		isa = PBXTextBookmark;
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 192";
-		rLen = 12;
-		rLoc = 6203;
+		rLen = 0;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 5480;
@@ -1751,7 +1751,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 189";
 		rLen = 0;
-		rLoc = 5897;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 5480;
@@ -1761,7 +1761,7 @@
 		fRef = A3DA082B1213E839001DF575 /* XmlParseOperation.h */;
 		name = "XmlParseOperation.h: 22";
 		rLen = 0;
-		rLoc = 424;
+		rLoc = 429;
 		rType = 0;
 		vrLen = 536;
 		vrLoc = 27;
@@ -1771,7 +1771,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 192";
 		rLen = 0;
-		rLoc = 6048;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1013;
 		vrLoc = 5582;
@@ -1781,7 +1781,7 @@
 		fRef = A393A7EC1212A789004E6374 /* ProductsViewController.h */;
 		name = "ProductsViewController.h: 43";
 		rLen = 14;
-		rLoc = 1324;
+		rLoc = 1285;
 		rType = 0;
 		vrLen = 705;
 		vrLoc = 640;
@@ -1791,7 +1791,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 243";
 		rLen = 0;
-		rLoc = 7374;
+		rLoc = 7373;
 		rType = 0;
 		vrLen = 546;
 		vrLoc = 6856;
@@ -1801,7 +1801,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 256";
 		rLen = 0;
-		rLoc = 7627;
+		rLoc = 7625;
 		rType = 0;
 		vrLen = 576;
 		vrLoc = 7103;
@@ -1811,12 +1811,12 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 256";
 		rLen = 0;
-		rLoc = 7627;
+		rLoc = 7625;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 7104;
 	};
-	A3C7BF0F122F599E009B3ABC /* ProductsViewController.m:256 */ = {
+	A3C7BF0F122F599E009B3ABC /* ProductsViewController.m:253 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1828,7 +1828,7 @@
 		functionName = "-sectionIndexTitlesForTableView:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 256;
+		lineNumber = 253;
 		location = BabyBear;
 		modificationTime = 305093094.55216;
 		originalNumberOfMultipleMatches = 1;
@@ -1839,12 +1839,12 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 256";
 		rLen = 0;
-		rLoc = 7627;
+		rLoc = 7625;
 		rType = 0;
 		vrLen = 1118;
 		vrLoc = 7238;
 	};
-	A3C7BF16122F59E2009B3ABC /* ProductsViewController.m:124 */ = {
+	A3C7BF16122F59E2009B3ABC /* ProductsViewController.m:123 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1856,7 +1856,7 @@
 		functionName = "-numberOfSectionsInTableView:";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 124;
+		lineNumber = 123;
 		location = BabyBear;
 		modificationTime = 305093097.549422;
 		originalNumberOfMultipleMatches = 1;
@@ -1867,7 +1867,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 256";
 		rLen = 0;
-		rLoc = 7627;
+		rLoc = 7625;
 		rType = 0;
 		vrLen = 1118;
 		vrLoc = 7238;
@@ -1877,7 +1877,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 190";
 		rLen = 0;
-		rLoc = 5897;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 834;
 		vrLoc = 5318;
@@ -1887,7 +1887,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 124";
 		rLen = 3;
-		rLoc = 3224;
+		rLoc = 3150;
 		rType = 0;
 		vrLen = 556;
 		vrLoc = 2706;
@@ -1896,8 +1896,8 @@
 		isa = PBXTextBookmark;
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 124";
-		rLen = 14;
-		rLoc = 3236;
+		rLen = 8;
+		rLoc = 3162;
 		rType = 0;
 		vrLen = 555;
 		vrLoc = 2706;
@@ -1906,8 +1906,8 @@
 		isa = PBXTextBookmark;
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 124";
-		rLen = 14;
-		rLoc = 3236;
+		rLen = 8;
+		rLoc = 3162;
 		rType = 0;
 		vrLen = 934;
 		vrLoc = 2418;
@@ -1917,7 +1917,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 192";
 		rLen = 0;
-		rLoc = 6048;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 5254;
@@ -1927,7 +1927,7 @@
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 196";
 		rLen = 0;
-		rLoc = 6191;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1518;
 		vrLoc = 5254;
@@ -1936,8 +1936,8 @@
 		isa = PBXTextBookmark;
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 196";
-		rLen = 2;
-		rLoc = 6163;
+		rLen = 0;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1497;
 		vrLoc = 5254;
@@ -1946,8 +1946,8 @@
 		isa = PBXTextBookmark;
 		fRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */;
 		name = "XmlParseOperation.m: 196";
-		rLen = 2;
-		rLoc = 6163;
+		rLen = 0;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 1497;
 		vrLoc = 5254;
@@ -1966,8 +1966,8 @@
 		isa = PBXTextBookmark;
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 124";
-		rLen = 14;
-		rLoc = 3236;
+		rLen = 8;
+		rLoc = 3162;
 		rType = 0;
 		vrLen = 934;
 		vrLoc = 2418;
@@ -1977,16 +1977,23 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 133";
 		rLen = 0;
-		rLoc = 3403;
+		rLoc = 3323;
 		rType = 0;
 		vrLen = 457;
 		vrLoc = 3015;
 	};
-	A3C7BF3C122F5F69009B3ABC /* ProductsDatasource.h */ = {
+	A3C7BF3C122F5F69009B3ABC /* ProductsSortedByTypeDatasource.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1280, 468}}";
-			sepNavSelRange = "{194, 0}";
-			sepNavVisRange = "{0, 247}";
+			sepNavIntBoundsRect = "{{0, 0}, {1280, 443}}";
+			sepNavSelRange = "{180, 26}";
+			sepNavVisRange = "{0, 354}";
+		};
+	};
+	A3C7BF3D122F5F69009B3ABC /* ProductsSortedByTypeDatasource.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1280, 1008}}";
+			sepNavSelRange = "{623, 0}";
+			sepNavVisRange = "{0, 333}";
 		};
 	};
 	A3C7BF4B122F7DF9009B3ABC /* PBXTextBookmark */ = {
@@ -2001,10 +2008,10 @@
 	};
 	A3C7BF4C122F7DF9009B3ABC /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = A3C7BF3C122F5F69009B3ABC /* ProductsDatasource.h */;
+		fRef = A3C7BF3C122F5F69009B3ABC /* ProductsSortedByTypeDatasource.h */;
 		name = "ProductsDatasource.h: 11";
 		rLen = 0;
-		rLoc = 194;
+		rLoc = 245;
 		rType = 0;
 		vrLen = 247;
 		vrLoc = 0;
@@ -2013,8 +2020,8 @@
 		isa = PBXTextBookmark;
 		fRef = A393A7EC1212A789004E6374 /* ProductsViewController.h */;
 		name = "ProductsViewController.h: 18";
-		rLen = 7;
-		rLoc = 440;
+		rLen = 0;
+		rLoc = 438;
 		rType = 0;
 		vrLen = 1219;
 		vrLoc = 126;
@@ -2024,7 +2031,7 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 157";
 		rLen = 50;
-		rLoc = 3912;
+		rLoc = 3833;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 3435;
@@ -2034,10 +2041,17 @@
 		fRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */;
 		name = "ProductsViewController.m: 160";
 		rLen = 0;
-		rLoc = 4008;
+		rLoc = 3926;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 3435;
+	};
+	A3C7BF60122F8ACA009B3ABC /* ProductsDatasourceProtocol.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1280, 798}}";
+			sepNavSelRange = "{842, 93}";
+			sepNavVisRange = "{238, 703}";
+		};
 	};
 	A3D82C15121BDC9700E46EE9 /* tinystr.cpp */ = {
 		uiCtxt = {
@@ -2077,9 +2091,9 @@
 	};
 	A3D82C1A121BDC9700E46EE9 /* tinyxmlparser.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1368, 25872}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{24895, 937}";
+			sepNavIntBoundsRect = "{{0, 0}, {1366.61, 33453}}";
+			sepNavSelRange = "{1327, 7}";
+			sepNavVisRange = "{1039, 579}";
 		};
 	};
 	A3D82C1F121BDCE500E46EE9 /* xmltest.cpp */ = {
@@ -2113,16 +2127,16 @@
 	};
 	A3DA082B1213E839001DF575 /* XmlParseOperation.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1280, 882}}";
-			sepNavSelRange = "{424, 0}";
-			sepNavVisRange = "{27, 536}";
+			sepNavIntBoundsRect = "{{0, 0}, {1280, 840}}";
+			sepNavSelRange = "{599, 17}";
+			sepNavVisRange = "{229, 587}";
 		};
 	};
 	A3DA082C1213E839001DF575 /* XmlParseOperation.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1420.8, 6069}}";
-			sepNavSelRange = "{6163, 2}";
-			sepNavVisRange = "{5254, 1497}";
+			sepNavIntBoundsRect = "{{0, 0}, {1680.88, 6594}}";
+			sepNavSelRange = "{8546, 17}";
+			sepNavVisRange = "{8180, 782}";
 		};
 	};
 	A3EDE8A4121E5AF10017D54F /* ProductDetailViewConctroller.h */ = {

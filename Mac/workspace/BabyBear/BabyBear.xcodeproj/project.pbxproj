@@ -46,7 +46,8 @@
 		A3C12FA5122263130002B05F /* ScrollShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C12FA4122263130002B05F /* ScrollShowView.m */; };
 		A3C12FB8122263590002B05F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C12FB7122263590002B05F /* QuartzCore.framework */; };
 		A3C12FDD122264C70002B05F /* TapImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C12FDC122264C70002B05F /* TapImage.m */; };
-		A3C7BF3E122F5F69009B3ABC /* ProductsDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7BF3D122F5F69009B3ABC /* ProductsDatasource.m */; };
+		A3C7BF3E122F5F69009B3ABC /* ProductsSortedByTypeDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7BF3D122F5F69009B3ABC /* ProductsSortedByTypeDatasource.m */; };
+		A3C7BF69122F8FD5009B3ABC /* AllProducts.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7BF68122F8FD5009B3ABC /* AllProducts.m */; };
 		A3D5344A1219336C00C19941 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D534491219336C00C19941 /* MessageUI.framework */; };
 		A3D82C1B121BDC9700E46EE9 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C15121BDC9700E46EE9 /* tinystr.cpp */; };
 		A3D82C1C121BDC9700E46EE9 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C17121BDC9700E46EE9 /* tinyxml.cpp */; };
@@ -144,8 +145,11 @@
 		A3C12FB7122263590002B05F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A3C12FDB122264C70002B05F /* TapImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapImage.h; path = ../IPhone/Picoffee/Classes/TapImage.h; sourceTree = SOURCE_ROOT; };
 		A3C12FDC122264C70002B05F /* TapImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapImage.m; path = ../IPhone/Picoffee/Classes/TapImage.m; sourceTree = SOURCE_ROOT; };
-		A3C7BF3C122F5F69009B3ABC /* ProductsDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDatasource.h; sourceTree = "<group>"; };
-		A3C7BF3D122F5F69009B3ABC /* ProductsDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsDatasource.m; sourceTree = "<group>"; };
+		A3C7BF3C122F5F69009B3ABC /* ProductsSortedByTypeDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsSortedByTypeDatasource.h; sourceTree = "<group>"; };
+		A3C7BF3D122F5F69009B3ABC /* ProductsSortedByTypeDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsSortedByTypeDatasource.m; sourceTree = "<group>"; };
+		A3C7BF60122F8ACA009B3ABC /* ProductsDatasourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDatasourceProtocol.h; sourceTree = "<group>"; };
+		A3C7BF67122F8FD5009B3ABC /* AllProducts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllProducts.h; sourceTree = "<group>"; };
+		A3C7BF68122F8FD5009B3ABC /* AllProducts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllProducts.m; sourceTree = "<group>"; };
 		A3D534491219336C00C19941 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A3D82C15121BDC9700E46EE9 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
 		A3D82C16121BDC9700E46EE9 /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinystr.h; sourceTree = "<group>"; };
@@ -377,8 +381,11 @@
 		A3C7BF3B122F5F4C009B3ABC /* datasource */ = {
 			isa = PBXGroup;
 			children = (
-				A3C7BF3C122F5F69009B3ABC /* ProductsDatasource.h */,
-				A3C7BF3D122F5F69009B3ABC /* ProductsDatasource.m */,
+				A3C7BF60122F8ACA009B3ABC /* ProductsDatasourceProtocol.h */,
+				A3C7BF3C122F5F69009B3ABC /* ProductsSortedByTypeDatasource.h */,
+				A3C7BF3D122F5F69009B3ABC /* ProductsSortedByTypeDatasource.m */,
+				A3C7BF67122F8FD5009B3ABC /* AllProducts.h */,
+				A3C7BF68122F8FD5009B3ABC /* AllProducts.m */,
 			);
 			name = datasource;
 			sourceTree = "<group>";
@@ -596,7 +603,8 @@
 				A323ADBB122E4BBB00BD2217 /* ReviewDetailController.m in Sources */,
 				A323ADBE122E4C2300BD2217 /* ReviewDatasource.m in Sources */,
 				A323ADC7122E52A200BD2217 /* ProductInfoView.m in Sources */,
-				A3C7BF3E122F5F69009B3ABC /* ProductsDatasource.m in Sources */,
+				A3C7BF3E122F5F69009B3ABC /* ProductsSortedByTypeDatasource.m in Sources */,
+				A3C7BF69122F8FD5009B3ABC /* AllProducts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

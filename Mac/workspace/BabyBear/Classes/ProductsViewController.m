@@ -80,7 +80,6 @@
 	
 	if (!isProductsFetched) {
 		self.products = [NSMutableArray array];
-		self.entries = products;
 		
 		NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kProductsFeedUrl]];
 		self.productsFeedConnection = [[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self] autorelease];
@@ -116,12 +115,12 @@
 #pragma mark -
 #pragma mark Table view data source
 
-@synthesize entries, productTypeArr;
+@synthesize productTypeArr;
 @synthesize tmpProductCell;
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return [productTypeArr count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [products count];
 }
 
 
@@ -136,7 +135,7 @@
 			break;
 	}
 	/*
-	int count = [entries count];
+	int count = [products count];
 	
 	// return enough rows to fill the screen
     if (count == 0) {
@@ -155,10 +154,7 @@
 	static NSString *PlaceholderCellIdentifier = @"PlaceholderCell";
 	
     // add a placeholder cell while waiting on table data
-    int nodeCount = [self.entries count];
-	
-	
-	
+    int nodeCount = [self.products count];
 	if (nodeCount == 0 && indexPath.row == 0) {
         UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:PlaceholderCellIdentifier];
         if (cell == nil) {
@@ -184,9 +180,10 @@
 	
     // Leave cells empty if there's no data yet
     if (nodeCount > 0) {
-        // Set up the cell...
-        Product *aProduct = [self.entries objectAtIndex:indexPath.row];
-        
+		
+		// Set up the cell...
+		NSArray *aTypeProducts = [self.products objectForKey:[NSNumber numberWithInt:indexPath.section]];
+		Product *aProduct = [aTypeProducts objectAtIndex:indexPath.row];
 		cell.textLabel.text = aProduct.pname;
         cell.detailTextLabel.text = aProduct.pdesc;
 		
@@ -255,7 +252,6 @@
 {
 	return productTypeArr;
 }
-
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -394,7 +390,6 @@
 	[productTypeArr release];
 	//[tableView release];
 	
-	[entries release];
 	[products release];
 	[queue release];
 	
@@ -426,10 +421,10 @@
 // this method is used in case the user scrolled into a set of cells that don't have their app icons yet
 - (void)loadImagesForOnscreenRows
 {
-    if ([self.entries count] > 0) {
+    if ([self.products count] > 0) {
         NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths) {
-            Product *aProduct = [self.entries objectAtIndex:indexPath.row];
+            Product *aProduct = [self.products objectAtIndex:indexPath.row];
             
             if (!aProduct.productIcon) {
 				// avoid the app icon download if the app already has an icon
