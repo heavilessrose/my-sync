@@ -7,6 +7,7 @@
 //
 
 #import "XmlParseOperation.h"
+#import "ProductsViewController.h"
 #import "BaseProduct.h"
 #import "Review.h"
 #import "Store.h"
@@ -33,6 +34,7 @@
 #define kPPrice		(@"pprice")
 #define kPAllRating	(@"pall-rating")
 #define kPDesc		(@"pdesc")
+#define kPType		(@"ptype")
 #define kPUrlIcon	(@"picon-url")
 #define kPGallary	(@"pgallary")
 #define kPUrlPhoto	(@"pphoto-url")
@@ -67,7 +69,7 @@
     {
         self.dataToParse = data;
         self.delegate = theDelegate;
-        self.elementsToParse = [NSArray arrayWithObjects:kPID, kPName, kPPrice, kPAllRating, kPDesc, kPUrlIcon, kPGallary, kPUrlPhoto, kPReviews, 
+        self.elementsToParse = [NSArray arrayWithObjects:kPID, kPName, kPPrice, kPAllRating, kPDesc, kPType, kPUrlIcon, kPGallary, kPUrlPhoto, kPReviews, 
 								kPReview, kRName, kRRating, kRDate, kRTitle, kRCatagory, kRComment, kPStores, kPStore, kSID, kSName, kSAddr, 
 								kSReserves, kSLongitude, kSLatitude, nil];
     }
@@ -185,6 +187,15 @@
             else if ([elementName isEqualToString:kPDesc]) {
                 workingEntry.pdesc = trimmedString;
             }
+			else if ([elementName isEqualToString:kPType]) {
+				workingEntry.ptype = [trimmedString intValue];
+				ProductsViewController *pv = (ProductsViewController *)delegate;
+				NSMutableArray *typeArr = pv.productTypeArr;
+				if (![typeArr containsObject:trimmedString]) {
+					[typeArr addObject:trimmedString];
+					//[pv.tableView reloadData];
+				}
+			}
             else if ([elementName isEqualToString:kPUrlIcon]) {
                 workingEntry.pUrlIcon = trimmedString;
             }

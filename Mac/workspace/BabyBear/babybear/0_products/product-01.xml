@@ -1,65 +1,201 @@
 <?xml version="1.0"?>
-<product>
-	<pid>01</pid>
-	<pname>product-01</pname>
-	<pprice>22.9</pprice>
-	<pall-rating>3.5</pall-rating>
-	<pdesc>product-01 description for test!!</pdesc>
-	<picon-url>http://localhost/~luke/babybear/0_products/0.png</picon-url>
-	<pgallary>
-		<pphoto-url>http://localhost/~luke/babybear/0_products/0.png</pphoto-url>
-		<pphoto-url>http://localhost/~luke/babybear/0_products/01.png</pphoto-url>
-		<pphoto-url>http://localhost/~luke/babybear/0_products/02.png</pphoto-url>
-		<pphoto-url>http://localhost/~luke/babybear/0_products/03.png</pphoto-url>
-		<pphoto-url>http://localhost/~luke/babybear/0_products/04.png</pphoto-url>
-		<pphoto-url>http://localhost/~luke/babybear/0_products/05.png</pphoto-url>
-	</pgallary>
-	<previews>
-		<preview>
-			<rname>luke</rname>
-			<rrating>3.5</rrating>
-			<rdate>2010-08-11</rdate>
-			<rtitle>good one</rtitle>
-			<rcatagory>good</rcatagory>
-			<rcomment>brief good comments for test!</rcomment>
-		</preview>
-		<preview>
-			<rname>luke2</rname>
-			<rrating>5</rrating>
-			<rdate>2010-08-11</rdate>
-			<rtitle>perfect one</rtitle>
-			<rcatagory>perfect</rcatagory>
-			<rcomment>brief perfect comments for test!</rcomment>
-		</preview>
-		<preview>
-			<rname>luke3</rname>
-			<rrating>1.5</rrating>
-			<rdate>2010-08-11</rdate>
-			<rtitle>bad one</rtitle>
-			<rcatagory>bad</rcatagory>
-			<rcomment>brief bad comments for test!</rcomment>
-		</preview>
-	</previews>
-	<pstores>
-		<pstore>
-			<sid>001</sid>
-			<sname>store-001</sname>
-			<saddr>store1 address</saddr>
-			<sreserves>1</sreserves>
-			<!--经度-->
-			<slongitude>456.123</slongitude>
-			<!--纬度-->
-			<slatitude>456.456</slatitude>
-		</pstore>
-		<pstore>
-			<sid>002</sid>
-			<sname>store-002</sname>
-			<saddr>store2 address</saddr>
-			<sreserves>2</sreserves>
-			<!--经度-->
-			<slongitude>123.123</slongitude>
-			<!--纬度-->
-			<slatitude>123.456</slatitude>
-		</pstore>
-	</pstores>
-</product>
+<products>
+	<product>
+		<pid>01</pid>
+		<pname>product-01</pname>
+		<pprice>22.9</pprice>
+		<pall-rating>3.5</pall-rating>
+		<pdesc>product-01 description for test!!</pdesc>
+		<ptype>0</ptype>
+		<picon-url>http://localhost/~luke/babybear/0_products/01.png</picon-url>
+		<pgallary>
+			<ppcount>6</ppcount>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/0.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/01.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/02.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/03.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/04.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/05.png</pphoto-url>
+		</pgallary>
+		<previews>
+			<preview>
+				<rname>luke</rname>
+				<rrating>3.5</rrating>
+				<rdate>2010-08-11</rdate>
+				<rtitle>good one</rtitle>
+				<rcatagory>good</rcatagory>
+				<rcomment>brief good comments for test!</rcomment>
+			</preview>
+			<preview>
+				<rname>luke2</rname>
+				<rrating>5</rrating>
+				<rdate>2010-08-11</rdate>
+				<rtitle>perfect one</rtitle>
+				<rcatagory>perfect</rcatagory>
+				<rcomment>brief perfect comments for test!</rcomment>
+			</preview>
+			<preview>
+				<rname>luke3</rname>
+				<rrating>1.5</rrating>
+				<rdate>2010-08-11</rdate>
+				<rtitle>bad one</rtitle>
+				<rcatagory>bad</rcatagory>
+				<rcomment>brief bad comments for test!</rcomment>
+			</preview>
+		</previews>
+		<pstores>
+			<pstore>
+				<sid>001</sid>
+				<sname>store-001</sname>
+				<saddr>store1 address</saddr>
+				<sreserves>1</sreserves>
+				<!--经度-->
+				<slongitude>456.123</slongitude>
+				<!--纬度-->
+				<slatitude>456.456</slatitude>
+			</pstore>
+			<pstore>
+				<sid>002</sid>
+				<sname>store-002</sname>
+				<saddr>store2 address</saddr>
+				<sreserves>2</sreserves>
+				<!--经度-->
+				<slongitude>123.123</slongitude>
+				<!--纬度-->
+				<slatitude>123.456</slatitude>
+			</pstore>
+		</pstores>
+	</product>
+	<product>
+		<pid>02</pid>
+		<pname>product-02</pname>
+		<pprice>32.9</pprice>
+		<pall-rating>4</pall-rating>
+		<pdesc>product-02 description for test!!</pdesc>
+		<ptype>1</ptype>
+		<picon-url>http://localhost/~luke/babybear/0_products/01.png</picon-url>
+		<pgallary>
+			<ppcount>6</ppcount>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/0.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/01.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/02.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/03.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/04.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/05.png</pphoto-url>
+		</pgallary>
+		<previews>
+			<preview>
+				<rname>luke</rname>
+				<rrating>3.5</rrating>
+				<rdate>2010-08-11</rdate>
+				<rtitle>good one</rtitle>
+				<rcatagory>good</rcatagory>
+				<rcomment>brief good comments for test!</rcomment>
+			</preview>
+			<preview>
+				<rname>luke2</rname>
+				<rrating>5</rrating>
+				<rdate>2010-08-11</rdate>
+				<rtitle>perfect one</rtitle>
+				<rcatagory>perfect</rcatagory>
+				<rcomment>brief perfect comments for test!</rcomment>
+			</preview>
+			<preview>
+				<rname>luke3</rname>
+				<rrating>1.5</rrating>
+				<rdate>2010-08-11</rdate>
+				<rtitle>bad one</rtitle>
+				<rcatagory>bad</rcatagory>
+				<rcomment>brief bad comments for test!</rcomment>
+			</preview>
+		</previews>
+		<pstores>
+			<pstore>
+				<sid>001</sid>
+				<sname>store-001</sname>
+				<saddr>store1 address</saddr>
+				<sreserves>1</sreserves>
+				<!--经度-->
+				<slongitude>456.123</slongitude>
+				<!--纬度-->
+				<slatitude>456.456</slatitude>
+			</pstore>
+			<pstore>
+				<sid>002</sid>
+				<sname>store-002</sname>
+				<saddr>store2 address</saddr>
+				<sreserves>2</sreserves>
+				<!--经度-->
+				<slongitude>123.123</slongitude>
+				<!--纬度-->
+				<slatitude>123.456</slatitude>
+			</pstore>
+		</pstores>
+	</product>
+	<product>
+		<pid>03</pid>
+		<pname>product-03</pname>
+		<pprice>52.9</pprice>
+		<pall-rating>2.5</pall-rating>
+		<pdesc>product-03 description for test!!</pdesc>
+		<ptype>2</ptype>
+		<picon-url>http://localhost/~luke/babybear/0_products/01.png</picon-url>
+		<pgallary>
+			<ppcount>6</ppcount>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/0.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/01.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/02.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/03.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/04.png</pphoto-url>
+			<pphoto-url>http://localhost/~luke/babybear/0_products/05.png</pphoto-url>
+		</pgallary>
+		<previews>
+			<preview>
+				<rname>luke</rname>
+				<rrating>3.5</rrating>
+				<rdate>2010-08-11</rdate>
+				<rtitle>good one</rtitle>
+				<rcatagory>good</rcatagory>
+				<rcomment>brief good comments for test!</rcomment>
+			</preview>
+			<preview>
+				<rname>luke2</rname>
+				<rrating>5</rrating>
+				<rdate>2010-08-11</rdate>
+				<rtitle>perfect one</rtitle>
+				<rcatagory>perfect</rcatagory>
+				<rcomment>brief perfect comments for test!</rcomment>
+			</preview>
+			<preview>
+				<rname>luke3</rname>
+				<rrating>1.5</rrating>
+				<rdate>2010-08-11</rdate>
+				<rtitle>bad one</rtitle>
+				<rcatagory>bad</rcatagory>
+				<rcomment>brief bad comments for test!</rcomment>
+			</preview>
+		</previews>
+		<pstores>
+			<pstore>
+				<sid>001</sid>
+				<sname>store-001</sname>
+				<saddr>store1 address</saddr>
+				<sreserves>1</sreserves>
+				<!--经度-->
+				<slongitude>456.123</slongitude>
+				<!--纬度-->
+				<slatitude>456.456</slatitude>
+			</pstore>
+			<pstore>
+				<sid>002</sid>
+				<sname>store-002</sname>
+				<saddr>store2 address</saddr>
+				<sreserves>2</sreserves>
+				<!--经度-->
+				<slongitude>123.123</slongitude>
+				<!--纬度-->
+				<slatitude>123.456</slatitude>
+			</pstore>
+		</pstores>
+	</product>
+</products>

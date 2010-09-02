@@ -20,7 +20,7 @@
 	//value of the layer
 	theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
 	//animation lasts 0.4 seconds
-	theAnimation.duration=0.4;	
+	theAnimation.duration=0.6;	
 	//and it repeats forever
 	//theAnimation.repeatCount= 1e100f;
 	//we want a reverse animation
