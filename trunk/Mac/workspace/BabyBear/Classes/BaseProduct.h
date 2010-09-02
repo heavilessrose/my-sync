@@ -15,7 +15,7 @@ typedef enum product_type {
 	Ptype_Clothing,	// 服饰
 	Ptype_Gift,		// 礼品
 	Ptype_Tuan,		// 团购
-	Ptype_Other = 99,
+	Ptype_Other,
 } Ptype;
 /*
 // 将product预览图index与url对应

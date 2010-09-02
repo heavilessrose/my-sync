@@ -16,8 +16,8 @@
 
 @property (nonatomic, assign) id<XmlParseOperationDelegate>	delegate;
 @property (nonatomic, retain) NSData				*dataToParse;
-@property (nonatomic, retain) NSMutableArray		*workingArray;
-@property (nonatomic, retain) BaseProduct			*workingEntry;
+@property (nonatomic, retain) NSMutableDictionary	*workingDictionary;
+@property (nonatomic, retain) BaseProduct			*workingProduct;
 @property (nonatomic, retain) NSMutableString		*workingPropertyString;
 @property (nonatomic, retain) NSArray				*elementsToParse;
 @property (nonatomic, assign) BOOL					storingCharacterData;
@@ -58,7 +58,7 @@
 
 @implementation XmlParseOperation
 
-@synthesize delegate, dataToParse, workingEntry, workingArray, workingPropertyString, elementsToParse, storingCharacterData;
+@synthesize delegate, dataToParse, workingProduct, workingDictionary, workingPropertyString, elementsToParse, storingCharacterData;
 @synthesize aReview, aStore;
 
 
@@ -79,9 +79,9 @@
 - (void)dealloc
 {
 	[dataToParse release];
-    [workingEntry release];
+    [workingProduct release];
     [workingPropertyString release];
-    [workingArray release];
+    [workingDictionary release];
 	
 //	[aReview release];
 //	[aStore release];
@@ -97,7 +97,7 @@
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	self.workingArray = [NSMutableArray array];
+	self.workingDictionary = [NSMutableDictionary dictionary];
     self.workingPropertyString = [NSMutableString string];
     
     // It's also possible to have NSXMLParser download the data, by passing it a URL, but this is not
@@ -111,10 +111,10 @@
 	if (![self isCancelled])
     {
         // notify our AppDelegate that the parsing is complete
-        [self.delegate xmlDidFinishParsing:self.workingArray];
+        [self.delegate xmlDidFinishParsing:self.workingDictionary];
     }
     
-    self.workingArray = nil;
+    self.workingDictionary = nil;
     self.workingPropertyString = nil;
     self.dataToParse = nil;
     
@@ -137,7 +137,7 @@
  qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if ([elementName isEqualToString:kProduct]) {
-        self.workingEntry = [[[BaseProduct alloc] init] autorelease];
+        self.workingProduct = [[[BaseProduct alloc] init] autorelease];
     } 
 	else if ([elementName isEqualToString:kPGallary]) {
 		// create array for gallary
@@ -167,37 +167,39 @@
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName
 {
-    if (self.workingEntry) {
+    if (self.workingProduct) {
         if (storingCharacterData) {
             NSString *trimmedString = [workingPropertyString stringByTrimmingCharactersInSet:
                                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             [workingPropertyString setString:@""];  // clear the string for next time
             if ([elementName isEqualToString:kPID]) {
-                workingEntry.pid = trimmedString;
+                workingProduct.pid = trimmedString;
             }
             else if ([elementName isEqualToString:kPName]) {        
-                workingEntry.pname = trimmedString;
+                workingProduct.pname = trimmedString;
             }
             else if ([elementName isEqualToString:kPPrice]) {
-                workingEntry.pprice = trimmedString;
+                workingProduct.pprice = trimmedString;
             }
             else if ([elementName isEqualToString:kPAllRating]) {
-                workingEntry.pallRating = trimmedString;
+                workingProduct.pallRating = trimmedString;
             }
             else if ([elementName isEqualToString:kPDesc]) {
-                workingEntry.pdesc = trimmedString;
+                workingProduct.pdesc = trimmedString;
             }
 			else if ([elementName isEqualToString:kPType]) {
-				workingEntry.ptype = [trimmedString intValue];
+				workingProduct.ptype = [trimmedString intValue];
+				/*
 				ProductsViewController *pv = (ProductsViewController *)delegate;
 				NSMutableArray *typeArr = pv.productTypeArr;
 				if (![typeArr containsObject:trimmedString]) {
 					[typeArr addObject:trimmedString];
 					//[pv.tableView reloadData];
 				}
+				 */
 			}
             else if ([elementName isEqualToString:kPUrlIcon]) {
-                workingEntry.pUrlIcon = trimmedString;
+                workingProduct.pUrlIcon = trimmedString;
             }
 			// gallary
 			else if ([elementName isEqualToString:kPUrlPhoto]) {
@@ -205,10 +207,10 @@
 				static int index = 0;
 				ProductImageUrlWithIndex *aUrlIndex = [[ProductImageUrlWithIndex alloc] initWithUrl:trimmedString andIndex:index];
 				index++;
-				[workingEntry.pgallary setObject:[NSNull null] forKey:aUrlIndex];
+				[workingProduct.pgallary setObject:[NSNull null] forKey:aUrlIndex];
 				[aUrlIndex release];
 #else
-				[workingEntry.pgallary addObject:trimmedString];
+				[workingProduct.pgallary addObject:trimmedString];
 #endif
 			}
 			// reviews
@@ -232,7 +234,7 @@
 			}
 			else if ([elementName isEqualToString:kPReview]) {
 				// one review parsed over
-				[workingEntry.previews addObject:aReview];
+				[workingProduct.previews addObject:aReview];
 				NSLog(@"%@", aReview);
 				self.aReview = nil;
 			}
@@ -256,16 +258,30 @@
 				aStore.slatitude = trimmedString;
 			}
 			else if ([elementName isEqualToString:kPStore]) {
-				[workingEntry.pstores addObject:aStore];
+				[workingProduct.pstores addObject:aStore];
 				NSLog(@"%@", aStore);
 				self.aStore = nil;
 			}
 			// product
 			else if ([elementName isEqualToString:kProduct]) {
-				NSLog(@"%@", workingEntry);
+				NSLog(@"%@", workingProduct);
 				storingCharacterData = NO;
-				[workingArray addObject:workingEntry];
-				self.workingEntry = nil;
+				int type = -1;
+				NSMutableArray *aTypeArr = nil;
+				NSArray *curKeys = [workingDictionary allKeys];
+				for (NSNumber *aKey in curKeys) {
+					type = [aKey intValue];
+					if (type == workingProduct.ptype) {
+						aTypeArr = [workingDictionary objectForKey:[NSNumber numberWithInt:workingProduct.ptype]];
+					}
+				}
+				if (!aTypeArr) {
+					aTypeArr = [NSMutableArray array];
+					[workingDictionary setObject:aTypeArr forKey:[NSNumber numberWithInt:workingProduct.ptype]];
+				}
+				
+				[aTypeArr addObject:workingProduct];
+				self.workingProduct = nil;
 			}
         }
     }

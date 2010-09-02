@@ -13,7 +13,7 @@
 @optional
 - (void)xmlWillParse;
 - (void)xmlParsing:(int)aState withErr:(NSError *)aErr;
-- (void)xmlDidFinishParsing:(NSArray *)aProductList;
+- (void)xmlDidFinishParsing:(NSDictionary *)aProductList;
 - (void)xmlParseErrOccurred:(NSError *)aErr;
 
 @end
@@ -24,8 +24,8 @@
 	id<XmlParseOperationDelegate>	delegate;
     NSData					*dataToParse;
     
-    NSMutableArray			*workingArray;
-    BaseProduct				*workingEntry;
+    NSMutableDictionary		*workingDictionary;
+    BaseProduct				*workingProduct;
     NSMutableString			*workingPropertyString;
     NSArray					*elementsToParse;
     BOOL					storingCharacterData;

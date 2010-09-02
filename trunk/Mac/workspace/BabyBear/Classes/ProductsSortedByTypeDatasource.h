@@ -1,5 +1,5 @@
 //
-//  ProductsDatasource.h
+//  ProductsSortedByTypeDatasource.h
 //  BabyBear
 //
 //  Created by luke on 10-9-2.
@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ProductsDatasourceProtocol.h"
 
 // product tableview datasource 重构
-@interface ProductsDatasource : NSObject {
+@interface ProductsSortedByTypeDatasource : NSObject <UITableViewDataSource, ProductsDatasource> {
 
 }
 

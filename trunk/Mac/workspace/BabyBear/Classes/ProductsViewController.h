@@ -15,10 +15,9 @@
 @interface ProductsViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, 
 UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 	
-	NSArray				*entries; // the main data model for our UITableView
     NSMutableDictionary *imageDownloadsInProgress;  // the set of IconDownloader objects for each product
 	
-	NSMutableArray		*products;
+	NSMutableArray		*products; // the main data model for our UITableView which is arranged by product type
 	NSOperationQueue	*queue;
 	
 	BOOL				isProductsFetched; // avoid fetch products info more than one times
@@ -31,7 +30,6 @@ UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 }
 
 
-@property (nonatomic, retain) NSArray				*entries;
 @property (nonatomic, retain) NSMutableDictionary	*imageDownloadsInProgress;
 
 @property (nonatomic, retain) NSMutableArray		*products;
