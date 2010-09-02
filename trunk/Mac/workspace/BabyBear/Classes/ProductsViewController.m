@@ -49,7 +49,7 @@
 - (id)init
 {
 	if (self = [super init]) {
-		
+		self.productTypeArr = [NSMutableArray array];
 		self.title = NSLocalizedString(@"Products", nil);
 		
 		//UIImage* anImage = [UIImage imageNamed:@"MyViewControllerImage.png"];
@@ -116,24 +116,34 @@
 #pragma mark -
 #pragma mark Table view data source
 
-@synthesize entries;
+@synthesize entries, productTypeArr;
 @synthesize tmpProductCell;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return [productTypeArr count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{    
+{
+	int count = 0;
+	switch (section) {
+		case 0:
+			
+			break;
+		default:
+			break;
+	}
+	/*
 	int count = [entries count];
 	
 	// return enough rows to fill the screen
-    if (count == 0)
-	{
+    if (count == 0) {
         return kCustomRowCount;
     }
+    return count;
+	 */
     return count;
 }
 
@@ -146,6 +156,8 @@
 	
     // add a placeholder cell while waiting on table data
     int nodeCount = [self.entries count];
+	
+	
 	
 	if (nodeCount == 0 && indexPath.row == 0) {
         UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:PlaceholderCellIdentifier];
@@ -237,6 +249,24 @@
 }
 */
 
+#pragma mark index
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+	return productTypeArr;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [productTypeArr objectAtIndex:section];
+}
+/*
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+	
+}
+ */
 
 #pragma mark Table view delegate
 
@@ -361,6 +391,7 @@
 - (void)dealloc
 {
 	[tmpProductCell release];
+	[productTypeArr release];
 	//[tableView release];
 	
 	[entries release];

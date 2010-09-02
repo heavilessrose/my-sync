@@ -26,6 +26,8 @@ UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 	NSMutableData		*productsData;
 	
 	IBOutlet ProductCell	*tmpProductCell;
+	
+	NSMutableArray		*productTypeArr;
 }
 
 
@@ -38,4 +40,5 @@ UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 @property (nonatomic, retain) NSURLConnection		*productsFeedConnection;
 @property (nonatomic, retain) NSMutableData			*productsData;
 
+@property (nonatomic, retain) NSMutableArray		*productTypeArr;
 @end

@@ -9,7 +9,7 @@
 #import "BaseProduct.h"
 
 
-
+/*
 @implementation ProductImageUrlWithIndex
 @synthesize url;
 
@@ -29,12 +29,12 @@
 }
 
 @end
-
+*/
 
 
 @implementation BaseProduct
 
-@synthesize pid, pname, pprice, pallRating, pdesc, pUrlIcon, pgallary, 
+@synthesize pid, pname, pprice, pallRating, pdesc, ptype, pUrlIcon, pgallary, 
 /*pUrlPhoto,*/ previews, /*preview,*/ pstores; /*pstore,*/
 
 @synthesize iconLoaded, gallaryLoaded, iconLocalPath, productIcon, productImgs;
@@ -42,10 +42,11 @@
 - (id)init
 {
 	if (self = [super init]) {
-		self.pgallary	= [NSMutableArray array];
-		self.previews	= [NSMutableArray array];
-		self.pstores	= [NSMutableArray array];
-		self.productImgs = [NSMutableArray array];
+		self.pgallary		= [NSMutableArray array];
+		self.previews		= [NSMutableArray array];
+		self.pstores		= [NSMutableArray array];
+		self.productImgs	= [NSMutableArray array];
+		self.ptype			= Ptype_Other;
 	}
 	
 	return self;
