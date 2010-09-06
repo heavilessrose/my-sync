@@ -11,7 +11,6 @@
 
 @interface AllProducts ()
 
-@property (nonatomic, retain) NSArray *elementTypeIndexArray;
 
 - (void)setupElementsArray;
 - (NSArray *)elementsWithType:(NSString *)aKey;
@@ -21,12 +20,14 @@
 
 @implementation AllProducts
 
+@synthesize elementTypeArray, typeNameIndexArray;
 @synthesize allProductsByName, allProductsByType, allProductsByPrice;
 
 // we use the singleton approach, one collection for the entire application
 static AllProducts *sharedAllProductsInstance = nil;
 
-+ (AllProducts *)sharedAllProducts {
++ (AllProducts *)sharedAllProducts
+{
     @synchronized(self) {
         if (sharedAllProductsInstance == nil) {
             [[self alloc] init]; // assignment not done here
@@ -37,7 +38,8 @@ static AllProducts *sharedAllProductsInstance = nil;
 	// '(Potential leak of an object allocated')
 }
 
-+ (id)allocWithZone:(NSZone *)zone {
++ (id)allocWithZone:(NSZone *)zone
+{
     @synchronized(self) {
         if (sharedAllProductsInstance == nil) {
             sharedAllProductsInstance = [super allocWithZone:zone];
@@ -47,28 +49,34 @@ static AllProducts *sharedAllProductsInstance = nil;
     return nil; //on subsequent allocation attempts return nil
 }
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(NSZone *)zone
+{
     return self;
 }
 
-- (id)retain {
+- (id)retain
+{
     return self;
 }
 
-- (unsigned)retainCount {
+- (unsigned)retainCount
+{
     return UINT_MAX;  // denotes an object that cannot be released
 }
 
-- (void)release {
+- (void)release
+{
     //do nothing
 }
 
-- (id)autorelease {
+- (id)autorelease
+{
     return self;
 }
 
 // setup the data collection
-- init {
+- init
+{
 	if (self = [super init]) {
 		[self setupElementsArray];
 	}
@@ -77,7 +85,7 @@ static AllProducts *sharedAllProductsInstance = nil;
 
 - (void)dealloc
 {
-	[elementTypeIndexArray release];
+	[elementTypeArray release];
 	[allProductsByName release];
 	[allProductsByType release];
 	[allProductsByPrice release];
@@ -88,24 +96,31 @@ static AllProducts *sharedAllProductsInstance = nil;
 #pragma mark -
 #pragma mark func
 
-@synthesize elementTypeIndexArray;
 
 - (void)setupElementsArray
 {
 	self.allProductsByName = [NSMutableDictionary dictionary];
-	self.allProductsByType = [NSMutableDictionary dictionary];
 	self.allProductsByPrice = [NSMutableDictionary dictionary];
-}
-
-- (BaseProduct *)productElementForIndexPath:(NSIndexPath *)indexPath
-{
 	
+	self.elementTypeArray = [NSArray arrayWithObjects:type_home, type_office, type_travel, 
+							 type_clothing, type_gift, type_tuan, type_other, nil];
+	self.allProductsByType = [[NSMutableDictionary alloc] init];
+	for (int i = 0; i < [elementTypeArray count]; i++) {
+		[allProductsByType setObject:[NSMutableArray array] forKey:[NSNumber numberWithInt:i]];
+	}
+	[allProductsByType release];
 }
 
 // return an array of elements for an type (ie home, travel, gift, ...)
 - (NSArray *)elementsWithType:(NSString *)aKey
 {
-	NSArray *typedArr = [allProductsByType objectForKey:aKey];
+	int aTypeIndex = Ptype_Other;
+	for (NSString *typeName in elementTypeArray) {
+		if ([typeName isEqualToString:aKey]) {
+			aTypeIndex = [elementTypeArray indexOfObject:typeName];
+		}
+	}
+	NSArray *typedArr = [allProductsByType objectForKey:[NSNumber numberWithInt:aTypeIndex]];
 	return typedArr;
 }
 

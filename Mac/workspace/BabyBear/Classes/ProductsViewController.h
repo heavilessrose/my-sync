@@ -11,8 +11,9 @@
 #import "Product.h"
 #import "ProductCell.h"
 #import "ImageDownloader.h"
+#import "ProductsDatasourceProtocol.h"
 
-@interface ProductsViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, 
+@interface ProductsViewController : UITableViewController <UITableViewDelegate, 
 UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 	
     NSMutableDictionary *imageDownloadsInProgress;  // the set of IconDownloader objects for each product
@@ -26,7 +27,11 @@ UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 	
 	IBOutlet ProductCell	*tmpProductCell;
 	
-	NSMutableArray		*productTypeArr;
+	//NSMutableArray		*productTypeArr;
+	
+	
+	UITableView *theTableView;
+	id<ProductsDatasource, UITableViewDataSource> theDataSource;
 }
 
 
@@ -39,4 +44,11 @@ UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 @property (nonatomic, retain) NSMutableData			*productsData;
 
 @property (nonatomic, retain) NSMutableArray		*productTypeArr;
+
+
+@property (nonatomic, retain) UITableView *theTableView;
+@property (nonatomic, retain) id<ProductsDatasource, UITableViewDataSource> theDataSource;
+
+
+- (id)initWithDataSource:(Class)aDataSourceClass;
 @end

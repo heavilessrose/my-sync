@@ -203,7 +203,7 @@
 				A3DC69091213BFEB00241311 /* network */,
 				A3DC69081213BFDE00241311 /* parser */,
 				A3A874C0121A69D9006F46A9 /* Utils */,
-				A3C7BF3B122F5F4C009B3ABC /* datasource */,
+				A3C7BF3B122F5F4C009B3ABC /* data model */,
 				A323ADB8122E4B8200BD2217 /* viewControllers */,
 				A3C7BE21122F3AEE009B3ABC /* cells */,
 			);
@@ -378,7 +378,7 @@
 			name = cells;
 			sourceTree = "<group>";
 		};
-		A3C7BF3B122F5F4C009B3ABC /* datasource */ = {
+		A3C7BF3B122F5F4C009B3ABC /* data model */ = {
 			isa = PBXGroup;
 			children = (
 				A3C7BF60122F8ACA009B3ABC /* ProductsDatasourceProtocol.h */,
@@ -387,7 +387,7 @@
 				A3C7BF67122F8FD5009B3ABC /* AllProducts.h */,
 				A3C7BF68122F8FD5009B3ABC /* AllProducts.m */,
 			);
-			name = datasource;
+			name = "data model";
 			sourceTree = "<group>";
 		};
 		A3D82B76121BC91E00E46EE9 /* tinyxml */ = {

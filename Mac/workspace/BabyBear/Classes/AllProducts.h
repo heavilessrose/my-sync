@@ -14,12 +14,18 @@
 	NSMutableDictionary *allProductsByType;		// key: type
 	NSMutableDictionary *allProductsByPrice;	// key: price
 	
-	NSArray				*elementTypeIndexArray;
+	NSArray				*elementTypeArray;		// type name string array indexed by "Ptype"
+	NSArray				*typeNameIndexArray;
 	NSMutableDictionary *typeIndexesDict;		// unique type characters (for the type index table)
 }
 
-@property (nonatomic, retain) NSMutableDictionary *allProductsByName;	
-@property (nonatomic, retain) NSMutableDictionary *allProductsByType;
-@property (nonatomic, retain) NSMutableDictionary *allProductsByPrice;
+@property (nonatomic, retain) NSArray				*typeNameIndexArray;
+@property (nonatomic, retain) NSArray				*elementTypeArray;
+@property (nonatomic, retain) NSMutableDictionary	*allProductsByName;	
+@property (nonatomic, retain) NSMutableDictionary	*allProductsByType;
+@property (nonatomic, retain) NSMutableDictionary	*allProductsByPrice;
 
++ (AllProducts *)sharedAllProducts;
+// return an array of elements for an type (ie home, travel, gift, ...)
+- (NSArray *)elementsWithType:(NSString *)aKey;
 @end

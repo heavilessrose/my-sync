@@ -14,6 +14,7 @@
 #import "StoresViewController.h"
 #import "FavoritesViewController.h"
 #import "CartViewController.h"
+#import "ProductsSortedByTypeDatasource.h";
 
 @interface BabyBearAppDelegate ()
 @property (nonatomic, assign) NSInteger	networkingCount;
@@ -21,13 +22,13 @@
 
 @implementation BabyBearAppDelegate
 
-
+/*
 + (void)initialize
 // 在此做一些初始化工作
 {
 	if ([self class] == [BabyBearAppDelegate class]) {
-        NSString *      initialDefaultsPath;
-        NSDictionary *  initialDefaults;
+        NSString *initialDefaultsPath;
+        NSDictionary *initialDefaults;
 		
         initialDefaultsPath = [[NSBundle mainBundle] pathForResource:@"InitialDefaults" ofType:@"plist"];
         assert(initialDefaultsPath != nil);
@@ -52,6 +53,7 @@
         [[NSUserDefaults standardUserDefaults] registerDefaults:initialDefaults];
     }
 }
+ */
 
 + (BabyBearAppDelegate *)sharedAppDelegate
 {
@@ -80,7 +82,9 @@
 	NSLog(@"%@", self.tabs);
 	self.tabs = [[[UITabBarController alloc] init] autorelease];
 	FeaturedViewController *featureVC = [[[FeaturedViewController alloc] init] autorelease];
-	ProductsViewController *productsVC = [[[ProductsViewController alloc] init] autorelease];
+	
+	
+	ProductsViewController *productsVC = [[[ProductsViewController alloc] initWithDataSource:[ProductsSortedByTypeDatasource class]] autorelease];
 	StoresViewController *storesVC = [[[StoresViewController alloc] init] autorelease];
 	FavoritesViewController *favoritesVC = [[[FavoritesViewController alloc] init] autorelease];
 	CartViewController *cartVC = [[[CartViewController alloc] init] autorelease];

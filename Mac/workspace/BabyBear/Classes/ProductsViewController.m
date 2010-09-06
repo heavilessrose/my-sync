@@ -44,13 +44,20 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+@synthesize theTableView, theDataSource;
 @synthesize isProductsFetched;
 
-- (id)init
+- (id)initWithDataSource:(Class)aDataSourceClass
 {
-	if (self = [super init]) {
-		self.productTypeArr = [NSMutableArray array];
+	if ([self init]) {
+		id<ProductsDatasource, UITableViewDataSource> aDataSource = [[aDataSourceClass alloc] init];
+		self.theDataSource = aDataSource;
+		[aDataSource release];
+		
+		//self.productTypeArr = [NSMutableArray array];
 		self.title = NSLocalizedString(@"Products", nil);
+		self.tableView.delegate = self;
+		self.tableView.dataSource = theDataSource;
 		
 		//UIImage* anImage = [UIImage imageNamed:@"MyViewControllerImage.png"];
 		UITabBarItem* barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Products", nil) image:nil tag:4561];
@@ -59,6 +66,11 @@
 	}
 	return self;
 }
+
+//- (void)loadView
+//{
+//	
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -114,7 +126,7 @@
 
 #pragma mark -
 #pragma mark Table view data source
-
+/*
 @synthesize productTypeArr;
 @synthesize tmpProductCell;
 
@@ -134,15 +146,15 @@
 		default:
 			break;
 	}
-	/*
-	int count = [products count];
-	
-	// return enough rows to fill the screen
-    if (count == 0) {
-        return kCustomRowCount;
-    }
-    return count;
-	 */
+ 
+//	int count = [products count];
+//	
+//	// return enough rows to fill the screen
+//    if (count == 0) {
+//        return kCustomRowCount;
+//    }
+//    return count;
+ 
     return count;
 }
 
@@ -207,45 +219,6 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark index
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -257,19 +230,13 @@
 {
 	return [productTypeArr objectAtIndex:section];
 }
-/*
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-	
-}
- */
-
+*/
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     // Navigation logic may go here. Create and push another view controller.
 	
-	//ProductDetailViewConctroller *detailViewController = [[ProductDetailViewConctroller alloc] initWithNibName:@"ProductDetailViewConctroller" bundle:nil];
 	ProductDetailViewConctroller *detailViewController = [[ProductDetailViewConctroller alloc] 
 														  initWithProduct:[products objectAtIndex:[indexPath row]]];
 	if (detailViewController) {
@@ -297,9 +264,9 @@
     [alertView release];
 }
 
-- (void)handleLoadedProducts:(NSArray *)loadedProducts
+- (void)handleLoadedProducts:(NSDictionary *)loadedProducts
 {
-    [self.products addObjectsFromArray:loadedProducts];
+    //[self.products addObjectsFromArray:loadedProducts];
     
     // tell our table view to reload its data, now that parsing has completed
     [self.tableView  reloadData];
@@ -386,8 +353,9 @@
 
 - (void)dealloc
 {
+	[theDataSource release];
 	[tmpProductCell release];
-	[productTypeArr release];
+	//[productTypeArr release];
 	//[tableView release];
 	
 	[products release];
@@ -439,7 +407,7 @@
 {
     ImageDownloader *imgDownloader = [imageDownloadsInProgress objectForKey:indexPath];
     if (imgDownloader != nil) {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:imgDownloader.indexPathInTableView];
+        UITableViewCell *cell = [theDataSource cellForRowAtIndexPath:imgDownloader.indexPathInTableView];
         
         // Display the newly loaded image
         cell.imageView.image = imgDownloader.product.productIcon;
@@ -476,7 +444,7 @@
 	
 }
 
-- (void)xmlDidFinishParsing:(NSArray *)aProductList
+- (void)xmlDidFinishParsing:(NSDictionary *)aProductList
 {
 	NSLog(@"xmlDidFinishParsing");
     [self performSelectorOnMainThread:@selector(handleLoadedProducts:) withObject:aProductList waitUntilDone:NO];
