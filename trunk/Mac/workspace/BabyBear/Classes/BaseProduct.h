@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+// name string indexed by Ptype
+#define type_home		(@"home")
+#define type_office		(@"office")
+#define type_travel		(@"travel")
+#define type_clothing	(@"clothing")
+#define type_gift		(@"gift")
+#define type_tuan		(@"tuan")
+#define type_other		(@"other")
+
 typedef enum product_type {
 	Ptype_Home = 0, // 家居
 	Ptype_Office,	// 文具
@@ -17,6 +26,9 @@ typedef enum product_type {
 	Ptype_Tuan,		// 团购
 	Ptype_Other,
 } Ptype;
+
+
+
 /*
 // 将product预览图index与url对应
 @interface ProductImageUrlWithIndex : NSObject

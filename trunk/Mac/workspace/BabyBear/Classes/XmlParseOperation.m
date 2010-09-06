@@ -8,6 +8,7 @@
 
 #import "XmlParseOperation.h"
 #import "ProductsViewController.h"
+#import "AllProducts.h"
 #import "BaseProduct.h"
 #import "Review.h"
 #import "Store.h"
@@ -111,7 +112,8 @@
 	if (![self isCancelled])
     {
         // notify our AppDelegate that the parsing is complete
-        [self.delegate xmlDidFinishParsing:self.workingDictionary];
+        //[self.delegate xmlDidFinishParsing:self.workingDictionary];
+        [self.delegate xmlDidFinishParsing:[AllProducts sharedAllProducts].allProductsByType];
     }
     
     self.workingDictionary = nil;
@@ -266,6 +268,13 @@
 			else if ([elementName isEqualToString:kProduct]) {
 				NSLog(@"%@", workingProduct);
 				storingCharacterData = NO;
+				
+				NSLog(@"+++ %@", [AllProducts sharedAllProducts].allProductsByType);
+				NSMutableArray *aProductArr = [[AllProducts sharedAllProducts].allProductsByType 
+											   objectForKey:[NSNumber numberWithInt:workingProduct.ptype]];
+				[aProductArr addObject:workingProduct];
+				
+				/*
 				int type = -1;
 				NSMutableArray *aTypeArr = nil;
 				NSArray *curKeys = [workingDictionary allKeys];
@@ -281,6 +290,7 @@
 				}
 				
 				[aTypeArr addObject:workingProduct];
+				 */
 				self.workingProduct = nil;
 			}
         }
