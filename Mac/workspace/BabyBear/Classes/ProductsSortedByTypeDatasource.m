@@ -29,7 +29,7 @@
 
 - (BOOL)showDisclosureIcon
 {
-	return NO;
+	return YES;
 }
 - (UIImage *)tabBarImage
 {
@@ -54,16 +54,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *CellID = @"ProductCell";
+	Product *theProduct = (Product *)[self productForIndexPath:indexPath];
 	ProductCell *cell = (ProductCell *)[tableView dequeueReusableCellWithIdentifier:CellID];
 	if (cell == nil) {
-		cell = [[[ProductCell alloc] initWithStyle:UITableViewStylePlain reuseIdentifier:CellID] autorelease];
+		cell = [[[ProductCell alloc] initWithStyle:UITableViewStylePlain 
+								   reuseIdentifier:CellID 
+										   product:theProduct 
+							 cellForRowAtIndexPath:indexPath] autorelease];
 	}
 	
 	if ([self showDisclosureIcon]) {
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
-	BaseProduct *test = [self productForIndexPath:indexPath];
-	cell.product = (Product *)test;
+	cell.product = (Product *)theProduct;
 	
 	return cell;
 }

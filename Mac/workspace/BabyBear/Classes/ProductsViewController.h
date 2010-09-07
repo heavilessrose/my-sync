@@ -29,7 +29,6 @@ UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 	
 	//NSMutableArray		*productTypeArr;
 	
-	
 	UITableView *theTableView;
 	id<ProductsDatasource, UITableViewDataSource> theDataSource;
 }
@@ -44,7 +43,6 @@ UIScrollViewDelegate, XmlParseOperationDelegate, ImageDownloaderDelegate> {
 @property (nonatomic, retain) NSMutableData			*productsData;
 
 @property (nonatomic, retain) NSMutableArray		*productTypeArr;
-
 
 @property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) id<ProductsDatasource, UITableViewDataSource> theDataSource;

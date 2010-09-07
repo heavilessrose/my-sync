@@ -56,8 +56,8 @@
 		
 		//self.productTypeArr = [NSMutableArray array];
 		self.title = NSLocalizedString(@"Products", nil);
-		self.tableView.delegate = self;
-		self.tableView.dataSource = theDataSource;
+		//self.tableView.delegate = self;
+		//self.dataSource = theDataSource;
 		
 		//UIImage* anImage = [UIImage imageNamed:@"MyViewControllerImage.png"];
 		UITabBarItem* barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Products", nil) image:nil tag:4561];
@@ -67,10 +67,28 @@
 	return self;
 }
 
-//- (void)loadView
-//{
-//	
-//}
+- (void)loadView
+{
+	UITableView *table = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] 
+													  style:[theDataSource tableViewStyle]];
+	
+	// set the autoresizing mask so that the table will always fill the view
+	//table.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
+	
+	// set the cell separator to a single straight line.
+	table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+	
+	// set the tableview delegate to this object and the datasource to the datasource which has already been set
+	table.delegate = self;
+	table.dataSource = theDataSource;
+	
+	table.sectionIndexMinimumDisplayRowCount = 7;
+	
+	// set the tableview as the controller view
+    self.theTableView = table;
+	self.view = table;
+	[table release];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -269,7 +287,7 @@
     //[self.products addObjectsFromArray:loadedProducts];
     
     // tell our table view to reload its data, now that parsing has completed
-    [self.tableView  reloadData];
+    [self.theTableView  reloadData];
 }
 
 #pragma mark NSURLConnection delegate methods
@@ -390,7 +408,7 @@
 - (void)loadImagesForOnscreenRows
 {
     if ([self.products count] > 0) {
-        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+        NSArray *visiblePaths = [self.theTableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths) {
             Product *aProduct = [self.products objectAtIndex:indexPath.row];
             
