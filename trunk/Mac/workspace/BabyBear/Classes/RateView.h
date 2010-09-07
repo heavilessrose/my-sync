@@ -28,8 +28,8 @@
 	
     id<RateViewDelegate> _delegate;
 	
-	IBOutlet UIView		*starBackView;
-	IBOutlet UILabel	*reviewCountLabel;
+	UIView		*starBackView;
+	UILabel	*reviewCountLabel;
 }
 
 @property (retain) UIImage *notSelectedImage;
@@ -41,6 +41,6 @@
 @property (assign) id<RateViewDelegate> delegate;
 @property int leftMargin;
 
-@property (nonatomic, retain) IBOutlet UIView	*starBackView;
-@property (nonatomic, retain) IBOutlet UILabel	*reviewCountLabel;
+@property (nonatomic, retain) UIView	*starBackView;
+@property (nonatomic, retain) UILabel	*reviewCountLabel;
 @end

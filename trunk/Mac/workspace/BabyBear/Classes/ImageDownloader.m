@@ -39,7 +39,6 @@
 	NSString *urlStr = nil;
 	switch (aDt) {
 		case DT_PRODUCT_ICON:
-			//index = -1;
 			urlStr = product.pUrlIcon;
 			break;
 		case DT_PRODUCT_IMG:

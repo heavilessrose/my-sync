@@ -22,7 +22,6 @@
 
 @implementation BabyBearAppDelegate
 
-/*
 + (void)initialize
 // 在此做一些初始化工作
 {
@@ -53,7 +52,6 @@
         [[NSUserDefaults standardUserDefaults] registerDefaults:initialDefaults];
     }
 }
- */
 
 + (BabyBearAppDelegate *)sharedAppDelegate
 {
@@ -68,22 +66,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#ifdef USE_XIB
-#pragma unused(application)
-#pragma unused(launchOptions)
-    assert(self.window != nil);
-    assert(self.tabs != nil);
-	
-    [self.window addSubview:self.tabs.view];
-    
-    self.tabs.selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentTab"];
-    
-#else
-	NSLog(@"%@", self.tabs);
+//#ifdef USE_XIB
+//#pragma unused(application)
+//#pragma unused(launchOptions)
+//    assert(self.window != nil);
+//    assert(self.tabs != nil);
+//	
+//    [self.window addSubview:self.tabs.view];
+//    
+//    self.tabs.selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentTab"];
+//    
+//#else
 	self.tabs = [[[UITabBarController alloc] init] autorelease];
 	FeaturedViewController *featureVC = [[[FeaturedViewController alloc] init] autorelease];
-	
-	
 	ProductsViewController *productsVC = [[[ProductsViewController alloc] initWithDataSource:[ProductsSortedByTypeDatasource class]] autorelease];
 	StoresViewController *storesVC = [[[StoresViewController alloc] init] autorelease];
 	FavoritesViewController *favoritesVC = [[[FavoritesViewController alloc] init] autorelease];
@@ -101,10 +96,9 @@
 	
 	// Add the tab bar controller's current view as a subview of the window
 	self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-	NSLog(@"tabs.view: %@", tabs.view);
 	[window addSubview:tabs.view];
 	[window makeKeyAndVisible];
-#endif
+//#endif
 	
 	return YES;
 }

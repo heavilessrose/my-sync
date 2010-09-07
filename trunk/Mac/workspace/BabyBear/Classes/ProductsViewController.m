@@ -18,8 +18,9 @@
 #endif
 
 @interface ProductsViewController ()
-@property (nonatomic, retain) ProductCell	*tmpProductCell;
+//@property (nonatomic, retain) ProductCell	*tmpProductCell;
 @property (nonatomic, assign) BOOL			isProductsFetched;
+@property (nonatomic, assign) NSIndexPath	*indexSelected;
 
 - (void)startImgDownload:(Product *)aProduct forIndexPath:(NSIndexPath *)indexPath;
 @end
@@ -44,20 +45,23 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-@synthesize theTableView, theDataSource;
+@synthesize tableView, dataSource;
 @synthesize isProductsFetched;
 
 - (id)initWithDataSource:(Class)aDataSourceClass
 {
 	if ([self init]) {
+		tableView = nil;
+		
 		id<ProductsDatasource, UITableViewDataSource> aDataSource = [[aDataSourceClass alloc] init];
-		self.theDataSource = aDataSource;
+		aDataSource.controller = self;
+		self.dataSource = aDataSource;
 		[aDataSource release];
 		
 		//self.productTypeArr = [NSMutableArray array];
 		self.title = NSLocalizedString(@"Products", nil);
 		//self.tableView.delegate = self;
-		//self.dataSource = theDataSource;
+		//self.dataSource = dataSource;
 		
 		//UIImage* anImage = [UIImage imageNamed:@"MyViewControllerImage.png"];
 		UITabBarItem* barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Products", nil) image:nil tag:4561];
@@ -70,27 +74,38 @@
 - (void)loadView
 {
 	UITableView *table = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] 
-													  style:[theDataSource tableViewStyle]];
-	
-	// set the autoresizing mask so that the table will always fill the view
-	//table.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
-	
-	// set the cell separator to a single straight line.
-	table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-	
-	// set the tableview delegate to this object and the datasource to the datasource which has already been set
-	table.delegate = self;
-	table.dataSource = theDataSource;
-	
-	table.sectionIndexMinimumDisplayRowCount = 7;
+													  style:[dataSource tableViewStyle]];
 	
 	// set the tableview as the controller view
-    self.theTableView = table;
-	self.view = table;
+    self.tableView = table;
+	// set the tableview delegate to this object and the datasource to the datasource which has already been set
+	self.tableView.delegate = self;
+	self.tableView.dataSource = dataSource;
+	// set the autoresizing mask so that the table will always fill the view
+	self.tableView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
+	
+	// set the cell separator to a single straight line.
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+	self.tableView.separatorColor = [UIColor redColor];
+	//self.tableView.sectionFooterHeight = 20;
+	//self.tableView.sectionHeaderHeight = 20;
+	
+	// 造成index view不显示
+	//self.tableView.sectionIndexMinimumDisplayRowCount = 10;
+	
+	//[self.tableView reloadData];
+	self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+	self.view.backgroundColor = [UIColor redColor];
+	CGRect newframe = self.tableView.frame;
+	newframe.origin.y = 0;
+	[self.tableView setFrame:newframe];
+	[self.view addSubview:self.tableView];
+	[self.view release];
 	[table release];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -99,17 +114,24 @@
 	self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
+	if (self.indexSelected) {
+		[self.tableView deselectRowAtIndexPath:self.indexSelected animated:YES];
+	}
+	
+	// force to reload
+	//[tableView reloadSectionIndexTitles];
+	[tableView reloadData];
 }
-*/
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
 	
+	[self.tableView flashScrollIndicators];
 	if (!isProductsFetched) {
-		self.products = [NSMutableArray array];
+		//self.products = [NSMutableArray array];
 		
 		NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kProductsFeedUrl]];
 		self.productsFeedConnection = [[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self] autorelease];
@@ -251,16 +273,19 @@
 */
 #pragma mark Table view delegate
 
+@synthesize indexSelected;
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-	
+	BaseProduct *aProduct = [dataSource productForIndexPath:indexPath];
 	ProductDetailViewConctroller *detailViewController = [[ProductDetailViewConctroller alloc] 
-														  initWithProduct:[products objectAtIndex:[indexPath row]]];
+														  initWithProduct:aProduct];
 	if (detailViewController) {
 		[self.navigationController pushViewController:detailViewController animated:YES];
 		[detailViewController release];
 	}
+	self.indexSelected = indexPath;
 }
 
 
@@ -268,7 +293,7 @@
 #pragma mark Downloading Feed
 
 
-@synthesize products, queue, productsFeedConnection, productsData;
+@synthesize queue, productsFeedConnection, productsData;
 
 - (void)handleError:(NSError *)aErr
 {
@@ -287,7 +312,7 @@
     //[self.products addObjectsFromArray:loadedProducts];
     
     // tell our table view to reload its data, now that parsing has completed
-    [self.theTableView  reloadData];
+    [self.tableView  reloadData];
 }
 
 #pragma mark NSURLConnection delegate methods
@@ -371,12 +396,8 @@
 
 - (void)dealloc
 {
-	[theDataSource release];
-	[tmpProductCell release];
-	//[productTypeArr release];
-	//[tableView release];
+	[dataSource release];
 	
-	[products release];
 	[queue release];
 	
 	[productsFeedConnection release];
@@ -407,10 +428,11 @@
 // this method is used in case the user scrolled into a set of cells that don't have their app icons yet
 - (void)loadImagesForOnscreenRows
 {
-    if ([self.products count] > 0) {
-        NSArray *visiblePaths = [self.theTableView indexPathsForVisibleRows];
+	int count = [dataSource allDatasCount];
+    if (count > 0) {
+        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths) {
-            Product *aProduct = [self.products objectAtIndex:indexPath.row];
+            Product *aProduct = (Product *)[dataSource productForIndexPath:indexPath];
             
             if (!aProduct.productIcon) {
 				// avoid the app icon download if the app already has an icon
@@ -425,10 +447,11 @@
 {
     ImageDownloader *imgDownloader = [imageDownloadsInProgress objectForKey:indexPath];
     if (imgDownloader != nil) {
-        UITableViewCell *cell = [theDataSource cellForRowAtIndexPath:imgDownloader.indexPathInTableView];
+        UITableViewCell *cell = [dataSource tableView:tableView cellForRowAtIndexPath:imgDownloader.indexPathInTableView];
         
         // Display the newly loaded image
         cell.imageView.image = imgDownloader.product.productIcon;
+		[tableView reloadData];
     }
 }
 
@@ -464,7 +487,6 @@
 
 - (void)xmlDidFinishParsing:(NSDictionary *)aProductList
 {
-	NSLog(@"xmlDidFinishParsing");
     [self performSelectorOnMainThread:@selector(handleLoadedProducts:) withObject:aProductList waitUntilDone:NO];
     
     self.queue = nil;   // we are finished with the queue and our ParseOperation

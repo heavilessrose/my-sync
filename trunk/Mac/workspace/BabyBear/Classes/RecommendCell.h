@@ -17,7 +17,7 @@
 	UIImageView		*imgView;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel			*title;
-@property (nonatomic, retain) IBOutlet UIImageView		*imgView;
+@property (nonatomic, retain) UILabel			*title;
+@property (nonatomic, retain) UIImageView		*imgView;
 @property (nonatomic, assign) Product					*item;
 @end

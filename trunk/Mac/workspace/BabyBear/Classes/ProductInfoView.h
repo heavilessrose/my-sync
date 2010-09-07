@@ -11,11 +11,11 @@
 
 @interface ProductInfoView : UIView <RateViewDelegate> {
 	NSString *detailInfo;
-	IBOutlet RateView *rateView;
+	RateView *rateView;
 }
 
 @property (nonatomic, retain) NSString *detailInfo;
-@property (nonatomic, retain) IBOutlet RateView *rateView;
+@property (nonatomic, retain) RateView *rateView;
 
 + (CGRect)calcFrame:(NSString *)theDetailInfo frame:(CGRect)theFrame;
 - (id)initWithDetailInfo:(NSString *)theDetailInfo andFrame:(CGRect)frame;

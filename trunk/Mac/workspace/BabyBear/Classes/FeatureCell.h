@@ -18,8 +18,8 @@
 	Product		*item;
 }
 
-@property (nonatomic, retain) IBOutlet NSString		*name;
-@property (nonatomic, retain) IBOutlet NSString		*briefInfo;
-@property (nonatomic, retain) IBOutlet UIImage		*img;
-@property (nonatomic, assign) Product				*item;
+@property (nonatomic, retain) NSString		*name;
+@property (nonatomic, retain) NSString		*briefInfo;
+@property (nonatomic, retain) UIImage		*img;
+@property (nonatomic, assign) Product		*item;
 @end

@@ -20,8 +20,8 @@
 
 @interface FeaturedViewController : UITableViewController {
 	NSArray					*entries; // the main data model for our UITableView
-	IBOutlet RecommendCell	*tmpRecomCell;
-	IBOutlet FeatureCell	*tmpFeatureCell;
+	RecommendCell	*tmpRecomCell;
+	FeatureCell	*tmpFeatureCell;
 }
 
 @property (nonatomic, retain) NSArray			*entries;

@@ -22,6 +22,7 @@
 
 @synthesize elementTypeArray, typeNameIndexArray;
 @synthesize allProductsByName, allProductsByType, allProductsByPrice;
+@synthesize allProductsCount;
 
 // we use the singleton approach, one collection for the entire application
 static AllProducts *sharedAllProductsInstance = nil;
@@ -78,6 +79,7 @@ static AllProducts *sharedAllProductsInstance = nil;
 - init
 {
 	if (self = [super init]) {
+		self.allProductsCount = 0;
 		[self setupElementsArray];
 	}
 	return self;
