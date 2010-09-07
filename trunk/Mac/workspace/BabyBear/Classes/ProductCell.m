@@ -11,11 +11,18 @@
 
 @implementation ProductCell
 
-@synthesize product;
+@synthesize product, delegate;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithStyle:(UITableViewCellStyle)style 
+	reuseIdentifier:(NSString *)reuseIdentifier 
+			product:(Product *)aProduct cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
+		self.product = aProduct;
+		self.textLabel.text = product.pname;
+        self.detailTextLabel.text = product.pdesc;
+		
     }
     return self;
 }
