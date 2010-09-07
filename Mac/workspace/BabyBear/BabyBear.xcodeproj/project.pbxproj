@@ -24,7 +24,6 @@
 		A315E7C9121D23F900D766F2 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = A315E7C8121D23F900D766F2 /* Review.m */; };
 		A323AD94122E241C00BD2217 /* Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = A323AD93122E241C00BD2217 /* Animations.m */; };
 		A323ADB4122E266300BD2217 /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A323ADB3122E266300BD2217 /* RateView.m */; };
-		A323ADB6122E48E900BD2217 /* RateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A323ADB5122E48E900BD2217 /* RateView.xib */; };
 		A323ADBB122E4BBB00BD2217 /* ReviewDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A323ADBA122E4BBB00BD2217 /* ReviewDetailController.m */; };
 		A323ADBE122E4C2300BD2217 /* ReviewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = A323ADBD122E4C2300BD2217 /* ReviewDatasource.m */; };
 		A323ADC7122E52A200BD2217 /* ProductInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A323ADC6122E52A200BD2217 /* ProductInfoView.m */; };
@@ -56,16 +55,9 @@
 		A3D82C20121BDCE500E46EE9 /* xmltest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3D82C1F121BDCE500E46EE9 /* xmltest.cpp */; };
 		A3DA08011213D20C001DF575 /* xml.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA07FE1213D20C001DF575 /* xml.m */; };
 		A3DA082D1213E839001DF575 /* XmlParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA082C1213E839001DF575 /* XmlParseOperation.m */; };
-		A3DDC425121F821C00FC28E3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DDC424121F821C00FC28E3 /* MainWindow.xib */; };
 		A3EDE8A7121E5AF10017D54F /* ProductDetailViewConctroller.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EDE8A5121E5AF10017D54F /* ProductDetailViewConctroller.m */; };
-		A3EDE92F121E64970017D54F /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE925121E64960017D54F /* CartCell.xib */; };
-		A3EDE930121E64970017D54F /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE926121E64960017D54F /* FavoriteCell.xib */; };
-		A3EDE931121E64970017D54F /* FeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE927121E64970017D54F /* FeatureCell.xib */; };
 		A3EDE932121E64970017D54F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE929121E64970017D54F /* icon.png */; };
 		A3EDE933121E64970017D54F /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE92A121E64970017D54F /* Placeholder.png */; };
-		A3EDE935121E64970017D54F /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE92C121E64970017D54F /* ProductCell.xib */; };
-		A3EDE936121E64970017D54F /* ProductDetailViewConctroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE92D121E64970017D54F /* ProductDetailViewConctroller.xib */; };
-		A3EDE937121E64970017D54F /* RecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EDE92E121E64970017D54F /* RecommendCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,7 +98,6 @@
 		A323AD93122E241C00BD2217 /* Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animations.m; sourceTree = "<group>"; };
 		A323ADB2122E266300BD2217 /* RateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateView.h; sourceTree = "<group>"; };
 		A323ADB3122E266300BD2217 /* RateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateView.m; sourceTree = "<group>"; };
-		A323ADB5122E48E900BD2217 /* RateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateView.xib; sourceTree = "<group>"; };
 		A323ADB9122E4BBB00BD2217 /* ReviewDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewDetailController.h; sourceTree = "<group>"; };
 		A323ADBA122E4BBB00BD2217 /* ReviewDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewDetailController.m; sourceTree = "<group>"; };
 		A323ADBC122E4C2300BD2217 /* ReviewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewDatasource.h; sourceTree = "<group>"; };
@@ -163,17 +154,10 @@
 		A3DA08001213D20C001DF575 /* xmlgb.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; path = xmlgb.h; sourceTree = "<group>"; };
 		A3DA082B1213E839001DF575 /* XmlParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParseOperation.h; sourceTree = "<group>"; };
 		A3DA082C1213E839001DF575 /* XmlParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParseOperation.m; sourceTree = "<group>"; };
-		A3DDC424121F821C00FC28E3 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		A3EDE8A4121E5AF10017D54F /* ProductDetailViewConctroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewConctroller.h; sourceTree = "<group>"; };
 		A3EDE8A5121E5AF10017D54F /* ProductDetailViewConctroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewConctroller.m; sourceTree = "<group>"; };
-		A3EDE925121E64960017D54F /* CartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
-		A3EDE926121E64960017D54F /* FavoriteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCell.xib; sourceTree = "<group>"; };
-		A3EDE927121E64970017D54F /* FeatureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCell.xib; sourceTree = "<group>"; };
 		A3EDE929121E64970017D54F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		A3EDE92A121E64970017D54F /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
-		A3EDE92C121E64970017D54F /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
-		A3EDE92D121E64970017D54F /* ProductDetailViewConctroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailViewConctroller.xib; sourceTree = "<group>"; };
-		A3EDE92E121E64970017D54F /* RecommendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,15 +455,7 @@
 		A3EDE924121E64960017D54F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A3DDC424121F821C00FC28E3 /* MainWindow.xib */,
-				A3EDE925121E64960017D54F /* CartCell.xib */,
-				A3EDE926121E64960017D54F /* FavoriteCell.xib */,
-				A3EDE927121E64970017D54F /* FeatureCell.xib */,
 				A3EDE928121E64970017D54F /* images */,
-				A3EDE92C121E64970017D54F /* ProductCell.xib */,
-				A3EDE92D121E64970017D54F /* ProductDetailViewConctroller.xib */,
-				A3EDE92E121E64970017D54F /* RecommendCell.xib */,
-				A323ADB5122E48E900BD2217 /* RateView.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -542,16 +518,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A393A7E41212A479004E6374 /* InitialDefaults.plist in Resources */,
-				A3EDE92F121E64970017D54F /* CartCell.xib in Resources */,
-				A3EDE930121E64970017D54F /* FavoriteCell.xib in Resources */,
-				A3EDE931121E64970017D54F /* FeatureCell.xib in Resources */,
 				A3EDE932121E64970017D54F /* icon.png in Resources */,
 				A3EDE933121E64970017D54F /* Placeholder.png in Resources */,
-				A3EDE935121E64970017D54F /* ProductCell.xib in Resources */,
-				A3EDE936121E64970017D54F /* ProductDetailViewConctroller.xib in Resources */,
-				A3EDE937121E64970017D54F /* RecommendCell.xib in Resources */,
-				A3DDC425121F821C00FC28E3 /* MainWindow.xib in Resources */,
-				A323ADB6122E48E900BD2217 /* RateView.xib in Resources */,
 				A323AE5E122E6BF900BD2217 /* star_half.png in Resources */,
 				A323AE5F122E6BF900BD2217 /* star.png in Resources */,
 				A33D8531122E7AED0038FFDF /* star_empty.png in Resources */,

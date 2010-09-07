@@ -13,14 +13,14 @@
 	UITabBarController	*tabs;
     NSInteger			networkingCount;
 }
-
-#ifdef USE_XIB
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabs;
-#else
+//
+//#ifdef USE_XIB
+//@property (nonatomic, retain) UIWindow *window;
+//@property (nonatomic, retain) UITabBarController *tabs;
+//#else
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UITabBarController *tabs;
-#endif
+//#endif
 
 + (BabyBearAppDelegate *)sharedAppDelegate;
 

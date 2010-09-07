@@ -17,7 +17,7 @@
 
 @property (nonatomic, assign) id<XmlParseOperationDelegate>	delegate;
 @property (nonatomic, retain) NSData				*dataToParse;
-@property (nonatomic, retain) NSMutableDictionary	*workingDictionary;
+//@property (nonatomic, retain) NSMutableDictionary	*workingDictionary;
 @property (nonatomic, retain) BaseProduct			*workingProduct;
 @property (nonatomic, retain) NSMutableString		*workingPropertyString;
 @property (nonatomic, retain) NSArray				*elementsToParse;
@@ -59,7 +59,7 @@
 
 @implementation XmlParseOperation
 
-@synthesize delegate, dataToParse, workingProduct, workingDictionary, workingPropertyString, elementsToParse, storingCharacterData;
+@synthesize delegate, dataToParse, workingProduct, workingPropertyString, elementsToParse, storingCharacterData;
 @synthesize aReview, aStore;
 
 
@@ -82,7 +82,7 @@
 	[dataToParse release];
     [workingProduct release];
     [workingPropertyString release];
-    [workingDictionary release];
+    //[workingDictionary release];
 	
 //	[aReview release];
 //	[aStore release];
@@ -98,7 +98,7 @@
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	self.workingDictionary = [NSMutableDictionary dictionary];
+	//self.workingDictionary = [NSMutableDictionary dictionary];
     self.workingPropertyString = [NSMutableString string];
     
     // It's also possible to have NSXMLParser download the data, by passing it a URL, but this is not
@@ -113,15 +113,16 @@
     {
         // notify our AppDelegate that the parsing is complete
         //[self.delegate xmlDidFinishParsing:self.workingDictionary];
-        [self.delegate xmlDidFinishParsing:[AllProducts sharedAllProducts].allProductsByType];
+		NSDictionary *allByType = [AllProducts sharedAllProducts].allProductsByType;
+		NSLog(@"parse finished, allProductsByType: %@", allByType);
+        [self.delegate xmlDidFinishParsing:allByType];
     }
     
-    self.workingDictionary = nil;
+    //self.workingDictionary = nil;
     self.workingPropertyString = nil;
     self.dataToParse = nil;
     
     [parser release];
-	
 	[pool release];
 }
 
@@ -273,6 +274,7 @@
 				NSMutableArray *aProductArr = [[AllProducts sharedAllProducts].allProductsByType 
 											   objectForKey:[NSNumber numberWithInt:workingProduct.ptype]];
 				[aProductArr addObject:workingProduct];
+				[AllProducts sharedAllProducts].allProductsCount++;
 				
 				/*
 				int type = -1;

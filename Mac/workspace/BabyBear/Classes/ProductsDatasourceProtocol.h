@@ -19,6 +19,9 @@
 @property (readonly) NSString *navigationBarName;
 @property (readonly) UIImage *tabBarImage;
 
+// as the C in MVC
+@property (nonatomic, assign) id<UITableViewDelegate> controller;
+
 // this property determines the style of table view displayed
 @property (readonly) UITableViewStyle tableViewStyle;
 
@@ -30,6 +33,7 @@
  regardless of the sorting or display technique for the specific datasource
  */
 - (BaseProduct *)productForIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)allDatasCount;
 
 @optional
 

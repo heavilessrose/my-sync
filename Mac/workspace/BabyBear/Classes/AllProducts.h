@@ -17,6 +17,8 @@
 	NSArray				*elementTypeArray;		// type name string array indexed by "Ptype"
 	NSArray				*typeNameIndexArray;
 	NSMutableDictionary *typeIndexesDict;		// unique type characters (for the type index table)
+	
+	NSInteger			allProductsCount;
 }
 
 @property (nonatomic, retain) NSArray				*typeNameIndexArray;
@@ -24,6 +26,8 @@
 @property (nonatomic, retain) NSMutableDictionary	*allProductsByName;	
 @property (nonatomic, retain) NSMutableDictionary	*allProductsByType;
 @property (nonatomic, retain) NSMutableDictionary	*allProductsByPrice;
+
+@property (nonatomic, assign) NSInteger				allProductsCount;
 
 + (AllProducts *)sharedAllProducts;
 // return an array of elements for an type (ie home, travel, gift, ...)

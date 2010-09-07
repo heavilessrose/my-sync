@@ -9,6 +9,7 @@
 #import "ProductsSortedByTypeDatasource.h"
 #import "AllProducts.h"
 #import "ProductCell.h"
+#import "ProductsViewController.h"
 
 
 @implementation ProductsSortedByTypeDatasource
@@ -29,7 +30,7 @@
 
 - (BOOL)showDisclosureIcon
 {
-	return YES;
+	return NO;
 }
 - (UIImage *)tabBarImage
 {
@@ -48,8 +49,27 @@
 	return [aProductArr objectAtIndex:indexPath.row];
 }
 
+- (NSInteger)allDatasCount
+{
+	return [AllProducts sharedAllProducts].allProductsCount;
+}
+
 #pragma mark -
 #pragma mark table data
+
+@synthesize controller;
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return [[AllProducts sharedAllProducts].elementTypeArray count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView  numberOfRowsInSection:(NSInteger)section
+{
+	NSString *aType = [[AllProducts sharedAllProducts].elementTypeArray objectAtIndex:section];
+	NSArray *aTypedArr = [[AllProducts sharedAllProducts] elementsWithType:aType];
+	return [aTypedArr count];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -64,40 +84,49 @@
 	}
 	
 	if ([self showDisclosureIcon]) {
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.accessoryType = UITableViewCellAccessoryNone; //UITableViewCellAccessoryDisclosureIndicator;
 	}
 	cell.product = (Product *)theProduct;
 	
+	// Only load cached images; delay new downloads until scrolling ends
+	if (!theProduct.productIcon) {
+		if (((ProductsViewController *)controller).tableView.dragging == NO && ((ProductsViewController *)controller).tableView.decelerating == NO) {
+			[(ProductsViewController *)controller startImgDownload:theProduct forIndexPath:indexPath];
+		}
+		// if a download is deferred or in progress, return a placeholder image
+		cell.imageView.image = [UIImage imageNamed:@"Placeholder.png"];                
+	}
+	else {
+		cell.imageView.image = theProduct.productIcon;
+	}
 	return cell;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+
+#pragma mark table sections
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [[AllProducts sharedAllProducts].elementTypeArray count];
+	NSString *aType = [[AllProducts sharedAllProducts].elementTypeArray objectAtIndex:section];
+	return aType;
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-	return [AllProducts sharedAllProducts].elementTypeArray;
+	NSArray *types = [AllProducts sharedAllProducts].elementTypeArray;
+	NSLog(@"types: %@", types);
+	return types;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title
 			   atIndex:(NSInteger)index
 {
+	if (index == 0) {
+		// search item
+		[tableView scrollRectToVisible:[[tableView tableHeaderView] bounds] animated:NO];
+		return -1;
+	}
 	return index;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView  numberOfRowsInSection:(NSInteger)section
-{
-	NSString *aType = [[AllProducts sharedAllProducts].elementTypeArray objectAtIndex:section];
-	NSArray *aTypedArr = [[AllProducts sharedAllProducts] elementsWithType:aType];
-	return [aTypedArr count];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	return [[AllProducts sharedAllProducts].elementTypeArray objectAtIndex:section];
-}
-
 
 @end

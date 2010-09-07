@@ -24,7 +24,7 @@
 	id<XmlParseOperationDelegate>	delegate;
     NSData					*dataToParse;
     
-    NSMutableDictionary		*workingDictionary;
+    //NSMutableDictionary		*workingDictionary;
     BaseProduct				*workingProduct;
     NSMutableString			*workingPropertyString;
     NSArray					*elementsToParse;
