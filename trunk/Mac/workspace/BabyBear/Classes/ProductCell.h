@@ -18,6 +18,7 @@
 @property (nonatomic, retain) Product	*product;
 @property (nonatomic, assign) id<UITableViewDelegate> delegate;
 
+- (void)refresh;
 - (id)initWithStyle:(UITableViewCellStyle)style 
 	reuseIdentifier:(NSString *)reuseIdentifier 
 			product:(Product *)aProduct cellForRowAtIndexPath:(NSIndexPath *)indexPath;

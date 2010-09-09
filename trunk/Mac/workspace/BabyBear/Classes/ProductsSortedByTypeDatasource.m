@@ -99,6 +99,7 @@
 	else {
 		cell.imageView.image = theProduct.productIcon;
 	}
+	[cell refresh];
 	return cell;
 }
 

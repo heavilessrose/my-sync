@@ -21,8 +21,7 @@
         // Initialization code
 		self.product = aProduct;
 		self.textLabel.text = product.pname;
-        self.detailTextLabel.text = product.pdesc;
-		
+		self.detailTextLabel.text = product.pdesc;
     }
     return self;
 }
@@ -43,5 +42,10 @@
     [super dealloc];
 }
 
+- (void)refresh
+{
+	self.textLabel.text = product.pname;
+	self.detailTextLabel.text = product.pdesc;
+}
 
 @end
