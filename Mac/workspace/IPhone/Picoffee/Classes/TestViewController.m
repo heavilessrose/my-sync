@@ -12,6 +12,7 @@
 #import "pcProgressView.h"
 #import "UIImage+roundCorner.h"
 #import "TapImage.h"
+#import "pcBalloonView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TestViewController
@@ -41,7 +42,7 @@
     NSNotificationCenter *globalNc = [NSNotificationCenter defaultCenter];
     [globalNc addObserver:self selector:@selector(localeChanged) name:NSCurrentLocaleDidChangeNotification object:nil];
     
-#if 1
+#if 0
 	pcTwoLineAlertView *alert = [[pcTwoLineAlertView alloc] initWithTitle:@"title" 
 																  message:@"message" 
 																 delegate:self 
@@ -108,7 +109,7 @@
 	[self.view addSubview:imgView];
 	[imgView release];
     
-#if 1 // scroll show
+#if 0 // scroll show
     self.imgNameArr_test = [NSArray arrayWithObjects:
                             @"ballmer1.jpg",
                             @"hoff2.jpg",
@@ -139,6 +140,33 @@
     [self.view addSubview:scrollShow];
     [scrollShow release];
     self.view.userInteractionEnabled = YES;
+#endif
+	
+#if 1 // balloon
+	NSString *chatDate = @"2010年 9月 9日 星期四 12时56分29秒 CST";
+	NSString *chatStr = @"Pathfinding can be one of the more complex problems in iPhone game development..4 Pathfinding can be one of the more complex problems in iPhone game development..3 Pathfinding can be one of the more complex problems in iPhone game development..2 Pathfinding can be one of the more complex problems in iPhone game development..1 Pathfinding can be one of the more complex problems in iPhone game development..0";
+	UIView *aChatCell = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+	CGRect rect = aChatCell.bounds;
+	
+    CGRect rcballoon = CGRectZero;
+    rcballoon.origin.x = 30;
+    rcballoon.origin.y = 30;
+    if ([chatStr length] == 0) {
+        rcballoon.size.height = BALLOON_VIEW_MIN_HEIGHT;
+    } else {
+        rcballoon.size.height = (rect.size.height - rcballoon.origin.y - 5);
+    }
+    if (rcballoon.size.height < 33.0)
+		rcballoon.size.height = 33.0;
+	
+    rcballoon.size.width = (rect.size.width - rcballoon.origin.x - 25);
+	
+	pcBalloonView *balloonView = [[pcBalloonView alloc] initWithFrame:rcballoon];
+	[self.view addSubview:balloonView];
+	[balloonView setLabel:chatStr via:chatDate];
+	[balloonView release];
+	
+	[aChatCell release];
 #endif
 }
 
