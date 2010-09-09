@@ -60,10 +60,8 @@
 	
     CGRect scrollRect = CGRectMake(0, ProductInfoRect.size.height, 320, 100);
     CGSize pageContentSize = CGSizeMake(80, 80);
-	self.scrollshow = [[ScrollShowView alloc] initWithFrame:scrollRect pageContentSize:pageContentSize];
+	self.scrollshow = [[ScrollShowView alloc] initWithFrame:scrollRect pageContentSize:pageContentSize pageDelegate:self];
 	scrollshow.backgroundColor = [UIColor darkGrayColor];
-    scrollshow.backShadow = YES;
-    scrollshow.pageDelegate = self;
     scrollshow.pageStyle = PAGESTYLE_PADDING;
     scrollshow.x_padding = 10.0f;
     scrollshow.y_padding = 10.0f;
@@ -216,6 +214,8 @@
 	[infoView release];
 	[scrollshow release];
 	[scrollView release];
+	
+	[product.productImgs removeAllObjects];
 	
     [super dealloc];
 }
