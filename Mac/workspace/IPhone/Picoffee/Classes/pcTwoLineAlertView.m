@@ -73,11 +73,11 @@
 	
 	buttonTop -= 7;
 	buttonTop -= 30;
-	passwordField.frame = CGRectMake(12, buttonTop, self.frame.size.width - 52, 30);
+	passwordField.frame = CGRectMake(12, buttonTop, self.frame.size.width - 53, 30);
 	
 	buttonTop -= 7;
 	buttonTop -= 30;
-	nameField.frame = CGRectMake(12, buttonTop, self.frame.size.width - 52, 30);
+	nameField.frame = CGRectMake(12, buttonTop, self.frame.size.width - 53, 30);
 }
 
 @end

@@ -192,7 +192,7 @@
 #pragma mark -
 - (id)initWithFrame:(CGRect)frame
 {
-    if(self = [super initWithFrame:frame]) {
+    if (self = [super initWithFrame:frame]) {
         _isLayouted = NO;
         self.x_padding = 0.0f;
         self.y_padding = 0.0f;
@@ -205,7 +205,7 @@
 
 - (id)initWithFrame:(CGRect)frame pageContentSize:(CGSize)pSize
 {
-    if(self = [self initWithFrame:frame]) {
+    if (self = [self initWithFrame:frame]) {
         self.pageContentSize = pSize;
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
 		//scrollView.clipsToBounds = NO; // Important, this creates the "preview"
@@ -233,8 +233,8 @@
 
 - (void)layoutSubviews
 {
-    if(!_isLayouted) {
-        if(backShadow){
+    if (!_isLayouted) {
+        if (backShadow) {
             [self showShadow];
         }
         
@@ -243,33 +243,34 @@
         
         self.pages = [[NSMutableArray alloc] initWithCapacity:pageCount];
         
-        for(int i = 0; i < pageCount; i++) {
+        for (int i = 0; i < pageCount; i++) {
             [pages addObject:[NSNull null]];
         }
         [pages release];
         
-        if(pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
+        if (pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
             [scrollView setContentSize:CGSizeMake(pageCount * pageContentSize.width, pageContentSize.height)];
         } else {
             [scrollView setContentSize:CGSizeMake(pageCount * (pageContentSize.width + x_padding * 2), (pageContentSize.height + y_padding * 2))];
         }
         
-        // Load the should visalble pages
-        int vPageCount = 0.0f;
-        if(pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
-            vPageCount = self.frame.size.width / pageContentSize.width + 1;
-        } else {
-            // 不应调整, 应根据宽度调整ContentSize
-            [self adjustPageContentSize];
-            vPageCount = self.frame.size.width / (pageContentSize.width + x_padding * 2) + 1;
-        }
+		// Load the should visalble pages
+		int vPageCount = 0.0f;
+		if (pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
+			vPageCount = self.frame.size.width / pageContentSize.width + 1;
+		} else {
+			// 不应调整, 应根据宽度调整ContentSize
+			[self adjustPageContentSize];
+			vPageCount = self.frame.size.width / (pageContentSize.width + x_padding * 2) + 1;
+		}
+		
 #if 0
-        for(int i = 0; i < vPageCount; i++){
-            [self loadPage:i];
-        }
+		for (int i = 0; i < vPageCount; i++) {
+			[self loadPage:i];
+		}
 #else
-        [self loadPage:0];
-        [self loadPage:1];
+		[self loadPage:0];
+		[self loadPage:1];
 #endif
         _isLayouted = YES;
     }

@@ -39,3 +39,4 @@ typedef enum _SaleType {
 @property (nonatomic, assign) int index;
 
 @end
+

@@ -18,6 +18,7 @@
 		A30B36D212094311001778A8 /* ScrollShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A30B36D112094311001778A8 /* ScrollShowView.m */; };
 		A31C51DB11D1C8A500231EBD /* pcGroupsManagerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */; };
 		A31C51DC11D1C8A500231EBD /* pcGroupsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */; };
+		A31F03F112388AAB0053A1BF /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A31F03F012388AAB0053A1BF /* Utils.m */; };
 		A32B36F411F18D0C00B7CB2B /* UIImage+Resizeable.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B36F311F18D0C00B7CB2B /* UIImage+Resizeable.m */; };
 		A32B370011F18D5B00B7CB2B /* UIImage+roundCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B36FF11F18D5B00B7CB2B /* UIImage+roundCorner.m */; };
 		A32B371311F18F4200B7CB2B /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = A32B371211F18F4200B7CB2B /* test.png */; };
@@ -55,6 +56,8 @@
 		A31C51D811D1C8A500231EBD /* pcGroupsManagerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcGroupsManagerTableCell.m; sourceTree = "<group>"; };
 		A31C51D911D1C8A500231EBD /* pcGroupsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcGroupsManagerViewController.h; sourceTree = "<group>"; };
 		A31C51DA11D1C8A500231EBD /* pcGroupsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pcGroupsManagerViewController.m; sourceTree = "<group>"; };
+		A31F03EF12388AAB0053A1BF /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		A31F03F012388AAB0053A1BF /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		A32B36F211F18D0B00B7CB2B /* UIImage+Resizeable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resizeable.h"; sourceTree = "<group>"; };
 		A32B36F311F18D0C00B7CB2B /* UIImage+Resizeable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resizeable.m"; sourceTree = "<group>"; };
 		A32B36FE11F18D5B00B7CB2B /* UIImage+roundCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+roundCorner.h"; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 				A304DE7C120691A1006E148E /* TimerController.m */,
 				A304DE87120697C1006E148E /* StringUtils.h */,
 				A304DE88120697C1006E148E /* StringUtils.m */,
+				A31F03EF12388AAB0053A1BF /* Utils.h */,
+				A31F03F012388AAB0053A1BF /* Utils.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				A304DE89120697C1006E148E /* StringUtils.m in Sources */,
 				A30B36D212094311001778A8 /* ScrollShowView.m in Sources */,
 				A3FB5D39120BB42700CF5009 /* TapImage.m in Sources */,
+				A31F03F112388AAB0053A1BF /* Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +359,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C936152-E21C-4344-A4A8-A16571B56186";
-				SDKROOT = iphonesimulator3.1.3;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
@@ -368,7 +374,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C936152-E21C-4344-A4A8-A16571B56186";
-				SDKROOT = iphonesimulator3.1.3;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Release;
 		};

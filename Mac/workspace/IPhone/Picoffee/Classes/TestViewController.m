@@ -41,7 +41,7 @@
     NSNotificationCenter *globalNc = [NSNotificationCenter defaultCenter];
     [globalNc addObserver:self selector:@selector(localeChanged) name:NSCurrentLocaleDidChangeNotification object:nil];
     
-#if 0
+#if 1
 	pcTwoLineAlertView *alert = [[pcTwoLineAlertView alloc] initWithTitle:@"title" 
 																  message:@"message" 
 																 delegate:self 
