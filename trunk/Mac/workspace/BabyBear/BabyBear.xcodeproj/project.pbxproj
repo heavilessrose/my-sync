@@ -22,6 +22,7 @@
 		A315E738121D0A9F00D766F2 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = A315E737121D0A9F00D766F2 /* Store.m */; };
 		A315E73B121D0AC100D766F2 /* CartProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = A315E73A121D0AC100D766F2 /* CartProduct.m */; };
 		A315E7C9121D23F900D766F2 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = A315E7C8121D23F900D766F2 /* Review.m */; };
+		A31F07621239F5820053A1BF /* ReviewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A31F07611239F5820053A1BF /* ReviewsCell.m */; };
 		A323AD94122E241C00BD2217 /* Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = A323AD93122E241C00BD2217 /* Animations.m */; };
 		A323ADB4122E266300BD2217 /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A323ADB3122E266300BD2217 /* RateView.m */; };
 		A323ADBB122E4BBB00BD2217 /* ReviewDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A323ADBA122E4BBB00BD2217 /* ReviewDetailController.m */; };
@@ -94,6 +95,8 @@
 		A315E73A121D0AC100D766F2 /* CartProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartProduct.m; sourceTree = "<group>"; };
 		A315E7C7121D23F900D766F2 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		A315E7C8121D23F900D766F2 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		A31F07601239F5820053A1BF /* ReviewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsCell.h; sourceTree = "<group>"; };
+		A31F07611239F5820053A1BF /* ReviewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsCell.m; sourceTree = "<group>"; };
 		A323AD92122E241C00BD2217 /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animations.h; sourceTree = "<group>"; };
 		A323AD93122E241C00BD2217 /* Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animations.m; sourceTree = "<group>"; };
 		A323ADB2122E266300BD2217 /* RateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateView.h; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				A393A8461212AE0B004E6374 /* FavoriteCell.m */,
 				A393A8481212AE1D004E6374 /* CartCell.h */,
 				A393A8491212AE1D004E6374 /* CartCell.m */,
+				A31F07601239F5820053A1BF /* ReviewsCell.h */,
+				A31F07611239F5820053A1BF /* ReviewsCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -573,6 +578,7 @@
 				A323ADC7122E52A200BD2217 /* ProductInfoView.m in Sources */,
 				A3C7BF3E122F5F69009B3ABC /* ProductsSortedByTypeDatasource.m in Sources */,
 				A3C7BF69122F8FD5009B3ABC /* AllProducts.m in Sources */,
+				A31F07621239F5820053A1BF /* ReviewsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
