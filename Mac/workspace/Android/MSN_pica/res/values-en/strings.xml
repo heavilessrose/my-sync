@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Messenger</string>
+    <string name="setdomain">Domain:</string>
+    <string name="save_password">Save Password</string>
+    <string name="autologin">Auto sign-in</string>
+    <string name="safe">Security Notification</string>
+    <string name="save_message">For your security if this device is lost or stolen, go to the Windows Live ID web site on your computer to change your Windows Live ID password.\n</string>
+    <string name="auto_message">This feature stores your credentials and signs you in automatically the next time you open this application. To disable this feature, sign out of Windows Live Messenger and clear the Automatic sign-in check box.\n</string>   
+    <string name="permission">Terms of Use</string>
+    <string name="permission_message">Your use of Windows Live for mobile is subject to Windows Live for mobile Terms of Use located at (http://g.msn.com.hk/0TO_/zhhk/)and the Windows Live for mobile Privacy Statement located at(http://privacy.msn.com/). By pressing the OK key blow, you hereby accept such Windows Live for mobile Terms of Use and Privacy Statement and acknowledge that you are aware of and have an opportunity to fully review them at the URLs referenced above.\n</string>
+	<string name="empty">"       "</string>
+       
+    <string name="alert_dialog_ok">Yes</string>
+    <string name="alert_dialog_cancel">No</string>
+    <string name="text_upgrade_contact_list">Refresh</string>
+    <string name="text_upgrade_contact_list_info">Will logout and relogin, continue?</string>
+    <string name="about">About</string>
+    <string name="about_version">Version: </string>
+    <string name="help">Help</string>
+    <string name="help_contact_message">1.To change state: Press\"Options\" | \"My status\" to change your state. \n2.Personal setting: Press \"Options\" | \"Personal setting\" to change your display name or alert status.\n3.Sound: Press \"Options\" | \"System setting\" modification the sound, press \"Select\". \n4.Whether demonstrating off-line contacts or not: Press \"Options\" | \"System setting\" to give your choice, press \"Select\".\n5.Whether demonstrating contacts’ picture: Press \"Options\" | \"System setting\" to give your choice, press \"Select\".\n  Gaining picture will increase some network traffic. Please consult the local operator for the fees standard.\n</string>
+    <string name="help_session_message">1.End conversation: Move cursor to a contact on conversation and press \'Cancel\'.\n2.Open conversation: Move cursor to a contact on conversation and double click.\n3.Send instant messages: Input the message you want to send and press \'Send\'. You can move back to contact list by press \'Return\'.\n4. Insert emoticons: Press \'Options\' | \'Emoticons\' in a conversation window, choose emoticon, and the version information will be send together.\n5.Insert templates: Press \'Options\' | \'Templates\' in a conversation window.\n6.Invite buddy: Press \'Options\' | \'Invite buddy\' in a conversation window. You can invite other online contacts to join in the conversation. Everyone in this conversation window will receive the information which sends from you.\n</string>
+    
+    <string name="search_roster">Search a Contact</string>
+    <string name="logout">Sign out</string>
+    <string name="exit">Exit</string>
+    <string name="logout_confirm">Are you sure to sign out</string>
+    <string name="exit_confirm">Are you sure to exit Windows Live Messenger?</string>
+    
+    <string name="mystatus">My Status</string>
+    <string name="online">Online</string>    
+    <string name="busy">Busy</string>
+    <string name="berightback">Be right back</string>
+    <string name="away">Away</string>
+    <string name="onthephone">In a call</string>
+    <string name="outtolunch">Out to lunch</string>
+    <string name="hide">Appear Offline</string>
+    
+    <string name="vcard_set">Personal setting</string>
+    <string name="vcard_set_nick">Display name:</string>
+    <string name="vcard_set_info">Personal message:</string>
+    
+    <string name="delete_roster_title">Delete</string>
+    <string name="delete_info">Deleting this person removes them from your contact list. It dose not block them from seeing your online status or sending you messages.</string>
+    <string name="delete_and_block">Block this Person</string>
+    
+    <string name="block_title">Block</string>
+    <string name="unblock_title">Unblock</string>
+    <string name="block_info">Blocking this person will block them from seeing your online status or sending you messages. Are you ready to block this person?</string>
+    <string name="unblock_info">Unblock this person will allow them to see your online status and send you messages. Are you ready to unblock this person?</string> 
+
+	<string name="open_chat">Send Message</string>
+
+    <string name="add_roster">Add Contact</string>
+    <string name="validate_title">Authorization</string>
+    <string name="validate_message">has added you to his/her contact list. Do you want to allow this person to see when you are online and contact you?</string>
+    <string name="text_cannot_send_msg">You can\'t send messages to this person beacuse you have blocked him or her.</string>
+    <string name="add_title">Email address:</string>
+    <string name="domain_hot">"@hotmail.com"</string>
+    <string name="domain_msn_com">"@msn.com"</string>
+    <string name="domain_live_com">"@live.com"</string>
+    <string name="domain_msn_cn">"@msn.cn"</string>
+    <string name="domain_live_cn">"@live.cn"</string>
+    <string name="domain_other">Other emails</string>  
+    
+    <string name="set_system">System setting</string>
+    <string name="system_online_ring">Play sound when a contact come online</string>
+    <string name="system_message_ring">Play sound when a message is received</string>  
+    <string name="system_show_online">Show online contact only</string>
+    <string name="system_nudge">Notify me nudge</string>
+        
+    <string name="detail">contact information</string>
+    <string name="detail_email">E-mail：</string>
+    <string name="detail_nickname">Display name：</string>
+    <string name="detail_info">Profile：</string>  
+    
+    <string name="text_send">Send</string>
+    <string name="text_input_image">Emoticons</string>
+    <string name="text_input_template">Templates</string> 
+    
+    <string name="text_signoff_success">Sign out succeeded.</string> 
+    <string name="text_show_info_title">Notification</string>
+    
+    <string name="account_id">Email Address：</string>
+    <string name="contact_status">Status Icon：</string>
+    <string name="nickname">Display Name：</string> 
+    <string name="roster_info">Personal info：</string> 
+    <string name="edit_email">E-mail address：</string> 
+    <string name="edit_password">Password：</string>
+    <string name="login">Sign In</string>
+    <string name="exit_logout">Cancel</string> 
+    <string name="text_flash_show">All in one place.</string> 
+    
+    <string name="roster">Contacts</string>
+    <string name="chat">Conversations</string>
+    <string name="zwap">MSN</string>
+    <string name="delete_chat">Close</string>
+    <string name="confirm_delete_chat">Are you sure close this session？</string> 
+    
+    <string name="text_template1">Please call me now.</string>        
+    <string name="text_template2">In a meeting, please call me later.</string>
+	<string name="text_template3">Busy now, will call you later.</string>
+	<string name="text_template4">Where are you now?</string>
+    <string name="text_template5">I\'m leaving now.</string>
+    <string name="text_template6">I just arrived.</string>        
+    <string name="text_template7">Meet you as usual.</string>
+	<string name="text_template8">Will be arriving soon, please wait a minute.</string>
+	<string name="text_template9">Who is that?</string>
+    <string name="text_template10">See you later.</string>
+    
+    <string name="findserver">Find server...</string>    
+    <string name="edit_password_error">Username or password format error</string> 
+    
+    <string name="error_prompt">Notification</string>
+    <string name="error_code">Error code:</string>
+    <string name="error_content">\nError content:</string> 
+    <string name="error_link">Network disconnected, please try later</string>  
+    <string name="text_upgrade_title">Upgrade notification</string>
+    <string name="text_upgrade_edition">New version available</string>
+    <string name="text_is_upgrade_now">Upgrade now?</string>
+    <string name="text_upgrade_address">\nUpgrade address：</string>   
+    
+    <string name="login_success">Sign In Success</string>  
+    <string name="link_server">Link server...</string> 
+    <string name="load_roster_info">Load profile...</string>
+    <string name="synchronize_fail">\nRefresh contact list error, must logout and relogin</string>
+    <string name="login_timeout">Sign in timeout, please try later.</string>
+    <string name="logout_timeout">Sign out timeout, please try later.</string>
+    <string name="log_on">Signing out...</string>
+    <string name="log_exit">Quitting...</string>
+    <string name="log_lose">You have been dropped.</string>
+    <string name="text_signing_in">Signing in...</string>
+    
+    <string name="text_input_username_cannot_null">Please enter your account.</string>
+	<string name="text_input_password_cannot_null">Please enter your password.</string>	
+	<string name="text_cannot_work_self">You cannot carry on the operation to oneself</string>
+	<string name="text_failure_email_address">Invalid email address</string>
+	<string name="text_login_account">Account</string>
+	<string name="text_group_default">Other contacts</string>             
+      
+	
+	<string name="text_system_msg">System Message</string>
+	<string name="text_somebody_add_to_chat">has joined the conversation</string> 
+	<string name="text_somebody_quit_to_chat">has left the conversation</string>  
+	<string name="text_multiple_dialog">Multi session</string> 
+	<string name="text_invite">Invite buddy</string>
+	<string name="text_noOnlineBuddy">There is no online contact now!</string> 
+	<string name="text_member_list">Member list</string> 
+
+	<string name="text_trans_accept">Accept</string> 
+	<string name="text_trans_reject">Decline</string> 
+	<string name="text_trans_cancel">Cancel</string> 
+	<string name="text_trans_alreadycancel">Canceled.</string> 
+	<string name="text_trans_receive_complete">Receive complete.</string> 
+	<string name="text_trans_send_complete">Send complete.</string> 
+	<string name="text_trans_wait">Waiting for accept</string>
+	<string name="text_trans_sendexec">Send failed.</string>
+	<string name="text_trans_rcvexec">Receive failed.</string> 
+	<string name="text_trans_nofold">No Parent Directory</string>
+	<string name="text_trans_outmaxsize">The file you send is too big, please change another one.</string>
+	<string name="text_trans_notsafe">For security, your selected file can\'t be sent</string>
+		
+	<string name="text_record_play">Play/Stop</string> 
+	<string name="text_record_save">Save</string>
+	<string name="text_record_record">Record</string> 
+	<string name="text_record">Voice clip</string>
+	
+	<string name="text_camera_send">OK</string> 
+	<string name="text_camera_preview">Retry</string>
+	
+	<string name="text_save_history">Save</string>
+	<string name="text_delete_history">Delete</string>
+	<string name="text_check_history">Show history</string>
+	<string name="text_same_history">There is the same history</string>
+	
+	<string name="text_taxi">Sort your contacts</string>
+	<string name="text_taxi_group">Sort by group</string>
+	<string name="text_taxi_status">Sort by status</string>
+
+	
+	<string name="text_flow_setting">Net data setting</string>
+	<string name="text_flow_setting_notice">Your setting will inure at next login</string>
+	 <string name="system_roster_icon">Get the picture of contact</string>    
+	  <string name="flow_setting_contact_impresa_change">Get the personal info of contact</string>   
+
+	
+	<string name="error_filename_empty">Filename should not be null</string>
+	<string name="error_filename_exists">Filename already exists</string>
+	<string name="error_write_data">Fail to write data</string>
+	<string name="error_sdcardState">Please insert SD card or make sure the SD card is available</string>
+	<string name="error_playAudio">The audio is damaged</string>
+	<string name="error_create_Audio">Fail to create audio file</string>	
+	
+	<string name="text_transfer_only_one">You can transfer one file for a time, please transfer another file later.</string>	
+	<string name="text_close_transfering_session">Closing this session will end all current activities with this contact. Do you want to close this session?</string>	
+	
+	<string name="text_modify_head">Change Picture</string>
+	<string name="text_head_from_file">Brower...</string>
+	<string name="text_take_camera">Take photo</string>
+	
+	<string name="text_shake">Just sent you a nudge!</string>
+	
+	<string name="text_receiving_outer_voice">Receiving voice-clip</string>
+	<string name="text_sending_outer_voice">Sending voice-clip</string>
+	<string name="text_uploading_outer_head">Uploading head portrait</string>
+
+
+	<string name="text_camera_takepicture">Shoot</string>
+	<string name="text_camera_back">Cancel</string>
+	
+	<string name="text_receiving_outer_exception">Fail to receive</string>
+	<string name="text_sending_outer_exception">Fail to send</string>
+	<string name="text_login_status">login_status</string>
+	
+	<string name="text_send_audio_file">Audio file</string>
+	<string name="text_record_stop">stop</string>
+	<string name="text_delete_file">delete</string>
+	<string name="text_filename">FileName</string>
+	<string name="text_file_save">Save</string>
+
+	<string name="zwap_loading">Please wait while loading...</string>
+	
+	<string name="text_send_audio">Voice clip</string>
+	<string name="text_send_file">Send file</string>
+	<string name="text_all_file">All file</string>
+	<string name="text_send_picture">Shoot to send</string>
+	
+	<string name="text_out__of_memory">This picture is too big,please choose smaller one.</string>
+	<string name="text_pixel_too_high">This picture is too big,please make the pixel lower.</string>
+	
+	<string name="text_group_online">online contacts</string>
+	<string name="text_group_offline">offline contacts</string>
+	<string name="text_chat_says">says</string>
+	
+    <string name="is_delete_history">Do you want to delete this chat?</string>
+    <string name="login_password_error">invalid password</string>
+    <string name="login_email_error">invalid email address</string>
+    
+    <string name="register_username_title">User name (beginning with the letter, three or more)</string>
+    <string name="register_email">\@msn.cn</string>
+    <string name="register_password_title">password(six or more)</string>
+    <string name="register_bn">register</string>
+    <string name="register_account">Register Windows live account</string>
+    <string name="register_username_input_error">User name length should between three and sixty-two</string>
+    <string name="register_username_first_input_error">User name to start with a letter</string>
+    <string name="register_password_input_error">Password length should between six and sixteen</string>
+    <string name="register_event_failure">Registration failed, please try again later</string>
+    <string name="register_diglog_body">Please wait while registering...</string>
+    <string name="register_menu_back">back</string>
+    
+</resources>

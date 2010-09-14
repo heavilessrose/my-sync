@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<resources>
+    <string name="app_name">Messenger</string>
+    <string name="setdomain">账户选择:</string>
+    <string name="save_password">记住我的密码</string>
+    <string name="autologin">自动为我登录</string>
+    <string name="safe">安全提示</string>
+    
+    <string name="save_message">如果您的手机丢失或被盗，为了您的帐户安全请访问Windows Live网站更改您的帐户密码。\n</string>
+    <string name="auto_message">此功能将保存您的登录凭证，并且在下次您打开本应用程序的时候自动登录。若要禁用本功能，请注销MSN并取消自动登录的选框。\n</string>   
+    <string name="permission">使用条款</string>
+    <string name="permission_message">在本手机上使用Windows Live Messenger服务需要遵从移动Windows Live使用条款(http://mobile.msn.com.cn/mobileclient/tou/)和MSN隐私声明(http://privacy.msn.com)，在您继续使用Windows Live Messenger前请通过PC访问上述网站阅读相关条款。选择“我接受”表明您已经完全阅读移动Windows Live使用条款和MSN隐私声明，并接受移动Windows Live使用条款。\n</string>
+	<string name="empty">""</string>
+       
+    <string name="alert_dialog_ok">确定</string>
+    <string name="alert_dialog_cancel">取消</string>
+    <string name="text_upgrade_contact_list">更新联系人列表</string>
+    <string name="text_upgrade_contact_list_info">如果更新联系人列表，系统将会自动注销，然后重新登录，您确定吗？</string>
+    <string name="about">关于</string>
+    <string name="about_version">版本: </string>
+    <string name="help">帮助</string>
+    <string name="help_contact_message">1.更改状态：点击“选项”-“我的状态”，更改您的状态。\n2.个人资料：点击“选项”-“个人资料”，键入让其他人看到的您的名称和让联系人看到的个人信息，点击“确定”。\n3.声音设置：点击“选项”-“设置”-“系统设置”，进入系统设置界面修改声音设置，点击“确定”。声音会遵循手机当前的情景模式设定。\n4.是否显示脱机联系人：点击“选项”-“设置”-“系统设置”，选择是否在联系人列表中显示脱机联系人，点击“确定”。\n5.是否显示联系人头像变化：点击“选项”-“设置”-“流量设置”，选择是否支持接收联系人头像变化，点击“确定”。\n6.是否显示联系人个人信息变化：点击“选项”-“设置”-“流量设置”，选择是否支持接收联系人个人信息变化，点击“确定”。\n  获取联系人的显示头像和个人信息变化会增加一定的网络流量，有可能会产生额外的费用。资费标准请咨询本地运营商。\n</string>
+    <string name="help_session_message">1.结束对话：光标移动到正在进行的对话，点击“结束对话”。\n2.打开正在进行的对话：光标移动到正在进行的对话，双击来信人。\n3.发送即时消息：在对话窗口输入您想发送的信息，点击右侧-“发送”键，发送即时信息，点“返回”键可以回到联系人页面。\n4.插入图释：在对话窗口点击“选项”-“插入图释”，选择您要发送的图释，图释可以和文本信息一起发送。\n5.插入短语：在对话窗口点击“选项”-“插入短语”，可以快速插入预先设定好的常用短语。\n6.多人对话：在对话窗口中点击“选项”-“邀请联系人”，可以邀请其他在线的联系人加入多人对话，对话的每个参与者都会接收到您发送的信息。\n</string>
+    
+    <string name="search_roster">搜索联系人</string>
+    <string name="logout">注销</string>
+    <string name="exit">退出</string>
+    <string name="logout_confirm">您确定要注销吗？</string>
+    <string name="exit_confirm">您确定要退出Windows Live Messenger吗？</string>
+    
+    <string name="mystatus">我的状态</string>
+    <string name="online">联机</string>    
+    <string name="busy">忙碌</string>
+    <string name="berightback">马上回来</string>
+    <string name="away">离开</string>
+    <string name="onthephone">通话中</string>
+    <string name="outtolunch">外出就餐</string>
+    <string name="hide">显示为脱机</string>
+    
+    <string name="vcard_set">个人资料</string>
+    <string name="vcard_set_nick">键入让其他人看到的您的名称:</string>
+    <string name="vcard_set_info">键入让其他人看到的您的个人信息:</string>
+    
+    <string name="delete_roster_title">删除联系人</string>
+    <string name="delete_info">删除此人将会将其从您的联系人名单中移除。但并不能阻止他/她可以看到您的联机状态或向您发送消息。</string>
+    <string name="delete_and_block">删除并阻止</string>
+    
+    <string name="block_title">阻止联系人</string>
+    <string name="unblock_title">解除阻止</string>
+    <string name="block_info">如果阻止此人，他/她将无法与您进行联机对话，也看不到您的联机状态。是否阻止此人？</string>
+    <string name="unblock_info">如果取消阻止此人，他/她将可以看到您的状态并与您进行联机对话。是否取消阻止此人？</string> 
+
+	<string name="open_chat">开始对话</string>
+
+    <string name="add_roster">添加联系人</string>
+    <string name="validate_title">验证请求</string>
+    <string name="validate_message">已将您加入他的联系人列表，您是否同意他/她看到您的状态并与您进行联机对话？</string>
+    <string name="text_cannot_send_msg">该联系人不在您的允许名单里，您无法向其发送消息</string>
+    <string name="add_title">输入完整的Email地址:</string>
+    <string name="domain_hot">"@hotmail.com"</string>
+    <string name="domain_msn_com">"@msn.com"</string>
+    <string name="domain_live_com">"@live.com"</string>
+    <string name="domain_msn_cn">"@msn.cn"</string>
+    <string name="domain_live_cn">"@live.cn"</string>
+    <string name="domain_other">其它Email地址</string>  
+    
+    <string name="set_system">系统设置</string>
+    <string name="system_online_ring">联系人联机时播放提示音</string>
+    <string name="system_message_ring">收到即时信息时播放提示音</string>  
+    <string name="system_show_online">只显示在线联系人</string>
+    <string name="system_nudge">闪屏震动</string>
+    
+    <string name="detail">详细资料</string>
+    <string name="detail_email">账号：</string>
+    <string name="detail_nickname">昵称：</string>
+    <string name="detail_info">个人信息：</string>  
+    
+    <string name="text_send">发送</string>
+    <string name="text_input_image">插入图释</string>
+    <string name="text_input_template">插入短语</string> 
+    
+    <string name="text_signoff_success">注销成功</string> 
+    <string name="text_show_info_title">提示信息</string>
+    
+    <string name="account_id">电子邮件：</string>
+    <string name="contact_status">状态：</string>
+    <string name="nickname">昵称：</string> 
+    <string name="roster_info">个人信息：</string> 
+    <string name="edit_email">输入Email地址：</string> 
+    <string name="edit_password">请输入密码：</string>
+    <string name="login">登录</string>
+    <string name="exit_logout">取消</string> 
+    <string name="text_flash_show">汇聚您的网络世界</string> 
+    
+    <string name="roster">联系人</string>
+    <string name="chat">正在对话</string>
+    <string name="zwap">MSN</string>
+    <string name="delete_chat">结束对话</string>
+    <string name="confirm_delete_chat">要关闭被选中的对话吗?</string> 
+    
+    <string name="text_template1">请回电话。</string>        
+    <string name="text_template2">正在开会，请稍候再打。</string>
+	<string name="text_template3">我现在不方便，稍候打给你。</string>
+	<string name="text_template4">你到哪了？</string>
+    <string name="text_template5">我现在出发。</string>
+    <string name="text_template6">我已到达。</string>        
+    <string name="text_template7">老地方见。</string>
+	<string name="text_template8">我很快就到，请稍等一会儿。</string>
+	<string name="text_template9">你是谁啊?</string>
+    <string name="text_template10">再见！下次再聊！</string>
+    
+    <string name="findserver">查找服务器...</string>    
+  	<string name="edit_password_error">用户名或密码格式有误，请重新输入</string> 
+    
+    <string name="error_prompt">错误提示</string>
+    <string name="error_code">错误代码:</string>
+    <string name="error_content">\n错误内容:</string> 
+    <string name="error_link">网络连接中断,请稍候再试</string>  
+    <string name="text_upgrade_title">升级提示</string>
+    <string name="text_upgrade_edition">检测到新版本</string>
+    <string name="text_is_upgrade_now">是否立刻升级？</string>
+    <string name="text_upgrade_address">\n升级地址：</string>   
+    
+    <string name="login_success">登录成功</string>  
+    <string name="link_server">连接服务器...</string> 
+    <string name="load_roster_info">读取个人资料...</string>
+    <string name="synchronize_fail">\n更新联系人列表失败，现在注销并重新登录</string>
+    <string name="login_timeout">登录超时，请稍候再登录</string>
+    <string name="logout_timeout">注销超时，请稍候再登录</string>
+    <string name="log_on">正在注销...</string>
+    <string name="log_exit">正在退出...</string>
+    <string name="log_lose">您已掉线</string>
+    <string name="text_signing_in">正在登录...</string>
+    
+    <string name="text_input_username_cannot_null">输入的用户名不能为空</string>
+	<string name="text_input_password_cannot_null">输入的密码不能为空</string>
+	<string name="text_cannot_work_self">您不能对自己进行操作</string>
+	<string name="text_failure_email_address">无效的电子邮件地址</string>
+	<string name="text_login_account">用户名</string>	             
+
+	<string name="text_group_default">其他联系人</string>               
+	
+	<string name="text_system_msg">系统消息</string>
+	<string name="text_somebody_add_to_chat">加入对话!</string> 
+	<string name="text_somebody_quit_to_chat">离开会话!</string>  
+	<string name="text_multiple_dialog">多人对话</string> 
+	<string name="text_invite">邀请好友</string>
+	<string name="text_noOnlineBuddy">暂时没有好友可以邀请加入多人对话</string> 
+	<string name="text_member_list">成员列表</string> 
+
+	<string name="text_trans_accept">我接受</string> 
+	<string name="text_trans_reject">我拒绝</string> 
+	<string name="text_trans_cancel">取消</string> 
+	<string name="text_trans_alreadycancel">已取消</string> 
+	<string name="text_trans_send_complete">发送完成</string> 
+	<string name="text_trans_receive_complete">您成功地接收了</string> 
+	<string name="text_trans_wait">等待对方接受</string>
+	<string name="text_trans_sendexec">发送失败</string>
+	<string name="text_trans_rcvexec">接收失败</string> 
+	
+	<string name="text_trans_nofold">无上层目录</string>
+	<string name="text_trans_outmaxsize">您选择的文件过大，请选择稍小的文件</string>
+	<string name="text_trans_notsafe">由于安全原因您选择的文件不能被发送</string>
+		
+	<string name="text_record_play">播放/停止</string> 
+	<string name="text_record_save">另存为</string>
+	
+	<string name="text_record_record">录制</string> 
+	<string name="text_record">录制语音</string>
+	
+	<string name="text_camera_send">选择</string> 
+	<string name="text_camera_preview">重拍</string>
+	
+	<string name="text_save_history">保存</string>
+	<string name="text_delete_history">删除</string>
+	<string name="text_check_history">查看聊天记录</string>
+	<string name="text_same_history">有相同</string>
+	
+	<string name="text_taxi">排序</string>
+	<string name="text_taxi_group">按分组</string>
+
+	<string name="text_taxi_status">按在线状态</string>	
+	
+	<string name="text_flow_setting">流量设置</string>
+	<string name="text_flow_setting_notice">本次更改的设置，仅在下次登录后才生效</string>
+	<string name="system_roster_icon">获取联系人图片</string> 
+	<string name="flow_setting_contact_impresa_change">获取联系人信息</string>      
+
+	
+	<string name="error_filename_empty">文件名不能为空</string>
+	<string name="error_filename_exists">文件名已存在</string>
+	<string name="error_write_data">写入数据失败</string>
+	<string name="error_sdcardState">请插入SD卡或检查SD卡是否插好</string>
+	<string name="error_playAudio">音频文件损坏</string>
+	<string name="error_create_Audio">创建音频文件失败</string>		
+	
+	<string name="text_transfer_only_one">您可以同时传送一个文件，请稍候传送其它文件。</string>		
+	<string name="text_close_transfering_session">结束此会话将会结束当前与此联系人进行的一切活动，您确定要结束此会话吗？</string>
+	
+	<string name="text_modify_head">修改图片</string>
+	<string name="text_head_from_file">打开文件...</string>
+	<string name="text_take_camera">拍照</string>	
+	
+	<string name="text_shake">给您发送了一个闪屏震动</string>
+	
+	<string name="text_receiving_outer_voice">正在接收语音</string>
+	<string name="text_sending_outer_voice">正在发送语音</string>
+	<string name="text_uploading_outer_head">正在提交头像</string>
+
+	
+	<string name="text_camera_takepicture">拍摄</string>
+	<string name="text_camera_back">取消</string>
+	
+	<string name="text_receiving_outer_exception">接收失败</string>
+	<string name="text_sending_outer_exception">发送失败</string>
+	<string name="text_login_status">登录状态</string>
+	
+	<string name="text_send_audio_file">来自文件</string>
+	<string name="text_record_stop">停止</string>
+	<string name="text_delete_file">刪除</string>
+	<string name="text_filename">文件名</string>
+	<string name="text_file_save">保存</string>	
+	
+	<string name="zwap_loading">请稍等...</string>
+			
+	<string name="text_send_audio">语音剪辑</string>		
+	<string name="text_send_file">发送文件</string>
+	<string name="text_all_file">所有文件</string>
+	<string name="text_send_picture">拍照发送</string>
+	
+	<string name="text_out__of_memory">您选择的图片太大，请选择较小的图片。</string>
+	<string name="text_pixel_too_high">您拍摄的照片太大，请调低相机的分辨率。</string>
+	
+	<string name="text_group_online">在线</string>
+	<string name="text_group_offline">离线</string>
+	<string name="text_chat_says">说</string>
+	
+	<string name="is_delete_history">是否删除此聊天记录?</string>
+	<string name="login_password_error">无效的密码</string>
+	<string name="login_email_error">无效的电子邮件地址</string>
+	
+	<string name="register_username_title">用户名(以字母开头，3位以上)</string>
+    <string name="register_email">\@msn.cn</string>
+    <string name="register_password_title">密码(6位以上)</string>
+    <string name="register_bn">注册</string>
+    <string name="register_account">注册Windows live帐号</string>
+    <string name="register_username_input_error">用户名的长度应该3-62位</string>
+    <string name="register_username_first_input_error">用户名要以字母开头</string>
+    <string name="register_password_input_error">密码的长度应该6-16位</string>
+    <string name="register_event_failure">注册失败，请稍后再试</string>
+    <string name="register_diglog_body">正在注册，请您耐心等待...</string>
+    <string name="register_menu_back">返回</string>
+</resources>
