@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:paddingLeft="10sp"
+    android:gravity="center_vertical"
+    android:layout_height="wrap_content">
+
+        <ImageView android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sendvoice" />
+
+        <ImageButton android:id="@+id/recordplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_record_play"/>
+        
+        <Button android:id="@+id/recordsave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_record_save"/>
+            
+        <Button android:id="@+id/deleteFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_delete_file"/>    
+            
+        <Button android:id="@+id/recordaccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_trans_accept"/> 
+            
+        <TextView android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>             
+</LinearLayout>
+
+
+
