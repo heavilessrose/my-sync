@@ -11,6 +11,12 @@
 
 @interface ScrollShowView ()
 
+@property (nonatomic, assign) BOOL _isLayouted;
+@property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic, assign) BOOL backShadow;
+@property (nonatomic, retain) NSMutableArray *pages;
+@property (nonatomic, assign) id<ScrollShowViewPageDelegate, NSObject> pageDelegate;
+
 /*!
  @function
  @abstract   调整pageContent(the UIImageView)宽度, 使所有page的宽度和与scrollViewd的宽度成正比 
@@ -190,10 +196,13 @@
 }
 
 #pragma mark -
+
+@synthesize _isLayouted;
+
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        _isLayouted = NO;
+        self._isLayouted = NO;
         self.x_padding = 0.0f;
         self.y_padding = 0.0f;
         self.pageStyle = PAGESTYLE_DEFAULT;
@@ -203,9 +212,12 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame pageContentSize:(CGSize)pSize
+- (id)initWithFrame:(CGRect)frame pageContentSize:(CGSize)pSize pageDelegate:(id<ScrollShowViewPageDelegate, NSObject>)thePageDelegate
 {
     if (self = [self initWithFrame:frame]) {
+		self._isLayouted = NO;
+        self.backShadow = YES;
+		self.pageDelegate = thePageDelegate;
         self.pageContentSize = pSize;
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
 		//scrollView.clipsToBounds = NO; // Important, this creates the "preview"
@@ -216,8 +228,12 @@
         scrollView.scrollEnabled = YES;
 		scrollView.delegate = self;
         scrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+		
+		int i = [scrollView retainCount];
 		[self addSubview:scrollView];
+		i = [scrollView retainCount];
         [scrollView release];
+		i = [scrollView retainCount];
         self.userInteractionEnabled = YES;
     }
     
@@ -226,14 +242,18 @@
 
 - (void)dealloc
 {
+	NSLog(@"ScrollShow --------- dealloc start");
     [pages release];
+	int i = [scrollView retainCount];
     [scrollView release];
+	
     [super dealloc];
+	NSLog(@"ScrollShow --------- dealloc end");
 }
 
 - (void)layoutSubviews
 {
-    if (!_isLayouted) {
+    if (!self._isLayouted) {
         if (backShadow) {
             [self showShadow];
         }
@@ -272,7 +292,7 @@
 		[self loadPage:0];
 		[self loadPage:1];
 #endif
-        _isLayouted = YES;
+        self._isLayouted = YES;
     }
 }
 

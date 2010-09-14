@@ -42,7 +42,7 @@
     NSNotificationCenter *globalNc = [NSNotificationCenter defaultCenter];
     [globalNc addObserver:self selector:@selector(localeChanged) name:NSCurrentLocaleDidChangeNotification object:nil];
     
-#if 0
+#if 1
 	pcTwoLineAlertView *alert = [[pcTwoLineAlertView alloc] initWithTitle:@"title" 
 																  message:@"message" 
 																 delegate:self 
@@ -219,16 +219,18 @@
 #pragma mark notifications
 - (void)localeChanged
 {
-    NSLog(@"[%s] ", _cmd);
+    DLog(@"");
 }
 
 #pragma mark alert
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {
-		NSLog(@"press ok");
+		DLog(@"press ok");
+		//ALog(@"press ok");
 	} else {
-		NSLog(@"press cancel");
+		DLog(@"press cancel");
+		//ALog(@"press cancel");
 	}
 }
 
