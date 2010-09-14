@@ -37,16 +37,14 @@ enum _pageStyle {
 	id<ScrollShowViewPageDelegate, NSObject> pageDelegate;
 }
 
-@property (nonatomic, retain) UIScrollView *scrollView;
+
 @property (nonatomic, assign) CGSize pageContentSize;
-@property (nonatomic, assign) BOOL backShadow;
-@property (nonatomic, retain) NSMutableArray *pages;
-@property (nonatomic, assign) id<ScrollShowViewPageDelegate, NSObject> pageDelegate;
 @property (nonatomic, assign) int pageStyle;
 @property (nonatomic, assign) CGFloat x_padding;
 @property (nonatomic, assign) CGFloat y_padding;
 
-- (id)initWithFrame:(CGRect)frame pageContentSize:(CGSize)pSize;
+- (id)initWithFrame:(CGRect)frame pageContentSize:(CGSize)pSize 
+	   pageDelegate:(id<ScrollShowViewPageDelegate, NSObject>)thePageDelegate;
 - (void)didReceiveMemoryWarning;
 
 @end
