@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface BlocksTestViewController : UIViewController {
-
+	UIImageView *imgv;
 }
 
+@property (nonatomic, retain) UIImageView *imgv;
 @end
 
