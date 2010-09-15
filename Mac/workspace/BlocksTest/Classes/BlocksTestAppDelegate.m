@@ -10,6 +10,12 @@
 #import "BlocksTestViewController.h"
 #import "LongRunningTask.h"
 
+@interface BlocksTestAppDelegate ()
+
+- (void)scheduleAlarmForDate:(NSDate *)theDate;
+@end
+
+
 @implementation BlocksTestAppDelegate
 
 @synthesize window;
@@ -82,6 +88,9 @@
 		[aTask release];
     }];
 	
+	// start timer-based local notify 
+	[self scheduleAlarmForDate:[NSDate dateWithTimeIntervalSinceNow:3]];
+	
     // Start the long-running task and return immediately.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		isLongRunningTaskRunning = YES;
@@ -122,6 +131,48 @@
      See also applicationDidEnterBackground:.
      */
 }
+
+#pragma mark -
+
+#pragma mark UIApplication
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+	NSLog(@"didReceiveLocalNotification");
+}
+
+#pragma mark // timer-based Local Notify
+- (void)scheduleAlarmForDate:(NSDate *)theDate
+{
+    UIApplication *app = [UIApplication sharedApplication];
+    NSArray *oldNotifications = [app scheduledLocalNotifications];
+	
+    // Clear out the old notification before scheduling a new one.
+    if ([oldNotifications count] > 0)
+        [app cancelAllLocalNotifications];
+	
+    // Create a new notification
+    UILocalNotification *alarm = [[[UILocalNotification alloc] init] autorelease];
+    if (alarm) {
+        alarm.fireDate = theDate;
+        alarm.timeZone = [NSTimeZone defaultTimeZone];
+        alarm.repeatInterval = 0;
+		alarm.alertLaunchImage = @"alarm.png"; // [UIImage imageNamed:@"alarm.png"];
+        alarm.soundName = @"alarmsound.caf";
+        alarm.alertBody = @"Time to wake up!";
+		
+        [app scheduleLocalNotification:alarm];
+    }
+}
+
+
+#pragma mark // post Local Notify while in background self
+
+
+////
+#pragma mark -
+#pragma mark // background audio
+
+
 
 
 #pragma mark -
