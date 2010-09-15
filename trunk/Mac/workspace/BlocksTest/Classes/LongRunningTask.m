@@ -21,7 +21,7 @@
 	UIApplication *app = [UIApplication sharedApplication];
 	BlocksTestAppDelegate *appDelegate = (BlocksTestAppDelegate *)app.delegate;
 	NSLog(@"%@ -------- start runTask --------", appDelegate.appStatus);
-	while (app.backgroundTimeRemaining/* > 590*/) {
+	while (app.backgroundTimeRemaining > 590) {
 		NSLog(@"remain = %f %@", +app.backgroundTimeRemaining, appDelegate.appStatus);
 		sleep(1);
 	}
