@@ -17,6 +17,7 @@
 {
 	if (self = [super init]) {
 		self.instanceVariable = [NSString stringWithCString:"实例变量" encoding:NSUTF8StringEncoding];
+		[self retainTest];
 		return self;
 	}
 	return nil;
@@ -24,7 +25,7 @@
 
 - (void)dealloc
 {
-	[instanceVariable release];
+	//[instanceVariable release];
 	
 	[super dealloc];
 }
@@ -35,19 +36,33 @@
 #pragma mark using in reference-counted environment (OC)
 	dispatch_queue_t queue = dispatch_queue_create(NULL, NULL);
 	
-#if 1
+#if 0
+	NSLog(@"1 - self count = %u", [self retainCount]);
 	dispatch_async(queue, ^{
+		//???: self没有retain阿
 		// instanceVariable is used by reference, self is retained
 		NSLog(@"instanceVariable: %@, count = %u", instanceVariable, [instanceVariable retainCount]);
 	});
+	NSLog(@"2 - self count = %u", [self retainCount]);
 #else
-	NSString *localVariable = instanceVariable;
+	NSLog(@"3 - self count = %u", [self retainCount]);
+	//TODO: __block修饰就不会增加计数了, 如果没有修饰block会把localVariable+1
+	__block NSString *localVariable = instanceVariable;
+	NSLog(@"1 - localVariable: %@, count = %u", localVariable, [localVariable retainCount]);
 	dispatch_async(queue, ^{
 		// localVariable is used by value, localVariable is retained (not self)
-		NSLog(@"localVariable: %@, count = %u", localVariable, [localVariable retainCount]);
+		NSLog(@"2 - localVariable: %@, count = %u", localVariable, [localVariable retainCount]);
 	});
+	NSLog(@"4 - self count = %u", [self retainCount]);
 #endif
-	
+	//TODO: 正常使用
+	[self retainTest];
+}
+
+- (void)retainTest
+{
+	NSString *localVariable = instanceVariable;
+	NSLog(@"4 - localVariable: %@, count = %u", localVariable, [localVariable retainCount]);
 }
 
 @end

@@ -32,12 +32,13 @@ typedef float (^MyBlockType)(float, float);
 
 // ===============
 int main(int argc, char *argv[]) {
+#if 1
     
-//    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-//    int retVal = UIApplicationMain(argc, argv, nil, nil);
-//    [pool release];
-//    return retVal;
-	
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    int retVal = UIApplicationMain(argc, argv, nil, nil);
+    [pool release];
+    return retVal;
+#else
 #pragma mark using a block
 	printf("%d\n", myBlock(3));
 	
@@ -146,8 +147,59 @@ int main(int argc, char *argv[]) {
 	[tests release];
 	
 	sleep(5);
+	////////////////////
+	
+	NSObject *ocObj1 = [[NSObject alloc] init];
+	NSLog(@"obj1 count = %u", [ocObj1 retainCount]);
+	void (^ocBlock)(void) = ^(void) {
+		NSObject *ocObj2 = [[NSObject alloc] init];
+		NSLog(@"obj2 count = %u", [ocObj2 retainCount]);
+		[ocObj2 release];
+		
+		NSObject *ocObjRef = ocObj1;
+		NSLog(@"obj1 count = %u", [ocObjRef retainCount]);
+	};
+	ocBlock();
+	[ocObj1 release];
+	
+#pragma mark copy a block 
+	// Copying moves a block to the heap.
+	void (^copying)(void) = ^(void) {
+		NSLog(@"copying block");
+		Block_copy(copying);
+	};
+	Block_release(copying);
+	
+
+#pragma mark -
+	
 	
 	
 	[pool release];
 	return 0;
+#endif 
+}
+
+#pragma mark -
+#pragma mark wrong use
+void dontDoThis()
+{
+	void (^blockArray[3])(void);  // an array of 3 block references
+	
+	for (int i = 0; i < 3; ++i) {
+		blockArray[i] = ^{ printf("hello, %d\n", i); };
+		// WRONG: The block literal scope is the "for" loop
+	}
+}
+
+void dontDoThisEither()
+{
+	void (^block)(void);
+	
+	int i = random();
+	if (i > 10) {
+		block = ^{ printf("got i at: %d\n", i); };
+		// WRONG: The block literal scope is the "then" clause
+	}
+	// ...
 }

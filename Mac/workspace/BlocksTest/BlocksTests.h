@@ -13,7 +13,8 @@
 	NSString *instanceVariable;
 }
 
-@property (retain) NSString *instanceVariable;
+@property (assign) NSString *instanceVariable;
 
 - (void)runTest;
+- (void)retainTest;
 @end

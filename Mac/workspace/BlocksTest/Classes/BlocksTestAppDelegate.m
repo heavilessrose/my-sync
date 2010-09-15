@@ -8,15 +8,28 @@
 
 #import "BlocksTestAppDelegate.h"
 #import "BlocksTestViewController.h"
+#import "LongRunningTask.h"
 
 @implementation BlocksTestAppDelegate
 
 @synthesize window;
 @synthesize viewController;
+@synthesize appStatus;
 
+#ifdef USE_INSTANCE_VAR
+@synthesize aTask;
+#endif
 
 #pragma mark -
 #pragma mark Application lifecycle
+
+
+//+ (void)initialize
+//{
+//	if ( self == [BlocksTestAppDelegate class] ) {
+//		
+//	}
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
@@ -35,6 +48,7 @@
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
+	self.appStatus = @"Back";
 }
 
 
@@ -43,6 +57,47 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
+	
+	UIApplication *app = [UIApplication sharedApplication];
+	
+	if (isLongRunningTaskRunning) {
+		return;
+	}
+	
+#ifdef USE_INSTANCE_VAR // or localVariable
+	self.aTask = [[LongRunningTask alloc] init];
+#else
+	LongRunningTask *aTask = [[LongRunningTask alloc] init];
+#endif
+	NSLog(@"1 - aTask count = %u", [aTask retainCount]);
+	
+    aTask.bgTaskID = [app beginBackgroundTaskWithExpirationHandler:^{
+		//???: 中断的任务再次进入会自动重新执行?
+		NSLog(@"%@ -------- intrupted runTask --------", appStatus);
+		NSLog(@"2 - aTask count = %u", [aTask retainCount]);
+		isLongRunningTaskRunning = NO;
+        [app endBackgroundTask:aTask.bgTaskID];
+        aTask.bgTaskID = UIBackgroundTaskInvalid;
+		NSLog(@"3 - aTask retainCount = %u", [aTask retainCount]);
+		[aTask release];
+    }];
+	
+    // Start the long-running task and return immediately.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		isLongRunningTaskRunning = YES;
+		NSLog(@"4 - aTask count = %u", [aTask retainCount]);
+		[aTask runTask];
+		NSLog(@"%@ -------- finish runTask --------", appStatus);
+		
+		/// 
+		NSLog(@"5 - aTask retainCount = %u", [aTask retainCount]);
+		isLongRunningTaskRunning = NO;
+        [app endBackgroundTask:aTask.bgTaskID];
+        aTask.bgTaskID = UIBackgroundTaskInvalid;
+		NSLog(@"6 - aTask retainCount = %u", [aTask retainCount]);
+		[aTask release];
+    });
+	
 }
 
 
@@ -50,6 +105,7 @@
     /*
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
+	self.appStatus = @"Forg";
 }
 
 
@@ -79,10 +135,13 @@
 
 
 - (void)dealloc {
+#ifdef USE_INSTANCE_VAR
+	[aTask release];
+#endif
+	[appStatus release];
     [viewController release];
     [window release];
     [super dealloc];
 }
-
 
 @end
