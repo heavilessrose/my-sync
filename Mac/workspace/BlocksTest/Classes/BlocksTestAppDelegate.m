@@ -58,12 +58,13 @@
 }
 
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
     /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
-	
+#ifdef TEST_LONGRUNNING_TASK
 	UIApplication *app = [UIApplication sharedApplication];
 	
 	if (isLongRunningTaskRunning) {
@@ -106,7 +107,7 @@
 		NSLog(@"6 - aTask retainCount = %u", [aTask retainCount]);
 		[aTask release];
     });
-	
+#endif
 }
 
 
