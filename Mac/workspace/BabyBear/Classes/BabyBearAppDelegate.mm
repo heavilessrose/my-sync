@@ -93,6 +93,7 @@
 	NSArray* controllers = [NSArray arrayWithObjects:featureNV, productsNV, storesNV, favoritesNV, cartNV, nil];
 	//NSArray* controllers = [NSArray arrayWithObjects:featureVC, productsVC, storesVC, favoritesVC, cartVC, nil];
 	tabs.viewControllers = controllers;
+	tabs.selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentTab"];
 	
 	// Add the tab bar controller's current view as a subview of the window
 	self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
@@ -113,6 +114,8 @@
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. 
 	 Games should use this method to pause the game.
      */
+    [[NSUserDefaults standardUserDefaults] setInteger:self.tabs.selectedIndex forKey:@"currentTab"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -150,6 +153,7 @@
      See also applicationDidEnterBackground:.
      */
     [[NSUserDefaults standardUserDefaults] setInteger:self.tabs.selectedIndex forKey:@"currentTab"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
