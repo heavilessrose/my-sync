@@ -177,10 +177,22 @@
 
 #pragma mark // post Local Notify while in background self
 
+//////
+#pragma mark -
+#pragma mark // VOIP background
+- (void)initBackgroudVoip
+{
+	// handler 只有30秒执行时间
+	[[UIApplication sharedApplication] setKeepAliveTimeout:600  // 最小值600 
+												   handler:^{ // keepAlive handler
+													   
+												   }];
+}
+
 
 ////
 #pragma mark -
-#pragma mark // background audio
+#pragma mark // background audio done by call [beginReceivingRemoteControlEvents]
 
 
 
