@@ -125,11 +125,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">viewController</string>
+						<string key="label">tabs</string>
 						<reference key="source" ref="664661524"/>
 						<reference key="destination" ref="604072361"/>
 					</object>
-					<int key="connectionID">29</int>
+					<int key="connectionID">30</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -264,7 +264,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">29</int>
+			<int key="maxID">30</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -276,7 +276,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>viewController</string>
+							<string>tabs</string>
 							<string>window</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -289,13 +289,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>viewController</string>
+							<string>tabs</string>
 							<string>window</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
-								<string key="name">viewController</string>
+								<string key="name">tabs</string>
 								<string key="candidateClassName">UITabBarController</string>
 							</object>
 							<object class="IBToOneOutletInfo">

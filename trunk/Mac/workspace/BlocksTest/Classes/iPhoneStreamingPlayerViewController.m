@@ -128,7 +128,7 @@
 	
 	[self setButtonImage:[UIImage imageNamed:@"playbutton.png"]];
 	
-	//TODO: 让程序支持remote control events
+	//TODO: 让程序支持remote control events, 这样才能在后台继续播放Audio
 	if ([[UIApplication sharedApplication] respondsToSelector:@selector(beginReceivingRemoteControlEvents)]){
 		[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 	}

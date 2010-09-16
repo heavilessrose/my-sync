@@ -17,7 +17,7 @@
 
 @interface BlocksTestAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    UITabBarController *viewController;
+    UITabBarController *tabs;
 	
 	NSString *appStatus;
 	
@@ -28,7 +28,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *viewController;
+@property (nonatomic, retain) IBOutlet UITabBarController *tabs;
 
 @property (nonatomic, retain) NSString *appStatus;
 
