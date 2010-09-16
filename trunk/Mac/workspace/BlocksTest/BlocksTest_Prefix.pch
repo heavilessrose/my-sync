@@ -14,3 +14,6 @@ int (^globalBlocks)(int, int) = ^(int num1, int num2) {
 */
 
 NSInteger CounterGlobal;
+
+// 有这个时后台播放音乐会被暂停
+//#define TEST_LONGRUNNING_TASK

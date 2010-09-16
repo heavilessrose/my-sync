@@ -13,11 +13,11 @@
 #ifdef USE_INSTANCE_VAR
 @class LongRunningTask;
 #endif
-@class BlocksTestViewController;
+//@class BlocksTestViewController;
 
 @interface BlocksTestAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    BlocksTestViewController *viewController;
+    UITabBarController *viewController;
 	
 	NSString *appStatus;
 	
@@ -28,7 +28,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet BlocksTestViewController *viewController;
+@property (nonatomic, retain) IBOutlet UITabBarController *viewController;
 
 @property (nonatomic, retain) NSString *appStatus;
 

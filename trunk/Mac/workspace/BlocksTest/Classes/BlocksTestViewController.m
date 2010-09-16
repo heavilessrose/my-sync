@@ -45,7 +45,7 @@
 	[imgv release];
 	
 	UIButton *animButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	animButton.frame = CGRectMake(150, 400, 50, 50);
+	animButton.frame = CGRectMake(150, 300, 50, 50);
 	[animButton addTarget:self action:@selector(animView) forControlEvents:UIControlEventTouchDown];
 	[self.view addSubview:animButton];
 	
