@@ -19,7 +19,7 @@
 @implementation BlocksTestAppDelegate
 
 @synthesize window;
-@synthesize viewController;
+@synthesize tabs;
 @synthesize appStatus;
 
 #ifdef USE_INSTANCE_VAR
@@ -42,7 +42,9 @@
     // Override point for customization after application launch.
 
     // Add the view controller's view to the window and display.
-    [window addSubview:viewController.view];
+	tabs.selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"selectedTab"];
+	
+    [window addSubview:tabs.view];
     [window makeKeyAndVisible];
 
     return YES;
@@ -55,6 +57,11 @@
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
 	self.appStatus = @"Back";
+	
+	//TODO: 记录选择的tab
+	NSLog(@"selectedTab = %d", self.tabs.selectedIndex);
+    [[NSUserDefaults standardUserDefaults] setInteger:self.tabs.selectedIndex forKey:@"selectedTab"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -131,6 +138,8 @@
      Called when the application is about to terminate.
      See also applicationDidEnterBackground:.
      */
+    [[NSUserDefaults standardUserDefaults] setInteger:self.tabs.selectedIndex forKey:@"selectedTab"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark -
@@ -191,7 +200,7 @@
 	[aTask release];
 #endif
 	[appStatus release];
-    [viewController release];
+    [tabs release];
     [window release];
     [super dealloc];
 }

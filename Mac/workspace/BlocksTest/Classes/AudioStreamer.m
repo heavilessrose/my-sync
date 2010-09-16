@@ -95,7 +95,7 @@ void audioCallback( void *inUserData, AudioQueueRef inQueue, AudioQueueBufferRef
 	NSLog(@"audio callback");
 	int numBuffersToEnqueueLater;
 	AudioQueueBufferRef audioQueueBuffer[kNumAQBufs];
-    printf( "callback for buffer %d from run loop %d\n", inBuffer, CFRunLoopGetCurrent() );
+    printf( "callback for buffer %x from run loop %x\n", inBuffer, CFRunLoopGetCurrent() );
     
     // fill it up
     inBuffer->mAudioDataByteSize = inBuffer->mAudioDataBytesCapacity;
