@@ -13,6 +13,7 @@
 @interface BlocksTestAppDelegate ()
 
 - (void)scheduleAlarmForDate:(NSDate *)theDate;
+- (void)initBackgroudVoip;
 @end
 
 
@@ -58,10 +59,13 @@
      */
 	self.appStatus = @"Back";
 	
-	//TODO: 记录选择的tab
+	// record tab
 	NSLog(@"selectedTab = %d", self.tabs.selectedIndex);
     [[NSUserDefaults standardUserDefaults] setInteger:self.tabs.selectedIndex forKey:@"selectedTab"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
+	
+	// install voip keep alive handler
+	[self initBackgroudVoip];
 }
 
 
@@ -180,11 +184,14 @@
 //////
 #pragma mark -
 #pragma mark // VOIP background
+// VOIP 的socket连接无法使用BSD Socket, 需要使用IPhone的
+// NSInputStream, NSOutputStream / NSURLRequest / CFReadStreamRef, CFWriteStreamRef 
+// 这些高级接口, 并设置他们的类型为VOIP.
 - (void)initBackgroudVoip
 {
-	// handler 只有30秒执行时间
+	// 通常在程序切到后台时调用, 以配置keepAlive handler
 	[[UIApplication sharedApplication] setKeepAliveTimeout:600  // 最小值600 
-												   handler:^{ // keepAlive handler
+												   handler:^{	// keepAlive handler, 只有30秒执行时间
 													   
 												   }];
 }
