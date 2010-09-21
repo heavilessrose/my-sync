@@ -23,7 +23,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = A3E53236124775B3002A310D /* Searcher */;
-		activeSDKPreference = iphonesimulator4.0;
+		activeSDKPreference = iphoneos4.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Searcher */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* Searcher */,
@@ -88,6 +88,7 @@
 			A31821DC1248523D00EEFD90 /* PBXTextBookmark */ = A31821DC1248523D00EEFD90 /* PBXTextBookmark */;
 			A31821DD1248523F00EEFD90 /* PBXTextBookmark */ = A31821DD1248523F00EEFD90 /* PBXTextBookmark */;
 			A31821DE124852C800EEFD90 /* PBXTextBookmark */ = A31821DE124852C800EEFD90 /* PBXTextBookmark */;
+			A31821E41248545A00EEFD90 /* PBXTextBookmark */ = A31821E41248545A00EEFD90 /* PBXTextBookmark */;
 			A3E5325912477867002A310D = A3E5325912477867002A310D /* PBXTextBookmark */;
 			A3E5325A12477867002A310D = A3E5325A12477867002A310D /* PBXTextBookmark */;
 			A3E5325B12477867002A310D = A3E5325B12477867002A310D /* PBXTextBookmark */;
@@ -473,6 +474,16 @@
 		vrLen = 1350;
 		vrLoc = 420;
 	};
+	A31821E41248545A00EEFD90 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A3E532A412477C70002A310D /* DataSource.m */;
+		name = "DataSource.m: 8";
+		rLen = 0;
+		rLoc = 130;
+		rType = 0;
+		vrLen = 209;
+		vrLoc = 0;
+	};
 	A3E53236124775B3002A310D /* Searcher */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -696,9 +707,9 @@
 	};
 	A3E532A412477C70002A310D /* DataSource.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1381, 2916}}";
-			sepNavSelRange = "{1465, 0}";
-			sepNavVisRange = "{420, 1350}";
+			sepNavIntBoundsRect = "{{0, 0}, {1381, 2934}}";
+			sepNavSelRange = "{130, 0}";
+			sepNavVisRange = "{0, 1496}";
 		};
 	};
 	A3E532A812477D02002A310D /* PlistBookmark */ = {
