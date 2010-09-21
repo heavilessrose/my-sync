@@ -35,19 +35,29 @@
 	return nil;
 }
 
+#pragma mark -
+#pragma mark result table view Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	NSLog(@"result table row: %d", indexPath.row);
+	UIViewController *detailViewController = [[UIViewController alloc] init];
+	Product *aProduct = [self.filteredListContent objectAtIndex:indexPath.row];
+	detailViewController.title = aProduct.name;
+	[self.tableDelegate.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
+}
+
 
 #pragma mark -
-#pragma mark table DataSource
+#pragma mark table/result_table DataSource
 
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-	if (table == self.tableDelegate.searchDisplayController.searchResultsTableView)
-	{
+	if (table == self.tableDelegate.searchDisplayController.searchResultsTableView) {
         return [self.filteredListContent count];
-    }
-	else
-	{
+    } else {
         return [self.listContent count];
     }
 }
@@ -57,8 +67,7 @@
 	static NSString *kCellID = @"cellID";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID];
-	if (cell == nil)
-	{
+	if (cell == nil) {
 		NSLog(@"create new cell");
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellID] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -68,12 +77,9 @@
 	 If the requesting table view is the search display controller's table view, configure the cell using the filtered content, otherwise use the main list.
 	 */
 	Product *product = nil;
-	if (tableView == self.tableDelegate.searchDisplayController.searchResultsTableView)
-	{
+	if (tableView == self.tableDelegate.searchDisplayController.searchResultsTableView) {
         product = [self.filteredListContent objectAtIndex:indexPath.row];
-    }
-	else
-	{
+    } else {
         product = [self.listContent objectAtIndex:indexPath.row];
     }
 	
@@ -95,13 +101,10 @@
 	/*
 	 Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
 	 */
-	for (Product *product in listContent)
-	{
-		if ([scope isEqualToString:@"All"] || [product.type isEqualToString:scope])
-		{
+	for (Product *product in listContent) {
+		if ([scope isEqualToString:@"All"] || [product.type isEqualToString:scope]) {
 			NSComparisonResult result = [product.name compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
-            if (result == NSOrderedSame)
-			{
+            if (result == NSOrderedSame) {
 				[self.filteredListContent addObject:product];
             }
 		}
