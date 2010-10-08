@@ -1,0 +1,129 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* openWeibo */ = {
+		activeExec = 0;
+		executables = (
+			A348A6A3125F01C100297E13 /* openWeibo */,
+		);
+	};
+	2860E326111B887F00E27156 /* AppDelegate_iPhone.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {2523, 1512}}";
+			sepNavSelRange = "{512, 0}";
+			sepNavVisRange = "{0, 1533}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = A348A6A3125F01C100297E13 /* openWeibo */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* openWeibo */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* openWeibo */,
+		);
+		breakpoints = (
+		);
+		codeSenseManager = A348A6B5125F01E000297E13 /* Code sense */;
+		executables = (
+			A348A6A3125F01C100297E13 /* openWeibo */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1103,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 308216257;
+			PBXWorkspaceStateSaveDate = 308216257;
+		};
+		perUserProjectItems = {
+			A348A6EC125F187500297E13 /* PBXTextBookmark */ = A348A6EC125F187500297E13 /* PBXTextBookmark */;
+			A348A71E125F259300297E13 /* PBXTextBookmark */ = A348A71E125F259300297E13 /* PBXTextBookmark */;
+		};
+		sourceControlManager = A348A6B4125F01E000297E13 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	A348A6A3125F01C100297E13 /* openWeibo */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = openWeibo;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	A348A6B4125F01E000297E13 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	A348A6B5125F01E000297E13 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	A348A6EC125F187500297E13 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2860E326111B887F00E27156 /* AppDelegate_iPhone.m */;
+		name = "AppDelegate_iPhone.m: 56";
+		rLen = 0;
+		rLoc = 1965;
+		rType = 0;
+		vrLen = 389;
+		vrLoc = 1760;
+	};
+	A348A71E125F259300297E13 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2860E326111B887F00E27156 /* AppDelegate_iPhone.m */;
+		name = "AppDelegate_iPhone.m: 25";
+		rLen = 0;
+		rLoc = 512;
+		rType = 0;
+		vrLen = 1533;
+		vrLoc = 0;
+	};
+}
