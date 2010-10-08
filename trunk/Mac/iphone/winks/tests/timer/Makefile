@@ -1,14 +1,14 @@
-CC=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-gcc-4.0.1
-CXX=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-g++-4.0.1
+CC=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin10-gcc-4.2.1
+CXX=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin10-g++-4.2.1
 LD=$(CC)
 
 IP=192.168.10.184
 PROJECTNAME=timer
-SDKVER=2.2.1
+SDKVER=4.0
 
-CFLAGS= -I/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS$(SDKVER).sdk/include \
+CFLAGS= -I/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS$(SDKVER).sdk/include \
 		-I/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS$(SDKVER).sdk/usr/include \
-		-I/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/gcc/arm-apple-darwin9/4.0.1/include \
+		-I/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/gcc/arm-apple-darwin10/4.2.1/include \
 		-isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS$(SDKVER).sdk
 
 LDFLAGS=-framework CoreFoundation \
