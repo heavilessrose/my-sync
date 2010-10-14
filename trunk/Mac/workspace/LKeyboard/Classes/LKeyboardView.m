@@ -29,8 +29,8 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame])) {
-		self.backgroundColor = [UIColor grayColor];
 		self.board = [[UIScrollView alloc] initWithFrame:CGRectZero];
+		self.board.backgroundColor = [UIColor grayColor];
 		[self initEmos];
 		[self addSubview:self.board];
     }
@@ -70,17 +70,17 @@ void rectLog(CGRect aRect)
 	switch ([UIDevice currentDevice].orientation) {
 		case UIInterfaceOrientationPortrait:
 		case UIInterfaceOrientationPortraitUpsideDown:
-			x = (kPortrait_Emo_cube + kEmoGap) * col;
-			y = (kPortrait_Emo_cube + kEmoGap) * row;
-			w = kPortrait_Emo_cube;
-			h = kPortrait_Emo_cube;
+			x = (kPortrait_Emo_cube_w + kEmoGap_Portrait_col) * col;
+			y = (kPortrait_Emo_cube_h + kEmoGap_Portrait_row) * row;
+			w = kPortrait_Emo_cube_w;
+			h = kPortrait_Emo_cube_h;
 			break;
 		case UIInterfaceOrientationLandscapeRight:
 		case UIInterfaceOrientationLandscapeLeft:
-			x = (kLandscap_Emo_cube + kEmoGap) * col;
-			y = (kLandscap_Emo_cube + kEmoGap) * row;
-			w = kLandscap_Emo_cube;
-			h = kLandscap_Emo_cube;
+			x = (kLandscap_Emo_cube_w + kEmoGap_Landscap_col) * col;
+			y = (kLandscap_Emo_cube_h + kEmoGap_Landscap_row) * row;
+			w = kLandscap_Emo_cube_w;
+			h = kLandscap_Emo_cube_h;
 			break;
 		default:
 			NSLog(@"curOrientation invailide");
@@ -95,14 +95,31 @@ void rectLog(CGRect aRect)
 {
 	NSInteger	row = 0;
 	NSInteger	col = 0;
+	NSInteger	rowCount = 0;
+	NSInteger	colCount = 0;
 	NSString	*aEmoImgName = nil;
 	UIImage		*aEmoImg = nil;
 	LEmoView	*aEmoView = nil;
 	CGRect		aEmoViewFrame = CGRectZero;
-
-	for (row = 0; row < kEmoCount_row; row++) {
-		for (col = 0; col < kEmoCount_col; col++) {
-			aEmoImgName = [NSString stringWithFormat:@"%d-png.png", row * kEmoCount_row + col + 1];
+	
+	switch ([UIDevice currentDevice].orientation) {
+		case UIInterfaceOrientationPortrait:
+		case UIInterfaceOrientationPortraitUpsideDown:
+			rowCount = kEmoCount_Portrait_row;
+			colCount = kEmoCount_Portrait_col;
+			break;
+		case UIInterfaceOrientationLandscapeRight:
+		case UIInterfaceOrientationLandscapeLeft:
+			rowCount = kEmoCount_Landscap_row;
+			colCount = kEmoCount_Landscap_col;
+			break;
+		default:
+			NSLog(@"curOrientation invailide");
+			break;
+	}
+	for (row = 0; row < rowCount; row++) {
+		for (col = 0; col < colCount; col++) {
+			aEmoImgName = [NSString stringWithFormat:@"%d-png.png", row * colCount + col + 1];
 			aEmoImg = [UIImage imageNamed:aEmoImgName];
 			aEmoViewFrame = [self calcEachEmoRectWithRow:row andCol:col];
 			//rectLog(aEmoViewFrame);

@@ -10,12 +10,12 @@
 
 @class LKeyboardView;
 @interface LKeyboardViewController : UIViewController {
-	LKeyboardView *keyBoardView;
+	LKeyboardView *emoKeyBoardView;
 	IBOutlet UITextField *txtField;
 	IBOutlet UIButton *showOrHideButton;
 }
 
-@property (nonatomic, retain) LKeyboardView *keyBoardView;
+@property (nonatomic, retain) LKeyboardView *emoKeyBoardView;
 
 - (IBAction)showOrHideEmoKeyboard;
 @end
