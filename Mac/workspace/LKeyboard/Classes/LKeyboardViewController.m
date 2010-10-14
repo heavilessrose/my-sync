@@ -21,7 +21,7 @@
 
 @implementation LKeyboardViewController
 
-@synthesize keyBoardView, txtField, showOrHideButton;
+@synthesize emoKeyBoardView, txtField, showOrHideButton;
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -44,8 +44,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
 	[self.showOrHideButton setTitle:@"show" forState:UIControlStateNormal];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(keyboardWillShow:) 
+												 name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(keyboardWillHide:) 
+												 name:UIKeyboardWillHideNotification object:nil];
 }
 
 
@@ -70,10 +76,15 @@
 	// e.g. self.myOutlet = nil;
 }
 
-
 - (void)dealloc
 {
-	[keyBoardView release];
+	[[NSNotificationCenter defaultCenter] removeObserver:self 
+													name:UIKeyboardWillShowNotification 
+												  object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self 
+													name:UIKeyboardWillHideNotification 
+												  object:nil];
+	[emoKeyBoardView release];
 	[txtField release];
 	[showOrHideButton release];
 	
@@ -83,18 +94,38 @@
 #pragma mark -
 #pragma mark LKeyBoardView
 
+- (CGRect)resetKeyboardFrame
+{
+	CGRect keyBoardFrame = CGRectZero;
+	switch ([UIDevice currentDevice].orientation) {
+		case UIInterfaceOrientationPortrait:
+		case UIInterfaceOrientationPortraitUpsideDown:
+			keyBoardFrame = kPortraitRect_Frame;
+			break;
+		case UIInterfaceOrientationLandscapeRight:
+		case UIInterfaceOrientationLandscapeLeft:
+			keyBoardFrame = kLandscapRect_Frame;
+			break;
+		default:
+			NSLog(@"curOrientation invailide");
+			break;
+	}
+	return keyBoardFrame;
+}
+
 - (IBAction)showOrHideEmoKeyboard
 {
+	CGRect keyBoardFrame = [self resetKeyboardFrame];
 	if ([showOrHideButton.currentTitle isEqualToString:@"show"]) {
 		[self.txtField resignFirstResponder];
 		
-		self.keyBoardView = [[LKeyboardView alloc] initWithFrame:CGRectMake(0, 244, 320, 216)];
-		[self.view addSubview:keyBoardView];
-		[keyBoardView release];
+		self.emoKeyBoardView = [[LKeyboardView alloc] initWithFrame:keyBoardFrame];
+		[self.view addSubview:emoKeyBoardView];
+		[emoKeyBoardView release];
 		
 		[showOrHideButton setTitle:@"hide" forState:UIControlStateNormal];
 	} else {
-		[self.keyBoardView removeFromSuperview];
+		[self.emoKeyBoardView removeFromSuperview];
 		[showOrHideButton setTitle:@"show" forState:UIControlStateNormal];
 	}
 }
@@ -105,25 +136,15 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 										 duration:(NSTimeInterval)duration
 {
-	CGRect r;
-	switch ([UIDevice currentDevice].orientation) {
-		case UIInterfaceOrientationPortrait:
-		case UIInterfaceOrientationPortraitUpsideDown:
-			r = kPortraitRect;
-			r.origin.y = 244;
-			[self.keyBoardView setFrame:r];
-			break;
-		case UIInterfaceOrientationLandscapeRight:
-		case UIInterfaceOrientationLandscapeLeft:
-			r = kLandscapRect;
-			r.origin.y = 160;
-			[self.keyBoardView setFrame:r];
-			break;
-		default:
-			NSLog(@"curOrientation invailide");
-			break;
-	}
-	
+	// 释放上一个重新创建一个新的.
+	if ([showOrHideButton.currentTitle isEqualToString:@"hide"]) {
+		[self.emoKeyBoardView removeFromSuperview];
+		
+		CGRect keyBoardFrame = [self resetKeyboardFrame];
+		self.emoKeyBoardView = [[LKeyboardView alloc] initWithFrame:keyBoardFrame];
+		[self.view addSubview:emoKeyBoardView];
+		[emoKeyBoardView release];
+	}	
 	
 #if 1
 	for (UIView *aView in self.view.subviews) {
@@ -134,6 +155,22 @@
 #endif
 	[super willAnimateRotationToInterfaceOrientation:interfaceOrientation
 											duration:duration];
+}
+
+#pragma mark -
+#pragma mark UIKeyBoard handle
+
+- (void)keyboardWillShow:(NSNotification *)note
+{
+	if (emoKeyBoardView) {
+		[self.emoKeyBoardView removeFromSuperview];
+		[self.showOrHideButton setTitle:@"show" forState:UIControlStateNormal];
+	}
+}
+
+- (void)keyboardWillHide:(NSNotification *)note
+{
+	
 }
 
 @end
