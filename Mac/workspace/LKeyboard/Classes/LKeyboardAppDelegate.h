@@ -13,11 +13,13 @@
 @interface LKeyboardAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     LKeyboardViewController *viewController;
+	
+	NSArray *emoStrings;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet LKeyboardViewController *viewController;
-
+@property (nonatomic, retain) NSArray *emoStrings;
 
 + (LKeyboardAppDelegate *)globalAppDelegate;
 @end
