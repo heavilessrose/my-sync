@@ -9,6 +9,7 @@
 #import "LKeyboardViewController.h"
 #import "LKeyboardView.h"
 #import "LKeyboardAppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface LKeyboardViewController ()
@@ -115,6 +116,9 @@
 
 - (IBAction)showOrHideEmoKeyboard
 {
+	CATransition *theAnimation = [CATransition animation];
+	[theAnimation setType:kCATransitionPush];
+	
 	CGRect keyBoardFrame = [self resetKeyboardFrame];
 	if ([showOrHideButton.currentTitle isEqualToString:@"show"]) {
 		[self.txtField resignFirstResponder];
@@ -124,9 +128,17 @@
 		[emoKeyBoardView release];
 		
 		[showOrHideButton setTitle:@"hide" forState:UIControlStateNormal];
+		
+		[theAnimation setSubtype:kCATransitionFromTop];
+		[emoKeyBoardView.layer addAnimation:theAnimation 
+						   forKey:@"animateOpacity"];
 	} else {
-		[self.emoKeyBoardView removeFromSuperview];
 		[showOrHideButton setTitle:@"show" forState:UIControlStateNormal];
+		
+		[theAnimation setSubtype:kCATransitionFromBottom];
+		[emoKeyBoardView.layer addAnimation:theAnimation 
+									 forKey:@"animateOpacity"];
+		[self.emoKeyBoardView removeFromSuperview];
 	}
 }
 
