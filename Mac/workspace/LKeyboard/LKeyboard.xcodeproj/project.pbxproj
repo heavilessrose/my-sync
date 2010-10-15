@@ -15,6 +15,7 @@
 		2899E5220DE3E06400AC0155 /* LKeyboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* LKeyboardViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* LKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* LKeyboardViewController.m */; };
+		A30A8FED1267E67B0084EE75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A30A8FEC1267E67B0084EE75 /* QuartzCore.framework */; };
 		A3300E041266AB5800E385BC /* LKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3300E031266AB5800E385BC /* LKeyboardView.m */; };
 		A3300E851266C68500E385BC /* LEmoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3300E841266C68500E385BC /* LEmoView.m */; };
 		A3300F961266EACC00E385BC /* 1-png.png in Resources */ = {isa = PBXBuildFile; fileRef = A3300F6E1266EACC00E385BC /* 1-png.png */; };
@@ -73,6 +74,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* LKeyboard_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKeyboard_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* LKeyboard-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LKeyboard-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A30A8FEC1267E67B0084EE75 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A3300E021266AB5800E385BC /* LKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKeyboardView.h; sourceTree = "<group>"; };
 		A3300E031266AB5800E385BC /* LKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKeyboardView.m; sourceTree = "<group>"; };
 		A3300E831266C68500E385BC /* LEmoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEmoView.h; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				A30A8FED1267E67B0084EE75 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +194,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A30A8FEC1267E67B0084EE75 /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
