@@ -7,6 +7,7 @@
 //
 
 #import "LEmoView.h"
+#import "LKeyboardAppDelegate.h"
 
 @interface LEmoView ()
 
@@ -17,7 +18,7 @@
 
 @implementation LEmoView
 
-@synthesize emoButton, emoRow, emoCol;
+@synthesize emoButton, emoIndex;
 
 - (id)initWithFrame:(CGRect)frame emoImg:(UIImage *)emoImg
 {
@@ -57,7 +58,8 @@
 
 - (void)emoPressed
 {
-	NSLog(@"emoPressed: (%d, %d)", emoRow, emoCol);
+	NSString *emoStr = [[LKeyboardAppDelegate globalAppDelegate].emoStrings objectAtIndex:emoIndex];
+	NSLog(@"emoStr: %@", emoStr);
 }
 
 @end

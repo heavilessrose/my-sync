@@ -95,6 +95,7 @@ void rectLog(CGRect aRect)
 {
 	NSInteger	row = 0;
 	NSInteger	col = 0;
+	NSInteger	emoIndex = -1;
 	NSInteger	rowCount = 0;
 	NSInteger	colCount = 0;
 	NSString	*aEmoImgName = nil;
@@ -119,13 +120,13 @@ void rectLog(CGRect aRect)
 	}
 	for (row = 0; row < rowCount; row++) {
 		for (col = 0; col < colCount; col++) {
-			aEmoImgName = [NSString stringWithFormat:@"%d-png.png", row * colCount + col + 1];
+			emoIndex = row * colCount + col;
+			aEmoImgName = [NSString stringWithFormat:@"%d-png.png", emoIndex + 1];
 			aEmoImg = [UIImage imageNamed:aEmoImgName];
 			aEmoViewFrame = [self calcEachEmoRectWithRow:row andCol:col];
 			//rectLog(aEmoViewFrame);
 			aEmoView = [[LEmoView alloc] initWithFrame:aEmoViewFrame emoImg:aEmoImg];
-			aEmoView.emoRow = row;
-			aEmoView.emoCol = col;
+			aEmoView.emoIndex = emoIndex;
 			[self.board addSubview:aEmoView];
 			[aEmoView release];
 		}

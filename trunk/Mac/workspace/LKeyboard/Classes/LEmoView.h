@@ -11,12 +11,10 @@
 
 @interface LEmoView : UIView {
 	UIButton *emoButton;
-	NSInteger emoRow;
-	NSInteger emoCol;
+	NSInteger emoIndex;
 }
 
-@property (nonatomic, assign) NSInteger emoRow;
-@property (nonatomic, assign) NSInteger emoCol;
+@property (nonatomic, assign) NSInteger emoIndex;
 
 - (id)initWithFrame:(CGRect)frame emoImg:(UIImage *)emoImg;
 @end

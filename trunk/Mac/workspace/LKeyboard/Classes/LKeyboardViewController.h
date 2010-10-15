@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import <Foundation/NSObject.h>
 
 @class LKeyboardView;
-@interface LKeyboardViewController : UIViewController {
+@interface LKeyboardViewController : UIViewController /*<CAAnimationDelegate>*/ {
 	LKeyboardView *emoKeyBoardView;
 	IBOutlet UITextField *txtField;
 	IBOutlet UIButton *showOrHideButton;

@@ -12,7 +12,7 @@
 @implementation LKeyboardAppDelegate
 
 @synthesize window;
-@synthesize viewController;
+@synthesize viewController, emoStrings;
 
 
 #pragma mark -
@@ -21,6 +21,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
+	self.emoStrings = [[NSArray alloc] initWithObjects:
+					   @":),:-)",@":d,:D,:-d,:-D",@";),;-)",@":o,:O,:-o,:-O",@":p,:P,:-p,:-P",@"(h),(H)",@":@,:-@",@":s,:S,:-s,:-S",@":$,:-$",@":(,:-(",@":'(",
+					   @":|,:-|",@"(a),(A)",@"8o|",@"8-|",@"+o(",@"<:o)",@"|-)",@"*-)",@":-#",@":-*",@"^o)",@"8-)",@"(l),(L)",
+					   @"(u),(U)",@"(m),(M),*9mil",/*,*red+u,*unicef,*wwf,*oxfam,*one,*care,*mssoc,*help,*hsus,*bgca,*sierra,*acs,*mod,*naf*/
+					   @"(@)",@"(&)",@"(sn)",@"(bah)",@"(S)",@"(*)",@"(#)",@"(r),(R)",@"({)",@"(})",@"(k),(K)",@"(f),(F)",@"(w),(W)",@"(o),(O),(0)",nil];
 
     // Add the view controller's view to the window and display.
     [window addSubview:viewController.view];

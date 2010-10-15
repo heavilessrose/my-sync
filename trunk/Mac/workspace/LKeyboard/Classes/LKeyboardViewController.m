@@ -9,7 +9,6 @@
 #import "LKeyboardViewController.h"
 #import "LKeyboardView.h"
 #import "LKeyboardAppDelegate.h"
-#import <QuartzCore/QuartzCore.h>
 
 
 @interface LKeyboardViewController ()
@@ -118,6 +117,7 @@
 {
 	CATransition *theAnimation = [CATransition animation];
 	[theAnimation setType:kCATransitionPush];
+	theAnimation.delegate = self;
 	
 	CGRect keyBoardFrame = [self resetKeyboardFrame];
 	if ([showOrHideButton.currentTitle isEqualToString:@"show"]) {
@@ -131,15 +131,22 @@
 		
 		[theAnimation setSubtype:kCATransitionFromTop];
 		[emoKeyBoardView.layer addAnimation:theAnimation 
-						   forKey:@"animateOpacity"];
+						   forKey:@"pushIn"];
 	} else {
 		[showOrHideButton setTitle:@"show" forState:UIControlStateNormal];
 		
 		[theAnimation setSubtype:kCATransitionFromBottom];
 		[emoKeyBoardView.layer addAnimation:theAnimation 
-									 forKey:@"animateOpacity"];
-		[self.emoKeyBoardView removeFromSuperview];
+									 forKey:@"pushOut"];
+		[self.emoKeyBoardView setHidden:YES];
 	}
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+	//if (anim == [emoKeyBoardView.layer animationForKey:@"pushOut"])
+	if ([showOrHideButton.currentTitle isEqualToString:@"show"])
+		[self.emoKeyBoardView removeFromSuperview];
 }
 
 #pragma mark -
