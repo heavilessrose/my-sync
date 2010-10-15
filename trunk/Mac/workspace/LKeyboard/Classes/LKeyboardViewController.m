@@ -113,32 +113,43 @@
 	return keyBoardFrame;
 }
 
-- (IBAction)showOrHideEmoKeyboard
+- (void)showEmoKeyboard:(CGRect)frame
 {
 	CATransition *theAnimation = [CATransition animation];
 	[theAnimation setType:kCATransitionPush];
+	[theAnimation setSubtype:kCATransitionFromTop];
 	theAnimation.delegate = self;
+	[self.txtField resignFirstResponder];
 	
+	self.emoKeyBoardView = [[LKeyboardView alloc] initWithFrame:frame];
+	self.emoKeyBoardView.keyboardController = self;
+	[self.view addSubview:emoKeyBoardView];
+	[emoKeyBoardView release];
+	[showOrHideButton setTitle:@"hide" forState:UIControlStateNormal];
+	[emoKeyBoardView.layer addAnimation:theAnimation 
+								 forKey:@"pushIn"];
+}
+
+- (void)disposeEmoKeyboard
+{
+	CATransition *theAnimation = [CATransition animation];
+	[theAnimation setType:kCATransitionPush];
+	[theAnimation setSubtype:kCATransitionFromTop];
+	theAnimation.delegate = self;
+	[showOrHideButton setTitle:@"show" forState:UIControlStateNormal];
+	[theAnimation setSubtype:kCATransitionFromBottom];
+	[emoKeyBoardView.layer addAnimation:theAnimation 
+								 forKey:@"pushOut"];
+	[self.emoKeyBoardView setHidden:YES];
+}
+
+- (IBAction)showOrHideEmoKeyboard
+{
 	CGRect keyBoardFrame = [self resetKeyboardFrame];
 	if ([showOrHideButton.currentTitle isEqualToString:@"show"]) {
-		[self.txtField resignFirstResponder];
-		
-		self.emoKeyBoardView = [[LKeyboardView alloc] initWithFrame:keyBoardFrame];
-		[self.view addSubview:emoKeyBoardView];
-		[emoKeyBoardView release];
-		
-		[showOrHideButton setTitle:@"hide" forState:UIControlStateNormal];
-		
-		[theAnimation setSubtype:kCATransitionFromTop];
-		[emoKeyBoardView.layer addAnimation:theAnimation 
-						   forKey:@"pushIn"];
+		[self showEmoKeyboard:keyBoardFrame];
 	} else {
-		[showOrHideButton setTitle:@"show" forState:UIControlStateNormal];
-		
-		[theAnimation setSubtype:kCATransitionFromBottom];
-		[emoKeyBoardView.layer addAnimation:theAnimation 
-									 forKey:@"pushOut"];
-		[self.emoKeyBoardView setHidden:YES];
+		[self disposeEmoKeyboard];
 	}
 }
 
