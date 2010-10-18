@@ -7,7 +7,6 @@
 //
 
 #import "LKeyboardViewController.h"
-#import "LKeyboardView.h"
 #import "LKeyboardAppDelegate.h"
 
 
@@ -122,7 +121,7 @@
 	[self.txtField resignFirstResponder];
 	
 	self.emoKeyBoardView = [[LKeyboardView alloc] initWithFrame:frame];
-	self.emoKeyBoardView.keyboardController = self;
+	self.emoKeyBoardView.delegate = self;
 	[self.view addSubview:emoKeyBoardView];
 	[emoKeyBoardView release];
 	[showOrHideButton setTitle:@"hide" forState:UIControlStateNormal];
@@ -158,6 +157,18 @@
 	//if (anim == [emoKeyBoardView.layer animationForKey:@"pushOut"])
 	if ([showOrHideButton.currentTitle isEqualToString:@"show"])
 		[self.emoKeyBoardView removeFromSuperview];
+}
+
+#pragma mark -
+#pragma mark LKeyBoard delegate
+
+
+- (void)handleEmoStrs:(NSArray *)emoStrs
+{
+	NSString *aEmoStr = [emoStrs objectAtIndex:0];
+	NSMutableString *aText = [NSMutableString stringWithString:txtField.text];
+	[aText appendString:aEmoStr];
+	[txtField setText:aText];
 }
 
 #pragma mark -

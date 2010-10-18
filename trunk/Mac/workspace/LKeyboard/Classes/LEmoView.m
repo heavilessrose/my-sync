@@ -18,7 +18,7 @@
 
 @implementation LEmoView
 
-@synthesize emoButton, emoIndex;
+@synthesize emoButton, emoIndex, delegate;
 
 - (id)initWithFrame:(CGRect)frame emoImg:(UIImage *)emoImg
 {
@@ -58,8 +58,11 @@
 
 - (void)emoPressed
 {
-	NSString *emoStr = [[LKeyboardAppDelegate globalAppDelegate].emoStrings objectAtIndex:emoIndex];
-	NSLog(@"emoStr: %@", emoStr);
+	if ([self.delegate respondsToSelector:@selector(emoSelected:)]) {
+		NSArray *emoStrs = [[[LKeyboardAppDelegate globalAppDelegate].emoStrings objectAtIndex:emoIndex] componentsSeparatedByString:@","];
+		NSLog(@"emoStrs: %@", emoStrs);
+		[self.delegate emoSelected:emoStrs];
+	}
 }
 
 @end

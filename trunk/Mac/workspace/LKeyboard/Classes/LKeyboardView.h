@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LEmoView.h"
 
 
 #define kEmoCount_Portrait_row (5)
@@ -46,16 +47,16 @@
 #define kEmoGap_Landscap_row (4)
 
 #define kBoard_Portrait_X (0.0f)
-#define kBoard_Portrait_Frame_Y (508.0f)
+#define kBoard_Portrait_Frame_Y (688.0f)
 #define kBoard_Portrait_Y (0.0f)
 #define kBoard_Portrait_W (768.0f)
-#define kBoard_Portrait_H (516.0f)
+#define kBoard_Portrait_H (256.0f)
 
 #define kBoard_Landscap_X (0.0f)
-#define kBoard_Landscap_Frame_Y (388.0f)
+#define kBoard_Landscap_Frame_Y (342.0f)
 #define kBoard_Landscap_Y (0.0f)
 #define kBoard_Landscap_W (1024.0f)
-#define kBoard_Landscap_H (380.0f)
+#define kBoard_Landscap_H (364.0f)
 
 #define kPortrait_Emo_cube_w ((kBoard_Portrait_W - (kEmoCount_Portrait_col - 1) * kEmoGap_Portrait_col) / kEmoCount_Portrait_col)
 #define kPortrait_Emo_cube_h ((kBoard_Portrait_H - (kEmoCount_Portrait_row - 1) * kEmoGap_Portrait_row) / kEmoCount_Portrait_row)
@@ -70,8 +71,18 @@
 #define kPortraitRect_Frame CGRectMake(kBoard_Portrait_X, kBoard_Portrait_Frame_Y, kBoard_Portrait_W, kBoard_Portrait_H);
 #define kLandscapRect_Frame CGRectMake(kBoard_Landscap_X, kBoard_Landscap_Frame_Y, kBoard_Landscap_W, kBoard_Landscap_H);
 
-@interface LKeyboardView : UIView {
+
+@protocol LKeyboardDelegate
+
+- (void)handleEmoStrs:(NSArray *)emoStrs;
+
+@end
+
+@interface LKeyboardView : UIView <LEmoDelegate> {
 	IBOutlet UIScrollView *board;
+	id <LKeyboardDelegate> delegate;
 }
+
+@property (nonatomic, assign) id <LKeyboardDelegate> delegate;
 
 @end

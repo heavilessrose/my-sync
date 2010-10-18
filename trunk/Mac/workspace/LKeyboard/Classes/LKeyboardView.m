@@ -7,7 +7,6 @@
 //
 
 #import "LKeyboardView.h"
-#import "LEmoView.h"
 #import "LKeyboardAppDelegate.h"
 
 @interface LKeyboardView ()
@@ -21,7 +20,7 @@
 
 
 @implementation LKeyboardView
-@synthesize board;
+@synthesize board, delegate;
 
 #pragma mark -
 #pragma mark lifecycle
@@ -127,6 +126,7 @@ void rectLog(CGRect aRect)
 			//rectLog(aEmoViewFrame);
 			aEmoView = [[LEmoView alloc] initWithFrame:aEmoViewFrame emoImg:aEmoImg];
 			aEmoView.emoIndex = emoIndex;
+			aEmoView.delegate = self;
 			[self.board addSubview:aEmoView];
 			[aEmoView release];
 		}
@@ -150,5 +150,15 @@ void rectLog(CGRect aRect)
 			break;
 	}
 }
+
+
+#pragma mark -
+#pragma mark Emo delegate
+
+- (void)emoSelected:(NSArray *)emoStrs
+{
+	[delegate handleEmoStrs:emoStrs];
+}
+
 
 @end
