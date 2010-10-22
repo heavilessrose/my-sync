@@ -163,7 +163,7 @@ leftBottomView, leftView, centerView, label, label2;
     rcLabel.origin.y     = TEXT_TOP_INTERVAL;
 	
 	rcLabel.size.width   += TEXT_LEFT_INTERVAL;
-	rcLabel.size.height  = rect.size.height - 2*TEXT_TOP_INTERVAL -18 ;
+	rcLabel.size.height  = rect.size.height - 2*TEXT_TOP_INTERVAL -18;
 	
 	if (rcLabel.size.height < 5) {
 		rcLabel.size.height  = 0;
