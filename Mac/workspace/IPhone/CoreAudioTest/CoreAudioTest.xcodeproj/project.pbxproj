@@ -18,9 +18,9 @@
 		A3C9E86F127C7C6100973964 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C9E86E127C7C6100973964 /* CoreAudio.framework */; };
 		A3C9E875127C7C7A00973964 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C9E874127C7C7A00973964 /* AudioToolbox.framework */; };
 		A3C9E877127C7C8600973964 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C9E876127C7C8600973964 /* AVFoundation.framework */; };
-		A3C9E879127C7C9500973964 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C9E878127C7C9500973964 /* AudioUnit.framework */; };
 		A3C9E87D127C7CC700973964 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C9E87C127C7CC700973964 /* OpenAL.framework */; };
 		A3C9E881127C7CD200973964 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C9E880127C7CD200973964 /* MediaPlayer.framework */; };
+		A3C9E88C127C7EAE00973964 /* tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C9E88B127C7EAE00973964 /* tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,9 +40,10 @@
 		A3C9E86E127C7C6100973964 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		A3C9E874127C7C7A00973964 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A3C9E876127C7C8600973964 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		A3C9E878127C7C9500973964 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		A3C9E87C127C7CC700973964 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		A3C9E880127C7CD200973964 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A3C9E88A127C7EAE00973964 /* tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tests.h; sourceTree = "<group>"; };
+		A3C9E88B127C7EAE00973964 /* tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +57,6 @@
 				A3C9E86F127C7C6100973964 /* CoreAudio.framework in Frameworks */,
 				A3C9E875127C7C7A00973964 /* AudioToolbox.framework in Frameworks */,
 				A3C9E877127C7C8600973964 /* AVFoundation.framework in Frameworks */,
-				A3C9E879127C7C9500973964 /* AudioUnit.framework in Frameworks */,
 				A3C9E87D127C7CC700973964 /* OpenAL.framework in Frameworks */,
 				A3C9E881127C7CD200973964 /* MediaPlayer.framework in Frameworks */,
 			);
@@ -68,6 +68,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A3C9E884127C7E4500973964 /* overview */,
 				1D3623240D0F684500981E51 /* CoreAudioTestAppDelegate.h */,
 				1D3623250D0F684500981E51 /* CoreAudioTestAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* CoreAudioTestViewController.h */,
@@ -124,11 +125,19 @@
 				A3C9E86E127C7C6100973964 /* CoreAudio.framework */,
 				A3C9E874127C7C7A00973964 /* AudioToolbox.framework */,
 				A3C9E876127C7C8600973964 /* AVFoundation.framework */,
-				A3C9E878127C7C9500973964 /* AudioUnit.framework */,
 				A3C9E87C127C7CC700973964 /* OpenAL.framework */,
 				A3C9E880127C7CD200973964 /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3C9E884127C7E4500973964 /* overview */ = {
+			isa = PBXGroup;
+			children = (
+				A3C9E88A127C7EAE00973964 /* tests.h */,
+				A3C9E88B127C7EAE00973964 /* tests.m */,
+			);
+			name = overview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +204,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* CoreAudioTestAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* CoreAudioTestViewController.m in Sources */,
+				A3C9E88C127C7EAE00973964 /* tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
