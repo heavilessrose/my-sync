@@ -31,6 +31,14 @@
 		A323AE5E122E6BF900BD2217 /* star_half.png in Resources */ = {isa = PBXBuildFile; fileRef = A323AE5C122E6BF900BD2217 /* star_half.png */; };
 		A323AE5F122E6BF900BD2217 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = A323AE5D122E6BF900BD2217 /* star.png */; };
 		A33D8531122E7AED0038FFDF /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = A33D8530122E7AED0038FFDF /* star_empty.png */; };
+		A36CB653128A70B7004F0027 /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36CB64B128A70B7004F0027 /* CartCell.xib */; };
+		A36CB654128A70B7004F0027 /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36CB64C128A70B7004F0027 /* FavoriteCell.xib */; };
+		A36CB655128A70B7004F0027 /* FeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36CB64D128A70B7004F0027 /* FeatureCell.xib */; };
+		A36CB656128A70B7004F0027 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36CB64E128A70B7004F0027 /* MainWindow.xib */; };
+		A36CB657128A70B7004F0027 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36CB64F128A70B7004F0027 /* ProductCell.xib */; };
+		A36CB658128A70B7004F0027 /* ProductDetailViewConctroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36CB650128A70B7004F0027 /* ProductDetailViewConctroller.xib */; };
+		A36CB659128A70B7004F0027 /* RateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36CB651128A70B7004F0027 /* RateView.xib */; };
+		A36CB65A128A70B7004F0027 /* RecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36CB652128A70B7004F0027 /* RecommendCell.xib */; };
 		A393A7E41212A479004E6374 /* InitialDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A393A7E31212A479004E6374 /* InitialDefaults.plist */; };
 		A393A7EB1212A775004E6374 /* FeaturedViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A393A7EA1212A775004E6374 /* FeaturedViewController.mm */; };
 		A393A7EE1212A789004E6374 /* ProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A393A7ED1212A789004E6374 /* ProductsViewController.m */; };
@@ -110,6 +118,14 @@
 		A323AE5C122E6BF900BD2217 /* star_half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_half.png; sourceTree = "<group>"; };
 		A323AE5D122E6BF900BD2217 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		A33D8530122E7AED0038FFDF /* star_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_empty.png; sourceTree = "<group>"; };
+		A36CB64B128A70B7004F0027 /* CartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
+		A36CB64C128A70B7004F0027 /* FavoriteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCell.xib; sourceTree = "<group>"; };
+		A36CB64D128A70B7004F0027 /* FeatureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCell.xib; sourceTree = "<group>"; };
+		A36CB64E128A70B7004F0027 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		A36CB64F128A70B7004F0027 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
+		A36CB650128A70B7004F0027 /* ProductDetailViewConctroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailViewConctroller.xib; sourceTree = "<group>"; };
+		A36CB651128A70B7004F0027 /* RateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateView.xib; sourceTree = "<group>"; };
+		A36CB652128A70B7004F0027 /* RecommendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendCell.xib; sourceTree = "<group>"; };
 		A393A7E31212A479004E6374 /* InitialDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitialDefaults.plist; sourceTree = "<group>"; };
 		A393A7E91212A775004E6374 /* FeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedViewController.h; sourceTree = "<group>"; };
 		A393A7EA1212A775004E6374 /* FeaturedViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FeaturedViewController.mm; sourceTree = "<group>"; };
@@ -460,6 +476,14 @@
 		A3EDE924121E64960017D54F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A36CB64B128A70B7004F0027 /* CartCell.xib */,
+				A36CB64C128A70B7004F0027 /* FavoriteCell.xib */,
+				A36CB64D128A70B7004F0027 /* FeatureCell.xib */,
+				A36CB64E128A70B7004F0027 /* MainWindow.xib */,
+				A36CB64F128A70B7004F0027 /* ProductCell.xib */,
+				A36CB650128A70B7004F0027 /* ProductDetailViewConctroller.xib */,
+				A36CB651128A70B7004F0027 /* RateView.xib */,
+				A36CB652128A70B7004F0027 /* RecommendCell.xib */,
 				A3EDE928121E64970017D54F /* images */,
 			);
 			path = Resources;
@@ -535,6 +559,14 @@
 				A323AE5E122E6BF900BD2217 /* star_half.png in Resources */,
 				A323AE5F122E6BF900BD2217 /* star.png in Resources */,
 				A33D8531122E7AED0038FFDF /* star_empty.png in Resources */,
+				A36CB653128A70B7004F0027 /* CartCell.xib in Resources */,
+				A36CB654128A70B7004F0027 /* FavoriteCell.xib in Resources */,
+				A36CB655128A70B7004F0027 /* FeatureCell.xib in Resources */,
+				A36CB656128A70B7004F0027 /* MainWindow.xib in Resources */,
+				A36CB657128A70B7004F0027 /* ProductCell.xib in Resources */,
+				A36CB658128A70B7004F0027 /* ProductDetailViewConctroller.xib in Resources */,
+				A36CB659128A70B7004F0027 /* RateView.xib in Resources */,
+				A36CB65A128A70B7004F0027 /* RecommendCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,7 +668,7 @@
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F37A03E5-4FFB-4697-BB39-BCE0EF23CC95";
-				RUN_CLANG_STATIC_ANALYZER = YES;
+				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos4.1;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 			};
