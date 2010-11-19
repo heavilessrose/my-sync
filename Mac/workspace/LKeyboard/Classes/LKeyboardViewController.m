@@ -203,6 +203,11 @@
 
 - (void)keyboardWillShow:(NSNotification *)note
 {
+	/*
+	 NSDictionary *userInfo = [note userInfo];
+	 NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+	 CGRect keyboardRect = [aValue CGRectValue];
+	 */
 	if (emoKeyBoardView) {
 		[self.emoKeyBoardView removeFromSuperview];
 		[self.showOrHideButton setTitle:@"show" forState:UIControlStateNormal];
