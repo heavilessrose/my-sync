@@ -1,0 +1,104 @@
+NSString* kText = @"This is a test of styled labels.  Styled labels support <b>bold text</b>, <i>italic text</i>, <span class=\"blueText\">colored text</span>, <span class=\"largeText\">font sizes</span>, <span class=\"blueBox\">spans with backgrounds</span>, inline images <img src=\"bundle://smiley.png\"/>, and <a href=\"http://www.google.com\">hyperlinks</a> you can actually touch. URLs are automatically converted into links, like this: http://www.foo.coma anan<div>You can enclose blocks within an HTML div.</div> Both line break characters\n\nand HTML line breaks<br/>are respected.";
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+parseXHTML: <x>This is a test of styled labels.  Styled labels support <b>bold text</b>, <i>italic text</i>, <span class="blueText">colored text</span>, <span class="largeText">font sizes</span>, <span class="blueBox">spans with backgrounds</span>, inline images <img src="bundle://smiley.png"/>, and <a href="http://www.google.com">hyperlinks</a> you can actually touch. URLs are automatically converted into links, like this: http://www.foo.com <div>You can enclose blocks within an HTML div.</div> Both line break characters
+
+and HTML line breaks<br/>are respected.</x>
+
+========================================
+didStartElement: x
+foundCharacters: This is a test of styled labels.  Styled labels support 
+didStartElement: b
+parseText: This is a test of styled labels.  Styled labels support 
+parseURLs: This is a test of styled labels.  Styled labels support 
+pushNode: *(null)*
+foundCharacters: bold text
+didEndElement: b
+parseText: bold text
+parseURLs: bold text
+popNode: *bold text*
+foundCharacters: , 
+didStartElement: i
+parseText: , 
+parseURLs: , 
+pushNode: /(null)/
+foundCharacters: italic text
+didEndElement: i
+parseText: italic text
+parseURLs: italic text
+popNode: /italic text/
+foundCharacters: , 
+didStartElement: span
+parseText: , 
+parseURLs: , 
+pushNode: (null)
+foundCharacters: colored text
+didEndElement: span
+parseText: colored text
+parseURLs: colored text
+popNode: colored text
+foundCharacters: , 
+didStartElement: span
+parseText: , 
+parseURLs: , 
+pushNode: (null)
+foundCharacters: font sizes
+didEndElement: span
+parseText: font sizes
+parseURLs: font sizes
+popNode: font sizes
+foundCharacters: , 
+didStartElement: span
+parseText: , 
+parseURLs: , 
+pushNode: (null)
+foundCharacters: spans with backgrounds
+didEndElement: span
+parseText: spans with backgrounds
+parseURLs: spans with backgrounds
+popNode: spans with backgrounds
+foundCharacters: , inline images 
+didStartElement: img
+parseText: , inline images 
+parseURLs: , inline images 
+pushNode: (bundle://smiley.png)
+didEndElement: img
+popNode: (bundle://smiley.png)
+foundCharacters: , and 
+didStartElement: a
+parseText: , and 
+parseURLs: , and 
+pushNode: <(null)>
+foundCharacters: hyperlinks
+didEndElement: a
+parseText: hyperlinks
+parseURLs: hyperlinks
+popNode: <hyperlinks>
+foundCharacters:  you can actually touch. URLs are automatically converted into links, like this: http://www.foo.com 
+didStartElement: div
+parseText:  you can actually touch. URLs are automatically converted into links, like this: http://www.foo.com 
+parseURLs:  you can actually touch. URLs are automatically converted into links, like this: http://www.foo.com 
+pushNode: (null)
+foundCharacters: You can enclose blocks within an HTML div.
+didEndElement: div
+parseText: You can enclose blocks within an HTML div.
+parseURLs: You can enclose blocks within an HTML div.
+popNode: You can enclose blocks within an HTML div.
+foundCharacters:  Both line break characters
+
+and HTML line breaks
+didStartElement: br
+parseText:  Both line break characters
+
+and HTML line breaks
+parseURLs:  Both line break characters
+parseURLs: 
+parseURLs: and HTML line breaks
+pushNode: (null)
+didEndElement: br
+popNode: (null)
+foundCharacters: are respected.
+didEndElement: x
+parseText: are respected.
+parseURLs: are respected.
+popNode: (null)
