@@ -93,9 +93,9 @@
   parser.parseURLs = URLs;
   [parser parseXHTML:source];
   if (parser.rootNode) {
-	  NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^start");
+	  NSLog(@"TTStyledText^^^^^^^^^^^^^^^^^^^^^^^^^^start");
 	  NSLog(@"%@", [parser.rootNode outerHTML]);
-	  NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^end");
+	  NSLog(@"TTStyledText^^^^^^^^^^^^^^^^^^^^^^^^^^end");
     return [[[TTStyledText alloc] initWithNode:parser.rootNode] autorelease];
 
   } else {

@@ -356,7 +356,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)sizeThatFits:(CGSize)size {
-	NSLog(@"________prepare to draw________");
+	NSLog(@"\n________prepare to layout________________________________________________________________\n");
   [self layoutIfNeeded];
   return CGSizeMake(_text.width + (_contentInset.left + _contentInset.right),
                     _text.height+ (_contentInset.top + _contentInset.bottom));
