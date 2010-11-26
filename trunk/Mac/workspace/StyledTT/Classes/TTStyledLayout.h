@@ -12,7 +12,7 @@
 @interface TTStyledLayout : NSObject {
   CGFloat _x;
   CGFloat _width;
-  CGFloat _height;
+  CGFloat _height;// 总高
   CGFloat _lineWidth;
   CGFloat _lineHeight;
   CGFloat _minX;
