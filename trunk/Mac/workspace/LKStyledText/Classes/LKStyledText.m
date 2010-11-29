@@ -21,9 +21,10 @@
 	
 	if (self = [super init]) {
 		// test
-		NSArray *testStrs = [NSArray arrayWithObjects:@"asd", @"fad", @"http://www.goooogoooogoooogoooogoooogoooogoooogoooogoooogoooogle.com", @"fasdfasfasdfasd 啊啥的发放 啊!", @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 11", nil];
+		NSArray *testStrs = [NSArray arrayWithObjects:@"asd", @"@userA", @"fad", @"http://www.goooogoooogoooogoooogoooogoooogoooogoooogoooogoooogle.com", @"fasdfasfasdfasd 啊啥的发放 啊!", @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 11", @"@userB", @"www.123asdf.com", nil];
+		//NSArray *testStrs = [NSArray arrayWithObject:@"aslkdfas;fj啊是多力丰筋啊是癫凤狂龙就阿瑟;的发了看见"];
 		for (NSString *astr in testStrs) {
-			if ([astr isEqualToString:[testStrs objectAtIndex:2]]) {
+			if ([astr isEqualToString:[testStrs objectAtIndex:1]] || [astr isEqualToString:[testStrs objectAtIndex:3]] || [astr isEqualToString:[testStrs objectAtIndex:6]] || [astr isEqualToString:[testStrs objectAtIndex:7]]) {
 				[self addNode:[[LKStyledLinkNode alloc] initWithText:astr]];
 				continue;
 			}
