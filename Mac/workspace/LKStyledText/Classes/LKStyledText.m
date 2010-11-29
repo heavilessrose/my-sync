@@ -87,4 +87,10 @@
 }
 
 
+- (LKStyledFrame *)touchCheck:(CGPoint)aPoint {
+	
+	DLog(@"");
+	return [self.rootFrame touchCheck:aPoint];
+}
+
 @end

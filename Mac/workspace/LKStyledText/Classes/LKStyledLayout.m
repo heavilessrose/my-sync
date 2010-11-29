@@ -241,11 +241,11 @@
 {
 	DLog(@"text: [%@], node: [%@], width: %.0f, height: %0.f", atext, aTNode, aTWidth, aTHeight);
 	LKStyledTextFrame* frame = [[[LKStyledTextFrame alloc] initWithText:atext node:aTNode] autorelease];
-	if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
-		frame.textColor = [UIColor blueColor];
-	} else if ([aTNode isKindOfClass:[LKStyledTextNode class]]) {
-		frame.textColor = [UIColor blackColor];
-	}
+//	if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
+//		frame.textColor = [UIColor blueColor];
+//	} else if ([aTNode isKindOfClass:[LKStyledTextNode class]]) {
+//		frame.textColor = [UIColor blackColor];
+//	}
 	
 	frame.font = TEXT_FONT;
 	frame.frame = CGRectMake(_x, _height, aTWidth, aTHeight);

@@ -8,18 +8,18 @@
 
 #import "LKStyledTextFrame.h"
 #import "LKStyledTextNode.h"
+#import "LKStyledLinkNode.h"
 
 
 @implementation LKStyledTextFrame
 
-@synthesize tnode;
-@synthesize text, font, textColor;
+@synthesize text, font, textColor, backColor;
 
 - (id)initWithText:(NSString *)atext node:(LKStyledTextNode *)aTNode {
 	
 	if (self = [super init]) {
 		self.text = atext;
-		tnode = aTNode;
+		node = aTNode;
 	}
 	return self;
 }
@@ -28,11 +28,22 @@
 	
 	CGContextRef _context = UIGraphicsGetCurrentContext();
 	CGContextSaveGState(_context);
-	CGContextSetStrokeColorWithColor(_context, [textColor CGColor]);
-	CGContextSetFillColorWithColor(_context, [textColor CGColor]);
+	//CGContextSetStrokeColorWithColor(_context, [textColor CGColor]);
+	//CGContextSetFillColorWithColor(_context, [textColor CGColor]);
 	
-	//[self.textColor set];
-	DLog(@"color: %@", textColor);
+	if ([self.node isKindOfClass:[LKStyledLinkNode class]]) {
+		// 画背景
+		DLog(@"画背景");
+		if (selected) {
+			self.textColor = [UIColor darkGrayColor];
+		} else {
+			self.textColor = [UIColor blueColor];
+		}
+	} else {
+		self.textColor = [UIColor blackColor];
+	}
+
+	[self.textColor set];
 	[text drawInRect:aRect withFont:font lineBreakMode:UILineBreakModeClip];
 	CGContextRestoreGState(_context);
 }
@@ -42,6 +53,7 @@
 	[text release];
 	[font release];
 	[textColor release];
+	[backColor release];
 	[super dealloc];
 }
 

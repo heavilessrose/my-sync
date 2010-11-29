@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class LKStyledText;
+@class LKStyledText, LKStyledFrame;
 
 @interface LKStyledTextView : UIView {
 
 	LKStyledText *stext;
 	UIEdgeInsets contentInset;
+	LKStyledFrame *selectedFrame;
 }
 
 @property (nonatomic, retain) LKStyledText *stext;
 @property (nonatomic) UIEdgeInsets contentInset;
+@property (nonatomic, assign) LKStyledFrame *selectedFrame;
 
 @end

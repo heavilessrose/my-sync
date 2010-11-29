@@ -7,21 +7,27 @@
 //
 
 #import "LKStyledFrame.h"
+#import "LKStyledLinkNode.h"
 
 
 @implementation LKStyledFrame
 
-@synthesize frame;
-@synthesize nextFrame, childFrame;
+@synthesize frame, selected;
+@synthesize node, nextFrame, childFrame;
 
 // implement by subclasses
 - (void)drawInRect:(CGRect)aRect {
 	
 }
 
-//- (void)touchCheck {
-//	
-//}
+- (LKStyledFrame *)touchCheck:(CGPoint)aPoint {
+	
+	DLog(@"");
+	if ([node isKindOfClass:[LKStyledLinkNode class]] && CGRectContainsPoint(self.frame, aPoint)) {
+		return self;
+	}
+	return [self.nextFrame touchCheck:aPoint];
+}
 
 - (NSString *)description {
 	
