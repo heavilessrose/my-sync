@@ -36,8 +36,8 @@
 	
 	//NSString* kText = @"This is a test of styled labels.  Styled labels support <b>bold text</b>, <i>italic text</i>, <span class=\"blueText\">colored text</span>, <span class=\"largeText\">font sizes</span>, <span class=\"blueBox\">spans with backgrounds</span>, inline images <img src=\"bundle://smiley.png\"/>, and <a href=\"http://www.google.com\">hyperlinks</a> you can actually touch. URLs are automatically converted into links, like this: http://www.foo.comaanan asdf <div>You can enclose blocks within an HTML div.</div> Both line break characters\n\nand HTML line breaks<br/>are respected.";
 	//NSString *kText = @"This is a test of styled labels.  www.google.com http://www.google.com";
-	//NSString *kText = @"www.g.c http://w.g.cccccccaa @啊啊";
-	NSString *kText = @"aa <b>aa</b> <i>aa</i> <b>aa<i>aa</i></b> <b><i>aa</i></b> <i><a href=\"http://www.aa.com\">aa</a></i>";
+	NSString *kText = @"www.g.c http://w.goooooooooooooooooooooogle.cccccccaa @啊啊aaaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊 啊啊啊 啊啊啊啊啊啊啊!!!! !!!! @@";
+	//NSString *kText = @"aa <b>aa</b> <i>aa</i> <b>aa<i>aa</i></b> <b><i>aa</i></b> <i><a href=\"http://www.aa.com\">aa</a></i>";
 	//NSString *kText = @"<b>bold</b>";
 	TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
 	label1.font = [UIFont systemFontOfSize:17];
