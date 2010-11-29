@@ -166,6 +166,7 @@
 - (void)expandLineWidth:(CGFloat)width {
 	NSLog(@"expandLineWidth: width= %.0f", width);
 	_lineWidth += width;
+	NSLog(@"--> _lineWidth+=width = %.0f", _lineWidth);
 	TTStyledInlineFrame* inlineFrame = _inlineFrame;
 	while (inlineFrame) {
 		inlineFrame.width += width;
@@ -179,6 +180,7 @@
 	NSLog(@"inflateLineHeight: height= %.0f", height);
 	if (height > _lineHeight) {
 		_lineHeight = height;
+		NSLog(@"--> 扩大_lineHeight以适应word高度, _lineHeight= %.0f", _lineHeight);
 	}
 	if (_inlineFrame) {
 		TTStyledInlineFrame* inlineFrame = _inlineFrame;
@@ -194,17 +196,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addFrame:(TTStyledFrame*)frame {
-	NSLog(@"real addFrame: %@", frame);
 	if (!_rootFrame) {
+		NSLog(@"--> real addFrame as _rootFrame: %@", frame);
 		_rootFrame = [frame retain];
-	} else if (_topFrame) {
+	} else if (_topFrame) {// TTStyledBoxFrame 对应 element
 		if (!_topFrame.firstChildFrame) {
 			_topFrame.firstChildFrame = frame;
+			NSLog(@"--> element, real addFrame as _topFrame.firstChildFrame: %@", frame);
 		} else {
 			_lastFrame.nextFrame = frame;
+			NSLog(@"--> element, real addFrame as _lastFrame.nextFrame: %@", frame);
 		}
 	} else {
 		_lastFrame.nextFrame = frame;
+		NSLog(@"--> real addFrame as _lastFrame.nextFrame: %@", frame);
 	}
 	_lastFrame = frame;
 }
@@ -229,7 +234,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyledFrame*)addContentFrame:(TTStyledFrame*)frame width:(CGFloat)width {
-	NSLog(@"addContentFrame: frame: %@, width: %.0f", frame, width);
+	NSLog(@"--> addContentFrame: frame: %@, width: %.0f", frame, width);
 	[self addFrame:frame];
 	if (!_lineFirstFrame) {
 		_lineFirstFrame = frame;
@@ -241,6 +246,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addContentFrame:(TTStyledFrame*)frame width:(CGFloat)width height:(CGFloat)height {
+	NSLog(@"addContentFrame: bounds= (%.0f, %.0f, %.0f, %.0f)", _x, _height, width, height);
 	frame.bounds = CGRectMake(_x, _height, width, height);
 	[self addContentFrame:frame width:width];
 }
@@ -287,7 +293,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyledFrame*)addBlockFrame:(TTStyle*)style element:(TTStyledElement*)element
 						  width:(CGFloat)width height:(CGFloat)height {
-	NSLog(@"addBlockFrame: style= %@, elem= %@, width= %.0f, height= %.0f", style, element, width, height);
+	NSLog(@"-->addBlockFrame: style= %@, elem= %@, width= %.0f, height= %.0f", style, element, width, height);
 	TTStyledBoxFrame* frame = [[[TTStyledBoxFrame alloc] initWithElement:element] autorelease];
 	frame.style = style;
 	frame.bounds = CGRectMake(_x, _height, width, height);
@@ -311,7 +317,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)breakLine {
-	NSLog(@"breakLine: 不够长换行");
+	NSLog(@"breakLine: 换行");
 	if (_inlineFrame) {
 		TTStyledInlineFrame* inlineFrame = _inlineFrame;
 		while (inlineFrame) {
@@ -364,7 +370,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyledFrame*)addFrameForText:(NSString*)text element:(TTStyledElement*)element
 							 node:(TTStyledTextNode*)node width:(CGFloat)width height:(CGFloat)height {
-	NSLog(@"addFrameForText: text: %@, elem: %@, node: %@, width: %.0f, height: %0.f", text, element, node, width, height);
+	NSLog(@"addFrameForText: text: [%@], elem: [%@], node: [%@], width: %.0f, height: %0.f", text, element, node, width, height);
 	TTStyledTextFrame* frame = [[[TTStyledTextFrame alloc] initWithText:text element:element
 																   node:node] autorelease];
 	frame.font = _font;
@@ -375,7 +381,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutElement:(TTStyledElement*)elt {
-	NSLog(@"layoutElement: %@", elt);
+	NSLog(@"layoutElement: [%@]", elt);
 	TTStyle* style = nil;
 	if (elt.className) {
 		TTStyle* eltStyle = [[TTStyleSheet globalStyleSheet] styleWithSelector:elt.className];
@@ -385,6 +391,7 @@
 	}
 	if (!style && [elt isKindOfClass:[TTStyledLinkNode class]]) {
 		style = self.linkStyle;
+		NSLog(@"-->element是一个TTStyledLinkNode: %@", style);
 	}
 	
 	// Figure out which font to use for the node
@@ -459,33 +466,42 @@
 	} else {
 		CGFloat minX = _minX, width = _width, floatLeftWidth = _floatLeftWidth,
 		floatRightWidth = _floatRightWidth, floatHeight = _floatHeight;
+		NSLog(@"-->minX= %.0f, width= %.0f, floatLeftWidth= %.0f, floatRightWidth= %.0f, floatHeight= %.0f)", minX, width, floatLeftWidth, floatRightWidth, floatHeight);
+
 		BOOL isBlock = [elt isKindOfClass:[TTStyledBlock class]];
 		TTStyledFrame* blockFrame = nil;
 		
 		if (isBlock) {
+			NSLog(@"-->element是一个TTStyledBlock");
 			if (padding) {
 				_x += padding.margin.left;
 				_minX += padding.margin.left;
 				_width -= padding.margin.left + padding.margin.right;
 				_height += padding.margin.top;
+				NSLog(@"-->padding: _x= %.0f, _minX= %.0f, _width= %.0f, _height= %.0f", _x, _minX, _width, _height);
 			}
 			
 			if (_lastFrame) {
+				NSLog(@"-->是_lastFrame");
 				if (!_lineHeight && [elt isKindOfClass:[TTStyledLineBreakNode class]]) {
 					_lineHeight = [_font ttLineHeight];
 				}
+				NSLog(@"-->");
 				[self breakLine];
 			}
 			if (style) {
 				blockFrame = [self addBlockFrame:style element:elt width:_width height:_height];
+				NSLog(@"-->添加的blockFrame: %@", blockFrame);
 			}
 		} else {
 			if (padding) {
 				_x += padding.margin.left;
 				_height += padding.margin.top;
+				NSLog(@"-->padding: _x= %.0f, _height= %.0f", _x, _height);
 			}
 			if (style) {
 				_inlineFrame = [self addInlineFrame:style element:elt width:0 height:0];
+				NSLog(@"添加的_inlineFrame: %@", _inlineFrame);
 			}
 		}
 		
@@ -663,7 +679,7 @@
 		? NSMakeRange(searchRange.location, (spaceRange.location+1) - searchRange.location)
 		: NSMakeRange(searchRange.location, length - searchRange.location);
 		NSString* word = [text substringWithRange:wordRange];
-		NSLog(@"分割为word: %@", word);
+		NSLog(@"分割为word: [%@]", word);
 		
 		// If there is no width to constrain to, then just use an infinite width,
 		// which will prevent any word wrapping
@@ -674,14 +690,14 @@
 		CGSize wordSize = [word sizeWithFont:_font];
 		if (wordSize.width > _width) {
 			NSLog(@"word(%.0f)比当前行%.0f 长", wordSize.width, _width);
-			NSLog(@"按单个字符处理");
+			NSLog(@"按单个letter处理");
 			for (NSInteger i = 0; i < word.length; ++i) {
 				NSString* c = [word substringWithRange:NSMakeRange(i, 1)];
 				CGSize letterSize = [c sizeWithFont:_font];
 				
 				NSLog(@"%@, width= %.0f", c, letterSize.width);
 				if (_lineWidth + letterSize.width > _width) {
-					NSLog(@"此行已不够长无法放下这个字符");
+					NSLog(@"此行已不够长无法放下这个letter");
 					NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
 					if (lineRange.length) {
 						NSString* line = [text substringWithRange:lineRange];
@@ -713,9 +729,10 @@
 				frameWidth = 0;
 			}
 		} else {
-			NSLog(@"word没有此行长");
+			NSLog(@"word(%.0f)没有此行长", wordSize.width);
 			if (_lineWidth + wordSize.width > _width) {
-				NSLog(@"word将被放到下一行, 创建当前行的frame");
+				NSLog(@"此行不够长, 以放下该word (%@)", word);
+				NSLog(@"%.0f > %.0f, word将被放到下一行, 创建当前行的frame. _lineWidth= %.0f", _lineWidth + wordSize.width, _width, _lineWidth);
 				// The word will be placed on the next line, so create a new frame for
 				// the current line and mark it with a line break
 				NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
@@ -748,18 +765,25 @@
 				break;
 			}
 			
+			CGFloat frameW_tmp = frameWidth;
 			frameWidth += wordSize.width;
+			NSLog(@"扩大frameWidth(%.0f)+=wordSize.width = %.0f", frameW_tmp, frameWidth);
+			NSLog(@"--调整行宽,高--start");
 			[self expandLineWidth:wordSize.width];
 			[self inflateLineHeight:wordSize.height];
-			
+			NSLog(@"--调整行宽,高--end");
+
+			NSLog(@"stringIndex向后推移这个word (%@) 的长度", word);
 			stringIndex = wordRange.location + wordRange.length;
 			if (stringIndex >= length) {
+				NSLog(@"处理到最后一个word (%@)", word);
 				// The current word was at the very end of the string
 				NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
 												- lineStartIndex);
 				NSString* line = !_lineWidth ? word : [text substringWithRange:lineRange];
 				[self addFrameForText:line element:element node:textNode width:frameWidth
 							   height:[_font ttLineHeight]];
+				NSLog(@"重置 frameWidth = 0");
 				frameWidth = 0;
 			}
 		}

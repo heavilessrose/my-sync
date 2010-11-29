@@ -17,21 +17,22 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithText:(NSString*)text element:(TTStyledElement*)element node:(TTStyledTextNode*)node {
-  if (self = [super initWithElement:element]) {
-    _text = [text copy];
-    _node = node;
-  }
-
-  return self;
+	if (self = [super initWithElement:element]) {
+		_text = [text copy];
+		_node = node;
+		NSLog(@"创建了TTStyledTextFrame: text= [%@], node= [%@]", _text, node);
+	}
+	
+	return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_text);
-  TT_RELEASE_SAFELY(_font);
-
-  [super dealloc];
+	TT_RELEASE_SAFELY(_text);
+	TT_RELEASE_SAFELY(_font);
+	
+	[super dealloc];
 }
 
 
@@ -43,7 +44,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawInRect:(CGRect)rect {
-  [_text drawInRect:rect withFont:_font lineBreakMode:UILineBreakModeClip];
+	[_text drawInRect:rect withFont:_font lineBreakMode:UILineBreakModeClip];
 }
 
 
