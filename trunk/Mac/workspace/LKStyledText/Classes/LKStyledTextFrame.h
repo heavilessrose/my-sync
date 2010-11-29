@@ -13,16 +13,16 @@
 
 @interface LKStyledTextFrame : LKStyledFrame {
 
-	LKStyledTextNode *tnode;
 	NSString *text; // 该frame会画这个
 	UIFont *font;
 	UIColor *textColor;
+	UIColor *backColor;
 }
 
-@property (nonatomic, readonly) LKStyledTextNode *tnode;
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) UIFont *font;
 @property (nonatomic, retain) UIColor *textColor;
+@property (nonatomic, retain) UIColor *backColor;
 
 - (id)initWithText:(NSString *)atext node:(LKStyledTextNode *)aTNode;
 
