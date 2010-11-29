@@ -39,7 +39,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithElement:(TTStyledElement*)element node:(TTStyledImageNode*)node {
   if (self = [super initWithElement:element]) {
-    _imageNode = node;
+	  _imageNode = node;
+	  NSLog(@"创建了TTStyledImageFrame: element= [%@], node= [%@]", element, _imageNode);
   }
 
   return self;
