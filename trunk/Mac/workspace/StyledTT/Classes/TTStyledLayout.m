@@ -364,6 +364,7 @@
 		}
 		_inlineFrame = [self cloneInlineFrame:_inlineFrame];
 	}
+	NSLog(@"line breaked: ");
 }
 
 
@@ -519,6 +520,8 @@
 		}
 		
 		if (elt.firstChild) {
+			NSLog(@"element[%@], 有第一个孩子[%@]", elt, elt.firstChild);
+			NSLog(@"layout 第一个孩子");
 			[self layout:elt.firstChild container:elt];
 		}
 		
@@ -776,7 +779,7 @@
 			NSLog(@"stringIndex向后推移这个word (%@) 的长度", word);
 			stringIndex = wordRange.location + wordRange.length;
 			if (stringIndex >= length) {
-				NSLog(@"处理到最后一个word (%@)", word);
+				NSLog(@"处理到该node[%@]最后一个word (%@)", text, word);
 				// The current word was at the very end of the string
 				NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
 												- lineStartIndex);
