@@ -16,11 +16,13 @@
 	LKStyledTextNode *tnode;
 	NSString *text; // 该frame会画这个
 	UIFont *font;
+	UIColor *textColor;
 }
 
 @property (nonatomic, readonly) LKStyledTextNode *tnode;
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) UIFont *font;
+@property (nonatomic, retain) UIColor *textColor;
 
 - (id)initWithText:(NSString *)atext node:(LKStyledTextNode *)aTNode;
 

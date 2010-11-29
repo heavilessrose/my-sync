@@ -22,7 +22,6 @@
 		A3C49DF612A39B0900699F55 /* LKStyledTextFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C49DF512A39B0900699F55 /* LKStyledTextFrame.m */; };
 		A3C49DFD12A39B8800699F55 /* LKStyledTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C49DFC12A39B8800699F55 /* LKStyledTextNode.m */; };
 		A3C49E1D12A3AB8400699F55 /* LKStyledLinkNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C49E1C12A3AB8400699F55 /* LKStyledLinkNode.m */; };
-		A3C49E2312A3ABDF00699F55 /* LKStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C49E2212A3ABDF00699F55 /* LKStyle.m */; };
 		A3C49E2A12A3AC6300699F55 /* LKStyledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C49E2912A3AC6300699F55 /* LKStyledTextView.m */; };
 		A3C49ECE12A3B41300699F55 /* LKStyledLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C49ECD12A3B41300699F55 /* LKStyledLayout.m */; };
 /* End PBXBuildFile section */
@@ -55,8 +54,6 @@
 		A3C49DFC12A39B8800699F55 /* LKStyledTextNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyledTextNode.m; sourceTree = "<group>"; };
 		A3C49E1B12A3AB8400699F55 /* LKStyledLinkNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyledLinkNode.h; sourceTree = "<group>"; };
 		A3C49E1C12A3AB8400699F55 /* LKStyledLinkNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyledLinkNode.m; sourceTree = "<group>"; };
-		A3C49E2112A3ABDF00699F55 /* LKStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyle.h; sourceTree = "<group>"; };
-		A3C49E2212A3ABDF00699F55 /* LKStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyle.m; sourceTree = "<group>"; };
 		A3C49E2812A3AC6300699F55 /* LKStyledTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyledTextView.h; sourceTree = "<group>"; };
 		A3C49E2912A3AC6300699F55 /* LKStyledTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyledTextView.m; sourceTree = "<group>"; };
 		A3C49ECC12A3B41300699F55 /* LKStyledLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyledLayout.h; sourceTree = "<group>"; };
@@ -163,8 +160,6 @@
 				A3C49DFC12A39B8800699F55 /* LKStyledTextNode.m */,
 				A3C49E1B12A3AB8400699F55 /* LKStyledLinkNode.h */,
 				A3C49E1C12A3AB8400699F55 /* LKStyledLinkNode.m */,
-				A3C49E2112A3ABDF00699F55 /* LKStyle.h */,
-				A3C49E2212A3ABDF00699F55 /* LKStyle.m */,
 				A3C49E2812A3AC6300699F55 /* LKStyledTextView.h */,
 				A3C49E2912A3AC6300699F55 /* LKStyledTextView.m */,
 				A3C49ECC12A3B41300699F55 /* LKStyledLayout.h */,
@@ -246,7 +241,6 @@
 				A3C49DF612A39B0900699F55 /* LKStyledTextFrame.m in Sources */,
 				A3C49DFD12A39B8800699F55 /* LKStyledTextNode.m in Sources */,
 				A3C49E1D12A3AB8400699F55 /* LKStyledLinkNode.m in Sources */,
-				A3C49E2312A3ABDF00699F55 /* LKStyle.m in Sources */,
 				A3C49E2A12A3AC6300699F55 /* LKStyledTextView.m in Sources */,
 				A3C49ECE12A3B41300699F55 /* LKStyledLayout.m in Sources */,
 				A392D99212A3C34D0077E114 /* UIFontAdditions.m in Sources */,

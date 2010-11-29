@@ -10,6 +10,7 @@
 #import "LKStyledFrame.h"
 #import "LKStyledTextNode.h"
 #import "LKStyledLayout.h"
+#import "LKStyledLinkNode.h"
 
 
 @implementation LKStyledText
@@ -20,8 +21,12 @@
 	
 	if (self = [super init]) {
 		// test
-		NSArray *testStrs = [NSArray arrayWithObjects:@"asd", @"fad", @"fasdfasfasdfasd 啊啥的发放 啊!", @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 11", nil];
+		NSArray *testStrs = [NSArray arrayWithObjects:@"asd", @"fad", @"http://www.goooogoooogoooogoooogoooogoooogoooogoooogoooogoooogle.com", @"fasdfasfasdfasd 啊啥的发放 啊!", @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 11", nil];
 		for (NSString *astr in testStrs) {
+			if ([astr isEqualToString:[testStrs objectAtIndex:2]]) {
+				[self addNode:[[LKStyledLinkNode alloc] initWithText:astr]];
+				continue;
+			}
 			[self addNode:[[LKStyledTextNode alloc] initWithText:astr]];
 		}
 	}
@@ -41,14 +46,14 @@
 	
 	LKStyledFrame *frame = self.rootFrame;
 	static int frameCount = 0;
-	NSLog(@"=================================start draw:\n");
+	DLog(@"=================================start draw:\n");
 	while (frame) {
 		frameCount++;
-		NSLog(@"draw frame: %@", frame);
+		DLog(@"draw frame: %@", frame);
 		[frame drawInRect:frame.frame];
 		frame = frame.nextFrame;
 	}
-	NSLog(@"-------frameCount: %d", frameCount);
+	DLog(@"-------frameCount: %d", frameCount);
 	frameCount = 0;
 	CGContextRestoreGState(ctx);
 }

@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LKStyledTextNode.h"
 
-
-@interface LKStyledLinkNode : NSObject {
+@interface LKStyledLinkNode : LKStyledTextNode {
 
 }
+
 
 @end
