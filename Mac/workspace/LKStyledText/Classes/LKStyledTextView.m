@@ -7,7 +7,7 @@
 //
 
 #import "LKStyledTextView.h"
-#import "LKStyledFrame.h"
+#import "LKStyledTextFrame.h"
 
 
 @implementation LKStyledTextView
@@ -49,6 +49,14 @@
 	
 	self.selectedFrame = [stext touchCheck:point];
 	selectedFrame.selected = YES;
+	if ([selectedFrame isKindOfClass:[LKStyledTextFrame class]]) {
+		NSArray *siblings = ((LKStyledTextFrame *)selectedFrame).siblings;
+		if (siblings) {
+			for (LKStyledFrame *aFrame in siblings) {
+				aFrame.selected = YES;
+			}
+		}
+	}
 	DLog(@"touch: (%.0f, %.0f), selectedFrame: %@", point.x, point.y, self.selectedFrame);
 	[self setNeedsDisplay];
 	
@@ -62,6 +70,14 @@
 	point.x -= contentInset.left;
 	point.y -= contentInset.top;
 	selectedFrame.selected = NO;
+	if ([selectedFrame isKindOfClass:[LKStyledTextFrame class]]) {
+		NSArray *siblings = ((LKStyledTextFrame *)selectedFrame).siblings;
+		if (siblings) {
+			for (LKStyledFrame *aFrame in siblings) {
+				aFrame.selected = NO;
+			}
+		}
+	}
 	DLog(@"touch: (%.0f, %.0f), selectedFrame: %@", point.x, point.y, self.selectedFrame);
 	[self setNeedsDisplay];
 	

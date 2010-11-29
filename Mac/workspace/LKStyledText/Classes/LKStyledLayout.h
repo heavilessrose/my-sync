@@ -10,7 +10,7 @@
 
 #define TEXT_FONT ([UIFont systemFontOfSize:16])
 
-@class LKStyledNode, LKStyledFrame, LKStyledText, LKStyledTextNode;
+@class LKStyledNode, LKStyledFrame, LKStyledText, LKStyledTextNode, LKStyledTextFrame;
 
 @interface LKStyledLayout : NSObject {
 	
@@ -23,6 +23,9 @@
 	CGFloat _height;	// 总高
 	CGFloat lineWidth;	// 行当前宽
 	CGFloat lineHeight; // 行当前高
+	
+	BOOL linkHasMoreThanOneFrame;
+	LKStyledTextFrame *tmpLinkStartFrame;
 }
 
 
@@ -31,6 +34,7 @@
 @property (nonatomic, retain) LKStyledFrame *rootFrame;
 @property (nonatomic, assign) CGFloat _width;
 @property (nonatomic, assign) CGFloat _height;
+@property (nonatomic, assign) LKStyledTextFrame *tmpLinkStartFrame;
 
 - (id)initWithStyledText:(LKStyledText *)stext;
 - (LKStyledFrame *)layoutFrames;

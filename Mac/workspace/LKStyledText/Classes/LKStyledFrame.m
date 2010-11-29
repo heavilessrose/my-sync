@@ -13,7 +13,7 @@
 @implementation LKStyledFrame
 
 @synthesize frame, selected;
-@synthesize node, nextFrame, childFrame;
+@synthesize node, nextFrame;
 
 // implement by subclasses
 - (void)drawInRect:(CGRect)aRect {
@@ -36,7 +36,6 @@
 
 - (void)dealloc {
 	
-	[childFrame release];
 	[nextFrame release];
 	[super dealloc];
 }
