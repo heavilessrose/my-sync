@@ -13,7 +13,7 @@
 @implementation LKStyledTextFrame
 
 @synthesize tnode;
-@synthesize text, font;
+@synthesize text, font, textColor;
 
 - (id)initWithText:(NSString *)atext node:(LKStyledTextNode *)aTNode {
 	
@@ -26,13 +26,22 @@
 
 - (void)drawInRect:(CGRect)aRect {
 	
+	CGContextRef _context = UIGraphicsGetCurrentContext();
+	CGContextSaveGState(_context);
+	CGContextSetStrokeColorWithColor(_context, [textColor CGColor]);
+	CGContextSetFillColorWithColor(_context, [textColor CGColor]);
+	
+	//[self.textColor set];
+	DLog(@"color: %@", textColor);
 	[text drawInRect:aRect withFont:font lineBreakMode:UILineBreakModeClip];
+	CGContextRestoreGState(_context);
 }
 
 - (void)dealloc {
 	
 	[text release];
 	[font release];
+	[textColor release];
 	[super dealloc];
 }
 

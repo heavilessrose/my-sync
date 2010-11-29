@@ -12,6 +12,7 @@
 #import "LKStyledText.h"
 #import "UIFontAdditions.h"
 #import "LKStyledTextFrame.h"
+#import "LKStyledLinkNode.h"
 
 
 @implementation LKStyledLayout
@@ -44,7 +45,6 @@
 			LKStyledTextNode* textNode = (LKStyledTextNode *)node;
 			[self layoutText:textNode];
 		}
-		
 		node = node.nextNode;
 	}
 	DLog(@"--------------------------------end");
@@ -241,6 +241,12 @@
 {
 	DLog(@"text: [%@], node: [%@], width: %.0f, height: %0.f", atext, aTNode, aTWidth, aTHeight);
 	LKStyledTextFrame* frame = [[[LKStyledTextFrame alloc] initWithText:atext node:aTNode] autorelease];
+	if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
+		frame.textColor = [UIColor blueColor];
+	} else if ([aTNode isKindOfClass:[LKStyledTextNode class]]) {
+		frame.textColor = [UIColor blackColor];
+	}
+	
 	frame.font = TEXT_FONT;
 	frame.frame = CGRectMake(_x, _height, aTWidth, aTHeight);
 	_x += aTWidth;
