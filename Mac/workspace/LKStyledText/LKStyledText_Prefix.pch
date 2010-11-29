@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'LKStyledText' target in the 'LKStyledText' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+
+#define DLog(...) NSLog(@"%s %@", __PRETTY_FUNCTION__, [NSString stringWithFormat:__VA_ARGS__])
+
+#endif
