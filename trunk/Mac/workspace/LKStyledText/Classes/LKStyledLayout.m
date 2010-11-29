@@ -18,7 +18,7 @@
 @implementation LKStyledLayout
 
 @synthesize _width, _height;
-@synthesize rootNode, rootFrame, lastFrame;
+@synthesize rootNode, rootFrame, lastFrame, tmpLinkStartFrame;
 
 - (id)initWithStyledText:(LKStyledText *)stext {
 	
@@ -87,7 +87,7 @@
 
 - (void)layoutText:(LKStyledTextNode *)aTNode {
 	
-	DLog(@"");
+	DLog(@"[%@]", aTNode);
 	NSString *text = aTNode.text;
 	NSUInteger length = text.length;
 	
@@ -96,6 +96,11 @@
 		CGSize textSize = [text sizeWithFont:TEXT_FONT
 						   constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
 							   lineBreakMode:UILineBreakModeWordWrap];
+		if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
+			linkHasMoreThanOneFrame = YES;
+		} else {
+			linkHasMoreThanOneFrame = NO;
+		}
 		[self addFrameForText:text node:aTNode width:textSize.width height:textSize.height];
 		_height += textSize.height;
 		return;
@@ -137,6 +142,12 @@
 					NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
 					if (lineRange.length) {
 						NSString* line = [text substringWithRange:lineRange];
+						if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
+							linkHasMoreThanOneFrame = YES;
+						} else {
+							linkHasMoreThanOneFrame = NO;
+						}
+
 						[self addFrameForText:line node:aTNode width:frameWidth
 									   height:lineHeight ? lineHeight : [TEXT_FONT lkLineHeight]];
 					}
@@ -158,6 +169,11 @@
 			NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
 			if (lineRange.length) {
 				NSString* line = [text substringWithRange:lineRange];
+				if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
+					linkHasMoreThanOneFrame = YES;
+				} else {
+					linkHasMoreThanOneFrame = NO;
+				}
 				[self addFrameForText:line node:aTNode width:frameWidth
 							   height:lineHeight ? lineHeight : [TEXT_FONT lkLineHeight]];
 				
@@ -173,6 +189,11 @@
 				NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
 				if (lineRange.length) {
 					NSString* line = [text substringWithRange:lineRange];
+					if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
+						linkHasMoreThanOneFrame = YES;
+					} else {
+						linkHasMoreThanOneFrame = NO;
+					}
 					[self addFrameForText:line node:aTNode width:frameWidth 
 								   height:lineHeight ? lineHeight : [TEXT_FONT lkLineHeight]];
 				}
@@ -190,7 +211,11 @@
 				CGSize linesSize = [lines sizeWithFont:TEXT_FONT
 									 constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
 										 lineBreakMode:UILineBreakModeWordWrap];
-				
+				if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
+					linkHasMoreThanOneFrame = YES;
+				} else {
+					linkHasMoreThanOneFrame = NO;
+				}
 				[self addFrameForText:lines node:aTNode width:linesSize.width height:linesSize.height];
 				_height += linesSize.height;
 				break;
@@ -211,6 +236,11 @@
 				NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
 												- lineStartIndex);
 				NSString* line = !lineWidth ? word : [text substringWithRange:lineRange];
+				if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
+					linkHasMoreThanOneFrame = YES;
+				} else {
+					linkHasMoreThanOneFrame = NO;
+				}
 				[self addFrameForText:line node:aTNode width:frameWidth height:[TEXT_FONT lkLineHeight]];
 				DLog(@"重置 frameWidth = 0");
 				frameWidth = 0;
@@ -252,6 +282,24 @@
 	_x += aTWidth;
 	//[self addContentFrame:frame width:aTWidth height:aTHeight];
 	[self addFrame:frame];
+	
+	// 记录多个frame组成的link
+	if (linkHasMoreThanOneFrame) {
+		if (!tmpLinkStartFrame) {
+			tmpLinkStartFrame = frame;
+		}
+		DLog(@"记录多个frame组成的link: %@", tmpLinkStartFrame);
+		DLog(@"+++++++%@", frame);
+		if (!tmpLinkStartFrame.siblings) {
+			tmpLinkStartFrame.siblings = [NSMutableArray array];
+		}
+		[tmpLinkStartFrame.siblings addObject:frame];
+		// 其他相关frame也要记录
+		frame.siblings = tmpLinkStartFrame.siblings;
+	} else {
+		self.tmpLinkStartFrame = nil;
+	}
+
 	return frame;
 }
 

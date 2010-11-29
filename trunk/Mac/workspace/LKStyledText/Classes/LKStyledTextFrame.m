@@ -13,7 +13,7 @@
 
 @implementation LKStyledTextFrame
 
-@synthesize text, font, textColor, backColor;
+@synthesize text, font, textColor, backColor, siblings;
 
 - (id)initWithText:(NSString *)atext node:(LKStyledTextNode *)aTNode {
 	
@@ -32,9 +32,8 @@
 	//CGContextSetFillColorWithColor(_context, [textColor CGColor]);
 	
 	if ([self.node isKindOfClass:[LKStyledLinkNode class]]) {
-		// 画背景
-		DLog(@"画背景");
 		if (selected) {
+			DLog(@"画选中: %@", self);
 			self.textColor = [UIColor darkGrayColor];
 		} else {
 			self.textColor = [UIColor blueColor];
@@ -54,7 +53,13 @@
 	[font release];
 	[textColor release];
 	[backColor release];
+	[siblings release];
 	[super dealloc];
+}
+
+- (NSString *)description {
+	
+	return [NSString stringWithFormat:@"[TextFrame]: [%@], (%.0f, %.0f, %.0f, %.0f)", text, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height];
 }
 
 @end
