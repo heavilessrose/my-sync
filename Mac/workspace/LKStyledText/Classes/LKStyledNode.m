@@ -11,11 +11,10 @@
 
 @implementation LKStyledNode
 
-@synthesize nextNode;
+@synthesize nextNode, preNode;
 
 - (void)dealloc {
 	
-	[nextNode release];
 	[super dealloc];
 }
 

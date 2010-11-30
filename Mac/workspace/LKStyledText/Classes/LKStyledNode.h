@@ -12,7 +12,9 @@
 @interface LKStyledNode : NSObject {
 
 	LKStyledNode *nextNode;
+	LKStyledNode *preNode;
 }
 
-@property (nonatomic, retain) LKStyledNode *nextNode;
+@property (nonatomic, assign) LKStyledNode *nextNode;
+@property (nonatomic, assign) LKStyledNode *preNode;
 @end

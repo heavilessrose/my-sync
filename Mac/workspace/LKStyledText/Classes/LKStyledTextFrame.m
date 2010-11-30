@@ -26,14 +26,14 @@
 
 - (void)drawInRect:(CGRect)aRect {
 	
-	CGContextRef _context = UIGraphicsGetCurrentContext();
-	CGContextSaveGState(_context);
+	//CGContextRef _context = UIGraphicsGetCurrentContext();
+	//CGContextSaveGState(_context);
 	//CGContextSetStrokeColorWithColor(_context, [textColor CGColor]);
 	//CGContextSetFillColorWithColor(_context, [textColor CGColor]);
-	
+	DLog(@"%@", text);
 	if ([self.node isKindOfClass:[LKStyledLinkNode class]]) {
 		if (selected) {
-			DLog(@"画选中: %@", self);
+			DLog(@"画选中");
 			self.textColor = [UIColor darkGrayColor];
 		} else {
 			self.textColor = [UIColor blueColor];
@@ -44,7 +44,7 @@
 
 	[self.textColor set];
 	[text drawInRect:aRect withFont:font lineBreakMode:UILineBreakModeClip];
-	CGContextRestoreGState(_context);
+	//CGContextRestoreGState(_context);
 }
 
 - (void)dealloc {
@@ -59,7 +59,7 @@
 
 - (NSString *)description {
 	
-	return [NSString stringWithFormat:@"[TextFrame]: [%@], (%.0f, %.0f, %.0f, %.0f)", text, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height];
+	return [NSString stringWithFormat:@"<TextFrame>[%@], (%.0f, %.0f, %.0f, %.0f)", text, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height];
 }
 
 @end

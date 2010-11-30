@@ -21,17 +21,21 @@
 	
 	if (self = [super init]) {
 		// test
-		NSArray *testStrs = [NSArray arrayWithObjects:@"http://asaaaaaaaaaaaaaaabbbbbbbbbccccccccd.com ", 
+		NSArray *testStrs = [NSArray arrayWithObjects:
+							 @"http://asaaaaaaaaaaaaaaabbbbbbbbbccccccccd.com", 
 							 @"@userA", 
-							 @"fad ", 
-							 @"starthttp://e.e end", 
-							 @"asdfb http://fasdfasfasdfasd.cn放 啊!", 
+							 @"fad", 
+							 @"start1http://e.eend1", 
+							 @"start2http://e.eend2", 
+							 @"start3http://e.eend3", 
+							 @"start4http://e.eend4", 
+							 @"asdfbhttp://fasdfasfasdfasd.cn end", 
 							 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 11", 
 							 @"@userB", 
 							 @"start www.123asdf.com end", nil];
 		//NSArray *testStrs = [NSArray arrayWithObject:@"aslkdfas;fj啊是多力丰筋啊是癫凤狂龙就阿瑟;的发了看见"];
 		for (NSString *astr in testStrs) {
-			if ([astr isEqualToString:[testStrs objectAtIndex:1]] || [astr isEqualToString:[testStrs objectAtIndex:6]]) {
+			if ([astr isEqualToString:[testStrs objectAtIndex:1]] || [astr isEqualToString:[testStrs objectAtIndex:9]]) {
 				[self addNode:[[LKStyledLinkNode alloc] initWithText:astr]];
 				continue;
 			}
@@ -53,6 +57,18 @@
 	CGContextTranslateCTM(ctx, aPoint.x, aPoint.y);
 	
 	LKStyledFrame *frame = self.rootFrame;
+	
+	// test
+	DLog(@"++++++++++++++++++++++++++++++");
+	while (frame) {
+		DLog(@"%@", frame);
+		frame = frame.nextFrame;
+	}
+	frame = rootFrame;
+	DLog(@"++++++++++++++++++++++++++++++\n");
+	
+	
+	
 	static int frameCount = 0;
 	DLog(@"=================================start draw:\n");
 	while (frame) {
@@ -106,6 +122,19 @@
 #pragma mark -
 #pragma mark parse
 
+- (void)debugNode {
+	
+	DLog(@"*********************");
+	DLog(@"current nodes: {");
+	LKStyledNode *node = rootNode;
+	while (node) {
+		DLog(@"%@", node);
+		node = node.nextNode;
+	}
+	DLog(@"}");
+	DLog(@"*********************");
+}
+
 - (void)parseLink {
 	
 	if (!rootNode) {
@@ -123,13 +152,7 @@
 	DLog(@"-------------------------------------------------end");
 	
 	// test
-	DLog(@"parse over nodes: {");
-	node = rootNode;
-	while (node) {
-		DLog(@"%@", node);
-		node = node.nextNode;
-	}
-	DLog(@"}");
+	[self debugNode];
 }
 
 - (LKStyledTextNode *)insertNode:(LKStyledTextNode *)newNode afterNode:(LKStyledNode *)aNode {
@@ -137,6 +160,8 @@
 	DLog(@"insert node= [%@] after= [%@]", newNode, aNode);
 	aNode.nextNode = newNode;
 	newNode.preNode = aNode;
+	newNode.nextNode.preNode = newNode;
+	
 	return newNode;
 }
 
@@ -147,7 +172,7 @@
 
 - (void)parseUrl:(LKStyledTextNode *)lNode {
 	
-	DLog(@"parse node= [%@]", lNode);
+	DLog(@"parse node= %@", lNode);
 	NSInteger stringIndex = 0;
 	NSString *string = lNode.text;
 	LKStyledTextNode *tmpNewNode = nil;
@@ -168,6 +193,8 @@
 				node.nextNode = tmpNewNode.nextNode;
 				tmpNewNode = [self insertNode:node afterNode:tmpNewNode];
 			}
+			// test
+			[self debugNode];
 			break;
 			
 		} else {
@@ -189,6 +216,8 @@
 					node.nextNode = tmpNewNode.nextNode;
 					tmpNewNode = [self insertNode:node afterNode:tmpNewNode];
 				}
+				// test
+				[self debugNode];
 			}
 			
 			NSRange subSearchRange = NSMakeRange(startRange.location, string.length - startRange.location);
@@ -226,6 +255,8 @@
 				}
 				//[lNode release];
 				//lNode = nil;
+				// test
+				[self debugNode];
 				break;
 				
 			} else {
@@ -248,6 +279,8 @@
 					tmpNewNode = [self insertNode:node afterNode:tmpNewNode];
 				}
 				stringIndex = endRange.location;
+				// test
+				[self debugNode];
 			}
 		}
 	}
@@ -255,7 +288,7 @@
 
 - (void)parseAt:(LKStyledTextNode *)lNode {
 	
-	DLog(@"parse node= [%@]", lNode);
+	//DLog(@"parse node= [%@]", lNode);
 }
 
 @end
