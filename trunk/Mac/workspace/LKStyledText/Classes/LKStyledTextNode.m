@@ -11,7 +11,7 @@
 
 @implementation LKStyledTextNode
 
-@synthesize text, preNode;
+@synthesize text;
 
 - (id)initWithText:(NSString *)aStr {
 	
@@ -24,13 +24,12 @@
 - (void)dealloc {
 	
 	[text release];
-	[preNode release];
 	[super dealloc];
 }
 
 - (NSString *)description {
 	
-	NSString *des = [NSString stringWithFormat:@"[TextNode]: [%@]", text];
+	NSString *des = [NSString stringWithFormat:@"<TextNode>: [%@]", text];
 	return des;
 }
 

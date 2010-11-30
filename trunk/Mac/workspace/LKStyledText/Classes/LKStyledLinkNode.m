@@ -21,7 +21,7 @@
 
 - (NSString *)description {
 	
-	return [NSString stringWithFormat:@"[LinkNode]: text= [%@], URL= [%@]", text, URL];
+	return [NSString stringWithFormat:@"<LinkNode>: text= [%@], URL= [%@]", text, URL];
 }
 
 @end
