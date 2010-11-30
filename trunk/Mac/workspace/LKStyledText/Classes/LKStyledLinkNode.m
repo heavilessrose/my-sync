@@ -11,5 +11,17 @@
 
 @implementation LKStyledLinkNode
 
+@synthesize URL;
+
+- (void)dealloc {
+	
+	[URL release];
+	[super dealloc];
+}
+
+- (NSString *)description {
+	
+	return [NSString stringWithFormat:@"[LinkNode]: text= [%@], URL= [%@]", text, URL];
+}
 
 @end

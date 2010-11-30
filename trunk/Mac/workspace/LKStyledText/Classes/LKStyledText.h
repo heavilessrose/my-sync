@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class LKStyledNode, LKStyledFrame;
+@class LKStyledNode, LKStyledFrame, LKStyledTextNode;
 
 @interface LKStyledText : NSObject {
 	
@@ -24,4 +24,9 @@
 - (id)initFotTest;
 - (void)addNode:(LKStyledNode *)aNode;
 - (void)layout;
+
+- (LKStyledTextNode *)insertNode:(LKStyledTextNode *)newNode afterNode:(LKStyledNode *)aNode;
+- (void)parseLink;
+- (void)parseUrl:(LKStyledTextNode *)lNode;
+- (void)parseAt:(LKStyledTextNode *)lNode;
 @end

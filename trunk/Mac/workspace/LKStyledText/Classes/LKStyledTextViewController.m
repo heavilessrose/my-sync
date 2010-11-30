@@ -38,6 +38,7 @@
 	LKStyledTextView *stxtView = [[LKStyledTextView alloc] initWithFrame:self.view.bounds];
 	stxtView.backgroundColor = [UIColor whiteColor];
 	stxtView.stext = stxt;
+	[stxtView.stext parseLink];
 	[stxtView.stext layout];
 	[self.view addSubview:stxtView];
 }
