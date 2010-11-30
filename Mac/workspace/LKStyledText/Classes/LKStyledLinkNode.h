@@ -11,7 +11,9 @@
 
 @interface LKStyledLinkNode : LKStyledTextNode {
 
+	NSString *URL;
 }
 
 
+@property (nonatomic, retain) NSString *URL;
 @end

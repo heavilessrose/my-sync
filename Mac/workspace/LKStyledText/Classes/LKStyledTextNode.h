@@ -12,9 +12,11 @@
 @interface LKStyledTextNode : LKStyledNode {
 
 	NSString *text;
+	LKStyledNode *preNode;
 }
 
 @property (nonatomic, retain) NSString *text;
+@property (nonatomic, assign) LKStyledNode *preNode;
 
 - (id)initWithText:(NSString *)aStr;
 
