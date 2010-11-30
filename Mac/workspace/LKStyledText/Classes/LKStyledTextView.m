@@ -16,7 +16,8 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-		
+		CGFloat top = 100, left = 0, bottom = 20, right = 0;
+		contentInset = UIEdgeInsetsMake(top, left, bottom, right);
 	}
     return self;
 }

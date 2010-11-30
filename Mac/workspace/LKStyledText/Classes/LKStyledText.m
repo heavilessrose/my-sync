@@ -91,7 +91,7 @@
 	
 	DLog(@"");
 	LKStyledLayout *layout = [[LKStyledLayout alloc] initWithStyledText:self];
-	layout._width = 300;
+	layout._width = 320;
 	self.rootFrame = [layout layoutFrames];
 	[layout release];
 }
@@ -123,7 +123,7 @@
 	DLog(@"-------------------------------------------------end");
 	
 	// test
-	DLog(@"nodes: {");
+	DLog(@"parse over nodes: {");
 	node = rootNode;
 	while (node) {
 		DLog(@"%@", node);
