@@ -134,6 +134,7 @@
 
 - (LKStyledTextNode *)insertNode:(LKStyledTextNode *)newNode afterNode:(LKStyledNode *)aNode {
 	
+	DLog(@"insert node= [%@] after= [%@]", newNode, aNode);
 	aNode.nextNode = newNode;
 	newNode.preNode = aNode;
 	return newNode;
@@ -157,6 +158,16 @@
 											 range:searchRange];
 		
 		if (startRange.location == NSNotFound) {
+			NSString *text = [string substringWithRange:searchRange];
+			if (!text || [text length] == 0) 
+				break;
+			LKStyledTextNode *node = [[[LKStyledTextNode alloc] initWithText:text] autorelease];
+			if (!tmpNewNode) {
+				break;
+			} else {
+				node.nextNode = tmpNewNode.nextNode;
+				tmpNewNode = [self insertNode:node afterNode:tmpNewNode];
+			}
 			break;
 			
 		} else {
@@ -168,11 +179,16 @@
 				if (!tmpNewNode) {
 					node.nextNode = lNode.nextNode;
 					tmpNewNode = [self insertNode:node afterNode:lNode.preNode];
+					
+					if (lNode == rootNode) {
+						DLog(@"替换rootNode= [%@]", rootNode);
+						self.rootNode = tmpNewNode;
+						DLog(@"-----------------为 [%@]", rootNode);
+					}
 				} else {
 					node.nextNode = tmpNewNode.nextNode;
 					tmpNewNode = [self insertNode:node afterNode:tmpNewNode];
 				}
-				DLog(@"insert node= [%@]", text);
 			}
 			
 			NSRange subSearchRange = NSMakeRange(startRange.location, string.length - startRange.location);
@@ -185,7 +201,7 @@
 			//NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 			NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
 			NSMutableCharacterSet *alphanumericSet_m = [alphanumericSet mutableCopy];
-			[alphanumericSet_m addCharactersInString:@":/. "];
+			[alphanumericSet_m addCharactersInString:@":/."];
 			NSCharacterSet *endUrlSet = [alphanumericSet_m invertedSet];
 			NSRange endRange = [string rangeOfCharacterFromSet:endUrlSet options:NSCaseInsensitiveSearch range:subSearchRange];
 			[alphanumericSet_m release];
@@ -221,6 +237,12 @@
 				if (!tmpNewNode) {
 					node.nextNode = lNode.nextNode;
 					tmpNewNode = [self insertNode:node afterNode:lNode.preNode];
+					
+					if (lNode == rootNode) {
+						DLog(@"替换rootNode= [%@]", rootNode);
+						self.rootNode = tmpNewNode;
+						DLog(@"-----------------为 [%@]", rootNode);
+					}
 				} else {
 					node.nextNode = tmpNewNode.nextNode;
 					tmpNewNode = [self insertNode:node afterNode:tmpNewNode];
