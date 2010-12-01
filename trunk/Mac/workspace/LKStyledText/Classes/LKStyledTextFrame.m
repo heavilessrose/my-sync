@@ -32,22 +32,17 @@
 	//CGContextSetFillColorWithColor(_context, [textColor CGColor]);
 	DLog(@"draw start [%@]", text);
 	if ([self.node isKindOfClass:[LKStyledLinkNode class]]) {
-		DLog(@"1");
 		if (selected) {
 			DLog(@"画选中");
 			self.textColor = [UIColor darkGrayColor];
 		} else {
-			DLog(@"2");
 			self.textColor = [UIColor blueColor];
 		}
 	} else {
-		DLog(@"3");
 		self.textColor = [UIColor blackColor];
 	}
 	
-	DLog(@"4");
 	[self.textColor set];
-	DLog(@"5");
 	[text drawInRect:aRect withFont:font lineBreakMode:UILineBreakModeClip];
 	//CGContextRestoreGState(_context);
 	DLog(@"draw over [%@]", text);
