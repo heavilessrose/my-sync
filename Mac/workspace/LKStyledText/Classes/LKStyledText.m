@@ -20,6 +20,7 @@
 - (id)initFotTest {
 	
 	// test
+#if 0
 	NSArray *testStrs = [NSArray arrayWithObjects:
 						 @"http://asaaaaaaaaaaaaaaabbbbbbbbbccccccccd.com", 
 						 @"@userA", 
@@ -40,6 +41,9 @@
 						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 19", 
 						 @"@userB", 
 						 @"start www.123asdf.com end", nil];
+#else
+	NSArray *testStrs = [NSArray arrayWithObjects:@"@uuuu", @"http://w.w.w", nil];
+#endif
 	[self initWithArray:testStrs];
 	return self;
 }

@@ -93,7 +93,7 @@
 	linkHasMoreThanOneFrame = NO;
 	
 	if (!aTNode.nextNode && aTNode == rootNode) {
-		// layout唯一的节点
+		DLog(@"唯一的节点");
 		CGSize textSize = [text sizeWithFont:TEXT_FONT
 						   constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
 							   lineBreakMode:UILineBreakModeWordWrap];
@@ -237,11 +237,6 @@
 				NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
 												- lineStartIndex);
 				NSString *line = !lineWidth ? word : [text substringWithRange:lineRange];
-				if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
-					linkHasMoreThanOneFrame = YES;
-				} else {
-					linkHasMoreThanOneFrame = NO;
-				}
 				[self addFrameForText:line node:aTNode width:frameWidth height:[TEXT_FONT lkLineHeight]];
 				DLog(@"重置 frameWidth = 0");
 				frameWidth = 0;
