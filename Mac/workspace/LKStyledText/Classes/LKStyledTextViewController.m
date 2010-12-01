@@ -41,6 +41,7 @@
 	[stxtView.stext parseLink];
 	[stxtView.stext layout];
 	[self.view addSubview:stxtView];
+	[stxtView release];
 }
 
 

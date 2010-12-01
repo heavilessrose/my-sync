@@ -22,6 +22,8 @@
 @property (nonatomic, assign) LKStyledNode *lastNode;
 
 - (id)initFotTest;
+
+- (id)initWithArray:(NSArray *)strs;
 - (void)addNode:(LKStyledNode *)aNode;
 - (void)layout;
 

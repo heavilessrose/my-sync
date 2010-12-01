@@ -68,7 +68,7 @@
 	DLog(@"new lineWidth= %.0f", lineWidth);
 }
 
-- (void)inflateLineHeight:(CGFloat)aWordHeight {
+- (void)extendLineHeight:(CGFloat)aWordHeight {
 	
 	if (lineHeight < aWordHeight) {
 		lineHeight = aWordHeight;
@@ -90,6 +90,7 @@
 	DLog(@"[%@]", aTNode);
 	NSString *text = aTNode.text;
 	NSUInteger length = text.length;
+	linkHasMoreThanOneFrame = NO;
 	
 	if (!aTNode.nextNode && aTNode == rootNode) {
 		// layout唯一的节点
@@ -120,7 +121,7 @@
 		NSRange wordRange = spaceRange.location != NSNotFound
 		? NSMakeRange(searchRange.location, (spaceRange.location+1) - searchRange.location)
 		: NSMakeRange(searchRange.location, length - searchRange.location);
-		NSString* word = [text substringWithRange:wordRange];
+		NSString *word = [text substringWithRange:wordRange];
 		DLog(@"分割为word: [%@]", word);
 		
 		// 避免word wrap, 后面自己会处理wrap
@@ -133,7 +134,7 @@
 			DLog(@"word(%.0f)比当前行%.0f 长", wordSize.width, _width);
 			DLog(@"按单个letter处理");
 			for (NSInteger i = 0; i < word.length; ++i) {
-				NSString* c = [word substringWithRange:NSMakeRange(i, 1)];
+				NSString *c = [word substringWithRange:NSMakeRange(i, 1)];
 				CGSize letterSize = [c sizeWithFont:TEXT_FONT];
 				
 				DLog(@"%@, width= %.0f", c, letterSize.width);
@@ -162,13 +163,13 @@
 				
 				frameWidth += letterSize.width;
 				[self expandLineWidth:letterSize.width];
-				[self inflateLineHeight:wordSize.height];
+				[self extendLineHeight:wordSize.height];
 				++stringIndex;
 			}
 			
 			NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
 			if (lineRange.length) {
-				NSString* line = [text substringWithRange:lineRange];
+				NSString *line = [text substringWithRange:lineRange];
 				if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
 					linkHasMoreThanOneFrame = YES;
 				} else {
@@ -188,7 +189,7 @@
 				
 				NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
 				if (lineRange.length) {
-					NSString* line = [text substringWithRange:lineRange];
+					NSString *line = [text substringWithRange:lineRange];
 					if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
 						linkHasMoreThanOneFrame = YES;
 					} else {
@@ -207,7 +208,7 @@
 			
 			if (!lineWidth && aTNode == [self lastNode]) {
 				DLog(@"新行开始, 并且这是最后一个node, 不进行额外计算, 直接添加一个frame");
-				NSString* lines = [text substringWithRange:searchRange];
+				NSString *lines = [text substringWithRange:searchRange];
 				CGSize linesSize = [lines sizeWithFont:TEXT_FONT
 									 constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
 										 lineBreakMode:UILineBreakModeWordWrap];
@@ -226,7 +227,7 @@
 			DLog(@"扩大frameWidth(%.0f)+=wordSize.width = %.0f", frameW_tmp, frameWidth);
 			DLog(@"--调整行宽,高--start");
 			[self expandLineWidth:wordSize.width];
-			[self inflateLineHeight:wordSize.height];
+			[self extendLineHeight:wordSize.height];
 			DLog(@"--调整行宽,高--end");
 			
 			DLog(@"stringIndex向后推移这个word (%@) 的长度", word);
@@ -235,7 +236,7 @@
 				DLog(@"处理到该node[%@]最后一个word (%@)", text, word);
 				NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
 												- lineStartIndex);
-				NSString* line = !lineWidth ? word : [text substringWithRange:lineRange];
+				NSString *line = !lineWidth ? word : [text substringWithRange:lineRange];
 				if ([aTNode isKindOfClass:[LKStyledLinkNode class]]) {
 					linkHasMoreThanOneFrame = YES;
 				} else {
@@ -257,9 +258,11 @@
 	if (!rootFrame) {
 		DLog(@"--> real addFrame as rootFrame: %@", aFrame);
 		rootFrame = [aFrame retain];
+		DLog(@"rootFrame count= %u", [rootFrame retainCount]);
 	} else {
 		lastFrame.nextFrame = aFrame;
 		DLog(@"--> real addFrame as lastFrame.nextFrame: %@", aFrame);
+		DLog(@"lastFrame.nextFrame count= %u", [lastFrame.nextFrame retainCount]);
 	}
 	lastFrame = aFrame;
 }
@@ -295,7 +298,7 @@
 		}
 		[tmpLinkStartFrame.siblings addObject:frame];
 		// 其他相关frame也要记录
-		frame.siblings = tmpLinkStartFrame.siblings;
+		frame.siblings = [NSMutableArray arrayWithArray:(NSArray *)tmpLinkStartFrame.siblings];
 	} else {
 		self.tmpLinkStartFrame = nil;
 	}

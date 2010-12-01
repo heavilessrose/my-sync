@@ -19,7 +19,7 @@
 	
 	if (self = [super init]) {
 		self.text = atext;
-		node = aTNode;
+		self.node = aTNode;
 	}
 	return self;
 }
@@ -30,21 +30,27 @@
 	//CGContextSaveGState(_context);
 	//CGContextSetStrokeColorWithColor(_context, [textColor CGColor]);
 	//CGContextSetFillColorWithColor(_context, [textColor CGColor]);
-	DLog(@"%@", text);
+	DLog(@"draw start [%@]", text);
 	if ([self.node isKindOfClass:[LKStyledLinkNode class]]) {
+		DLog(@"1");
 		if (selected) {
 			DLog(@"画选中");
 			self.textColor = [UIColor darkGrayColor];
 		} else {
+			DLog(@"2");
 			self.textColor = [UIColor blueColor];
 		}
 	} else {
+		DLog(@"3");
 		self.textColor = [UIColor blackColor];
 	}
-
+	
+	DLog(@"4");
 	[self.textColor set];
+	DLog(@"5");
 	[text drawInRect:aRect withFont:font lineBreakMode:UILineBreakModeClip];
 	//CGContextRestoreGState(_context);
+	DLog(@"draw over [%@]", text);
 }
 
 - (void)dealloc {

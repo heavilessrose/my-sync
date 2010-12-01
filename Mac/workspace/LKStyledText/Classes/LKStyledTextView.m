@@ -34,6 +34,7 @@
 
 - (void)dealloc {
 	
+	[selectedFrame release];
 	[stext release];
     [super dealloc];
 }
