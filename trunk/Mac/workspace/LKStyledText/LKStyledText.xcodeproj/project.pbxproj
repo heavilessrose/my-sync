@@ -16,6 +16,8 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* LKStyledTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* LKStyledTextViewController.m */; };
 		A392D99212A3C34D0077E114 /* UIFontAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A392D99112A3C34D0077E114 /* UIFontAdditions.m */; };
+		A3B79C2512A618D400DDD9D9 /* LKStyledImageNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B79C2412A618D400DDD9D9 /* LKStyledImageNode.m */; };
+		A3B79C2812A618E200DDD9D9 /* LKStyledImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B79C2712A618E200DDD9D9 /* LKStyledImageFrame.m */; };
 		A3C49DDE12A3974600699F55 /* LKStyledText.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C49DDD12A3974600699F55 /* LKStyledText.m */; };
 		A3C49DE712A397D100699F55 /* LKStyledNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C49DE612A397D100699F55 /* LKStyledNode.m */; };
 		A3C49DEA12A397DE00699F55 /* LKStyledFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C49DE912A397DE00699F55 /* LKStyledFrame.m */; };
@@ -42,6 +44,10 @@
 		8D1107310486CEB800E47090 /* LKStyledText-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LKStyledText-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		A392D99012A3C34D0077E114 /* UIFontAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFontAdditions.h; sourceTree = "<group>"; };
 		A392D99112A3C34D0077E114 /* UIFontAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFontAdditions.m; sourceTree = "<group>"; };
+		A3B79C2312A618D400DDD9D9 /* LKStyledImageNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyledImageNode.h; sourceTree = "<group>"; };
+		A3B79C2412A618D400DDD9D9 /* LKStyledImageNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyledImageNode.m; sourceTree = "<group>"; };
+		A3B79C2612A618E200DDD9D9 /* LKStyledImageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyledImageFrame.h; sourceTree = "<group>"; };
+		A3B79C2712A618E200DDD9D9 /* LKStyledImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyledImageFrame.m; sourceTree = "<group>"; };
 		A3C49DDC12A3974600699F55 /* LKStyledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyledText.h; sourceTree = "<group>"; };
 		A3C49DDD12A3974600699F55 /* LKStyledText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyledText.m; sourceTree = "<group>"; };
 		A3C49DE512A397D100699F55 /* LKStyledNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyledNode.h; sourceTree = "<group>"; };
@@ -154,12 +160,16 @@
 				A3C49DE612A397D100699F55 /* LKStyledNode.m */,
 				A3C49DE812A397DE00699F55 /* LKStyledFrame.h */,
 				A3C49DE912A397DE00699F55 /* LKStyledFrame.m */,
-				A3C49DF412A39B0900699F55 /* LKStyledTextFrame.h */,
-				A3C49DF512A39B0900699F55 /* LKStyledTextFrame.m */,
 				A3C49DFB12A39B8800699F55 /* LKStyledTextNode.h */,
 				A3C49DFC12A39B8800699F55 /* LKStyledTextNode.m */,
 				A3C49E1B12A3AB8400699F55 /* LKStyledLinkNode.h */,
 				A3C49E1C12A3AB8400699F55 /* LKStyledLinkNode.m */,
+				A3C49DF412A39B0900699F55 /* LKStyledTextFrame.h */,
+				A3C49DF512A39B0900699F55 /* LKStyledTextFrame.m */,
+				A3B79C2312A618D400DDD9D9 /* LKStyledImageNode.h */,
+				A3B79C2412A618D400DDD9D9 /* LKStyledImageNode.m */,
+				A3B79C2612A618E200DDD9D9 /* LKStyledImageFrame.h */,
+				A3B79C2712A618E200DDD9D9 /* LKStyledImageFrame.m */,
 				A3C49E2812A3AC6300699F55 /* LKStyledTextView.h */,
 				A3C49E2912A3AC6300699F55 /* LKStyledTextView.m */,
 				A3C49ECC12A3B41300699F55 /* LKStyledLayout.h */,
@@ -244,6 +254,8 @@
 				A3C49E2A12A3AC6300699F55 /* LKStyledTextView.m in Sources */,
 				A3C49ECE12A3B41300699F55 /* LKStyledLayout.m in Sources */,
 				A392D99212A3C34D0077E114 /* UIFontAdditions.m in Sources */,
+				A3B79C2512A618D400DDD9D9 /* LKStyledImageNode.m in Sources */,
+				A3B79C2812A618E200DDD9D9 /* LKStyledImageFrame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
