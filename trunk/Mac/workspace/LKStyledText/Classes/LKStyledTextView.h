@@ -19,6 +19,6 @@
 
 @property (nonatomic, retain) LKStyledText *stext;
 @property (nonatomic) UIEdgeInsets contentInset;
-@property (nonatomic, assign) LKStyledFrame *selectedFrame;
+@property (nonatomic, retain) LKStyledFrame *selectedFrame;
 
 @end

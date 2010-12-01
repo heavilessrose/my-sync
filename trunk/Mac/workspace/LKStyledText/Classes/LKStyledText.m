@@ -19,27 +19,40 @@
 
 - (id)initFotTest {
 	
+	// test
+	NSArray *testStrs = [NSArray arrayWithObjects:
+						 @"http://asaaaaaaaaaaaaaaabbbbbbbbbccccccccd.com", 
+						 @"@userA", 
+						 @"fad", 
+						 @"start1http://e.eend1", 
+						 @"start2http://e.eend2", 
+						 @"start3http://e.eend3", 
+						 @"start4http://e.eend4", 
+						 @"asdfbhttp://fasdfasfasdfasd.cn end", 
+						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 11", 
+						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 12", 
+						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 13", 
+						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 14", 
+						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 15", 
+						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 16", 
+						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 17", 
+						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 18", 
+						 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 19", 
+						 @"@userB", 
+						 @"start www.123asdf.com end", nil];
+	[self initWithArray:testStrs];
+	return self;
+}
+
+- (id)initWithArray:(NSArray *)strs {
+	
 	if (self = [super init]) {
-		// test
-		NSArray *testStrs = [NSArray arrayWithObjects:
-							 @"http://asaaaaaaaaaaaaaaabbbbbbbbbccccccccd.com", 
-							 @"@userA", 
-							 @"fad", 
-							 @"start1http://e.eend1", 
-							 @"start2http://e.eend2", 
-							 @"start3http://e.eend3", 
-							 @"start4http://e.eend4", 
-							 @"asdfbhttp://fasdfasfasdfasd.cn end", 
-							 @"啥的发的发生的发生多发多发啊啥的发生多发点sdfasdf 11", 
-							 @"@userB", 
-							 @"start www.123asdf.com end", nil];
-		//NSArray *testStrs = [NSArray arrayWithObject:@"aslkdfas;fj啊是多力丰筋啊是癫凤狂龙就阿瑟;的发了看见"];
-		for (NSString *astr in testStrs) {
-			if ([astr isEqualToString:[testStrs objectAtIndex:1]] || [astr isEqualToString:[testStrs objectAtIndex:9]]) {
-				[self addNode:[[LKStyledLinkNode alloc] initWithText:astr]];
+		for (NSString *aStr in strs) {
+			if ([aStr hasPrefix:@"@"] || [aStr hasPrefix:@"#"]) {
+				[self addNode:[[[LKStyledLinkNode alloc] initWithText:aStr] autorelease]];
 				continue;
 			}
-			[self addNode:[[LKStyledTextNode alloc] initWithText:astr]];
+			[self addNode:[[[LKStyledTextNode alloc] initWithText:aStr] autorelease]];
 		}
 	}
 	return self;
@@ -112,7 +125,6 @@
 	[layout release];
 }
 
-
 - (LKStyledFrame *)touchCheck:(CGPoint)aPoint {
 	
 	DLog(@"");
@@ -160,15 +172,12 @@
 	DLog(@"insert node= [%@] after= [%@]", newNode, aNode);
 	aNode.nextNode = newNode;
 	newNode.preNode = aNode;
-	newNode.nextNode.preNode = newNode;
+	if (newNode.nextNode) {
+		newNode.nextNode.preNode = newNode;
+	}
 	
 	return newNode;
 }
-
-//- (void)setRootNode:(LKStyledNode *) {
-//	
-//	
-//}
 
 - (void)parseUrl:(LKStyledTextNode *)lNode {
 	

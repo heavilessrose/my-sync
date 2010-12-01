@@ -18,7 +18,7 @@
 	BOOL selected;
 }
 
-@property (nonatomic, readonly) LKStyledNode *node;
+@property (nonatomic, retain) LKStyledNode *node;
 @property (nonatomic, assign) CGRect frame;
 @property (nonatomic, retain) LKStyledFrame *nextFrame;
 @property (nonatomic, assign) BOOL selected;

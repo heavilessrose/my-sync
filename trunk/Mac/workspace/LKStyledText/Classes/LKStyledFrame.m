@@ -22,13 +22,17 @@
 
 - (LKStyledFrame *)touchCheck:(CGPoint)aPoint {
 	
-	DLog(@"");
-	BOOL isLink = [node isKindOfClass:[LKStyledLinkNode class]];
+	DLog(@"start");
+	DLog(@"%@", self.node);
+	BOOL isLink = [self.node isKindOfClass:[LKStyledLinkNode class]];
 	BOOL isInRange = CGRectContainsPoint(self.frame, aPoint);
 	if (isLink && isInRange) {
 		return self;
 	}
-	return [self.nextFrame touchCheck:aPoint];
+	LKStyledFrame *aFrame = [self.nextFrame touchCheck:aPoint];
+	DLog(@"%@", aFrame);
+	DLog(@"end");
+	return aFrame;
 }
 
 - (NSString *)description {
@@ -38,6 +42,7 @@
 
 - (void)dealloc {
 	
+	[node release];
 	[nextFrame release];
 	[super dealloc];
 }
