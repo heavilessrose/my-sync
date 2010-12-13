@@ -3,7 +3,7 @@
 //  LKeyboard
 //
 //  Created by luke on 10-10-14.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 pica.com. All rights reserved.
 //
 
 #import "LKeyboardView.h"
@@ -25,8 +25,8 @@
 #pragma mark -
 #pragma mark lifecycle
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
+	
     if ((self = [super initWithFrame:frame])) {
 		self.board = [[UIScrollView alloc] initWithFrame:CGRectZero];
 		self.board.backgroundColor = [UIColor grayColor];
@@ -44,8 +44,8 @@
 }
 */
 
-- (void)dealloc
-{
+- (void)dealloc {
+	
 	[board release];
 	
     [super dealloc];
@@ -54,13 +54,13 @@
 #pragma mark -
 #pragma mark Emo
 
-void rectLog(CGRect aRect)
-{
+void rectLog(CGRect aRect) {
+	
 	NSLog(@"(%f, %f, %f, %f)", aRect.origin.x, aRect.origin.y, aRect.size.width, aRect.size.height);
 }
 
-- (CGRect)calcEachEmoRectWithRow:(NSInteger)row andCol:(NSInteger)col
-{
+- (CGRect)calcEachEmoRectWithRow:(NSInteger)row andCol:(NSInteger)col {
+	
 	CGRect rect = CGRectZero;
 	CGFloat x = 0;
 	CGFloat y = 0;
@@ -90,8 +90,8 @@ void rectLog(CGRect aRect)
 	return rect;
 }
 
-- (void)initEmos
-{
+- (void)initEmos {
+	
 	NSInteger	row = 0;
 	NSInteger	col = 0;
 	NSInteger	emoIndex = -1;
@@ -133,8 +133,8 @@ void rectLog(CGRect aRect)
 	}
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
+	
 	[super layoutSubviews];
 	switch ([UIDevice currentDevice].orientation) {
 		case UIInterfaceOrientationPortrait:
@@ -155,8 +155,8 @@ void rectLog(CGRect aRect)
 #pragma mark -
 #pragma mark Emo delegate
 
-- (void)emoSelected:(NSArray *)emoStrs
-{
+- (void)emoSelected:(NSArray *)emoStrs {
+	
 	[delegate handleEmoStrs:emoStrs];
 }
 
