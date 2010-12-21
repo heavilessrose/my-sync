@@ -42,7 +42,7 @@
     NSNotificationCenter *globalNc = [NSNotificationCenter defaultCenter];
     [globalNc addObserver:self selector:@selector(localeChanged) name:NSCurrentLocaleDidChangeNotification object:nil];
     
-#if 1
+#if 0
 	pcTwoLineAlertView *alert = [[pcTwoLineAlertView alloc] initWithTitle:@"title" 
 																  message:@"message" 
 																 delegate:self 
@@ -109,7 +109,7 @@
 	[self.view addSubview:imgView];
 	[imgView release];
     
-#if 0 // scroll show
+#if 1 // scroll show
     self.imgNameArr_test = [NSArray arrayWithObjects:
                             @"ballmer1.jpg",
                             @"hoff2.jpg",
@@ -127,22 +127,29 @@
                             */
                             nil];
     // 宽度应该为整数倍
-    CGRect scrollRect = CGRectMake(10, 50, 300, 100);
+    CGRect scrollRect = CGRectMake(220, 50, 100, 300);
     CGSize pageContentSize = CGSizeMake(80, 80);
     
-    self.scrollShow = [[ScrollShowView alloc] initWithFrame:scrollRect pageContentSize:pageContentSize];
+    self.scrollShow = [[ScrollShowView alloc] initWithFrame:scrollRect pageContentSize:pageContentSize pageDelegate:self];
     scrollShow.backgroundColor = [UIColor darkGrayColor];
-    scrollShow.backShadow = YES;
-    scrollShow.pageDelegate = self;
+//    scrollShow.backShadow = YES;
+//    scrollShow.pageDelegate = self;
     scrollShow.pageStyle = PAGESTYLE_PADDING;
     scrollShow.x_padding = 10.0f;
     scrollShow.y_padding = 10.0f;
     [self.view addSubview:scrollShow];
     [scrollShow release];
     self.view.userInteractionEnabled = YES;
+	
+	// left view
+	CGRect leftFrame = CGRectMake(0, 10, 200, 440);
+	UIImageView *leftImg = [[UIImageView alloc] initWithFrame:leftFrame];
+	leftImg.backgroundColor = [UIColor redColor];
+	[self.view addSubview:leftImg];
+	[leftImg release];
 #endif
 	
-#if 1 // balloon
+#if 0 // balloon
 	NSString *chatDate = @"2010年 9月 9日 星期四 12时56分29秒 CST";
 	NSString *chatStr = @"Pathfinding can be one of the more complex problems in iPhone game development..4 Pathfinding can be one of the more complex problems in iPhone game development..3 Pathfinding can be one of the more complex problems in iPhone game development..2 Pathfinding can be one of the more complex problems in iPhone game development..1 Pathfinding can be one of the more complex problems in iPhone game development..0";
 	UIView *aChatCell = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
