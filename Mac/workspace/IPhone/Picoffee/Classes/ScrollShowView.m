@@ -68,6 +68,7 @@
 
 - (int)currentPage
 {
+#if 0
 	CGFloat pageWidth = 0.0f;
     if(pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
         pageWidth = pageContentSize.width;
@@ -76,6 +77,18 @@
     }
 
 	int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+	
+#else
+	CGFloat pageHeight = 0.0f;
+    if(pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
+        pageHeight = pageContentSize.height;
+    } else {
+        pageHeight = pageContentSize.height + y_padding * 2;
+    }
+	
+	CGFloat off = (scrollView.contentOffset.y - pageHeight / 2) / pageHeight;
+	int page = floor(off) + 1;
+#endif
 	
 	return page;
 }
@@ -105,8 +118,12 @@
             CGFloat aPageView_w = pageContentSize.width + x_padding * 2;
             CGFloat aPageView_h = pageContentSize.height + y_padding * 2;
             
+#if 0
             CGRect aPageViewFrame = CGRectMake(aPageView_w * aPageIndex, 0.0f, 
                                                aPageView_w, aPageView_h);
+#else
+			CGRect aPageViewFrame = CGRectMake(0.0f, aPageView_h * aPageIndex, aPageView_w, aPageView_h);
+#endif
             aPageView = [[UIView alloc] initWithFrame:aPageViewFrame];
             aPageView.backgroundColor = [UIColor clearColor];
             aPageContentView.frame = CGRectMake(x_padding, y_padding, 
@@ -134,6 +151,13 @@
     // 可见的一般为最左边那个,依情况载入多个
 	[self loadPage:currentPage + 2];
 }
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	
+	int index = [self currentPage];
+	NSLog(@"%d", index);
+}
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -220,10 +244,10 @@
 		self.pageDelegate = thePageDelegate;
         self.pageContentSize = pSize;
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-		//scrollView.clipsToBounds = NO; // Important, this creates the "preview"
+		scrollView.clipsToBounds = NO; // Important, this creates the "preview"
 		scrollView.pagingEnabled = YES;
-		scrollView.showsHorizontalScrollIndicator = YES;
-		scrollView.showsVerticalScrollIndicator = NO;
+		scrollView.showsHorizontalScrollIndicator = NO;
+		scrollView.showsVerticalScrollIndicator = YES;
         scrollView.userInteractionEnabled = YES;
         scrollView.scrollEnabled = YES;
 		scrollView.delegate = self;
@@ -267,12 +291,15 @@
             [pages addObject:[NSNull null]];
         }
         [pages release];
-        
+#if 0
         if (pageStyle == PAGESTYLE_NOPADDING || pageStyle == PAGESTYLE_DEFAULT) {
             [scrollView setContentSize:CGSizeMake(pageCount * pageContentSize.width, pageContentSize.height)];
         } else {
             [scrollView setContentSize:CGSizeMake(pageCount * (pageContentSize.width + x_padding * 2), (pageContentSize.height + y_padding * 2))];
         }
+#else
+		[scrollView setContentSize:CGSizeMake(100, 1000)];	
+#endif
         
 		// Load the should visalble pages
 		int vPageCount = 0.0f;
