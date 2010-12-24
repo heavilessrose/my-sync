@@ -7,11 +7,34 @@
 //
 
 #import "LKPageControl.h"
+#import "LKStyleSheet.h"
+#import "LKStyleContext.h"
+#import "LKBoxStyle.h"
+#import "UIViewAddition.h"
 
 
 @implementation LKPageControl
 
-@synthesize numberOfPages, currentPage, hidesForSinglePage, dotStyle;
+@synthesize numberOfPages, currentPage, hidesForSinglePage, dotStyle, normalDotStyle, currentDotStyle;
+
+#pragma mark -
+#pragma mark Properties
+
+- (LKStyle *)normalDotStyle {
+	if (!normalDotStyle) {
+		normalDotStyle = [[[LKStyleSheet globalStyleSheet] styleWithSelector:dotStyle
+																	forState:UIControlStateNormal] retain];
+	}
+	return normalDotStyle;
+}
+
+- (LKStyle *)currentDotStyle {
+	if (!currentDotStyle) {
+		currentDotStyle = [[[LKStyleSheet globalStyleSheet] styleWithSelector:dotStyle
+																	 forState:UIControlStateSelected] retain];
+	}
+	return currentDotStyle;
+}
 
 - (id)initWithFrame:(CGRect)frame {
     
@@ -27,10 +50,11 @@
 - (void)dealloc {
 	
 	self.dotStyle = nil;
-//	self.normalDotStyle = nil;
-//	self.currentDotStyle = nil;
+	self.normalDotStyle = nil;
+	self.currentDotStyle = nil;
     [super dealloc];
 }
+
 
 #pragma mark -
 #pragma mark UIView
@@ -40,24 +64,24 @@
 		return;
 	}
 	
-	TTStyleContext *context = [[[TTStyleContext alloc] init] autorelease];
-	TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
+	LKStyleContext *context = [[[LKStyleContext alloc] init] autorelease];
+	LKBoxStyle *boxStyle = [self.normalDotStyle firstStyleOfClass:[LKBoxStyle class]];
 	
 	CGSize dotSize = [self.normalDotStyle addToSize:CGSizeZero context:context];
 	
 	CGFloat dotWidth = dotSize.width + boxStyle.margin.left + boxStyle.margin.right;
-	CGFloat totalWidth = (dotWidth * _numberOfPages) - (boxStyle.margin.left + boxStyle.margin.right);
+	CGFloat totalWidth = (dotWidth * numberOfPages) - (boxStyle.margin.left + boxStyle.margin.right);
 	CGRect contentRect = CGRectMake(round(self.width/2 - totalWidth/2),
 									round(self.height/2 - dotSize.height/2),
 									dotSize.width, dotSize.height);
 	
-	for (NSInteger i = 0; i < _numberOfPages; ++i) {
+	for (NSInteger i = 0; i < numberOfPages; ++i) {
 		contentRect.origin.x += boxStyle.margin.left;
 		
 		context.frame = contentRect;
 		context.contentFrame = contentRect;
 		
-		if (i == _currentPage) {
+		if (i == currentPage) {
 			[self.currentDotStyle draw:context];
 		} else {
 			[self.normalDotStyle draw:context];
@@ -98,8 +122,8 @@
 	if (![aDotStyle isEqualToString:dotStyle]) {
 		[dotStyle release];
 		dotStyle = [aDotStyle copy];
-//		self.normalDotStyle = nil;
-//		self.currentDotStyle = nil;
+		self.normalDotStyle = nil;
+		self.currentDotStyle = nil;
 	}
 }
 

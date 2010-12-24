@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKStyle.h"
 
 
 @interface LKPageControl : UIControl {
@@ -15,8 +16,8 @@
 	NSInteger	currentPage;
 	
 	NSString	*dotStyle;
-//	LKStyle		*normalDotStyle;
-//	LKStyle		*currentDotStyle;
+	LKStyle		*normalDotStyle;
+	LKStyle		*currentDotStyle;
 	
 	BOOL		hidesForSinglePage;
 }
@@ -24,6 +25,8 @@
 @property (nonatomic)       NSInteger numberOfPages;
 @property (nonatomic)       NSInteger currentPage;
 @property (nonatomic, copy) NSString  *dotStyle;
+@property (nonatomic, retain) LKStyle *normalDotStyle;
+@property (nonatomic, retain) LKStyle *currentDotStyle;
 
 /**
  * Set to YES to hide the pagecontrol if only one page is present
