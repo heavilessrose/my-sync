@@ -13,7 +13,7 @@
 
 @implementation LKLauncherView
 
-@synthesize scrollView;
+@synthesize scrollView, columnCount, pages;
 
 - (id)initWithFrame:(CGRect)frame {
     
@@ -44,6 +44,7 @@
 - (void)dealloc {
 	
 	self.scrollView = nil;
+	self.pages = nil;
     [super dealloc];
 }
 
