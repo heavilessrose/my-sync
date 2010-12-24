@@ -15,10 +15,12 @@
 	LKLauncherScrollView *scrollView;
 	NSInteger columnCount;
 	NSArray *pages;
+	NSMutableArray *buttons;
 }
 
 @property (nonatomic, retain) LKLauncherScrollView *scrollView;
 @property (nonatomic, assign) NSInteger columnCount;
 @property (nonatomic, retain) NSArray *pages;
+@property (nonatomic, retain) NSMutableArray *buttons;
 
 @end

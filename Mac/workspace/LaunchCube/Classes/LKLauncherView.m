@@ -8,12 +8,14 @@
 
 #import "LKLauncherView.h"
 #import "LKLauncherScrollView.h"
+#import "LKLauncherButton.h"
+#import "LKLauncherItem.h"
 
 #define kPagerHeight (20)
 
 @implementation LKLauncherView
 
-@synthesize scrollView, columnCount, pages;
+@synthesize scrollView, columnCount, pages, buttons;
 
 - (id)initWithFrame:(CGRect)frame {
     
@@ -45,8 +47,40 @@
 	
 	self.scrollView = nil;
 	self.pages = nil;
+	self.buttons = nil;
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark item
+- (NSIndexPath *)indexPathOfItem:(LKLauncherItem *)item {
+	for (NSUInteger pageIndex = 0; pageIndex < pages.count; ++pageIndex) {
+		NSArray *page = [pages objectAtIndex:pageIndex];
+		NSUInteger itemIndex = [page indexOfObject:item];
+		if (itemIndex != NSNotFound) {
+			NSUInteger path[] = {pageIndex, itemIndex};
+			return [NSIndexPath indexPathWithIndexes:path length:2];
+		}
+	}
+	return nil;
+}
+
+- (LKLauncherButton *)buttonForItem:(LKLauncherItem *)item {
+	NSIndexPath *path = [self indexPathOfItem:item];
+	if (path) {
+		NSInteger pageIndex = [path indexAtPosition:0];
+		NSArray *buttonPage = [buttons objectAtIndex:pageIndex];
+		
+		NSInteger itemIndex = [path indexAtPosition:1];
+		return [buttonPage objectAtIndex:itemIndex];
+	} else {
+		return nil;
+	}
+}
+
+- (void)updateItemBadge:(LKLauncherItem *)item {
+	LKLauncherButton *button = [self buttonForItem:item];
+	[button performSelector:@selector(updateBadge)];
+}
 
 @end
