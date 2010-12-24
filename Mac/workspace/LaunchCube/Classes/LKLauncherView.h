@@ -13,7 +13,12 @@
 @interface LKLauncherView : UIView <UIScrollViewDelegate> {
 
 	LKLauncherScrollView *scrollView;
+	NSInteger columnCount;
+	NSArray *pages;
 }
 
 @property (nonatomic, retain) LKLauncherScrollView *scrollView;
+@property (nonatomic, assign) NSInteger columnCount;
+@property (nonatomic, retain) NSArray *pages;
+
 @end

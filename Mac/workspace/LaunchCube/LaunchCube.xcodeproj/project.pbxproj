@@ -15,6 +15,8 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		A3C1DCE712C32B8F0020051B /* LKLauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1DCE612C32B8F0020051B /* LKLauncherView.m */; };
 		A3C1E44112C440100020051B /* LKLauncherScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E44012C440100020051B /* LKLauncherScrollView.m */; };
+		A3C1E49A12C44DED0020051B /* LKPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E49912C44DED0020051B /* LKPageControl.m */; };
+		A3C1E4A512C45AC60020051B /* LKLauncherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E4A412C45AC60020051B /* LKLauncherItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,10 @@
 		A3C1DCE612C32B8F0020051B /* LKLauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLauncherView.m; sourceTree = "<group>"; };
 		A3C1E43F12C440100020051B /* LKLauncherScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLauncherScrollView.h; sourceTree = "<group>"; };
 		A3C1E44012C440100020051B /* LKLauncherScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLauncherScrollView.m; sourceTree = "<group>"; };
+		A3C1E49812C44DED0020051B /* LKPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPageControl.h; sourceTree = "<group>"; };
+		A3C1E49912C44DED0020051B /* LKPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPageControl.m; sourceTree = "<group>"; };
+		A3C1E4A312C45AC60020051B /* LKLauncherItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLauncherItem.h; sourceTree = "<group>"; };
+		A3C1E4A412C45AC60020051B /* LKLauncherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLauncherItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,10 @@
 				A3C1DCE612C32B8F0020051B /* LKLauncherView.m */,
 				A3C1E43F12C440100020051B /* LKLauncherScrollView.h */,
 				A3C1E44012C440100020051B /* LKLauncherScrollView.m */,
+				A3C1E49812C44DED0020051B /* LKPageControl.h */,
+				A3C1E49912C44DED0020051B /* LKPageControl.m */,
+				A3C1E4A312C45AC60020051B /* LKLauncherItem.h */,
+				A3C1E4A412C45AC60020051B /* LKLauncherItem.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -173,6 +183,8 @@
 				1D3623260D0F684500981E51 /* LaunchCubeAppDelegate.m in Sources */,
 				A3C1DCE712C32B8F0020051B /* LKLauncherView.m in Sources */,
 				A3C1E44112C440100020051B /* LKLauncherScrollView.m in Sources */,
+				A3C1E49A12C44DED0020051B /* LKPageControl.m in Sources */,
+				A3C1E4A512C45AC60020051B /* LKLauncherItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

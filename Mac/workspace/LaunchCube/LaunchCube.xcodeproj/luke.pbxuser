@@ -40,16 +40,16 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 314775755;
-			PBXWorkspaceStateSaveDate = 314775755;
+			PBXPerProjectTemplateStateSaveDate = 314852380;
+			PBXWorkspaceStateSaveDate = 314852380;
 		};
 		perUserProjectItems = {
-			A3C1E45612C443520020051B /* PBXTextBookmark */ = A3C1E45612C443520020051B /* PBXTextBookmark */;
-			A3C1E45712C443520020051B /* PBXTextBookmark */ = A3C1E45712C443520020051B /* PBXTextBookmark */;
-			A3C1E45912C443520020051B /* PBXTextBookmark */ = A3C1E45912C443520020051B /* PBXTextBookmark */;
-			A3C1E45A12C443520020051B /* PBXTextBookmark */ = A3C1E45A12C443520020051B /* PBXTextBookmark */;
-			A3C1E45B12C443520020051B /* PBXTextBookmark */ = A3C1E45B12C443520020051B /* PBXTextBookmark */;
-			A3C1E45C12C443520020051B /* PBXTextBookmark */ = A3C1E45C12C443520020051B /* PBXTextBookmark */;
+			A3C1E45612C443520020051B = A3C1E45612C443520020051B /* PBXTextBookmark */;
+			A3C1E45712C443520020051B = A3C1E45712C443520020051B /* PBXTextBookmark */;
+			A3C1E45912C443520020051B = A3C1E45912C443520020051B /* PBXTextBookmark */;
+			A3C1E45A12C443520020051B = A3C1E45A12C443520020051B /* PBXTextBookmark */;
+			A3C1E45B12C443520020051B = A3C1E45B12C443520020051B /* PBXTextBookmark */;
+			A3C1E45C12C443520020051B = A3C1E45C12C443520020051B /* PBXTextBookmark */;
 		};
 		sourceControlManager = A3C1DCDC12C318E20020051B /* Source Control */;
 		userBuildSettings = {
@@ -99,8 +99,8 @@
 	A3C1DCE512C32B8F0020051B /* LKLauncherView.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {977, 575}}";
-			sepNavSelRange = "{361, 0}";
-			sepNavVisRange = "{0, 361}";
+			sepNavSelRange = "{489, 5}";
+			sepNavVisRange = "{0, 502}";
 		};
 	};
 	A3C1DCE612C32B8F0020051B /* LKLauncherView.m */ = {
@@ -146,6 +146,7 @@
 	};
 	A3C1E45812C443520020051B /* UIScrollView.h */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
 		name = UIScrollView.h;
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIScrollView.h;
 		sourceTree = "<absolute>";
@@ -165,7 +166,7 @@
 		fRef = A3C1DCE512C32B8F0020051B /* LKLauncherView.h */;
 		name = "LKLauncherView.h: 20";
 		rLen = 0;
-		rLoc = 361;
+		rLoc = 502;
 		rType = 0;
 		vrLen = 361;
 		vrLoc = 0;
@@ -189,5 +190,19 @@
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 42;
+	};
+	A3C1E49812C44DED0020051B /* LKPageControl.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {977, 575}}";
+			sepNavSelRange = "{199, 0}";
+			sepNavVisRange = "{0, 211}";
+		};
+	};
+	A3C1E49912C44DED0020051B /* LKPageControl.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {977, 575}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 595}";
+		};
 	};
 }
