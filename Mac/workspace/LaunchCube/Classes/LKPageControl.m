@@ -43,6 +43,7 @@
 #pragma mark -
 #pragma mark public
 - (void)setNumberOfPages:(NSInteger)aNumberOfPages {
+	
 	if (aNumberOfPages != numberOfPages) {
 		assert(aNumberOfPages >= 0);
 		
@@ -52,6 +53,7 @@
 }
 
 - (void)setCurrentPage:(NSInteger)aCurrentPage {
+	
 	if (aCurrentPage != currentPage) {
 		currentPage = MAX(0, MIN(numberOfPages - 1, aCurrentPage));
 		[self setNeedsDisplay];
@@ -59,6 +61,7 @@
 }
 
 - (void)setDotStyle:(NSString*)aDotStyle {
+	
 	if (![aDotStyle isEqualToString:dotStyle]) {
 		[dotStyle release];
 		dotStyle = [aDotStyle copy];
