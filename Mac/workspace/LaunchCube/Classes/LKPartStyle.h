@@ -10,7 +10,16 @@
 #import "LKStyle.h"
 
 @interface LKPartStyle : LKStyle {
-
+	
+	NSString *name;
+	LKStyle *style;
 }
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) LKStyle *style;
+
++ (LKPartStyle *)styleWithName:(NSString *)name style:(LKStyle *)style next:(LKStyle *)next;
+
+- (void)drawPart:(LKStyleContext *)context;
 
 @end
