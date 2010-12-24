@@ -17,6 +17,13 @@
 		A3C1E44112C440100020051B /* LKLauncherScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E44012C440100020051B /* LKLauncherScrollView.m */; };
 		A3C1E49A12C44DED0020051B /* LKPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E49912C44DED0020051B /* LKPageControl.m */; };
 		A3C1E4A512C45AC60020051B /* LKLauncherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E4A412C45AC60020051B /* LKLauncherItem.m */; };
+		A3C1E4B912C45D6A0020051B /* LKLauncherButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E4B812C45D6A0020051B /* LKLauncherButton.m */; };
+		A3C1E4BC12C45D830020051B /* LKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E4BB12C45D830020051B /* LKButton.m */; };
+		A3C1E55212C47B8A0020051B /* LKStyleContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E55112C47B8A0020051B /* LKStyleContext.m */; };
+		A3C1E55512C47BAF0020051B /* LKShape.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E55412C47BAF0020051B /* LKShape.m */; };
+		A3C1E55812C47BE10020051B /* LKRectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E55712C47BE10020051B /* LKRectangleShape.m */; };
+		A3C1E55F12C47DBC0020051B /* LKStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E55E12C47DBC0020051B /* LKStyle.m */; };
+		A3C1E56212C47DC90020051B /* LKPartStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E56112C47DC90020051B /* LKPartStyle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +45,20 @@
 		A3C1E49912C44DED0020051B /* LKPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPageControl.m; sourceTree = "<group>"; };
 		A3C1E4A312C45AC60020051B /* LKLauncherItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLauncherItem.h; sourceTree = "<group>"; };
 		A3C1E4A412C45AC60020051B /* LKLauncherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLauncherItem.m; sourceTree = "<group>"; };
+		A3C1E4B712C45D6A0020051B /* LKLauncherButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLauncherButton.h; sourceTree = "<group>"; };
+		A3C1E4B812C45D6A0020051B /* LKLauncherButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLauncherButton.m; sourceTree = "<group>"; };
+		A3C1E4BA12C45D830020051B /* LKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKButton.h; sourceTree = "<group>"; };
+		A3C1E4BB12C45D830020051B /* LKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKButton.m; sourceTree = "<group>"; };
+		A3C1E55012C47B8A0020051B /* LKStyleContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyleContext.h; sourceTree = "<group>"; };
+		A3C1E55112C47B8A0020051B /* LKStyleContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyleContext.m; sourceTree = "<group>"; };
+		A3C1E55312C47BAF0020051B /* LKShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKShape.h; sourceTree = "<group>"; };
+		A3C1E55412C47BAF0020051B /* LKShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKShape.m; sourceTree = "<group>"; };
+		A3C1E55612C47BE10020051B /* LKRectangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKRectangleShape.h; sourceTree = "<group>"; };
+		A3C1E55712C47BE10020051B /* LKRectangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKRectangleShape.m; sourceTree = "<group>"; };
+		A3C1E55D12C47DBC0020051B /* LKStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyle.h; sourceTree = "<group>"; };
+		A3C1E55E12C47DBC0020051B /* LKStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyle.m; sourceTree = "<group>"; };
+		A3C1E56012C47DC90020051B /* LKPartStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPartStyle.h; sourceTree = "<group>"; };
+		A3C1E56112C47DC90020051B /* LKPartStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPartStyle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +88,20 @@
 				A3C1E49912C44DED0020051B /* LKPageControl.m */,
 				A3C1E4A312C45AC60020051B /* LKLauncherItem.h */,
 				A3C1E4A412C45AC60020051B /* LKLauncherItem.m */,
+				A3C1E4B712C45D6A0020051B /* LKLauncherButton.h */,
+				A3C1E4B812C45D6A0020051B /* LKLauncherButton.m */,
+				A3C1E4BA12C45D830020051B /* LKButton.h */,
+				A3C1E4BB12C45D830020051B /* LKButton.m */,
+				A3C1E55D12C47DBC0020051B /* LKStyle.h */,
+				A3C1E55E12C47DBC0020051B /* LKStyle.m */,
+				A3C1E56012C47DC90020051B /* LKPartStyle.h */,
+				A3C1E56112C47DC90020051B /* LKPartStyle.m */,
+				A3C1E55012C47B8A0020051B /* LKStyleContext.h */,
+				A3C1E55112C47B8A0020051B /* LKStyleContext.m */,
+				A3C1E55312C47BAF0020051B /* LKShape.h */,
+				A3C1E55412C47BAF0020051B /* LKShape.m */,
+				A3C1E55612C47BE10020051B /* LKRectangleShape.h */,
+				A3C1E55712C47BE10020051B /* LKRectangleShape.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -185,6 +220,13 @@
 				A3C1E44112C440100020051B /* LKLauncherScrollView.m in Sources */,
 				A3C1E49A12C44DED0020051B /* LKPageControl.m in Sources */,
 				A3C1E4A512C45AC60020051B /* LKLauncherItem.m in Sources */,
+				A3C1E4B912C45D6A0020051B /* LKLauncherButton.m in Sources */,
+				A3C1E4BC12C45D830020051B /* LKButton.m in Sources */,
+				A3C1E55212C47B8A0020051B /* LKStyleContext.m in Sources */,
+				A3C1E55512C47BAF0020051B /* LKShape.m in Sources */,
+				A3C1E55812C47BE10020051B /* LKRectangleShape.m in Sources */,
+				A3C1E55F12C47DBC0020051B /* LKStyle.m in Sources */,
+				A3C1E56212C47DC90020051B /* LKPartStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
