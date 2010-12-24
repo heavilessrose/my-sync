@@ -11,27 +11,60 @@
 
 @implementation LKPageControl
 
+@synthesize numberOfPages, currentPage, hidesForSinglePage, dotStyle;
 
 - (id)initWithFrame:(CGRect)frame {
     
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code.
+    if (self = [super initWithFrame:frame]) {
+		
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code.
-}
-*/
-
 - (void)dealloc {
+	
+	self.dotStyle = nil;
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark UIView
+- (void)drawRect:(CGRect)rect {
+
+}
+
+
+#pragma mark -
+#pragma mark UIControl
+- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+
+}
+
+#pragma mark -
+#pragma mark public
+- (void)setNumberOfPages:(NSInteger)aNumberOfPages {
+	if (aNumberOfPages != numberOfPages) {
+		assert(aNumberOfPages >= 0);
+		
+		numberOfPages = MAX(0, aNumberOfPages);
+		[self setNeedsDisplay];
+	}
+}
+
+- (void)setCurrentPage:(NSInteger)aCurrentPage {
+	if (aCurrentPage != currentPage) {
+		currentPage = MAX(0, MIN(numberOfPages - 1, aCurrentPage));
+		[self setNeedsDisplay];
+	}
+}
+
+- (void)setDotStyle:(NSString*)aDotStyle {
+	if (![aDotStyle isEqualToString:dotStyle]) {
+		[dotStyle release];
+		dotStyle = [aDotStyle copy];
+//		self.normalDotStyle = nil;
+//		self.currentDotStyle = nil;
+	}
+}
 
 @end
