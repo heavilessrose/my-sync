@@ -24,6 +24,23 @@
 		A3C1E55812C47BE10020051B /* LKRectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E55712C47BE10020051B /* LKRectangleShape.m */; };
 		A3C1E55F12C47DBC0020051B /* LKStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E55E12C47DBC0020051B /* LKStyle.m */; };
 		A3C1E56212C47DC90020051B /* LKPartStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E56112C47DC90020051B /* LKPartStyle.m */; };
+		A3C1E5CB12C48FDD0020051B /* LKStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5CA12C48FDD0020051B /* LKStyleSheet.m */; };
+		A3C1E5DA12C4934D0020051B /* LKDefaultStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5D912C4934D0020051B /* LKDefaultStyleSheet.m */; };
+		A3C1E5DD12C495FB0020051B /* LKBoxStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5DC12C495FB0020051B /* LKBoxStyle.m */; };
+		A3C1E5E112C497D30020051B /* LKRects.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5E012C497D30020051B /* LKRects.m */; };
+		A3C1E5E412C49AAA0020051B /* LKTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5E312C49AAA0020051B /* LKTextStyle.m */; };
+		A3C1E5E712C4A7AE0020051B /* LKShapeStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5E612C4A7AE0020051B /* LKShapeStyle.m */; };
+		A3C1E5EA12C4A9230020051B /* LKImageStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5E912C4A9230020051B /* LKImageStyle.m */; };
+		A3C1E5ED12C4A9B00020051B /* LKBlendStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5EC12C4A9B00020051B /* LKBlendStyle.m */; };
+		A3C1E5F012C4AA170020051B /* LKSolidFillStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5EF12C4AA170020051B /* LKSolidFillStyle.m */; };
+		A3C1E5F312C4AA8F0020051B /* LKInsetStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5F212C4AA8F0020051B /* LKInsetStyle.m */; };
+		A3C1E5F712C4AAFA0020051B /* LKShadowStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5F612C4AAFA0020051B /* LKShadowStyle.m */; };
+		A3C1E5FA12C4AB6F0020051B /* LKSolidBorderStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E5F912C4AB6F0020051B /* LKSolidBorderStyle.m */; };
+		A3C1E67312C4EC2D0020051B /* UIViewAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E67212C4EC2D0020051B /* UIViewAddition.m */; };
+		A3C1E67A12C4EDEA0020051B /* UIFontAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E67912C4EDEA0020051B /* UIFontAddition.m */; };
+		A3C1E6AE12C4EF150020051B /* UIImageAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E6AD12C4EF150020051B /* UIImageAddition.m */; };
+		A3C1E6BB12C4F0DB0020051B /* LKRoundedRectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E6BA12C4F0DB0020051B /* LKRoundedRectangleShape.m */; };
+		A3C1E71512C4F5980020051B /* NSStringAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C1E71412C4F5980020051B /* NSStringAddition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +76,41 @@
 		A3C1E55E12C47DBC0020051B /* LKStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyle.m; sourceTree = "<group>"; };
 		A3C1E56012C47DC90020051B /* LKPartStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPartStyle.h; sourceTree = "<group>"; };
 		A3C1E56112C47DC90020051B /* LKPartStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPartStyle.m; sourceTree = "<group>"; };
+		A3C1E5C912C48FDD0020051B /* LKStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStyleSheet.h; sourceTree = "<group>"; };
+		A3C1E5CA12C48FDD0020051B /* LKStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStyleSheet.m; sourceTree = "<group>"; };
+		A3C1E5D812C4934D0020051B /* LKDefaultStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDefaultStyleSheet.h; sourceTree = "<group>"; };
+		A3C1E5D912C4934D0020051B /* LKDefaultStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDefaultStyleSheet.m; sourceTree = "<group>"; };
+		A3C1E5DB12C495FB0020051B /* LKBoxStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBoxStyle.h; sourceTree = "<group>"; };
+		A3C1E5DC12C495FB0020051B /* LKBoxStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBoxStyle.m; sourceTree = "<group>"; };
+		A3C1E5DE12C4967E0020051B /* LKPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPosition.h; sourceTree = "<group>"; };
+		A3C1E5DF12C497D30020051B /* LKRects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKRects.h; sourceTree = "<group>"; };
+		A3C1E5E012C497D30020051B /* LKRects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKRects.m; sourceTree = "<group>"; };
+		A3C1E5E212C49AAA0020051B /* LKTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTextStyle.h; sourceTree = "<group>"; };
+		A3C1E5E312C49AAA0020051B /* LKTextStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTextStyle.m; sourceTree = "<group>"; };
+		A3C1E5E512C4A7AE0020051B /* LKShapeStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKShapeStyle.h; sourceTree = "<group>"; };
+		A3C1E5E612C4A7AE0020051B /* LKShapeStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKShapeStyle.m; sourceTree = "<group>"; };
+		A3C1E5E812C4A9230020051B /* LKImageStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImageStyle.h; sourceTree = "<group>"; };
+		A3C1E5E912C4A9230020051B /* LKImageStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImageStyle.m; sourceTree = "<group>"; };
+		A3C1E5EB12C4A9B00020051B /* LKBlendStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBlendStyle.h; sourceTree = "<group>"; };
+		A3C1E5EC12C4A9B00020051B /* LKBlendStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBlendStyle.m; sourceTree = "<group>"; };
+		A3C1E5EE12C4AA170020051B /* LKSolidFillStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSolidFillStyle.h; sourceTree = "<group>"; };
+		A3C1E5EF12C4AA170020051B /* LKSolidFillStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSolidFillStyle.m; sourceTree = "<group>"; };
+		A3C1E5F112C4AA8F0020051B /* LKInsetStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKInsetStyle.h; sourceTree = "<group>"; };
+		A3C1E5F212C4AA8F0020051B /* LKInsetStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKInsetStyle.m; sourceTree = "<group>"; };
+		A3C1E5F512C4AAFA0020051B /* LKShadowStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKShadowStyle.h; sourceTree = "<group>"; };
+		A3C1E5F612C4AAFA0020051B /* LKShadowStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKShadowStyle.m; sourceTree = "<group>"; };
+		A3C1E5F812C4AB6F0020051B /* LKSolidBorderStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSolidBorderStyle.h; sourceTree = "<group>"; };
+		A3C1E5F912C4AB6F0020051B /* LKSolidBorderStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSolidBorderStyle.m; sourceTree = "<group>"; };
+		A3C1E67112C4EC2D0020051B /* UIViewAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAddition.h; sourceTree = "<group>"; };
+		A3C1E67212C4EC2D0020051B /* UIViewAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAddition.m; sourceTree = "<group>"; };
+		A3C1E67812C4EDEA0020051B /* UIFontAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFontAddition.h; sourceTree = "<group>"; };
+		A3C1E67912C4EDEA0020051B /* UIFontAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFontAddition.m; sourceTree = "<group>"; };
+		A3C1E6AC12C4EF150020051B /* UIImageAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageAddition.h; sourceTree = "<group>"; };
+		A3C1E6AD12C4EF150020051B /* UIImageAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageAddition.m; sourceTree = "<group>"; };
+		A3C1E6B912C4F0DB0020051B /* LKRoundedRectangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKRoundedRectangleShape.h; sourceTree = "<group>"; };
+		A3C1E6BA12C4F0DB0020051B /* LKRoundedRectangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKRoundedRectangleShape.m; sourceTree = "<group>"; };
+		A3C1E71312C4F5980020051B /* NSStringAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAddition.h; sourceTree = "<group>"; };
+		A3C1E71412C4F5980020051B /* NSStringAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAddition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,10 +150,45 @@
 				A3C1E56112C47DC90020051B /* LKPartStyle.m */,
 				A3C1E55012C47B8A0020051B /* LKStyleContext.h */,
 				A3C1E55112C47B8A0020051B /* LKStyleContext.m */,
+				A3C1E5DE12C4967E0020051B /* LKPosition.h */,
+				A3C1E5DF12C497D30020051B /* LKRects.h */,
+				A3C1E5E012C497D30020051B /* LKRects.m */,
 				A3C1E55312C47BAF0020051B /* LKShape.h */,
 				A3C1E55412C47BAF0020051B /* LKShape.m */,
 				A3C1E55612C47BE10020051B /* LKRectangleShape.h */,
 				A3C1E55712C47BE10020051B /* LKRectangleShape.m */,
+				A3C1E5C912C48FDD0020051B /* LKStyleSheet.h */,
+				A3C1E5CA12C48FDD0020051B /* LKStyleSheet.m */,
+				A3C1E5D812C4934D0020051B /* LKDefaultStyleSheet.h */,
+				A3C1E5D912C4934D0020051B /* LKDefaultStyleSheet.m */,
+				A3C1E5DB12C495FB0020051B /* LKBoxStyle.h */,
+				A3C1E5DC12C495FB0020051B /* LKBoxStyle.m */,
+				A3C1E5E212C49AAA0020051B /* LKTextStyle.h */,
+				A3C1E5E312C49AAA0020051B /* LKTextStyle.m */,
+				A3C1E5E512C4A7AE0020051B /* LKShapeStyle.h */,
+				A3C1E5E612C4A7AE0020051B /* LKShapeStyle.m */,
+				A3C1E5E812C4A9230020051B /* LKImageStyle.h */,
+				A3C1E5E912C4A9230020051B /* LKImageStyle.m */,
+				A3C1E5EB12C4A9B00020051B /* LKBlendStyle.h */,
+				A3C1E5EC12C4A9B00020051B /* LKBlendStyle.m */,
+				A3C1E5EE12C4AA170020051B /* LKSolidFillStyle.h */,
+				A3C1E5EF12C4AA170020051B /* LKSolidFillStyle.m */,
+				A3C1E5F112C4AA8F0020051B /* LKInsetStyle.h */,
+				A3C1E5F212C4AA8F0020051B /* LKInsetStyle.m */,
+				A3C1E5F512C4AAFA0020051B /* LKShadowStyle.h */,
+				A3C1E5F612C4AAFA0020051B /* LKShadowStyle.m */,
+				A3C1E5F812C4AB6F0020051B /* LKSolidBorderStyle.h */,
+				A3C1E5F912C4AB6F0020051B /* LKSolidBorderStyle.m */,
+				A3C1E67112C4EC2D0020051B /* UIViewAddition.h */,
+				A3C1E67212C4EC2D0020051B /* UIViewAddition.m */,
+				A3C1E67812C4EDEA0020051B /* UIFontAddition.h */,
+				A3C1E67912C4EDEA0020051B /* UIFontAddition.m */,
+				A3C1E6AC12C4EF150020051B /* UIImageAddition.h */,
+				A3C1E6AD12C4EF150020051B /* UIImageAddition.m */,
+				A3C1E6B912C4F0DB0020051B /* LKRoundedRectangleShape.h */,
+				A3C1E6BA12C4F0DB0020051B /* LKRoundedRectangleShape.m */,
+				A3C1E71312C4F5980020051B /* NSStringAddition.h */,
+				A3C1E71412C4F5980020051B /* NSStringAddition.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -227,6 +314,23 @@
 				A3C1E55812C47BE10020051B /* LKRectangleShape.m in Sources */,
 				A3C1E55F12C47DBC0020051B /* LKStyle.m in Sources */,
 				A3C1E56212C47DC90020051B /* LKPartStyle.m in Sources */,
+				A3C1E5CB12C48FDD0020051B /* LKStyleSheet.m in Sources */,
+				A3C1E5DA12C4934D0020051B /* LKDefaultStyleSheet.m in Sources */,
+				A3C1E5DD12C495FB0020051B /* LKBoxStyle.m in Sources */,
+				A3C1E5E112C497D30020051B /* LKRects.m in Sources */,
+				A3C1E5E412C49AAA0020051B /* LKTextStyle.m in Sources */,
+				A3C1E5E712C4A7AE0020051B /* LKShapeStyle.m in Sources */,
+				A3C1E5EA12C4A9230020051B /* LKImageStyle.m in Sources */,
+				A3C1E5ED12C4A9B00020051B /* LKBlendStyle.m in Sources */,
+				A3C1E5F012C4AA170020051B /* LKSolidFillStyle.m in Sources */,
+				A3C1E5F312C4AA8F0020051B /* LKInsetStyle.m in Sources */,
+				A3C1E5F712C4AAFA0020051B /* LKShadowStyle.m in Sources */,
+				A3C1E5FA12C4AB6F0020051B /* LKSolidBorderStyle.m in Sources */,
+				A3C1E67312C4EC2D0020051B /* UIViewAddition.m in Sources */,
+				A3C1E67A12C4EDEA0020051B /* UIFontAddition.m in Sources */,
+				A3C1E6AE12C4EF150020051B /* UIImageAddition.m in Sources */,
+				A3C1E6BB12C4F0DB0020051B /* LKRoundedRectangleShape.m in Sources */,
+				A3C1E71512C4F5980020051B /* NSStringAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

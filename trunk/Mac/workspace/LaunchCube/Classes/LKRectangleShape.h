@@ -13,4 +13,6 @@
 
 }
 
++ (LKRectangleShape *)shape;
+
 @end
