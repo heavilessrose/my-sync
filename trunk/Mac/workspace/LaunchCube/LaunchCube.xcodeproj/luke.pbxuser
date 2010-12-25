@@ -159,6 +159,12 @@
 			A3C1E79D12C598820020051B /* PBXTextBookmark */ = A3C1E79D12C598820020051B /* PBXTextBookmark */;
 			A3C1E79E12C598820020051B /* PBXTextBookmark */ = A3C1E79E12C598820020051B /* PBXTextBookmark */;
 			A3C1E79F12C598820020051B /* PBXTextBookmark */ = A3C1E79F12C598820020051B /* PBXTextBookmark */;
+			A3C1E7C612C59EAA0020051B /* PBXTextBookmark */ = A3C1E7C612C59EAA0020051B /* PBXTextBookmark */;
+			A3C1E7C712C59EAA0020051B /* PBXTextBookmark */ = A3C1E7C712C59EAA0020051B /* PBXTextBookmark */;
+			A3C1E7C912C59EAA0020051B /* XCBuildMessageTextBookmark */ = A3C1E7C912C59EAA0020051B /* XCBuildMessageTextBookmark */;
+			A3C1E7CA12C59EAA0020051B /* PBXTextBookmark */ = A3C1E7CA12C59EAA0020051B /* PBXTextBookmark */;
+			A3C1E7CB12C59EAA0020051B /* PBXTextBookmark */ = A3C1E7CB12C59EAA0020051B /* PBXTextBookmark */;
+			A3C1E7CC12C59EAA0020051B /* PBXTextBookmark */ = A3C1E7CC12C59EAA0020051B /* PBXTextBookmark */;
 		};
 		sourceControlManager = A3C1DCDC12C318E20020051B /* Source Control */;
 		userBuildSettings = {
@@ -207,9 +213,9 @@
 	};
 	A3C1DCE512C32B8F0020051B /* LKLauncherView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {977, 1290}}";
-			sepNavSelRange = "{288, 0}";
-			sepNavVisRange = "{134, 932}";
+			sepNavIntBoundsRect = "{{0, 0}, {977, 1455}}";
+			sepNavSelRange = "{935, 0}";
+			sepNavVisRange = "{598, 687}";
 		};
 	};
 	A3C1DCE612C32B8F0020051B /* LKLauncherView.m */ = {
@@ -275,7 +281,7 @@
 		fRef = A3C1DCE512C32B8F0020051B /* LKLauncherView.h */;
 		name = "LKLauncherView.h: 20";
 		rLen = 0;
-		rLoc = 2926;
+		rLoc = 2902;
 		rType = 0;
 		vrLen = 361;
 		vrLoc = 0;
@@ -337,9 +343,9 @@
 	};
 	A3C1E4B812C45D6A0020051B /* LKLauncherButton.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {977, 600}}";
-			sepNavSelRange = "{320, 7}";
-			sepNavVisRange = "{204, 597}";
+			sepNavIntBoundsRect = "{{0, 0}, {977, 570}}";
+			sepNavSelRange = "{267, 0}";
+			sepNavVisRange = "{0, 537}";
 		};
 	};
 	A3C1E4BA12C45D830020051B /* LKButton.h */ = {
@@ -671,7 +677,7 @@
 		fRef = A3C1DCE512C32B8F0020051B /* LKLauncherView.h */;
 		name = "LKLauncherView.h: 24";
 		rLen = 7;
-		rLoc = 1638;
+		rLoc = 1614;
 		rType = 0;
 		vrLen = 583;
 		vrLoc = 0;
@@ -681,7 +687,7 @@
 		fRef = A3C1E6D112C4F4F30020051B /* LKLauncherView.m */;
 		name = "LKLauncherView.m: 85";
 		rLen = 0;
-		rLoc = 2740;
+		rLoc = 24463;
 		rType = 0;
 		vrLen = 655;
 		vrLoc = 1674;
@@ -693,9 +699,9 @@
 		path = /Users/luke/Documents/luke/workspace_58/LaunchCube/Classes/LKLauncherView.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1228, 1605}}";
-			sepNavSelRange = "{289, 23}";
-			sepNavVisRange = "{0, 719}";
+			sepNavIntBoundsRect = "{{0, 0}, {977, 13365}}";
+			sepNavSelRange = "{3444, 16}";
+			sepNavVisRange = "{3104, 561}";
 		};
 	};
 	A3C1E6D212C4F4F30020051B /* PBXTextBookmark */ = {
@@ -1479,7 +1485,7 @@
 		fRef = A3C1DCE512C32B8F0020051B /* LKLauncherView.h */;
 		name = "LKLauncherView.h: 24";
 		rLen = 7;
-		rLoc = 1638;
+		rLoc = 1614;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 0;
@@ -1549,7 +1555,7 @@
 		fRef = A3C1E6D112C4F4F30020051B /* LKLauncherView.m */;
 		name = "LKLauncherView.m: 72";
 		rLen = 59;
-		rLoc = 2395;
+		rLoc = 4188;
 		rType = 0;
 		vrLen = 682;
 		vrLoc = 1641;
@@ -1559,7 +1565,7 @@
 		fRef = A3C1E6D112C4F4F30020051B /* LKLauncherView.m */;
 		name = "LKLauncherView.m: 75";
 		rLen = 0;
-		rLoc = 2542;
+		rLoc = 4335;
 		rType = 0;
 		vrLen = 529;
 		vrLoc = 937;
@@ -1569,7 +1575,7 @@
 		fRef = A3C1E6D112C4F4F30020051B /* LKLauncherView.m */;
 		name = "LKLauncherView.m: 51";
 		rLen = 0;
-		rLoc = 1788;
+		rLoc = 2670;
 		rType = 0;
 		vrLen = 529;
 		vrLoc = 937;
@@ -1579,7 +1585,7 @@
 		fRef = A3C1DCE512C32B8F0020051B /* LKLauncherView.h */;
 		name = "LKLauncherView.h: 24";
 		rLen = 7;
-		rLoc = 1638;
+		rLoc = 1614;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 0;
@@ -1589,7 +1595,7 @@
 		fRef = A3C1DCE512C32B8F0020051B /* LKLauncherView.h */;
 		name = "LKLauncherView.h: 45";
 		rLen = 0;
-		rLoc = 1682;
+		rLoc = 1658;
 		rType = 0;
 		vrLen = 587;
 		vrLoc = 423;
@@ -1662,9 +1668,71 @@
 		fRef = A3C1DCE512C32B8F0020051B /* LKLauncherView.h */;
 		name = "LKLauncherView.h: 25";
 		rLen = 0;
-		rLoc = 959;
+		rLoc = 935;
 		rType = 0;
 		vrLen = 948;
 		vrLoc = 137;
+	};
+	A3C1E7C612C59EAA0020051B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A3C1DCE512C32B8F0020051B /* LKLauncherView.h */;
+		name = "LKLauncherView.h: 26";
+		rLen = 0;
+		rLoc = 935;
+		rType = 0;
+		vrLen = 687;
+		vrLoc = 598;
+	};
+	A3C1E7C712C59EAA0020051B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A3C1E7C812C59EAA0020051B /* NSDate.h */;
+		name = "NSDate.h: 11";
+		rLen = 0;
+		rLoc = 246;
+		rType = 0;
+		vrLen = 588;
+		vrLoc = 0;
+	};
+	A3C1E7C812C59EAA0020051B /* NSDate.h */ = {
+		isa = PBXFileReference;
+		name = NSDate.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSDate.h;
+		sourceTree = "<absolute>";
+	};
+	A3C1E7C912C59EAA0020051B /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Request for member 'item' in something not a structure or union";
+		fRef = A3C1DCE612C32B8F0020051B /* LKLauncherView.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 131;
+		rType = 1;
+	};
+	A3C1E7CA12C59EAA0020051B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A3C1E6D112C4F4F30020051B /* LKLauncherView.m */;
+		name = "LKLauncherView.m: 131";
+		rLen = 16;
+		rLoc = 3444;
+		rType = 0;
+		vrLen = 561;
+		vrLoc = 3104;
+	};
+	A3C1E7CB12C59EAA0020051B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A3C1E4B812C45D6A0020051B /* LKLauncherButton.m */;
+		rLen = 1;
+		rLoc = 11;
+		rType = 1;
+	};
+	A3C1E7CC12C59EAA0020051B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A3C1E4B812C45D6A0020051B /* LKLauncherButton.m */;
+		name = "LKLauncherButton.m: 16";
+		rLen = 0;
+		rLoc = 267;
+		rType = 0;
+		vrLen = 537;
+		vrLoc = 0;
 	};
 }
