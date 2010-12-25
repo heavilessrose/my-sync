@@ -23,7 +23,7 @@
 - (void)launcherViewDidEndEditing:(LKLauncherView *)launcher;
 @end
 
-@interface LKLauncherView : UIView <UIScrollViewDelegate, LKLauncherViewDelegate> {
+@interface LKLauncherView : UIView <UIScrollViewDelegate> {
 
 	LKLauncherScrollView *scrollView;
 	NSInteger columnCount;
