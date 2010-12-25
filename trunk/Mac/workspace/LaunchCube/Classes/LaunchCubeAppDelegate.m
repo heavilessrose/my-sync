@@ -10,16 +10,17 @@
 
 @implementation LaunchCubeAppDelegate
 
-@synthesize window;
+@synthesize window, launcher;
 
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-    // Override point for customization after application launch.
-    
+
+    self.launcher = [[LaunchCubeViewController alloc] init];
+	[self.window addSubview:launcher.view];
+	[launcher release];
     [self.window makeKeyAndVisible];
     
     return YES;

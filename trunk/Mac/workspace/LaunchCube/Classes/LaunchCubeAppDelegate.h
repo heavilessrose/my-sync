@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LaunchCubeViewController.h"
 
 @interface LaunchCubeAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
+	LaunchCubeViewController *launcher;
 }
 
+@property (nonatomic, retain) LaunchCubeViewController *launcher;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
 @end
