@@ -13,9 +13,25 @@
 
 @synthesize launcher, title, image, style, badgeNumber, canDelete;
 
+- (id)initWithTitle:(NSString *)aTitle image:(NSString *)aImage URL:(NSString *)aURL
+		  canDelete:(BOOL)aCanDelete {
+	if (self = [super init]) {
+		canDelete = aCanDelete;
+		
+		self.title = aTitle;
+		self.image = aImage;
+		//self.URL = aURL;
+	}
+	
+	return self;
+}
 
-
-
+- (id)initWithTitle:(NSString *)aTitle image:(NSString *)aImage URL:(NSString *)aURL {
+	if (self = [self initWithTitle:aTitle image:aImage URL:aURL canDelete:NO]) {
+	}
+	
+	return self;
+}
 
 - (void)setBadgeNumber:(NSInteger)aBadgeNumber {
 	badgeNumber = aBadgeNumber;

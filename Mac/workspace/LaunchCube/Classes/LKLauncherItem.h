@@ -28,4 +28,7 @@
 @property (nonatomic)         NSInteger			badgeNumber;
 @property (nonatomic)         BOOL				canDelete;
 
+- (id)initWithTitle:(NSString *)aTitle image:(NSString *)aImage URL:(NSString *)aURL;
+- (id)initWithTitle:(NSString *)aTitle image:(NSString *)aImage URL:(NSString *)aURL canDelete:(BOOL)aCanDelete;
+
 @end

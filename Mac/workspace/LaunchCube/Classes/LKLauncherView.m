@@ -10,12 +10,14 @@
 #import "LKLauncherScrollView.h"
 #import "LKLauncherButton.h"
 #import "LKLauncherItem.h"
+#import "LKPageControl.h"
+#import "LKLauncherHighlightView.h"
 
 #define kPagerHeight (20)
 
 @implementation LKLauncherView
 
-@synthesize scrollView, columnCount, pages, buttons;
+@synthesize scrollView, columnCount, pages, buttons, delegate, rowCount, currentPageIndex, prompt, editing;
 
 - (id)initWithFrame:(CGRect)frame {
     
@@ -45,9 +47,28 @@
 
 - (void)dealloc {
 	
+	
+	
+	for (NSArray *page in pages) {
+		for (LKLauncherItem *item in page) {
+			item.launcher = nil;
+		}
+	}
+	
+	scrollView.delegate = nil;
+	
+	[editHoldTimer invalidate];
+	editHoldTimer = nil;
+	[springLoadTimer invalidate];
+	springLoadTimer = nil;
+	
 	self.scrollView = nil;
 	self.pages = nil;
 	self.buttons = nil;
+	self.prompt = nil;
+	[pager release];
+	pager = nil;
+	
     [super dealloc];
 }
 
