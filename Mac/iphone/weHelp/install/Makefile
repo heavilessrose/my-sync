@@ -1,6 +1,6 @@
 IP=root@192.168.10.184
-Target=wehelp_v1.0.deb
-SDKVER=2.2.1
+Target=wehelp_v1.1.deb
+SDKVER=4.1
 Programset=../weHelp_UI/build/$(SDKVER)/weHelp_UI.app
 Programdaemon=../weHelp_daemon/weHelper_daemon
 

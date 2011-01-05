@@ -1,12 +1,12 @@
-CC=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-gcc-4.0.1
-CXX=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-g++-4.0.1
+CC=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin10-gcc-4.0.1
+CXX=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin10-g++-4.0.1
 LD=$(CC)
 
 Sysroot=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS$(SDKVER).sdk
 
 IP=192.168.10.184
 PROJECTNAME=weHelper_daemon
-SDKVER=2.2.1
+SDKVER=4.1
 INCDIR=./inc
 SRCDIR=./src
 LAUNCHPLIST=com.wehelp.luke.plist
