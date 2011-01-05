@@ -17,6 +17,7 @@
 		A349860D10CF899A00E48B3C /* wk_sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A349860A10CF899A00E48B3C /* wk_sms.m */; };
 		A349861910CF8A6600E48B3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A349861810CF8A6600E48B3C /* main.m */; };
 		A349869610CFB5A500E48B3C /* com.wehelp.luke.plist in Resources */ = {isa = PBXBuildFile; fileRef = A349869510CFB5A500E48B3C /* com.wehelp.luke.plist */; };
+		A37D2C7B12829F3500D3F2BF /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37D2C7A12829F3500D3F2BF /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		A349860A10CF899A00E48B3C /* wk_sms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wk_sms.m; sourceTree = "<group>"; };
 		A349861810CF8A6600E48B3C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A349869510CFB5A500E48B3C /* com.wehelp.luke.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.wehelp.luke.plist; sourceTree = "<group>"; };
+		A37D2C7A12829F3500D3F2BF /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				A37D2C7B12829F3500D3F2BF /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +101,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				A37D2C7A12829F3500D3F2BF /* CoreTelephony.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,7 +154,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "weHelp_daemon" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -218,12 +229,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Min Yang (BRD3Y2N3S2)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8FC2C1DD-5974-4BA0-B721-8ADF345CCE19";
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -236,7 +248,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Release;
 		};

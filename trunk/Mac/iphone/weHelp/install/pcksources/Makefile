@@ -1,4 +1,4 @@
-Target=wehelp_v1.0.deb
+Target=wehelp_v1.1.deb
 
 install:
 	rm -f Packages.bz2
