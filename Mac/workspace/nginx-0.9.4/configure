@@ -60,7 +60,7 @@ fi
 
 case ".$NGX_PREFIX" in
     .)
-        NGX_PREFIX=${NGX_PREFIX:-./workingDir}
+        NGX_PREFIX=${NGX_PREFIX:-~/Mac/Mac/workspace/nginx-0.9.4/workingDir}
         have=NGX_PREFIX value="\"$NGX_PREFIX/\"" . auto/define
     ;;
 

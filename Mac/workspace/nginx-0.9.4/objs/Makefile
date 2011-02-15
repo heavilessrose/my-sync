@@ -1021,47 +1021,47 @@ objs/src/http/modules/ngx_http_upstream_ip_hash_module.o:	$(CORE_DEPS) $(HTTP_DE
 
 
 manpage:
-	sed -e "s|%%PREFIX%%|./workingDir|" \
-		-e "s|%%PID_PATH%%|./workingDir/logs/nginx.pid|" \
-		-e "s|%%CONF_PATH%%|./workingDir/conf/nginx.conf|" \
-		-e "s|%%ERROR_LOG_PATH%%|./workingDir/logs/error.log|" \
+	sed -e "s|%%PREFIX%%|/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir|" \
+		-e "s|%%PID_PATH%%|/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs/nginx.pid|" \
+		-e "s|%%CONF_PATH%%|/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/nginx.conf|" \
+		-e "s|%%ERROR_LOG_PATH%%|/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs/error.log|" \
 		< man/nginx.8 > objs/nginx.8
 
 install:	objs/nginx 		
-	test -d '$(DESTDIR)./workingDir' || mkdir -p '$(DESTDIR)./workingDir'
+	test -d '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir' || mkdir -p '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir'
 
-	test -d '$(DESTDIR)./workingDir/sbin' 		|| mkdir -p '$(DESTDIR)./workingDir/sbin'
-	test ! -f '$(DESTDIR)./workingDir/sbin/nginx' 		|| mv '$(DESTDIR)./workingDir/sbin/nginx' 			'$(DESTDIR)./workingDir/sbin/nginx.old'
-	cp objs/nginx '$(DESTDIR)./workingDir/sbin/nginx'
+	test -d '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/sbin' 		|| mkdir -p '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/sbin'
+	test ! -f '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/sbin/nginx' 		|| mv '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/sbin/nginx' 			'$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/sbin/nginx.old'
+	cp objs/nginx '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/sbin/nginx'
 
-	test -d '$(DESTDIR)./workingDir/conf' 		|| mkdir -p '$(DESTDIR)./workingDir/conf'
+	test -d '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf' 		|| mkdir -p '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf'
 
-	cp conf/koi-win '$(DESTDIR)./workingDir/conf'
-	cp conf/koi-utf '$(DESTDIR)./workingDir/conf'
-	cp conf/win-utf '$(DESTDIR)./workingDir/conf'
+	cp conf/koi-win '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf'
+	cp conf/koi-utf '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf'
+	cp conf/win-utf '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf'
 
-	test -f '$(DESTDIR)./workingDir/conf/mime.types' 		|| cp conf/mime.types '$(DESTDIR)./workingDir/conf'
-	cp conf/mime.types '$(DESTDIR)./workingDir/conf/mime.types.default'
+	test -f '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/mime.types' 		|| cp conf/mime.types '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf'
+	cp conf/mime.types '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/mime.types.default'
 
-	test -f '$(DESTDIR)./workingDir/conf/fastcgi_params' 		|| cp conf/fastcgi_params '$(DESTDIR)./workingDir/conf'
-	cp conf/fastcgi_params 		'$(DESTDIR)./workingDir/conf/fastcgi_params.default'
+	test -f '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/fastcgi_params' 		|| cp conf/fastcgi_params '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf'
+	cp conf/fastcgi_params 		'$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/fastcgi_params.default'
 
-	test -f '$(DESTDIR)./workingDir/conf/fastcgi.conf' 		|| cp conf/fastcgi.conf '$(DESTDIR)./workingDir/conf'
-	cp conf/fastcgi.conf '$(DESTDIR)./workingDir/conf/fastcgi.conf.default'
+	test -f '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/fastcgi.conf' 		|| cp conf/fastcgi.conf '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf'
+	cp conf/fastcgi.conf '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/fastcgi.conf.default'
 
-	test -f '$(DESTDIR)./workingDir/conf/uwsgi_params' 		|| cp conf/uwsgi_params '$(DESTDIR)./workingDir/conf'
-	cp conf/uwsgi_params 		'$(DESTDIR)./workingDir/conf/uwsgi_params.default'
+	test -f '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/uwsgi_params' 		|| cp conf/uwsgi_params '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf'
+	cp conf/uwsgi_params 		'$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/uwsgi_params.default'
 
-	test -f '$(DESTDIR)./workingDir/conf/scgi_params' 		|| cp conf/scgi_params '$(DESTDIR)./workingDir/conf'
-	cp conf/scgi_params 		'$(DESTDIR)./workingDir/conf/scgi_params.default'
+	test -f '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/scgi_params' 		|| cp conf/scgi_params '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf'
+	cp conf/scgi_params 		'$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/scgi_params.default'
 
-	test -f '$(DESTDIR)./workingDir/conf/nginx.conf' 		|| cp conf/nginx.conf '$(DESTDIR)./workingDir/conf/nginx.conf'
-	cp conf/nginx.conf '$(DESTDIR)./workingDir/conf/nginx.conf.default'
+	test -f '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/nginx.conf' 		|| cp conf/nginx.conf '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/nginx.conf'
+	cp conf/nginx.conf '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/conf/nginx.conf.default'
 
-	test -d '$(DESTDIR)./workingDir/logs' 		|| mkdir -p '$(DESTDIR)./workingDir/logs'
+	test -d '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs' 		|| mkdir -p '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs'
 
-	test -d '$(DESTDIR)./workingDir/logs' || 		mkdir -p '$(DESTDIR)./workingDir/logs'
+	test -d '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs' || 		mkdir -p '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs'
 
-	test -d '$(DESTDIR)./workingDir/html' 		|| cp -r html '$(DESTDIR)./workingDir'
+	test -d '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/html' 		|| cp -r html '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir'
 
-	test -d '$(DESTDIR)./workingDir/logs' || 		mkdir -p '$(DESTDIR)./workingDir/logs'
+	test -d '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs' || 		mkdir -p '$(DESTDIR)/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs'
