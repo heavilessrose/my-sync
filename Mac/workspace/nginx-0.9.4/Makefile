@@ -8,6 +8,7 @@ clean:
 build:
 	$(MAKE) -f objs/Makefile
 	$(MAKE) -f objs/Makefile manpage
+	cp ./objs/nginx ./workingDir/sbin
 
 install:
 	$(MAKE) -f objs/Makefile install
