@@ -2,11 +2,9 @@
 default:	build
 
 clean:
-	rm -rf objs
+	find ./objs -name *.o -type f -exec rm -fr {} \;
+	rm -rf ./objs/nginx ./objs/nginx.8
 
-renew:
-	rm -rf Makefile objs
-	
 build:
 	$(MAKE) -f objs/Makefile
 	$(MAKE) -f objs/Makefile manpage
@@ -15,10 +13,10 @@ install:
 	$(MAKE) -f objs/Makefile install
 
 upgrade:
-	./workingDir/sbin/nginx -t
+	/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/sbin/nginx -t
 
-	kill -USR2 `cat ./workingDir/logs/nginx.pid`
+	kill -USR2 `cat /Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs/nginx.pid`
 	sleep 1
-	test -f ./workingDir/logs/nginx.pid.oldbin
+	test -f /Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs/nginx.pid.oldbin
 
-	kill -QUIT `cat ./workingDir/logs/nginx.pid.oldbin`
+	kill -QUIT `cat /Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/logs/nginx.pid.oldbin`

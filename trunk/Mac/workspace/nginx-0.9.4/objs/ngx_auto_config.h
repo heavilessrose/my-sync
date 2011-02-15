@@ -129,7 +129,7 @@
 
 
 #ifndef NGX_PREFIX
-#define NGX_PREFIX  "./workingDir/"
+#define NGX_PREFIX  "/Users/luke/Mac/Mac/workspace/nginx-0.9.4/workingDir/"
 #endif
 
 
