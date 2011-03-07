@@ -15,6 +15,7 @@
 		2899E5220DE3E06400AC0155 /* xmlTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* xmlTestViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* xmlTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* xmlTestViewController.m */; };
+		A33F2940132473B3006006CC /* doc2.xml in Resources */ = {isa = PBXBuildFile; fileRef = A33F293F132473B3006006CC /* doc2.xml */; };
 		A3CC80F4131E21F800ED2C30 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A3CC80F3131E21F800ED2C30 /* libxml2.dylib */; };
 		A3CC80F8131E224100ED2C30 /* doc1.xml in Resources */ = {isa = PBXBuildFile; fileRef = A3CC80F7131E224100ED2C30 /* doc1.xml */; };
 		A3CC814A131E392200ED2C30 /* WBXmlWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CC8149131E392200ED2C30 /* WBXmlWriter.m */; };
@@ -35,6 +36,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* xmlTest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmlTest_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* xmlTest-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "xmlTest-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A33F293F132473B3006006CC /* doc2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc2.xml; sourceTree = "<group>"; };
 		A3CC80F3131E21F800ED2C30 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		A3CC80F7131E224100ED2C30 /* doc1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = doc1.xml; sourceTree = "<group>"; };
 		A3CC8148131E392200ED2C30 /* WBXmlWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBXmlWriter.h; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* xmlTest-Info.plist */,
 				A3CC80F7131E224100ED2C30 /* doc1.xml */,
+				A33F293F132473B3006006CC /* doc2.xml */,
 				A3CC86681320974F00ED2C30 /* checi.xml */,
 			);
 			name = Resources;
@@ -175,6 +178,7 @@
 				2899E5220DE3E06400AC0155 /* xmlTestViewController.xib in Resources */,
 				A3CC80F8131E224100ED2C30 /* doc1.xml in Resources */,
 				A3CC86691320974F00ED2C30 /* checi.xml in Resources */,
+				A33F2940132473B3006006CC /* doc2.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
