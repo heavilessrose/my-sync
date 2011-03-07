@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel>
+<ComboBox title="类别:" field="ObjectType" notify="请选择" datetext="1#台球|2#网球场|3#游泳馆|6#羽毛球馆|7#高尔夫|8#保龄球馆|9#综合体育馆" />
+<TextBox title="详细地址:" field="dizhi" max="50" message="请填写地址#地址里不能填写电话#地址里不能填写特殊字符" regex="^(.){2,50}$#^([^\s]\s{0,3}(?!([0-9 0 1 2 3 4 5 6 7 8 9 零一二三四五六七八九壹贰叁肆伍陆柒捌玖]{6})))+$#^[\w\[\]\(\)\{\}\.\s,\-\*,。（）【】“”—‘’\u4e00-\u9fa5]*$" unit=""/>
+<UploadPanel id="upload_panel" field="upload_panel" />
+<TextBox title="描述:" max="10" field="Content" message="请填写描述内容#描述不足10个字#内容应在10~2000个字之间,不能填写电话、QQ等联系方式" regex="^[\s\S]*$#^[\s\S]{10,}$#^([\s\S]){10,2000}$" unit=""/></Panel>

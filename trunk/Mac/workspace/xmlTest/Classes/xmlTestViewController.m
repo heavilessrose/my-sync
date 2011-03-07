@@ -123,8 +123,18 @@ WBXmlErr doxpath(xmlDocPtr doc, NSString *xpathStr, NSMutableArray *results) {
 	return WBXML_INVALIAD_DOC;
 }
 
-WBXmlErr writeToXml() {
+WBXmlErr writeToXml(NSArray *nodeArr) {
 	
+	xmlDocPtr doc = NULL;
+	xmlNodePtr root_node = NULL, node = NULL;
+	
+	doc = xmlNewDoc(BAD_CAST "1.0");
+	root_node = xmlNewNode(NULL, BAD_CAST "root");
+	xmlDocSetRootElement(doc, root_node);
+	
+	for (NSDictionary *nodeDic in nodeArr) {
+		
+	}
 }
 
 /*
@@ -202,7 +212,7 @@ WBXmlErr writeToXml() {
 	//	[self xmlDocCreat:nil];
 	//	[self xmlParse:xmlfile];
 	
-	NSString *xpath = @"/catalog";
+	NSString *xpath = @"/catalog/journal/article";
 	NSMutableArray *results = [NSMutableArray array];
 	doxpath(doc, xpath, results);
 	NSLog(@"------------------------------------\n%@", results);
