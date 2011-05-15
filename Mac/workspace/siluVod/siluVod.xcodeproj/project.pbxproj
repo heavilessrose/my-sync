@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3C6AC2E137FFED400D58C7D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A3C6AC2C137FFED400D58C7D /* Localizable.strings */; };
 		A3E4405C137FEB590012A268 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405B137FEB590012A268 /* UIKit.framework */; };
 		A3E4405E137FEB590012A268 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405D137FEB590012A268 /* Foundation.framework */; };
 		A3E44060137FEB590012A268 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405F137FEB590012A268 /* CoreGraphics.framework */; };
@@ -28,6 +29,9 @@
 		A3E440A5137FEC310012A268 /* bottombarredfire.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E4409E137FEC310012A268 /* bottombarredfire.png */; };
 		A3E440A6137FEC310012A268 /* bottombarredfire_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E4409F137FEC310012A268 /* bottombarredfire_pressed.png */; };
 		A3E440A7137FEC310012A268 /* LKSegmenteControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E440A1137FEC310012A268 /* LKSegmenteControl.m */; };
+		A3FDFDE11380038500EA1D8E /* LKTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FDFDE01380038500EA1D8E /* LKTabBar.m */; };
+		A3FDFDE5138003AF00EA1D8E /* LKTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FDFDE3138003AF00EA1D8E /* LKTabBarController.m */; };
+		A3FDFDE6138003AF00EA1D8E /* LKTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDE4138003AF00EA1D8E /* LKTabBarController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A3C6AC2D137FFED400D58C7D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A3C6AC2F137FFEE300D58C7D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A3E44057137FEB590012A268 /* siluVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = siluVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E4405B137FEB590012A268 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3E4405D137FEB590012A268 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,8 +72,17 @@
 		A3E4409D137FEC310012A268 /* bottombarblue_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarblue_pressed.png; sourceTree = "<group>"; };
 		A3E4409E137FEC310012A268 /* bottombarredfire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarredfire.png; sourceTree = "<group>"; };
 		A3E4409F137FEC310012A268 /* bottombarredfire_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarredfire_pressed.png; sourceTree = "<group>"; };
-		A3E440A0137FEC310012A268 /* LKSegmenteControl.h */ = {isa = PBXFileReference; fileEncoding = 4; path = LKSegmenteControl.h; sourceTree = "<group>"; };
+		A3E440A0137FEC310012A268 /* LKSegmenteControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSegmenteControl.h; sourceTree = "<group>"; };
 		A3E440A1137FEC310012A268 /* LKSegmenteControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSegmenteControl.m; sourceTree = "<group>"; };
+		A3E440B2137FF1C90012A268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/luke/Documents/luke/Mac/Mac/workspace/siluVod/siluVodTests/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+		A3E440B3137FF1CB0012A268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "/Users/luke/Documents/luke/Mac/Mac/workspace/siluVod/siluVod/zh-Hans.lproj/RootViewController.xib"; sourceTree = "<absolute>"; };
+		A3E440B4137FF1CB0012A268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "/Users/luke/Documents/luke/Mac/Mac/workspace/siluVod/siluVod/zh-Hans.lproj/MainWindow.xib"; sourceTree = "<absolute>"; };
+		A3E440B5137FF1CB0012A268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/luke/Documents/luke/Mac/Mac/workspace/siluVod/siluVod/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+		A3FDFDDF1380038500EA1D8E /* LKTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTabBar.h; sourceTree = "<group>"; };
+		A3FDFDE01380038500EA1D8E /* LKTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTabBar.m; sourceTree = "<group>"; };
+		A3FDFDE2138003AF00EA1D8E /* LKTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTabBarController.h; sourceTree = "<group>"; };
+		A3FDFDE3138003AF00EA1D8E /* LKTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTabBarController.m; sourceTree = "<group>"; };
+		A3FDFDE4138003AF00EA1D8E /* LKTabBarController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKTabBarController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +160,7 @@
 				A3E44064137FEB590012A268 /* InfoPlist.strings */,
 				A3E44067137FEB5A0012A268 /* siluVod-Prefix.pch */,
 				A3E44068137FEB5A0012A268 /* main.m */,
+				A3C6AC2C137FFED400D58C7D /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -172,6 +188,7 @@
 		A3E44098137FEC310012A268 /* share */ = {
 			isa = PBXGroup;
 			children = (
+				A3FDFDDB1380031E00EA1D8E /* controllers */,
 				A3E44099137FEC310012A268 /* views */,
 			);
 			path = share;
@@ -197,6 +214,34 @@
 				A3E440A1137FEC310012A268 /* LKSegmenteControl.m */,
 			);
 			path = LKSegmenteControl;
+			sourceTree = "<group>";
+		};
+		A3FDFDDB1380031E00EA1D8E /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A3FDFDDD1380036000EA1D8E /* LKNavBarController */,
+				A3FDFDDE1380036000EA1D8E /* LKTabBarController */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		A3FDFDDD1380036000EA1D8E /* LKNavBarController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LKNavBarController;
+			sourceTree = "<group>";
+		};
+		A3FDFDDE1380036000EA1D8E /* LKTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				A3FDFDDF1380038500EA1D8E /* LKTabBar.h */,
+				A3FDFDE01380038500EA1D8E /* LKTabBar.m */,
+				A3FDFDE2138003AF00EA1D8E /* LKTabBarController.h */,
+				A3FDFDE3138003AF00EA1D8E /* LKTabBarController.m */,
+				A3FDFDE4138003AF00EA1D8E /* LKTabBarController.xib */,
+			);
+			path = LKTabBarController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +294,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = A3E4404C137FEB590012A268;
 			productRefGroup = A3E44058137FEB590012A268 /* Products */;
@@ -274,6 +320,8 @@
 				A3E440A4137FEC310012A268 /* bottombarblue_pressed.png in Resources */,
 				A3E440A5137FEC310012A268 /* bottombarredfire.png in Resources */,
 				A3E440A6137FEC310012A268 /* bottombarredfire_pressed.png in Resources */,
+				A3C6AC2E137FFED400D58C7D /* Localizable.strings in Resources */,
+				A3FDFDE6138003AF00EA1D8E /* LKTabBarController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +361,8 @@
 				A3E4406C137FEB5A0012A268 /* siluVodAppDelegate.m in Sources */,
 				A3E44072137FEB5A0012A268 /* RootViewController.m in Sources */,
 				A3E440A7137FEC310012A268 /* LKSegmenteControl.m in Sources */,
+				A3FDFDE11380038500EA1D8E /* LKTabBar.m in Sources */,
+				A3FDFDE5138003AF00EA1D8E /* LKTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,10 +385,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A3C6AC2C137FFED400D58C7D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3C6AC2D137FFED400D58C7D /* zh-Hans */,
+				A3C6AC2F137FFEE300D58C7D /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		A3E44064137FEB590012A268 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A3E44065137FEB590012A268 /* en */,
+				A3E440B5137FF1CB0012A268 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -347,6 +407,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A3E4406E137FEB5A0012A268 /* en */,
+				A3E440B4137FF1CB0012A268 /* zh-Hans */,
 			);
 			name = MainWindow.xib;
 			sourceTree = "<group>";
@@ -355,6 +416,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A3E44074137FEB5A0012A268 /* en */,
+				A3E440B3137FF1CB0012A268 /* zh-Hans */,
 			);
 			name = RootViewController.xib;
 			sourceTree = "<group>";
@@ -363,6 +425,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A3E44085137FEB5A0012A268 /* en */,
+				A3E440B2137FF1C90012A268 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -382,7 +445,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -396,7 +459,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -412,6 +475,7 @@
 				GCC_PREFIX_HEADER = "siluVod/siluVod-Prefix.pch";
 				INFOPLIST_FILE = "siluVod/siluVod-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -425,6 +489,7 @@
 				GCC_PREFIX_HEADER = "siluVod/siluVod-Prefix.pch";
 				INFOPLIST_FILE = "siluVod/siluVod-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -484,7 +549,7 @@
 				A3E4408D137FEB5A0012A268 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		A3E4408E137FEB5A0012A268 /* Build configuration list for PBXNativeTarget "siluVod" */ = {
 			isa = XCConfigurationList;
@@ -493,7 +558,7 @@
 				A3E44090137FEB5A0012A268 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		A3E44091137FEB5A0012A268 /* Build configuration list for PBXNativeTarget "siluVodTests" */ = {
 			isa = XCConfigurationList;
@@ -502,7 +567,7 @@
 				A3E44093137FEB5A0012A268 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
