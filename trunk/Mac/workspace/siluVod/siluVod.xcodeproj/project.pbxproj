@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A3E4405C137FEB590012A268 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405B137FEB590012A268 /* UIKit.framework */; };
+		A3E4405E137FEB590012A268 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405D137FEB590012A268 /* Foundation.framework */; };
+		A3E44060137FEB590012A268 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405F137FEB590012A268 /* CoreGraphics.framework */; };
+		A3E44066137FEB590012A268 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A3E44064137FEB590012A268 /* InfoPlist.strings */; };
+		A3E44069137FEB5A0012A268 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E44068137FEB5A0012A268 /* main.m */; };
+		A3E4406C137FEB5A0012A268 /* siluVodAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E4406B137FEB5A0012A268 /* siluVodAppDelegate.m */; };
+		A3E4406F137FEB5A0012A268 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E4406D137FEB5A0012A268 /* MainWindow.xib */; };
+		A3E44072137FEB5A0012A268 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E44071137FEB5A0012A268 /* RootViewController.m */; };
+		A3E44075137FEB5A0012A268 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E44073137FEB5A0012A268 /* RootViewController.xib */; };
+		A3E4407C137FEB5A0012A268 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405B137FEB590012A268 /* UIKit.framework */; };
+		A3E4407D137FEB5A0012A268 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405D137FEB590012A268 /* Foundation.framework */; };
+		A3E4407E137FEB5A0012A268 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405F137FEB590012A268 /* CoreGraphics.framework */; };
+		A3E44086137FEB5A0012A268 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A3E44084137FEB5A0012A268 /* InfoPlist.strings */; };
+		A3E44089137FEB5A0012A268 /* siluVodTests.h in Resources */ = {isa = PBXBuildFile; fileRef = A3E44088137FEB5A0012A268 /* siluVodTests.h */; };
+		A3E4408B137FEB5A0012A268 /* siluVodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E4408A137FEB5A0012A268 /* siluVodTests.m */; };
+		A3E440A2137FEC310012A268 /* blue-divider.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E4409B137FEC310012A268 /* blue-divider.png */; };
+		A3E440A3137FEC310012A268 /* bottombarblue.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E4409C137FEC310012A268 /* bottombarblue.png */; };
+		A3E440A4137FEC310012A268 /* bottombarblue_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E4409D137FEC310012A268 /* bottombarblue_pressed.png */; };
+		A3E440A5137FEC310012A268 /* bottombarredfire.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E4409E137FEC310012A268 /* bottombarredfire.png */; };
+		A3E440A6137FEC310012A268 /* bottombarredfire_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E4409F137FEC310012A268 /* bottombarredfire_pressed.png */; };
+		A3E440A7137FEC310012A268 /* LKSegmenteControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E440A1137FEC310012A268 /* LKSegmenteControl.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A3E4407F137FEB5A0012A268 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3E4404E137FEB590012A268 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3E44056137FEB590012A268;
+			remoteInfo = siluVod;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A3E44057137FEB590012A268 /* siluVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = siluVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3E4405B137FEB590012A268 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A3E4405D137FEB590012A268 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A3E4405F137FEB590012A268 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A3E44063137FEB590012A268 /* siluVod-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "siluVod-Info.plist"; sourceTree = "<group>"; };
+		A3E44065137FEB590012A268 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A3E44067137FEB5A0012A268 /* siluVod-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "siluVod-Prefix.pch"; sourceTree = "<group>"; };
+		A3E44068137FEB5A0012A268 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A3E4406A137FEB5A0012A268 /* siluVodAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = siluVodAppDelegate.h; sourceTree = "<group>"; };
+		A3E4406B137FEB5A0012A268 /* siluVodAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = siluVodAppDelegate.m; sourceTree = "<group>"; };
+		A3E4406E137FEB5A0012A268 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		A3E44070137FEB5A0012A268 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		A3E44071137FEB5A0012A268 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		A3E44074137FEB5A0012A268 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		A3E4407B137FEB5A0012A268 /* siluVodTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = siluVodTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3E44083137FEB5A0012A268 /* siluVodTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "siluVodTests-Info.plist"; sourceTree = "<group>"; };
+		A3E44085137FEB5A0012A268 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A3E44087137FEB5A0012A268 /* siluVodTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "siluVodTests-Prefix.pch"; sourceTree = "<group>"; };
+		A3E44088137FEB5A0012A268 /* siluVodTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = siluVodTests.h; sourceTree = "<group>"; };
+		A3E4408A137FEB5A0012A268 /* siluVodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = siluVodTests.m; sourceTree = "<group>"; };
+		A3E4409B137FEC310012A268 /* blue-divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-divider.png"; sourceTree = "<group>"; };
+		A3E4409C137FEC310012A268 /* bottombarblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarblue.png; sourceTree = "<group>"; };
+		A3E4409D137FEC310012A268 /* bottombarblue_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarblue_pressed.png; sourceTree = "<group>"; };
+		A3E4409E137FEC310012A268 /* bottombarredfire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarredfire.png; sourceTree = "<group>"; };
+		A3E4409F137FEC310012A268 /* bottombarredfire_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarredfire_pressed.png; sourceTree = "<group>"; };
+		A3E440A0137FEC310012A268 /* LKSegmenteControl.h */ = {isa = PBXFileReference; fileEncoding = 4; path = LKSegmenteControl.h; sourceTree = "<group>"; };
+		A3E440A1137FEC310012A268 /* LKSegmenteControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSegmenteControl.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A3E44054137FEB590012A268 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3E4405C137FEB590012A268 /* UIKit.framework in Frameworks */,
+				A3E4405E137FEB590012A268 /* Foundation.framework in Frameworks */,
+				A3E44060137FEB590012A268 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3E44077137FEB5A0012A268 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3E4407C137FEB5A0012A268 /* UIKit.framework in Frameworks */,
+				A3E4407D137FEB5A0012A268 /* Foundation.framework in Frameworks */,
+				A3E4407E137FEB5A0012A268 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A3E4404C137FEB590012A268 = {
+			isa = PBXGroup;
+			children = (
+				A3E44061137FEB590012A268 /* siluVod */,
+				A3E44098137FEC310012A268 /* share */,
+				A3E44081137FEB5A0012A268 /* siluVodTests */,
+				A3E4405A137FEB590012A268 /* Frameworks */,
+				A3E44058137FEB590012A268 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A3E44058137FEB590012A268 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3E44057137FEB590012A268 /* siluVod.app */,
+				A3E4407B137FEB5A0012A268 /* siluVodTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A3E4405A137FEB590012A268 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A3E4405B137FEB590012A268 /* UIKit.framework */,
+				A3E4405D137FEB590012A268 /* Foundation.framework */,
+				A3E4405F137FEB590012A268 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3E44061137FEB590012A268 /* siluVod */ = {
+			isa = PBXGroup;
+			children = (
+				A3E4406A137FEB5A0012A268 /* siluVodAppDelegate.h */,
+				A3E4406B137FEB5A0012A268 /* siluVodAppDelegate.m */,
+				A3E4406D137FEB5A0012A268 /* MainWindow.xib */,
+				A3E44070137FEB5A0012A268 /* RootViewController.h */,
+				A3E44071137FEB5A0012A268 /* RootViewController.m */,
+				A3E44073137FEB5A0012A268 /* RootViewController.xib */,
+				A3E44062137FEB590012A268 /* Supporting Files */,
+			);
+			path = siluVod;
+			sourceTree = "<group>";
+		};
+		A3E44062137FEB590012A268 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A3E44063137FEB590012A268 /* siluVod-Info.plist */,
+				A3E44064137FEB590012A268 /* InfoPlist.strings */,
+				A3E44067137FEB5A0012A268 /* siluVod-Prefix.pch */,
+				A3E44068137FEB5A0012A268 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3E44081137FEB5A0012A268 /* siluVodTests */ = {
+			isa = PBXGroup;
+			children = (
+				A3E44088137FEB5A0012A268 /* siluVodTests.h */,
+				A3E4408A137FEB5A0012A268 /* siluVodTests.m */,
+				A3E44082137FEB5A0012A268 /* Supporting Files */,
+			);
+			path = siluVodTests;
+			sourceTree = "<group>";
+		};
+		A3E44082137FEB5A0012A268 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A3E44083137FEB5A0012A268 /* siluVodTests-Info.plist */,
+				A3E44084137FEB5A0012A268 /* InfoPlist.strings */,
+				A3E44087137FEB5A0012A268 /* siluVodTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3E44098137FEC310012A268 /* share */ = {
+			isa = PBXGroup;
+			children = (
+				A3E44099137FEC310012A268 /* views */,
+			);
+			path = share;
+			sourceTree = "<group>";
+		};
+		A3E44099137FEC310012A268 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				A3E4409A137FEC310012A268 /* LKSegmenteControl */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		A3E4409A137FEC310012A268 /* LKSegmenteControl */ = {
+			isa = PBXGroup;
+			children = (
+				A3E4409B137FEC310012A268 /* blue-divider.png */,
+				A3E4409C137FEC310012A268 /* bottombarblue.png */,
+				A3E4409D137FEC310012A268 /* bottombarblue_pressed.png */,
+				A3E4409E137FEC310012A268 /* bottombarredfire.png */,
+				A3E4409F137FEC310012A268 /* bottombarredfire_pressed.png */,
+				A3E440A0137FEC310012A268 /* LKSegmenteControl.h */,
+				A3E440A1137FEC310012A268 /* LKSegmenteControl.m */,
+			);
+			path = LKSegmenteControl;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A3E44056137FEB590012A268 /* siluVod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3E4408E137FEB5A0012A268 /* Build configuration list for PBXNativeTarget "siluVod" */;
+			buildPhases = (
+				A3E44053137FEB590012A268 /* Sources */,
+				A3E44054137FEB590012A268 /* Frameworks */,
+				A3E44055137FEB590012A268 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = siluVod;
+			productName = siluVod;
+			productReference = A3E44057137FEB590012A268 /* siluVod.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A3E4407A137FEB5A0012A268 /* siluVodTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3E44091137FEB5A0012A268 /* Build configuration list for PBXNativeTarget "siluVodTests" */;
+			buildPhases = (
+				A3E44076137FEB5A0012A268 /* Sources */,
+				A3E44077137FEB5A0012A268 /* Frameworks */,
+				A3E44078137FEB5A0012A268 /* Resources */,
+				A3E44079137FEB5A0012A268 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3E44080137FEB5A0012A268 /* PBXTargetDependency */,
+			);
+			name = siluVodTests;
+			productName = siluVodTests;
+			productReference = A3E4407B137FEB5A0012A268 /* siluVodTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3E4404E137FEB590012A268 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = A3E44051137FEB590012A268 /* Build configuration list for PBXProject "siluVod" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A3E4404C137FEB590012A268;
+			productRefGroup = A3E44058137FEB590012A268 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3E44056137FEB590012A268 /* siluVod */,
+				A3E4407A137FEB5A0012A268 /* siluVodTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A3E44055137FEB590012A268 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3E44066137FEB590012A268 /* InfoPlist.strings in Resources */,
+				A3E4406F137FEB5A0012A268 /* MainWindow.xib in Resources */,
+				A3E44075137FEB5A0012A268 /* RootViewController.xib in Resources */,
+				A3E440A2137FEC310012A268 /* blue-divider.png in Resources */,
+				A3E440A3137FEC310012A268 /* bottombarblue.png in Resources */,
+				A3E440A4137FEC310012A268 /* bottombarblue_pressed.png in Resources */,
+				A3E440A5137FEC310012A268 /* bottombarredfire.png in Resources */,
+				A3E440A6137FEC310012A268 /* bottombarredfire_pressed.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3E44078137FEB5A0012A268 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3E44086137FEB5A0012A268 /* InfoPlist.strings in Resources */,
+				A3E44089137FEB5A0012A268 /* siluVodTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A3E44079137FEB5A0012A268 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A3E44053137FEB590012A268 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3E44069137FEB5A0012A268 /* main.m in Sources */,
+				A3E4406C137FEB5A0012A268 /* siluVodAppDelegate.m in Sources */,
+				A3E44072137FEB5A0012A268 /* RootViewController.m in Sources */,
+				A3E440A7137FEC310012A268 /* LKSegmenteControl.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3E44076137FEB5A0012A268 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3E4408B137FEB5A0012A268 /* siluVodTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A3E44080137FEB5A0012A268 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3E44056137FEB590012A268 /* siluVod */;
+			targetProxy = A3E4407F137FEB5A0012A268 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A3E44064137FEB590012A268 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3E44065137FEB590012A268 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A3E4406D137FEB5A0012A268 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3E4406E137FEB5A0012A268 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		A3E44073137FEB5A0012A268 /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3E44074137FEB5A0012A268 /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+		A3E44084137FEB5A0012A268 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3E44085137FEB5A0012A268 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A3E4408C137FEB5A0012A268 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A3E4408D137FEB5A0012A268 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		A3E4408F137FEB5A0012A268 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "siluVod/siluVod-Prefix.pch";
+				INFOPLIST_FILE = "siluVod/siluVod-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A3E44090137FEB5A0012A268 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "siluVod/siluVod-Prefix.pch";
+				INFOPLIST_FILE = "siluVod/siluVod-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A3E44092137FEB5A0012A268 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/siluVod.app/siluVod";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "siluVodTests/siluVodTests-Prefix.pch";
+				INFOPLIST_FILE = "siluVodTests/siluVodTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		A3E44093137FEB5A0012A268 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/siluVod.app/siluVod";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "siluVodTests/siluVodTests-Prefix.pch";
+				INFOPLIST_FILE = "siluVodTests/siluVodTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A3E44051137FEB590012A268 /* Build configuration list for PBXProject "siluVod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3E4408C137FEB5A0012A268 /* Debug */,
+				A3E4408D137FEB5A0012A268 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3E4408E137FEB5A0012A268 /* Build configuration list for PBXNativeTarget "siluVod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3E4408F137FEB5A0012A268 /* Debug */,
+				A3E44090137FEB5A0012A268 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3E44091137FEB5A0012A268 /* Build configuration list for PBXNativeTarget "siluVodTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3E44092137FEB5A0012A268 /* Debug */,
+				A3E44093137FEB5A0012A268 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A3E4404E137FEB590012A268 /* Project object */;
+}
