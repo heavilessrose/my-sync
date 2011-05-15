@@ -13,6 +13,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"%@", NSLocalizedString(@"hello", nil));
 }
 
 - (void)viewWillAppear:(BOOL)animated
