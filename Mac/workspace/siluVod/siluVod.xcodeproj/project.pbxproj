@@ -15,8 +15,6 @@
 		A3E44069137FEB5A0012A268 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E44068137FEB5A0012A268 /* main.m */; };
 		A3E4406C137FEB5A0012A268 /* siluVodAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E4406B137FEB5A0012A268 /* siluVodAppDelegate.m */; };
 		A3E4406F137FEB5A0012A268 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E4406D137FEB5A0012A268 /* MainWindow.xib */; };
-		A3E44072137FEB5A0012A268 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E44071137FEB5A0012A268 /* RootViewController.m */; };
-		A3E44075137FEB5A0012A268 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E44073137FEB5A0012A268 /* RootViewController.xib */; };
 		A3E4407C137FEB5A0012A268 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405B137FEB590012A268 /* UIKit.framework */; };
 		A3E4407D137FEB5A0012A268 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405D137FEB590012A268 /* Foundation.framework */; };
 		A3E4407E137FEB5A0012A268 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405F137FEB590012A268 /* CoreGraphics.framework */; };
@@ -32,6 +30,26 @@
 		A3FDFDE11380038500EA1D8E /* LKTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FDFDE01380038500EA1D8E /* LKTabBar.m */; };
 		A3FDFDE5138003AF00EA1D8E /* LKTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FDFDE3138003AF00EA1D8E /* LKTabBarController.m */; };
 		A3FDFDE6138003AF00EA1D8E /* LKTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDE4138003AF00EA1D8E /* LKTabBarController.xib */; };
+		A3FDFDFC1380167300EA1D8E /* chat.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDE81380167200EA1D8E /* chat.png */; };
+		A3FDFDFD1380167300EA1D8E /* chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDE91380167200EA1D8E /* chat@2x.png */; };
+		A3FDFDFE1380167300EA1D8E /* compose-at.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDEA1380167200EA1D8E /* compose-at.png */; };
+		A3FDFDFF1380167300EA1D8E /* compose-at@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDEB1380167200EA1D8E /* compose-at@2x.png */; };
+		A3FDFE001380167300EA1D8E /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDEC1380167200EA1D8E /* magnifying-glass.png */; };
+		A3FDFE011380167300EA1D8E /* magnifying-glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDED1380167200EA1D8E /* magnifying-glass@2x.png */; };
+		A3FDFE021380167300EA1D8E /* messages.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDEE1380167200EA1D8E /* messages.png */; };
+		A3FDFE031380167300EA1D8E /* messages@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDEF1380167200EA1D8E /* messages@2x.png */; };
+		A3FDFE041380167300EA1D8E /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF01380167200EA1D8E /* more.png */; };
+		A3FDFE051380167300EA1D8E /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF11380167200EA1D8E /* more@2x.png */; };
+		A3FDFE061380167300EA1D8E /* TabBarGlow.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF21380167200EA1D8E /* TabBarGlow.png */; };
+		A3FDFE071380167300EA1D8E /* TabBarGlow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF31380167200EA1D8E /* TabBarGlow@2x.png */; };
+		A3FDFE081380167300EA1D8E /* TabBarGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF41380167200EA1D8E /* TabBarGradient.png */; };
+		A3FDFE091380167300EA1D8E /* TabBarGradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF51380167200EA1D8E /* TabBarGradient@2x.png */; };
+		A3FDFE0A1380167300EA1D8E /* TabBarItemSelectedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF61380167200EA1D8E /* TabBarItemSelectedBackground.png */; };
+		A3FDFE0B1380167300EA1D8E /* TabBarItemSelectedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF71380167200EA1D8E /* TabBarItemSelectedBackground@2x.png */; };
+		A3FDFE0C1380167300EA1D8E /* TabBarNipple.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF81380167200EA1D8E /* TabBarNipple.png */; };
+		A3FDFE0D1380167300EA1D8E /* TabBarNipple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDF91380167200EA1D8E /* TabBarNipple@2x.png */; };
+		A3FDFE0E1380167300EA1D8E /* TabBarSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDFA1380167200EA1D8E /* TabBarSelection.png */; };
+		A3FDFE0F1380167300EA1D8E /* TabBarSelection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FDFDFB1380167200EA1D8E /* TabBarSelection@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,9 +76,6 @@
 		A3E4406A137FEB5A0012A268 /* siluVodAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = siluVodAppDelegate.h; sourceTree = "<group>"; };
 		A3E4406B137FEB5A0012A268 /* siluVodAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = siluVodAppDelegate.m; sourceTree = "<group>"; };
 		A3E4406E137FEB5A0012A268 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		A3E44070137FEB5A0012A268 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		A3E44071137FEB5A0012A268 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		A3E44074137FEB5A0012A268 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
 		A3E4407B137FEB5A0012A268 /* siluVodTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = siluVodTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E44083137FEB5A0012A268 /* siluVodTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "siluVodTests-Info.plist"; sourceTree = "<group>"; };
 		A3E44085137FEB5A0012A268 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -75,7 +90,6 @@
 		A3E440A0137FEC310012A268 /* LKSegmenteControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSegmenteControl.h; sourceTree = "<group>"; };
 		A3E440A1137FEC310012A268 /* LKSegmenteControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSegmenteControl.m; sourceTree = "<group>"; };
 		A3E440B2137FF1C90012A268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/luke/Documents/luke/Mac/Mac/workspace/siluVod/siluVodTests/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
-		A3E440B3137FF1CB0012A268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "/Users/luke/Documents/luke/Mac/Mac/workspace/siluVod/siluVod/zh-Hans.lproj/RootViewController.xib"; sourceTree = "<absolute>"; };
 		A3E440B4137FF1CB0012A268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "/Users/luke/Documents/luke/Mac/Mac/workspace/siluVod/siluVod/zh-Hans.lproj/MainWindow.xib"; sourceTree = "<absolute>"; };
 		A3E440B5137FF1CB0012A268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/luke/Documents/luke/Mac/Mac/workspace/siluVod/siluVod/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		A3FDFDDF1380038500EA1D8E /* LKTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTabBar.h; sourceTree = "<group>"; };
@@ -83,6 +97,26 @@
 		A3FDFDE2138003AF00EA1D8E /* LKTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTabBarController.h; sourceTree = "<group>"; };
 		A3FDFDE3138003AF00EA1D8E /* LKTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTabBarController.m; sourceTree = "<group>"; };
 		A3FDFDE4138003AF00EA1D8E /* LKTabBarController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKTabBarController.xib; sourceTree = "<group>"; };
+		A3FDFDE81380167200EA1D8E /* chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat.png; sourceTree = "<group>"; };
+		A3FDFDE91380167200EA1D8E /* chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat@2x.png"; sourceTree = "<group>"; };
+		A3FDFDEA1380167200EA1D8E /* compose-at.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose-at.png"; sourceTree = "<group>"; };
+		A3FDFDEB1380167200EA1D8E /* compose-at@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose-at@2x.png"; sourceTree = "<group>"; };
+		A3FDFDEC1380167200EA1D8E /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass.png"; sourceTree = "<group>"; };
+		A3FDFDED1380167200EA1D8E /* magnifying-glass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass@2x.png"; sourceTree = "<group>"; };
+		A3FDFDEE1380167200EA1D8E /* messages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messages.png; sourceTree = "<group>"; };
+		A3FDFDEF1380167200EA1D8E /* messages@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messages@2x.png"; sourceTree = "<group>"; };
+		A3FDFDF01380167200EA1D8E /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
+		A3FDFDF11380167200EA1D8E /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
+		A3FDFDF21380167200EA1D8E /* TabBarGlow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarGlow.png; sourceTree = "<group>"; };
+		A3FDFDF31380167200EA1D8E /* TabBarGlow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarGlow@2x.png"; sourceTree = "<group>"; };
+		A3FDFDF41380167200EA1D8E /* TabBarGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarGradient.png; sourceTree = "<group>"; };
+		A3FDFDF51380167200EA1D8E /* TabBarGradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarGradient@2x.png"; sourceTree = "<group>"; };
+		A3FDFDF61380167200EA1D8E /* TabBarItemSelectedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarItemSelectedBackground.png; sourceTree = "<group>"; };
+		A3FDFDF71380167200EA1D8E /* TabBarItemSelectedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarItemSelectedBackground@2x.png"; sourceTree = "<group>"; };
+		A3FDFDF81380167200EA1D8E /* TabBarNipple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarNipple.png; sourceTree = "<group>"; };
+		A3FDFDF91380167200EA1D8E /* TabBarNipple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarNipple@2x.png"; sourceTree = "<group>"; };
+		A3FDFDFA1380167200EA1D8E /* TabBarSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarSelection.png; sourceTree = "<group>"; };
+		A3FDFDFB1380167200EA1D8E /* TabBarSelection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarSelection@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,9 +179,6 @@
 				A3E4406A137FEB5A0012A268 /* siluVodAppDelegate.h */,
 				A3E4406B137FEB5A0012A268 /* siluVodAppDelegate.m */,
 				A3E4406D137FEB5A0012A268 /* MainWindow.xib */,
-				A3E44070137FEB5A0012A268 /* RootViewController.h */,
-				A3E44071137FEB5A0012A268 /* RootViewController.m */,
-				A3E44073137FEB5A0012A268 /* RootViewController.xib */,
 				A3E44062137FEB590012A268 /* Supporting Files */,
 			);
 			path = siluVod;
@@ -235,6 +266,7 @@
 		A3FDFDDE1380036000EA1D8E /* LKTabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				A3FDFDE71380167200EA1D8E /* img */,
 				A3FDFDDF1380038500EA1D8E /* LKTabBar.h */,
 				A3FDFDE01380038500EA1D8E /* LKTabBar.m */,
 				A3FDFDE2138003AF00EA1D8E /* LKTabBarController.h */,
@@ -242,6 +274,33 @@
 				A3FDFDE4138003AF00EA1D8E /* LKTabBarController.xib */,
 			);
 			path = LKTabBarController;
+			sourceTree = "<group>";
+		};
+		A3FDFDE71380167200EA1D8E /* img */ = {
+			isa = PBXGroup;
+			children = (
+				A3FDFDE81380167200EA1D8E /* chat.png */,
+				A3FDFDE91380167200EA1D8E /* chat@2x.png */,
+				A3FDFDEA1380167200EA1D8E /* compose-at.png */,
+				A3FDFDEB1380167200EA1D8E /* compose-at@2x.png */,
+				A3FDFDEC1380167200EA1D8E /* magnifying-glass.png */,
+				A3FDFDED1380167200EA1D8E /* magnifying-glass@2x.png */,
+				A3FDFDEE1380167200EA1D8E /* messages.png */,
+				A3FDFDEF1380167200EA1D8E /* messages@2x.png */,
+				A3FDFDF01380167200EA1D8E /* more.png */,
+				A3FDFDF11380167200EA1D8E /* more@2x.png */,
+				A3FDFDF21380167200EA1D8E /* TabBarGlow.png */,
+				A3FDFDF31380167200EA1D8E /* TabBarGlow@2x.png */,
+				A3FDFDF41380167200EA1D8E /* TabBarGradient.png */,
+				A3FDFDF51380167200EA1D8E /* TabBarGradient@2x.png */,
+				A3FDFDF61380167200EA1D8E /* TabBarItemSelectedBackground.png */,
+				A3FDFDF71380167200EA1D8E /* TabBarItemSelectedBackground@2x.png */,
+				A3FDFDF81380167200EA1D8E /* TabBarNipple.png */,
+				A3FDFDF91380167200EA1D8E /* TabBarNipple@2x.png */,
+				A3FDFDFA1380167200EA1D8E /* TabBarSelection.png */,
+				A3FDFDFB1380167200EA1D8E /* TabBarSelection@2x.png */,
+			);
+			path = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,7 +373,6 @@
 			files = (
 				A3E44066137FEB590012A268 /* InfoPlist.strings in Resources */,
 				A3E4406F137FEB5A0012A268 /* MainWindow.xib in Resources */,
-				A3E44075137FEB5A0012A268 /* RootViewController.xib in Resources */,
 				A3E440A2137FEC310012A268 /* blue-divider.png in Resources */,
 				A3E440A3137FEC310012A268 /* bottombarblue.png in Resources */,
 				A3E440A4137FEC310012A268 /* bottombarblue_pressed.png in Resources */,
@@ -322,6 +380,26 @@
 				A3E440A6137FEC310012A268 /* bottombarredfire_pressed.png in Resources */,
 				A3C6AC2E137FFED400D58C7D /* Localizable.strings in Resources */,
 				A3FDFDE6138003AF00EA1D8E /* LKTabBarController.xib in Resources */,
+				A3FDFDFC1380167300EA1D8E /* chat.png in Resources */,
+				A3FDFDFD1380167300EA1D8E /* chat@2x.png in Resources */,
+				A3FDFDFE1380167300EA1D8E /* compose-at.png in Resources */,
+				A3FDFDFF1380167300EA1D8E /* compose-at@2x.png in Resources */,
+				A3FDFE001380167300EA1D8E /* magnifying-glass.png in Resources */,
+				A3FDFE011380167300EA1D8E /* magnifying-glass@2x.png in Resources */,
+				A3FDFE021380167300EA1D8E /* messages.png in Resources */,
+				A3FDFE031380167300EA1D8E /* messages@2x.png in Resources */,
+				A3FDFE041380167300EA1D8E /* more.png in Resources */,
+				A3FDFE051380167300EA1D8E /* more@2x.png in Resources */,
+				A3FDFE061380167300EA1D8E /* TabBarGlow.png in Resources */,
+				A3FDFE071380167300EA1D8E /* TabBarGlow@2x.png in Resources */,
+				A3FDFE081380167300EA1D8E /* TabBarGradient.png in Resources */,
+				A3FDFE091380167300EA1D8E /* TabBarGradient@2x.png in Resources */,
+				A3FDFE0A1380167300EA1D8E /* TabBarItemSelectedBackground.png in Resources */,
+				A3FDFE0B1380167300EA1D8E /* TabBarItemSelectedBackground@2x.png in Resources */,
+				A3FDFE0C1380167300EA1D8E /* TabBarNipple.png in Resources */,
+				A3FDFE0D1380167300EA1D8E /* TabBarNipple@2x.png in Resources */,
+				A3FDFE0E1380167300EA1D8E /* TabBarSelection.png in Resources */,
+				A3FDFE0F1380167300EA1D8E /* TabBarSelection@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +437,6 @@
 			files = (
 				A3E44069137FEB5A0012A268 /* main.m in Sources */,
 				A3E4406C137FEB5A0012A268 /* siluVodAppDelegate.m in Sources */,
-				A3E44072137FEB5A0012A268 /* RootViewController.m in Sources */,
 				A3E440A7137FEC310012A268 /* LKSegmenteControl.m in Sources */,
 				A3FDFDE11380038500EA1D8E /* LKTabBar.m in Sources */,
 				A3FDFDE5138003AF00EA1D8E /* LKTabBarController.m in Sources */,
@@ -410,15 +487,6 @@
 				A3E440B4137FF1CB0012A268 /* zh-Hans */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		A3E44073137FEB5A0012A268 /* RootViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A3E44074137FEB5A0012A268 /* en */,
-				A3E440B3137FF1CB0012A268 /* zh-Hans */,
-			);
-			name = RootViewController.xib;
 			sourceTree = "<group>";
 		};
 		A3E44084137FEB5A0012A268 /* InfoPlist.strings */ = {
