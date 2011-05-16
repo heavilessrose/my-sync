@@ -70,4 +70,21 @@
     [super dealloc];
 }
 
+
+#pragma mark -
+#pragma mark 
+- (NSInteger)numberOfTabsInTabBar:(LKTabBarController *)tabBarCtrl
+{
+    return 5;
+}
+
+- (NSDictionary *)tabBar:(LKTabBarController *)tabBarCtrl ctrlDicForIndexOfTab:(NSInteger)index
+{
+    UIViewController *detailController = [[[UIViewController alloc] init] autorelease];
+    detailController.view.backgroundColor = [UIColor redColor];
+    UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:detailController] autorelease];
+    NSDictionary *ctrlDic = [NSDictionary dictionaryWithObjectsAndKeys:@"chat.png", @"image", detailController, @"viewController", nav, @"nav", nil];
+    return ctrlDic;
+}
+
 @end

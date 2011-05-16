@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKTabBarController.h"
 
-@interface siluVodAppDelegate : NSObject <UIApplicationDelegate> {
+@interface siluVodAppDelegate : NSObject <UIApplicationDelegate, LKTabBarControllerDelegate> {
 
 }
 
