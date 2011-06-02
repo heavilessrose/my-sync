@@ -69,7 +69,7 @@
     return self;
 }
 
--(void) dimAllButtonsExcept:(UIButton*)selectedButton
+-(void)dimAllButtonsExcept:(UIButton*)selectedButton
 {
     for (UIButton* button in buttons)
     {
@@ -111,8 +111,9 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [buttons release];
+    [super dealloc];
+    MLog(@"");
 }
 
 

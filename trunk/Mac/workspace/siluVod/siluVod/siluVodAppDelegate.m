@@ -7,6 +7,9 @@
 //
 
 #import "siluVodAppDelegate.h"
+#import "HomeViewController.h"
+#import "FavViewController.h"
+#import "MoreViewController.h"
 
 @implementation siluVodAppDelegate
 
@@ -72,18 +75,50 @@
 
 
 #pragma mark -
-#pragma mark 
+#pragma mark LKTabBarControllerDelegate
+
 - (NSInteger)numberOfTabsInTabBar:(LKTabBarController *)tabBarCtrl
 {
-    return 5;
+    return 3;
 }
 
 - (NSDictionary *)tabBar:(LKTabBarController *)tabBarCtrl ctrlDicForIndexOfTab:(NSInteger)index
 {
-    UIViewController *detailController = [[[UIViewController alloc] init] autorelease];
-    detailController.view.backgroundColor = [UIColor redColor];
-    UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:detailController] autorelease];
-    NSDictionary *ctrlDic = [NSDictionary dictionaryWithObjectsAndKeys:@"chat.png", @"image", detailController, @"viewController", nav, @"nav", nil];
+    NSDictionary *ctrlDic = nil;
+    switch (index) {
+        case 0:{
+            HomeViewController *homeVC = [[[HomeViewController alloc] init] autorelease];
+            homeVC.view.backgroundColor = [UIColor redColor];
+            UINavigationController *homeNav = [[[UINavigationController alloc] initWithRootViewController:homeVC] autorelease];
+            ctrlDic = [NSDictionary dictionaryWithObjectsAndKeys:@"chat.png", @"image", homeVC, @"viewController", homeNav, @"nav", nil];
+        }
+            break;
+        case 1:{
+            FavViewController *favVC = [[[FavViewController alloc] init] autorelease];
+            favVC.view.backgroundColor = [UIColor blueColor];
+            UINavigationController *favNav = [[[UINavigationController alloc] initWithRootViewController:favVC] autorelease];
+            ctrlDic = [NSDictionary dictionaryWithObjectsAndKeys:@"messages.png", @"image", favVC, @"viewController", favNav, @"nav", nil];
+        }
+            break;
+        case 2:{
+            MoreViewController *moreVC = [[[MoreViewController alloc] init] autorelease];
+            moreVC.view.backgroundColor = [UIColor yellowColor];
+            UINavigationController *moreNav = [[[UINavigationController alloc] initWithRootViewController:moreVC] autorelease];
+            ctrlDic = [NSDictionary dictionaryWithObjectsAndKeys:@"more.png", @"image", moreVC, @"viewController", moreNav, @"nav", nil];
+        }
+            break;
+        case 3:{
+            
+        }
+            break;
+        case 4:{
+            
+        }
+            break;
+        default:
+            break;
+    }
+    
     return ctrlDic;
 }
 

@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		A3C6AC2E137FFED400D58C7D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A3C6AC2C137FFED400D58C7D /* Localizable.strings */; };
+		A3DE79B813968F0800C46370 /* LKTab.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE79B713968F0700C46370 /* LKTab.m */; };
+		A3DE79BC1396933600C46370 /* LKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE79BA1396933400C46370 /* LKViewController.m */; };
+		A3DE79BD1396933600C46370 /* LKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DE79BB1396933500C46370 /* LKViewController.xib */; };
+		A3DE79C11396936D00C46370 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE79BF1396936D00C46370 /* HomeViewController.m */; };
+		A3DE79C21396936D00C46370 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DE79C01396936D00C46370 /* HomeViewController.xib */; };
+		A3DE79C61396947600C46370 /* LKTouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE79C51396947600C46370 /* LKTouchableImageView.m */; };
+		A3DE79C91396962A00C46370 /* LKTouchableImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE79C81396962A00C46370 /* LKTouchableImageModel.m */; };
+		A3DE79CC1396996B00C46370 /* FilmRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE79CB1396996B00C46370 /* FilmRecord.m */; };
+		A3DE79D013969AB500C46370 /* FavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE79CE13969AB500C46370 /* FavViewController.m */; };
+		A3DE79D113969AB500C46370 /* FavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DE79CF13969AB500C46370 /* FavViewController.xib */; };
+		A3DE79D513969B7E00C46370 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE79D313969B7D00C46370 /* MoreViewController.m */; };
+		A3DE79D613969B7E00C46370 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DE79D413969B7D00C46370 /* MoreViewController.xib */; };
 		A3E4405C137FEB590012A268 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405B137FEB590012A268 /* UIKit.framework */; };
 		A3E4405E137FEB590012A268 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405D137FEB590012A268 /* Foundation.framework */; };
 		A3E44060137FEB590012A268 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E4405F137FEB590012A268 /* CoreGraphics.framework */; };
@@ -65,6 +77,27 @@
 /* Begin PBXFileReference section */
 		A3C6AC2D137FFED400D58C7D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A3C6AC2F137FFEE300D58C7D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A3DE79B413968DB800C46370 /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		A3DE79B613968F0700C46370 /* LKTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTab.h; sourceTree = "<group>"; };
+		A3DE79B713968F0700C46370 /* LKTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTab.m; sourceTree = "<group>"; };
+		A3DE79B91396933400C46370 /* LKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKViewController.h; sourceTree = "<group>"; };
+		A3DE79BA1396933400C46370 /* LKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKViewController.m; sourceTree = "<group>"; };
+		A3DE79BB1396933500C46370 /* LKViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKViewController.xib; sourceTree = "<group>"; };
+		A3DE79BE1396936D00C46370 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		A3DE79BF1396936D00C46370 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		A3DE79C01396936D00C46370 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		A3DE79C41396947600C46370 /* LKTouchableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTouchableImageView.h; sourceTree = "<group>"; };
+		A3DE79C51396947600C46370 /* LKTouchableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTouchableImageView.m; sourceTree = "<group>"; };
+		A3DE79C71396962A00C46370 /* LKTouchableImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTouchableImageModel.h; sourceTree = "<group>"; };
+		A3DE79C81396962A00C46370 /* LKTouchableImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTouchableImageModel.m; sourceTree = "<group>"; };
+		A3DE79CA1396996B00C46370 /* FilmRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilmRecord.h; sourceTree = "<group>"; };
+		A3DE79CB1396996B00C46370 /* FilmRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilmRecord.m; sourceTree = "<group>"; };
+		A3DE79CD13969AB500C46370 /* FavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavViewController.h; sourceTree = "<group>"; };
+		A3DE79CE13969AB500C46370 /* FavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavViewController.m; sourceTree = "<group>"; };
+		A3DE79CF13969AB500C46370 /* FavViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavViewController.xib; sourceTree = "<group>"; };
+		A3DE79D213969B7D00C46370 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
+		A3DE79D313969B7D00C46370 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
+		A3DE79D413969B7D00C46370 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewController.xib; sourceTree = "<group>"; };
 		A3E44057137FEB590012A268 /* siluVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = siluVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E4405B137FEB590012A268 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3E4405D137FEB590012A268 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -143,6 +176,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3DE79C31396943100C46370 /* LKScrollImageView */ = {
+			isa = PBXGroup;
+			children = (
+				A3DE79C41396947600C46370 /* LKTouchableImageView.h */,
+				A3DE79C51396947600C46370 /* LKTouchableImageView.m */,
+				A3DE79C71396962A00C46370 /* LKTouchableImageModel.h */,
+				A3DE79C81396962A00C46370 /* LKTouchableImageModel.m */,
+			);
+			path = LKScrollImageView;
+			sourceTree = "<group>";
+		};
 		A3E4404C137FEB590012A268 = {
 			isa = PBXGroup;
 			children = (
@@ -176,10 +220,22 @@
 		A3E44061137FEB590012A268 /* siluVod */ = {
 			isa = PBXGroup;
 			children = (
+				A3DE79B413968DB800C46370 /* Defines.h */,
+				A3DE79CA1396996B00C46370 /* FilmRecord.h */,
+				A3DE79CB1396996B00C46370 /* FilmRecord.m */,
 				A3E4406A137FEB5A0012A268 /* siluVodAppDelegate.h */,
 				A3E4406B137FEB5A0012A268 /* siluVodAppDelegate.m */,
 				A3E4406D137FEB5A0012A268 /* MainWindow.xib */,
 				A3E44062137FEB590012A268 /* Supporting Files */,
+				A3DE79BE1396936D00C46370 /* HomeViewController.h */,
+				A3DE79BF1396936D00C46370 /* HomeViewController.m */,
+				A3DE79C01396936D00C46370 /* HomeViewController.xib */,
+				A3DE79CD13969AB500C46370 /* FavViewController.h */,
+				A3DE79CE13969AB500C46370 /* FavViewController.m */,
+				A3DE79CF13969AB500C46370 /* FavViewController.xib */,
+				A3DE79D213969B7D00C46370 /* MoreViewController.h */,
+				A3DE79D313969B7D00C46370 /* MoreViewController.m */,
+				A3DE79D413969B7D00C46370 /* MoreViewController.xib */,
 			);
 			path = siluVod;
 			sourceTree = "<group>";
@@ -228,6 +284,7 @@
 		A3E44099137FEC310012A268 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				A3DE79C31396943100C46370 /* LKScrollImageView */,
 				A3E4409A137FEC310012A268 /* LKSegmenteControl */,
 			);
 			path = views;
@@ -250,6 +307,9 @@
 		A3FDFDDB1380031E00EA1D8E /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A3DE79B91396933400C46370 /* LKViewController.h */,
+				A3DE79BA1396933400C46370 /* LKViewController.m */,
+				A3DE79BB1396933500C46370 /* LKViewController.xib */,
 				A3FDFDDD1380036000EA1D8E /* LKNavBarController */,
 				A3FDFDDE1380036000EA1D8E /* LKTabBarController */,
 			);
@@ -267,6 +327,8 @@
 			isa = PBXGroup;
 			children = (
 				A3FDFDE71380167200EA1D8E /* img */,
+				A3DE79B613968F0700C46370 /* LKTab.h */,
+				A3DE79B713968F0700C46370 /* LKTab.m */,
 				A3FDFDDF1380038500EA1D8E /* LKTabBar.h */,
 				A3FDFDE01380038500EA1D8E /* LKTabBar.m */,
 				A3FDFDE2138003AF00EA1D8E /* LKTabBarController.h */,
@@ -400,6 +462,10 @@
 				A3FDFE0D1380167300EA1D8E /* TabBarNipple@2x.png in Resources */,
 				A3FDFE0E1380167300EA1D8E /* TabBarSelection.png in Resources */,
 				A3FDFE0F1380167300EA1D8E /* TabBarSelection@2x.png in Resources */,
+				A3DE79BD1396933600C46370 /* LKViewController.xib in Resources */,
+				A3DE79C21396936D00C46370 /* HomeViewController.xib in Resources */,
+				A3DE79D113969AB500C46370 /* FavViewController.xib in Resources */,
+				A3DE79D613969B7E00C46370 /* MoreViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +506,14 @@
 				A3E440A7137FEC310012A268 /* LKSegmenteControl.m in Sources */,
 				A3FDFDE11380038500EA1D8E /* LKTabBar.m in Sources */,
 				A3FDFDE5138003AF00EA1D8E /* LKTabBarController.m in Sources */,
+				A3DE79B813968F0800C46370 /* LKTab.m in Sources */,
+				A3DE79BC1396933600C46370 /* LKViewController.m in Sources */,
+				A3DE79C11396936D00C46370 /* HomeViewController.m in Sources */,
+				A3DE79C61396947600C46370 /* LKTouchableImageView.m in Sources */,
+				A3DE79C91396962A00C46370 /* LKTouchableImageModel.m in Sources */,
+				A3DE79CC1396996B00C46370 /* FilmRecord.m in Sources */,
+				A3DE79D013969AB500C46370 /* FavViewController.m in Sources */,
+				A3DE79D513969B7E00C46370 /* MoreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
