@@ -7,15 +7,29 @@
 //
 
 #import "SLVodAppDelegate.h"
+#import "BCTabBarController.h"
+#import "LKViewController.h"
 
 @implementation SLVodAppDelegate
 
 
 @synthesize window=_window;
+@synthesize tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+	self.tabBarController = [[[BCTabBarController alloc] init] autorelease];
+	self.tabBarController.viewControllers = [NSArray arrayWithObjects:
+											 [[[UINavigationController alloc]
+                                               initWithRootViewController:[[[LKViewController alloc] init] autorelease]]
+											  autorelease],
+											 [[[LKViewController alloc] init] autorelease],
+											 [[[LKViewController alloc] init] autorelease],
+											 [[[LKViewController alloc] init] autorelease],
+											 [[[LKViewController alloc] init] autorelease],
+											 nil];
+	[self.window addSubview:self.tabBarController.view];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -61,6 +75,7 @@
 
 - (void)dealloc
 {
+	self.tabBarController = nil;
     [_window release];
     [super dealloc];
 }
