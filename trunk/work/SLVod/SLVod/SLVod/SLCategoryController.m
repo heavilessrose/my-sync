@@ -54,4 +54,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark -
+#pragma BCTabbar 
+
+- (NSString *)iconImageName {
+	return @"magnifying-glass.png";
+}
+
 @end

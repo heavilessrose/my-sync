@@ -9,6 +9,11 @@
 #import "SLVodAppDelegate.h"
 #import "BCTabBarController.h"
 #import "LKViewController.h"
+#import "SLHotController.h"
+#import "SLCategoryController.h"
+#import "SLFavController.h"
+#import "SLMoreController.h"
+#import "SLUserCenterController.h"
 
 @implementation SLVodAppDelegate
 
@@ -21,12 +26,20 @@
 	self.tabBarController = [[[BCTabBarController alloc] init] autorelease];
 	self.tabBarController.viewControllers = [NSArray arrayWithObjects:
 											 [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[LKViewController alloc] init] autorelease]]
+                                               initWithRootViewController:[[[SLHotController alloc] init] autorelease]]
 											  autorelease],
-											 [[[LKViewController alloc] init] autorelease],
-											 [[[LKViewController alloc] init] autorelease],
-											 [[[LKViewController alloc] init] autorelease],
-											 [[[LKViewController alloc] init] autorelease],
+                                             [[[UINavigationController alloc]
+                                               initWithRootViewController:[[[SLCategoryController alloc] init] autorelease]]
+											  autorelease],
+                                             [[[UINavigationController alloc]
+                                               initWithRootViewController:[[[SLFavController alloc] init] autorelease]]
+											  autorelease],
+                                             [[[UINavigationController alloc]
+                                               initWithRootViewController:[[[SLMoreController alloc] init] autorelease]]
+											  autorelease],
+                                             [[[UINavigationController alloc]
+                                               initWithRootViewController:[[[SLUserCenterController alloc] init] autorelease]]
+											  autorelease],
 											 nil];
 	[self.window addSubview:self.tabBarController.view];
     
