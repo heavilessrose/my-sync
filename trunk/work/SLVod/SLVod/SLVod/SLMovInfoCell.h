@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SLMovie.h"
 
 @interface SLMovInfoCell : UITableViewCell {
+    UILabel     *label;
+    UITextView  *contentTextView;
     
+    SLMovie     *movie;
 }
+
+@property (nonatomic, retain) SLMovie     *movie;
+@property (nonatomic, retain) IBOutlet UILabel     *label;
+@property (nonatomic, retain) IBOutlet UITextView  *contentTextView;
 
 @end

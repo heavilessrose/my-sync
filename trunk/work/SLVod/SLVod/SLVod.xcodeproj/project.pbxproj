@@ -17,6 +17,8 @@
 		A3C7D28813A4B7960050FD28 /* SLMovDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D28613A4B7950050FD28 /* SLMovDetailController.xib */; };
 		A3C7D28B13A4B95D0050FD28 /* SLMovInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28A13A4B95D0050FD28 /* SLMovInfoCell.m */; };
 		A3C7D28D13A4B9740050FD28 /* SLMovInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D28C13A4B9740050FD28 /* SLMovInfoCell.xib */; };
+		A3C7D29B13A4E8B70050FD28 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C7D29A13A4E8B60050FD28 /* MediaPlayer.framework */; };
+		A3C7D2A213A4EDB20050FD28 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D2A113A4EDB10050FD28 /* Settings.bundle */; };
 		A3D66EF013A4662400C83B62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EEF13A4662400C83B62 /* UIKit.framework */; };
 		A3D66EF213A4662400C83B62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF113A4662400C83B62 /* Foundation.framework */; };
 		A3D66EF413A4662400C83B62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF313A4662400C83B62 /* CoreGraphics.framework */; };
@@ -101,6 +103,8 @@
 		A3C7D28913A4B95D0050FD28 /* SLMovInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLMovInfoCell.h; sourceTree = "<group>"; };
 		A3C7D28A13A4B95D0050FD28 /* SLMovInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLMovInfoCell.m; sourceTree = "<group>"; };
 		A3C7D28C13A4B9740050FD28 /* SLMovInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLMovInfoCell.xib; sourceTree = "<group>"; };
+		A3C7D29A13A4E8B60050FD28 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A3C7D2A113A4EDB10050FD28 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A3D66EEB13A4662400C83B62 /* SLVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D66EEF13A4662400C83B62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3D66EF113A4662400C83B62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -195,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3C7D29B13A4E8B70050FD28 /* MediaPlayer.framework in Frameworks */,
 				A3D66FBB13A4805400C83B62 /* QuartzCore.framework in Frameworks */,
 				A3D66EF013A4662400C83B62 /* UIKit.framework in Frameworks */,
 				A3D66EF213A4662400C83B62 /* Foundation.framework in Frameworks */,
@@ -218,7 +223,7 @@
 		A3D66EE013A4662400C83B62 = {
 			isa = PBXGroup;
 			children = (
-				A3D66FBA13A4805400C83B62 /* QuartzCore.framework */,
+				A3C7D2A113A4EDB10050FD28 /* Settings.bundle */,
 				A3D66F4713A469DA00C83B62 /* Share */,
 				A3D66EF513A4662400C83B62 /* SLVod */,
 				A3D66F7E13A473FC00C83B62 /* Resources */,
@@ -240,6 +245,8 @@
 		A3D66EEE13A4662400C83B62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3C7D29A13A4E8B60050FD28 /* MediaPlayer.framework */,
+				A3D66FBA13A4805400C83B62 /* QuartzCore.framework */,
 				A3D66EEF13A4662400C83B62 /* UIKit.framework */,
 				A3D66EF113A4662400C83B62 /* Foundation.framework */,
 				A3D66EF313A4662400C83B62 /* CoreGraphics.framework */,
@@ -514,6 +521,7 @@
 				A3D66FC613A4855400C83B62 /* SLHotCell.xib in Resources */,
 				A3C7D28813A4B7960050FD28 /* SLMovDetailController.xib in Resources */,
 				A3C7D28D13A4B9740050FD28 /* SLMovInfoCell.xib in Resources */,
+				A3C7D2A213A4EDB20050FD28 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

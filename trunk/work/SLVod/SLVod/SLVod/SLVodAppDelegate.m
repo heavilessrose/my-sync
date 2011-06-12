@@ -15,11 +15,22 @@
 #import "SLMoreController.h"
 #import "SLUserCenterController.h"
 
+NSString *kScalingModeKey	= @"scalingMode";
+NSString *kControlModeKey	= @"controlMode";
+NSString *kBackgroundColorKey	= @"backgroundColor";
+
 @implementation SLVodAppDelegate
 
 
 @synthesize window=_window;
 @synthesize tabBarController;
+
+- (void)dealloc
+{   
+	self.tabBarController = nil;
+    [_window release];
+    [super dealloc];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -86,11 +97,5 @@
      */
 }
 
-- (void)dealloc
-{
-	self.tabBarController = nil;
-    [_window release];
-    [super dealloc];
-}
 
 @end

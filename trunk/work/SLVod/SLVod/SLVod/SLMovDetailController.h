@@ -12,17 +12,15 @@
 #import "SLHotCell.h"
 #import "SLMovInfoCell.h"
 
+// Notification string used for touches to the overlay view
+extern NSString * const OverlayViewTouchNotification;
 
-@interface SLMovDetailController : LKViewController {
+@interface SLMovDetailController : LKViewController <UITableViewDelegate, UITableViewDataSource> {
     LKShadowTableView   *table;
-    SLHotCell           *tmpHotCell;
-    SLMovInfoCell       *tmpMovInfoCell;
     
     SLMovie             *mov;
 }
 
 @property (nonatomic, retain) SLMovie                       *mov;
-@property (nonatomic, retain) IBOutlet SLMovInfoCell        *tmpMovInfoCell;
-@property (nonatomic, retain) IBOutlet SLHotCell            *tmpHotCell;
 @property (nonatomic, retain) IBOutlet LKShadowTableView    *table;
 @end

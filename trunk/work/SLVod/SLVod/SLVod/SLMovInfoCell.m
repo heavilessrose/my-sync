@@ -11,6 +11,16 @@
 
 @implementation SLMovInfoCell
 
+@synthesize label, contentTextView, movie;
+
+- (void)dealloc
+{
+    [movie release];
+    [label release];
+    [contentTextView release];
+    [super dealloc];
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -27,9 +37,15 @@
     // Configure the view for the selected state
 }
 
-- (void)dealloc
+- (void)setMovie:(SLMovie *)theMov
 {
-    [super dealloc];
+    if (theMov) {
+        if (theMov.content && [theMov.content length] > 0) {
+            self.contentTextView.text = theMov.content;
+        } else {
+            self.contentTextView.text = @"暂无";
+        }
+    }
 }
 
 @end
