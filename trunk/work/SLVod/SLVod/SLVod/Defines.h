@@ -11,8 +11,20 @@
 
 #define globalApp ((siluVodAppDelegate *)[UIApplication sharedApplication].delegate)
 
+// Color
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+// Font
+#define Font_Big			([UIFont systemFontOfSize:18.0f])
+#define Font_Normal			([UIFont systemFontOfSize:16.0f])
+#define Font_Small			([UIFont systemFontOfSize:14.0f])
+#define Font_Tiny			([UIFont systemFontOfSize:12.0f])
+#define Font_Huge_bold		([UIFont boldSystemFontOfSize:20.0f])
+#define Font_Big_bold		([UIFont boldSystemFontOfSize:18.0f])
+#define Font_Normal_bold	([UIFont boldSystemFontOfSize:16.0f])
+#define Font_Small_bold		([UIFont boldSystemFontOfSize:14.0f])
+#define Font_Tiny_bold		([UIFont boldSystemFontOfSize:12.0f])
 
 // URL
 #define SL_BASE_HOST        ([NSURL URLWithString:@"http://i.siluhd.com"])
