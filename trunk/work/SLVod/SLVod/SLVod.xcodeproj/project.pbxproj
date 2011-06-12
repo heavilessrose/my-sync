@@ -22,6 +22,13 @@
 		A3D66F1913A4662400C83B62 /* SLVodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F1813A4662400C83B62 /* SLVodTests.m */; };
 		A3D66F2F13A468BC00C83B62 /* LKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F2D13A468BC00C83B62 /* LKViewController.m */; };
 		A3D66F3013A468BC00C83B62 /* LKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F2E13A468BC00C83B62 /* LKViewController.xib */; };
+		A3D66F5613A469DA00C83B62 /* BCTab.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F4A13A469DA00C83B62 /* BCTab.m */; };
+		A3D66F5713A469DA00C83B62 /* BCTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F4C13A469DA00C83B62 /* BCTabBar.m */; };
+		A3D66F5813A469DA00C83B62 /* BCTabBarController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F4D13A469DA00C83B62 /* BCTabBarController.bundle */; };
+		A3D66F5913A469DA00C83B62 /* BCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F4F13A469DA00C83B62 /* BCTabBarController.m */; };
+		A3D66F5A13A469DA00C83B62 /* BCTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F5113A469DA00C83B62 /* BCTabBarView.m */; };
+		A3D66F5B13A469DA00C83B62 /* UINavigationController+icons.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F5313A469DA00C83B62 /* UINavigationController+icons.m */; };
+		A3D66F5C13A469DA00C83B62 /* UIViewController+iconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F5513A469DA00C83B62 /* UIViewController+iconImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +63,19 @@
 		A3D66F2C13A468BC00C83B62 /* LKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKViewController.h; sourceTree = "<group>"; };
 		A3D66F2D13A468BC00C83B62 /* LKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKViewController.m; sourceTree = "<group>"; };
 		A3D66F2E13A468BC00C83B62 /* LKViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKViewController.xib; sourceTree = "<group>"; };
+		A3D66F4913A469DA00C83B62 /* BCTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTab.h; sourceTree = "<group>"; };
+		A3D66F4A13A469DA00C83B62 /* BCTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTab.m; sourceTree = "<group>"; };
+		A3D66F4B13A469DA00C83B62 /* BCTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTabBar.h; sourceTree = "<group>"; };
+		A3D66F4C13A469DA00C83B62 /* BCTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTabBar.m; sourceTree = "<group>"; };
+		A3D66F4D13A469DA00C83B62 /* BCTabBarController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BCTabBarController.bundle; sourceTree = "<group>"; };
+		A3D66F4E13A469DA00C83B62 /* BCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTabBarController.h; sourceTree = "<group>"; };
+		A3D66F4F13A469DA00C83B62 /* BCTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTabBarController.m; sourceTree = "<group>"; };
+		A3D66F5013A469DA00C83B62 /* BCTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTabBarView.h; sourceTree = "<group>"; };
+		A3D66F5113A469DA00C83B62 /* BCTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTabBarView.m; sourceTree = "<group>"; };
+		A3D66F5213A469DA00C83B62 /* UINavigationController+icons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+icons.h"; sourceTree = "<group>"; };
+		A3D66F5313A469DA00C83B62 /* UINavigationController+icons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+icons.m"; sourceTree = "<group>"; };
+		A3D66F5413A469DA00C83B62 /* UIViewController+iconImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+iconImage.h"; sourceTree = "<group>"; };
+		A3D66F5513A469DA00C83B62 /* UIViewController+iconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+iconImage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +105,7 @@
 		A3D66EE013A4662400C83B62 = {
 			isa = PBXGroup;
 			children = (
+				A3D66F4713A469DA00C83B62 /* Share */,
 				A3D66EF513A4662400C83B62 /* SLVod */,
 				A3D66F0F13A4662400C83B62 /* SLVodTests */,
 				A3D66EEE13A4662400C83B62 /* Frameworks */,
@@ -157,6 +178,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A3D66F4713A469DA00C83B62 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				A3D66F4813A469DA00C83B62 /* BCTabbar */,
+			);
+			name = Share;
+			path = SLVod/Share;
+			sourceTree = "<group>";
+		};
+		A3D66F4813A469DA00C83B62 /* BCTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				A3D66F4913A469DA00C83B62 /* BCTab.h */,
+				A3D66F4A13A469DA00C83B62 /* BCTab.m */,
+				A3D66F4B13A469DA00C83B62 /* BCTabBar.h */,
+				A3D66F4C13A469DA00C83B62 /* BCTabBar.m */,
+				A3D66F4D13A469DA00C83B62 /* BCTabBarController.bundle */,
+				A3D66F4E13A469DA00C83B62 /* BCTabBarController.h */,
+				A3D66F4F13A469DA00C83B62 /* BCTabBarController.m */,
+				A3D66F5013A469DA00C83B62 /* BCTabBarView.h */,
+				A3D66F5113A469DA00C83B62 /* BCTabBarView.m */,
+				A3D66F5213A469DA00C83B62 /* UINavigationController+icons.h */,
+				A3D66F5313A469DA00C83B62 /* UINavigationController+icons.m */,
+				A3D66F5413A469DA00C83B62 /* UIViewController+iconImage.h */,
+				A3D66F5513A469DA00C83B62 /* UIViewController+iconImage.m */,
+			);
+			path = BCTabbar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,6 +277,7 @@
 				A3D66EFA13A4662400C83B62 /* InfoPlist.strings in Resources */,
 				A3D66F0313A4662400C83B62 /* MainWindow.xib in Resources */,
 				A3D66F3013A468BC00C83B62 /* LKViewController.xib in Resources */,
+				A3D66F5813A469DA00C83B62 /* BCTabBarController.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +316,12 @@
 				A3D66EFD13A4662400C83B62 /* main.m in Sources */,
 				A3D66F0013A4662400C83B62 /* SLVodAppDelegate.m in Sources */,
 				A3D66F2F13A468BC00C83B62 /* LKViewController.m in Sources */,
+				A3D66F5613A469DA00C83B62 /* BCTab.m in Sources */,
+				A3D66F5713A469DA00C83B62 /* BCTabBar.m in Sources */,
+				A3D66F5913A469DA00C83B62 /* BCTabBarController.m in Sources */,
+				A3D66F5A13A469DA00C83B62 /* BCTabBarView.m in Sources */,
+				A3D66F5B13A469DA00C83B62 /* UINavigationController+icons.m in Sources */,
+				A3D66F5C13A469DA00C83B62 /* UIViewController+iconImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
