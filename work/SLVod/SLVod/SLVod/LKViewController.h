@@ -22,12 +22,10 @@
     
     BOOL            allRequestShouldCancel;
     NSMutableDictionary	*imageDownloadsInProgress;
-	NSMutableArray  *imageArray;
 }
 
 @property (nonatomic, assign) BOOL              allRequestShouldCancel;
 @property (nonatomic, retain) NSMutableDictionary	*imageDownloadsInProgress;
-@property (nonatomic, retain) NSMutableArray    *imageArray;
 @property (nonatomic, retain) NSURLConnection   *listConn;
 @property (nonatomic, retain) NSMutableArray    *movies;
 @property (nonatomic, retain) NSMutableData     *jsonData;

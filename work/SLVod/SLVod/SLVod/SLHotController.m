@@ -208,7 +208,7 @@
     {
 		SLHotCell *cell = (SLHotCell *)[self.table cellForRowAtIndexPath:imageDown.indexPathInTableView];
         
-        [cell.imageView setImage:imageDown.tableRecord.img];
+        [cell.imageView setImage:imageDown.imgRecord.img];
         [imageDownloadsInProgress removeObjectForKey:indexPath];
 	}
 }
