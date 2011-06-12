@@ -14,10 +14,13 @@
 
 @implementation LKViewController
 
-@synthesize jsonData, movies;
+@synthesize jsonData, movies, listConn;
 
 - (void)dealloc
 {
+    [self.listConn cancel];
+    self.listConn = nil;
+    self.jsonData = nil;
     [movies release];
     self.jsonData = nil;
     [super dealloc];
@@ -75,6 +78,13 @@
     ALog(@"jsonStr invalid");
     // should implemented in subClasses
     return nil;
+}
+
+- (void)cancelListConn
+{
+    self.jsonData = nil;
+    [self.listConn cancel];
+    self.listConn = nil;
 }
 
 #pragma mark - BCTabbar 

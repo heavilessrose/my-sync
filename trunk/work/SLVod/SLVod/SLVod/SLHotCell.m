@@ -19,6 +19,7 @@
 
 - (void)dealloc
 {
+    MLog(@"");
     [movie release];
     [imageView release];
     [titleLabel release];

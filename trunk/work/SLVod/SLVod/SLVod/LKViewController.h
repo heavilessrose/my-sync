@@ -14,11 +14,14 @@
     
     NSMutableData   *jsonData;
     NSMutableArray  *movies;
+    NSURLConnection *listConn;
 }
 
+@property (nonatomic, retain) NSURLConnection   *listConn;
 @property (nonatomic, retain) NSMutableArray    *movies;
 @property (nonatomic, retain) NSMutableData     *jsonData;
 
 - (id)parse:(NSData *)theData;
+- (void)cancelListConn;
 
 @end
