@@ -176,12 +176,12 @@
         MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
         [[mp moviePlayer] prepareToPlay];
         [[mp moviePlayer] setShouldAutoplay:YES];
-        [[mp moviePlayer] setControlStyle:2];
+        [[mp moviePlayer] setControlStyle:MPMovieControlStyleFullscreen];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
         
         [self presentMoviePlayerViewControllerAnimated:mp];
         
-        self.hidesBottomBarWhenPushed = YES;
+        [globalApp hideTabbar];
     }
 #endif
 }
@@ -202,7 +202,7 @@
 - (void)moviePlayBackDidFinish:(NSNotification*)notification
 {
     DLOG
-    self.hidesBottomBarWhenPushed = NO;
+    [globalApp showTabbar];
     [self dismissMoviePlayerViewControllerAnimated];
     /*     
      < add your code here >
