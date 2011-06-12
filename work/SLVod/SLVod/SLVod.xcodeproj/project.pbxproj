@@ -20,6 +20,8 @@
 		A3D66F1413A4662400C83B62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F1213A4662400C83B62 /* InfoPlist.strings */; };
 		A3D66F1713A4662400C83B62 /* SLVodTests.h in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F1613A4662400C83B62 /* SLVodTests.h */; };
 		A3D66F1913A4662400C83B62 /* SLVodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F1813A4662400C83B62 /* SLVodTests.m */; };
+		A3D66F2F13A468BC00C83B62 /* LKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F2D13A468BC00C83B62 /* LKViewController.m */; };
+		A3D66F3013A468BC00C83B62 /* LKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F2E13A468BC00C83B62 /* LKViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,10 @@
 		A3D66F1513A4662400C83B62 /* SLVodTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLVodTests-Prefix.pch"; sourceTree = "<group>"; };
 		A3D66F1613A4662400C83B62 /* SLVodTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLVodTests.h; sourceTree = "<group>"; };
 		A3D66F1813A4662400C83B62 /* SLVodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLVodTests.m; sourceTree = "<group>"; };
+		A3D66F2A13A4688900C83B62 /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		A3D66F2C13A468BC00C83B62 /* LKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKViewController.h; sourceTree = "<group>"; };
+		A3D66F2D13A468BC00C83B62 /* LKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKViewController.m; sourceTree = "<group>"; };
+		A3D66F2E13A468BC00C83B62 /* LKViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,10 @@
 		A3D66EF513A4662400C83B62 /* SLVod */ = {
 			isa = PBXGroup;
 			children = (
+				A3D66F2A13A4688900C83B62 /* Defines.h */,
+				A3D66F2C13A468BC00C83B62 /* LKViewController.h */,
+				A3D66F2D13A468BC00C83B62 /* LKViewController.m */,
+				A3D66F2E13A468BC00C83B62 /* LKViewController.xib */,
 				A3D66EFE13A4662400C83B62 /* SLVodAppDelegate.h */,
 				A3D66EFF13A4662400C83B62 /* SLVodAppDelegate.m */,
 				A3D66F0113A4662400C83B62 /* MainWindow.xib */,
@@ -216,6 +226,7 @@
 			files = (
 				A3D66EFA13A4662400C83B62 /* InfoPlist.strings in Resources */,
 				A3D66F0313A4662400C83B62 /* MainWindow.xib in Resources */,
+				A3D66F3013A468BC00C83B62 /* LKViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +264,7 @@
 			files = (
 				A3D66EFD13A4662400C83B62 /* main.m in Sources */,
 				A3D66F0013A4662400C83B62 /* SLVodAppDelegate.m in Sources */,
+				A3D66F2F13A468BC00C83B62 /* LKViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +439,7 @@
 				A3D66F1E13A4662400C83B62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3D66F1F13A4662400C83B62 /* Build configuration list for PBXNativeTarget "SLVodTests" */ = {
 			isa = XCConfigurationList;
@@ -435,6 +448,7 @@
 				A3D66F2113A4662400C83B62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
