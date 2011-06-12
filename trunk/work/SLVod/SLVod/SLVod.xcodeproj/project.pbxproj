@@ -11,6 +11,8 @@
 		A3136FA913A4954800EECA6A /* LKTipCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA213A4954800EECA6A /* LKTipCenter.m */; };
 		A3136FAA13A4954800EECA6A /* LKTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA413A4954800EECA6A /* LKTipView.m */; };
 		A3136FAF13A4957500EECA6A /* UIView+LKAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */; };
+		A3C7D28213A4A5AC0050FD28 /* LKImageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */; };
+		A3C7D28313A4A5AC0050FD28 /* LKImgDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */; };
 		A3D66EF013A4662400C83B62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EEF13A4662400C83B62 /* UIKit.framework */; };
 		A3D66EF213A4662400C83B62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF113A4662400C83B62 /* Foundation.framework */; };
 		A3D66EF413A4662400C83B62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF313A4662400C83B62 /* CoreGraphics.framework */; };
@@ -85,6 +87,10 @@
 		A3136FA413A4954800EECA6A /* LKTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTipView.m; sourceTree = "<group>"; };
 		A3136FAD13A4957500EECA6A /* UIView+LKAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LKAddition.h"; sourceTree = "<group>"; };
 		A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LKAddition.m"; sourceTree = "<group>"; };
+		A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; path = LKImageRecord.h; sourceTree = "<group>"; };
+		A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImageRecord.m; sourceTree = "<group>"; };
+		A3C7D28013A4A5AC0050FD28 /* LKImgDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; path = LKImgDownload.h; sourceTree = "<group>"; };
+		A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImgDownload.m; sourceTree = "<group>"; };
 		A3D66EEB13A4662400C83B62 /* SLVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D66EEF13A4662400C83B62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3D66EF113A4662400C83B62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -391,6 +397,10 @@
 			children = (
 				A3D66FBD13A4829000C83B62 /* SLMovie.h */,
 				A3D66FBE13A4829000C83B62 /* SLMovie.m */,
+				A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */,
+				A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */,
+				A3C7D28013A4A5AC0050FD28 /* LKImgDownload.h */,
+				A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -554,6 +564,8 @@
 				A3136FA913A4954800EECA6A /* LKTipCenter.m in Sources */,
 				A3136FAA13A4954800EECA6A /* LKTipView.m in Sources */,
 				A3136FAF13A4957500EECA6A /* UIView+LKAddition.m in Sources */,
+				A3C7D28213A4A5AC0050FD28 /* LKImageRecord.m in Sources */,
+				A3C7D28313A4A5AC0050FD28 /* LKImgDownload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
