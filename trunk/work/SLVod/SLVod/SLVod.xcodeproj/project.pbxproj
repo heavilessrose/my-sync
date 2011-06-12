@@ -29,6 +29,16 @@
 		A3D66F5A13A469DA00C83B62 /* BCTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F5113A469DA00C83B62 /* BCTabBarView.m */; };
 		A3D66F5B13A469DA00C83B62 /* UINavigationController+icons.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F5313A469DA00C83B62 /* UINavigationController+icons.m */; };
 		A3D66F5C13A469DA00C83B62 /* UIViewController+iconImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F5513A469DA00C83B62 /* UIViewController+iconImage.m */; };
+		A3D66F6813A4704200C83B62 /* SLHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F6613A4704200C83B62 /* SLHotController.m */; };
+		A3D66F6913A4704200C83B62 /* SLHotController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F6713A4704200C83B62 /* SLHotController.xib */; };
+		A3D66F6D13A4706200C83B62 /* SLCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F6B13A4706200C83B62 /* SLCategoryController.m */; };
+		A3D66F6E13A4706200C83B62 /* SLCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F6C13A4706200C83B62 /* SLCategoryController.xib */; };
+		A3D66F7213A4708A00C83B62 /* SLUserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F7013A4708A00C83B62 /* SLUserCenterController.m */; };
+		A3D66F7313A4708A00C83B62 /* SLUserCenterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F7113A4708A00C83B62 /* SLUserCenterController.xib */; };
+		A3D66F7713A470A300C83B62 /* SLFavController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F7513A470A300C83B62 /* SLFavController.m */; };
+		A3D66F7813A470A300C83B62 /* SLFavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F7613A470A300C83B62 /* SLFavController.xib */; };
+		A3D66F7C13A470BA00C83B62 /* SLMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F7A13A470BA00C83B62 /* SLMoreController.m */; };
+		A3D66F7D13A470BA00C83B62 /* SLMoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F7B13A470BA00C83B62 /* SLMoreController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +86,21 @@
 		A3D66F5313A469DA00C83B62 /* UINavigationController+icons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+icons.m"; sourceTree = "<group>"; };
 		A3D66F5413A469DA00C83B62 /* UIViewController+iconImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+iconImage.h"; sourceTree = "<group>"; };
 		A3D66F5513A469DA00C83B62 /* UIViewController+iconImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+iconImage.m"; sourceTree = "<group>"; };
+		A3D66F6513A4704200C83B62 /* SLHotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHotController.h; sourceTree = "<group>"; };
+		A3D66F6613A4704200C83B62 /* SLHotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHotController.m; sourceTree = "<group>"; };
+		A3D66F6713A4704200C83B62 /* SLHotController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLHotController.xib; sourceTree = "<group>"; };
+		A3D66F6A13A4706200C83B62 /* SLCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLCategoryController.h; sourceTree = "<group>"; };
+		A3D66F6B13A4706200C83B62 /* SLCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLCategoryController.m; sourceTree = "<group>"; };
+		A3D66F6C13A4706200C83B62 /* SLCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLCategoryController.xib; sourceTree = "<group>"; };
+		A3D66F6F13A4708A00C83B62 /* SLUserCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLUserCenterController.h; sourceTree = "<group>"; };
+		A3D66F7013A4708A00C83B62 /* SLUserCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLUserCenterController.m; sourceTree = "<group>"; };
+		A3D66F7113A4708A00C83B62 /* SLUserCenterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLUserCenterController.xib; sourceTree = "<group>"; };
+		A3D66F7413A470A300C83B62 /* SLFavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFavController.h; sourceTree = "<group>"; };
+		A3D66F7513A470A300C83B62 /* SLFavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFavController.m; sourceTree = "<group>"; };
+		A3D66F7613A470A300C83B62 /* SLFavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLFavController.xib; sourceTree = "<group>"; };
+		A3D66F7913A470B900C83B62 /* SLMoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLMoreController.h; sourceTree = "<group>"; };
+		A3D66F7A13A470BA00C83B62 /* SLMoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLMoreController.m; sourceTree = "<group>"; };
+		A3D66F7B13A470BA00C83B62 /* SLMoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLMoreController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +167,21 @@
 				A3D66EFE13A4662400C83B62 /* SLVodAppDelegate.h */,
 				A3D66EFF13A4662400C83B62 /* SLVodAppDelegate.m */,
 				A3D66F0113A4662400C83B62 /* MainWindow.xib */,
+				A3D66F6513A4704200C83B62 /* SLHotController.h */,
+				A3D66F6613A4704200C83B62 /* SLHotController.m */,
+				A3D66F6713A4704200C83B62 /* SLHotController.xib */,
+				A3D66F6A13A4706200C83B62 /* SLCategoryController.h */,
+				A3D66F6B13A4706200C83B62 /* SLCategoryController.m */,
+				A3D66F6C13A4706200C83B62 /* SLCategoryController.xib */,
+				A3D66F7413A470A300C83B62 /* SLFavController.h */,
+				A3D66F7513A470A300C83B62 /* SLFavController.m */,
+				A3D66F7613A470A300C83B62 /* SLFavController.xib */,
+				A3D66F7913A470B900C83B62 /* SLMoreController.h */,
+				A3D66F7A13A470BA00C83B62 /* SLMoreController.m */,
+				A3D66F7B13A470BA00C83B62 /* SLMoreController.xib */,
+				A3D66F6F13A4708A00C83B62 /* SLUserCenterController.h */,
+				A3D66F7013A4708A00C83B62 /* SLUserCenterController.m */,
+				A3D66F7113A4708A00C83B62 /* SLUserCenterController.xib */,
 				A3D66EF613A4662400C83B62 /* Supporting Files */,
 			);
 			path = SLVod;
@@ -278,6 +318,11 @@
 				A3D66F0313A4662400C83B62 /* MainWindow.xib in Resources */,
 				A3D66F3013A468BC00C83B62 /* LKViewController.xib in Resources */,
 				A3D66F5813A469DA00C83B62 /* BCTabBarController.bundle in Resources */,
+				A3D66F6913A4704200C83B62 /* SLHotController.xib in Resources */,
+				A3D66F6E13A4706200C83B62 /* SLCategoryController.xib in Resources */,
+				A3D66F7313A4708A00C83B62 /* SLUserCenterController.xib in Resources */,
+				A3D66F7813A470A300C83B62 /* SLFavController.xib in Resources */,
+				A3D66F7D13A470BA00C83B62 /* SLMoreController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +367,11 @@
 				A3D66F5A13A469DA00C83B62 /* BCTabBarView.m in Sources */,
 				A3D66F5B13A469DA00C83B62 /* UINavigationController+icons.m in Sources */,
 				A3D66F5C13A469DA00C83B62 /* UIViewController+iconImage.m in Sources */,
+				A3D66F6813A4704200C83B62 /* SLHotController.m in Sources */,
+				A3D66F6D13A4706200C83B62 /* SLCategoryController.m in Sources */,
+				A3D66F7213A4708A00C83B62 /* SLUserCenterController.m in Sources */,
+				A3D66F7713A470A300C83B62 /* SLFavController.m in Sources */,
+				A3D66F7C13A470BA00C83B62 /* SLMoreController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
