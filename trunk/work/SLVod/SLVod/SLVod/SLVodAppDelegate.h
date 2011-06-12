@@ -19,4 +19,7 @@
 @property (nonatomic, retain) BCTabBarController *tabBarController;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
+- (void)hideTabbar;
+- (void)showTabbar;
+
 @end
