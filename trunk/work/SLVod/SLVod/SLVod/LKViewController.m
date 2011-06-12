@@ -7,6 +7,7 @@
 //
 
 #import "LKViewController.h"
+#import "SLMovie.h"
 
 @interface LKViewController ()
 @end
@@ -15,12 +16,12 @@
 @implementation LKViewController
 
 @synthesize allRequestShouldCancel;
-@synthesize jsonData, movies, listConn, imageArray, imageDownloadsInProgress;
+@synthesize jsonData, movies, listConn, imageDownloadsInProgress; 
 
 - (void)dealloc
 {
+    MLog(@"");
     self.imageDownloadsInProgress = nil;
-    self.imageArray = nil;
     [self.listConn cancel];
     self.listConn = nil;
     self.jsonData = nil;
@@ -53,6 +54,7 @@
     [super viewDidLoad];
     
     self.movies = [NSMutableArray array];
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
 }
 
 - (void)viewDidUnload
@@ -100,7 +102,7 @@
 			if (imageDown == nil) 
 			{
 				imageDown = [[LKImgDownload alloc] init];
-				imageDown.tableRecord = brecord;
+				imageDown.imgRecord = brecord;
 				imageDown.indexPathInTableView = indexPath;
 				imageDown.delegate = self;
 				[imageDownloadsInProgress setObject:imageDown forKey:indexPath];
@@ -113,12 +115,13 @@
 
 - (void)loadImagesForOnscreenRows:(UITableView *)theTable
 {
-    if ([imageArray count] > 0)
+    if ([movies count] > 0)
     {
         NSArray *visiblePaths = [theTable indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths)
         {
-			LKImageRecord *cRecord = [imageArray objectAtIndex:indexPath.row];
+            SLMovie *aMov = [movies objectAtIndex:indexPath.row];
+			LKImageRecord *cRecord = aMov.imgRecord;
 			if (cRecord.url) {
 				[self startImageDown:cRecord forIndexPath:indexPath];
 			}

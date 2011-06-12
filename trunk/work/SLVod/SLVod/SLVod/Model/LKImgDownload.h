@@ -24,7 +24,7 @@
 
 @interface LKImgDownload : NSObject {
 	
-	LKImageRecord				*tableRecord;
+	LKImageRecord				*imgRecord;
     NSIndexPath					*indexPathInTableView;
 	
     id <LKImgDownloadDelegate>	delegate;
@@ -33,7 +33,7 @@
     NSURLConnection				*imageConnection;
 }
 
-@property (nonatomic, retain) LKImageRecord					*tableRecord;
+@property (nonatomic, retain) LKImageRecord					*imgRecord;
 @property (nonatomic, retain) NSIndexPath					*indexPathInTableView;
 @property (nonatomic, assign) id <LKImgDownloadDelegate>	delegate;
 @property (nonatomic, retain) NSMutableData					*activeDownload;

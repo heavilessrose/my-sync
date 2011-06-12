@@ -12,12 +12,12 @@
 
 @implementation LKImgDownload
 
-@synthesize imageConnection, activeDownload, delegate, indexPathInTableView, tableRecord;
+@synthesize imageConnection, activeDownload, delegate, indexPathInTableView, imgRecord;
 
 - (void)dealloc {
 	
 	MLog(@"");
-	[tableRecord release];
+	[imgRecord release];
 	[indexPathInTableView release];
 	self.imageConnection = nil;
 	self.activeDownload = nil;
@@ -28,9 +28,9 @@
 	
     self.activeDownload = [NSMutableData data];
     NSURLConnection *conn = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:
-																	tableRecord.url]
+																	imgRecord.url]
 							 delegate:self];
-	NSLog(@"imageURLString == %@", tableRecord.url);
+	DLog(@"%@", imgRecord.url);
 	
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     self.imageConnection = conn;
@@ -76,7 +76,7 @@
 		self.tableRecord.picImage = image;
 	}
 #else
-	self.tableRecord.img = image;
+	self.imgRecord.img = image;
 #endif
 
     self.activeDownload = nil;
