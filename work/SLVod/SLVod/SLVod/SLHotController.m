@@ -7,6 +7,7 @@
 //
 
 #import "SLHotController.h"
+#import "SLMovDetailController.h"
 
 @interface SLHotController ()
 - (void)fetchHotMovs;
@@ -15,11 +16,10 @@
 
 @implementation SLHotController
 
-@synthesize table, tmpCell;
+@synthesize table;
 
 - (void)dealloc
 {
-    [tmpCell release];
     [table release];
     [super dealloc];
 }
@@ -47,7 +47,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"";
+    self.title = @"Hot";
     [self fetchHotMovs];
 }
 
@@ -157,12 +157,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    SLMovDetailController *detailVC = [[SLMovDetailController alloc] initWithNibName:@"SLMovDetailController" bundle:nil];
+    detailVC.mov = [movies objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    [detailVC release];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    DLOG
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
@@ -188,10 +193,10 @@
     SLHotCell *theCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
     if (!theCell) {
         [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
-        if (tmpCell) {
-            theCell = tmpCell;
+        if (tmpHotCell) {
+            theCell = tmpHotCell;
+            theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-//        theCell = [[[SLHotCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
     }
     theCell.movie = [movies objectAtIndex:indexPath.row];
     return theCell;

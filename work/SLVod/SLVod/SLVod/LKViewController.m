@@ -16,7 +16,8 @@
 @implementation LKViewController
 
 @synthesize allRequestShouldCancel;
-@synthesize jsonData, movies, listConn, imageDownloadsInProgress; 
+@synthesize jsonData, movies, listConn, imageDownloadsInProgress;
+@synthesize tmpHotCell, tmpMovInfoCell;
 
 - (void)dealloc
 {
@@ -27,6 +28,11 @@
     self.jsonData = nil;
     [movies release];
     self.jsonData = nil;
+    
+    //
+    [tmpHotCell release];
+    [tmpMovInfoCell release];
+    
     [super dealloc];
 }
 
@@ -140,6 +146,85 @@
 {
     // implement in subClasses
 }
+
+#pragma mark - play 
+
+- (void)play:(SLMovie *)theMov
+{
+    // implement in subClasses
+}
+
+
+
+#pragma mark - media player
+
+-(void)initAndPlayMovie:(NSURL *)movieURL
+{
+#if 0 // for sdk 3.0
+	MPMoviePlayerController *mp = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+	if (mp)
+	{
+		self.moviePlayer = mp;
+		[mp release];
+        
+		[self setMoviePlayerUserSettings];
+		[self.moviePlayer play];
+	}
+#else
+    
+    if (NSClassFromString(@"UISplitViewController") != nil) {
+        MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
+        [[mp moviePlayer] prepareToPlay];
+        [[mp moviePlayer] setShouldAutoplay:YES];
+        [[mp moviePlayer] setControlStyle:2];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+        
+        [self presentMoviePlayerViewControllerAnimated:mp];
+        
+        self.hidesBottomBarWhenPushed = YES;
+    }
+#endif
+}
+
+//  Notification called when the movie finished preloading.
+- (void)moviePreloadDidFinish:(NSNotification*)notification
+{
+    DLOG
+    /* 
+     < add your code here >
+     
+     MPMoviePlayerController* moviePlayerObj=[notification object];
+     etc.
+     */
+}
+
+//  Notification called when the movie finished playing.
+- (void)moviePlayBackDidFinish:(NSNotification*)notification
+{
+    DLOG
+    self.hidesBottomBarWhenPushed = NO;
+    [self dismissMoviePlayerViewControllerAnimated];
+    /*     
+     < add your code here >
+     
+     MPMoviePlayerController* moviePlayerObj=[notification object];
+     etc.
+     */
+}
+
+//  Notification called when the movie scaling mode has changed.
+- (void)movieScalingModeDidChange:(NSNotification*)notification
+{
+    DLOG
+    /* 
+     < add your code here >
+     
+     MPMoviePlayerController* moviePlayerObj=[notification object];
+     etc.
+     */
+}
+
+
 
 #pragma mark - BCTabbar 
 

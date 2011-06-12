@@ -15,9 +15,12 @@
 #import "LKImageRecord.h"
 #import "LKShadowTableView.h"
 
+#import "SLHotCell.h"
+#import "SLMovInfoCell.h"
+
 #import "SLVodAppDelegate.h"
 
-@interface LKViewController : UIViewController <LKImgDownloadDelegate> {
+@interface LKViewController : UIViewController <LKImgDownloadDelegate, SLPlayDelegate> {
     
     NSMutableData   *jsonData;
     NSMutableArray  *movies;
@@ -25,7 +28,14 @@
     
     BOOL            allRequestShouldCancel;
     NSMutableDictionary	*imageDownloadsInProgress;
+    
+    // cells
+    SLHotCell           *tmpHotCell;
+    SLMovInfoCell       *tmpMovInfoCell;
 }
+
+@property (nonatomic, retain) IBOutlet SLHotCell *tmpHotCell;
+@property (nonatomic, retain) IBOutlet SLMovInfoCell *tmpMovInfoCell;
 
 @property (nonatomic, assign) BOOL              allRequestShouldCancel;
 @property (nonatomic, retain) NSMutableDictionary	*imageDownloadsInProgress;
@@ -38,4 +48,6 @@
 
 - (void)loadImagesForOnscreenRows:(UITableView *)theTable;
 
+
+-(void)initAndPlayMovie:(NSURL *)movieURL;
 @end

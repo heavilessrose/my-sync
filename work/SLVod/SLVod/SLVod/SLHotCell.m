@@ -11,7 +11,7 @@
 
 @implementation SLHotCell
 
-@synthesize imageView;
+@synthesize imageView, playButton, playDelegate;
 @synthesize titleLabel;
 @synthesize actorLabel;
 @synthesize movie;
@@ -21,19 +21,11 @@
 {
     MLog(@"");
     [movie release];
+    [playButton release];
     [imageView release];
     [titleLabel release];
     [actorLabel release];
     [super dealloc];
-}
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -50,6 +42,17 @@
     movie = [theMov retain];
     self.titleLabel.text = theMov.title;
     self.actorLabel.text = theMov.actor;
+    
+    if (theMov.imgRecord && theMov.imgRecord.img) {
+        self.imageView.image = theMov.imgRecord.img;
+    }
+}
+
+- (IBAction)playButtonPressed:(UIButton *)pButton
+{
+    if (playDelegate && [playDelegate respondsToSelector:@selector(play:)]) {
+        [playDelegate play:movie];
+    }
 }
 
 @end

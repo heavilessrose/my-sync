@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class BCTabBarController;
 
 @interface SLVodAppDelegate : NSObject <UIApplicationDelegate> {
-
+    
     BCTabBarController *tabBarController;
 }
 

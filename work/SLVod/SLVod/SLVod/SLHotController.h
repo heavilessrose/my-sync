@@ -12,9 +12,7 @@
 
 @interface SLHotController : LKViewController <UITableViewDelegate, UITableViewDataSource> {
     LKShadowTableView   *table;
-    SLHotCell           *tmpCell;
 }
 
-@property (nonatomic, retain) IBOutlet SLHotCell            *tmpCell;
 @property (nonatomic, retain) IBOutlet LKShadowTableView    *table;
 @end
