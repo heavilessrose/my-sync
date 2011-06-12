@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3136FA713A4954800EECA6A /* LKStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136F9E13A4954800EECA6A /* LKStatusBar.m */; };
+		A3136FA813A4954800EECA6A /* LKTip.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA013A4954800EECA6A /* LKTip.m */; };
+		A3136FA913A4954800EECA6A /* LKTipCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA213A4954800EECA6A /* LKTipCenter.m */; };
+		A3136FAA13A4954800EECA6A /* LKTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA413A4954800EECA6A /* LKTipView.m */; };
+		A3136FAB13A4954800EECA6A /* statusbar_default.png in Resources */ = {isa = PBXBuildFile; fileRef = A3136FA513A4954800EECA6A /* statusbar_default.png */; };
+		A3136FAC13A4954800EECA6A /* statusMsgImg.png in Resources */ = {isa = PBXBuildFile; fileRef = A3136FA613A4954800EECA6A /* statusMsgImg.png */; };
+		A3136FAF13A4957500EECA6A /* UIView+LKAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */; };
 		A3D66EF013A4662400C83B62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EEF13A4662400C83B62 /* UIKit.framework */; };
 		A3D66EF213A4662400C83B62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF113A4662400C83B62 /* Foundation.framework */; };
 		A3D66EF413A4662400C83B62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF313A4662400C83B62 /* CoreGraphics.framework */; };
@@ -73,6 +80,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A3136F9D13A4954800EECA6A /* LKStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStatusBar.h; sourceTree = "<group>"; };
+		A3136F9E13A4954800EECA6A /* LKStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStatusBar.m; sourceTree = "<group>"; };
+		A3136F9F13A4954800EECA6A /* LKTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTip.h; sourceTree = "<group>"; };
+		A3136FA013A4954800EECA6A /* LKTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTip.m; sourceTree = "<group>"; };
+		A3136FA113A4954800EECA6A /* LKTipCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTipCenter.h; sourceTree = "<group>"; };
+		A3136FA213A4954800EECA6A /* LKTipCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTipCenter.m; sourceTree = "<group>"; };
+		A3136FA313A4954800EECA6A /* LKTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTipView.h; sourceTree = "<group>"; };
+		A3136FA413A4954800EECA6A /* LKTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTipView.m; sourceTree = "<group>"; };
+		A3136FA513A4954800EECA6A /* statusbar_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusbar_default.png; sourceTree = "<group>"; };
+		A3136FA613A4954800EECA6A /* statusMsgImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusMsgImg.png; sourceTree = "<group>"; };
+		A3136FAD13A4957500EECA6A /* UIView+LKAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LKAddition.h"; sourceTree = "<group>"; };
+		A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LKAddition.m"; sourceTree = "<group>"; };
 		A3D66EEB13A4662400C83B62 /* SLVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D66EEF13A4662400C83B62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3D66EF113A4662400C83B62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -362,6 +381,18 @@
 			children = (
 				A3D66FB713A47FBB00C83B62 /* LKShadowTableView.h */,
 				A3D66FB813A47FBB00C83B62 /* LKShadowTableView.m */,
+				A3136FAD13A4957500EECA6A /* UIView+LKAddition.h */,
+				A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */,
+				A3136F9D13A4954800EECA6A /* LKStatusBar.h */,
+				A3136F9E13A4954800EECA6A /* LKStatusBar.m */,
+				A3136F9F13A4954800EECA6A /* LKTip.h */,
+				A3136FA013A4954800EECA6A /* LKTip.m */,
+				A3136FA113A4954800EECA6A /* LKTipCenter.h */,
+				A3136FA213A4954800EECA6A /* LKTipCenter.m */,
+				A3136FA313A4954800EECA6A /* LKTipView.h */,
+				A3136FA413A4954800EECA6A /* LKTipView.m */,
+				A3136FA513A4954800EECA6A /* statusbar_default.png */,
+				A3136FA613A4954800EECA6A /* statusMsgImg.png */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -466,6 +497,8 @@
 				A3D66F8513A473FC00C83B62 /* magnifying-glass.png in Resources */,
 				A3D66F8613A473FC00C83B62 /* magnifying-glass@2x.png in Resources */,
 				A3D66FC613A4855400C83B62 /* SLHotCell.xib in Resources */,
+				A3136FAB13A4954800EECA6A /* statusbar_default.png in Resources */,
+				A3136FAC13A4954800EECA6A /* statusMsgImg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +563,11 @@
 				A3D66FB913A47FBB00C83B62 /* LKShadowTableView.m in Sources */,
 				A3D66FBF13A4829000C83B62 /* SLMovie.m in Sources */,
 				A3D66FC213A4851200C83B62 /* SLHotCell.m in Sources */,
+				A3136FA713A4954800EECA6A /* LKStatusBar.m in Sources */,
+				A3136FA813A4954800EECA6A /* LKTip.m in Sources */,
+				A3136FA913A4954800EECA6A /* LKTipCenter.m in Sources */,
+				A3136FAA13A4954800EECA6A /* LKTipView.m in Sources */,
+				A3136FAF13A4957500EECA6A /* UIView+LKAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

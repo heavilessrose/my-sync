@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+iconImage.h"
 #import "SBJson.h"
+#import "LKTipCenter.h"
+#import "UIView+LKAddition.h"
 
 @interface LKViewController : UIViewController {
     

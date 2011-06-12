@@ -73,6 +73,7 @@
 // 
 - (void)fetchHotMovs {
     
+    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
     NSURL *hotsUrl = [NSURL URLWithString:SL_HOT relativeToURL:SL_BASE_HOST];
     NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
     NSURLConnection *hotsConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
@@ -116,14 +117,15 @@
     }
     [self cancelListConn];
     [table reloadData];
+    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     DLOG
     [self cancelListConn];
+    [[LKTipCenter defaultCenter] changeFallingTip:self.view withText:@"network err"];
 }
-
 
 
 #pragma mark json parse
