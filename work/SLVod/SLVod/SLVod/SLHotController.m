@@ -44,6 +44,13 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self fetchHotMovs];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -64,6 +71,7 @@
     NSURL *hotsUrl = [NSURL URLWithString:SL_HOT relativeToURL:SL_BASE_HOST];
     NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
     NSURLConnection *hotsConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
+    [hotsConn start];
 }
 
 #pragma mark connection handle 
