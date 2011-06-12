@@ -1,0 +1,442 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A3D66EF013A4662400C83B62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EEF13A4662400C83B62 /* UIKit.framework */; };
+		A3D66EF213A4662400C83B62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF113A4662400C83B62 /* Foundation.framework */; };
+		A3D66EF413A4662400C83B62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF313A4662400C83B62 /* CoreGraphics.framework */; };
+		A3D66EFA13A4662400C83B62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A3D66EF813A4662400C83B62 /* InfoPlist.strings */; };
+		A3D66EFD13A4662400C83B62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66EFC13A4662400C83B62 /* main.m */; };
+		A3D66F0013A4662400C83B62 /* SLVodAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66EFF13A4662400C83B62 /* SLVodAppDelegate.m */; };
+		A3D66F0313A4662400C83B62 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F0113A4662400C83B62 /* MainWindow.xib */; };
+		A3D66F0A13A4662400C83B62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EEF13A4662400C83B62 /* UIKit.framework */; };
+		A3D66F0B13A4662400C83B62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF113A4662400C83B62 /* Foundation.framework */; };
+		A3D66F0C13A4662400C83B62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF313A4662400C83B62 /* CoreGraphics.framework */; };
+		A3D66F1413A4662400C83B62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F1213A4662400C83B62 /* InfoPlist.strings */; };
+		A3D66F1713A4662400C83B62 /* SLVodTests.h in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F1613A4662400C83B62 /* SLVodTests.h */; };
+		A3D66F1913A4662400C83B62 /* SLVodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F1813A4662400C83B62 /* SLVodTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A3D66F0D13A4662400C83B62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3D66EE213A4662400C83B62 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3D66EEA13A4662400C83B62;
+			remoteInfo = SLVod;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A3D66EEB13A4662400C83B62 /* SLVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3D66EEF13A4662400C83B62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A3D66EF113A4662400C83B62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A3D66EF313A4662400C83B62 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A3D66EF713A4662400C83B62 /* SLVod-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SLVod-Info.plist"; sourceTree = "<group>"; };
+		A3D66EF913A4662400C83B62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A3D66EFB13A4662400C83B62 /* SLVod-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLVod-Prefix.pch"; sourceTree = "<group>"; };
+		A3D66EFC13A4662400C83B62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A3D66EFE13A4662400C83B62 /* SLVodAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLVodAppDelegate.h; sourceTree = "<group>"; };
+		A3D66EFF13A4662400C83B62 /* SLVodAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLVodAppDelegate.m; sourceTree = "<group>"; };
+		A3D66F0213A4662400C83B62 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		A3D66F0913A4662400C83B62 /* SLVodTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SLVodTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3D66F1113A4662400C83B62 /* SLVodTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SLVodTests-Info.plist"; sourceTree = "<group>"; };
+		A3D66F1313A4662400C83B62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A3D66F1513A4662400C83B62 /* SLVodTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLVodTests-Prefix.pch"; sourceTree = "<group>"; };
+		A3D66F1613A4662400C83B62 /* SLVodTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLVodTests.h; sourceTree = "<group>"; };
+		A3D66F1813A4662400C83B62 /* SLVodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLVodTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A3D66EE813A4662400C83B62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3D66EF013A4662400C83B62 /* UIKit.framework in Frameworks */,
+				A3D66EF213A4662400C83B62 /* Foundation.framework in Frameworks */,
+				A3D66EF413A4662400C83B62 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D66F0513A4662400C83B62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3D66F0A13A4662400C83B62 /* UIKit.framework in Frameworks */,
+				A3D66F0B13A4662400C83B62 /* Foundation.framework in Frameworks */,
+				A3D66F0C13A4662400C83B62 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A3D66EE013A4662400C83B62 = {
+			isa = PBXGroup;
+			children = (
+				A3D66EF513A4662400C83B62 /* SLVod */,
+				A3D66F0F13A4662400C83B62 /* SLVodTests */,
+				A3D66EEE13A4662400C83B62 /* Frameworks */,
+				A3D66EEC13A4662400C83B62 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A3D66EEC13A4662400C83B62 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3D66EEB13A4662400C83B62 /* SLVod.app */,
+				A3D66F0913A4662400C83B62 /* SLVodTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A3D66EEE13A4662400C83B62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A3D66EEF13A4662400C83B62 /* UIKit.framework */,
+				A3D66EF113A4662400C83B62 /* Foundation.framework */,
+				A3D66EF313A4662400C83B62 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3D66EF513A4662400C83B62 /* SLVod */ = {
+			isa = PBXGroup;
+			children = (
+				A3D66EFE13A4662400C83B62 /* SLVodAppDelegate.h */,
+				A3D66EFF13A4662400C83B62 /* SLVodAppDelegate.m */,
+				A3D66F0113A4662400C83B62 /* MainWindow.xib */,
+				A3D66EF613A4662400C83B62 /* Supporting Files */,
+			);
+			path = SLVod;
+			sourceTree = "<group>";
+		};
+		A3D66EF613A4662400C83B62 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A3D66EF713A4662400C83B62 /* SLVod-Info.plist */,
+				A3D66EF813A4662400C83B62 /* InfoPlist.strings */,
+				A3D66EFB13A4662400C83B62 /* SLVod-Prefix.pch */,
+				A3D66EFC13A4662400C83B62 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3D66F0F13A4662400C83B62 /* SLVodTests */ = {
+			isa = PBXGroup;
+			children = (
+				A3D66F1613A4662400C83B62 /* SLVodTests.h */,
+				A3D66F1813A4662400C83B62 /* SLVodTests.m */,
+				A3D66F1013A4662400C83B62 /* Supporting Files */,
+			);
+			path = SLVodTests;
+			sourceTree = "<group>";
+		};
+		A3D66F1013A4662400C83B62 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A3D66F1113A4662400C83B62 /* SLVodTests-Info.plist */,
+				A3D66F1213A4662400C83B62 /* InfoPlist.strings */,
+				A3D66F1513A4662400C83B62 /* SLVodTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A3D66EEA13A4662400C83B62 /* SLVod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3D66F1C13A4662400C83B62 /* Build configuration list for PBXNativeTarget "SLVod" */;
+			buildPhases = (
+				A3D66EE713A4662400C83B62 /* Sources */,
+				A3D66EE813A4662400C83B62 /* Frameworks */,
+				A3D66EE913A4662400C83B62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SLVod;
+			productName = SLVod;
+			productReference = A3D66EEB13A4662400C83B62 /* SLVod.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A3D66F0813A4662400C83B62 /* SLVodTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3D66F1F13A4662400C83B62 /* Build configuration list for PBXNativeTarget "SLVodTests" */;
+			buildPhases = (
+				A3D66F0413A4662400C83B62 /* Sources */,
+				A3D66F0513A4662400C83B62 /* Frameworks */,
+				A3D66F0613A4662400C83B62 /* Resources */,
+				A3D66F0713A4662400C83B62 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3D66F0E13A4662400C83B62 /* PBXTargetDependency */,
+			);
+			name = SLVodTests;
+			productName = SLVodTests;
+			productReference = A3D66F0913A4662400C83B62 /* SLVodTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3D66EE213A4662400C83B62 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = A3D66EE513A4662400C83B62 /* Build configuration list for PBXProject "SLVod" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A3D66EE013A4662400C83B62;
+			productRefGroup = A3D66EEC13A4662400C83B62 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3D66EEA13A4662400C83B62 /* SLVod */,
+				A3D66F0813A4662400C83B62 /* SLVodTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A3D66EE913A4662400C83B62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3D66EFA13A4662400C83B62 /* InfoPlist.strings in Resources */,
+				A3D66F0313A4662400C83B62 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D66F0613A4662400C83B62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3D66F1413A4662400C83B62 /* InfoPlist.strings in Resources */,
+				A3D66F1713A4662400C83B62 /* SLVodTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A3D66F0713A4662400C83B62 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A3D66EE713A4662400C83B62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3D66EFD13A4662400C83B62 /* main.m in Sources */,
+				A3D66F0013A4662400C83B62 /* SLVodAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D66F0413A4662400C83B62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3D66F1913A4662400C83B62 /* SLVodTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A3D66F0E13A4662400C83B62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3D66EEA13A4662400C83B62 /* SLVod */;
+			targetProxy = A3D66F0D13A4662400C83B62 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A3D66EF813A4662400C83B62 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3D66EF913A4662400C83B62 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A3D66F0113A4662400C83B62 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3D66F0213A4662400C83B62 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		A3D66F1213A4662400C83B62 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3D66F1313A4662400C83B62 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A3D66F1A13A4662400C83B62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A3D66F1B13A4662400C83B62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		A3D66F1D13A4662400C83B62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SLVod/SLVod-Prefix.pch";
+				INFOPLIST_FILE = "SLVod/SLVod-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A3D66F1E13A4662400C83B62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SLVod/SLVod-Prefix.pch";
+				INFOPLIST_FILE = "SLVod/SLVod-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A3D66F2013A4662400C83B62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SLVod.app/SLVod";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SLVodTests/SLVodTests-Prefix.pch";
+				INFOPLIST_FILE = "SLVodTests/SLVodTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		A3D66F2113A4662400C83B62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SLVod.app/SLVod";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SLVodTests/SLVodTests-Prefix.pch";
+				INFOPLIST_FILE = "SLVodTests/SLVodTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A3D66EE513A4662400C83B62 /* Build configuration list for PBXProject "SLVod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3D66F1A13A4662400C83B62 /* Debug */,
+				A3D66F1B13A4662400C83B62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3D66F1C13A4662400C83B62 /* Build configuration list for PBXNativeTarget "SLVod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3D66F1D13A4662400C83B62 /* Debug */,
+				A3D66F1E13A4662400C83B62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A3D66F1F13A4662400C83B62 /* Build configuration list for PBXNativeTarget "SLVodTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3D66F2013A4662400C83B62 /* Debug */,
+				A3D66F2113A4662400C83B62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A3D66EE213A4662400C83B62 /* Project object */;
+}
