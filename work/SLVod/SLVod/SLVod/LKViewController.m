@@ -8,8 +8,20 @@
 
 #import "LKViewController.h"
 
+@interface LKViewController ()
+@end
+
 
 @implementation LKViewController
+
+@synthesize jsonData, movies;
+
+- (void)dealloc
+{
+    [movies release];
+    self.jsonData = nil;
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -18,11 +30,6 @@
         // Custom initialization
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,7 +45,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.movies = [NSMutableArray array];
 }
 
 - (void)viewDidUnload
@@ -54,9 +62,22 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - JSON 
+- (id)parse:(NSData *)theData
+{
+	NSString *jsonStr = [[[NSString alloc] initWithData:theData 
+                                               encoding:NSUTF8StringEncoding] autorelease];
+    
+	if (jsonStr && [jsonStr length] > 0) {
+        return jsonStr;
+    }
+    
+    ALog(@"jsonStr invalid");
+    // should implemented in subClasses
+    return nil;
+}
 
-#pragma mark -
-#pragma BCTabbar 
+#pragma mark - BCTabbar 
 
 - (NSString *)iconImageName {
 	return @"magnifying-glass.png";

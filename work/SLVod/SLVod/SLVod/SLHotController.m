@@ -7,6 +7,7 @@
 //
 
 #import "SLHotController.h"
+#import "LKShadowTableView.h"
 
 @interface SLHotController ()
 - (void)fetchHotMovs;
@@ -15,8 +16,12 @@
 
 @implementation SLHotController
 
+@synthesize table, tmpCell;
+
 - (void)dealloc
 {
+    [tmpCell release];
+    [table release];
     [super dealloc];
 }
 
@@ -79,11 +84,24 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     DLOG
+    
+	if (jsonData) {
+		self.jsonData = nil;
+	}
+	NSLog(@"response: URL: %@", [response URL]);
+	NSLog(@"response: MIME: %@", [response MIMEType]);
+	NSLog(@"response: enc: %@", [response textEncodingName]);
+	self.jsonData = [NSMutableData data];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     DLOG
+	if (jsonData) {
+		[jsonData appendData:data];
+	} else {
+		ALog(@"jsonData invaliad!");
+	}
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -96,8 +114,64 @@
     DLOG
 }
 
-#pragma mark -
-#pragma BCTabbar 
+
+
+#pragma mark json parse
+
+- (id)parse:(NSData *)theData
+{
+    DLOG
+    NSString *jsonStr = [super parse:theData];
+    NSArray *hotList = [jsonStr JSONValue];
+    return hotList;
+}
+
+#pragma mark - table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+#pragma mark table data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [movies count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID = @"SLHotCell";
+    SLHotCell *theCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!theCell) {
+        theCell = [[[SLHotCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+    }
+    theCell.movie = [movies objectAtIndex:indexPath.row];
+    return theCell;
+}
+
+#pragma - BCTabbar 
 
 - (NSString *)iconImageName {
 	return @"magnifying-glass.png";
