@@ -107,11 +107,21 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     DLOG
+    NSArray *movList = [self parse:jsonData];
+    
+    for (NSDictionary *aDic in movList) {
+        SLMovie *aMov = [[SLMovie alloc] initWithDic:aDic];
+        [movies addObject:aMov];
+        [aMov release];
+    }
+    [self cancelListConn];
+    [table reloadData];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     DLOG
+    [self cancelListConn];
 }
 
 
@@ -123,6 +133,10 @@
     DLOG
     NSString *jsonStr = [super parse:theData];
     NSArray *hotList = [jsonStr JSONValue];
+    if (!hotList) {
+        ALog(@"no movie fetched");
+        return nil;
+    }
     return hotList;
 }
 
@@ -165,7 +179,11 @@
     static NSString *cellID = @"SLHotCell";
     SLHotCell *theCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
     if (!theCell) {
-        theCell = [[[SLHotCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+        [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
+        if (tmpCell) {
+            theCell = tmpCell;
+        }
+//        theCell = [[[SLHotCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
     }
     theCell.movie = [movies objectAtIndex:indexPath.row];
     return theCell;
