@@ -12,11 +12,13 @@
 
 @interface LKImageRecord : NSObject {
 	
-	NSString *imageURLString;
-	UIImage *picImage;
+	NSURL   *url;
+	UIImage *img;
 }
 
-@property (nonatomic, retain) UIImage	*picImage;
-@property (nonatomic, retain) NSString	*imageURLString;
+@property (nonatomic, retain) UIImage	*img;
+@property (nonatomic, retain) NSURL     *url;
+
+- (id)initWithUrl:(NSString *)urlStr;
 
 @end

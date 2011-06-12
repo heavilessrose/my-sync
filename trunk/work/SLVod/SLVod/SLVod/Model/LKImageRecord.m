@@ -11,15 +11,23 @@
 
 @implementation LKImageRecord
 
-@synthesize picImage;
-@synthesize imageURLString;
+@synthesize img;
+@synthesize url;
 
 - (void)dealloc
 {
 	MLog(@"");
-	[picImage release];
-	[imageURLString release];
+	[img release];
+	[url release];
 	[super dealloc];
+}
+
+- (id)initWithUrl:(NSString *)urlStr
+{
+    if ((self = [super init])) {
+        self.url = [NSURL URLWithString:urlStr];
+    }
+    return self;
 }
 
 @end

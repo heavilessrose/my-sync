@@ -11,19 +11,30 @@
 #import "SBJson.h"
 #import "LKTipCenter.h"
 #import "UIView+LKAddition.h"
+#import "LKImgDownload.h"
+#import "LKImageRecord.h"
 
-@interface LKViewController : UIViewController {
+@interface LKViewController : UIViewController <LKImgDownloadDelegate> {
     
     NSMutableData   *jsonData;
     NSMutableArray  *movies;
     NSURLConnection *listConn;
+    
+    BOOL            allRequestShouldCancel;
+    NSMutableDictionary	*imageDownloadsInProgress;
+	NSMutableArray  *imageArray;
 }
 
+@property (nonatomic, assign) BOOL              allRequestShouldCancel;
+@property (nonatomic, retain) NSMutableDictionary	*imageDownloadsInProgress;
+@property (nonatomic, retain) NSMutableArray    *imageArray;
 @property (nonatomic, retain) NSURLConnection   *listConn;
 @property (nonatomic, retain) NSMutableArray    *movies;
 @property (nonatomic, retain) NSMutableData     *jsonData;
 
 - (id)parse:(NSData *)theData;
 - (void)cancelListConn;
+
+- (void)loadImagesForOnscreenRows:(UITableView *)theTable;
 
 @end

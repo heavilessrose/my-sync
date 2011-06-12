@@ -9,7 +9,6 @@
 #import "LKTipCenter.h"
 #import "LKTipView.h"
 #import "LKTip.h"
-#import "LKStatusBar.h"
 
 /*
 @protocol LKTipDelegate <NSObject>

@@ -14,10 +14,13 @@
 
 @implementation LKViewController
 
-@synthesize jsonData, movies, listConn;
+@synthesize allRequestShouldCancel;
+@synthesize jsonData, movies, listConn, imageArray, imageDownloadsInProgress;
 
 - (void)dealloc
 {
+    self.imageDownloadsInProgress = nil;
+    self.imageArray = nil;
     [self.listConn cancel];
     self.listConn = nil;
     self.jsonData = nil;
@@ -85,6 +88,54 @@
     self.jsonData = nil;
     [self.listConn cancel];
     self.listConn = nil;
+}
+
+#pragma mark - image download handle
+
+- (void)startImageDown:(LKImageRecord *)brecord forIndexPath:(NSIndexPath *)indexPath
+{
+	@synchronized (imageDownloadsInProgress) {
+		if (!allRequestShouldCancel) {
+			LKImgDownload *imageDown = [imageDownloadsInProgress objectForKey:indexPath];
+			if (imageDown == nil) 
+			{
+				imageDown = [[LKImgDownload alloc] init];
+				imageDown.tableRecord = brecord;
+				imageDown.indexPathInTableView = indexPath;
+				imageDown.delegate = self;
+				[imageDownloadsInProgress setObject:imageDown forKey:indexPath];
+				[imageDown startDownload];
+				[imageDown release];   
+			}
+		}
+	}
+}
+
+- (void)loadImagesForOnscreenRows:(UITableView *)theTable
+{
+    if ([imageArray count] > 0)
+    {
+        NSArray *visiblePaths = [theTable indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+			LKImageRecord *cRecord = [imageArray objectAtIndex:indexPath.row];
+			if (cRecord.url) {
+				[self startImageDown:cRecord forIndexPath:indexPath];
+			}
+        }
+    }
+}
+
+#pragma mark LKImageDownloadDelegate
+
+- (void)imageDidLoad:(NSIndexPath *)indexPath
+{
+    // implement in subClasses
+}
+
+- (void)imageLoadFailed:(NSIndexPath *)indexPath
+{
+    // implement in subClasses
 }
 
 #pragma mark - BCTabbar 

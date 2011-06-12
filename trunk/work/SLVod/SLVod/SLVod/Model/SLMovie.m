@@ -12,16 +12,18 @@
 @implementation SLMovie
 
 @synthesize title;
-@synthesize imageUrl;
+//@synthesize imageUrl;
 @synthesize url;
 @synthesize content;
 @synthesize actor;
 @synthesize genre;
+@synthesize imgRecord;
 
 - (void)dealloc
 {
     self.title = nil;
-    self.imageUrl = nil;
+    self.imgRecord = nil;
+//    self.imageUrl = nil;
     self.url = nil;
     self.content = nil;
     self.actor = nil;
@@ -34,11 +36,13 @@
     if ((self = [super init])) {
         if (aDic && [aDic count] > 0) {
             self.title = [aDic objectForKey:@"title"];
-            self.imageUrl = [aDic objectForKey:@"image"];
+//            self.imageUrl = [aDic objectForKey:@"image"];
             self.url = [NSURL URLWithString:[aDic objectForKey:@"url"]];
             self.content = [aDic objectForKey:@"content"];
             self.actor = [aDic objectForKey:@"actor"];
             self.genre = [aDic objectForKey:@"typename"];
+            
+            imgRecord = [[LKImageRecord alloc] initWithUrl:[aDic objectForKey:@"image"]];
             return self;
         } else {
             self = nil;
