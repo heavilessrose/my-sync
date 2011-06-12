@@ -28,9 +28,9 @@
 	
     self.activeDownload = [NSMutableData data];
     NSURLConnection *conn = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:
-																	[NSURL URLWithString:tableRecord.imageURLString]]
+																	tableRecord.url]
 							 delegate:self];
-	NSLog(@"imageURLString == %@", tableRecord.imageURLString);
+	NSLog(@"imageURLString == %@", tableRecord.url);
 	
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     self.imageConnection = conn;
@@ -76,7 +76,7 @@
 		self.tableRecord.picImage = image;
 	}
 #else
-	self.tableRecord.picImage = image;
+	self.tableRecord.img = image;
 #endif
 
     self.activeDownload = nil;

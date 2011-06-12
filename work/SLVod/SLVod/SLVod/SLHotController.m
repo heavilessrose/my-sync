@@ -80,6 +80,10 @@
     [hotsConn start];
 }
 
+- (void)fetchImages {
+    [self performSelector:@selector(loadImagesForOnscreenRows:) withObject:self.table];
+}
+
 #pragma mark connection handle 
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -117,6 +121,8 @@
     }
     [self cancelListConn];
     [table reloadData];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
     [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
 }
 
@@ -191,7 +197,37 @@
     return theCell;
 }
 
-#pragma - BCTabbar 
+
+#pragma mark - LKImageDownloadDelegate
+
+- (void)imageDidLoad:(NSIndexPath *)indexPath
+{
+	LKImgDownload *imageDown = imageDown = [imageDownloadsInProgress objectForKey:indexPath];
+	
+    if (imageDown != nil)
+    {
+		SLHotCell *cell = (SLHotCell *)[self.table cellForRowAtIndexPath:imageDown.indexPathInTableView];
+        
+        [cell.imageView setImage:imageDown.tableRecord.img];
+        [imageDownloadsInProgress removeObjectForKey:indexPath];
+	}
+}
+
+- (void)imageLoadFailed:(NSIndexPath *)indexPath
+{
+	DLog(@"cell image loaded fail at %@", indexPath);
+	LKImgDownload *imageDown = imageDown = [imageDownloadsInProgress objectForKey:indexPath];
+	
+    if (imageDown != nil)
+    {
+		SLHotCell *cell = (SLHotCell *)[self.table cellForRowAtIndexPath:imageDown.indexPathInTableView];
+        [cell.imageView setImage:[UIImage imageNamed: @"nopic.png"]];
+	}
+	[imageDownloadsInProgress removeObjectForKey:indexPath];
+}
+
+
+#pragma mark - BCTabbar 
 
 - (NSString *)iconImageName {
 	return @"magnifying-glass.png";
