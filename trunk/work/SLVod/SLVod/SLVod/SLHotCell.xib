@@ -80,7 +80,10 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
-								<nil key="IBUIHighlightedColor"/>
+								<object class="NSColor" key="IBUIHighlightedColor" id="371786196">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+								</object>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
@@ -105,19 +108,15 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yOTU5MTgzNjczIDAuMjk1OTE4MzY3MyAwLjI5NTkxODM2NzMAA</bytes>
 								</object>
-								<object class="NSColor" key="IBUIHighlightedColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
-								</object>
-								<object class="NSColor" key="IBUIShadowColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
+								<reference key="IBUIHighlightedColor" ref="371786196"/>
+								<reference key="IBUIShadowColor" ref="371786196"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUINumberOfLines">0</int>
+								<int key="IBUILineBreakMode">0</int>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 80}</string>
+						<string key="NSFrameSize">{300, 80}</string>
 						<reference key="NSSuperview" ref="609096183"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="809180818"/>
@@ -142,6 +141,7 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
+				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="699397604"/>
 				<string key="IBUIReuseIdentifier">SLHotCell</string>
 			</object>
