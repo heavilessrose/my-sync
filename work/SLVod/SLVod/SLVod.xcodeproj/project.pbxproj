@@ -39,6 +39,10 @@
 		A3D66F7813A470A300C83B62 /* SLFavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F7613A470A300C83B62 /* SLFavController.xib */; };
 		A3D66F7C13A470BA00C83B62 /* SLMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66F7A13A470BA00C83B62 /* SLMoreController.m */; };
 		A3D66F7D13A470BA00C83B62 /* SLMoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F7B13A470BA00C83B62 /* SLMoreController.xib */; };
+		A3D66F8313A473FC00C83B62 /* magnifying-glass-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F7F13A473FC00C83B62 /* magnifying-glass-selected.png */; };
+		A3D66F8413A473FC00C83B62 /* magnifying-glass-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F8013A473FC00C83B62 /* magnifying-glass-selected@2x.png */; };
+		A3D66F8513A473FC00C83B62 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F8113A473FC00C83B62 /* magnifying-glass.png */; };
+		A3D66F8613A473FC00C83B62 /* magnifying-glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D66F8213A473FC00C83B62 /* magnifying-glass@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +105,10 @@
 		A3D66F7913A470B900C83B62 /* SLMoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLMoreController.h; sourceTree = "<group>"; };
 		A3D66F7A13A470BA00C83B62 /* SLMoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLMoreController.m; sourceTree = "<group>"; };
 		A3D66F7B13A470BA00C83B62 /* SLMoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLMoreController.xib; sourceTree = "<group>"; };
+		A3D66F7F13A473FC00C83B62 /* magnifying-glass-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass-selected.png"; sourceTree = "<group>"; };
+		A3D66F8013A473FC00C83B62 /* magnifying-glass-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass-selected@2x.png"; sourceTree = "<group>"; };
+		A3D66F8113A473FC00C83B62 /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass.png"; sourceTree = "<group>"; };
+		A3D66F8213A473FC00C83B62 /* magnifying-glass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifying-glass@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +140,7 @@
 			children = (
 				A3D66F4713A469DA00C83B62 /* Share */,
 				A3D66EF513A4662400C83B62 /* SLVod */,
+				A3D66F7E13A473FC00C83B62 /* Resources */,
 				A3D66F0F13A4662400C83B62 /* SLVodTests */,
 				A3D66EEE13A4662400C83B62 /* Frameworks */,
 				A3D66EEC13A4662400C83B62 /* Products */,
@@ -247,6 +256,17 @@
 			path = BCTabbar;
 			sourceTree = "<group>";
 		};
+		A3D66F7E13A473FC00C83B62 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A3D66F7F13A473FC00C83B62 /* magnifying-glass-selected.png */,
+				A3D66F8013A473FC00C83B62 /* magnifying-glass-selected@2x.png */,
+				A3D66F8113A473FC00C83B62 /* magnifying-glass.png */,
+				A3D66F8213A473FC00C83B62 /* magnifying-glass@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -323,6 +343,10 @@
 				A3D66F7313A4708A00C83B62 /* SLUserCenterController.xib in Resources */,
 				A3D66F7813A470A300C83B62 /* SLFavController.xib in Resources */,
 				A3D66F7D13A470BA00C83B62 /* SLMoreController.xib in Resources */,
+				A3D66F8313A473FC00C83B62 /* magnifying-glass-selected.png in Resources */,
+				A3D66F8413A473FC00C83B62 /* magnifying-glass-selected@2x.png in Resources */,
+				A3D66F8513A473FC00C83B62 /* magnifying-glass.png in Resources */,
+				A3D66F8613A473FC00C83B62 /* magnifying-glass@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
