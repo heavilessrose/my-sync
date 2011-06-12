@@ -1,5 +1,5 @@
 //
-//  SLCategoryController.h
+//  SLMovInfoCell.h
 //  SLVod
 //
 //  Created by luke on 11-6-12.
@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LKViewController.h"
 
 
-@interface SLCategoryController : LKViewController {
+@interface SLMovInfoCell : UITableViewCell {
     
 }
 

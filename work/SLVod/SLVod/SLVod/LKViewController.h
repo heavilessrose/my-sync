@@ -13,6 +13,9 @@
 #import "UIView+LKAddition.h"
 #import "LKImgDownload.h"
 #import "LKImageRecord.h"
+#import "LKShadowTableView.h"
+
+#import "SLVodAppDelegate.h"
 
 @interface LKViewController : UIViewController <LKImgDownloadDelegate> {
     

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKViewController.h"
 
 
 @interface SLMoreController : LKViewController {
