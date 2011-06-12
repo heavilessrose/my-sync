@@ -8,8 +8,17 @@
 
 #import "SLHotController.h"
 
+@interface SLHotController ()
+- (void)fetchHotMovs;
+@end
+
 
 @implementation SLHotController
+
+- (void)dealloc
+{
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -18,11 +27,6 @@
         // Custom initialization
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,7 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
@@ -52,6 +55,37 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - hot movs: http://i.siluhd.com/ipadgetnew.asp
+// 
+- (void)fetchHotMovs {
+    
+    NSURL *hotsUrl = [NSURL URLWithString:SL_HOT relativeToURL:SL_BASE_HOST];
+    NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
+    NSURLConnection *hotsConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
+}
+
+#pragma mark connection handle 
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    DLOG
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    DLOG
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    DLOG
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    DLOG
 }
 
 #pragma mark -
