@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SLHotCell.h"
+#import "LKViewController.h"
 
-@class LKShadowTableView;
 @interface SLHotController : LKViewController <UITableViewDelegate, UITableViewDataSource> {
     LKShadowTableView   *table;
     SLHotCell           *tmpCell;

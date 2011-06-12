@@ -13,6 +13,10 @@
 		A3136FAF13A4957500EECA6A /* UIView+LKAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */; };
 		A3C7D28213A4A5AC0050FD28 /* LKImageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */; };
 		A3C7D28313A4A5AC0050FD28 /* LKImgDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */; };
+		A3C7D28713A4B7960050FD28 /* SLMovDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28513A4B7950050FD28 /* SLMovDetailController.m */; };
+		A3C7D28813A4B7960050FD28 /* SLMovDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D28613A4B7950050FD28 /* SLMovDetailController.xib */; };
+		A3C7D28B13A4B95D0050FD28 /* SLMovInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28A13A4B95D0050FD28 /* SLMovInfoCell.m */; };
+		A3C7D28D13A4B9740050FD28 /* SLMovInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D28C13A4B9740050FD28 /* SLMovInfoCell.xib */; };
 		A3D66EF013A4662400C83B62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EEF13A4662400C83B62 /* UIKit.framework */; };
 		A3D66EF213A4662400C83B62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF113A4662400C83B62 /* Foundation.framework */; };
 		A3D66EF413A4662400C83B62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF313A4662400C83B62 /* CoreGraphics.framework */; };
@@ -87,10 +91,16 @@
 		A3136FA413A4954800EECA6A /* LKTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTipView.m; sourceTree = "<group>"; };
 		A3136FAD13A4957500EECA6A /* UIView+LKAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LKAddition.h"; sourceTree = "<group>"; };
 		A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LKAddition.m"; sourceTree = "<group>"; };
-		A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; path = LKImageRecord.h; sourceTree = "<group>"; };
+		A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImageRecord.h; sourceTree = "<group>"; };
 		A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImageRecord.m; sourceTree = "<group>"; };
-		A3C7D28013A4A5AC0050FD28 /* LKImgDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; path = LKImgDownload.h; sourceTree = "<group>"; };
+		A3C7D28013A4A5AC0050FD28 /* LKImgDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImgDownload.h; sourceTree = "<group>"; };
 		A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImgDownload.m; sourceTree = "<group>"; };
+		A3C7D28413A4B7950050FD28 /* SLMovDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLMovDetailController.h; sourceTree = "<group>"; };
+		A3C7D28513A4B7950050FD28 /* SLMovDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLMovDetailController.m; sourceTree = "<group>"; };
+		A3C7D28613A4B7950050FD28 /* SLMovDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLMovDetailController.xib; sourceTree = "<group>"; };
+		A3C7D28913A4B95D0050FD28 /* SLMovInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLMovInfoCell.h; sourceTree = "<group>"; };
+		A3C7D28A13A4B95D0050FD28 /* SLMovInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLMovInfoCell.m; sourceTree = "<group>"; };
+		A3C7D28C13A4B9740050FD28 /* SLMovInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLMovInfoCell.xib; sourceTree = "<group>"; };
 		A3D66EEB13A4662400C83B62 /* SLVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D66EEF13A4662400C83B62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3D66EF113A4662400C83B62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -252,6 +262,9 @@
 				A3D66F6513A4704200C83B62 /* SLHotController.h */,
 				A3D66F6613A4704200C83B62 /* SLHotController.m */,
 				A3D66F6713A4704200C83B62 /* SLHotController.xib */,
+				A3C7D28413A4B7950050FD28 /* SLMovDetailController.h */,
+				A3C7D28513A4B7950050FD28 /* SLMovDetailController.m */,
+				A3C7D28613A4B7950050FD28 /* SLMovDetailController.xib */,
 				A3D66F6A13A4706200C83B62 /* SLCategoryController.h */,
 				A3D66F6B13A4706200C83B62 /* SLCategoryController.m */,
 				A3D66F6C13A4706200C83B62 /* SLCategoryController.xib */,
@@ -411,6 +424,9 @@
 				A3D66FC013A4851100C83B62 /* SLHotCell.h */,
 				A3D66FC113A4851100C83B62 /* SLHotCell.m */,
 				A3D66FC513A4855400C83B62 /* SLHotCell.xib */,
+				A3C7D28913A4B95D0050FD28 /* SLMovInfoCell.h */,
+				A3C7D28A13A4B95D0050FD28 /* SLMovInfoCell.m */,
+				A3C7D28C13A4B9740050FD28 /* SLMovInfoCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -496,6 +512,8 @@
 				A3D66F8513A473FC00C83B62 /* magnifying-glass.png in Resources */,
 				A3D66F8613A473FC00C83B62 /* magnifying-glass@2x.png in Resources */,
 				A3D66FC613A4855400C83B62 /* SLHotCell.xib in Resources */,
+				A3C7D28813A4B7960050FD28 /* SLMovDetailController.xib in Resources */,
+				A3C7D28D13A4B9740050FD28 /* SLMovInfoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +584,8 @@
 				A3136FAF13A4957500EECA6A /* UIView+LKAddition.m in Sources */,
 				A3C7D28213A4A5AC0050FD28 /* LKImageRecord.m in Sources */,
 				A3C7D28313A4A5AC0050FD28 /* LKImgDownload.m in Sources */,
+				A3C7D28713A4B7960050FD28 /* SLMovDetailController.m in Sources */,
+				A3C7D28B13A4B95D0050FD28 /* SLMovInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

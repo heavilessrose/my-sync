@@ -7,7 +7,6 @@
 //
 
 #import "SLHotController.h"
-#import "LKShadowTableView.h"
 
 @interface SLHotController ()
 - (void)fetchHotMovs;
@@ -47,13 +46,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"";
+    [self fetchHotMovs];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self fetchHotMovs];
 }
 
 - (void)viewDidUnload

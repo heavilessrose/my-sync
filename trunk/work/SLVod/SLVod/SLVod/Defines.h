@@ -6,9 +6,6 @@
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
-#import "SLVodAppDelegate.h"
-#import "LKViewController.h"
-
 #define globalApp ((siluVodAppDelegate *)[UIApplication sharedApplication].delegate)
 
 // Color
