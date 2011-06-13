@@ -146,7 +146,7 @@
 {
     DLOG
 	
-    NSURL *movieURL = [NSURL URLWithString:@"http://127.0.0.1/~luke/html5/video/res/Movie.m4v"];//self.mov.url;
+    NSURL *movieURL = self.mov.url;//[NSURL URLWithString:@"http://127.0.0.1/~luke/html5/video/res/Movie.m4v"];
     if (movieURL)
     {
         if ([movieURL scheme])	// sanity check on the URL

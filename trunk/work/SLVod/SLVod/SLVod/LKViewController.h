@@ -34,8 +34,8 @@
     SLMovInfoCell       *tmpMovInfoCell;
 }
 
-@property (nonatomic, retain) IBOutlet SLHotCell *tmpHotCell;
-@property (nonatomic, retain) IBOutlet SLMovInfoCell *tmpMovInfoCell;
+@property (nonatomic, assign) IBOutlet SLHotCell *tmpHotCell;
+@property (nonatomic, assign) IBOutlet SLMovInfoCell *tmpMovInfoCell;
 
 @property (nonatomic, assign) BOOL              allRequestShouldCancel;
 @property (nonatomic, retain) NSMutableDictionary	*imageDownloadsInProgress;

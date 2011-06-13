@@ -29,10 +29,6 @@
     [movies release];
     self.jsonData = nil;
     
-    //
-    [tmpHotCell release];
-    [tmpMovInfoCell release];
-    
     [super dealloc];
 }
 
@@ -160,18 +156,6 @@
 
 -(void)initAndPlayMovie:(NSURL *)movieURL
 {
-#if 0 // for sdk 3.0
-	MPMoviePlayerController *mp = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
-	if (mp)
-	{
-		self.moviePlayer = mp;
-		[mp release];
-        
-		[self setMoviePlayerUserSettings];
-		[self.moviePlayer play];
-	}
-#else
-    
     if (NSClassFromString(@"UISplitViewController") != nil) {
         MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
         [[mp moviePlayer] prepareToPlay];
@@ -183,7 +167,6 @@
         
         [globalApp hideTabbar];
     }
-#endif
 }
 
 //  Notification called when the movie finished preloading.

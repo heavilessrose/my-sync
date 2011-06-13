@@ -38,23 +38,23 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUITableViewCell" id="785183474">
+			<object class="IBUITableViewCell" id="640455401">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIView" id="864618791">
-						<reference key="NSNextResponder" ref="785183474"/>
+					<object class="IBUIView" id="102978398">
+						<reference key="NSNextResponder" ref="640455401"/>
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUILabel" id="801882295">
-								<reference key="NSNextResponder" ref="864618791"/>
+							<object class="IBUILabel" id="152624778">
+								<reference key="NSNextResponder" ref="102978398"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 20}, {117, 21}}</string>
-								<reference key="NSSuperview" ref="864618791"/>
+								<reference key="NSSuperview" ref="102978398"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="974805265"/>
+								<reference key="NSNextKeyView" ref="278505123"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -74,14 +74,14 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
-							<object class="IBUITextView" id="974805265">
-								<reference key="NSNextResponder" ref="864618791"/>
+							<object class="IBUITextView" id="278505123">
+								<reference key="NSNextResponder" ref="102978398"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 49}, {280, 32}}</string>
-								<reference key="NSSuperview" ref="864618791"/>
+								<reference key="NSSuperview" ref="102978398"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
-								<object class="NSColor" key="IBUIBackgroundColor" id="727145940">
+								<object class="NSColor" key="IBUIBackgroundColor" id="590874981">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
 								</object>
@@ -97,9 +97,9 @@
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 101}</string>
-						<reference key="NSSuperview" ref="785183474"/>
+						<reference key="NSSuperview" ref="640455401"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="801882295"/>
+						<reference key="NSNextKeyView" ref="152624778"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -114,11 +114,12 @@
 				<string key="NSFrameSize">{320, 101}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="864618791"/>
-				<reference key="IBUIBackgroundColor" ref="727145940"/>
+				<reference key="NSNextKeyView" ref="102978398"/>
+				<reference key="IBUIBackgroundColor" ref="590874981"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
-				<reference key="IBUIContentView" ref="864618791"/>
+				<reference key="IBUIContentView" ref="102978398"/>
+				<string key="IBUIReuseIdentifier">SLMovInfoCell</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -127,16 +128,16 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">label</string>
-						<reference key="source" ref="785183474"/>
-						<reference key="destination" ref="801882295"/>
+						<reference key="source" ref="640455401"/>
+						<reference key="destination" ref="152624778"/>
 					</object>
 					<int key="connectionID">7</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">contentTextView</string>
-						<reference key="source" ref="785183474"/>
-						<reference key="destination" ref="974805265"/>
+						<reference key="source" ref="640455401"/>
+						<reference key="destination" ref="278505123"/>
 					</object>
 					<int key="connectionID">9</int>
 				</object>
@@ -144,7 +145,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tmpMovInfoCell</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="785183474"/>
+						<reference key="destination" ref="640455401"/>
 					</object>
 					<int key="connectionID">10</int>
 				</object>
@@ -171,24 +172,24 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
-						<reference key="object" ref="785183474"/>
+						<reference key="object" ref="640455401"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="801882295"/>
-							<reference ref="974805265"/>
+							<reference ref="152624778"/>
+							<reference ref="278505123"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">tmpMovInfoCell</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
-						<reference key="object" ref="801882295"/>
-						<reference key="parent" ref="785183474"/>
+						<reference key="object" ref="152624778"/>
+						<reference key="parent" ref="640455401"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
-						<reference key="object" ref="974805265"/>
-						<reference key="parent" ref="785183474"/>
+						<reference key="object" ref="278505123"/>
+						<reference key="parent" ref="640455401"/>
 						<string key="objectName">Text View</string>
 					</object>
 				</object>

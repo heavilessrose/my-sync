@@ -65,7 +65,7 @@
 								<string key="NSFrame">{{85, 8}, {161, 33}}</string>
 								<reference key="NSSuperview" ref="699397604"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="297607131"/>
+								<reference key="NSNextKeyView" ref="655807797"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -117,7 +117,7 @@
 								<int key="IBUINumberOfLines">0</int>
 								<int key="IBUILineBreakMode">0</int>
 							</object>
-							<object class="IBUIButton" id="297607131">
+							<object class="IBUIButton" id="655807797">
 								<reference key="NSNextResponder" ref="699397604"/>
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{250, 8}, {55, 37}}</string>
@@ -214,14 +214,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">playButton</string>
 						<reference key="source" ref="609096183"/>
-						<reference key="destination" ref="297607131"/>
+						<reference key="destination" ref="655807797"/>
 					</object>
 					<int key="connectionID">13</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">playButtonPressed:</string>
-						<reference key="source" ref="297607131"/>
+						<reference key="source" ref="655807797"/>
 						<reference key="destination" ref="609096183"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -256,7 +256,7 @@
 							<reference ref="809180818"/>
 							<reference ref="1049153260"/>
 							<reference ref="960614693"/>
-							<reference ref="297607131"/>
+							<reference ref="655807797"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">tmpHotCell</string>
@@ -278,7 +278,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="297607131"/>
+						<reference key="object" ref="655807797"/>
 						<reference key="parent" ref="609096183"/>
 						<string key="objectName">Button - 播放</string>
 					</object>
