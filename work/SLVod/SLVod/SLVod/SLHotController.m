@@ -196,6 +196,7 @@
         if (tmpHotCell) {
             theCell = tmpHotCell;
             theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            self.tmpHotCell = nil;
         }
     }
     theCell.movie = [movies objectAtIndex:indexPath.row];
