@@ -1,3 +1,11 @@
+//
+//  BCTab.m
+//  SLVod
+//
+//  Created by luke on 11-6-12.
+//  Copyright 2011年 __MyCompanyName__. All rights reserved.
+//
+
 #import "BCTab.h"
 
 @interface BCTab ()
@@ -9,7 +17,7 @@
 @synthesize rightBorder, background;
 
 - (id)initWithIconImageName:(NSString *)imageName {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.adjustsImageWhenHighlighted = NO;
 		self.background = [UIImage imageNamed:@"BCTabBarController.bundle/tab-background.png"];
 		self.rightBorder = [UIImage imageNamed:@"BCTabBarController.bundle/tab-right-border.png"];

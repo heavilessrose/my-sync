@@ -1,3 +1,11 @@
+//
+//  BCTabBar.m
+//  SLVod
+//
+//  Created by luke on 11-6-12.
+//  Copyright 2011年 __MyCompanyName__. All rights reserved.
+//
+
 #import "BCTabBar.h"
 #import "BCTab.h"
 #define kTabMargin 2.0
@@ -13,7 +21,7 @@
 
 - (id)initWithFrame:(CGRect)aFrame {
 
-	if (self = [super initWithFrame:aFrame]) {
+	if ((self = [super initWithFrame:aFrame])) {
 		self.backgroundImage = [UIImage imageNamed:@"BCTabBarController.bundle/tab-bar-background.png"];
 		self.arrow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BCTabBarController.bundle/tab-arrow.png"]] autorelease];
 		CGRect r = self.arrow.frame;
