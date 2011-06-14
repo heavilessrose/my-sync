@@ -11,7 +11,9 @@
 
 
 @interface SLCategoryController : LKViewController {
-    
+    LKShadowTableView   *table;
 }
+
+@property (nonatomic, retain) IBOutlet LKShadowTableView   *table;
 
 @end
