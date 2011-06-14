@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "LKViewController.h"
 #import "SLMovie.h"
-#import "SLHotCell.h"
-#import "SLMovInfoCell.h"
 
 // Notification string used for touches to the overlay view
 extern NSString * const OverlayViewTouchNotification;

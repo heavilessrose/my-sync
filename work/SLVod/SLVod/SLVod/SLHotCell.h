@@ -20,6 +20,7 @@
     UILabel         *titleLabel;
     UILabel         *actorLabel;
     UIButton        *playButton;
+    UILabel         *cateLabel;
     id<SLPlayDelegate> playDelegate;
     
     SLMovie         *movie;
@@ -31,6 +32,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView     *imageView;
 @property (nonatomic, retain) IBOutlet UILabel         *titleLabel;
 @property (nonatomic, retain) IBOutlet UILabel         *actorLabel;
+@property (nonatomic, retain) IBOutlet UILabel         *cateLabel;
 
 - (IBAction)playButtonPressed:(UIButton *)pButton;
 

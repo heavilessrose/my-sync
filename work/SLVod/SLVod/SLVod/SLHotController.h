@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SLHotCell.h"
 #import "LKViewController.h"
 
 @interface SLHotController : LKViewController <UITableViewDelegate, UITableViewDataSource> {

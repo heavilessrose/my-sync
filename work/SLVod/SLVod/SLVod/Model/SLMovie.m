@@ -16,7 +16,7 @@
 @synthesize url;
 @synthesize content;
 @synthesize actor;
-@synthesize genre;
+@synthesize cate;
 @synthesize imgRecord;
 
 - (void)dealloc
@@ -27,7 +27,7 @@
     self.url = nil;
     self.content = nil;
     self.actor = nil;
-    self.genre = nil;
+    self.cate = nil;
     [super dealloc];
 }
 
@@ -40,7 +40,7 @@
             self.url = [NSURL URLWithString:[aDic objectForKey:@"url"]];
             self.content = [aDic objectForKey:@"content"];
             self.actor = [aDic objectForKey:@"actor"];
-            self.genre = [aDic objectForKey:@"typename"];
+            self.cate = [aDic objectForKey:@"typename"];
             
             imgRecord = [[LKImageRecord alloc] initWithUrl:[aDic objectForKey:@"image"]];
             return self;

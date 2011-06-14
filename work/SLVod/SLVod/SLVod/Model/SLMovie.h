@@ -15,7 +15,7 @@
     NSURL       *url;
     NSString    *content;
     NSString    *actor;
-    NSString    *genre;
+    NSString    *cate;
     
     LKImageRecord   *imgRecord;
 }
@@ -26,7 +26,7 @@
 @property (nonatomic, retain) NSURL       *url;
 @property (nonatomic, retain) NSString    *content;
 @property (nonatomic, retain) NSString    *actor;
-@property (nonatomic, retain) NSString    *genre;
+@property (nonatomic, retain) NSString    *cate;
 
 - (id)initWithDic:(NSDictionary *)aDic;
 

@@ -13,7 +13,7 @@
 
 @synthesize imageView, playButton, playDelegate;
 @synthesize titleLabel;
-@synthesize actorLabel;
+@synthesize actorLabel, cateLabel;
 @synthesize movie;
 
 
@@ -42,6 +42,10 @@
     movie = [theMov retain];
     self.titleLabel.text = theMov.title;
     self.actorLabel.text = theMov.actor;
+    
+    if (theMov.cate) {
+        self.cateLabel.text = theMov.cate;
+    }
     
     if (theMov.imgRecord && theMov.imgRecord.img) {
         self.imageView.image = theMov.imgRecord.img;
