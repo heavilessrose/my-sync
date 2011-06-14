@@ -12,6 +12,8 @@
 @interface LKViewController ()
 @end
 
+#define LK_Frame_Portrait       CGRectMake(0, 0, 320, 372)
+#define LK_Frame_Landscape      CGRectMake(0, 0, 480, 239)
 
 @implementation LKViewController
 
@@ -69,7 +71,38 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (UIInterfaceOrientationIsLandscape(interfaceOrientation) || interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+#pragma mark Orientation
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    DLOG
+    if (toInterfaceOrientation == UIDeviceOrientationUnknown) {
+        DLog(@"UIDeviceOrientationUnknown");
+    }
+    if (toInterfaceOrientation == UIDeviceOrientationPortrait) {
+        DLog(@"UIDeviceOrientationPortrait: %@", self.view);
+        self.view.frame = LK_Frame_Portrait;
+    }
+    if (toInterfaceOrientation == UIDeviceOrientationLandscapeLeft) {
+        DLog(@"UIDeviceOrientationLandscapeLeft: %@", self.view);
+        self.view.frame = LK_Frame_Landscape;
+    }
+    if (toInterfaceOrientation == UIDeviceOrientationLandscapeRight) {
+        DLog(@"UIDeviceOrientationLandscapeRight: %@", self.view);
+        self.view.frame = LK_Frame_Landscape;
+    }
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    DLOG
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    DLOG
 }
 
 #pragma mark - JSON 
@@ -162,15 +195,14 @@
         [[mp moviePlayer] setShouldAutoplay:YES];
         [[mp moviePlayer] setControlStyle:MPMovieControlStyleFullscreen];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-        
         [self presentMoviePlayerViewControllerAnimated:mp];
-        
+        [mp release];
         [globalApp hideTabbar];
     }
 }
 
 //  Notification called when the movie finished preloading.
-- (void)moviePreloadDidFinish:(NSNotification*)notification
+- (void)moviePreloadDidFinish:(NSNotification *)notification
 {
     DLOG
     /* 
@@ -182,7 +214,7 @@
 }
 
 //  Notification called when the movie finished playing.
-- (void)moviePlayBackDidFinish:(NSNotification*)notification
+- (void)moviePlayBackDidFinish:(NSNotification *)notification
 {
     DLOG
     [globalApp showTabbar];
