@@ -9,8 +9,10 @@
 #import "LKViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "SLMovie.h"
+#import "LKVideoController.h"
 
 @interface LKViewController ()
+- (void)disselectCurrentRow;
 @end
 
 #define LK_Frame_Portrait       CGRectMake(0, 0, 320, 372)
@@ -20,7 +22,7 @@
 
 @synthesize allRequestShouldCancel;
 @synthesize jsonData, movies, listConn, imageDownloadsInProgress;
-@synthesize tmpHotCell, tmpMovInfoCell;
+@synthesize tmpHotCell, tmpMovInfoCell, theTable;
 
 - (void)dealloc
 {
@@ -62,6 +64,12 @@
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self disselectCurrentRow];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -72,8 +80,8 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    return (UIInterfaceOrientationIsLandscape(interfaceOrientation) || interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//    return (UIInterfaceOrientationIsLandscape(interfaceOrientation) || interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 #pragma mark Orientation
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -104,6 +112,15 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     DLOG
+}
+
+#pragma mark - table 
+- (void)disselectCurrentRow
+{
+    NSIndexPath *curSelectedIndex = [self.theTable indexPathForSelectedRow];
+    if (curSelectedIndex) {
+        [self.theTable deselectRowAtIndexPath:curSelectedIndex animated:YES];
+    }
 }
 
 #pragma mark - JSON 
@@ -149,11 +166,11 @@
 	}
 }
 
-- (void)loadImagesForOnscreenRows:(UITableView *)theTable
+- (void)loadImagesForOnscreenRows:(UITableView *)aTable
 {
     if ([movies count] > 0)
     {
-        NSArray *visiblePaths = [theTable indexPathsForVisibleRows];
+        NSArray *visiblePaths = [aTable indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths)
         {
             SLMovie *aMov = [movies objectAtIndex:indexPath.row];
@@ -191,7 +208,7 @@
 -(void)initAndPlayMovie:(NSURL *)movieURL
 {
     if (NSClassFromString(@"UISplitViewController") != nil) {
-        MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
+        LKVideoController *mp = [[LKVideoController alloc] initWithContentURL:movieURL];
         [[mp moviePlayer] prepareToPlay];
         [[mp moviePlayer] setShouldAutoplay:YES];
         [[mp moviePlayer] setControlStyle:MPMovieControlStyleFullscreen];
