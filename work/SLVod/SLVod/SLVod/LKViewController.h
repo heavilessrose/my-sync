@@ -14,6 +14,7 @@
 #import "LKImgDownload.h"
 #import "LKImageRecord.h"
 #import "LKShadowTableView.h"
+#import "NSString+URL.h"
 
 #import "SLHotCell.h"
 #import "SLMovInfoCell.h"
