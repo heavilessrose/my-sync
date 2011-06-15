@@ -7,6 +7,7 @@
 //
 
 #import "LKViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 #import "SLMovie.h"
 
 @interface LKViewController ()
@@ -217,9 +218,10 @@
 - (void)moviePlayBackDidFinish:(NSNotification *)notification
 {
     DLOG
+    DLog(@"%@", self.view);
     [globalApp showTabbar];
     [self dismissMoviePlayerViewControllerAnimated];
-    /*     
+    /*
      < add your code here >
      
      MPMoviePlayerController* moviePlayerObj=[notification object];
