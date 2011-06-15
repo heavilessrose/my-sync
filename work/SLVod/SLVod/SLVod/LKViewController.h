@@ -29,10 +29,14 @@
     BOOL            allRequestShouldCancel;
     NSMutableDictionary	*imageDownloadsInProgress;
     
+    UITableView     *theTable;
+    
     // cells
     SLHotCell           *tmpHotCell;
     SLMovInfoCell       *tmpMovInfoCell;
 }
+
+@property (nonatomic, assign) UITableView     *theTable;
 
 @property (nonatomic, assign) IBOutlet SLHotCell *tmpHotCell;
 @property (nonatomic, assign) IBOutlet SLMovInfoCell *tmpMovInfoCell;
