@@ -48,11 +48,19 @@
 @property (nonatomic, retain) NSMutableArray    *movies;
 @property (nonatomic, retain) NSMutableData     *jsonData;
 
+@end
+
+
+
+#pragma mark - ListAndImageLoad()
+@interface LKViewController (ListAndImageLoad)
 - (id)parse:(NSData *)theData;
 - (void)cancelListConn;
-
 - (void)loadImagesForOnscreenRows:(UITableView *)theTable;
-
-
--(void)initAndPlayMovie:(NSURL *)movieURL;
 @end
+
+#pragma mark - Http Live Stream()
+@interface LKViewController (HLS)
+- (void)initAndPlayMovie:(NSURL *)movieURL;
+@end
+

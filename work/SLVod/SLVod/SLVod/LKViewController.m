@@ -11,13 +11,16 @@
 #import "SLMovie.h"
 #import "LKVideoController.h"
 
-@interface LKViewController ()
-- (void)disselectCurrentRow;
-@end
 
 #define LK_Frame_Portrait       CGRectMake(0, 0, 320, 372)
 #define LK_Frame_Landscape      CGRectMake(0, 0, 480, 239)
 
+
+@interface LKViewController ()
+- (void)disselectCurrentRow;
+@end
+
+#pragma mark -
 @implementation LKViewController
 
 @synthesize allRequestShouldCancel;
@@ -201,12 +204,11 @@
     // implement in subClasses
 }
 
-
-
 #pragma mark - media player
 
--(void)initAndPlayMovie:(NSURL *)movieURL
+- (void)initAndPlayMovie:(NSURL *)movieURL
 {
+    NSLog(@"%@", movieURL);
     if (NSClassFromString(@"UISplitViewController") != nil) {
         LKVideoController *mp = [[LKVideoController alloc] initWithContentURL:movieURL];
         [[mp moviePlayer] prepareToPlay];
@@ -258,7 +260,22 @@
      */
 }
 
+#pragma mark - image down
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate && scrollView == theTable)
+	{
+        [self loadImagesForOnscreenRows:(UITableView *)scrollView];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (scrollView == theTable) {
+        [self loadImagesForOnscreenRows:(UITableView *)scrollView];
+    }
+}
 
 #pragma mark - BCTabbar 
 

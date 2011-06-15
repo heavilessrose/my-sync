@@ -48,7 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.theTable = table;
 }
 
 - (void)viewDidUnload
@@ -79,6 +79,10 @@
     NSURLRequest *movsReq = [NSURLRequest requestWithURL:movsUrl];
     self.listConn = [NSURLConnection connectionWithRequest:movsReq delegate:self];
     [listConn start];
+}
+
+- (void)fetchImages {
+    [self performSelector:@selector(loadImagesForOnscreenRows:) withObject:self.table];
 }
 
 #pragma mark connection handle 
