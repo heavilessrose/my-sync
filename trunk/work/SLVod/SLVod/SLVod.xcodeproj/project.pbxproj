@@ -11,6 +11,8 @@
 		A3136FA913A4954800EECA6A /* LKTipCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA213A4954800EECA6A /* LKTipCenter.m */; };
 		A3136FAA13A4954800EECA6A /* LKTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA413A4954800EECA6A /* LKTipView.m */; };
 		A3136FAF13A4957500EECA6A /* UIView+LKAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */; };
+		A3713D1313A8961A0004A609 /* LKVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3713D1113A8961A0004A609 /* LKVideoController.m */; };
+		A3713D1413A8961A0004A609 /* LKVideoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3713D1213A8961A0004A609 /* LKVideoController.xib */; };
 		A3C7D28213A4A5AC0050FD28 /* LKImageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */; };
 		A3C7D28313A4A5AC0050FD28 /* LKImgDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */; };
 		A3C7D28713A4B7960050FD28 /* SLMovDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28513A4B7950050FD28 /* SLMovDetailController.m */; };
@@ -93,6 +95,9 @@
 		A3136FA413A4954800EECA6A /* LKTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTipView.m; sourceTree = "<group>"; };
 		A3136FAD13A4957500EECA6A /* UIView+LKAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LKAddition.h"; sourceTree = "<group>"; };
 		A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LKAddition.m"; sourceTree = "<group>"; };
+		A3713D1013A8961A0004A609 /* LKVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKVideoController.h; sourceTree = "<group>"; };
+		A3713D1113A8961A0004A609 /* LKVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKVideoController.m; sourceTree = "<group>"; };
+		A3713D1213A8961A0004A609 /* LKVideoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKVideoController.xib; sourceTree = "<group>"; };
 		A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImageRecord.h; sourceTree = "<group>"; };
 		A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImageRecord.m; sourceTree = "<group>"; };
 		A3C7D28013A4A5AC0050FD28 /* LKImgDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImgDownload.h; sourceTree = "<group>"; };
@@ -285,6 +290,9 @@
 				A3D66F7013A4708A00C83B62 /* SLUserCenterController.m */,
 				A3D66F7113A4708A00C83B62 /* SLUserCenterController.xib */,
 				A3D66EF613A4662400C83B62 /* Supporting Files */,
+				A3713D1013A8961A0004A609 /* LKVideoController.h */,
+				A3713D1113A8961A0004A609 /* LKVideoController.m */,
+				A3713D1213A8961A0004A609 /* LKVideoController.xib */,
 			);
 			path = SLVod;
 			sourceTree = "<group>";
@@ -522,6 +530,7 @@
 				A3C7D28813A4B7960050FD28 /* SLMovDetailController.xib in Resources */,
 				A3C7D28D13A4B9740050FD28 /* SLMovInfoCell.xib in Resources */,
 				A3C7D2A213A4EDB20050FD28 /* Settings.bundle in Resources */,
+				A3713D1413A8961A0004A609 /* LKVideoController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +603,7 @@
 				A3C7D28313A4A5AC0050FD28 /* LKImgDownload.m in Sources */,
 				A3C7D28713A4B7960050FD28 /* SLMovDetailController.m in Sources */,
 				A3C7D28B13A4B95D0050FD28 /* SLMovInfoCell.m in Sources */,
+				A3713D1313A8961A0004A609 /* LKVideoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
