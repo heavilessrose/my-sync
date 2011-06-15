@@ -7,6 +7,7 @@
 //
 
 #import "SLCategoryController.h"
+#import "SLCateMoviesController.h"
 #import "SLMovDetailController.h"
 
 @interface SLCategoryController ()
@@ -72,10 +73,10 @@
 - (void)fetchCateMovs {
     
     [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
-    NSURL *hotsUrl = [NSURL URLWithString:SL_GENRY_LIST relativeToURL:SL_BASE_HOST];
+    NSURL *hotsUrl = [NSURL URLWithString:SL_CATE_LIST relativeToURL:SL_BASE_HOST];
     NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
-    NSURLConnection *hotsConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
-    [hotsConn start];
+    self.listConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
+    [listConn start];
 }
 
 - (void)fetchImages {
@@ -119,9 +120,10 @@
     }
     [self cancelListConn];
     [table reloadData];
-    
+#if 0
     [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
     [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
+#endif
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -149,17 +151,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 44;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+#if 0
     SLMovDetailController *detailVC = [[SLMovDetailController alloc] initWithNibName:@"SLMovDetailController" bundle:nil];
     detailVC.mov = [movies objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
     [detailVC release];
+#else
+    SLCateMoviesController *moviesVC = [[SLCateMoviesController alloc] initWithNibName:@"SLCateMoviesController" bundle:nil];
+    moviesVC.theCate = [movies objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:moviesVC animated:YES];
+    [moviesVC release];
+#endif
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,6 +194,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#if 0
     static NSString *cellID = @"SLHotCell";
     SLHotCell *theCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
     if (!theCell) {
@@ -198,6 +207,16 @@
         }
     }
     theCell.movie = [movies objectAtIndex:indexPath.row];
+#else
+    static NSString *cellID = @"CateCell";
+    UITableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!theCell) {
+        theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID] autorelease];
+        theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    SLMovie *aMov = [movies objectAtIndex:indexPath.row];
+    [theCell.textLabel setText:aMov.cate];
+#endif
     return theCell;
 }
 

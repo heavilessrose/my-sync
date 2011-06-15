@@ -13,6 +13,9 @@
 		A3136FAF13A4957500EECA6A /* UIView+LKAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */; };
 		A3713D1313A8961A0004A609 /* LKVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3713D1113A8961A0004A609 /* LKVideoController.m */; };
 		A3713D1413A8961A0004A609 /* LKVideoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3713D1213A8961A0004A609 /* LKVideoController.xib */; };
+		A3713D1913A8B6480004A609 /* SLCateMoviesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3713D1713A8B6480004A609 /* SLCateMoviesController.m */; };
+		A3713D1A13A8B6480004A609 /* SLCateMoviesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3713D1813A8B6480004A609 /* SLCateMoviesController.xib */; };
+		A391CE4813A8C1E10098A241 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = A391CE4713A8C1E10098A241 /* NSString+URL.m */; };
 		A3C7D28213A4A5AC0050FD28 /* LKImageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */; };
 		A3C7D28313A4A5AC0050FD28 /* LKImgDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */; };
 		A3C7D28713A4B7960050FD28 /* SLMovDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28513A4B7950050FD28 /* SLMovDetailController.m */; };
@@ -98,6 +101,11 @@
 		A3713D1013A8961A0004A609 /* LKVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKVideoController.h; sourceTree = "<group>"; };
 		A3713D1113A8961A0004A609 /* LKVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKVideoController.m; sourceTree = "<group>"; };
 		A3713D1213A8961A0004A609 /* LKVideoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKVideoController.xib; sourceTree = "<group>"; };
+		A3713D1613A8B6470004A609 /* SLCateMoviesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLCateMoviesController.h; sourceTree = "<group>"; };
+		A3713D1713A8B6480004A609 /* SLCateMoviesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLCateMoviesController.m; sourceTree = "<group>"; };
+		A3713D1813A8B6480004A609 /* SLCateMoviesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLCateMoviesController.xib; sourceTree = "<group>"; };
+		A391CE4613A8C1E10098A241 /* NSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NSString+URL.h"; sourceTree = "<group>"; };
+		A391CE4713A8C1E10098A241 /* NSString+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URL.m"; sourceTree = "<group>"; };
 		A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImageRecord.h; sourceTree = "<group>"; };
 		A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImageRecord.m; sourceTree = "<group>"; };
 		A3C7D28013A4A5AC0050FD28 /* LKImgDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImgDownload.h; sourceTree = "<group>"; };
@@ -225,6 +233,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A391CE4513A8C1E10098A241 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A391CE4613A8C1E10098A241 /* NSString+URL.h */,
+				A391CE4713A8C1E10098A241 /* NSString+URL.m */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
 		A3D66EE013A4662400C83B62 = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +300,9 @@
 				A3D66F6A13A4706200C83B62 /* SLCategoryController.h */,
 				A3D66F6B13A4706200C83B62 /* SLCategoryController.m */,
 				A3D66F6C13A4706200C83B62 /* SLCategoryController.xib */,
+				A3713D1613A8B6470004A609 /* SLCateMoviesController.h */,
+				A3713D1713A8B6480004A609 /* SLCateMoviesController.m */,
+				A3713D1813A8B6480004A609 /* SLCateMoviesController.xib */,
 				A3D66F7413A470A300C83B62 /* SLFavController.h */,
 				A3D66F7513A470A300C83B62 /* SLFavController.m */,
 				A3D66F7613A470A300C83B62 /* SLFavController.xib */,
@@ -331,6 +351,7 @@
 		A3D66F4713A469DA00C83B62 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				A391CE4513A8C1E10098A241 /* helpers */,
 				A3D66FB613A47FBB00C83B62 /* Views */,
 				A3D66F8F13A47B4800C83B62 /* JSON */,
 				A3D66F4813A469DA00C83B62 /* BCTabbar */,
@@ -531,6 +552,7 @@
 				A3C7D28D13A4B9740050FD28 /* SLMovInfoCell.xib in Resources */,
 				A3C7D2A213A4EDB20050FD28 /* Settings.bundle in Resources */,
 				A3713D1413A8961A0004A609 /* LKVideoController.xib in Resources */,
+				A3713D1A13A8B6480004A609 /* SLCateMoviesController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +626,8 @@
 				A3C7D28713A4B7960050FD28 /* SLMovDetailController.m in Sources */,
 				A3C7D28B13A4B95D0050FD28 /* SLMovInfoCell.m in Sources */,
 				A3713D1313A8961A0004A609 /* LKVideoController.m in Sources */,
+				A3713D1913A8B6480004A609 /* SLCateMoviesController.m in Sources */,
+				A391CE4813A8C1E10098A241 /* NSString+URL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

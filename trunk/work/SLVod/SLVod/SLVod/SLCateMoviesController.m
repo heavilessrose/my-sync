@@ -1,28 +1,22 @@
 //
-//  SLHotController.m
+//  SLCateMoviesController.m
 //  SLVod
 //
-//  Created by luke on 11-6-12.
+//  Created by luke on 11-6-15.
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
-#import "SLHotController.h"
+#import "SLCateMoviesController.h"
 #import "SLMovDetailController.h"
 
-@interface SLHotController ()
-- (void)fetchHotMovs;
+@interface SLCateMoviesController ()
+- (void)fetchMoviesInCate:(NSString *)aCate;
 @end
 
 
-@implementation SLHotController
+@implementation SLCateMoviesController
 
-@synthesize table;
-
-- (void)dealloc
-{
-    [table release];
-    [super dealloc];
-}
+@synthesize table, theCate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +25,14 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)dealloc
+{
+    MLog(@"");
+    [theCate release];
+    [table release];
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,15 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.theTable = table;
-    
-    self.title = @"Hot";
-    [self fetchHotMovs];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
@@ -68,22 +62,23 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-//    return (UIInterfaceOrientationIsLandscape(interfaceOrientation) || interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - hot movs: http://i.siluhd.com/ipadgetnew.asp
-// 
-- (void)fetchHotMovs {
-    
+#pragma mark -
+
+- (void)setTheCate:(SLMovie *)aMov
+{
+    [self fetchMoviesInCate:[aMov.cate URLEncodedString]];
+}
+
+- (void)fetchMoviesInCate:(NSString *)aCate
+{
+    NSString *cateUrl = [NSString stringWithFormat:SL_CATE_MOVS, aCate];
     [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
-    NSURL *hotsUrl = [NSURL URLWithString:SL_HOT relativeToURL:SL_BASE_HOST];
-    NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
-    self.listConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
-    [self.listConn start];
-}
-
-- (void)fetchImages {
-    [self performSelector:@selector(loadImagesForOnscreenRows:) withObject:self.table];
+    NSURL *movsUrl = [NSURL URLWithString:cateUrl relativeToURL:SL_BASE_HOST];
+    NSURLRequest *movsReq = [NSURLRequest requestWithURL:movsUrl];
+    self.listConn = [NSURLConnection connectionWithRequest:movsReq delegate:self];
+    [listConn start];
 }
 
 #pragma mark connection handle 
@@ -125,6 +120,7 @@
     [table reloadData];
     
     [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
+    
     [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
 }
 
@@ -230,13 +226,6 @@
         [cell.imageView setImage:[UIImage imageNamed: @"nopic.png"]];
 	}
 	[imageDownloadsInProgress removeObjectForKey:indexPath];
-}
-
-
-#pragma mark - BCTabbar 
-
-- (NSString *)iconImageName {
-	return @"magnifying-glass.png";
 }
 
 @end

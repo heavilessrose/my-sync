@@ -15,6 +15,7 @@
 
 - (void)dealloc
 {
+    MLog(@"");
     [movie release];
     [label release];
     [contentTextView release];
