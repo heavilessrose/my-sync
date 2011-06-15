@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.tableView = table;
+//    self.theTable = table;
 }
 
 - (void)viewDidUnload

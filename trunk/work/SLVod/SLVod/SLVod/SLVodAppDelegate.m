@@ -98,6 +98,7 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
 }
 
 #pragma mark - BCTabbar
+
 - (void)hideTabbar
 {
     tabBarController.tabBar.hidden = YES;
