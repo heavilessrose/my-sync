@@ -177,10 +177,12 @@
         for (NSIndexPath *indexPath in visiblePaths)
         {
             SLMovie *aMov = [movies objectAtIndex:indexPath.row];
-			LKImageRecord *cRecord = aMov.imgRecord;
-			if (cRecord.url) {
-				[self startImageDown:cRecord forIndexPath:indexPath];
-			}
+            if (aMov.imgRecord && aMov.imgRecord.show && !aMov.imgRecord.img) {
+                LKImageRecord *cRecord = aMov.imgRecord;
+                if (cRecord.url) {
+                    [self startImageDown:cRecord forIndexPath:indexPath];
+                }
+            }
         }
     }
 }

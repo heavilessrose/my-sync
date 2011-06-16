@@ -11,7 +11,7 @@
 
 @implementation LKImageRecord
 
-@synthesize img;
+@synthesize img, show;
 @synthesize url;
 
 - (void)dealloc
@@ -25,6 +25,7 @@
 - (id)initWithUrl:(NSString *)urlStr
 {
     if ((self = [super init])) {
+        self.show = YES;
         self.url = [NSURL URLWithString:urlStr];
     }
     return self;
