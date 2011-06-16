@@ -22,6 +22,7 @@
 
 - (void)dealloc
 {
+    MLog(@"");
     [super dealloc];
 }
 
