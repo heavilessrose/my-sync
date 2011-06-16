@@ -14,6 +14,7 @@
 
 - (void)dealloc
 {
+    MLog(@"");
     [mov release];
     [table release];
     [super dealloc];

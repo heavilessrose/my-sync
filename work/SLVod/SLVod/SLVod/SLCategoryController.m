@@ -131,7 +131,7 @@
 {
     DLOG
     [self cancelListConn];
-    [[LKTipCenter defaultCenter] changeFallingTip:self.view withText:@"network err"];
+//    [[LKTipCenter defaultCenter] changeFallingTip:self.view withText:@"network err"];
 }
 
 #pragma mark json parse
