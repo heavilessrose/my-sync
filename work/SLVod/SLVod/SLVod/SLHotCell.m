@@ -49,6 +49,8 @@
     
     if (theMov.imgRecord && theMov.imgRecord.img) {
         self.imageView.image = theMov.imgRecord.img;
+    } else {
+        self.imageView.image = nil;
     }
 }
 

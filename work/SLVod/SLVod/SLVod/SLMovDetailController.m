@@ -63,7 +63,7 @@
 
 - (CGFloat)contentHeight
 {
-    CGSize csize = [mov.content sizeWithFont:[UIFont systemFontOfSize:17.0f] constrainedToSize:CGSizeMake(280.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize csize = [mov.content sizeWithFont:[UIFont systemFontOfSize:17.0f] constrainedToSize:CGSizeMake(280.0f, 5000.0f) lineBreakMode:UILineBreakModeWordWrap];
     return csize.height;
 }
 
@@ -74,7 +74,7 @@
         rowHight = 80.0f;
     }
     if (indexPath.row == 1) {
-        rowHight = [self contentHeight]+50.0f;
+        rowHight = [self contentHeight]+80.0f;
     }
     return rowHight;
 }

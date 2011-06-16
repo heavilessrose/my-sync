@@ -72,7 +72,7 @@
 // 
 - (void)fetchCateMovs {
     
-    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
+//    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
     NSURL *hotsUrl = [NSURL URLWithString:SL_CATE_LIST relativeToURL:SL_BASE_HOST];
     NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
     self.listConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
@@ -115,6 +115,7 @@
     
     for (NSDictionary *aDic in movList) {
         SLMovie *aMov = [[SLMovie alloc] initWithDic:aDic];
+        aMov.imgRecord.show = NO;
         [movies addObject:aMov];
         [aMov release];
     }
@@ -156,7 +157,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 #if 0
     SLMovDetailController *detailVC = [[SLMovDetailController alloc] initWithNibName:@"SLMovDetailController" bundle:nil];
     detailVC.mov = [movies objectAtIndex:indexPath.row];

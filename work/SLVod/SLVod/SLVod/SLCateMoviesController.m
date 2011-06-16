@@ -74,7 +74,7 @@
 - (void)fetchMoviesInCate:(NSString *)aCate
 {
     NSString *cateUrl = [NSString stringWithFormat:SL_CATE_MOVS, aCate];
-    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
+//    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
     NSURL *movsUrl = [NSURL URLWithString:cateUrl relativeToURL:SL_BASE_HOST];
     NSURLRequest *movsReq = [NSURLRequest requestWithURL:movsUrl];
     self.listConn = [NSURLConnection connectionWithRequest:movsReq delegate:self];
@@ -125,7 +125,7 @@
     
     [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
     
-    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
+//    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
