@@ -25,7 +25,7 @@
 
 @synthesize allRequestShouldCancel;
 @synthesize jsonData, movies, listConn, imageDownloadsInProgress;
-@synthesize tmpHotCell, tmpMovInfoCell, theTable;
+@synthesize tmpHotCell, tmpMovInfoCell, tmpUProfileCell, theTable;
 
 - (void)dealloc
 {

@@ -18,6 +18,7 @@
 
 #import "SLHotCell.h"
 #import "SLMovInfoCell.h"
+#import "SLUserProfileCell.h"
 
 #import "SLVodAppDelegate.h"
 
@@ -35,12 +36,14 @@
     // cells
     SLHotCell           *tmpHotCell;
     SLMovInfoCell       *tmpMovInfoCell;
+    SLUserProfileCell   *tmpUProfileCell;
 }
 
 @property (nonatomic, assign) UITableView     *theTable;
 
 @property (nonatomic, assign) IBOutlet SLHotCell *tmpHotCell;
 @property (nonatomic, assign) IBOutlet SLMovInfoCell *tmpMovInfoCell;
+@property (nonatomic, assign) IBOutlet SLUserProfileCell *tmpUProfileCell;
 
 @property (nonatomic, assign) BOOL              allRequestShouldCancel;
 @property (nonatomic, retain) NSMutableDictionary	*imageDownloadsInProgress;
