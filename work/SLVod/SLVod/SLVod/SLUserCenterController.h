@@ -10,7 +10,7 @@
 #import "LKViewController.h"
 
 
-@interface SLUserCenterController : LKViewController {
+@interface SLUserCenterController : LKViewController <UITableViewDelegate, UITableViewDataSource, SLUserProfileCellDelegare> {
     LKShadowTableView   *table;
 }
 

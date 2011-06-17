@@ -10,7 +10,7 @@
 #import "LKViewController.h"
 
 
-@interface SLCategoryController : LKViewController {
+@interface SLCategoryController : LKViewController <UITableViewDelegate, UITableViewDataSource> {
     LKShadowTableView   *table;
 }
 

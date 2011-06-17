@@ -11,7 +11,7 @@
 
 @implementation LKImageRecord
 
-@synthesize img, show;
+@synthesize img, show, downloaded;
 @synthesize url;
 
 - (void)dealloc
@@ -27,6 +27,7 @@
     if ((self = [super init])) {
         self.show = YES;
         self.url = [NSURL URLWithString:urlStr];
+        self.img = [UIImage imageNamed:@"noimg.png"];
     }
     return self;
 }

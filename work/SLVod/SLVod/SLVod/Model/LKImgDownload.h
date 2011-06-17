@@ -14,8 +14,8 @@
 @protocol LKImgDownloadDelegate <NSObject>
 
 @required
-- (void)imageDidLoad:(NSIndexPath *)indexPath;
-- (void)imageLoadFailed:(NSIndexPath *)indexPath;
+- (void)imageDidLoad:(NSIndexPath *)indexPath theImgRecord:(LKImageRecord *)aRec;
+- (void)imageLoadFailed:(NSIndexPath *)indexPath theImgRecord:(LKImageRecord *)aRec;
 
 @end
 

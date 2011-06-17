@@ -206,8 +206,9 @@
 
 #pragma mark - LKImageDownloadDelegate
 
-- (void)imageDidLoad:(NSIndexPath *)indexPath
+- (void)imageDidLoad:(NSIndexPath *)indexPath theImgRecord:(LKImageRecord *)aRec
 {
+    [super imageDidLoad:indexPath theImgRecord:aRec];
 	LKImgDownload *imageDown = imageDown = [imageDownloadsInProgress objectForKey:indexPath];
 	
     if (imageDown != nil)
@@ -219,7 +220,7 @@
 	}
 }
 
-- (void)imageLoadFailed:(NSIndexPath *)indexPath
+- (void)imageLoadFailed:(NSIndexPath *)indexPath theImgRecord:(LKImageRecord *)aRec
 {
 	DLog(@"cell image loaded fail at %@", indexPath);
 	LKImgDownload *imageDown = imageDown = [imageDownloadsInProgress objectForKey:indexPath];

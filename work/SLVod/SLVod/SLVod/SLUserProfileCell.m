@@ -12,11 +12,12 @@
 @implementation SLUserProfileCell
 
 @synthesize nameLabel, avatarView, signupButton, signinButton;
-@synthesize signDelegate;
+@synthesize signDelegate, user;
 
 - (void)dealloc
 {
     MLog(@"");
+    [user release];
     [nameLabel release];
     [avatarView release];
     [signupButton release];

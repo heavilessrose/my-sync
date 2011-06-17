@@ -80,6 +80,10 @@
 		A3DB7EFA13AB15D500E3250C /* SLUserProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB7EF913AB15D500E3250C /* SLUserProfileCell.m */; };
 		A3DB7EFD13AB15F100E3250C /* SLUserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DB7EFC13AB15F000E3250C /* SLUserProfileCell.xib */; };
 		A3DB7F0013AB21EC00E3250C /* SLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB7EFF13AB21EC00E3250C /* SLUser.m */; };
+		A3DB7F0413AB31F900E3250C /* vip.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DB7F0113AB31F900E3250C /* vip.png */; };
+		A3DB7F0513AB31F900E3250C /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DB7F0213AB31F900E3250C /* setting.png */; };
+		A3DB7F0613AB31F900E3250C /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DB7F0313AB31F900E3250C /* about.png */; };
+		A3DB7F0813AB334D00E3250C /* noimg.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DB7F0713AB334D00E3250C /* noimg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +217,10 @@
 		A3DB7EFC13AB15F000E3250C /* SLUserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLUserProfileCell.xib; sourceTree = "<group>"; };
 		A3DB7EFE13AB21EB00E3250C /* SLUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLUser.h; sourceTree = "<group>"; };
 		A3DB7EFF13AB21EC00E3250C /* SLUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLUser.m; sourceTree = "<group>"; };
+		A3DB7F0113AB31F900E3250C /* vip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vip.png; sourceTree = "<group>"; };
+		A3DB7F0213AB31F900E3250C /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		A3DB7F0313AB31F900E3250C /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
+		A3DB7F0713AB334D00E3250C /* noimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimg.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +399,10 @@
 		A3D66F7E13A473FC00C83B62 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3DB7F0713AB334D00E3250C /* noimg.png */,
+				A3DB7F0113AB31F900E3250C /* vip.png */,
+				A3DB7F0213AB31F900E3250C /* setting.png */,
+				A3DB7F0313AB31F900E3250C /* about.png */,
 				A3D66F7F13A473FC00C83B62 /* magnifying-glass-selected.png */,
 				A3D66F8013A473FC00C83B62 /* magnifying-glass-selected@2x.png */,
 				A3D66F8113A473FC00C83B62 /* magnifying-glass.png */,
@@ -567,6 +579,10 @@
 				A3713D1413A8961A0004A609 /* LKVideoController.xib in Resources */,
 				A3713D1A13A8B6480004A609 /* SLCateMoviesController.xib in Resources */,
 				A3DB7EFD13AB15F100E3250C /* SLUserProfileCell.xib in Resources */,
+				A3DB7F0413AB31F900E3250C /* vip.png in Resources */,
+				A3DB7F0513AB31F900E3250C /* setting.png in Resources */,
+				A3DB7F0613AB31F900E3250C /* about.png in Resources */,
+				A3DB7F0813AB334D00E3250C /* noimg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

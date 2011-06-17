@@ -15,8 +15,10 @@
 	NSURL   *url;
 	UIImage *img;
     BOOL    show;
+    BOOL    downloaded;
 }
 
+@property (nonatomic, assign) BOOL      downloaded;
 @property (nonatomic, assign) BOOL      show;
 @property (nonatomic, retain) UIImage	*img;
 @property (nonatomic, retain) NSURL     *url;

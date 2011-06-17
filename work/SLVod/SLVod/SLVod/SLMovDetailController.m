@@ -113,7 +113,7 @@
     if (indexPath.row == 0) {
         static NSString *hotCellID = @"SLHotCell";
         SLHotCell *hotCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:hotCellID];
-        if (!theCell) {
+        if (!hotCell) {
             [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
             if (tmpHotCell) {
                 hotCell = tmpHotCell;
@@ -128,7 +128,7 @@
     if (indexPath.row == 1) {
         static NSString *infoCellID = @"SLMovInfoCell";
         SLMovInfoCell *infoCell = (SLMovInfoCell *)[tableView dequeueReusableCellWithIdentifier:infoCellID];
-        if (!theCell) {
+        if (!infoCell) {
             [[NSBundle mainBundle] loadNibNamed:@"SLMovInfoCell" owner:self options:nil];
             if (tmpMovInfoCell) {
                 infoCell = tmpMovInfoCell;

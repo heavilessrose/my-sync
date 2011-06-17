@@ -56,8 +56,8 @@
     self.activeDownload = nil;
     self.imageConnection = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	if (delegate && [delegate respondsToSelector:@selector(imageLoadFailed:)]) {
-		[delegate imageLoadFailed:self.indexPathInTableView];
+	if (delegate && [delegate respondsToSelector:@selector(imageLoadFailed:theImgRecord:)]) {
+		[delegate imageLoadFailed:self.indexPathInTableView theImgRecord:imgRecord];
 	}
 }
 
@@ -84,8 +84,8 @@
     
     self.imageConnection = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	if (delegate && [delegate respondsToSelector:@selector(imageDidLoad:)]) {
-		[delegate imageDidLoad:self.indexPathInTableView];
+	if (delegate && [delegate respondsToSelector:@selector(imageDidLoad:theImgRecord:)]) {
+		[delegate imageDidLoad:self.indexPathInTableView theImgRecord:imgRecord];
 	}
 }
 
