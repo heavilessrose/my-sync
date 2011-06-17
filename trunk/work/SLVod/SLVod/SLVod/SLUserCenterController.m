@@ -96,23 +96,60 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"SLHotCell";
-    SLHotCell *theCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!theCell) {
-        [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
-        if (tmpHotCell) {
-            theCell = tmpHotCell;
-            theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            self.tmpHotCell = nil;
+    UITableViewCell *theCell = nil;
+    if (indexPath.row == 0) {
+        static NSString *PCellID = @"SLUserProfileCell";
+        SLUserProfileCell *pCell = (SLUserProfileCell *)[tableView dequeueReusableCellWithIdentifier:PCellID];
+        if (!pCell) {
+            [[NSBundle mainBundle] loadNibNamed:@"SLUserProfileCell" owner:self options:nil];
+            if (tmpUProfileCell) {
+                pCell = tmpUProfileCell;
+                pCell.selectionStyle = UITableViewCellSelectionStyleNone;
+                pCell.avatarView.image = [UIImage imageNamed:@"noimg.png"];
+                pCell.signDelegate = self;
+                pCell.accessoryType = UITableViewCellAccessoryNone;
+                self.tmpUProfileCell = nil;
+            }
         }
+        theCell = pCell;
+        //theCell.user = [movies objectAtIndex:indexPath.row];
+    } else {
+        static NSString *usettingCell = @"SLUSettingCell";
+        theCell = [tableView dequeueReusableCellWithIdentifier:usettingCell];
+        if (!theCell) {
+            theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:usettingCell] autorelease];
+        }
+        if (indexPath.row == 1) {
+            theCell.imageView.image = [UIImage imageNamed:@"vip.png"];
+            theCell.textLabel.text = @"加入VIP";
+        }
+        if (indexPath.row == 2) {
+            theCell.imageView.image = [UIImage imageNamed:@"setting.png"];
+            theCell.textLabel.text = @"个人设置";
+        }
+        if (indexPath.row == 3) {
+            theCell.imageView.image = [UIImage imageNamed:@"about.png"];
+            theCell.textLabel.text = @"关于";
+        }
+        theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    theCell.movie = [movies objectAtIndex:indexPath.row];
     return theCell;
+}
+
+#pragma mark - sign delegate
+- (void)signinButtonPressed:(UIButton *)aButton
+{
+    DLOG
+}
+
+- (void)signupButtonPressed:(UIButton *)aButton
+{
+    DLOG
 }
 
 #pragma mark -

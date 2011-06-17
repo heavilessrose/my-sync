@@ -207,8 +207,9 @@
 
 #pragma mark - LKImageDownloadDelegate
 
-- (void)imageDidLoad:(NSIndexPath *)indexPath
+- (void)imageDidLoad:(NSIndexPath *)indexPath theImgRecord:(LKImageRecord *)aRec
 {
+    [super imageDidLoad:indexPath theImgRecord:aRec];
 	LKImgDownload *imageDown = imageDown = [imageDownloadsInProgress objectForKey:indexPath];
 	
     if (imageDown != nil)

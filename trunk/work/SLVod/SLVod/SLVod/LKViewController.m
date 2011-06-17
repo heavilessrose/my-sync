@@ -177,7 +177,7 @@
         for (NSIndexPath *indexPath in visiblePaths)
         {
             SLMovie *aMov = [movies objectAtIndex:indexPath.row];
-            if (aMov.imgRecord && aMov.imgRecord.show && !aMov.imgRecord.img) {
+            if (aMov.imgRecord && aMov.imgRecord.show && !aMov.imgRecord.downloaded) {
                 LKImageRecord *cRecord = aMov.imgRecord;
                 if (cRecord.url) {
                     [self startImageDown:cRecord forIndexPath:indexPath];
@@ -189,12 +189,13 @@
 
 #pragma mark LKImageDownloadDelegate
 
-- (void)imageDidLoad:(NSIndexPath *)indexPath
+- (void)imageDidLoad:(NSIndexPath *)indexPath theImgRecord:(LKImageRecord *)aRec
 {
     // implement in subClasses
+    aRec.downloaded = YES;
 }
 
-- (void)imageLoadFailed:(NSIndexPath *)indexPath
+- (void)imageLoadFailed:(NSIndexPath *)indexPath theImgRecord:(LKImageRecord *)aRec
 {
     // implement in subClasses
 }

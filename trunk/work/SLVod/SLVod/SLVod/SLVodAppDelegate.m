@@ -37,13 +37,13 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
 	self.tabBarController = [[[BCTabBarController alloc] init] autorelease];
 	self.tabBarController.viewControllers = [NSArray arrayWithObjects:
 											 [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[SLHotController alloc] init] autorelease]]
+                                               initWithRootViewController:[[[SLHotController alloc] initWithNibName:@"SLHotController" bundle:nil] autorelease]]
 											  autorelease],
                                              [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[SLCategoryController alloc] init] autorelease]]
+                                               initWithRootViewController:[[[SLCategoryController alloc] initWithNibName:@"SLCategoryController" bundle:nil] autorelease]]
 											  autorelease],
                                              [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[SLFavController alloc] init] autorelease]]
+                                               initWithRootViewController:[[[SLFavController alloc] initWithNibName:@"SLFavController" bundle:nil] autorelease]]
 											  autorelease],
                                              /*
                                              [[[UINavigationController alloc]
@@ -51,7 +51,7 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
 											  autorelease],
                                               */
                                              [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[SLUserCenterController alloc] init] autorelease]]
+                                               initWithRootViewController:[[[SLUserCenterController alloc] initWithNibName:@"SLUserCenterController" bundle:nil] autorelease]]
 											  autorelease],
 											 nil];
 	[self.window addSubview:self.tabBarController.view];

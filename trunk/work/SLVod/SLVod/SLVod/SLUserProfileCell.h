@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLUser.h"
 
 @protocol SLUserProfileCellDelegare <NSObject>
 
@@ -21,9 +22,12 @@
     UIButton *signupButton;
     UIButton *signinButton;
     
+    SLUser *user;
+    
     id <SLUserProfileCellDelegare> signDelegate;
 }
 
+@property (nonatomic, retain) SLUser *user;
 @property (nonatomic, assign) id <SLUserProfileCellDelegare> signDelegate;
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *avatarView;
