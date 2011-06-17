@@ -117,6 +117,7 @@
             [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
             if (tmpHotCell) {
                 hotCell = tmpHotCell;
+                hotCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 hotCell.playDelegate = self;
                 hotCell.playButton.hidden = NO;
             }
@@ -131,6 +132,7 @@
             [[NSBundle mainBundle] loadNibNamed:@"SLMovInfoCell" owner:self options:nil];
             if (tmpMovInfoCell) {
                 infoCell = tmpMovInfoCell;
+                infoCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 CGRect cframe = infoCell.contentTextView.frame;
                 cframe.size.height = [self contentHeight];
                 [infoCell.contentTextView setFrame:cframe];

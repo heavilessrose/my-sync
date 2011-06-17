@@ -45,9 +45,11 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
                                              [[[UINavigationController alloc]
                                                initWithRootViewController:[[[SLFavController alloc] init] autorelease]]
 											  autorelease],
+                                             /*
                                              [[[UINavigationController alloc]
                                                initWithRootViewController:[[[SLMoreController alloc] init] autorelease]]
 											  autorelease],
+                                              */
                                              [[[UINavigationController alloc]
                                                initWithRootViewController:[[[SLUserCenterController alloc] init] autorelease]]
 											  autorelease],

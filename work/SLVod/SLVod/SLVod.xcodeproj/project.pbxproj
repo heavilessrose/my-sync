@@ -77,6 +77,9 @@
 		A3D66FBF13A4829000C83B62 /* SLMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66FBE13A4829000C83B62 /* SLMovie.m */; };
 		A3D66FC213A4851200C83B62 /* SLHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D66FC113A4851100C83B62 /* SLHotCell.m */; };
 		A3D66FC613A4855400C83B62 /* SLHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D66FC513A4855400C83B62 /* SLHotCell.xib */; };
+		A3DB7EFA13AB15D500E3250C /* SLUserProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB7EF913AB15D500E3250C /* SLUserProfileCell.m */; };
+		A3DB7EFD13AB15F100E3250C /* SLUserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DB7EFC13AB15F000E3250C /* SLUserProfileCell.xib */; };
+		A3DB7F0013AB21EC00E3250C /* SLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB7EFF13AB21EC00E3250C /* SLUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +107,7 @@
 		A3713D1613A8B6470004A609 /* SLCateMoviesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLCateMoviesController.h; sourceTree = "<group>"; };
 		A3713D1713A8B6480004A609 /* SLCateMoviesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLCateMoviesController.m; sourceTree = "<group>"; };
 		A3713D1813A8B6480004A609 /* SLCateMoviesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLCateMoviesController.xib; sourceTree = "<group>"; };
-		A391CE4613A8C1E10098A241 /* NSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NSString+URL.h"; sourceTree = "<group>"; };
+		A391CE4613A8C1E10098A241 /* NSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URL.h"; sourceTree = "<group>"; };
 		A391CE4713A8C1E10098A241 /* NSString+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URL.m"; sourceTree = "<group>"; };
 		A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImageRecord.h; sourceTree = "<group>"; };
 		A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImageRecord.m; sourceTree = "<group>"; };
@@ -205,6 +208,11 @@
 		A3D66FC013A4851100C83B62 /* SLHotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHotCell.h; sourceTree = "<group>"; };
 		A3D66FC113A4851100C83B62 /* SLHotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLHotCell.m; sourceTree = "<group>"; };
 		A3D66FC513A4855400C83B62 /* SLHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLHotCell.xib; sourceTree = "<group>"; };
+		A3DB7EF813AB15D500E3250C /* SLUserProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLUserProfileCell.h; sourceTree = "<group>"; };
+		A3DB7EF913AB15D500E3250C /* SLUserProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLUserProfileCell.m; sourceTree = "<group>"; };
+		A3DB7EFC13AB15F000E3250C /* SLUserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLUserProfileCell.xib; sourceTree = "<group>"; };
+		A3DB7EFE13AB21EB00E3250C /* SLUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLUser.h; sourceTree = "<group>"; };
+		A3DB7EFF13AB21EC00E3250C /* SLUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -444,6 +452,8 @@
 		A3D66FBC13A4827300C83B62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A3DB7EFE13AB21EB00E3250C /* SLUser.h */,
+				A3DB7EFF13AB21EC00E3250C /* SLUser.m */,
 				A3D66FBD13A4829000C83B62 /* SLMovie.h */,
 				A3D66FBE13A4829000C83B62 /* SLMovie.m */,
 				A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */,
@@ -463,6 +473,9 @@
 				A3C7D28913A4B95D0050FD28 /* SLMovInfoCell.h */,
 				A3C7D28A13A4B95D0050FD28 /* SLMovInfoCell.m */,
 				A3C7D28C13A4B9740050FD28 /* SLMovInfoCell.xib */,
+				A3DB7EF813AB15D500E3250C /* SLUserProfileCell.h */,
+				A3DB7EF913AB15D500E3250C /* SLUserProfileCell.m */,
+				A3DB7EFC13AB15F000E3250C /* SLUserProfileCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -553,6 +566,7 @@
 				A3C7D2A213A4EDB20050FD28 /* Settings.bundle in Resources */,
 				A3713D1413A8961A0004A609 /* LKVideoController.xib in Resources */,
 				A3713D1A13A8B6480004A609 /* SLCateMoviesController.xib in Resources */,
+				A3DB7EFD13AB15F100E3250C /* SLUserProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +642,8 @@
 				A3713D1313A8961A0004A609 /* LKVideoController.m in Sources */,
 				A3713D1913A8B6480004A609 /* SLCateMoviesController.m in Sources */,
 				A391CE4813A8C1E10098A241 /* NSString+URL.m in Sources */,
+				A3DB7EFA13AB15D500E3250C /* SLUserProfileCell.m in Sources */,
+				A3DB7F0013AB21EC00E3250C /* SLUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
