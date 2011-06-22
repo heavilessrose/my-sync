@@ -51,6 +51,9 @@
 @property (nonatomic, retain) NSMutableArray    *movies;
 @property (nonatomic, retain) NSMutableData     *jsonData;
 
+
+- (void)hideTabbar;
+- (void)showTabbar;
 @end
 
 

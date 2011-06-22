@@ -21,11 +21,13 @@
     UILabel         *actorLabel;
     UIButton        *playButton;
     UILabel         *cateLabel;
+    UIProgressView  *progressView;
     id<SLPlayDelegate> playDelegate;
     
     SLMovie         *movie;
 }
 
+@property (nonatomic, retain) IBOutlet UIProgressView  *progressView;
 @property (nonatomic, assign) id<SLPlayDelegate> playDelegate;
 @property (nonatomic, retain) SLMovie *movie;
 @property (nonatomic, retain) IBOutlet UIButton        *playButton;

@@ -7,6 +7,8 @@
 //
 
 #import "LKViewController.h"
+#import "BCTabBarController.h"
+#import "SLVodAppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "SLMovie.h"
 #import "LKVideoController.h"
@@ -215,12 +217,14 @@
     if (NSClassFromString(@"UISplitViewController") != nil) {
         LKVideoController *mp = [[LKVideoController alloc] initWithContentURL:movieURL];
         [[mp moviePlayer] prepareToPlay];
+        [[mp moviePlayer] setFullscreen:YES animated:YES];
+        [[mp moviePlayer] setMovieSourceType:MPMovieSourceTypeStreaming];
         [[mp moviePlayer] setShouldAutoplay:YES];
         [[mp moviePlayer] setControlStyle:MPMovieControlStyleFullscreen];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
         [self presentMoviePlayerViewControllerAnimated:mp];
         [mp release];
-        [globalApp hideTabbar];
+        [self hideTabbar];
     }
 }
 
@@ -241,7 +245,7 @@
 {
     DLOG
     DLog(@"%@", self.view);
-    [globalApp showTabbar];
+    [self showTabbar];
     [self dismissMoviePlayerViewControllerAnimated];
     /*
      < add your code here >
@@ -284,6 +288,16 @@
 
 - (NSString *)iconImageName {
 	return @"magnifying-glass.png";
+}
+
+- (void)hideTabbar
+{
+    globalApp.tabBarController.tabBar.hidden = YES;
+}
+
+- (void)showTabbar
+{
+    globalApp.tabBarController.tabBar.hidden = NO;
 }
 
 @end

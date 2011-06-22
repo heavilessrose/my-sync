@@ -14,6 +14,7 @@
 #import "SLFavController.h"
 #import "SLMoreController.h"
 #import "SLUserCenterController.h"
+#import "SLDownloadManController.h"
 
 NSString *kScalingModeKey	= @"scalingMode";
 NSString *kControlModeKey	= @"controlMode";
@@ -43,9 +44,15 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
                                                initWithRootViewController:[[[SLCategoryController alloc] initWithNibName:@"SLCategoryController" bundle:nil] autorelease]]
 											  autorelease],
                                              [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[SLFavController alloc] initWithNibName:@"SLFavController" bundle:nil] autorelease]]
+                                               initWithRootViewController:[[[SLDownloadManController alloc] initWithNibName:@"SLDownloadManController" bundle:nil] autorelease]]
 											  autorelease],
                                              /*
+                                             [[[UINavigationController alloc]
+                                               initWithRootViewController:[[[SLMoreController alloc] init] autorelease]]
+											  autorelease],
+                                             [[[UINavigationController alloc]
+                                               initWithRootViewController:[[[SLFavController alloc] initWithNibName:@"SLFavController" bundle:nil] autorelease]]
+											  autorelease],
                                              [[[UINavigationController alloc]
                                                initWithRootViewController:[[[SLMoreController alloc] init] autorelease]]
 											  autorelease],
@@ -99,16 +106,5 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
      */
 }
 
-#pragma mark - BCTabbar
-
-- (void)hideTabbar
-{
-    tabBarController.tabBar.hidden = YES;
-}
-
-- (void)showTabbar
-{
-    tabBarController.tabBar.hidden = NO;
-}
 
 @end
