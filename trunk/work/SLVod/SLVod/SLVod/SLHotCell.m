@@ -12,7 +12,7 @@
 @implementation SLHotCell
 
 @synthesize imageView, playButton, playDelegate;
-@synthesize titleLabel;
+@synthesize titleLabel, progressView;
 @synthesize actorLabel, cateLabel;
 @synthesize movie;
 
@@ -20,6 +20,7 @@
 - (void)dealloc
 {
     MLog(@"");
+    [progressView release];
     [movie release];
     [playButton release];
     [imageView release];
