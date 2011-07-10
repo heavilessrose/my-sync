@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "LKViewController.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface SLHotController : LKViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface SLHotController : LKViewController <UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate> {
     LKShadowTableView   *table;
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    BOOL _reloading;
 }
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 
 @property (nonatomic, retain) IBOutlet LKShadowTableView    *table;
 @end

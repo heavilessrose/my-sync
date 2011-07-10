@@ -33,12 +33,7 @@
 - (void)dealloc
 {
     MLog(@"");
-    LKImgDownload *imageDown;
-    for (NSIndexPath *key in imageDownloadsInProgress) {
-        if ((imageDown = [imageDownloadsInProgress objectForKey:key])) {
-            [imageDown cancelDownload];
-        }
-    }
+    [self cancelAllImgLoading];
     self.imageDownloadsInProgress = nil;
     [self.listConn cancel];
     self.listConn = nil;
@@ -47,6 +42,16 @@
     self.jsonData = nil;
     
     [super dealloc];
+}
+
+- (void)cancelAllImgLoading
+{
+    LKImgDownload *imageDown;
+    for (NSIndexPath *key in imageDownloadsInProgress) {
+        if ((imageDown = [imageDownloadsInProgress objectForKey:key])) {
+            [imageDown cancelDownload];
+        }
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

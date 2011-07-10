@@ -341,6 +341,23 @@
 			path = helpers;
 			sourceTree = "<group>";
 		};
+		A3AD75A713C990A300744B4A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				A3AD758D13C98FF900744B4A /* blackArrow.png */,
+				A3AD758E13C98FF900744B4A /* blackArrow@2x.png */,
+				A3AD758F13C98FF900744B4A /* blueArrow.png */,
+				A3AD759013C98FF900744B4A /* blueArrow@2x.png */,
+				A3AD759113C98FF900744B4A /* EGORefreshTableHeaderView.h */,
+				A3AD759213C98FF900744B4A /* EGORefreshTableHeaderView.m */,
+				A3AD759313C98FF900744B4A /* grayArrow.png */,
+				A3AD759413C98FF900744B4A /* grayArrow@2x.png */,
+				A3AD759513C98FF900744B4A /* whiteArrow.png */,
+				A3AD759613C98FF900744B4A /* whiteArrow@2x.png */,
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		A3D66EE013A4662400C83B62 = {
 			isa = PBXGroup;
 			children = (
@@ -453,16 +470,7 @@
 		A3D66F4713A469DA00C83B62 /* Share */ = {
 			isa = PBXGroup;
 			children = (
-				A3AD758D13C98FF900744B4A /* blackArrow.png */,
-				A3AD758E13C98FF900744B4A /* blackArrow@2x.png */,
-				A3AD758F13C98FF900744B4A /* blueArrow.png */,
-				A3AD759013C98FF900744B4A /* blueArrow@2x.png */,
-				A3AD759113C98FF900744B4A /* EGORefreshTableHeaderView.h */,
-				A3AD759213C98FF900744B4A /* EGORefreshTableHeaderView.m */,
-				A3AD759313C98FF900744B4A /* grayArrow.png */,
-				A3AD759413C98FF900744B4A /* grayArrow@2x.png */,
-				A3AD759513C98FF900744B4A /* whiteArrow.png */,
-				A3AD759613C98FF900744B4A /* whiteArrow@2x.png */,
+				A3AD75A713C990A300744B4A /* New Group */,
 				A35C9F5F13C896D900F5A84A /* MBProgressHUD.h */,
 				A35C9F6013C896D900F5A84A /* MBProgressHUD.m */,
 				A35723AD13B1CB8D00106383 /* LKCache */,

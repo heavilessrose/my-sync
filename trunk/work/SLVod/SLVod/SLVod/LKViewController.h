@@ -63,6 +63,7 @@
 - (void)HUDWithLabel:(NSString *)tip;
 - (void)HUDWithGradient:(NSString *)tip;
 
+- (void)cancelAllImgLoading;
 @end
 
 

@@ -10,7 +10,7 @@
 #import "SLMovDetailController.h"
 
 @interface SLCateMoviesController ()
-- (void)fetchMoviesInCate:(NSString *)aCate;
+- (void)fetchMoviesInCate:(NSString *)aCate hud:(BOOL)showHUD;
 @end
 
 
@@ -68,14 +68,16 @@
 
 - (void)setTheCate:(SLMovie *)aMov
 {
-    [self fetchMoviesInCate:[aMov.cate URLEncodedString]];
+    [self fetchMoviesInCate:[aMov.cate URLEncodedString] hud:YES];
 }
 
-- (void)fetchMoviesInCate:(NSString *)aCate
+- (void)fetchMoviesInCate:(NSString *)aCate hud:(BOOL)showHUD
 {
     NSString *cateUrl = [NSString stringWithFormat:SL_CATE_MOVS, page, aCate];
     //    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
-    [self HUDWithGradient:@"加载中..."];
+    if (showHUD) {
+        [self HUDWithGradient:@"加载中..."];
+    }
     NSURL *movsUrl = [NSURL URLWithString:cateUrl relativeToURL:SL_BASE_HOST];
     NSURLRequest *movsReq = [NSURLRequest requestWithURL:movsUrl];
     self.listConn = [NSURLConnection connectionWithRequest:movsReq delegate:self];
@@ -126,8 +128,10 @@
     
     [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
     
-//    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
-    [HUD hide:YES];
+    //    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
+    if (HUD) {
+        [HUD hide:YES];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

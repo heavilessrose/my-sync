@@ -10,7 +10,7 @@
 #import "SLMovDetailController.h"
 
 @interface SLHotController ()
-- (void)fetchHotMovs;
+- (void)fetchHotMovs:(BOOL)showHUD;
 @end
 
 
@@ -50,7 +50,21 @@
     self.theTable = table;
     
     self.title = @"Hot";
-    [self fetchHotMovs];
+    [self fetchHotMovs:YES];
+    
+    
+	if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.table.bounds.size.height, self.view.frame.size.width, self.table.bounds.size.height)];
+		view.delegate = self;
+		[self.table addSubview:view];
+		_refreshHeaderView = view;
+		[view release];
+		
+	}
+	
+	//  update the last update date
+	[_refreshHeaderView refreshLastUpdatedDate];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,10 +88,12 @@
 
 #pragma mark - hot movs: http://i.siluhd.com/ipadgetnew.asp
 // 
-- (void)fetchHotMovs {
+- (void)fetchHotMovs:(BOOL)showHUD {
     
 //    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
-    [self HUDWithGradient:@"加载中..."];
+    if (showHUD) {
+        [self HUDWithGradient:@"加载中..."];
+    }
     NSURL *hotsUrl = [NSURL URLWithString:[NSString stringWithFormat:SL_HOT, page] relativeToURL:SL_BASE_HOST];
     NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
     self.listConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
@@ -117,7 +133,9 @@
 {
     DLOG
     NSArray *movList = [self parse:jsonData];
-    
+    if (movies && [movies count] > 0) {
+        [movies removeAllObjects];
+    }
     for (NSDictionary *aDic in movList) {
         SLMovie *aMov = [[SLMovie alloc] initWithDic:aDic];
         [movies addObject:aMov];
@@ -128,7 +146,13 @@
     
     [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
 //    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
-    [HUD hide:YES];
+    if (HUD) {
+        [HUD hide:YES];
+    }
+    
+    if (_reloading) {
+        [self doneLoadingTableViewData];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -241,6 +265,60 @@
 
 - (NSString *)iconImageName {
 	return @"magnifying-glass.png";
+}
+
+
+#pragma mark - ego refresh table delegate 
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+{
+    [self reloadTableViewDataSource];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
+{
+    return _reloading;
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
+}
+
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
+}
+
+#pragma mark Data Source Loading / Reloading Methods
+
+- (void)reloadTableViewDataSource
+{
+	//  should be calling your tableviews data source model to reload
+	//  put here just for demo
+	_reloading = YES;
+    
+    [self cancelAllImgLoading];
+    [self fetchHotMovs:NO];
+}
+
+- (void)doneLoadingTableViewData
+{
+	//  model should call this when its done loading
+	_reloading = NO;
+    
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.table];
+	
 }
 
 @end
