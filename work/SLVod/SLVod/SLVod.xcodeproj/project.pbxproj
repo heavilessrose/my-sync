@@ -20,11 +20,21 @@
 		A35723C813B1CB8D00106383 /* HJMOUserBase.m in Sources */ = {isa = PBXBuildFile; fileRef = A35723BD13B1CB8D00106383 /* HJMOUserBase.m */; };
 		A35723C913B1CB8D00106383 /* HJObjManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A35723BF13B1CB8D00106383 /* HJObjManager.m */; };
 		A35723CA13B1CB8D00106383 /* HJWeakMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = A35723C113B1CB8D00106383 /* HJWeakMutableArray.m */; };
+		A35C9F6113C896D900F5A84A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A35C9F6013C896D900F5A84A /* MBProgressHUD.m */; };
 		A3713D1313A8961A0004A609 /* LKVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3713D1113A8961A0004A609 /* LKVideoController.m */; };
 		A3713D1413A8961A0004A609 /* LKVideoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3713D1213A8961A0004A609 /* LKVideoController.xib */; };
 		A3713D1913A8B6480004A609 /* SLCateMoviesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3713D1713A8B6480004A609 /* SLCateMoviesController.m */; };
 		A3713D1A13A8B6480004A609 /* SLCateMoviesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3713D1813A8B6480004A609 /* SLCateMoviesController.xib */; };
 		A391CE4813A8C1E10098A241 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = A391CE4713A8C1E10098A241 /* NSString+URL.m */; };
+		A3AD759713C98FF900744B4A /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD758D13C98FF900744B4A /* blackArrow.png */; };
+		A3AD759813C98FF900744B4A /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD758E13C98FF900744B4A /* blackArrow@2x.png */; };
+		A3AD759913C98FF900744B4A /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD758F13C98FF900744B4A /* blueArrow.png */; };
+		A3AD759A13C98FF900744B4A /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD759013C98FF900744B4A /* blueArrow@2x.png */; };
+		A3AD759B13C98FF900744B4A /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AD759213C98FF900744B4A /* EGORefreshTableHeaderView.m */; };
+		A3AD759C13C98FF900744B4A /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD759313C98FF900744B4A /* grayArrow.png */; };
+		A3AD759D13C98FF900744B4A /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD759413C98FF900744B4A /* grayArrow@2x.png */; };
+		A3AD759E13C98FF900744B4A /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD759513C98FF900744B4A /* whiteArrow.png */; };
+		A3AD759F13C98FF900744B4A /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD759613C98FF900744B4A /* whiteArrow@2x.png */; };
 		A3C7D28213A4A5AC0050FD28 /* LKImageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */; };
 		A3C7D28313A4A5AC0050FD28 /* LKImgDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */; };
 		A3C7D28713A4B7960050FD28 /* SLMovDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28513A4B7950050FD28 /* SLMovDetailController.m */; };
@@ -136,6 +146,8 @@
 		A35723BF13B1CB8D00106383 /* HJObjManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJObjManager.m; sourceTree = "<group>"; };
 		A35723C013B1CB8D00106383 /* HJWeakMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJWeakMutableArray.h; sourceTree = "<group>"; };
 		A35723C113B1CB8D00106383 /* HJWeakMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJWeakMutableArray.m; sourceTree = "<group>"; };
+		A35C9F5F13C896D900F5A84A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		A35C9F6013C896D900F5A84A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A3713D1013A8961A0004A609 /* LKVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKVideoController.h; sourceTree = "<group>"; };
 		A3713D1113A8961A0004A609 /* LKVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKVideoController.m; sourceTree = "<group>"; };
 		A3713D1213A8961A0004A609 /* LKVideoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKVideoController.xib; sourceTree = "<group>"; };
@@ -144,6 +156,16 @@
 		A3713D1813A8B6480004A609 /* SLCateMoviesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLCateMoviesController.xib; sourceTree = "<group>"; };
 		A391CE4613A8C1E10098A241 /* NSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URL.h"; sourceTree = "<group>"; };
 		A391CE4713A8C1E10098A241 /* NSString+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URL.m"; sourceTree = "<group>"; };
+		A3AD758D13C98FF900744B4A /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		A3AD758E13C98FF900744B4A /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		A3AD758F13C98FF900744B4A /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		A3AD759013C98FF900744B4A /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		A3AD759113C98FF900744B4A /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		A3AD759213C98FF900744B4A /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		A3AD759313C98FF900744B4A /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		A3AD759413C98FF900744B4A /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		A3AD759513C98FF900744B4A /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		A3AD759613C98FF900744B4A /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImageRecord.h; sourceTree = "<group>"; };
 		A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImageRecord.m; sourceTree = "<group>"; };
 		A3C7D28013A4A5AC0050FD28 /* LKImgDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImgDownload.h; sourceTree = "<group>"; };
@@ -431,6 +453,18 @@
 		A3D66F4713A469DA00C83B62 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				A3AD758D13C98FF900744B4A /* blackArrow.png */,
+				A3AD758E13C98FF900744B4A /* blackArrow@2x.png */,
+				A3AD758F13C98FF900744B4A /* blueArrow.png */,
+				A3AD759013C98FF900744B4A /* blueArrow@2x.png */,
+				A3AD759113C98FF900744B4A /* EGORefreshTableHeaderView.h */,
+				A3AD759213C98FF900744B4A /* EGORefreshTableHeaderView.m */,
+				A3AD759313C98FF900744B4A /* grayArrow.png */,
+				A3AD759413C98FF900744B4A /* grayArrow@2x.png */,
+				A3AD759513C98FF900744B4A /* whiteArrow.png */,
+				A3AD759613C98FF900744B4A /* whiteArrow@2x.png */,
+				A35C9F5F13C896D900F5A84A /* MBProgressHUD.h */,
+				A35C9F6013C896D900F5A84A /* MBProgressHUD.m */,
 				A35723AD13B1CB8D00106383 /* LKCache */,
 				A391CE4513A8C1E10098A241 /* helpers */,
 				A3D66FB613A47FBB00C83B62 /* Views */,
@@ -649,6 +683,14 @@
 				A3DB7F0613AB31F900E3250C /* about.png in Resources */,
 				A3DB7F0813AB334D00E3250C /* noimg.png in Resources */,
 				A3DB7F1D13AB4E8C00E3250C /* SLDownloadManController.xib in Resources */,
+				A3AD759713C98FF900744B4A /* blackArrow.png in Resources */,
+				A3AD759813C98FF900744B4A /* blackArrow@2x.png in Resources */,
+				A3AD759913C98FF900744B4A /* blueArrow.png in Resources */,
+				A3AD759A13C98FF900744B4A /* blueArrow@2x.png in Resources */,
+				A3AD759C13C98FF900744B4A /* grayArrow.png in Resources */,
+				A3AD759D13C98FF900744B4A /* grayArrow@2x.png in Resources */,
+				A3AD759E13C98FF900744B4A /* whiteArrow.png in Resources */,
+				A3AD759F13C98FF900744B4A /* whiteArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,6 +778,8 @@
 				A35723C813B1CB8D00106383 /* HJMOUserBase.m in Sources */,
 				A35723C913B1CB8D00106383 /* HJObjManager.m in Sources */,
 				A35723CA13B1CB8D00106383 /* HJWeakMutableArray.m in Sources */,
+				A35C9F6113C896D900F5A84A /* MBProgressHUD.m in Sources */,
+				A3AD759B13C98FF900744B4A /* EGORefreshTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

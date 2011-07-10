@@ -72,8 +72,9 @@
 // 
 - (void)fetchCateMovs {
     
-//    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
-    NSURL *hotsUrl = [NSURL URLWithString:SL_CATE_LIST relativeToURL:SL_BASE_HOST];
+    //    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
+    [self HUDWithGradient:@"加载中..."];
+    NSURL *hotsUrl = [NSURL URLWithString:[NSString stringWithFormat:SL_CATE_LIST, page] relativeToURL:SL_BASE_HOST];
     NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
     self.listConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
     [listConn start];
@@ -121,6 +122,7 @@
     }
     [self cancelListConn];
     [table reloadData];
+    [HUD hide:YES];
 #if 0
     [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
     [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
@@ -164,8 +166,8 @@
     [detailVC release];
 #else
     SLCateMoviesController *moviesVC = [[SLCateMoviesController alloc] initWithNibName:@"SLCateMoviesController" bundle:nil];
-    moviesVC.theCate = [movies objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:moviesVC animated:YES];
+    moviesVC.theCate = [movies objectAtIndex:indexPath.row];
     [moviesVC release];
 #endif
 }
