@@ -27,9 +27,9 @@
 
 // URL
 #define SL_BASE_HOST        ([NSURL URLWithString:@"http://i.siluhd.com"])
-#define SL_HOT              (@"ipadgetnew.asp")
-#define SL_CATE_LIST        (@"ipad_get_typelist.asp")
-#define SL_CATE_MOVS        (@"ipadsearch.asp?searchtype=Filmtype&keyword=%@")
+#define SL_HOT              (@"ipadgetnew.asp?page=%d")
+#define SL_CATE_LIST        (@"ipad_get_typelist.asp?page=%d")
+#define SL_CATE_MOVS        (@"ipadsearch.asp?searchtype=Filmtype&page=%d&keyword=%@")
 
 // LOG
 #define LK_DEBUG

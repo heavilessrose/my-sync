@@ -21,12 +21,14 @@
 #import "SLUserProfileCell.h"
 
 #import "SLVodAppDelegate.h"
+#import "MBProgressHUD.h"
 
-@interface LKViewController : UIViewController <LKImgDownloadDelegate, SLPlayDelegate> {
+@interface LKViewController : UIViewController <LKImgDownloadDelegate, SLPlayDelegate, MBProgressHUDDelegate> {
     
     NSMutableData   *jsonData;
     NSMutableArray  *movies;
     NSURLConnection *listConn;
+    int        page;
     
     BOOL            allRequestShouldCancel;
     NSMutableDictionary	*imageDownloadsInProgress;
@@ -37,8 +39,10 @@
     SLHotCell           *tmpHotCell;
     SLMovInfoCell       *tmpMovInfoCell;
     SLUserProfileCell   *tmpUProfileCell;
+    MBProgressHUD       *HUD;
 }
 
+@property (nonatomic, assign) int        page;
 @property (nonatomic, assign) UITableView     *theTable;
 
 @property (nonatomic, assign) IBOutlet SLHotCell *tmpHotCell;
@@ -54,6 +58,11 @@
 
 - (void)hideTabbar;
 - (void)showTabbar;
+
+#pragma mark - HUD
+- (void)HUDWithLabel:(NSString *)tip;
+- (void)HUDWithGradient:(NSString *)tip;
+
 @end
 
 

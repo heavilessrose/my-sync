@@ -25,6 +25,7 @@
 #pragma mark -
 @implementation LKViewController
 
+@synthesize page;
 @synthesize allRequestShouldCancel;
 @synthesize jsonData, movies, listConn, imageDownloadsInProgress;
 @synthesize tmpHotCell, tmpMovInfoCell, tmpUProfileCell, theTable;
@@ -32,6 +33,12 @@
 - (void)dealloc
 {
     MLog(@"");
+    LKImgDownload *imageDown;
+    for (NSIndexPath *key in imageDownloadsInProgress) {
+        if ((imageDown = [imageDownloadsInProgress objectForKey:key])) {
+            [imageDown cancelDownload];
+        }
+    }
     self.imageDownloadsInProgress = nil;
     [self.listConn cancel];
     self.listConn = nil;
@@ -46,7 +53,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.page = 1;
     }
     return self;
 }
@@ -284,6 +291,13 @@
     }
 }
 
+#pragma mark - Tip
+
+- (void)showTipFromTopWith:(NSString *)tipStr theAnimation:(BOOL)showAnimation
+{
+    
+}
+
 #pragma mark - BCTabbar 
 
 - (NSString *)iconImageName {
@@ -298,6 +312,38 @@
 - (void)showTabbar
 {
     globalApp.tabBarController.tabBar.hidden = NO;
+}
+
+#pragma mark - HUD
+
+- (void)disposeHUD
+{
+    
+}
+
+- (void)HUDWithLabel:(NSString *)tip {
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:HUD];
+	
+    HUD.delegate = self;
+    HUD.labelText = tip;
+	
+//    [HUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
+    [HUD show:YES];
+}
+
+- (void)HUDWithGradient:(NSString *)tip {
+	UIView *tmp = self.navigationController.view;
+    HUD = [[MBProgressHUD alloc] initWithView:tmp];
+	[tmp addSubview:HUD];
+	
+	HUD.dimBackground = YES;
+	
+	// Regiser for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+    HUD.labelText = tip;
+    [HUD show:YES];
 }
 
 @end

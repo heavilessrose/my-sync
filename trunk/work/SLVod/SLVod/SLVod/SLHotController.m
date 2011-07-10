@@ -77,7 +77,8 @@
 - (void)fetchHotMovs {
     
 //    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
-    NSURL *hotsUrl = [NSURL URLWithString:SL_HOT relativeToURL:SL_BASE_HOST];
+    [self HUDWithGradient:@"加载中..."];
+    NSURL *hotsUrl = [NSURL URLWithString:[NSString stringWithFormat:SL_HOT, page] relativeToURL:SL_BASE_HOST];
     NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
     self.listConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
     [self.listConn start];
@@ -127,6 +128,7 @@
     
     [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
 //    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
+    [HUD hide:YES];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
