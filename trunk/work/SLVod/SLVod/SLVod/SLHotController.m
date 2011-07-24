@@ -8,9 +8,12 @@
 
 #import "SLHotController.h"
 #import "SLMovDetailController.h"
+#import "LKMoreCell.h"
 
 @interface SLHotController ()
 - (void)fetchHotMovs:(BOOL)showHUD;
+
+- (void)nextPage:(int)aPage;
 @end
 
 
@@ -164,9 +167,21 @@
     if (connection == listConn) {
         DLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
         NSArray *movList = [self parse:jsonData];
+#if 0
         if (movies && [movies count] > 0) {
             [movies removeAllObjects];
         }
+#else
+        NSIndexPath *mPath = [NSIndexPath indexPathForRow:[movies count] inSection:0];
+        LKMoreCell *mcell = [table cellForRowAtIndexPath:mPath];
+        if (mcell && [mcell isKindOfClass:[LKMoreCell class]]) {
+            if (movList && [movList count] == 0) {
+                [mcell nomore];
+            } else {
+                [mcell loadSuccessed];
+            }
+        }
+#endif
         for (NSDictionary *aDic in movList) {
             SLMovie *aMov = [[SLMovie alloc] initWithDic:aDic];
             [movies addObject:aMov];
@@ -211,6 +226,12 @@
     DLOG
     if (connection == listConn) {
         [self cancelListConn];
+        
+        NSIndexPath *mPath = [NSIndexPath indexPathForRow:[movies count] inSection:0];
+        LKMoreCell *mcell = [table cellForRowAtIndexPath:mPath];
+        if (mcell && [mcell isKindOfClass:[LKMoreCell class]]) {
+            [mcell loadFailed];
+        }
     }
     if (connection == searchConn) {
         [self cancelSearchConn];
@@ -240,6 +261,9 @@
     CGFloat h = 0;
     if (tableView == table) {
         h = 80;
+        if (indexPath.row == [movies count]) {
+            h = 44;
+        }
     }
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         h = 44;
@@ -297,8 +321,15 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LKMoreCell *mCell;
     if (tableView == table && indexPath.row == [movies count]) {
-        
+        if ([cell isKindOfClass:[LKMoreCell class]]) {
+            mCell = (LKMoreCell *)cell;
+        }
+        if (mCell.state == LKMoreCellState_Loaded) {
+            [self nextPage:++self.page];
+            [mCell startLoadMore];
+        }
     }
 }
 
@@ -308,6 +339,16 @@
     if (tableView == table) {
         if (indexPath.row == [movies count]) {
             static NSString *nextPageCellID = @"LKMoreCell";
+            LKMoreCell *mCell = (LKMoreCell *)[tableView dequeueReusableCellWithIdentifier:nextPageCellID];
+            if (!mCell) {
+                [[NSBundle mainBundle] loadNibNamed:@"LKMoreCell" owner:self options:nil];
+                if (self.tmpMoreCell) {
+                    self.tmpMoreCell.delegate = self;
+                    mCell = self.tmpMoreCell;
+                    self.tmpMoreCell = nil;
+                }
+            }
+            theCell = mCell;
         } else {
             static NSString *cellID = @"SLHotCell";
             SLHotCell *hCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
@@ -451,5 +492,17 @@
 	}
 }
 
+#pragma mark - 
+
+- (void)nextPage:(int)aPage
+{
+    [self fetchHotMovs:NO];
+}
+
+- (void)retryLoad:(LKMoreCell *)aMoreCell
+{
+    [self nextPage:self.page];
+    [aMoreCell startLoadMore];
+}
 
 @end
