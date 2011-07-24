@@ -10,7 +10,7 @@
 #import "LKViewController.h"
 #import "EGORefreshTableHeaderView.h"
 
-@interface SLHotController : LKViewController <UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate> {
+@interface SLHotController : LKViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, EGORefreshTableHeaderDelegate> {
     LKShadowTableView   *table;
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
