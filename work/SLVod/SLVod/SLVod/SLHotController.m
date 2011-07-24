@@ -177,6 +177,7 @@
         if (mcell && [mcell isKindOfClass:[LKMoreCell class]]) {
             if (movList && [movList count] == 0) {
                 [mcell nomore];
+                self.shouldLoadNextPage = NO;
             } else {
                 [mcell loadSuccessed];
             }
