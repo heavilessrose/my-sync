@@ -30,6 +30,7 @@
 #define SL_HOT              (@"ipadgetnew.asp?page=%d")
 #define SL_CATE_LIST        (@"ipad_get_typelist.asp?page=%d")
 #define SL_CATE_MOVS        (@"ipadsearch.asp?searchtype=Filmtype&page=%d&keyword=%@")
+#define SL_SEARCH           (@"ipadsearch.asp?searchtype=search&page=1&keyword=%@")
 
 // LOG
 #define LK_DEBUG

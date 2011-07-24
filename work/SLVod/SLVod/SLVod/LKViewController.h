@@ -28,6 +28,9 @@
     NSMutableData   *jsonData;
     NSMutableArray  *movies;
     NSURLConnection *listConn;
+    NSMutableData   *searchJsonData;
+    NSURLConnection *searchConn;
+    NSMutableArray  *searchList;
     int        page;
     
     BOOL            allRequestShouldCancel;
@@ -52,12 +55,17 @@
 @property (nonatomic, assign) BOOL              allRequestShouldCancel;
 @property (nonatomic, retain) NSMutableDictionary	*imageDownloadsInProgress;
 @property (nonatomic, retain) NSURLConnection   *listConn;
+@property (nonatomic, retain) NSURLConnection   *searchConn;
 @property (nonatomic, retain) NSMutableArray    *movies;
 @property (nonatomic, retain) NSMutableData     *jsonData;
+@property (nonatomic, retain) NSMutableData     *searchJsonData;
+@property (nonatomic, retain) NSMutableArray    *searchList;
 
 
 - (void)hideTabbar;
 - (void)showTabbar;
+
+- (void)searchWithKeyword:(NSString *)key;
 
 #pragma mark - HUD
 - (void)HUDWithLabel:(NSString *)tip;
@@ -72,6 +80,7 @@
 @interface LKViewController (ListAndImageLoad)
 - (id)parse:(NSData *)theData;
 - (void)cancelListConn;
+- (void)cancelSearchConn;
 - (void)loadImagesForOnscreenRows:(UITableView *)theTable;
 @end
 

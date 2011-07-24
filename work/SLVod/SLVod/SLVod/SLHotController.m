@@ -119,56 +119,102 @@
 {
     DLOG
     DLog(@"%@", [response allHeaderFields]);
-	if (jsonData) {
-		self.jsonData = nil;
-	}
-	NSLog(@"response: URL: %@", [response URL]);
-	NSLog(@"response: MIME: %@", [response MIMEType]);
-	NSLog(@"response: enc: %@", [response textEncodingName]);
-	self.jsonData = [NSMutableData data];
+    NSLog(@"response: URL: %@", [response URL]);
+    NSLog(@"response: MIME: %@", [response MIMEType]);
+    NSLog(@"response: enc: %@", [response textEncodingName]);
+    if (connection == listConn) {
+        if (jsonData) {
+            self.jsonData = nil;
+        }
+        self.jsonData = [NSMutableData data];
+    }
+    
+    
+    if (connection == searchConn) {
+        if (searchJsonData) {
+            self.searchJsonData = nil;
+        }
+        self.searchJsonData = [NSMutableData data];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     DLOG
-	if (jsonData) {
-		[jsonData appendData:data];
-	} else {
-		ALog(@"jsonData invaliad!");
-	}
+    if (connection == listConn) {
+        if (jsonData) {
+            [jsonData appendData:data];
+        } else {
+            ALog(@"jsonData invaliad!");
+        }
+    }
+    
+    if (connection == searchConn) {
+        if (searchJsonData) {
+            [searchJsonData appendData:data];
+        } else {
+            ALog(@"searchJsonData invaliad!");
+        }
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     DLOG
-    DLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
-    NSArray *movList = [self parse:jsonData];
-    if (movies && [movies count] > 0) {
-        [movies removeAllObjects];
+    if (connection == listConn) {
+        DLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+        NSArray *movList = [self parse:jsonData];
+        if (movies && [movies count] > 0) {
+            [movies removeAllObjects];
+        }
+        for (NSDictionary *aDic in movList) {
+            SLMovie *aMov = [[SLMovie alloc] initWithDic:aDic];
+            [movies addObject:aMov];
+            [aMov release];
+        }
+        [self cancelListConn];
+        [table reloadData];
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
+        //    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
+        if (HUD) {
+            [HUD hide:YES];
+        }
+        
+        if (_reloading) {
+            [self doneLoadingTableViewData];
+        }
     }
-    for (NSDictionary *aDic in movList) {
-        SLMovie *aMov = [[SLMovie alloc] initWithDic:aDic];
-        [movies addObject:aMov];
-        [aMov release];
-    }
-    [self cancelListConn];
-    [table reloadData];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
-//    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
-    if (HUD) {
-        [HUD hide:YES];
-    }
-    
-    if (_reloading) {
-        [self doneLoadingTableViewData];
+    if (connection == searchConn) {
+        NSArray *aSearchList = [self parse:searchJsonData];
+        
+        for (NSDictionary *aDic in aSearchList) {
+            SLMovie *aMov = [[SLMovie alloc] initWithDic:aDic];
+            [searchList addObject:aMov];
+            [aMov release];
+        }
+        [self cancelSearchConn];
+        [self.searchDisplayController.searchResultsTableView reloadData];
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(fetchImages) userInfo:nil repeats:NO];
+        
+        //    [[LKTipCenter defaultCenter] disposeFallingTip:self.view];
+        if (HUD) {
+            [HUD hide:YES];
+        }
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     DLOG
-    [self cancelListConn];
+    if (connection == listConn) {
+        [self cancelListConn];
+    }
+    if (connection == searchConn) {
+        [self cancelSearchConn];
+    }
 //    [[LKTipCenter defaultCenter] changeFallingTip:self.view withText:@"network err"];
 }
 
@@ -191,15 +237,30 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    CGFloat h = 0;
+    if (tableView == table) {
+        h = 80;
+    }
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        h = 44;
+    }
+    return h;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{   
-    SLMovDetailController *detailVC = [[SLMovDetailController alloc] initWithNibName:@"SLMovDetailController" bundle:nil];
-    detailVC.mov = [movies objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:detailVC animated:YES];
-    [detailVC release];
+{
+    if (tableView == table) {
+        SLMovDetailController *detailVC = [[SLMovDetailController alloc] initWithNibName:@"SLMovDetailController" bundle:nil];
+        detailVC.mov = [movies objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:detailVC animated:YES];
+        [detailVC release];
+    }
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        SLMovDetailController *detailVC = [[SLMovDetailController alloc] initWithNibName:@"SLMovDetailController" bundle:nil];
+        detailVC.mov = [searchList objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:detailVC animated:YES];
+        [detailVC release];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -221,22 +282,48 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [movies count];
+    int count = 0;
+    if (tableView == table) {
+        count = [movies count];
+    }
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        count = [searchList count];
+    }
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"SLHotCell";
-    SLHotCell *theCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!theCell) {
-        [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
-        if (tmpHotCell) {
-            theCell = tmpHotCell;
+    UITableViewCell *theCell;
+    if (tableView == table) {
+        static NSString *cellID = @"SLHotCell";
+        SLHotCell *hCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!hCell) {
+            [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
+            if (tmpHotCell) {
+                hCell = tmpHotCell;
+                hCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                self.tmpHotCell = nil;
+            }
+        }
+        hCell.movie = [movies objectAtIndex:indexPath.row];
+        theCell = hCell;
+    }
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        
+        static NSString *sCellID = @"UITableViewCell";
+        theCell = [tableView dequeueReusableCellWithIdentifier:sCellID];
+        if (!theCell) {
+            theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:sCellID] autorelease];
             theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            self.tmpHotCell = nil;
+        }
+        SLMovie *s = [searchList objectAtIndex:indexPath.row];
+        if (s) {
+            theCell.textLabel.text = s.title;
+            theCell.detailTextLabel.text = s.actor;
         }
     }
-    theCell.movie = [movies objectAtIndex:indexPath.row];
     return theCell;
 }
 
@@ -330,5 +417,25 @@
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.table];
 	
 }
+
+#pragma mark - search 
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    return YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
+    if (searchList) {
+        [searchList removeAllObjects];
+    } else {
+        self.searchList = [NSMutableArray array];
+    }
+	NSString *key = [aSearchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	if (key && [key length] > 0) {
+        [self searchWithKeyword:key];
+	}
+}
+
 
 @end

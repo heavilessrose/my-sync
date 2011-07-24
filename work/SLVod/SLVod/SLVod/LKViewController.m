@@ -12,6 +12,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "SLMovie.h"
 #import "LKVideoController.h"
+#import "NSString+URL.h"
 
 
 #define LK_Frame_Portrait       CGRectMake(0, 0, 320, 372)
@@ -27,7 +28,7 @@
 
 @synthesize page;
 @synthesize allRequestShouldCancel;
-@synthesize jsonData, movies, listConn, imageDownloadsInProgress;
+@synthesize jsonData, movies, listConn, imageDownloadsInProgress, searchConn, searchJsonData, searchList;
 @synthesize tmpHotCell, tmpMovInfoCell, tmpUProfileCell, theTable;
 
 - (void)dealloc
@@ -38,9 +39,12 @@
     self.imageDownloadsInProgress = nil;
     [self.listConn cancel];
     self.listConn = nil;
+    [self.searchConn cancel];
+    self.searchConn = nil;
     self.jsonData = nil;
     [movies release];
-    self.jsonData = nil;
+    self.searchJsonData = nil;
+    [searchList release];
     
     [super dealloc];
 }
@@ -161,6 +165,13 @@
     self.jsonData = nil;
     [self.listConn cancel];
     self.listConn = nil;
+}
+
+- (void)cancelSearchConn
+{
+    self.searchJsonData = nil;
+    [self.searchConn cancel];
+    self.searchConn = nil;
 }
 
 #pragma mark - image download handle
@@ -350,6 +361,16 @@
     HUD.delegate = self;
     HUD.labelText = tip;
     [HUD show:YES];
+}
+
+#pragma mark - search 
+
+- (void)searchWithKeyword:(NSString *)key
+{
+    DLog(@"key= %@", key);
+    NSURL *searchUrl = [NSURL URLWithString:[NSString stringWithFormat:SL_SEARCH, [key URLEncodedString]] relativeToURL:SL_BASE_HOST];
+    NSURLRequest *searchReq = [NSURLRequest requestWithURL:searchUrl];
+    self.searchConn = [NSURLConnection connectionWithRequest:searchReq delegate:self];
 }
 
 @end

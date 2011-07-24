@@ -28,8 +28,11 @@
 {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         NSArray *segArr = [NSArray arrayWithObjects:@"全部", @"已完成", @"下载中", nil];
+        
         self.seg = [[UISegmentedControl alloc] initWithItems:segArr];
+        self.seg.segmentedControlStyle = UISegmentedControlStyleBar;
         [self.seg addTarget:self action:@selector(segmentSelected:) forControlEvents:UIControlEventTouchUpInside];
+        self.seg.selectedSegmentIndex = 0;
         
         NSLog(@"%@", self.navigationItem);
         NSLog(@"%@", self.navigationItem.titleView);
