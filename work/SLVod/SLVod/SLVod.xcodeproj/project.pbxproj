@@ -11,6 +11,8 @@
 		A3136FA913A4954800EECA6A /* LKTipCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA213A4954800EECA6A /* LKTipCenter.m */; };
 		A3136FAA13A4954800EECA6A /* LKTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA413A4954800EECA6A /* LKTipView.m */; };
 		A3136FAF13A4957500EECA6A /* UIView+LKAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */; };
+		A321914913DBED700062B698 /* LKMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A321914813DBED6F0062B698 /* LKMoreCell.m */; };
+		A321914C13DBED940062B698 /* LKMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A321914B13DBED940062B698 /* LKMoreCell.xib */; };
 		A35723C213B1CB8D00106383 /* HJCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = A35723AF13B1CB8D00106383 /* HJCircularBuffer.m */; };
 		A35723C313B1CB8D00106383 /* HJManagedImageV.m in Sources */ = {isa = PBXBuildFile; fileRef = A35723B113B1CB8D00106383 /* HJManagedImageV.m */; };
 		A35723C413B1CB8D00106383 /* HJMOBigFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A35723B413B1CB8D00106383 /* HJMOBigFileCache.m */; };
@@ -129,6 +131,9 @@
 		A3136FA413A4954800EECA6A /* LKTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTipView.m; sourceTree = "<group>"; };
 		A3136FAD13A4957500EECA6A /* UIView+LKAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LKAddition.h"; sourceTree = "<group>"; };
 		A3136FAE13A4957500EECA6A /* UIView+LKAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LKAddition.m"; sourceTree = "<group>"; };
+		A321914713DBED6F0062B698 /* LKMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMoreCell.h; sourceTree = "<group>"; };
+		A321914813DBED6F0062B698 /* LKMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKMoreCell.m; sourceTree = "<group>"; };
+		A321914B13DBED940062B698 /* LKMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKMoreCell.xib; sourceTree = "<group>"; };
 		A35723AE13B1CB8D00106383 /* HJCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCircularBuffer.h; sourceTree = "<group>"; };
 		A35723AF13B1CB8D00106383 /* HJCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCircularBuffer.m; sourceTree = "<group>"; };
 		A35723B013B1CB8D00106383 /* HJManagedImageV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJManagedImageV.h; sourceTree = "<group>"; };
@@ -573,6 +578,9 @@
 				A3136FA213A4954800EECA6A /* LKTipCenter.m */,
 				A3136FA313A4954800EECA6A /* LKTipView.h */,
 				A3136FA413A4954800EECA6A /* LKTipView.m */,
+				A321914713DBED6F0062B698 /* LKMoreCell.h */,
+				A321914813DBED6F0062B698 /* LKMoreCell.m */,
+				A321914B13DBED940062B698 /* LKMoreCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -711,6 +719,7 @@
 				A3AD75A913C9968800744B4A /* icon.png in Resources */,
 				A3AD75AB13C9969100744B4A /* icon@2x.png in Resources */,
 				A3AD75AD13C996D900744B4A /* Default@2x.png in Resources */,
+				A321914C13DBED940062B698 /* LKMoreCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +809,7 @@
 				A35723CA13B1CB8D00106383 /* HJWeakMutableArray.m in Sources */,
 				A35C9F6113C896D900F5A84A /* MBProgressHUD.m in Sources */,
 				A3AD759B13C98FF900744B4A /* EGORefreshTableHeaderView.m in Sources */,
+				A321914913DBED700062B698 /* LKMoreCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
