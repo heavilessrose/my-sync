@@ -19,6 +19,7 @@
 #import "SLHotCell.h"
 #import "SLMovInfoCell.h"
 #import "SLUserProfileCell.h"
+#import "LKMoreCell.h"
 
 #import "SLVodAppDelegate.h"
 #import "MBProgressHUD.h"
@@ -27,6 +28,7 @@
     
     NSMutableData   *jsonData;
     NSMutableArray  *movies;
+    BOOL            shouldLoadNextPage;
     NSURLConnection *listConn;
     NSMutableData   *searchJsonData;
     NSURLConnection *searchConn;
@@ -39,15 +41,18 @@
     UITableView     *theTable;
     
     // cells
+    LKMoreCell          *tmpMoreCell;
     SLHotCell           *tmpHotCell;
     SLMovInfoCell       *tmpMovInfoCell;
     SLUserProfileCell   *tmpUProfileCell;
     MBProgressHUD       *HUD;
 }
 
-@property (nonatomic, assign) int        page;
-@property (nonatomic, assign) UITableView     *theTable;
+@property (nonatomic, assign) int               page;
+@property (nonatomic, assign) BOOL              shouldLoadNextPage;
+@property (nonatomic, assign) UITableView       *theTable;
 
+@property (nonatomic, assign) IBOutlet LKMoreCell          *tmpMoreCell;
 @property (nonatomic, assign) IBOutlet SLHotCell *tmpHotCell;
 @property (nonatomic, assign) IBOutlet SLMovInfoCell *tmpMovInfoCell;
 @property (nonatomic, assign) IBOutlet SLUserProfileCell *tmpUProfileCell;

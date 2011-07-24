@@ -29,7 +29,7 @@
 @synthesize page;
 @synthesize allRequestShouldCancel;
 @synthesize jsonData, movies, listConn, imageDownloadsInProgress, searchConn, searchJsonData, searchList;
-@synthesize tmpHotCell, tmpMovInfoCell, tmpUProfileCell, theTable;
+@synthesize tmpMoreCell, tmpHotCell, tmpMovInfoCell, tmpUProfileCell, theTable, shouldLoadNextPage;
 
 - (void)dealloc
 {
@@ -64,6 +64,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.page = 1;
+        self.shouldLoadNextPage = YES;
     }
     return self;
 }

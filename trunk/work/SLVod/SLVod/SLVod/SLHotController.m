@@ -285,6 +285,9 @@
     int count = 0;
     if (tableView == table) {
         count = [movies count];
+        if (count >= SL_PAGESIZE && shouldLoadNextPage) {
+            count++;
+        }
     }
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         count = [searchList count];
@@ -292,22 +295,33 @@
     return count;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == table && indexPath.row == [movies count]) {
+        
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *theCell;
     if (tableView == table) {
-        static NSString *cellID = @"SLHotCell";
-        SLHotCell *hCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!hCell) {
-            [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
-            if (tmpHotCell) {
-                hCell = tmpHotCell;
-                hCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                self.tmpHotCell = nil;
+        if (indexPath.row == [movies count]) {
+            static NSString *nextPageCellID = @"LKMoreCell";
+        } else {
+            static NSString *cellID = @"SLHotCell";
+            SLHotCell *hCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
+            if (!hCell) {
+                [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
+                if (tmpHotCell) {
+                    hCell = tmpHotCell;
+                    hCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    self.tmpHotCell = nil;
+                }
             }
+            hCell.movie = [movies objectAtIndex:indexPath.row];
+            theCell = hCell;
         }
-        hCell.movie = [movies objectAtIndex:indexPath.row];
-        theCell = hCell;
     }
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
