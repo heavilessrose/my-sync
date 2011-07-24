@@ -94,8 +94,17 @@
     if (showHUD) {
         [self HUDWithGradient:@"加载中..."];
     }
+#if 1
     NSURL *hotsUrl = [NSURL URLWithString:[NSString stringWithFormat:SL_HOT, page] relativeToURL:SL_BASE_HOST];
+#else
+    
+    NSURL *urlaa = [NSURL URLWithString:@"http://211.151.64.33:8081/jyapi"];
+    NSString *urlPart = @"info/jylist/1/20?city=bj";
+    NSURL *hotsUrl = [NSURL URLWithString:urlPart relativeToURL:urlaa];
+#endif
+    DLog(@"%@", hotsUrl);
     NSURLRequest *hotsReq = [NSURLRequest requestWithURL:hotsUrl];
+//    DLog(@"%@")
     self.listConn = [NSURLConnection connectionWithRequest:hotsReq delegate:self];
     [self.listConn start];
 }
@@ -109,7 +118,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     DLOG
-    
+    DLog(@"%@", [response allHeaderFields]);
 	if (jsonData) {
 		self.jsonData = nil;
 	}
@@ -132,6 +141,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     DLOG
+    DLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
     NSArray *movList = [self parse:jsonData];
     if (movies && [movies count] > 0) {
         [movies removeAllObjects];

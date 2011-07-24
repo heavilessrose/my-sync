@@ -33,6 +33,7 @@
 - (void)dealloc
 {
     MLog(@"");
+    HUD.delegate = nil;
     [self cancelAllImgLoading];
     self.imageDownloadsInProgress = nil;
     [self.listConn cancel];
