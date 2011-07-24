@@ -203,11 +203,14 @@
         NSArray *visiblePaths = [aTable indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths)
         {
-            SLMovie *aMov = [movies objectAtIndex:indexPath.row];
-            if (aMov.imgRecord && aMov.imgRecord.show && !aMov.imgRecord.downloaded) {
-                LKImageRecord *cRecord = aMov.imgRecord;
-                if (cRecord.url) {
-                    [self startImageDown:cRecord forIndexPath:indexPath];
+            UITableViewCell *mcell = [aTable cellForRowAtIndexPath:indexPath];
+            if (![mcell isKindOfClass:[LKMoreCell class]]) {
+                SLMovie *aMov = [movies objectAtIndex:indexPath.row];
+                if (aMov.imgRecord && aMov.imgRecord.show && !aMov.imgRecord.downloaded) {
+                    LKImageRecord *cRecord = aMov.imgRecord;
+                    if (cRecord.url) {
+                        [self startImageDown:cRecord forIndexPath:indexPath];
+                    }
                 }
             }
         }

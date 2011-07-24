@@ -26,7 +26,7 @@
 #define Font_Tiny_bold		([UIFont boldSystemFontOfSize:12.0f])
 
 // URL
-#define SL_PAGESIZE         (10)
+#define SL_PAGESIZE         (5)
 #define SL_BASE_HOST        ([NSURL URLWithString:@"http://i.siluhd.com"])
 #define SL_HOT              (@"ipadgetnew.asp?page=%d")
 #define SL_CATE_LIST        (@"ipad_get_typelist.asp?page=%d")

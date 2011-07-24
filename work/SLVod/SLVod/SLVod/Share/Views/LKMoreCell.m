@@ -24,7 +24,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.state = LKMoreCellState_Loading;
+        self.state = LKMoreCellState_Loaded;
     }
     return self;
 }
@@ -55,11 +55,45 @@
         [self.titleLabel setText:@"加载失败请重试"];
         [self.retryButton setHidden:NO];
     }
+    
+    if (aState == LKMoreCellState_NoMore) {
+        [self.anim setHidden:YES];
+        [self.titleLabel setText:@"已到最后一页"];
+        [self.retryButton setHidden:YES];
+    }
+    
+    if (aState == LKMoreCellState_NoConn) {
+        [self.anim setHidden:YES];
+        [self.titleLabel setText:@"请检查网络连接"];
+        [self.retryButton setHidden:NO];
+    }
+    state = aState;
 }
 
 - (void)startLoadMore
 {
     self.state = LKMoreCellState_Loading;
+}
+
+- (void)loadSuccessed
+{
+    if (self.state == LKMoreCellState_Loading) {
+        self.state = LKMoreCellState_Loaded;
+    }
+}
+
+- (void)nomore
+{
+    if (self.state == LKMoreCellState_Loading) {
+        self.state = LKMoreCellState_NoMore;
+    }
+}
+
+- (void)loadFailed
+{
+    if (self.state == LKMoreCellState_Loading) {
+        self.state = LKMoreCellState_Failed;
+    }
 }
 
 - (IBAction)willRetry:(id)sender

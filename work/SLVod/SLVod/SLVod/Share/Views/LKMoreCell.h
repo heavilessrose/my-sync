@@ -12,6 +12,8 @@ typedef enum {
     LKMoreCellState_Loading = 0,
     LKMoreCellState_Failed,
     LKMoreCellState_Loaded,
+    LKMoreCellState_NoConn,
+    LKMoreCellState_NoMore,
 } LKMoreCellState;
 
 @class LKMoreCell;
@@ -36,4 +38,8 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UILabel                 *titleLabel;
 @property (nonatomic, retain) IBOutlet UIButton                *retryButton;
 
+- (void)startLoadMore;
+- (void)loadFailed;
+- (void)loadSuccessed;
+- (void)nomore;
 @end
