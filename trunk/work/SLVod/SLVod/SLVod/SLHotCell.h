@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SLMovie.h"
 
-@protocol SLPlayDelegate <NSObject>
+@protocol SLHotCellDelegate <NSObject>
 
 - (void)play:(SLMovie *)theMov;
+- (void)download:(SLMovie *)theMov;
 
 @end
 
@@ -22,13 +23,13 @@
     UIButton        *playButton;
     UILabel         *cateLabel;
     UIProgressView  *progressView;
-    id<SLPlayDelegate> playDelegate;
+    id<SLHotCellDelegate> movDelegate;
     
     SLMovie         *movie;
 }
 
 @property (nonatomic, retain) IBOutlet UIProgressView  *progressView;
-@property (nonatomic, assign) id<SLPlayDelegate> playDelegate;
+@property (nonatomic, assign) id<SLHotCellDelegate>     movDelegate;
 @property (nonatomic, retain) SLMovie *movie;
 @property (nonatomic, retain) IBOutlet UIButton        *playButton;
 @property (nonatomic, retain) IBOutlet UIImageView     *imageView;
@@ -37,5 +38,6 @@
 @property (nonatomic, retain) IBOutlet UILabel         *cateLabel;
 
 - (IBAction)playButtonPressed:(UIButton *)pButton;
+- (IBAction)downloadMovPressed:(id)sender;
 
 @end

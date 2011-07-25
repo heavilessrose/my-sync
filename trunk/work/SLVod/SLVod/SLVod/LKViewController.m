@@ -237,6 +237,11 @@
     // implement in subClasses
 }
 
+- (void)download:(SLMovie *)theMov
+{
+    // implement in subClasses
+}
+
 #pragma mark - media player
 
 - (void)initAndPlayMovie:(NSURL *)movieURL

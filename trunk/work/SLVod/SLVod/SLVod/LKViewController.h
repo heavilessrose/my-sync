@@ -24,7 +24,7 @@
 #import "SLVodAppDelegate.h"
 #import "MBProgressHUD.h"
 
-@interface LKViewController : UIViewController <LKImgDownloadDelegate, SLPlayDelegate, MBProgressHUDDelegate> {
+@interface LKViewController : UIViewController <LKImgDownloadDelegate, SLHotCellDelegate, MBProgressHUDDelegate> {
     
     NSMutableData   *jsonData;
     NSMutableArray  *movies;

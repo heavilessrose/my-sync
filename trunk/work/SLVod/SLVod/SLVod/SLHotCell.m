@@ -11,7 +11,7 @@
 
 @implementation SLHotCell
 
-@synthesize imageView, playButton, playDelegate;
+@synthesize imageView, playButton, movDelegate;
 @synthesize titleLabel, progressView;
 @synthesize actorLabel, cateLabel;
 @synthesize movie;
@@ -55,10 +55,17 @@
     }
 }
 
+- (IBAction)downloadMovPressed:(id)sender
+{
+    if (movDelegate && [movDelegate respondsToSelector:@selector(download:)]) {
+        [movDelegate download:movie];
+    }
+}
+
 - (IBAction)playButtonPressed:(UIButton *)pButton
 {
-    if (playDelegate && [playDelegate respondsToSelector:@selector(play:)]) {
-        [playDelegate play:movie];
+    if (movDelegate && [movDelegate respondsToSelector:@selector(play:)]) {
+        [movDelegate play:movie];
     }
 }
 
