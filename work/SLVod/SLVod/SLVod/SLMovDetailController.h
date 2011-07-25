@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LKViewController.h"
+#import "ASIHTTPRequest.h"
 #import "SLMovie.h"
 
 // Notification string used for touches to the overlay view
@@ -17,8 +18,10 @@ extern NSString * const OverlayViewTouchNotification;
     LKShadowTableView   *table;
     
     SLMovie             *mov;
+    ASIHTTPRequest      *downReq;
 }
 
+@property (nonatomic, retain) ASIHTTPRequest                *downReq;
 @property (nonatomic, retain) SLMovie                       *mov;
 @property (nonatomic, retain) IBOutlet LKShadowTableView    *table;
 @end
