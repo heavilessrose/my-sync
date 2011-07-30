@@ -67,6 +67,11 @@
 		A3D5840913E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D5840613E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m */; };
 		A3D5840D13E3A6F200452695 /* bg_navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D5840C13E3A6F200452695 /* bg_navbar.png */; };
 		A3D5840F13E3A6FA00452695 /* bg_navbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D5840E13E3A6FA00452695 /* bg_navbar@2x.png */; };
+		A3D5841213E3F3D400452695 /* SLDownMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D5841113E3F3D300452695 /* SLDownMovie.m */; };
+		A3D5841713E3F82700452695 /* clapboard.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D5841313E3F82700452695 /* clapboard.png */; };
+		A3D5841813E3F82700452695 /* disk.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D5841413E3F82700452695 /* disk.png */; };
+		A3D5841913E3F82700452695 /* preferences.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D5841513E3F82700452695 /* preferences.png */; };
+		A3D5841A13E3F82700452695 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D5841613E3F82700452695 /* star.png */; };
 		A3D66EF013A4662400C83B62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EEF13A4662400C83B62 /* UIKit.framework */; };
 		A3D66EF213A4662400C83B62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF113A4662400C83B62 /* Foundation.framework */; };
 		A3D66EF413A4662400C83B62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF313A4662400C83B62 /* CoreGraphics.framework */; };
@@ -244,6 +249,12 @@
 		A3D5840613E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+SCBackgroundImage.m"; sourceTree = "<group>"; };
 		A3D5840C13E3A6F200452695 /* bg_navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_navbar.png; sourceTree = "<group>"; };
 		A3D5840E13E3A6FA00452695 /* bg_navbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_navbar@2x.png"; sourceTree = "<group>"; };
+		A3D5841013E3F3D300452695 /* SLDownMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLDownMovie.h; sourceTree = "<group>"; };
+		A3D5841113E3F3D300452695 /* SLDownMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLDownMovie.m; sourceTree = "<group>"; };
+		A3D5841313E3F82700452695 /* clapboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clapboard.png; sourceTree = "<group>"; };
+		A3D5841413E3F82700452695 /* disk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disk.png; sourceTree = "<group>"; };
+		A3D5841513E3F82700452695 /* preferences.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferences.png; sourceTree = "<group>"; };
+		A3D5841613E3F82700452695 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		A3D66EEB13A4662400C83B62 /* SLVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D66EEF13A4662400C83B62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3D66EF113A4662400C83B62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -637,6 +648,10 @@
 		A3D66F7E13A473FC00C83B62 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3D5841313E3F82700452695 /* clapboard.png */,
+				A3D5841413E3F82700452695 /* disk.png */,
+				A3D5841513E3F82700452695 /* preferences.png */,
+				A3D5841613E3F82700452695 /* star.png */,
 				A3D5840E13E3A6FA00452695 /* bg_navbar@2x.png */,
 				A3D5840C13E3A6F200452695 /* bg_navbar.png */,
 				A3DB7F0713AB334D00E3250C /* noimg.png */,
@@ -715,6 +730,8 @@
 				A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */,
 				A3C7D28013A4A5AC0050FD28 /* LKImgDownload.h */,
 				A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */,
+				A3D5841013E3F3D300452695 /* SLDownMovie.h */,
+				A3D5841113E3F3D300452695 /* SLDownMovie.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -841,6 +858,10 @@
 				A321916013DC069B0062B698 /* whiteArrow@2x.png in Resources */,
 				A3D5840D13E3A6F200452695 /* bg_navbar.png in Resources */,
 				A3D5840F13E3A6FA00452695 /* bg_navbar@2x.png in Resources */,
+				A3D5841713E3F82700452695 /* clapboard.png in Resources */,
+				A3D5841813E3F82700452695 /* disk.png in Resources */,
+				A3D5841913E3F82700452695 /* preferences.png in Resources */,
+				A3D5841A13E3F82700452695 /* star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +965,7 @@
 				A3D5840713E3A52D00452695 /* SCAppUtils.m in Sources */,
 				A3D5840813E3A52D00452695 /* SCClassUtils.m in Sources */,
 				A3D5840913E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m in Sources */,
+				A3D5841213E3F3D400452695 /* SLDownMovie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,11 +25,12 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
 
 
 @synthesize window=_window;
-@synthesize tabBarController;
+@synthesize tabBarController, downMan;
 
 - (void)dealloc
 {   
 	self.tabBarController = nil;
+    self.downMan = nil;
     [_window release];
     [super dealloc];
 }
@@ -47,8 +48,9 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
                                        autorelease];
     [SCAppUtils customizeNavigationController:cateNav];
     
+    self.downMan = [[[SLDownloadManController alloc] initWithNibName:@"SLDownloadManController" bundle:nil] autorelease];
     UINavigationController *downManNav = [[[UINavigationController alloc]
-                                           initWithRootViewController:[[[SLDownloadManController alloc] initWithNibName:@"SLDownloadManController" bundle:nil] autorelease]]
+                                           initWithRootViewController:downMan]
                                           autorelease];
     [SCAppUtils customizeNavigationController:downManNav];
     

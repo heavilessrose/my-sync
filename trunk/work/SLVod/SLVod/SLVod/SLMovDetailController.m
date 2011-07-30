@@ -121,8 +121,10 @@
             if (tmpHotCell) {
                 hotCell = tmpHotCell;
                 hotCell.selectionStyle = UITableViewCellSelectionStyleNone;
-                hotCell.movDelegate = self;
+                hotCell.playDelegate = self;
+                hotCell.downDelegare = globalApp.downMan;
                 hotCell.playButton.hidden = NO;
+                hotCell.downButton.hidden = NO;
             }
         }
         hotCell.movie = mov;
@@ -150,20 +152,6 @@
 
 #pragma mark - SLHotCellDelegate 
 
-- (NSString *)downloadPath
-{
-    NSString *path = nil;
-    NSString *catePart;
-    if (mov && mov.cate && [mov.cate length] > 0) {
-        catePart = [docPath() stringByAppendingPathComponent:mov.cate];
-    }
-    if (catePart && [catePart length] > 0) {
-        NSString *url = [NSString stringWithFormat:@"%@", mov.url];
-        path = [catePart stringByAppendingPathComponent:[url lastPathComponent]];
-    }
-    return path;
-}
-
 - (void)play:(SLMovie *)theMov
 {
     DLOG
@@ -174,19 +162,6 @@
         if ([movieURL scheme])	// sanity check on the URL
         {
             [self initAndPlayMovie:movieURL];
-        }
-    }
-}
-
-- (void)download:(SLMovie *)theMov
-{
-    NSURL *movieURL = self.mov.url; //[NSURL URLWithString:@"http://127.0.0.1/~luke/html5/video/res/Movie.m4v"];
-    if (movieURL)
-    {
-        if ([movieURL scheme])	// sanity check on the URL
-        {
-            self.downReq = [ASIHTTPRequest requestWithURL:movieURL];
-            [downReq setDownloadDestinationPath:[self downloadPath]];
         }
     }
 }

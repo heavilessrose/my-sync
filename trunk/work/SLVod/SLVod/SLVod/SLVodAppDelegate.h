@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class BCTabBarController;
+@class BCTabBarController, SLDownloadManController;
 
 @interface SLVodAppDelegate : NSObject <UIApplicationDelegate> {
     
     BCTabBarController *tabBarController;
+    SLDownloadManController *downMan;
 }
 
+@property (nonatomic, retain) SLDownloadManController *downMan;
 @property (nonatomic, retain) BCTabBarController *tabBarController;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
