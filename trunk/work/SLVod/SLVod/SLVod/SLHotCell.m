@@ -14,12 +14,13 @@
 @synthesize imageView, playButton, downButton, playDelegate, downDelegare;
 @synthesize titleLabel, progressView;
 @synthesize actorLabel, cateLabel;
-@synthesize movie;
+@synthesize movie, downMov;
 
 
 - (void)dealloc
 {
     MLog(@"");
+    [downMov release];
     [downButton release];
     [progressView release];
     [movie release];
@@ -28,6 +29,16 @@
     [titleLabel release];
     [actorLabel release];
     [super dealloc];
+}
+
+- (id)initWithDownMov:(SLDownMovie *)dmov
+{
+    self = [super init];
+    if (self) {
+        self.downMov = dmov;
+        self.movie = dmov.movie;
+    }
+    return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -54,6 +65,9 @@
     } else {
         self.imageView.image = nil;
     }
+    
+    DLog(@"%f", theMov.downProgress);
+    self.progressView.progress = theMov.downProgress;
 }
 
 - (IBAction)downloadMovPressed:(id)sender

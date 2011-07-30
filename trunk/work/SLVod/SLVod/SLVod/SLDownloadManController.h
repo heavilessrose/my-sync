@@ -19,15 +19,16 @@
 @interface SLDownloadManController : LKViewController <SLMovDownloadDelegate, ASIProgressDelegate, ASIHTTPRequestDelegate, ASICacheDelegate> {
     LKShadowTableView *table;
     UISegmentedControl *seg;
+    int segSelected;
     
-    NSMutableDictionary *movsInDownloading;
-    NSMutableDictionary *movsDownloaded;
+    NSMutableArray *movsInDownloading;
+    NSMutableArray *movsDownloaded;
     
     ASINetworkQueue *downingQueue;
 }
 
-@property (nonatomic, retain) NSMutableDictionary *movsInDownloading;
-@property (nonatomic, retain) NSMutableDictionary *movsDownloaded;
+@property (nonatomic, retain) NSMutableArray *movsInDownloading;
+@property (nonatomic, retain) NSMutableArray *movsDownloaded;
 @property (nonatomic, retain) IBOutlet LKShadowTableView *table;
 @property (nonatomic, retain) UISegmentedControl *seg;
 @property (nonatomic, retain) ASINetworkQueue *downingQueue;

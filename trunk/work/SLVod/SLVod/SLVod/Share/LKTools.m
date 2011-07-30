@@ -15,6 +15,13 @@ NSString *docPath() {
 	return docDirPath;
 }
 
+NSString *keyForURL(NSURL *url)
+{
+	NSString *dec = [url description];
+	NSString *hash = [NSString stringWithFormat:@"LKImageLoader-%u", [dec hash]];
+	return hash;
+}
+
 @implementation LKTools
 
 
