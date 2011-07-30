@@ -62,6 +62,11 @@
 		A3C7D28D13A4B9740050FD28 /* SLMovInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D28C13A4B9740050FD28 /* SLMovInfoCell.xib */; };
 		A3C7D29B13A4E8B70050FD28 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C7D29A13A4E8B60050FD28 /* MediaPlayer.framework */; };
 		A3C7D2A213A4EDB20050FD28 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D2A113A4EDB10050FD28 /* Settings.bundle */; };
+		A3D5840713E3A52D00452695 /* SCAppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D5840213E3A52D00452695 /* SCAppUtils.m */; };
+		A3D5840813E3A52D00452695 /* SCClassUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D5840413E3A52D00452695 /* SCClassUtils.m */; };
+		A3D5840913E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D5840613E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m */; };
+		A3D5840D13E3A6F200452695 /* bg_navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D5840C13E3A6F200452695 /* bg_navbar.png */; };
+		A3D5840F13E3A6FA00452695 /* bg_navbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D5840E13E3A6FA00452695 /* bg_navbar@2x.png */; };
 		A3D66EF013A4662400C83B62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EEF13A4662400C83B62 /* UIKit.framework */; };
 		A3D66EF213A4662400C83B62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF113A4662400C83B62 /* Foundation.framework */; };
 		A3D66EF413A4662400C83B62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D66EF313A4662400C83B62 /* CoreGraphics.framework */; };
@@ -231,6 +236,14 @@
 		A3C7D28C13A4B9740050FD28 /* SLMovInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLMovInfoCell.xib; sourceTree = "<group>"; };
 		A3C7D29A13A4E8B60050FD28 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A3C7D2A113A4EDB10050FD28 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		A3D5840113E3A52D00452695 /* SCAppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAppUtils.h; sourceTree = "<group>"; };
+		A3D5840213E3A52D00452695 /* SCAppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAppUtils.m; sourceTree = "<group>"; };
+		A3D5840313E3A52D00452695 /* SCClassUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCClassUtils.h; sourceTree = "<group>"; };
+		A3D5840413E3A52D00452695 /* SCClassUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCClassUtils.m; sourceTree = "<group>"; };
+		A3D5840513E3A52D00452695 /* UINavigationBar+SCBackgroundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+SCBackgroundImage.h"; sourceTree = "<group>"; };
+		A3D5840613E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+SCBackgroundImage.m"; sourceTree = "<group>"; };
+		A3D5840C13E3A6F200452695 /* bg_navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_navbar.png; sourceTree = "<group>"; };
+		A3D5840E13E3A6FA00452695 /* bg_navbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_navbar@2x.png"; sourceTree = "<group>"; };
 		A3D66EEB13A4662400C83B62 /* SLVod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLVod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D66EEF13A4662400C83B62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3D66EF113A4662400C83B62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -451,6 +464,19 @@
 			path = helpers;
 			sourceTree = "<group>";
 		};
+		A3D5840B13E3A53300452695 /* Nav */ = {
+			isa = PBXGroup;
+			children = (
+				A3D5840113E3A52D00452695 /* SCAppUtils.h */,
+				A3D5840213E3A52D00452695 /* SCAppUtils.m */,
+				A3D5840313E3A52D00452695 /* SCClassUtils.h */,
+				A3D5840413E3A52D00452695 /* SCClassUtils.m */,
+				A3D5840513E3A52D00452695 /* UINavigationBar+SCBackgroundImage.h */,
+				A3D5840613E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m */,
+			);
+			name = Nav;
+			sourceTree = "<group>";
+		};
 		A3D66EE013A4662400C83B62 = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +596,7 @@
 		A3D66F4713A469DA00C83B62 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				A3D5840B13E3A53300452695 /* Nav */,
 				A321918E13DC0E8B0062B698 /* LKTools.h */,
 				A321918F13DC0E8C0062B698 /* LKTools.m */,
 				A321917E13DC08570062B698 /* Reachability */,
@@ -610,6 +637,8 @@
 		A3D66F7E13A473FC00C83B62 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3D5840E13E3A6FA00452695 /* bg_navbar@2x.png */,
+				A3D5840C13E3A6F200452695 /* bg_navbar.png */,
 				A3DB7F0713AB334D00E3250C /* noimg.png */,
 				A3DB7F0113AB31F900E3250C /* vip.png */,
 				A3DB7F0213AB31F900E3250C /* setting.png */,
@@ -810,6 +839,8 @@
 				A321915E13DC069B0062B698 /* grayArrow@2x.png in Resources */,
 				A321915F13DC069B0062B698 /* whiteArrow.png in Resources */,
 				A321916013DC069B0062B698 /* whiteArrow@2x.png in Resources */,
+				A3D5840D13E3A6F200452695 /* bg_navbar.png in Resources */,
+				A3D5840F13E3A6FA00452695 /* bg_navbar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,6 +941,9 @@
 				A321917D13DC08260062B698 /* ASINetworkQueue.m in Sources */,
 				A321918113DC08570062B698 /* Reachability.m in Sources */,
 				A321919013DC0E8C0062B698 /* LKTools.m in Sources */,
+				A3D5840713E3A52D00452695 /* SCAppUtils.m in Sources */,
+				A3D5840813E3A52D00452695 /* SCClassUtils.m in Sources */,
+				A3D5840913E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
