@@ -15,6 +15,7 @@
 #import "SLMoreController.h"
 #import "SLUserCenterController.h"
 #import "SLDownloadManController.h"
+#import "SCAppUtils.h"
 
 NSString *kScalingModeKey	= @"scalingMode";
 NSString *kControlModeKey	= @"controlMode";
@@ -36,16 +37,28 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	self.tabBarController = [[[BCTabBarController alloc] init] autorelease];
+    UINavigationController *hotNav = [[[UINavigationController alloc]
+                                       initWithRootViewController:[[[SLHotController alloc] initWithNibName:@"SLHotController" bundle:nil] autorelease]]
+                                      autorelease];
+    [SCAppUtils customizeNavigationController:hotNav];
+    
+    UINavigationController *cateNav = [[[UINavigationController alloc]
+                                        initWithRootViewController:[[[SLCategoryController alloc] initWithNibName:@"SLCategoryController" bundle:nil] autorelease]]
+                                       autorelease];
+    [SCAppUtils customizeNavigationController:cateNav];
+    
+    UINavigationController *downManNav = [[[UINavigationController alloc]
+                                           initWithRootViewController:[[[SLDownloadManController alloc] initWithNibName:@"SLDownloadManController" bundle:nil] autorelease]]
+                                          autorelease];
+    [SCAppUtils customizeNavigationController:downManNav];
+    
+    UINavigationController *usercenterNav = [[[UINavigationController alloc]
+      initWithRootViewController:[[[SLUserCenterController alloc] initWithNibName:@"SLUserCenterController" bundle:nil] autorelease]]
+                                             autorelease];
+    [SCAppUtils customizeNavigationController:usercenterNav];
+    
 	self.tabBarController.viewControllers = [NSArray arrayWithObjects:
-											 [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[SLHotController alloc] initWithNibName:@"SLHotController" bundle:nil] autorelease]]
-											  autorelease],
-                                             [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[SLCategoryController alloc] initWithNibName:@"SLCategoryController" bundle:nil] autorelease]]
-											  autorelease],
-                                             [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[SLDownloadManController alloc] initWithNibName:@"SLDownloadManController" bundle:nil] autorelease]]
-											  autorelease],
+											 hotNav, cateNav, downManNav,
                                              /*
                                              [[[UINavigationController alloc]
                                                initWithRootViewController:[[[SLMoreController alloc] init] autorelease]]
@@ -57,9 +70,7 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
                                                initWithRootViewController:[[[SLMoreController alloc] init] autorelease]]
 											  autorelease],
                                               */
-                                             [[[UINavigationController alloc]
-                                               initWithRootViewController:[[[SLUserCenterController alloc] initWithNibName:@"SLUserCenterController" bundle:nil] autorelease]]
-											  autorelease],
+                                             usercenterNav,
 											 nil];
 	[self.window addSubview:self.tabBarController.view];
     

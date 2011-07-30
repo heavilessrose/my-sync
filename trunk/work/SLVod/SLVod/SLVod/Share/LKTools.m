@@ -7,8 +7,6 @@
 //
 
 #import "LKTools.h"
-#import "WBCityModel.h"
-#import "WBXML.h"
 
 
 NSString *docPath() {
@@ -19,54 +17,6 @@ NSString *docPath() {
 
 @implementation LKTools
 
-+ (NSArray *)xmlListForModel:(WBModelID)modelID xmlfile:(NSString *)filename 
-                  withXPath:(NSString *)xpath withInfo:(id)additionInfo
-{
-	NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filename];
-	NSArray *modelArray = XMLXPathQueryForModel(modelID, xmlData, xpath, additionInfo);
-	[xmlData release];
-	return modelArray;
-}
-
-+ (NSArray *)loadCitysAndHotCitys:(NSMutableArray *)hotCitys
-{
-    NSMutableArray *provinces = [NSMutableArray array];
-    
-	NSString *provinceXmlPath = [[NSBundle mainBundle] pathForResource:@"pro" ofType:@"xml"];
-	NSData *provinceData = [NSData dataWithContentsOfFile:provinceXmlPath];
-	NSArray *proArray = XMLXPathQueryForModel(WBModelID_Province, provinceData, @"/root/pro", nil);
-    
-    if (proArray && [proArray count] > 0) {
-        NSMutableArray *tmpHotCitys = [NSMutableArray array];
-        NSString *cityXmlPath = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"xml"];
-        for (WBProvinceModel *aProModel in proArray) {            
-//            NSString *dirname = aProModel.name;
-            NSString *proid = aProModel.ID;
-            
-            NSString *xpath =[NSString stringWithFormat:@"//root//city[@proid=\"%@\"]", proid];
-            NSArray *aCityArr = [LKTools xmlListForModel:WBModelID_City xmlfile:cityXmlPath withXPath:xpath withInfo:aProModel];
-            aProModel.cityArr = aCityArr;
-            for (WBCityModel *aCityModel in aCityArr) {
-                if (aCityModel.hot && ![aCityModel.hot isEqualToString:@"0"]) {
-                    [tmpHotCitys addObject:aCityModel];
-                }
-            }
-            
-            [provinces addObject:aProModel];
-        }
-        
-        // hot sort
-        NSSortDescriptor *alphaDesc = [[NSSortDescriptor alloc] initWithKey:@"hot" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]; 
-        
-        NSArray *sortedHotCitys = [tmpHotCitys sortedArrayUsingDescriptors:[NSArray arrayWithObjects:alphaDesc, nil]]; 
-        [hotCitys removeAllObjects];
-        [hotCitys addObjectsFromArray:sortedHotCitys];
-        [alphaDesc release];
-        alphaDesc = nil;
-    }
-    
-    return provinces;
-}
 
 + (NSString *)JsonStrFormat:(NSString *)oStr{
 	oStr = [oStr stringByReplacingOccurrencesOfString:@"\r" withString:@""];

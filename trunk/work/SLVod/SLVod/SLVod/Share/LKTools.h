@@ -14,8 +14,6 @@ NSString *docPath();
     
 }
 
-+ (NSArray *)loadCitysAndHotCitys:(NSMutableArray *)hotCitys;
-
 + (NSString *)JsonStrFormat:(NSString *)oStr;
 
 + (NSString *)URLEncode:(NSString *)orgString;
