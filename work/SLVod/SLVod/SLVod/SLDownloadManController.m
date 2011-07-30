@@ -33,11 +33,13 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        NSArray *segArr = [NSArray arrayWithObjects:@"全部", @"已完成", @"下载中", nil];
+        table.allowsSelection = NO;
+        
+        NSArray *segArr = [NSArray arrayWithObjects:@"下载中", @"已完成", nil];
         
         self.seg = [[UISegmentedControl alloc] initWithItems:segArr];
         self.seg.segmentedControlStyle = UISegmentedControlStyleBar;
-        [self.seg addTarget:self action:@selector(segmentSelected:) forControlEvents:UIControlEventTouchUpInside];
+        [self.seg addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
         self.seg.selectedSegmentIndex = 0;
         
         NSLog(@"%@", self.navigationItem);
@@ -47,8 +49,8 @@
         
         self.downingQueue = [ASINetworkQueue queue];
         [self.downingQueue setMaxConcurrentOperationCount:2];
-        self.movsInDownloading = [NSMutableDictionary dictionary];
-        self.movsDownloaded = [NSMutableDictionary dictionary];
+        self.movsInDownloading = [NSMutableArray array];
+        self.movsDownloaded = [NSMutableArray array];
     }
     return self;
 }
@@ -123,7 +125,33 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [movies count];
+    int count = 0;
+    if (segSelected == 0) {
+        // downloading
+        count = [movsInDownloading count];
+    }
+    if (segSelected == 1) {
+        // downloaded
+        count = [movsDownloaded count];
+    }
+    return count;
+}
+
+- (void)configCell:(SLHotCell *)cell
+{
+    if (segSelected == 0) {
+        // downloading
+        cell.playButton.hidden = YES;
+        cell.downButton.hidden = YES;
+        cell.progressView.hidden = NO;
+        cell.actorLabel.hidden = YES;
+    }
+    if (segSelected == 1) {
+        // downloaded
+        cell.playButton.hidden = NO;
+        cell.downButton.hidden = YES;
+        cell.actorLabel.hidden = YES;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -134,11 +162,17 @@
         [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
         if (tmpHotCell) {
             theCell = tmpHotCell;
-            theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//            theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             self.tmpHotCell = nil;
         }
     }
-    theCell.movie = [movies objectAtIndex:indexPath.row];
+    [self configCell:theCell];
+    if (segSelected == 0) {
+        theCell.movie = [[movsInDownloading objectAtIndex:indexPath.row] movie];
+    }
+    if (segSelected == 1) {
+        theCell.movie = [[movsDownloaded objectAtIndex:indexPath.row] movie];
+    }
     return theCell;
 }
 
@@ -167,14 +201,58 @@
             [downReq addRequestHeader:@"Keep-Alive" value:@"timeout=300, max=29974"];
             [downReq setAllowResumeForFileDownloads:YES];
             [downReq setDownloadDestinationPath:[self downloadPath:mov]];
+            [downReq setNumberOfTimesToRetryOnTimeout:1];
             [downReq setDelegate:self];
+            [downReq setDownloadProgressDelegate:self];
             [downReq setDownloadCache:[ASIDownloadCache sharedCache]];
+            downReq.showAccurateProgress = YES;
+#if 0
+            [downingQueue setDownloadProgressDelegate:self];
             [downingQueue addOperation:downReq];
+            [downingQueue setRequestDidStartSelector:@selector(requestDidStartSelector:)];
             [downingQueue go];
+#else 
+            [downReq startAsynchronous];
+#endif
+            
+            SLDownMovie *dm = [[SLDownMovie alloc] initWithMovie:mov req:downReq];
+            [self.movsInDownloading addObject:dm];
+            [dm release];
             return YES;
         }
     }
     return NO;
+}
+
+#pragma mark - segmentAction
+
+- (void)showDownloading
+{
+    DLOG
+    segSelected = 0;
+    [table reloadData];
+}
+
+- (void)showDownloaded
+{
+    DLOG
+    segSelected = 1;
+    [table reloadData];
+}
+
+- (IBAction)segmentAction:(id)sender
+{
+	int index = [sender selectedSegmentIndex];
+	switch (index) {
+		case 0:
+			[self showDownloading];
+			break;
+		case 1:
+			[self showDownloaded];			
+			break;
+		default:
+			break;
+	}
 }
 
 #pragma mark - SLMovDownloadDelegate
@@ -187,7 +265,13 @@
     }
 }
 
-#pragma mark - ASIHTTPRequest
+#pragma mark - ASIHTTPRequestDelegate
+- (void)requestDidStartSelector:(ASIHTTPRequest *)request
+{
+    DLOG
+    
+}
+             
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     DLog(@"%@", [request.error description]);
@@ -200,9 +284,30 @@
 }
 
 #pragma mark - ASIProgressDelegate
+
+- (void)setProgress:(float)newProgress
+{
+    DLog(@"%f", newProgress);
+}
+
 - (void)request:(ASIHTTPRequest *)request didReceiveBytes:(long long)bytes
 {
-    DLOG
+    for (SLDownMovie *dm in movsInDownloading) {
+        if (dm.movieReq == request) {
+            dm.movie.recvedBytes = bytes + dm.movie.recvedBytes;
+            float bb = dm.movie.recvedBytes * 1.0;
+            float ss = dm.movie.size * 1.0;
+            dm.movie.downProgress = (float)(bb/ss);
+            DLog(@"%f/%f = %f", bb, ss, dm.movie.downProgress);
+            [table reloadData];
+            break;
+        }
+    }
+}
+
+- (void)request:(ASIHTTPRequest *)request didSendBytes:(long long)bytes
+{
+    
 }
 
 #pragma mark - ASICacheDelegate

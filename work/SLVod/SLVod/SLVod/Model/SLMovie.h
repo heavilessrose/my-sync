@@ -16,10 +16,17 @@
     NSString    *content;
     NSString    *actor;
     NSString    *cate;
+    long long   size;
     
     LKImageRecord   *imgRecord;
+    
+    long long   recvedBytes;
+    float       downProgress;
 }
 
+@property (nonatomic, assign) long long   recvedBytes;
+@property (nonatomic, assign) long long     size;
+@property (nonatomic, assign) float       downProgress;
 @property (nonatomic, retain) LKImageRecord   *imgRecord;
 @property (nonatomic, retain) NSString    *title;
 //@property (nonatomic, retain) NSString    *imageUrl;

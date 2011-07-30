@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SLMovie.h"
+#import "SLDownMovie.h"
 
 @class SLHotCell;
 @protocol SLHotCellDelegate <NSObject>
@@ -34,8 +35,10 @@
     id<SLMovDownloadDelegate> downDelegare;
     
     SLMovie         *movie;
+    SLDownMovie     *downMov;
 }
 
+@property (nonatomic, retain) SLDownMovie     *downMov;
 @property (nonatomic, retain) IBOutlet UIButton        *downButton;
 @property (nonatomic, retain) IBOutlet UIProgressView  *progressView;
 @property (nonatomic, assign) id<SLHotCellDelegate>     playDelegate;

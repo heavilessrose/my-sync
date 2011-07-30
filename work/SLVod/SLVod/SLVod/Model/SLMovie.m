@@ -17,7 +17,7 @@
 @synthesize content;
 @synthesize actor;
 @synthesize cate;
-@synthesize imgRecord;
+@synthesize imgRecord, downProgress, size, recvedBytes;
 
 - (void)dealloc
 {
@@ -41,6 +41,8 @@
             self.content = [aDic objectForKey:@"content"];
             self.actor = [aDic objectForKey:@"actor"];
             self.cate = [aDic objectForKey:@"typename"];
+            NSString *ssize = [aDic objectForKey:@"size"];
+            self.size = [ssize longLongValue]; // 198352;
             
             imgRecord = [[LKImageRecord alloc] initWithUrl:[aDic objectForKey:@"image"]];
             return self;
