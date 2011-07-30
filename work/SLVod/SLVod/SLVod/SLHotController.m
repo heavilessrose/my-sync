@@ -417,7 +417,7 @@
 #pragma mark - BCTabbar 
 
 - (NSString *)iconImageName {
-	return @"magnifying-glass.png";
+	return @"star.png";
 }
 
 

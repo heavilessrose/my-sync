@@ -295,13 +295,21 @@
 					<int key="connectionID">19</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">downButton</string>
+						<reference key="source" ref="609096183"/>
+						<reference key="destination" ref="649217559"/>
+					</object>
+					<int key="connectionID">23</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">downloadMovPressed:</string>
 						<reference key="source" ref="649217559"/>
 						<reference key="destination" ref="609096183"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">22</int>
+					<int key="connectionID">24</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -426,7 +434,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">24</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -573,6 +581,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>actorLabel</string>
 							<string>cateLabel</string>
+							<string>downButton</string>
 							<string>imageView</string>
 							<string>playButton</string>
 							<string>progressView</string>
@@ -582,6 +591,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>UIButton</string>
 							<string>UIProgressView</string>
@@ -594,6 +604,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>actorLabel</string>
 							<string>cateLabel</string>
+							<string>downButton</string>
 							<string>imageView</string>
 							<string>playButton</string>
 							<string>progressView</string>
@@ -608,6 +619,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">cateLabel</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">downButton</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">imageView</string>

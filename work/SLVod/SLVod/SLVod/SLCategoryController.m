@@ -260,7 +260,7 @@
 #pragma BCTabbar 
 
 - (NSString *)iconImageName {
-	return @"magnifying-glass.png";
+	return @"clapboard.png";
 }
 
 @end

@@ -8,19 +8,28 @@
 
 #import <UIKit/UIKit.h>
 #import "LKViewController.h"
+#import "SLHotCell.h"
+#import "ASIHTTPRequest.h"
+#import "ASIProgressDelegate.h"
+#import "ASIHTTPRequestDelegate.h"
+#import "ASICacheDelegate.h"
+#import "ASINetworkQueue.h"
 
 
-@interface SLDownloadManController : LKViewController {
+@interface SLDownloadManController : LKViewController <SLMovDownloadDelegate, ASIProgressDelegate, ASIHTTPRequestDelegate, ASICacheDelegate> {
     LKShadowTableView *table;
     UISegmentedControl *seg;
     
-    NSMutableArray *movsInDownloading;
-    NSMutableArray *movsDownloaded;
+    NSMutableDictionary *movsInDownloading;
+    NSMutableDictionary *movsDownloaded;
+    
+    ASINetworkQueue *downingQueue;
 }
 
-@property (nonatomic, retain) NSMutableArray *movsInDownloading;
-@property (nonatomic, retain) NSMutableArray *movsDownloaded;
+@property (nonatomic, retain) NSMutableDictionary *movsInDownloading;
+@property (nonatomic, retain) NSMutableDictionary *movsDownloaded;
 @property (nonatomic, retain) IBOutlet LKShadowTableView *table;
 @property (nonatomic, retain) UISegmentedControl *seg;
+@property (nonatomic, retain) ASINetworkQueue *downingQueue;
 
 @end
