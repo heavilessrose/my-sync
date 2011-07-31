@@ -125,6 +125,7 @@
                 hotCell.downDelegare = globalApp.downMan;
                 hotCell.playButton.hidden = NO;
                 hotCell.downButton.hidden = NO;
+                hotCell.pauseDownButton.hidden = YES;
             }
         }
         hotCell.movie = mov;

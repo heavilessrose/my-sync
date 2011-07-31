@@ -20,6 +20,7 @@
 @protocol SLMovDownloadDelegate <NSObject>
 
 - (void)download:(SLHotCell *)theCell;
+- (void)pauseDownload:(SLHotCell *)theCell;
 
 @end
 
@@ -29,6 +30,7 @@
     UILabel         *actorLabel;
     UIButton        *playButton;
     UIButton        *downButton;
+    UIButton        *pauseDownButton;
     UILabel         *cateLabel;
     UIProgressView  *progressView;
     id<SLHotCellDelegate> playDelegate;
@@ -39,6 +41,7 @@
 }
 
 @property (nonatomic, retain) SLDownMovie     *downMov;
+@property (nonatomic, retain) IBOutlet UIButton        *pauseDownButton;
 @property (nonatomic, retain) IBOutlet UIButton        *downButton;
 @property (nonatomic, retain) IBOutlet UIProgressView  *progressView;
 @property (nonatomic, assign) id<SLHotCellDelegate>     playDelegate;
