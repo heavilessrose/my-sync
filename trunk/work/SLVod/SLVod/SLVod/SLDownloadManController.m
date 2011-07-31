@@ -145,6 +145,8 @@
         cell.downButton.hidden = YES;
         cell.progressView.hidden = NO;
         cell.actorLabel.hidden = YES;
+        cell.pauseDownButton.hidden = NO;
+        cell.downDelegare = self;
     }
     if (segSelected == 1) {
         // downloaded
@@ -202,22 +204,24 @@
             [downReq setAllowResumeForFileDownloads:YES];
             [downReq setDownloadDestinationPath:[self downloadPath:mov]];
             [downReq setNumberOfTimesToRetryOnTimeout:1];
-            [downReq setDelegate:self];
-            [downReq setDownloadProgressDelegate:self];
-            [downReq setDownloadCache:[ASIDownloadCache sharedCache]];
-            downReq.showAccurateProgress = YES;
 #if 0
+            [downingQueue setShowAccurateProgress:YES];
             [downingQueue setDownloadProgressDelegate:self];
             [downingQueue addOperation:downReq];
             [downingQueue setRequestDidStartSelector:@selector(requestDidStartSelector:)];
             [downingQueue go];
 #else 
+            [downReq setDelegate:self];
+            [downReq setDownloadProgressDelegate:self];
+            [downReq setDownloadCache:[ASIDownloadCache sharedCache]];
+            [downReq setShowAccurateProgress:YES];
             [downReq startAsynchronous];
 #endif
             
             SLDownMovie *dm = [[SLDownMovie alloc] initWithMovie:mov req:downReq];
             [self.movsInDownloading addObject:dm];
             [dm release];
+            [table reloadData];
             return YES;
         }
     }
@@ -263,6 +267,11 @@
     } else {
         [theCell.titleLabel setText:@"无法下载"];
     }
+}
+
+- (void)pauseDownload:(SLHotCell *)theCell
+{
+    DLOG;
 }
 
 #pragma mark - ASIHTTPRequestDelegate

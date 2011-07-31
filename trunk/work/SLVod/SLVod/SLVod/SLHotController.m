@@ -356,6 +356,7 @@
             if (!hCell) {
                 [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
                 if (tmpHotCell) {
+                    hCell.pauseDownButton.hidden = YES;
                     hCell = tmpHotCell;
                     hCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                     self.tmpHotCell = nil;

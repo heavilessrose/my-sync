@@ -124,7 +124,7 @@
 								<string key="NSFrame">{{250, 5}, {55, 30}}</string>
 								<reference key="NSSuperview" ref="699397604"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="283821200"/>
+								<reference key="NSNextKeyView" ref="915043954"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -195,6 +195,28 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<float key="IBUIProgress">0.5</float>
+							</object>
+							<object class="IBUIButton" id="915043954">
+								<reference key="NSNextResponder" ref="699397604"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{250, 5}, {55, 30}}</string>
+								<reference key="NSSuperview" ref="699397604"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="283821200"/>
+								<string key="NSReuseIdentifierKey">_NS:222</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="408000534"/>
+								<int key="IBUIButtonType">1</int>
+								<string key="IBUINormalTitle">暂停</string>
+								<reference key="IBUIHighlightedTitleColor" ref="371786196"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="69357046"/>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 80}</string>
@@ -311,6 +333,23 @@
 					</object>
 					<int key="connectionID">24</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">pauseDownButton</string>
+						<reference key="source" ref="609096183"/>
+						<reference key="destination" ref="915043954"/>
+					</object>
+					<int key="connectionID">26</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">pauseDownPressed:</string>
+						<reference key="source" ref="915043954"/>
+						<reference key="destination" ref="609096183"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">27</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -344,6 +383,7 @@
 							<reference ref="283821200"/>
 							<reference ref="1066029935"/>
 							<reference ref="649217559"/>
+							<reference ref="915043954"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">tmpHotCell</string>
@@ -385,6 +425,11 @@
 						<reference key="parent" ref="609096183"/>
 						<string key="objectName">Button - 下载</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">25</int>
+						<reference key="object" ref="915043954"/>
+						<reference key="parent" ref="609096183"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -399,6 +444,8 @@
 					<string>15.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
 					<string>20.IBPluginDependency</string>
+					<string>25.IBPluginDependency</string>
+					<string>25.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>3.CustomClassName</string>
 					<string>3.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
@@ -415,6 +462,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
 					<string>SLHotCell</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -434,7 +483,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">24</int>
+			<int key="maxID">27</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -583,6 +632,7 @@
 							<string>cateLabel</string>
 							<string>downButton</string>
 							<string>imageView</string>
+							<string>pauseDownButton</string>
 							<string>playButton</string>
 							<string>progressView</string>
 							<string>titleLabel</string>
@@ -593,6 +643,7 @@
 							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UIImageView</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIProgressView</string>
 							<string>UILabel</string>
@@ -606,6 +657,7 @@
 							<string>cateLabel</string>
 							<string>downButton</string>
 							<string>imageView</string>
+							<string>pauseDownButton</string>
 							<string>playButton</string>
 							<string>progressView</string>
 							<string>titleLabel</string>
@@ -627,6 +679,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">imageView</string>
 								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">pauseDownButton</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">playButton</string>
