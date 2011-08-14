@@ -55,6 +55,15 @@
 		A3AD75A913C9968800744B4A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD75A813C9968800744B4A /* icon.png */; };
 		A3AD75AB13C9969100744B4A /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD75AA13C9969100744B4A /* icon@2x.png */; };
 		A3AD75AD13C996D900744B4A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3AD75AC13C996D900744B4A /* Default@2x.png */; };
+		A3B8BE6513F7FA6C00047496 /* SLLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B8BE6313F7FA6B00047496 /* SLLoginController.m */; };
+		A3B8BE6613F7FA6C00047496 /* SLLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B8BE6413F7FA6B00047496 /* SLLoginController.xib */; };
+		A3B8BE6B13F7FA7C00047496 /* SLRegController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B8BE6913F7FA7C00047496 /* SLRegController.m */; };
+		A3B8BE6C13F7FA7C00047496 /* SLRegController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B8BE6A13F7FA7C00047496 /* SLRegController.xib */; };
+		A3B8BE7613F8002A00047496 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A3B8BE7513F8002A00047496 /* Default.png */; };
+		A3B8BE7913F8022D00047496 /* LKLabelFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B8BE7813F8022D00047496 /* LKLabelFieldCell.m */; };
+		A3B8BE7C13F8023D00047496 /* LKLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B8BE7B13F8023D00047496 /* LKLabelCell.m */; };
+		A3B8BE7F13F8026B00047496 /* LKLabelTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B8BE7E13F8026B00047496 /* LKLabelTextFieldCell.m */; };
+		A3B8BE8213F802C100047496 /* LKButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B8BE8113F802C100047496 /* LKButtonCell.m */; };
 		A3C7D28213A4A5AC0050FD28 /* LKImageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */; };
 		A3C7D28313A4A5AC0050FD28 /* LKImgDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28113A4A5AC0050FD28 /* LKImgDownload.m */; };
 		A3C7D28713A4B7960050FD28 /* SLMovDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C7D28513A4B7950050FD28 /* SLMovDetailController.m */; };
@@ -232,6 +241,21 @@
 		A3AD75A813C9968800744B4A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		A3AD75AA13C9969100744B4A /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		A3AD75AC13C996D900744B4A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A3B8BE6213F7FA6B00047496 /* SLLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLLoginController.h; sourceTree = "<group>"; };
+		A3B8BE6313F7FA6B00047496 /* SLLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLLoginController.m; sourceTree = "<group>"; };
+		A3B8BE6413F7FA6B00047496 /* SLLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLLoginController.xib; sourceTree = "<group>"; };
+		A3B8BE6813F7FA7C00047496 /* SLRegController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLRegController.h; sourceTree = "<group>"; };
+		A3B8BE6913F7FA7C00047496 /* SLRegController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRegController.m; sourceTree = "<group>"; };
+		A3B8BE6A13F7FA7C00047496 /* SLRegController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLRegController.xib; sourceTree = "<group>"; };
+		A3B8BE7513F8002A00047496 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		A3B8BE7713F8022D00047496 /* LKLabelFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLabelFieldCell.h; sourceTree = "<group>"; };
+		A3B8BE7813F8022D00047496 /* LKLabelFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLabelFieldCell.m; sourceTree = "<group>"; };
+		A3B8BE7A13F8023D00047496 /* LKLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLabelCell.h; sourceTree = "<group>"; };
+		A3B8BE7B13F8023D00047496 /* LKLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLabelCell.m; sourceTree = "<group>"; };
+		A3B8BE7D13F8026B00047496 /* LKLabelTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLabelTextFieldCell.h; sourceTree = "<group>"; };
+		A3B8BE7E13F8026B00047496 /* LKLabelTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLabelTextFieldCell.m; sourceTree = "<group>"; };
+		A3B8BE8013F802C100047496 /* LKButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; path = LKButtonCell.h; sourceTree = "<group>"; };
+		A3B8BE8113F802C100047496 /* LKButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKButtonCell.m; sourceTree = "<group>"; };
 		A3C7D27E13A4A5AC0050FD28 /* LKImageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImageRecord.h; sourceTree = "<group>"; };
 		A3C7D27F13A4A5AC0050FD28 /* LKImageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKImageRecord.m; sourceTree = "<group>"; };
 		A3C7D28013A4A5AC0050FD28 /* LKImgDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKImgDownload.h; sourceTree = "<group>"; };
@@ -574,6 +598,12 @@
 				A3D66F7013A4708A00C83B62 /* SLUserCenterController.m */,
 				A3D66F7113A4708A00C83B62 /* SLUserCenterController.xib */,
 				A3D66EF613A4662400C83B62 /* Supporting Files */,
+				A3B8BE6213F7FA6B00047496 /* SLLoginController.h */,
+				A3B8BE6313F7FA6B00047496 /* SLLoginController.m */,
+				A3B8BE6413F7FA6B00047496 /* SLLoginController.xib */,
+				A3B8BE6813F7FA7C00047496 /* SLRegController.h */,
+				A3B8BE6913F7FA7C00047496 /* SLRegController.m */,
+				A3B8BE6A13F7FA7C00047496 /* SLRegController.xib */,
 			);
 			path = SLVod;
 			sourceTree = "<group>";
@@ -612,6 +642,14 @@
 		A3D66F4713A469DA00C83B62 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				A3B8BE7A13F8023D00047496 /* LKLabelCell.h */,
+				A3B8BE7B13F8023D00047496 /* LKLabelCell.m */,
+				A3B8BE7713F8022D00047496 /* LKLabelFieldCell.h */,
+				A3B8BE7813F8022D00047496 /* LKLabelFieldCell.m */,
+				A3B8BE7D13F8026B00047496 /* LKLabelTextFieldCell.h */,
+				A3B8BE7E13F8026B00047496 /* LKLabelTextFieldCell.m */,
+				A3B8BE8013F802C100047496 /* LKButtonCell.h */,
+				A3B8BE8113F802C100047496 /* LKButtonCell.m */,
 				A3D5840B13E3A53300452695 /* Nav */,
 				A321918E13DC0E8B0062B698 /* LKTools.h */,
 				A321918F13DC0E8C0062B698 /* LKTools.m */,
@@ -662,6 +700,7 @@
 				A3DB7F0713AB334D00E3250C /* noimg.png */,
 				A3DB7F0113AB31F900E3250C /* vip.png */,
 				A3DB7F0213AB31F900E3250C /* setting.png */,
+				A3B8BE7513F8002A00047496 /* Default.png */,
 				A3DB7F0313AB31F900E3250C /* about.png */,
 				A3D66F7F13A473FC00C83B62 /* magnifying-glass-selected.png */,
 				A3D66F8013A473FC00C83B62 /* magnifying-glass-selected@2x.png */,
@@ -867,6 +906,9 @@
 				A3D5841813E3F82700452695 /* disk.png in Resources */,
 				A3D5841913E3F82700452695 /* preferences.png in Resources */,
 				A3D5841A13E3F82700452695 /* star.png in Resources */,
+				A3B8BE6613F7FA6C00047496 /* SLLoginController.xib in Resources */,
+				A3B8BE6C13F7FA7C00047496 /* SLRegController.xib in Resources */,
+				A3B8BE7613F8002A00047496 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,6 +1014,12 @@
 				A3D5840913E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m in Sources */,
 				A3D5841213E3F3D400452695 /* SLDownMovie.m in Sources */,
 				A3538ED213F7A34600A0921E /* UIImage+NSCoding.m in Sources */,
+				A3B8BE6513F7FA6C00047496 /* SLLoginController.m in Sources */,
+				A3B8BE6B13F7FA7C00047496 /* SLRegController.m in Sources */,
+				A3B8BE7913F8022D00047496 /* LKLabelFieldCell.m in Sources */,
+				A3B8BE7C13F8023D00047496 /* LKLabelCell.m in Sources */,
+				A3B8BE7F13F8026B00047496 /* LKLabelTextFieldCell.m in Sources */,
+				A3B8BE8213F802C100047496 /* LKButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
