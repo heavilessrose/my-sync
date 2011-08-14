@@ -24,9 +24,12 @@
     NSString    *path;
     SLMovie     *movie;
     ASIHTTPRequest *movieReq;
+    
+    NSIndexPath *indexInCell;
 }
 
 
+@property (nonatomic, retain) NSIndexPath *indexInCell;
 @property (nonatomic, assign) ASIHTTPRequest *movieReq;
 @property (nonatomic, retain) SLMovie     *movie;
 @property (nonatomic, assign) int         downloadPercent;
@@ -37,6 +40,8 @@
 - (id)initWithMovie:(SLMovie *)mov req:(ASIHTTPRequest *)req;
 
 - (BOOL)archive:(NSString *)type;
+- (NSString *)archivedPath:(NSString *)type;
 + (SLDownMovie *)unarchive:(NSString *)file type:(NSString *)type;
+- (void)removeArchived:(NSString *)type;
 
 @end
