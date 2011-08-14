@@ -13,7 +13,7 @@
 @class SLHotCell;
 @protocol SLHotCellDelegate <NSObject>
 
-- (void)play:(SLMovie *)theMov;
+- (void)play:(id)theMov;
 
 @end
 

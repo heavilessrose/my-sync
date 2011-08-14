@@ -13,7 +13,7 @@
 
 @synthesize title;
 //@synthesize imageUrl;
-@synthesize url;
+@synthesize url, path;
 @synthesize content;
 @synthesize actor;
 @synthesize cate;
@@ -21,6 +21,7 @@
 
 - (void)dealloc
 {
+    self.path = nil;
     self.title = nil;
     self.imgRecord = nil;
     self.url = nil;
@@ -65,11 +66,13 @@
     [aCoder encodeObject:actor forKey:@"actor"];
     [aCoder encodeObject:cate forKey:@"cate"];
     [aCoder encodeObject:imgRecord forKey:@"imgRecord"];
+    [aCoder encodeObject:path forKey:@"path"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if ((self = [super init])) {
+        path = [[aDecoder decodeObjectForKey:@"path"] retain];
         size = [aDecoder decodeInt64ForKey:@"size"];
         recvedBytes = [aDecoder decodeInt64ForKey:@"recvedBytes"];
         downProgress = [aDecoder decodeFloatForKey:@"downProgress"];
