@@ -8,11 +8,16 @@
 
 #import "LKViewController.h"
 #import "LKShadowTableView.h"
+#import "ASIHTTPRequest.h"
 
-@interface SLLoginController : LKViewController {
-    LKShadowTableView *table;
+@interface SLLoginController : LKViewController <ASIHTTPRequestDelegate> {
+    UITableView *table;
+    NSString *username;
+    NSString *pass;
 }
 
-@property (nonatomic, retain) IBOutlet LKShadowTableView *table;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *pass;
+@property (nonatomic, retain) IBOutlet UITableView *table;
 
 @end

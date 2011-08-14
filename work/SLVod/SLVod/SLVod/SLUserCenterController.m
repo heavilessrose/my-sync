@@ -7,7 +7,8 @@
 //
 
 #import "SLUserCenterController.h"
-
+#import "SLLoginController.h"
+#import "SLRegController.h"
 
 @implementation SLUserCenterController
 
@@ -147,12 +148,17 @@
 - (void)signinButtonPressed:(UIButton *)aButton
 {
     DLOG
-    
+    SLLoginController *l = [[SLLoginController alloc] initWithNibName:@"SLLoginController" bundle:nil];
+    [self.navigationController pushViewController:l animated:YES];
+    [l release];
 }
 
 - (void)signupButtonPressed:(UIButton *)aButton
 {
     DLOG
+    SLRegController *l = [[SLRegController alloc] initWithNibName:@"SLRegController" bundle:nil];
+    [self.navigationController pushViewController:l animated:YES];
+    [l release];
 }
 
 #pragma mark -

@@ -22,6 +22,7 @@
 - (void)archiveDownedMovs;
 - (void)unarchiveDowningMovs;
 - (void)unarchiveDownedMovs;
+- (BOOL)needContinue:(SLDownMovie *)dm;
 
 @end
 
@@ -191,6 +192,9 @@
     if (segSelected == 0) {
         theCell.downMov = [movsInDownloading objectAtIndex:indexPath.row];
         theCell.movie = [theCell.downMov movie];
+//        if ([self needContinue:theCell.downMov]) {
+//            [theCell.pauseDownButton setTitle:@"继续" forState:UIControlStateNormal];
+//        }
     }
     if (segSelected == 1) {
         theCell.movie = [[movsDownloaded objectAtIndex:indexPath.row] movie];
@@ -318,12 +322,21 @@
 {
     DLOG;
     if ([theCell.pauseDownButton.titleLabel.text isEqualToString:@"暂停"]) {
+        [theCell.downMov.movieReq setShowAccurateProgress:NO];
         [theCell.downMov.movieReq clearDelegatesAndCancel];
         [theCell.pauseDownButton setTitle:@"继续" forState:UIControlStateNormal];
     } else {
         [self resumeDownload:theCell.downMov];
         [theCell.pauseDownButton setTitle:@"暂停" forState:UIControlStateNormal];
     }
+}
+
+- (BOOL)needContinue:(SLDownMovie *)dm
+{
+    if (dm && dm.path) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - ASIHTTPRequestDelegate

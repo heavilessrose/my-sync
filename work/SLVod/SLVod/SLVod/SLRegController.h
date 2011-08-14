@@ -7,11 +7,19 @@
 //
 
 #import "LKViewController.h"
+#import "ASIHTTPRequest.h"
 
-@interface SLRegController : LKViewController{
-    LKShadowTableView *table;
+@interface SLRegController : LKViewController <ASIHTTPRequestDelegate> {
+    UITableView *table;
+    NSString *username;
+    NSString *pass;
+    NSString *email;
 }
 
-@property (nonatomic, retain) IBOutlet LKShadowTableView *table;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *pass;
+@property (nonatomic, retain) NSString *email;
+
+@property (nonatomic, retain) IBOutlet UITableView *table;
 
 @end
