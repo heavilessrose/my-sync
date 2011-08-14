@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface LKImageRecord : NSObject {
+@interface LKImageRecord : NSObject <NSCoding> {
 	
 	NSURL   *url;
 	UIImage *img;

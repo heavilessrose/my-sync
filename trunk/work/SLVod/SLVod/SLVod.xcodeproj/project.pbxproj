@@ -36,6 +36,7 @@
 		A321918713DC08C10062B698 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321918613DC08C10062B698 /* MobileCoreServices.framework */; };
 		A321918913DC08E40062B698 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A321918813DC08E40062B698 /* libz.dylib */; };
 		A321919013DC0E8C0062B698 /* LKTools.m in Sources */ = {isa = PBXBuildFile; fileRef = A321918F13DC0E8C0062B698 /* LKTools.m */; };
+		A3538ED213F7A34600A0921E /* UIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = A3538ED113F7A34600A0921E /* UIImage+NSCoding.m */; };
 		A35723C213B1CB8D00106383 /* HJCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = A35723AF13B1CB8D00106383 /* HJCircularBuffer.m */; };
 		A35723C313B1CB8D00106383 /* HJManagedImageV.m in Sources */ = {isa = PBXBuildFile; fileRef = A35723B113B1CB8D00106383 /* HJManagedImageV.m */; };
 		A35723C413B1CB8D00106383 /* HJMOBigFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A35723B413B1CB8D00106383 /* HJMOBigFileCache.m */; };
@@ -196,6 +197,8 @@
 		A321918813DC08E40062B698 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A321918E13DC0E8B0062B698 /* LKTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTools.h; sourceTree = "<group>"; };
 		A321918F13DC0E8C0062B698 /* LKTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTools.m; sourceTree = "<group>"; };
+		A3538ED013F7A34600A0921E /* UIImage+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NSCoding.h"; sourceTree = "<group>"; };
+		A3538ED113F7A34600A0921E /* UIImage+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NSCoding.m"; sourceTree = "<group>"; };
 		A35723AE13B1CB8D00106383 /* HJCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCircularBuffer.h; sourceTree = "<group>"; };
 		A35723AF13B1CB8D00106383 /* HJCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCircularBuffer.m; sourceTree = "<group>"; };
 		A35723B013B1CB8D00106383 /* HJManagedImageV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJManagedImageV.h; sourceTree = "<group>"; };
@@ -471,6 +474,8 @@
 			children = (
 				A391CE4613A8C1E10098A241 /* NSString+URL.h */,
 				A391CE4713A8C1E10098A241 /* NSString+URL.m */,
+				A3538ED013F7A34600A0921E /* UIImage+NSCoding.h */,
+				A3538ED113F7A34600A0921E /* UIImage+NSCoding.m */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -966,6 +971,7 @@
 				A3D5840813E3A52D00452695 /* SCClassUtils.m in Sources */,
 				A3D5840913E3A52D00452695 /* UINavigationBar+SCBackgroundImage.m in Sources */,
 				A3D5841213E3F3D400452695 /* SLDownMovie.m in Sources */,
+				A3538ED213F7A34600A0921E /* UIImage+NSCoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

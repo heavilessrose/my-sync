@@ -15,6 +15,13 @@
 #import "ASICacheDelegate.h"
 #import "ASINetworkQueue.h"
 
+#define downingPlist    ([docPath() stringByAppendingPathComponent:@"movsInDownloading.plist"])
+#define downedPlist     ([docPath() stringByAppendingPathComponent:@"movsDownloaded.plist"])
+
+typedef enum {
+    SLDownloadMovsType_downing = 0,
+    SLDownloadMovsType_downed,
+} SLDownloadMovsType;
 
 @interface SLDownloadManController : LKViewController <SLMovDownloadDelegate, ASIProgressDelegate, ASIHTTPRequestDelegate, ASICacheDelegate> {
     LKShadowTableView *table;

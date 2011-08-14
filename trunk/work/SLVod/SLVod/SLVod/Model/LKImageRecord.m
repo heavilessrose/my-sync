@@ -7,6 +7,7 @@
 //
 
 #import "LKImageRecord.h"
+#import "UIImage+NSCoding.h"
 
 
 @implementation LKImageRecord
@@ -32,4 +33,24 @@
     return self;
 }
 
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeBool:show forKey:@"show"];
+    [aCoder encodeBool:downloaded forKey:@"downloaded"];
+    [aCoder encodeObject:img forKey:@"img"];
+    [aCoder encodeObject:url forKey:@"url"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ((self = [super init])) {
+        downloaded = [aDecoder decodeBoolForKey:@"downloaded"];
+        show = [aDecoder decodeBoolForKey:@"show"];
+        img = [[aDecoder decodeObjectForKey:@"img"] retain];
+        url = [[aDecoder decodeObjectForKey:@"url"] retain];
+    }
+    return self;
+}
 @end

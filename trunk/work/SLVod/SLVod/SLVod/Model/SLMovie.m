@@ -23,7 +23,6 @@
 {
     self.title = nil;
     self.imgRecord = nil;
-//    self.imageUrl = nil;
     self.url = nil;
     self.content = nil;
     self.actor = nil;
@@ -36,7 +35,6 @@
     if ((self = [super init])) {
         if (aDic && [aDic count] > 0) {
             self.title = [aDic objectForKey:@"title"];
-//            self.imageUrl = [aDic objectForKey:@"image"];
             self.url = [NSURL URLWithString:[aDic objectForKey:@"url"]];
             self.content = [aDic objectForKey:@"content"];
             self.actor = [aDic objectForKey:@"actor"];
@@ -54,4 +52,34 @@
     return nil;
 }
 
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeInt64:size forKey:@"size"];
+    [aCoder encodeInt64:recvedBytes forKey:@"recvedBytes"];
+    [aCoder encodeFloat:downProgress forKey:@"downProgress"];
+    [aCoder encodeObject:title forKey:@"title"];
+    [aCoder encodeObject:url forKey:@"url"];
+    [aCoder encodeObject:content forKey:@"content"];
+    [aCoder encodeObject:actor forKey:@"actor"];
+    [aCoder encodeObject:cate forKey:@"cate"];
+    [aCoder encodeObject:imgRecord forKey:@"imgRecord"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ((self = [super init])) {
+        size = [aDecoder decodeInt64ForKey:@"size"];
+        recvedBytes = [aDecoder decodeInt64ForKey:@"recvedBytes"];
+        downProgress = [aDecoder decodeFloatForKey:@"downProgress"];
+        title = [[aDecoder decodeObjectForKey:@"title"] retain];
+        url = [[aDecoder decodeObjectForKey:@"url"] retain];
+        content = [[aDecoder decodeObjectForKey:@"content"] retain];
+        actor = [[aDecoder decodeObjectForKey:@"actor"] retain];
+        cate = [[aDecoder decodeObjectForKey:@"cate"] retain];
+        imgRecord = [[aDecoder decodeObjectForKey:@"imgRecord"] retain];
+    }
+    return self;
+}
 @end
