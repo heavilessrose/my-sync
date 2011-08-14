@@ -23,7 +23,7 @@ typedef enum {
     SLDownloadMovsType_downed,
 } SLDownloadMovsType;
 
-@interface SLDownloadManController : LKViewController <SLMovDownloadDelegate, ASIProgressDelegate, ASIHTTPRequestDelegate, ASICacheDelegate> {
+@interface SLDownloadManController : LKViewController <SLMovDownloadDelegate, ASIProgressDelegate, ASIHTTPRequestDelegate, ASICacheDelegate, SLMovDownloadDelegate, SLHotCellDelegate> {
     LKShadowTableView *table;
     UISegmentedControl *seg;
     int segSelected;

@@ -8,6 +8,7 @@
 
 #import "SLMovDetailController.h"
 #import "LKTools.h"
+#import "SLVodAppDelegate.h"
 
 @implementation SLMovDetailController
 
@@ -122,10 +123,11 @@
                 hotCell = tmpHotCell;
                 hotCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 hotCell.playDelegate = self;
-                hotCell.downDelegare = globalApp.downMan;
+                hotCell.downDelegare = (id<SLMovDownloadDelegate>)globalApp.downMan;
                 hotCell.playButton.hidden = NO;
                 hotCell.downButton.hidden = NO;
                 hotCell.pauseDownButton.hidden = YES;
+                self.tmpHotCell = nil;
             }
         }
         hotCell.movie = mov;

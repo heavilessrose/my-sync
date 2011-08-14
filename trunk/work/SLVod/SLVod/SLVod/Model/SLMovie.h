@@ -21,8 +21,11 @@
     long long   recvedBytes;
     long long   size;
     float       downProgress;
+    
+    NSString    *path;
 }
 
+@property (nonatomic, retain) NSString    *path;
 @property (nonatomic, assign) long long   recvedBytes;
 @property (nonatomic, assign) long long     size;
 @property (nonatomic, assign) float       downProgress;

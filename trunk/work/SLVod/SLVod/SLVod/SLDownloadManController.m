@@ -168,6 +168,9 @@
         cell.playButton.hidden = NO;
         cell.downButton.hidden = YES;
         cell.actorLabel.hidden = YES;
+        cell.progressView.hidden = YES;
+        cell.pauseDownButton.hidden = YES;
+        cell.downDelegare = nil;
     }
 }
 
@@ -191,6 +194,7 @@
     }
     if (segSelected == 1) {
         theCell.movie = [[movsDownloaded objectAtIndex:indexPath.row] movie];
+        theCell.playDelegate = self;
     }
     return theCell;
 }
@@ -351,12 +355,14 @@
     for (SLDownMovie *dm in movsInDownloading) {
         if (dm.movieReq == request) {
             dm.movieReq = nil;
+            dm.movie.path = [docPath() stringByAppendingPathComponent:[dm.movie.url lastPathComponent]];
             [movsDownloaded addObject:dm];
             [movsInDownloading removeObject:dm];
             [table reloadData];
             
             [dm archive:SLDownloaded_Key];
             [dm removeArchived:SLDownloading_Key];
+            
             [self archiveDownedMovs];
             [self archiveDowningMovs];
             break;
@@ -571,6 +577,22 @@
             if (aMov) {
                 [self.movsDownloaded addObject:aMov];
             }
+        }
+    }
+}
+
+#pragma mark - SLHotCellDelegate 
+
+- (void)play:(SLMovie *)theMov
+{
+    DLOG
+	
+    NSURL *movieURL = [[NSURL alloc] initFileURLWithPath:theMov.path isDirectory:NO]; //[NSURL URLWithString:@"http://127.0.0.1/~luke/html5/video/res/Movie.m4v"];
+    if (movieURL)
+    {
+        if ([movieURL scheme])	// sanity check on the URL
+        {
+            [self initAndPlayMovie:movieURL];
         }
     }
 }

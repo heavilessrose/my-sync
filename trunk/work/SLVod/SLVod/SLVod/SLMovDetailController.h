@@ -14,7 +14,7 @@
 // Notification string used for touches to the overlay view
 extern NSString * const OverlayViewTouchNotification;
 
-@interface SLMovDetailController : LKViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface SLMovDetailController : LKViewController <UITableViewDelegate, UITableViewDataSource, SLHotCellDelegate> {
     LKShadowTableView   *table;
     
     SLMovie             *mov;
