@@ -175,6 +175,7 @@
     static NSString *cellID = @"SLHotCell";
     SLHotCell *theCell = (SLHotCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
     if (!theCell) {
+        DLog(@"new down cell");
         [[NSBundle mainBundle] loadNibNamed:@"SLHotCell" owner:self options:nil];
         if (tmpHotCell) {
             theCell = tmpHotCell;
@@ -184,7 +185,8 @@
     }
     [self configCell:theCell];
     if (segSelected == 0) {
-        theCell.movie = [[movsInDownloading objectAtIndex:indexPath.row] movie];
+        theCell.downMov = [movsInDownloading objectAtIndex:indexPath.row];
+        theCell.movie = [theCell.downMov movie];
     }
     if (segSelected == 1) {
         theCell.movie = [[movsDownloaded objectAtIndex:indexPath.row] movie];
@@ -193,12 +195,18 @@
 }
 
 #pragma mark - download handle
-- (NSString *)downloadPath:(SLMovie *)mov
+- (NSString *)downloadPath:(SLMovie *)mov tmp:(BOOL)tmpPath
 {
     NSString *path = nil;
     NSString *catePart = docPath();
     if (mov && mov.cate && [mov.cate length] > 0) {
         catePart = [catePart stringByAppendingPathComponent:mov.cate];
+    }
+    if (tmpPath) {
+        catePart = [catePart stringByAppendingPathComponent:@"tmp"];
+    }
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:catePart withIntermediateDirectories:YES attributes:nil error:nil]) {
+        ALog(@"create path failed");
     }
     if (catePart && [catePart length] > 0) {
         NSString *url = [NSString stringWithFormat:@"%@", mov.url];
@@ -207,7 +215,7 @@
     return path;
 }
 
-- (BOOL)startDownload:(SLMovie *)mov
+- (BOOL)startDownload:(SLMovie *)mov resume:(SLDownMovie *)resumeDm
 {
     if (mov.url) {
         if ([mov.url scheme]) {
@@ -216,7 +224,7 @@
             [downReq addRequestHeader:@"Connection" value:@"Keep-Alive"];
             [downReq addRequestHeader:@"Keep-Alive" value:@"timeout=300, max=29974"];
             [downReq setAllowResumeForFileDownloads:YES];
-            [downReq setDownloadDestinationPath:[self downloadPath:mov]];
+            [downReq setDownloadDestinationPath:[self downloadPath:mov tmp:NO]];
             [downReq setNumberOfTimesToRetryOnTimeout:1];
 #if 0
             [downingQueue setShowAccurateProgress:YES];
@@ -229,17 +237,25 @@
             [downReq setDownloadProgressDelegate:self];
             [downReq setDownloadCache:[ASIDownloadCache sharedCache]];
             [downReq setShowAccurateProgress:YES];
+            [downReq setAllowResumeForFileDownloads:YES];
+            NSString *tmpPath = [self downloadPath:mov tmp:YES];
+            [downReq setTemporaryFileDownloadPath:tmpPath];
             [downReq startAsynchronous];
 #endif
+            if (!resumeDm) {
+                SLDownMovie *dm = [[SLDownMovie alloc] initWithMovie:mov req:downReq];
+                [self.movsInDownloading addObject:dm];
+                [dm archive:SLDownloading_Key];
+                
+                [self archiveDowningMovs];
+                [dm release];
+            } else {
+                resumeDm.movieReq = downReq;
+            }
             
-            SLDownMovie *dm = [[SLDownMovie alloc] initWithMovie:mov req:downReq];
-            [self.movsInDownloading addObject:dm];
             
-            [dm archive:SLDownloading_Key];
-            [self archiveDowningMovs];
-            
-            [dm release];
             [table reloadData];
+            
             return YES;
         }
     }
@@ -280,17 +296,29 @@
 #pragma mark - SLMovDownloadDelegate
 - (void)download:(SLHotCell *)theCell
 {
-    if ([self startDownload:theCell.movie]) {
+    if ([self startDownload:theCell.movie resume:nil]) {
         [theCell.downButton setEnabled:NO];
     } else {
         [theCell.titleLabel setText:@"无法下载"];
     }
 }
 
+- (void)resumeDownload:(SLDownMovie *)theMov
+{
+    [self startDownload:theMov.movie resume:theMov];
+    
+}
+
 - (void)pauseDownload:(SLHotCell *)theCell
 {
     DLOG;
-    [theCell.downMov.movieReq clearDelegatesAndCancel];
+    if ([theCell.pauseDownButton.titleLabel.text isEqualToString:@"暂停"]) {
+        [theCell.downMov.movieReq clearDelegatesAndCancel];
+        [theCell.pauseDownButton setTitle:@"继续" forState:UIControlStateNormal];
+    } else {
+        [self resumeDownload:theCell.downMov];
+        [theCell.pauseDownButton setTitle:@"暂停" forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - ASIHTTPRequestDelegate

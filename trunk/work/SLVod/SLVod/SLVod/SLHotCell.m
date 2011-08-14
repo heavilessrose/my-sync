@@ -67,7 +67,7 @@
         self.imageView.image = nil;
     }
     
-    DLog(@"%f", theMov.downProgress);
+//    DLog(@"%f", theMov.downProgress);
     self.progressView.progress = theMov.downProgress;
 }
 
