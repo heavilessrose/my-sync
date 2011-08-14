@@ -96,7 +96,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,6 +124,7 @@
         if (!theCell) {
             theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:usettingCell] autorelease];
         }
+        /*
         if (indexPath.row == 1) {
             theCell.imageView.image = [UIImage imageNamed:@"vip.png"];
             theCell.textLabel.text = @"加入VIP";
@@ -132,7 +133,8 @@
             theCell.imageView.image = [UIImage imageNamed:@"setting.png"];
             theCell.textLabel.text = @"个人设置";
         }
-        if (indexPath.row == 3) {
+         */
+        if (indexPath.row == 1) {
             theCell.imageView.image = [UIImage imageNamed:@"about.png"];
             theCell.textLabel.text = @"关于";
         }
@@ -145,6 +147,7 @@
 - (void)signinButtonPressed:(UIButton *)aButton
 {
     DLOG
+    
 }
 
 - (void)signupButtonPressed:(UIButton *)aButton

@@ -17,8 +17,10 @@
 - (void)dealloc
 {
     MLog(@"");
-    [downReq clearDelegatesAndCancel];
-    self.downReq = nil;
+    if (downReq) {
+        [downReq clearDelegatesAndCancel];
+//        self.downReq = nil;
+    }
     [mov release];
     [table release];
     [super dealloc];
