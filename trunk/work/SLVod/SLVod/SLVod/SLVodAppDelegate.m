@@ -16,6 +16,7 @@
 #import "SLUserCenterController.h"
 #import "SLDownloadManController.h"
 #import "SCAppUtils.h"
+#import "FFSettings.h"
 
 NSString *kScalingModeKey	= @"scalingMode";
 NSString *kControlModeKey	= @"controlMode";
@@ -37,6 +38,8 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[FFSettings shareSettings] archiveSettings];
+    
 	self.tabBarController = [[[BCTabBarController alloc] init] autorelease];
     UINavigationController *hotNav = [[[UINavigationController alloc]
                                        initWithRootViewController:[[[SLHotController alloc] initWithNibName:@"SLHotController" bundle:nil] autorelease]]

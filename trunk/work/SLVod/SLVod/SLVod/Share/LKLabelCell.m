@@ -15,7 +15,7 @@
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
     _label.textAlignment = UITextAlignmentRight;
     _label.textColor = [UIColor grayColor];
-    _label.font = [UIFont boldSystemFontOfSize:12.0];
+    _label.font = [UIFont boldSystemFontOfSize:16.0];
     _label.adjustsFontSizeToFitWidth = YES;
     _label.baselineAdjustment = UIBaselineAdjustmentNone;
     _label.numberOfLines = 20;
