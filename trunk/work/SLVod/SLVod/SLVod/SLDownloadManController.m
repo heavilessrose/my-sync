@@ -65,6 +65,7 @@
         self.movsDownloaded = [NSMutableArray array];
         
         [self unarchiveDowningMovs];
+        [self unarchiveDownedMovs];
     }
     return self;
 }
@@ -331,12 +332,36 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     DLog(@"%@", [request.error description]);
+    
+    for (SLDownMovie *dm in movsInDownloading) {
+        if (dm.movieReq == request) {
+            NSIndexPath *index = dm.indexInCell;
+            SLHotCell *cell = (SLHotCell *)[self.table cellForRowAtIndexPath:index];
+            [cell.pauseDownButton setTitle:@"重试" forState:UIControlStateNormal];
+            break;
+        }
+    }
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     DLOG
     DLog(@"%d", [[request responseData] length]);
+    
+    for (SLDownMovie *dm in movsInDownloading) {
+        if (dm.movieReq == request) {
+            dm.movieReq = nil;
+            [movsDownloaded addObject:dm];
+            [movsInDownloading removeObject:dm];
+            [table reloadData];
+            
+            [dm archive:SLDownloaded_Key];
+            [dm removeArchived:SLDownloading_Key];
+            [self archiveDownedMovs];
+            [self archiveDowningMovs];
+            break;
+        }
+    }
 }
 
 #pragma mark - ASIProgressDelegate
@@ -485,7 +510,7 @@
     NSMutableArray *pathAndDowing = [NSMutableArray arrayWithCapacity:[movsInDownloading count]];
     
     for (SLDownMovie *m in movsInDownloading) {
-        NSDictionary *mDic = [NSDictionary dictionaryWithObject:m.path forKey:m.hash];
+        NSDictionary *mDic = [NSDictionary dictionaryWithObject:[m archivedPath:SLDownloading_Key] forKey:m.hash];
         [pathAndDowing addObject:mDic];
     }
     return pathAndDowing;
@@ -496,7 +521,7 @@
     NSMutableArray *pathAndDowed = [NSMutableArray arrayWithCapacity:[movsDownloaded count]];
     
     for (SLDownMovie *m in movsDownloaded) {
-        NSDictionary *mDic = [NSDictionary dictionaryWithObject:m.path forKey:m.hash];
+        NSDictionary *mDic = [NSDictionary dictionaryWithObject:[m archivedPath:SLDownloaded_Key] forKey:m.hash];
         [pathAndDowed addObject:mDic];
     }
     return pathAndDowed;
@@ -504,6 +529,7 @@
 
 - (void)archiveDowningMovs
 {
+    [[NSFileManager defaultManager] removeItemAtPath:downingPlist error:nil];
     if (self.movsInDownloading && [self.movsInDownloading count] > 0) {
         NSArray *paths = [self pathsWithDowingMovs];
         [paths writeToFile:downingPlist atomically:YES];
@@ -512,6 +538,7 @@
 
 - (void)archiveDownedMovs
 {
+    [[NSFileManager defaultManager] removeItemAtPath:downedPlist error:nil];
     if (self.movsDownloaded && [self.movsDownloaded count] > 0) {
         NSArray *paths = [self pathsWithDowedMovs];
         [paths writeToFile:downedPlist atomically:YES];
@@ -535,80 +562,17 @@
 
 - (void)unarchiveDownedMovs
 {
-    self.movsDownloaded = [NSMutableArray arrayWithContentsOfFile:downedPlist];
-}
-
-- (NSArray *)pathsForDowningMov
-{
-    
-}
-
-/*
-+ localMovsDocDir
-{
-    NSString *documentsDirectory = docPath();
-    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"Private Documents"];
-    
-    NSError *error;
-    [[NSFileManager defaultManager] createDirectoryAtPath:documentsDirectory withIntermediateDirectories:YES attributes:nil error:&error];   
-    
-    return documentsDirectory;
-}
-
-+ (NSMutableArray *)loadMovsDoc:(SLDownloadMovsType)type {
-    
-    // Get private docs dir
-    NSString *documentsDirectory = [SLDownloadManController localMovsDocDir];
-    NSLog(@"Loading from %@", documentsDirectory);
-    
-    // Get contents of documents directory
-    NSError *error;
-    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:&error];
-    if (files == nil) {
-        NSLog(@"Error reading contents of documents directory: %@", [error localizedDescription]);
-        return nil;
-    }
-    
-    // Create ScaryBugDoc for each file
-    NSMutableArray *retval = [NSMutableArray arrayWithCapacity:files.count];
-    for (NSString *file in files) {
-        if ([file.pathExtension compare:@"scarybug" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
-            NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:file];
-            ScaryBugDoc *doc = [[[ScaryBugDoc alloc] initWithDocPath:fullPath] autorelease];
-            [retval addObject:doc];
+    NSArray *paths = [NSMutableArray arrayWithContentsOfFile:downedPlist];
+    NSString *aPath = nil;
+    for (NSDictionary *aDic in paths) {
+        for (NSString *aHash in [aDic allKeys]) {
+            aPath = [aDic objectForKey:aHash];
+            SLDownMovie *aMov = [SLDownMovie unarchive:aPath type:SLDownloaded_Key];
+            if (aMov) {
+                [self.movsDownloaded addObject:aMov];
+            }
         }
     }
-    
-    return retval;
-    
 }
 
-+ (NSString *)nextScaryBugDocPath {
-    
-    // Get private docs dir
-    NSString *documentsDirectory = [ScaryBugDatabase getPrivateDocsDir];
-    
-    // Get contents of documents directory
-    NSError *error;
-    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:&error];
-    if (files == nil) {
-        NSLog(@"Error reading contents of documents directory: %@", [error localizedDescription]);
-        return nil;
-    }
-    
-    // Search for an available name
-    int maxNumber = 0;
-    for (NSString *file in files) {
-        if ([file.pathExtension compare:@"scarybug" options:NSCaseInsensitiveSearch] == NSOrderedSame) {            
-            NSString *fileName = [file stringByDeletingPathExtension];
-            maxNumber = MAX(maxNumber, fileName.intValue);
-        }
-    }
-    
-    // Get available name
-    NSString *availableName = [NSString stringWithFormat:@"%d.scarybug", maxNumber+1];
-    return [documentsDirectory stringByAppendingPathComponent:availableName];
-    
-}
-*/
 @end

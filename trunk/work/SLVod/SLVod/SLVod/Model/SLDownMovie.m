@@ -14,10 +14,12 @@
 @implementation SLDownMovie
 
 @synthesize downloadPercent, hash, size, path, movie, movieReq;
+@synthesize indexInCell;
 
 - (void)dealloc
 {
     MLog(@"");
+    [indexInCell release];
     [movie release];
     [hash release];
     [path release];
@@ -40,6 +42,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+    [aCoder encodeObject:indexInCell forKey:@"indexInCell"];
     [aCoder encodeObject:hash forKey:@"hash"];
     [aCoder encodeInt64:size forKey:@"size"];
     [aCoder encodeObject:path forKey:@"path"];
@@ -49,6 +52,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if ((self = [super init])) {
+        indexInCell = [aDecoder decodeObjectForKey:@"indexInCell"];
         size = [aDecoder decodeInt64ForKey:@"size"];
         hash = [[aDecoder decodeObjectForKey:@"hash"] retain];
         path = [[aDecoder decodeObjectForKey:@"path"] retain];
@@ -59,7 +63,7 @@
 
 #pragma mark - 
 
-- (BOOL)archive:(NSString *)type
+- (NSString *)archivedPath:(NSString *)type
 {
     NSString *wpath = nil;
     if ([type isEqualToString:SLDownloading_Key]) {
@@ -71,7 +75,22 @@
         [[NSFileManager defaultManager] createDirectoryAtPath:SLDownloaded_Path withIntermediateDirectories:YES attributes:nil error:nil];
         wpath = [SLDownloaded_Path stringByAppendingPathComponent:self.hash];
     }
-    self.path = wpath;
+    return wpath;
+}
+
+- (void)removeArchived:(NSString *)type
+{
+    NSString *wpath = [self archivedPath:type];
+    
+    NSError *err = nil;
+    if (![[NSFileManager defaultManager] removeItemAtPath:wpath error:&err]) {
+        DLog(@"%@", [err description]);
+    }
+}
+
+- (BOOL)archive:(NSString *)type
+{
+    NSString *wpath = [self archivedPath:type];
     
     NSMutableData *aData = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:aData];          
