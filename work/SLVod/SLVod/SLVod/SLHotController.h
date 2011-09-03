@@ -15,8 +15,10 @@
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
 }
+
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
 
 @property (nonatomic, retain) IBOutlet LKShadowTableView    *table;
+
 @end

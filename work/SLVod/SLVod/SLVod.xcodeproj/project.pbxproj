@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A30858F913F91DC700620972 /* bg_navbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A30858F713F91DC700620972 /* bg_navbar_logo.png */; };
+		A30858FA13F91DC700620972 /* bg_navbar_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A30858F813F91DC700620972 /* bg_navbar_logo@2x.png */; };
 		A3136FA813A4954800EECA6A /* LKTip.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA013A4954800EECA6A /* LKTip.m */; };
 		A3136FA913A4954800EECA6A /* LKTipCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA213A4954800EECA6A /* LKTipCenter.m */; };
 		A3136FAA13A4954800EECA6A /* LKTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3136FA413A4954800EECA6A /* LKTipView.m */; };
@@ -159,6 +161,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A30858F713F91DC700620972 /* bg_navbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_navbar_logo.png; sourceTree = "<group>"; };
+		A30858F813F91DC700620972 /* bg_navbar_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_navbar_logo@2x.png"; sourceTree = "<group>"; };
 		A3136F9F13A4954800EECA6A /* LKTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTip.h; sourceTree = "<group>"; };
 		A3136FA013A4954800EECA6A /* LKTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTip.m; sourceTree = "<group>"; };
 		A3136FA113A4954800EECA6A /* LKTipCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTipCenter.h; sourceTree = "<group>"; };
@@ -703,6 +707,8 @@
 				A3D5841413E3F82700452695 /* disk.png */,
 				A3D5841513E3F82700452695 /* preferences.png */,
 				A3D5841613E3F82700452695 /* star.png */,
+				A30858F713F91DC700620972 /* bg_navbar_logo.png */,
+				A30858F813F91DC700620972 /* bg_navbar_logo@2x.png */,
 				A3D5840E13E3A6FA00452695 /* bg_navbar@2x.png */,
 				A3D5840C13E3A6F200452695 /* bg_navbar.png */,
 				A3DB7F0713AB334D00E3250C /* noimg.png */,
@@ -918,6 +924,8 @@
 				A3B8BE6C13F7FA7C00047496 /* SLRegController.xib in Resources */,
 				A3B8BE7613F8002A00047496 /* Default.png in Resources */,
 				A3B8BE8F13F80F8C00047496 /* Prefs.plist in Resources */,
+				A30858F913F91DC700620972 /* bg_navbar_logo.png in Resources */,
+				A30858FA13F91DC700620972 /* bg_navbar_logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
