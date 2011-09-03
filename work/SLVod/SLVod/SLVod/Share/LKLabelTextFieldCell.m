@@ -50,14 +50,14 @@
 	return NO;
 }
 
-- (void) setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-	_field.textColor = selected ? [UIColor whiteColor] : [UIColor blackColor];
-}
-- (void) setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
-	[super setHighlighted:highlighted animated:animated];
-	_field.textColor = highlighted ? [UIColor whiteColor] : [UIColor blackColor];
-}
+//- (void) setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//	_field.textColor = selected ? [UIColor whiteColor] : [UIColor blackColor];
+//}
+//- (void) setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+//	[super setHighlighted:highlighted animated:animated];
+//	_field.textColor = highlighted ? [UIColor whiteColor] : [UIColor blackColor];
+//}
 
 
 @end

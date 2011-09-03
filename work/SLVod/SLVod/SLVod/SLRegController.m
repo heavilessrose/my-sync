@@ -10,6 +10,7 @@
 #import "LKLabelTextFieldCell.h"
 #import "LKButtonCell.h"
 #import "FFSettings.h"
+#import "LKAlert.h"
 
 @implementation SLRegController
 
@@ -68,6 +69,7 @@
 
 - (void)reg
 {
+    [self HUDWithGradient:NSLocalizedString(@"Reging", nil)];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:SL_REG, self.username, self.pass, self.email, [[UIDevice currentDevice] uniqueIdentifier]] relativeToURL:SL_BASE_HOST];
     ASIHTTPRequest *regReq = [ASIHTTPRequest requestWithURL:url];
     [regReq setDelegate:self];
@@ -85,6 +87,10 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     DLOG
+    if (HUD) {
+        [HUD hide:YES];
+    }
+    alertWithMessageAndTitle(NSLocalizedString(@"Reg err", nil), nil);
 }
 
 
@@ -92,7 +98,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.row == 4) {
+        [self reg];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

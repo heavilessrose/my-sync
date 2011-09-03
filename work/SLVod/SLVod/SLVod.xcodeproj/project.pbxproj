@@ -148,6 +148,7 @@
 		A3DB7F0813AB334D00E3250C /* noimg.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DB7F0713AB334D00E3250C /* noimg.png */; };
 		A3DB7F1C13AB4E8C00E3250C /* SLDownloadManController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB7F1A13AB4E8800E3250C /* SLDownloadManController.m */; };
 		A3DB7F1D13AB4E8C00E3250C /* SLDownloadManController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DB7F1B13AB4E8A00E3250C /* SLDownloadManController.xib */; };
+		A3F68B301412988A00615D44 /* LKAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F68B2F1412988A00615D44 /* LKAlert.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -390,6 +391,8 @@
 		A3DB7F1913AB4E8600E3250C /* SLDownloadManController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLDownloadManController.h; sourceTree = "<group>"; };
 		A3DB7F1A13AB4E8800E3250C /* SLDownloadManController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLDownloadManController.m; sourceTree = "<group>"; };
 		A3DB7F1B13AB4E8A00E3250C /* SLDownloadManController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLDownloadManController.xib; sourceTree = "<group>"; };
+		A3F68B2E1412988A00615D44 /* LKAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKAlert.h; sourceTree = "<group>"; };
+		A3F68B2F1412988A00615D44 /* LKAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKAlert.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -651,6 +654,8 @@
 		A3D66F4713A469DA00C83B62 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				A3F68B2E1412988A00615D44 /* LKAlert.h */,
+				A3F68B2F1412988A00615D44 /* LKAlert.m */,
 				A3B8BE8B13F80D5900047496 /* FFSettings.h */,
 				A3B8BE8C13F80D5900047496 /* FFSettings.m */,
 				A3B8BE7A13F8023D00047496 /* LKLabelCell.h */,
@@ -1038,6 +1043,7 @@
 				A3B8BE7F13F8026B00047496 /* LKLabelTextFieldCell.m in Sources */,
 				A3B8BE8213F802C100047496 /* LKButtonCell.m in Sources */,
 				A3B8BE8D13F80D5A00047496 /* FFSettings.m in Sources */,
+				A3F68B301412988A00615D44 /* LKAlert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

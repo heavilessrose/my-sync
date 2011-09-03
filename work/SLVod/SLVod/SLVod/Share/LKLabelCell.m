@@ -21,7 +21,6 @@
     _label.numberOfLines = 20;
 	
 	[self.contentView addSubview:_label];
-
     
     return self;
 }
@@ -37,25 +36,23 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-	
+    
 	CGRect r = CGRectInset(self.contentView.bounds, 8, 8);
 	r.size.width = 72;
 	r.size.height = 30;
 	_label.frame = r;
-	
-	
 }
 
 
 
-- (void) setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-	_label.textColor = selected ? [UIColor whiteColor] : [UIColor grayColor];
-}
-- (void) setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
-	[super setHighlighted:highlighted animated:animated];
-	_label.textColor = highlighted ? [UIColor whiteColor] : [UIColor grayColor];
-}
+//- (void) setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//	_label.textColor = selected ? [UIColor whiteColor] : [UIColor grayColor];
+//}
+//- (void) setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+//	[super setHighlighted:highlighted animated:animated];
+//	_label.textColor = highlighted ? [UIColor whiteColor] : [UIColor grayColor];
+//}
 
 
 
