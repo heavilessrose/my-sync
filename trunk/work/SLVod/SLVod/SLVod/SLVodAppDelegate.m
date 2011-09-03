@@ -44,23 +44,23 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
     UINavigationController *hotNav = [[[UINavigationController alloc]
                                        initWithRootViewController:[[[SLHotController alloc] initWithNibName:@"SLHotController" bundle:nil] autorelease]]
                                       autorelease];
-    [SCAppUtils customizeNavigationController:hotNav];
+    [SCAppUtils customizeNavigationController:hotNav withImg:kSCNavBarImgWithLogoName];
     
     UINavigationController *cateNav = [[[UINavigationController alloc]
                                         initWithRootViewController:[[[SLCategoryController alloc] initWithNibName:@"SLCategoryController" bundle:nil] autorelease]]
                                        autorelease];
-    [SCAppUtils customizeNavigationController:cateNav];
+    [SCAppUtils customizeNavigationController:cateNav withImg:kSCNavBarImgName];
     
     self.downMan = [[[SLDownloadManController alloc] initWithNibName:@"SLDownloadManController" bundle:nil] autorelease];
     UINavigationController *downManNav = [[[UINavigationController alloc]
                                            initWithRootViewController:downMan]
                                           autorelease];
-    [SCAppUtils customizeNavigationController:downManNav];
+    [SCAppUtils customizeNavigationController:downManNav withImg:kSCNavBarImgName];
     
     UINavigationController *usercenterNav = [[[UINavigationController alloc]
       initWithRootViewController:[[[SLUserCenterController alloc] initWithNibName:@"SLUserCenterController" bundle:nil] autorelease]]
                                              autorelease];
-    [SCAppUtils customizeNavigationController:usercenterNav];
+    [SCAppUtils customizeNavigationController:usercenterNav withImg:kSCNavBarImgName];
     
 	self.tabBarController.viewControllers = [NSArray arrayWithObjects:
 											 hotNav, cateNav, downManNav,
