@@ -14,6 +14,7 @@
     LKShadowTableView   *table;
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
+    
 }
 
 - (void)reloadTableViewDataSource;

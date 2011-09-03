@@ -17,6 +17,8 @@
 - (void)dealloc
 {
     MLog(@"");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.tmpHotCell = nil;
     if (downReq) {
         [downReq clearDelegatesAndCancel];
 //        self.downReq = nil;
@@ -26,11 +28,17 @@
     [super dealloc];
 }
 
+- (void)faceLoaded:(NSNotification *)aNotif
+{
+    UIImage *img = [aNotif object];
+    self.tmpHotCell.imageView.image = img;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(faceLoaded:) name:SLImgeLoadedNotif object:nil];
     }
     return self;
 }
@@ -68,12 +76,6 @@
 
 #pragma mark - table view delegate
 
-- (CGFloat)contentHeight
-{
-    CGSize csize = [mov.content sizeWithFont:[UIFont systemFontOfSize:17.0f] constrainedToSize:CGSizeMake(280.0f, 5000.0f) lineBreakMode:UILineBreakModeWordWrap];
-    return csize.height;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat rowHight = .0f;
@@ -81,7 +83,7 @@
         rowHight = 80.0f;
     }
     if (indexPath.row == 1) {
-        rowHight = [self contentHeight]+80.0f;
+        rowHight = [SLMovInfoCell contentHeight:mov.content]+100.0f;
     }
     return rowHight;
 }
@@ -129,7 +131,7 @@
                 hotCell.playButton.hidden = NO;
                 hotCell.downButton.hidden = NO;
                 hotCell.pauseDownButton.hidden = YES;
-                self.tmpHotCell = nil;
+//                self.tmpHotCell = nil;
             }
         }
         hotCell.movie = mov;
@@ -143,9 +145,9 @@
             if (tmpMovInfoCell) {
                 infoCell = tmpMovInfoCell;
                 infoCell.selectionStyle = UITableViewCellSelectionStyleNone;
-                CGRect cframe = infoCell.contentTextView.frame;
-                cframe.size.height = [self contentHeight];
-                [infoCell.contentTextView setFrame:cframe];
+//                CGRect cframe = infoCell.contentTextView.frame;
+//                cframe.size.height = [self contentHeight]+100;
+//                [infoCell.contentTextView setFrame:cframe];
             }
         }
         infoCell.movie = mov;

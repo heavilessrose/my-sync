@@ -11,9 +11,11 @@
 #import "LKMoreCell.h"
 
 @interface SLHotController ()
-- (void)fetchHotMovs:(BOOL)showHUD;
+- (void)fetchHotMovs:(BOOL)showHUD pn:(NSInteger)aPn;
 
-- (void)nextPage:(int)aPage;
+- (void)nextPage:(UITableView *)aTable;
+- (BOOL)isNextingPage;
+- (BOOL)isNextingPageSearch;
 @end
 
 
@@ -53,8 +55,7 @@
     self.theTable = table;
     
     self.title = @"Hot";
-    [self fetchHotMovs:YES];
-    
+    [self fetchHotMovs:YES pn:self.page];
     
 	if (_refreshHeaderView == nil) {
 		
@@ -91,14 +92,14 @@
 
 #pragma mark - hot movs: http://i.siluhd.com/ipadgetnew.asp
 // 
-- (void)fetchHotMovs:(BOOL)showHUD {
+- (void)fetchHotMovs:(BOOL)showHUD pn:(NSInteger)aPn {
     
 //    [[LKTipCenter defaultCenter] postFallingTipWithMessage:@"加载中..." inContainer:(self.view) time:0];
     if (showHUD) {
         [self HUDWithGradient:@"加载中..."];
     }
 #if 1
-    NSURL *hotsUrl = [NSURL URLWithString:[NSString stringWithFormat:SL_HOT, page] relativeToURL:SL_BASE_HOST];
+    NSURL *hotsUrl = [NSURL URLWithString:[NSString stringWithFormat:SL_HOT, aPn] relativeToURL:SL_BASE_HOST];
 #else
     
     NSURL *urlaa = [NSURL URLWithString:@"http://211.151.64.33:8081/jyapi"];
@@ -194,8 +195,14 @@
             [movies removeAllObjects];
             [movies addObjectsFromArray:tmpMovs];
             [self doneLoadingTableViewData];
+            self.page = 1;
+            nextingPn = page;
+            nextingPnSearch = page;
         } else {
             [movies addObjectsFromArray:tmpMovs];
+            if ([self isNextingPage]) {
+                self.page = nextingPn;
+            }
         }
 //        [self cancelListConn];
         [table reloadData];
@@ -209,6 +216,18 @@
     
     if (connection == searchConn) {
         NSArray *aSearchList = [self parse:searchJsonData];
+        if ([self isNextingPageSearch]) {
+            pageSearch = nextingPnSearch;
+        }
+        NSIndexPath *mPath = [NSIndexPath indexPathForRow:[movies count] inSection:0];
+        LKMoreCell *mcell = (LKMoreCell *)[table cellForRowAtIndexPath:mPath];
+        if (mcell && [mcell isKindOfClass:[LKMoreCell class]]) {
+            if (aSearchList && [aSearchList count] == 0) {
+                [mcell nomore];
+            } else {
+                [mcell loadSuccessed];
+            }
+        }
         
         for (NSDictionary *aDic in aSearchList) {
             SLMovie *aMov = [[SLMovie alloc] initWithDic:aDic];
@@ -238,10 +257,21 @@
         if (mcell && [mcell isKindOfClass:[LKMoreCell class]]) {
             [mcell loadFailed];
         }
+        if ([self isNextingPage]) {
+            nextingPn = page;
+        }
+        if (_reloading) {
+            _reloading = NO;
+            [self doneLoadingTableViewData];
+        }
     }
     if (connection == searchConn) {
         [self cancelSearchConn];
     }
+    if (HUD) {
+        [HUD hide:YES];
+    }
+    [self HUDWithLabel:NSLocalizedString(@"Load failed", nil)];
 //    [[LKTipCenter defaultCenter] changeFallingTip:self.view withText:@"network err"];
 }
 
@@ -323,6 +353,9 @@
     }
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         count = [searchList count];
+        if (count >= SL_PAGESIZE) {
+            count++;
+        }
     }
     return count;
 }
@@ -330,13 +363,25 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LKMoreCell *mCell;
-    if (tableView == table && indexPath.row == [movies count]) {
-        if ([cell isKindOfClass:[LKMoreCell class]]) {
-            mCell = (LKMoreCell *)cell;
+    if (tableView == table) {
+        if (indexPath.row == [movies count]) {
+            if ([cell isKindOfClass:[LKMoreCell class]]) {
+                mCell = (LKMoreCell *)cell;
+            }
+            if (mCell && mCell.state == LKMoreCellState_Loaded) {
+                [self nextPage:table];
+                [mCell startLoadMore];
+            }
         }
-        if (mCell.state == LKMoreCellState_Loaded) {
-            [self nextPage:++self.page];
-            [mCell startLoadMore];
+    } else {
+        if (indexPath.row == [searchList count]) {
+            if ([cell isKindOfClass:[LKMoreCell class]]) {
+                mCell = (LKMoreCell *)cell;
+            }
+            if (mCell && mCell.state == LKMoreCellState_Loaded) {
+                [self nextPage:self.searchDisplayController.searchResultsTableView];
+                [mCell startLoadMore];
+            }
         }
     }
 }
@@ -352,6 +397,7 @@
                 [[NSBundle mainBundle] loadNibNamed:@"LKMoreCell" owner:self options:nil];
                 if (self.tmpMoreCell) {
                     self.tmpMoreCell.delegate = self;
+                    self.tmpMoreCell.moreInTable = table;
                     mCell = self.tmpMoreCell;
                     self.tmpMoreCell = nil;
                 }
@@ -378,14 +424,29 @@
         
         static NSString *sCellID = @"UITableViewCell";
         theCell = [tableView dequeueReusableCellWithIdentifier:sCellID];
-        if (!theCell) {
-            theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:sCellID] autorelease];
-            theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        SLMovie *s = [searchList objectAtIndex:indexPath.row];
-        if (s) {
-            theCell.textLabel.text = s.title;
-            theCell.detailTextLabel.text = s.actor;
+        if (indexPath.row == [searchList count]) {
+            static NSString *nextPageCellID = @"LKMoreCellForSearch";
+            LKMoreCell *mCell = (LKMoreCell *)[tableView dequeueReusableCellWithIdentifier:nextPageCellID];
+            if (!mCell) {
+                [[NSBundle mainBundle] loadNibNamed:@"LKMoreCell" owner:self options:nil];
+                if (self.tmpMoreCell) {
+                    self.tmpMoreCell.delegate = self;
+                    self.tmpMoreCell.moreInTable = self.searchDisplayController.searchResultsTableView;
+                    mCell = self.tmpMoreCell;
+                    self.tmpMoreCell = nil;
+                }
+            }
+            theCell = mCell;
+        } else {
+            if (!theCell) {
+                theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:sCellID] autorelease];
+                theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            SLMovie *s = [searchList objectAtIndex:indexPath.row];
+            if (s) {
+                theCell.textLabel.text = s.title;
+//              theCell.detailTextLabel.text = s.actor;
+            }
         }
     }
     return theCell;
@@ -404,6 +465,7 @@
 		SLHotCell *cell = (SLHotCell *)[self.table cellForRowAtIndexPath:imageDown.indexPathInTableView];
         
         [cell.imageView setImage:imageDown.imgRecord.img];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SLImgeLoadedNotif object:imageDown.imgRecord.img];
         [imageDownloadsInProgress removeObjectForKey:indexPath];
 	}
 }
@@ -470,14 +532,13 @@
 	_reloading = YES;
     
     [self cancelAllImgLoading];
-    [self fetchHotMovs:NO];
+    [self fetchHotMovs:NO pn:1];
 }
 
 - (void)doneLoadingTableViewData
 {
 	//  model should call this when its done loading
 	_reloading = NO;
-    
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.table];
 }
 
@@ -494,22 +555,64 @@
     } else {
         self.searchList = [NSMutableArray array];
     }
-	NSString *key = [aSearchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	if (key && [key length] > 0) {
-        [self searchWithKeyword:key];
+	NSString *akey = [aSearchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	if (akey && [akey length] > 0) {
+        self.key = akey;
+        [self searchWithKeyword:key pn:1];
 	}
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+    nextingPnSearch = 1;
+    pageSearch = 1;
 }
 
 #pragma mark - 
 
-- (void)nextPage:(int)aPage
+- (BOOL)isNextingPage
 {
-    [self fetchHotMovs:NO];
+    if (nextingPn > page) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isNextingPageSearch
+{
+    if (nextingPnSearch > pageSearch) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)nextPage:(UITableView *)aTable
+{
+    if (aTable == self.table) {
+        if (nextingPn == page) {
+            nextingPn++;
+        } else if (nextingPn < page) {
+            ALog(@"should never in");
+        }
+        [self fetchHotMovs:NO pn:nextingPn];
+    } else {
+        if (nextingPnSearch == pageSearch) {
+            nextingPnSearch++;
+        } else if (nextingPnSearch < pageSearch) {
+            ALog(@"should never in");
+        }
+        [self searchWithKeyword:key pn:nextingPnSearch];
+    }
 }
 
 - (void)retryLoad:(LKMoreCell *)aMoreCell
 {
-    [self nextPage:self.page];
+    if (aMoreCell.moreInTable == self.table) {
+        [self nextPage:self.table];
+    }
+    if (aMoreCell.moreInTable == self.searchDisplayController.searchResultsTableView) {
+        [self nextPage:self.searchDisplayController.searchResultsTableView];
+    }
     [aMoreCell startLoadMore];
 }
 

@@ -11,12 +11,14 @@
 @implementation LKMoreCell
 
 @synthesize anim, titleLabel, retryButton, delegate, state;
+@synthesize moreInTable;
 
 - (void)dealloc
 {
     self.retryButton = nil;
     self.anim = nil;
     self.titleLabel = nil;
+    
     [super dealloc];
 }
 
