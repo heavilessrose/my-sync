@@ -34,6 +34,10 @@
     NSURLConnection *searchConn;
     NSMutableArray  *searchList;
     int        page;
+    int        pageSearch;
+    NSInteger nextingPn;
+    NSInteger nextingPnSearch;
+    NSString *key;
     
     BOOL            allRequestShouldCancel;
     NSMutableDictionary	*imageDownloadsInProgress;
@@ -51,6 +55,7 @@
 @property (nonatomic, assign) int               page;
 @property (nonatomic, assign) BOOL              shouldLoadNextPage;
 @property (nonatomic, assign) UITableView       *theTable;
+@property (nonatomic, retain) NSString *key;
 
 @property (nonatomic, assign) IBOutlet LKMoreCell          *tmpMoreCell;
 @property (nonatomic, assign) IBOutlet SLHotCell *tmpHotCell;
@@ -70,7 +75,7 @@
 - (void)hideTabbar;
 - (void)showTabbar;
 
-- (void)searchWithKeyword:(NSString *)key;
+- (void)searchWithKeyword:(NSString *)key pn:(NSInteger)aPn;
 
 #pragma mark - HUD
 - (void)HUDWithLabel:(NSString *)tip;

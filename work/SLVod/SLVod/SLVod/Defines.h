@@ -10,6 +10,8 @@
 
 #define globalApp ((SLVodAppDelegate *)[UIApplication sharedApplication].delegate)
 
+#define SLImgeLoadedNotif (@"SLImgeLoadedNotif")
+
 // Color
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
@@ -31,7 +33,7 @@
 #define SL_HOT              (@"ipadgetnew.asp?page=%d")
 #define SL_CATE_LIST        (@"ipad_get_typelist.asp?page=%d")
 #define SL_CATE_MOVS        (@"ipadsearch.asp?searchtype=Filmtype&page=%d&keyword=%@")
-#define SL_SEARCH           (@"ipadsearch.asp?searchtype=search&page=1&keyword=%@")
+#define SL_SEARCH           (@"ipadsearch.asp?searchtype=search&page=%d&keyword=%@")
 #define SL_LOGIN            (@"ipadlogin.asp?userid=%@&password=%@")
 #define SL_REG              (@"ipadreguser.asp?userid=%@&password=%@&myemail=%@&UDID=%@")
 

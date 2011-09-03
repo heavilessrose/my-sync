@@ -26,7 +26,7 @@
 #pragma mark -
 @implementation LKViewController
 
-@synthesize page;
+@synthesize page, key;
 @synthesize allRequestShouldCancel;
 @synthesize jsonData, movies, listConn, imageDownloadsInProgress, searchConn, searchJsonData, searchList;
 @synthesize tmpMoreCell, tmpHotCell, tmpMovInfoCell, tmpUProfileCell, theTable, shouldLoadNextPage;
@@ -45,6 +45,7 @@
     [movies release];
     self.searchJsonData = nil;
     [searchList release];
+    [key release];
     
     [super dealloc];
 }
@@ -52,8 +53,8 @@
 - (void)cancelAllImgLoading
 {
     LKImgDownload *imageDown;
-    for (NSIndexPath *key in imageDownloadsInProgress) {
-        if ((imageDown = [imageDownloadsInProgress objectForKey:key])) {
+    for (NSIndexPath *akey in imageDownloadsInProgress) {
+        if ((imageDown = [imageDownloadsInProgress objectForKey:akey])) {
             [imageDown cancelDownload];
         }
     }
@@ -64,6 +65,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.page = 1;
+        nextingPn = page;
+        nextingPnSearch = page;
+        pageSearch = page;
         self.shouldLoadNextPage = YES;
     }
     return self;
@@ -374,10 +378,10 @@
 
 #pragma mark - search 
 
-- (void)searchWithKeyword:(NSString *)key
+- (void)searchWithKeyword:(NSString *)akey pn:(NSInteger)aPn
 {
-    DLog(@"key= %@", key);
-    NSURL *searchUrl = [NSURL URLWithString:[NSString stringWithFormat:SL_SEARCH, [key URLEncodedString]] relativeToURL:SL_BASE_HOST];
+    DLog(@"key= %@", akey);
+    NSURL *searchUrl = [NSURL URLWithString:[NSString stringWithFormat:SL_SEARCH, aPn, [akey URLEncodedString]] relativeToURL:SL_BASE_HOST];
     NSURLRequest *searchReq = [NSURLRequest requestWithURL:searchUrl];
     self.searchConn = [NSURLConnection connectionWithRequest:searchReq delegate:self];
 }

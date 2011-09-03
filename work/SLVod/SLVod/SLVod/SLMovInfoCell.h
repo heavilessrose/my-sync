@@ -20,4 +20,6 @@
 @property (nonatomic, retain) IBOutlet UILabel     *label;
 @property (nonatomic, retain) IBOutlet UITextView  *contentTextView;
 
++ (CGFloat)contentHeight:(NSString *)info;
+
 @end

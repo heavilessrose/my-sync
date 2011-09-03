@@ -30,8 +30,11 @@ typedef enum {
     
     LKMoreCellState         state;
     id <LKMoreCellDelegate> delegate;
+    
+    UITableView             *moreInTable;
 }
 
+@property (nonatomic, assign) UITableView             *moreInTable;
 @property (nonatomic, assign) id <LKMoreCellDelegate> delegate;
 @property (nonatomic, assign) LKMoreCellState         state;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *anim;
