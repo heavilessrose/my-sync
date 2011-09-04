@@ -36,4 +36,6 @@
 
 - (IBAction)signinPressed:(UIButton *)aButton;
 - (IBAction)signupPressed:(UIButton *)aButton;
+
+- (void)logined;
 @end

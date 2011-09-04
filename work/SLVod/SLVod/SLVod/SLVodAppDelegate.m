@@ -38,7 +38,7 @@ NSString *kBackgroundColorKey	= @"backgroundColor";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[FFSettings shareSettings] archiveSettings];
+    [FFSettings shareSettings];
     
 	self.tabBarController = [[[BCTabBarController alloc] init] autorelease];
     UINavigationController *hotNav = [[[UINavigationController alloc]

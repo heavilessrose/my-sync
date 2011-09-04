@@ -10,6 +10,7 @@
 #import "LKLabelTextFieldCell.h"
 #import "LKButtonCell.h"
 #import "FFSettings.h"
+#import "LKAlert.h"
 
 @implementation SLLoginController
 
@@ -62,6 +63,27 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark -
+- (NSString *)username
+{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+    LKLabelTextfieldCell *tCell = (LKLabelTextfieldCell *)[self.table cellForRowAtIndexPath:indexpath];
+    if ([tCell isKindOfClass:[LKLabelTextfieldCell class]]) {
+        return tCell.field.text;
+    }
+    return nil;
+}
+
+- (NSString *)pass
+{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
+    LKLabelTextfieldCell *tCell = (LKLabelTextfieldCell *)[self.table cellForRowAtIndexPath:indexpath];
+    if ([tCell isKindOfClass:[LKLabelTextfieldCell class]]) {
+        return tCell.field.text;
+    }
+    return nil;
+}
+
 #pragma mark - network 
 
 - (void)login
@@ -74,12 +96,28 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    [[FFSettings shareSettings] archiveSettings];
+    if (request.responseStatusCode != 200) {
+        alertWithMessageAndTitle(NSLocalizedString(@"Request failed", nil), nil);
+    } else {
+        [FFSettings shareSettings].username = self.username;
+        [FFSettings shareSettings].pass = self.pass;
+        [FFSettings shareSettings].logined = YES;
+        [[FFSettings shareSettings] archiveSettings];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    if (HUD) {
+        [HUD hide:YES];
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     DLOG
+    if (HUD) {
+        [HUD hide:YES];
+    }
+    alertWithMessageAndTitle(NSLocalizedString(@"Login failed", nil), nil);
 }
 
 

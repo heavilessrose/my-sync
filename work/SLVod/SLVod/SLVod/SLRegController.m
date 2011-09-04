@@ -14,12 +14,13 @@
 
 @implementation SLRegController
 
-@synthesize table;
-@synthesize username, pass, email;
+@synthesize table, loginReq;
+@synthesize username, pass, pass2, email;
 
 - (void)dealloc
 {
     self.table = nil;
+    [pass2 release];
     [username release];
     [pass release];
     [email release];
@@ -41,6 +42,51 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+#pragma mark -
+
+- (NSString *)username
+{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+    LKLabelTextfieldCell *tCell = (LKLabelTextfieldCell *)[self.table cellForRowAtIndexPath:indexpath];
+    if ([tCell isKindOfClass:[LKLabelTextfieldCell class]]) {
+        return tCell.field.text;
+    }
+    return nil;
+}
+
+- (NSString *)pass
+{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
+    LKLabelTextfieldCell *tCell = (LKLabelTextfieldCell *)[self.table cellForRowAtIndexPath:indexpath];
+    if ([tCell isKindOfClass:[LKLabelTextfieldCell class]]) {
+        return tCell.field.text;
+    }
+    return nil;
+}
+
+- (NSString *)pass2
+{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:2 inSection:0];
+    LKLabelTextfieldCell *tCell = (LKLabelTextfieldCell *)[self.table cellForRowAtIndexPath:indexpath];
+    if ([tCell isKindOfClass:[LKLabelTextfieldCell class]]) {
+        return tCell.field.text;
+    }
+    return nil;
+}
+
+- (NSString *)email
+{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:3 inSection:0];
+    LKLabelTextfieldCell *tCell = (LKLabelTextfieldCell *)[self.table cellForRowAtIndexPath:indexpath];
+    if ([tCell isKindOfClass:[LKLabelTextfieldCell class]]) {
+        if (!tCell.field.text || [tCell.field.text length] == 0) {
+            return nil;
+        }
+        return tCell.field.text;
+    }
+    return nil;
 }
 
 #pragma mark - View lifecycle
@@ -67,21 +113,74 @@
 
 #pragma mark - network 
 
+- (BOOL)verify
+{
+    if (!self.username || [[self.username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0) {
+        alertWithMessageAndTitle(NSLocalizedString(@"Invalid username", nil), NSLocalizedString(@"Whitespace not allowed", nil));
+        return NO;
+    }
+    if (!self.pass || [[self.pass stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0) {
+        alertWithMessageAndTitle(NSLocalizedString(@"Invalid pass", nil), NSLocalizedString(@"Whitespace not allowed", nil));
+        return NO;
+    }
+    if (!self.pass2 || [[self.pass2 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0) {
+        alertWithMessageAndTitle(NSLocalizedString(@"Invalid pass", nil), NSLocalizedString(@"Whitespace not allowed", nil));
+        return NO;
+    }
+    if ((self.pass && self.pass2 && ![self.pass isEqualToString:self.pass2])) {
+        alertWithMessageAndTitle(NSLocalizedString(@"Pass not equal", nil), nil);
+        return NO;
+    }
+    if (!self.email || [[self.email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0) {
+        alertWithMessageAndTitle(NSLocalizedString(@"Invalid email", nil), NSLocalizedString(@"Whitespace not allowed", nil));
+        return NO;
+    }
+    return YES;
+}
+
 - (void)reg
 {
-    [self HUDWithGradient:NSLocalizedString(@"Reging", nil)];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:SL_REG, self.username, self.pass, self.email, [[UIDevice currentDevice] uniqueIdentifier]] relativeToURL:SL_BASE_HOST];
-    ASIHTTPRequest *regReq = [ASIHTTPRequest requestWithURL:url];
-    [regReq setDelegate:self];
-    [regReq startAsynchronous];
+    if ([self verify]) {
+        
+        [self HUDWithGradient:NSLocalizedString(@"Reging", nil)];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:SL_REG, self.username, self.pass, self.email, [[UIDevice currentDevice] uniqueIdentifier]] relativeToURL:SL_BASE_HOST];
+        ASIHTTPRequest *regReq = [ASIHTTPRequest requestWithURL:url];
+        [regReq setDelegate:self];
+        [regReq startAsynchronous];
+        
+    }
+}
+
+- (void)loginAuto
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:SL_LOGIN, self.username, self.pass] relativeToURL:SL_BASE_HOST];
+    loginReq = [ASIHTTPRequest requestWithURL:url];
+    [loginReq setDelegate:self];
+    [loginReq startAsynchronous];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    [FFSettings shareSettings].username = self.username;
-    [FFSettings shareSettings].pass = self.pass;
-    [FFSettings shareSettings].email = self.email;
-    [[FFSettings shareSettings] archiveSettings];
+    if (HUD) {
+        [HUD hide:YES];
+    }
+    if (request == loginReq) {
+        [FFSettings shareSettings].logined = YES;
+        [[FFSettings shareSettings] archiveSettings];
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        if (request.responseStatusCode == 200) {
+            [FFSettings shareSettings].username = self.username;
+            [FFSettings shareSettings].pass = self.pass;
+            [FFSettings shareSettings].email = self.email;
+            [[FFSettings shareSettings] archiveSettings];
+            
+            [self loginAuto];
+        } else {
+            alertWithMessageAndTitle(NSLocalizedString(@"User already existed", nil), nil);
+            return;
+        }
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -133,7 +232,7 @@
         if (indexPath.row == 2) {
             [tCell.label setText:@"重复密码:"];
             [tCell.field setPlaceholder:@"请重复密码"];
-            [tCell.field setText:self.pass];
+            [tCell.field setText:self.pass2];
         }
         if (indexPath.row == 3) {
             [tCell.label setText:@"邮箱:"];
