@@ -13,9 +13,14 @@
     UITableView *table;
     NSString *username;
     NSString *pass;
+    NSString *pass2;
     NSString *email;
+    
+    ASIHTTPRequest *loginReq;
 }
 
+@property (nonatomic, assign) ASIHTTPRequest *loginReq;
+@property (nonatomic, retain) NSString *pass2;
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSString *pass;
 @property (nonatomic, retain) NSString *email;

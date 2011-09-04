@@ -18,8 +18,10 @@
     NSString    *username;
     NSString    *pass;
     NSString    *email;
+    BOOL        logined;
 }
 
+@property (nonatomic, assign) BOOL        logined;
 @property (nonatomic, retain) NSString    *email;
 @property (nonatomic, assign) BOOL        FirstRun;
 @property (nonatomic, retain) NSString    *ClientVersion;

@@ -7,6 +7,7 @@
 //
 
 #import "SLUserProfileCell.h"
+#import "FFSettings.h"
 
 
 @implementation SLUserProfileCell
@@ -42,6 +43,13 @@
 }
 
 #pragma mark - button 
+
+- (void)logined
+{
+    self.nameLabel.text = [FFSettings shareSettings].username;
+    [signinButton setHidden:YES];
+    [signupButton setHidden:YES];
+}
 
 - (IBAction)signinPressed:(UIButton *)aButton
 {

@@ -12,13 +12,14 @@
 @interface FFSettings ()
 - (BOOL)archiveSettings;
 + (FFSettings *)unarchiveSettings;
+- (void)loadDefaultSettings;
 @end
 
 static FFSettings *shareInstance = nil;
 
 @implementation FFSettings
 
-@synthesize FirstRun, ClientVersion, pass, username, email;
+@synthesize FirstRun, ClientVersion, pass, username, email, logined;
 
 #pragma mark - singleton
 
@@ -39,6 +40,7 @@ static FFSettings *shareInstance = nil;
 	
     if ((self = [super init])) {
         if ([FFSettings isFirstRun]) {
+			[self loadDefaultSettings];
             if ([self archiveSettings]) {
                 self.FirstRun = NO;
             }
@@ -70,13 +72,18 @@ static FFSettings *shareInstance = nil;
     return YES;
 }
 
-- (BOOL)archiveSettings
+- (void)loadDefaultSettings
 {
 	NSString *defaultPrefsPath = [[NSBundle mainBundle] pathForResource:@"Prefs" ofType:@"plist"];
 	NSDictionary *defaultPrefs = [NSDictionary dictionaryWithContentsOfFile:defaultPrefsPath];
-//	[[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:defaultPrefs];
-//	[[NSUserDefaults standardUserDefaults] synchronize];
-    [self setValuesForKeysWithDictionary:defaultPrefs];
+	NSLog(@"%@", defaultPrefs);
+	//	[[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:defaultPrefs];
+	//	[[NSUserDefaults standardUserDefaults] synchronize];
+	[self setValuesForKeysWithDictionary:defaultPrefs];
+}
+
+- (BOOL)archiveSettings
+{
     // write
     NSMutableData *aData = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:aData];          
@@ -112,6 +119,7 @@ static FFSettings *shareInstance = nil;
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeBool:FirstRun forKey:@"FirstRun"];
+    [aCoder encodeBool:logined forKey:@"logined"];
     [aCoder encodeObject:ClientVersion forKey:@"ClientVersion"];
     [aCoder encodeObject:username forKey:@"username"];
     [aCoder encodeObject:pass forKey:@"pass"];
@@ -122,6 +130,7 @@ static FFSettings *shareInstance = nil;
 {
     if ((self = [super init])) {
         FirstRun = [aDecoder decodeBoolForKey:@"FirstRun"];
+        logined = [aDecoder decodeBoolForKey:@"logined"];
         ClientVersion = [[aDecoder decodeObjectForKey:@"ClientVersion"] retain];
         username = [[aDecoder decodeObjectForKey:@"username"] retain];
         pass = [[aDecoder decodeObjectForKey:@"pass"] retain];

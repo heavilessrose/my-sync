@@ -9,6 +9,7 @@
 #import "SLUserCenterController.h"
 #import "SLLoginController.h"
 #import "SLRegController.h"
+#import "FFSettings.h"
 
 @implementation SLUserCenterController
 
@@ -44,6 +45,28 @@
 {
     [super viewDidLoad];
     self.theTable = table;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)updateLoginState
+{
+    if ([FFSettings shareSettings].logined) {
+        NSIndexPath *i = [NSIndexPath indexPathForRow:0 inSection:0];
+        SLUserProfileCell *uCell = (SLUserProfileCell *)[self.table cellForRowAtIndexPath:i];
+        
+        if (uCell && [uCell isKindOfClass:[SLUserProfileCell class]]) {
+            [uCell logined];
+        }
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -114,6 +137,10 @@
                 pCell.avatarView.image = [UIImage imageNamed:@"noimg.png"];
                 pCell.signDelegate = self;
                 pCell.accessoryType = UITableViewCellAccessoryNone;
+                
+                if ([FFSettings shareSettings].logined) {
+                    [pCell logined];
+                }
                 self.tmpUProfileCell = nil;
             }
         }
